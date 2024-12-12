@@ -8,6 +8,10 @@ public class Horizontal : MonoBehaviour
     [SerializeField]
     float m_velocity = 1f;
 
+    [Tooltip("Velocidad maxima del objeto en unidades por segundo")]
+    [SerializeField]
+    float m_maxvelocity = 10f;
+
     [Tooltip("Aceleracion del objeto en unidades por segundo cuadrado. Dejar en 0 para movimiento uniforme")]
     [SerializeField]
     float m_aceleration = 0f;
@@ -33,10 +37,24 @@ public class Horizontal : MonoBehaviour
     void Update()
     {
         m_time += Time.deltaTime;
-        // x = x0 + v*t mru
-        // x = x0 + v0*t + 1/2 a t^2 
-        float desp = m_velocity * Time.deltaTime * m_dir;
-        m_transform.position += new Vector3(desp,0,0);
+
+        // MRU: x = x0 + v*t
+        // MRUA: x = x0 + v0*t + 1/2 * a * t^2
+        float desp;
+        if (m_aceleration == 0)
+        {
+            // MRU
+            desp = m_velocity * Time.deltaTime * m_dir;
+        }
+        else
+        {
+            // MRUA
+            desp = m_velocity * Time.deltaTime * m_dir + 0.5f * m_aceleration * Mathf.Pow(Time.deltaTime, 2) * m_dir;
+            m_velocity += m_aceleration * Time.deltaTime; // Actualizar velocidad en MRUA
+            if (m_velocity > m_maxvelocity) m_velocity = m_maxvelocity;
+        }
+
+        m_transform.position += new Vector3(desp, 0, 0);
     }
    void RecibirMensaje(string mensaje)
     {
