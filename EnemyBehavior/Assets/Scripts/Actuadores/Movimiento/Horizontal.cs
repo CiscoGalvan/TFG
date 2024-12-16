@@ -56,9 +56,8 @@ public class Horizontal : MonoBehaviour
 
         m_transform.position += new Vector3(desp, 0, 0);
     }
-   void RecibirMensaje(string mensaje)
+   void RecibirMensaje(Collision2D mensaje)
     {
-        Debug.Log("mensaje recivido: "+ mensaje);
-        m_dir *= -1;
+       m_dir *= -1;
     }
 }
