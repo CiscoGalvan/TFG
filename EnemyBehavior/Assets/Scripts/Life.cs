@@ -14,9 +14,17 @@ public class Life : MonoBehaviour
     private TextMeshProUGUI lifeText;
     [SerializeField]
     private string textname;
+    protected void Awake()
+    {
+        // Validar que lifeText tenga un valor asignado
+        if (lifeText == null)
+        {
+            Debug.LogError($"The TextMeshProUGUI reference in {gameObject.name} is not assigned. Please assign it in the inspector.", this);
+            enabled = false; // Desactiva el script si no está configurado correctamente
+        }
+    }
     protected void Start()
     {
-        Debug.Log("gsfg");
         m_actualLife = m_initialLife;
         UpdateLifeText();
     }
@@ -44,7 +52,7 @@ public class Life : MonoBehaviour
     {
         if (lifeText != null)
         {
-            lifeText.text = textname + m_actualLife; // Muestra la vida con un decimal
+            lifeText.text = textname + m_actualLife; 
         }
     }
 }

@@ -9,14 +9,14 @@ public class EnemyLife : Life
     void Start()
     {
         base.Start();
-        Colision.OnMensajeEnviado += RecibirMensaje;
+        Collision.OnMessageSent += ReceiveMessage;
 
     }
     private void OnDestroy()
     {
-        Colision.OnMensajeEnviado -= RecibirMensaje;
+        Collision.OnMessageSent -= ReceiveMessage;
     }
-    void RecibirMensaje(Collision2D mensaje)
+    void ReceiveMessage(Collision2D mensaje)
     {
         if(mensaje.gameObject.GetComponent<PlayerMovement>() != null)
         {

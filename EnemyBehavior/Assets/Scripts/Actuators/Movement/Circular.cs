@@ -2,32 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Transform))]
 public class Circular : MonoBehaviour
 {
-    [Tooltip("Radio de la trayectoria circular")]
+    [Tooltip("Radius of the circular trajectory")]
     [SerializeField]
+    [Range(0.1f, 100f)]
     private float m_radius = 5f;
 
-    [Tooltip("Velocidad angular en grados por segundo")]
+    [Tooltip("Angular speed in degrees per second")]
     [SerializeField]
     private float angularSpeed = 90f;
 
-    [Tooltip("Centro de rotacion (si no se especifica, usa la posicion inicial del objeto)")]
+    [Tooltip("Center of rotation (if not specified, uses the object's initial position)")]
     [SerializeField]
     private Transform m_rotationPointPosition;
 
-    [Tooltip("Angulo maximo permitido en grados. 360 para un circulo completo, menos para un movimiento tipo pendulo")]
+    [Tooltip("Maximum allowed angle in degrees. Use 360 for a full circle, less for pendulum-like motion")]
     [SerializeField]
     [Range(0f, 360f)]
     private float m_maxAngle = 360f;
 
-    [Tooltip("Aceleracion angular en grados por segundo cuadrado (dejar en 0 para velocidad constante)")]
+    [Tooltip("Angular acceleration in degrees per second squared (set to 0 for constant speed)")]
     [SerializeField]
     private float m_angularAcceleration = 0f;
 
-    private float m_currentAngle = 0f; // Angulo actual en grados
-    private float m_currentAngularSpeed; // Velocidad angular actual
-    private bool m_reversing = false; // Indica si el movimiento está en reversa para el pendulo
+    private float m_currentAngle = 0f; // Current angle in degrees
+    private float m_currentAngularSpeed; // Current angular speed
+    private bool m_reversing = false; // Indicates whether the motion is reversing (pendulum behavior)
 
     // Start is called before the first frame update
     private void Start()
@@ -45,13 +47,13 @@ public class Circular : MonoBehaviour
 
     private void Update()
     {
-        // Actualizar velocidad si hay aceleracion
+        // Update speed if there's angular acceleration
         if (m_angularAcceleration != 0f)
         {
             m_currentAngularSpeed += m_angularAcceleration * Time.deltaTime;
         }
 
-        if (m_maxAngle < 360f)// Movimiento tipo pendulo
+        if (m_maxAngle < 360f)// Pendulum-like motion
         {
             if (m_reversing)
             {
@@ -72,19 +74,24 @@ public class Circular : MonoBehaviour
                 }
             }
         }
-        else // Movimiento circular completo
+        else // Full circular motion
         {
            
             m_currentAngle += m_currentAngularSpeed * Time.deltaTime;
             m_currentAngle %= 360f; 
         }
 
-        // Convertir angulo a radianes
+        // Convert angle to radians
         float angleRadians = m_currentAngle * Mathf.Deg2Rad;
 
-        // Calcular nueva posicion
+        // Calculate new position
         Vector3 offset = new Vector3(m_radius * Mathf.Cos(angleRadians), m_radius * Mathf.Sin(angleRadians), 0f);
 
         transform.position = m_rotationPointPosition.position + offset;
+    }
+    private void OnDrawGizmos()
+    {
+        if(this.isActiveAndEnabled)
+        Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
     }
 }
