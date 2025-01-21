@@ -5,10 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Transform))]
 public class Circular : MonoBehaviour
 {
-    [Tooltip("Radius of the circular trajectory")]
-    [SerializeField]
-    [Range(0.1f, 100f)]
-    private float m_radius = 5f;
+    
 
     [Tooltip("Angular speed in degrees per second")]
     [SerializeField]
@@ -30,19 +27,22 @@ public class Circular : MonoBehaviour
     private float m_currentAngle = 0f; // Current angle in degrees
     private float m_currentAngularSpeed; // Current angular speed
     private bool m_reversing = false; // Indicates whether the motion is reversing (pendulum behavior)
-
-    // Start is called before the first frame update
-    private void Start()
+    private bool m_noRotationPointAssigned = false; //Indicates whether there is a rotation point assigned or not (used for editor purposes)
+    private float m_radius = 0;
+	// Start is called before the first frame update
+	private void Start()
     {
-
+       
         Vector3 initialPosition = transform.position;
         if (m_rotationPointPosition == null)
         {
-            m_rotationPointPosition = new GameObject("Rotation Point").transform;
+            Debug.Log("There was no rotation point assigned to object: " + gameObject.name +"\nIt will rotate from it's initial position with radius: " + m_radius);
+            m_rotationPointPosition = new GameObject(gameObject.name + "RotationPoint").transform;
             m_rotationPointPosition.position = initialPosition;
-        }
-
-        m_currentAngularSpeed = angularSpeed;
+            m_noRotationPointAssigned = true;
+		}
+		else m_radius = Vector3.Distance(m_rotationPointPosition.position, transform.position);
+		m_currentAngularSpeed = angularSpeed;
     }
 
     private void Update()
@@ -91,7 +91,20 @@ public class Circular : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if(this.isActiveAndEnabled)
-        Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
-    }
+        if (this.isActiveAndEnabled)
+        {
+            if(m_rotationPointPosition == null)
+            {
+				Gizmos.DrawWireSphere(transform.position, m_radius);
+			}
+            else Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
+
+		}
+	}
+
+    public Transform GetRotationPoint() { return m_rotationPointPosition; }
+    public float GetRadius() { return m_radius; }
+    public void SetRadius(float newValue) { m_radius = newValue; }
+    public bool RotationPointAssigned() { return !m_noRotationPointAssigned; }
+	
 }
