@@ -752,7 +752,7 @@ Transform:
   m_GameObject: {fileID: 620872448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.436076, y: -3.57, z: 0}
+  m_LocalPosition: {x: -2.436076, y: 0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -788,7 +788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angularSpeed: 90
   m_rotationPointPosition: {fileID: 705025381}
-  m_maxAngle: 360
+  m_maxAngle: 220
   m_angularAcceleration: 0
 --- !u!1 &705025380
 GameObject:

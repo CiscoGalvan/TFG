@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
@@ -29,12 +30,23 @@ public class Circular : MonoBehaviour
     private bool m_reversing = false; // Indicates whether the motion is reversing (pendulum behavior)
     private bool m_noRotationPointAssigned = false; //Indicates whether there is a rotation point assigned or not (used for editor purposes)
     private float m_radius = 0;
+    private Vector2 m_direction; //vector that points from the rotation point towards the moving object
+    private Vector3 m_startingPosition;
+    private float m_initAngle;
 	// Start is called before the first frame update
 	private void Start()
     {
+        m_startingPosition = transform.position;
+		m_direction = transform.position - m_rotationPointPosition.position;
+        
+
+		float angleRadians = Mathf.Atan2(m_direction.y, m_direction.x);
+		m_currentAngle = angleRadians * Mathf.Rad2Deg;
        
-        Vector3 initialPosition = transform.position;
-        if (m_rotationPointPosition == null)
+		Vector3 initialPosition = transform.position;
+        m_initAngle = m_currentAngle;
+
+		if (m_rotationPointPosition == null)
         {
             Debug.Log("There was no rotation point assigned to object: " + gameObject.name +"\nIt will rotate from it's initial position with radius: " + m_radius);
             m_rotationPointPosition = new GameObject(gameObject.name + "RotationPoint").transform;
@@ -46,30 +58,34 @@ public class Circular : MonoBehaviour
     }
 
     private void Update()
-    {
-        // Update speed if there's angular acceleration
-        if (m_angularAcceleration != 0f)
+	{
+		//Debug.Log(m_currentAngle);
+		// Update speed if there's angular acceleration
+		if (m_angularAcceleration != 0f)
         {
             m_currentAngularSpeed += m_angularAcceleration * Time.deltaTime;
         }
 
         if (m_maxAngle < 360f)// Pendulum-like motion
         {
-            if (m_reversing)
+			float redLimit = NormalizeAngle(m_initAngle + m_maxAngle / 2);
+			float blueLimit = NormalizeAngle(m_initAngle - m_maxAngle / 2);
+			Debug.Log("RedLimit = " + redLimit);
+			Debug.Log("BlueLimit = " + blueLimit);
+			Debug.Log(IsAngleInRange(m_currentAngle,redLimit, blueLimit));
+			if (m_reversing)
             {
-                m_currentAngle -= m_currentAngularSpeed * Time.deltaTime;
-                if (m_currentAngle <= -m_maxAngle)
-                {
-                    m_currentAngle = -m_maxAngle;
-                    m_reversing = false;
-                }
-            }
+				m_currentAngle -= m_currentAngularSpeed * Time.deltaTime;
+				if (m_currentAngle < blueLimit)
+				{
+					m_reversing = false;
+				}
+			}
             else
-            {               
+            {
                 m_currentAngle += m_currentAngularSpeed * Time.deltaTime;
-                if (m_currentAngle >= m_maxAngle)
+                if (m_currentAngle > redLimit)
                 {
-                    m_currentAngle = m_maxAngle;
                     m_reversing = true;
                 }
             }
@@ -93,16 +109,109 @@ public class Circular : MonoBehaviour
     {
         if (this.isActiveAndEnabled)
         {
-            if(m_rotationPointPosition == null)
+            if(m_maxAngle == 360f)
             {
-				Gizmos.DrawWireSphere(transform.position, m_radius);
-			}
-            else Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
+				if (m_rotationPointPosition == null)
+				{
+					Gizmos.DrawWireSphere(transform.position, m_radius);
+				}
+				else Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
 
+			}
+            else
+			{
+				// Cálculo del ángulo inicial en radianes basado en la posición actual del objeto
+				Vector3 direction = m_startingPosition - m_rotationPointPosition.position;
+				float initialAngleRadians = Mathf.Atan2(direction.y, direction.x);
+
+				// Rango de ángulos para cada mitad
+				float halfAngleRange = Mathf.Deg2Rad * (m_maxAngle / 2f);
+
+				// Ángulos para las dos mitades
+				float startAngleLeft = initialAngleRadians + halfAngleRange;
+				float endAngleLeft = initialAngleRadians;
+				float startAngleRight = initialAngleRadians;
+				float endAngleRight = initialAngleRadians - halfAngleRange;
+
+				// Configuración de segmentos
+				int segments = 30; // Aumentar para suavizar las curvas
+				float angleStepLeft = (startAngleLeft - endAngleLeft) / segments;
+				float angleStepRight = (endAngleRight - startAngleRight) / segments;
+
+				// Dibujar lado izquierdo (arco positivo)
+				Vector3 previousPoint = m_rotationPointPosition.position + new Vector3(
+					Mathf.Cos(startAngleLeft) * m_radius,
+					Mathf.Sin(startAngleLeft) * m_radius,
+					0f);
+
+				Gizmos.color = Color.red; // Color para el lado izquierdo
+				for (int i = 1; i <= segments; i++)
+				{
+					float angle = startAngleLeft - i * angleStepLeft;
+					Vector3 currentPoint = m_rotationPointPosition.position + new Vector3(
+						Mathf.Cos(angle) * m_radius,
+						Mathf.Sin(angle) * m_radius,
+						0f);
+
+					Gizmos.DrawLine(previousPoint, currentPoint);
+					previousPoint = currentPoint;
+				}
+
+				// Dibujar lado derecho (arco negativo)
+				previousPoint = m_rotationPointPosition.position + new Vector3(
+					Mathf.Cos(startAngleRight) * m_radius,
+					Mathf.Sin(startAngleRight) * m_radius,
+					0f);
+
+				Gizmos.color = Color.blue; // Color para el lado derecho
+				for (int i = 1; i <= segments; i++)
+				{
+					float angle = startAngleRight + i * angleStepRight;
+					Vector3 currentPoint = m_rotationPointPosition.position + new Vector3(
+						Mathf.Cos(angle) * m_radius,
+						Mathf.Sin(angle) * m_radius,
+						0f);
+
+					Gizmos.DrawLine(previousPoint, currentPoint);
+					previousPoint = currentPoint;
+				}
+			}
+		}
+	}
+	private float NormalizeAngle(float angle)
+	{
+		angle = angle % 360f; // Aseguramos que el ángulo esté dentro de -360 y 360
+		if (angle < 0f)
+		{
+			angle += 360f; // Convertimos valores negativos al rango positivo
+		}
+		return angle;
+	}
+
+	// Determina si un ángulo está dentro del rango entre los límites
+	private bool IsAngleInRange(float angle, float startAngle, float endAngle)
+	{
+		angle = NormalizeAngle(angle);
+		startAngle = NormalizeAngle(startAngle);
+		endAngle = NormalizeAngle(endAngle);
+
+		if (startAngle < endAngle) // Caso normal (sin cruce en 0)
+		{
+			return angle >= startAngle && angle <= endAngle;
+		}
+		else // Caso con cruce en 0
+		{
+			return angle >= startAngle || angle <= endAngle;
 		}
 	}
 
-    public Transform GetRotationPoint() { return m_rotationPointPosition; }
+	private void ChangeValues(ref float redLimit, ref float blueLimit)
+	{
+		float aux = redLimit;
+		redLimit = blueLimit;
+		blueLimit = aux;
+	}
+	public Transform GetRotationPoint() { return m_rotationPointPosition; }
     public float GetRadius() { return m_radius; }
     public void SetRadius(float newValue) { m_radius = newValue; }
     public bool RotationPointAssigned() { return !m_noRotationPointAssigned; }
