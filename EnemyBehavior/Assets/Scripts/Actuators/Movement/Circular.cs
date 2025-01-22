@@ -68,23 +68,21 @@ public class Circular : MonoBehaviour
 
         if (m_maxAngle < 360f)// Pendulum-like motion
         {
-			float redLimit = NormalizeAngle(m_initAngle + m_maxAngle / 2);
-			float blueLimit = NormalizeAngle(m_initAngle - m_maxAngle / 2);
-			Debug.Log("RedLimit = " + redLimit);
-			Debug.Log("BlueLimit = " + blueLimit);
-			Debug.Log(IsAngleInRange(m_currentAngle,redLimit, blueLimit));
 			if (m_reversing)
             {
+
+				float limitAngle = m_initAngle - m_maxAngle / 2;
 				m_currentAngle -= m_currentAngularSpeed * Time.deltaTime;
-				if (m_currentAngle < blueLimit)
+				if (m_currentAngle < limitAngle)
 				{
 					m_reversing = false;
 				}
 			}
             else
-            {
-                m_currentAngle += m_currentAngularSpeed * Time.deltaTime;
-                if (m_currentAngle > redLimit)
+			{
+				float limitAngle = m_initAngle + m_maxAngle / 2;
+				m_currentAngle += m_currentAngularSpeed * Time.deltaTime;
+                if (m_currentAngle > limitAngle)
                 {
                     m_reversing = true;
                 }
@@ -177,39 +175,6 @@ public class Circular : MonoBehaviour
 				}
 			}
 		}
-	}
-	private float NormalizeAngle(float angle)
-	{
-		angle = angle % 360f; // Aseguramos que el ángulo esté dentro de -360 y 360
-		if (angle < 0f)
-		{
-			angle += 360f; // Convertimos valores negativos al rango positivo
-		}
-		return angle;
-	}
-
-	// Determina si un ángulo está dentro del rango entre los límites
-	private bool IsAngleInRange(float angle, float startAngle, float endAngle)
-	{
-		angle = NormalizeAngle(angle);
-		startAngle = NormalizeAngle(startAngle);
-		endAngle = NormalizeAngle(endAngle);
-
-		if (startAngle < endAngle) // Caso normal (sin cruce en 0)
-		{
-			return angle >= startAngle && angle <= endAngle;
-		}
-		else // Caso con cruce en 0
-		{
-			return angle >= startAngle || angle <= endAngle;
-		}
-	}
-
-	private void ChangeValues(ref float redLimit, ref float blueLimit)
-	{
-		float aux = redLimit;
-		redLimit = blueLimit;
-		blueLimit = aux;
 	}
 	public Transform GetRotationPoint() { return m_rotationPointPosition; }
     public float GetRadius() { return m_radius; }
