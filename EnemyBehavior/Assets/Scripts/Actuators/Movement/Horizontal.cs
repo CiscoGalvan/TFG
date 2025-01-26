@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Transform))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Horizontal : MonoBehaviour
 {
     [Tooltip("Initial speed of the object in units per second")]
@@ -21,6 +21,11 @@ public class Horizontal : MonoBehaviour
     [SerializeField]
     private Direction m_dir = Direction.Right;
 
+
+    [Tooltip("Easing function for acceleration")]
+    [SerializeField]
+    private EasingFunction.Ease m_easingFunction = EasingFunction.Ease.Linear;
+
     public enum Direction
     {
         Left = -1,
@@ -28,19 +33,21 @@ public class Horizontal : MonoBehaviour
     }
 
     float m_time =0;
+    Rigidbody2D m_rigidbody;
+    private EasingFunction.Function easingFunc;
 
-    Transform m_transform;
     private void Start()
     {
-        m_transform = this.GetComponent<Transform>();
+        m_rigidbody = this.GetComponent<Rigidbody2D>();
+        easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
         Collision.OnMessageSent += ReceiveMessage;
     }
     private void OnDestroy()
     {
         Collision.OnMessageSent -= ReceiveMessage;
     }
-    // Update is called once per frame
-    void Update()
+   
+    void FixedUpdate()
     {
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
@@ -54,16 +61,36 @@ public class Horizontal : MonoBehaviour
         }
         else
         {
+            float easedAcceleration = m_acceleration > 0 ? easingFunc(0, m_acceleration, Mathf.Clamp01(m_time)) : 0;
+
             // MRUA
-            desp = m_speed * Time.deltaTime * dirValue + 0.5f * m_acceleration * Mathf.Pow(Time.deltaTime, 2) * dirValue;
-            m_speed += m_acceleration * Time.deltaTime; // Update speed in accelerated motion
+            desp = m_speed * Time.deltaTime * dirValue + 0.5f * easedAcceleration * Mathf.Pow(Time.deltaTime, 2) * dirValue;
+            m_speed += easedAcceleration * Time.deltaTime; // Update speed in accelerated motion
             if (m_speed > m_maxspeed) m_speed = m_maxspeed;
         }
 
-        m_transform.position += new Vector3(desp, 0, 0);
+        m_rigidbody.position += new Vector2(desp, 0);
     }
    void ReceiveMessage(Collision2D mensaje)
     {
        m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (! this.isActiveAndEnabled) return;
+
+        Gizmos.color = Color.green;
+        Vector3 position = transform.position;
+
+        Vector3 direction = new Vector3((int)m_dir, 0, 0);
+
+        // Draw direction arrow
+        Gizmos.DrawLine(position, position + direction );
+        Vector3 arrowTip = position + direction;
+        Vector3 right = Quaternion.Euler(0, 0, 135) * direction * 0.25f;
+        Vector3 left = Quaternion.Euler(0, 0, -135) * direction * 0.25f;
+        Gizmos.DrawLine(arrowTip, arrowTip + right);
+        Gizmos.DrawLine(arrowTip, arrowTip + left);
     }
 }

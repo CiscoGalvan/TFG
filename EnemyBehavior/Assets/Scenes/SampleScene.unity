@@ -682,15 +682,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620872448}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 1
   m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: 1
+  m_acceleration: 1.38
+  m_dir: -1
+  m_easingFunction: 21
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -788,7 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angularSpeed: 90
   m_rotationPointPosition: {fileID: 705025381}
-  m_maxAngle: 220
+  m_maxAngle: 360
   m_angularAcceleration: 0
 --- !u!1 &705025380
 GameObject:
@@ -802,7 +803,7 @@ GameObject:
   m_Layer: 0
   m_Name: rotation point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
