@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
@@ -103,77 +104,41 @@ public class Circular : MonoBehaviour
 
         transform.position = m_rotationPointPosition.position + offset;
     }
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
+		
         if (this.isActiveAndEnabled)
         {
             if(m_maxAngle == 360f)
             {
+
 				if (m_rotationPointPosition == null)
-				{
+				{					
 					Gizmos.DrawWireSphere(transform.position, m_radius);
 				}
-				else Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
+				else {
+                    m_radius = Vector3.Distance(m_rotationPointPosition.position, transform.position);
+                    Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius); 
+
+				}
 
 			}
             else
 			{
-				// Cálculo del ángulo inicial en radianes basado en la posición actual del objeto
-				Vector3 direction = m_startingPosition - m_rotationPointPosition.position;
-				float initialAngleRadians = Mathf.Atan2(direction.y, direction.x);
+                Vector3 direction = m_startingPosition - m_rotationPointPosition.position;
+                float initialAngleDegrees = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-				// Rango de ángulos para cada mitad
-				float halfAngleRange = Mathf.Deg2Rad * (m_maxAngle / 2f);
+                // Rango de ángulos para cada mitad
+                float halfAngleRange = m_maxAngle / 2f;
 
-				// Ángulos para las dos mitades
-				float startAngleLeft = initialAngleRadians + halfAngleRange;
-				float endAngleLeft = initialAngleRadians;
-				float startAngleRight = initialAngleRadians;
-				float endAngleRight = initialAngleRadians - halfAngleRange;
+                // Dibujar lado izquierdo (arco positivo)
+                Handles.color = Color.red;
+                Handles.DrawWireArc(m_rotationPointPosition.position,Vector3.forward,Quaternion.Euler(0, 0, initialAngleDegrees + halfAngleRange) * Vector3.right, -halfAngleRange,m_radius);
 
-				// Configuración de segmentos
-				int segments = 30; // Aumentar para suavizar las curvas
-				float angleStepLeft = (startAngleLeft - endAngleLeft) / segments;
-				float angleStepRight = (endAngleRight - startAngleRight) / segments;
-
-				// Dibujar lado izquierdo (arco positivo)
-				Vector3 previousPoint = m_rotationPointPosition.position + new Vector3(
-					Mathf.Cos(startAngleLeft) * m_radius,
-					Mathf.Sin(startAngleLeft) * m_radius,
-					0f);
-
-				Gizmos.color = Color.red; // Color para el lado izquierdo
-				for (int i = 1; i <= segments; i++)
-				{
-					float angle = startAngleLeft - i * angleStepLeft;
-					Vector3 currentPoint = m_rotationPointPosition.position + new Vector3(
-						Mathf.Cos(angle) * m_radius,
-						Mathf.Sin(angle) * m_radius,
-						0f);
-
-					Gizmos.DrawLine(previousPoint, currentPoint);
-					previousPoint = currentPoint;
-				}
-
-				// Dibujar lado derecho (arco negativo)
-				previousPoint = m_rotationPointPosition.position + new Vector3(
-					Mathf.Cos(startAngleRight) * m_radius,
-					Mathf.Sin(startAngleRight) * m_radius,
-					0f);
-
-				Gizmos.color = Color.blue; // Color para el lado derecho
-				for (int i = 1; i <= segments; i++)
-				{
-					float angle = startAngleRight + i * angleStepRight;
-					Vector3 currentPoint = m_rotationPointPosition.position + new Vector3(
-						Mathf.Cos(angle) * m_radius,
-						Mathf.Sin(angle) * m_radius,
-						0f);
-
-					Gizmos.DrawLine(previousPoint, currentPoint);
-					previousPoint = currentPoint;
-				}
-			}
+                // Dibujar lado derecho (arco negativo)
+                Handles.color = Color.blue;
+                Handles.DrawWireArc(m_rotationPointPosition.position,Vector3.forward,Quaternion.Euler(0, 0, initialAngleDegrees) * Vector3.right,-halfAngleRange,m_radius);
+            }
 		}
 	}
 	public Transform GetRotationPoint() { return m_rotationPointPosition; }

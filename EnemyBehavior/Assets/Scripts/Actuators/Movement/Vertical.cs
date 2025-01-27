@@ -77,7 +77,7 @@ public class Vertical : MonoBehaviour
 
         m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
     }
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (!this.isActiveAndEnabled) return;
 

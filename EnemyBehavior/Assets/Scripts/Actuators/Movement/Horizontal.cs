@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -76,7 +77,7 @@ public class Horizontal : MonoBehaviour
        m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (! this.isActiveAndEnabled) return;
 
@@ -92,5 +93,6 @@ public class Horizontal : MonoBehaviour
         Vector3 left = Quaternion.Euler(0, 0, -135) * direction * 0.25f;
         Gizmos.DrawLine(arrowTip, arrowTip + right);
         Gizmos.DrawLine(arrowTip, arrowTip + left);
+       
     }
 }

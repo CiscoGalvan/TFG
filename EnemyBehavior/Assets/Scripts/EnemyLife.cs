@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyLife : Life
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         Collision.OnMessageSent += ReceiveMessage;
