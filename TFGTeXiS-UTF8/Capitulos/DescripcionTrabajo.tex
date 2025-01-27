@@ -1,9 +1,9 @@
 \chapter{Descripción del Trabajo}
 \label{cap:descripcionTrabajo}
 En este capitulo se describe el framework de enemigos creado, mediante el diseño de componentes más sencillos. 
-Primero se describirá el contexto y por tanto la utilidad de la herramienta, aquí se detallaran juegos analizados y características en común. Después se explicará que elementos la componen y por último se detallarán algunos ejemplos de uso. \\
+Primero se describirá el contexto y por tanto la utilidad de la herramienta, aquí se detallaran juegos analizados y sus características en común. Después se explicará que elementos la componen y por último se detallarán algunos ejemplos de uso. \\
 \section{Contexto}
-Como se señala en  \citet{Build a Bad Guy Workshop}, los enemigos bien diseñados son clave para evitar niveles queden planos y, en consecuencia, aburridos para el jugador.
+Como se señala en  \citet{Build a Bad Guy Workshop}, los enemigos bien diseñados son clave para evitar que los niveles queden planos y, en consecuencia, aburridos para el jugador.
 \subsection{Enemigo}
 Los enemigos son entidades programadas para enfrentarse al jugador y crear desafíos dentro del juego. Su diseño incluye características, comportamientos y habilidades diseñadas para interactuar con las mecánicas del juego y contribuir a la experiencia del jugador. \\
 \subsection{Análisis de enemigos en videojuegos}
@@ -11,8 +11,8 @@ El análisis de diversos documentos muestra que la mejor forma de hacer que un e
 Con dicha sofisticación, ha aumentado la complejidad del trabajo en el diseño. Para solucionarlo hemos propuesto una herramienta con la  composición indicada a continuación
 
 \section{Composición}
-En este trabajo, se ha decidido entender como enemigo a cualquier entidad que pueda repercutir de forma negativa en el jugador. Esto significa que no se limita el concepto de enemigo a figuras típicas, como monstruos o soldados hostiles, sino que se amplía su definición a toda entidad que suponga un riesgo, dificultad o amenaza para el progreso o el bienestar del jugador dentro del juego, como pueden ser pinchos, lava o gotas de ácido.
-Además separamos cada enemigo por comportamientos diferentes, implicando que elementos que clásicamente aparecen en conjunto, como la tubería y la gota de ácido o la bala y el pistolero, serán considerados como  dos enemigos distintos.\\
+En este trabajo, se ha decidido entender como enemigo a cualquier entidad que pueda repercutir de forma negativa en el jugador, esto significa que no se limita el concepto de enemigo a figuras típicas, como monstruos o soldados hostiles, sino que se amplía su definición a toda entidad que suponga un riesgo, dificultad o amenaza para el progreso o el bienestar del jugador dentro del juego, como pueden ser pinchos, lava o gotas de ácido.
+Además separamos cada enemigo por comportamientos diferentes, implicando que elementos que clásicamente aparecen en conjunto, como la tubería y la gota de ácido o la bala y el pistolero, serán considerados como dos enemigos distintos.\\
 
 \subsection{Máquina de estados finita}
 
@@ -40,7 +40,7 @@ Hace referencia a un conjunto de movimientos y habilidades que definen lo que un
 
 \subsubsection{Movimiento}
 Podemos definir el término movimiento como el desplazamiento o cambio de posición de un enemigo dentro del juego. Sin embargo, el concepto de movimiento también puede aplicarse en el caso de enemigos que permanecen en una posición fija, haciendo referencia a la ausencia de éste. Los movimientos son fundamentales para definir el comportamiento de los personajes, ya que permiten la interacción con el jugador y el entorno.
-A continuación se describen en una tabla todos los movimientos que se han considerado esenciales y en la figura \ref{fig:TablaCompatibilidad} podemos ver la compativilidad entre ellos
+A continuación se describen en una tabla todos los movimientos que se han considerado esenciales y en la figura \ref{fig:TablaCompatibilidad} podemos ver la compatibilidad entre ellos
 
 \begin{table}
 	\centering
@@ -70,11 +70,11 @@ A continuación se describen en una tabla todos los movimientos que se han consi
 	\label{fig:TablaCompatibilidad}
 \end{figure}
 \subsubsection{Spawner}
-Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder "crear" nuevas unidades que actúan de forma autónoma dentro del juego.\\
+Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder crear nuevas unidades que actúan de forma autónoma dentro del juego.\\
 Los spawners presentan características únicas dentro del sistema de enemigos, ya que su objetivo no es solo enfrentarse al jugador, sino también aumentar el número de amenazas de manera continua o en función de ciertas condiciones.
 Implementar un spawner requiere establecer ciertas reglas de generación de enemigos, tales como la frecuencia de aparición, el número máximo de enemigos generados o si las unidades generadas son temporales o persistentes.
 \subsection{Sensores y Emisores}
-Podemos definir el término sensor como elemento necesario para medir variables exteriores  y enviar la información al enemigo. Los sensores permiten producir eventos. \\
+Podemos definir el término sensor como el elemento necesario para medir variables exteriores y enviar la información al enemigo. Los sensores permiten producir eventos. \\
 Definimos Emisores como anónimo de sensor, es decir, es aquel elemento que envía información del enemigo al exterior.
 Para explicar su funcionamiento se proponen algunos ejemplos.
 \begin{table}
@@ -101,7 +101,7 @@ Ej: dirección a la que mira, si tiene seleccionada un arma counter del enemigo,
 	\label{tab:Sensores/Emisores}
 \end{table}
 \subsection{Daño}
-Cuando se habla de daño, el concepto de enemigo se deja a un lado y se habla de volúmenes de colisiones.\\
+Cuando se habla de daño, el concepto de enemigo se deja a un lado y se habla de volúmenes de colisión.\\
 Se define daño como la consecuencia negativa que recibe una entidad con respecto a su vida. Se produce como la consecuencia de que un volumen de colisión que emite daño colisione contra otro volumen de colisión que recibe daño.\\
 Existen diferentes tipos de daño y parámetros específicos que determinan cómo los volúmenes de colisión reciben, emiten y procesan daño.
 La primera consideración que hay que tener en cuenta es que el daño no es bidireccional, lo que implica que un volumen que recibe daño no tiene porqué emitir daño. Para reflejar esta diferenciación, en este trabajo se estructuran tres tipos de cajas de colisión:
@@ -153,12 +153,12 @@ tiempoIntervalos (cada cuanto hace daño)
 \subsection{Eventos}
 
 Un evento es una funcionalidad concreta y puntual que se activa mediante un sensor, está diseñado para ser procesado por cualquier entidad del juego que lo requiera.
-Cuando se cumplen ciertas condiciones específicas (definidas previamente por el programador), un evento puede desencadenar otro evento como consecuencia, creando una cadena de interacciones.
+Cuando se cumplen ciertas condiciones específicas, un evento puede desencadenar otro evento como consecuencia, creando una cadena de interacciones.
 El uso de eventos contribuye a un diseño más orgánico y dinámico, ya que permite que los cambios de estado en los enemigos sean más evidentes para el jugador, mejorando así la experiencia de juego. Siendo especialmente visible en efectos gráficos y sonoros.\\
 
 La muerte de un enemigo se implementa como un evento. Este evento se genera cuando el enemigo agota su salud o se encuentra en una condición específica de eliminación. Al activarse, se lanza para que otras entidades del juego lo procesen, representando el fin de la ejecución de la FSM y deteniendo cualquier acción del enemigo.
 
 \subsubsection{Procesamiento de eventos}
 
-Todos los eventos generados por sensores se manejan a través de una cola de eventos. Esta cola asegura que los eventos se procesen en orden de llegada (First in first off, FIFO), evitando conflictos entre ellos. Cada enemigo evalúa los eventos de su cola de manera secuencial, ejecutando las acciones correspondientes antes de pasar al siguiente evento.
+Todos los eventos generados por sensores se manejan a través de una cola de eventos. Esta cola asegura que los eventos se procesen en orden de llegada (First In First Out, FIFO), evitando conflictos entre ellos. Cada enemigo evalúa los eventos de su cola de manera secuencial, ejecutando las acciones correspondientes antes de pasar al siguiente evento.
 
