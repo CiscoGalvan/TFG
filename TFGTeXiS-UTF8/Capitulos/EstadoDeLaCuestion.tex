@@ -5,16 +5,38 @@ Para ello vamos a comenzar haciendo un recorrido por todo lo relacionado con la 
 Se mencionarán además herramientas para conseguir los fines descritos anteriormente y se hablará de algunos motores de videojuegos que han inspirado en cierta manera algunos aspectos de nuetras herramienta. \\
 \section{Introducción a la Inteligencia Artificial}
 
-La Inteligencia Artificial (IA) es la capacidad que tiene un sistema o sotware o de realizar tareas diferentes entre sí de manera autónoma aplicando reglas, algoritmos o patrones de aprendizaje automático, simulando así comportamientos propios de la inteligencia humana.
+La Inteligencia Artificial (IA) es la capacidad que tiene un sistema o software de realizar tareas diferentes entre sí de manera autónoma aplicando reglas, algoritmos o patrones de aprendizaje automático, simulando así comportamientos propios de la inteligencia humana.
 El potencial de la IA hoy día y por lo que está generando tanto furor es su capacidad de autonomía, ya que no solo sigue reglas, si no que tiene la capacidad de tomar decisiones\\
 En el ámbito de los videojuegos, la IA se ha hecho paso a base de demostrar su gran capacidad de adaptación a contextos diversos como la adaptación del Alien en \cite{Alien Isolation}, la manera en la que puede generar contenido procedural para juegos RogueLite como Hades(referencia) o ,por último, entrenar una IA para que se acerque lo máximo posible al comportamiento de un humano como en la serie Forza Motosport, usando redes neuronales.\\
 
-\section{Análisis herramientas}
-
+A continuación se mostrarán una serie de técnicas que se usan frecuentemente en videojuegos para llevar a cabo los comportamientos de los enemigos.\\
 \section{Tecnicas}
-
-Para modelar estos comportamientos vamos a hacer usos de una serie de herramientas y de técnicas que a continuación vamos a explicar en detalle:
 \subsection{Maquinas de estado finitas}
+Las máquinas de estado finitas, en inglés finite state machine, con siglas FSM, son un modelo matemático que representan un número finito de estados y una serie de transiciones entre ellos. \\
+
+Una FSM se representa como un grafo, siendo este una representación abstracta de un conjunto de objetos, eventos, acciones o propiedades conectados entre sí, siendo estos elementos nodos (estados) que realizan acciones y comprueban la posibilidad de que haya que cambiar de nodo. 
+
+En el ámbito de los videojuegos, las FSM son el conjunto de estados que puede tomar una entidad y la forma de llegar a estos, teniendo en cuenta que solo puede haber un estado activo en cualquier instante. \\
+
+El primer videojuego documentado que utilizó FSM para implementar la lógica de juego fue "Spacewar!(1961) \comp{Poner referencia} desarrollado en el MIT por Steve Russell. Este videojuego implementaba una lógica basada en estados para manejar el comportamiento de las naves, la detección de colisiones y la física del juego. Aunque no usaba una implementación formal de máquinas de estado, sí modelaba cambios entre estados bien definidos, como el movimiento de las naves o la activación de los disparos. \\ 
+
+Pac-Man es un videojuego en el que el jugador controla un personaje amarillo en forma de círculo con una boca que se abre y cierra constantemente y fue lanzado en 1980 por la compañía japonesa Namco (actual Bandai Namco). El objetivo de este videojuego es el de recorrer un laberinto e ir comiendo todos los puntos mientras evitamos cuatro fantasmas hasta que comemos una píldora de poder que nos hace invulnerable y nos da la capacidad de comer a los fantasmas. Estos huirán tras comernos la píldora.
+La complejidad en la IA de Pac-Man es asombrosa ya que quisieron darle profundidad al juego haciendo que cada fantasma tuviera una personalidad diferente \comp{Investigar sobre estas personalidades y enumerarlas}. Para ello implementaron una máquina de estado por fantasma haciendo que la forma en la que estos interacuan con el entorno sea ligeramente diferente.
+Para ilustrar el funcionamiento del juego se usará la figura \ref{fig:Comportamiento jugador Pac-Man} que representa una posible FSM para el jugador, lo que haría que las decisiones tomadas fueran lo más eficientes posibles en el momento.\\
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/FMS_MsPac-man.png}
+	\caption{Comportamiento jugador Pac-Man, extraído del libro de Yannakakis y Togelius (2018)}
+	\label{fig:Comportamiento jugador Pac-Man}
+\end{figure}
+
+Un punto en contra de las FSMs es que son muy inflexibles y estáticas, de manera que las posibilidades de escalado de la lógica son limitadas. También son algo predecibles una vez el jugador ha estudiado los estados y transiciones de una entidad, este punto negativo puede paliarse implementado probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones.
+
+\subsection{Árboles de comportamiento}
+\subsection{Goal-Oriented Action Planning}
+
+\section{Análisis herramientas}
 \subsection{Behaviour Bricks}
 \subsection{Play Maker}
 \subsection{Animator}
