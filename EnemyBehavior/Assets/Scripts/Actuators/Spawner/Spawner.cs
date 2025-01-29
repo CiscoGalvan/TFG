@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement2WardAPoint : Actuator
+public class Spawner : Actuator
 {
     // Start is called before the first frame update
     void Start()

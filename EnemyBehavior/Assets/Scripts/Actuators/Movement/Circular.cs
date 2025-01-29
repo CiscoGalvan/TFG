@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
-public class Circular : MonoBehaviour
+public class Circular : Actuator
 {
     
 
@@ -104,6 +106,7 @@ public class Circular : MonoBehaviour
 
         transform.position = m_rotationPointPosition.position + offset;
     }
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
 		
@@ -141,7 +144,8 @@ public class Circular : MonoBehaviour
             }
 		}
 	}
-	public Transform GetRotationPoint() { return m_rotationPointPosition; }
+    #endif
+    public Transform GetRotationPoint() { return m_rotationPointPosition; }
     public float GetRadius() { return m_radius; }
     public void SetRadius(float newValue) { m_radius = newValue; }
     public bool RotationPointAssigned() { return !m_noRotationPointAssigned; }

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class Vertical : MonoBehaviour
+public class Vertical : Actuator
 {
     [Tooltip("Initial speed of the object in units per second")]
     [SerializeField]

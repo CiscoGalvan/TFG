@@ -785,13 +785,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 620872448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266a7348fa3afe842baa7fa92000694f, type: 3}
+  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularSpeed: 90
-  m_rotationPointPosition: {fileID: 705025381}
-  m_maxAngle: 360
-  m_angularAcceleration: 0
+  actuatorList:
+  - {fileID: 0}
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

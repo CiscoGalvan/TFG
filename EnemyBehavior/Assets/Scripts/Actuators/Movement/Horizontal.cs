@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Horizontal : MonoBehaviour
+public class Horizontal : Actuator
 {
     [Tooltip("Initial speed of the object in units per second")]
     [SerializeField]
