@@ -4,6 +4,9 @@ using UnityEngine;
 
 
 //clase base de la que heredan todos los actuadores
-public class Actuator : MonoBehaviour
+public class Actuator : ScriptableObject
 {
+    public virtual void OnDrawGizmosSelected() {
+        Debug.Log("actuator");
+    }
 }

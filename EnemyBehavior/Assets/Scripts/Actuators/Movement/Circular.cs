@@ -36,9 +36,11 @@ public class Circular : Actuator
     private Vector2 m_direction; //vector that points from the rotation point towards the moving object
     private Vector3 m_startingPosition;
     private float m_initAngle;
+    private Transform transform;
 	// Start is called before the first frame update
 	private void Start()
     {
+        transform = this.GetComponent<Transform>();
         m_startingPosition = transform.position;
 		m_direction = transform.position - m_rotationPointPosition.position;
         
@@ -51,8 +53,8 @@ public class Circular : Actuator
 
 		if (m_rotationPointPosition == null)
         {
-            Debug.Log("There was no rotation point assigned to object: " + gameObject.name +"\nIt will rotate from it's initial position with radius: " + m_radius);
-            m_rotationPointPosition = new GameObject(gameObject.name + "RotationPoint").transform;
+            Debug.Log("There was no rotation point assigned to object: " + this.GameObject().name +"\nIt will rotate from it's initial position with radius: " + m_radius);
+            m_rotationPointPosition = new GameObject(this.GameObject().name + "RotationPoint").transform;
             m_rotationPointPosition.position = initialPosition;
             m_noRotationPointAssigned = true;
 		}
@@ -110,8 +112,7 @@ public class Circular : Actuator
     private void OnDrawGizmosSelected()
     {
 		
-        if (this.isActiveAndEnabled)
-        {
+       
             if(m_maxAngle == 360f)
             {
 
@@ -142,7 +143,7 @@ public class Circular : Actuator
                 Handles.color = Color.blue;
                 Handles.DrawWireArc(m_rotationPointPosition.position,Vector3.forward,Quaternion.Euler(0, 0, initialAngleDegrees) * Vector3.right,-halfAngleRange,m_radius);
             }
-		}
+		
 	}
     #endif
     public Transform GetRotationPoint() { return m_rotationPointPosition; }

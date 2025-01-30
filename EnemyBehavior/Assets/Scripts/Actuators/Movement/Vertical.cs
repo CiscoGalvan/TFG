@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-
+[CreateAssetMenu]
 public class Vertical : Actuator
 {
     [Tooltip("Initial speed of the object in units per second")]
@@ -77,12 +78,12 @@ public class Vertical : Actuator
 
         m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
     }
-    private void OnDrawGizmosSelected()
+    public override void OnDrawGizmosSelected()
     {
-        if (!this.isActiveAndEnabled) return;
+        Debug.Log("vertical");
 
         Gizmos.color = Color.green;
-        Vector3 position = transform.position;
+        Vector3 position = this.GetComponent<Transform>().position;
 
         Vector3 direction = new Vector3(0, (int)m_dir, 0);
 

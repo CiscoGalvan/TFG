@@ -32,5 +32,17 @@ public class State : MonoBehaviour
             }
         }
     }
+    private void OnDrawGizmosSelected()
+    {
+        Debug.Log("1");
+        foreach (var actuator in actuatorList)
+        {
+            if (actuator != null)
+            {
+                
+                  actuator.OnDrawGizmosSelected();
+            }
+        }
 
+    }
 }

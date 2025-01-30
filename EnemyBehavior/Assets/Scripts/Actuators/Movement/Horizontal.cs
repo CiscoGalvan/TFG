@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -79,10 +80,10 @@ public class Horizontal : Actuator
 
     private void OnDrawGizmosSelected()
     {
-        if (! this.isActiveAndEnabled) return;
+       //if (! this.isActiveAndEnabled) return;
 
         Gizmos.color = Color.green;
-        Vector3 position = transform.position;
+        Vector3 position = this.GetComponent<Transform>().position;
 
         Vector3 direction = new Vector3((int)m_dir, 0, 0);
 
