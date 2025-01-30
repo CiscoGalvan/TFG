@@ -37,12 +37,19 @@ Un punto en contra de las FSMs es que son muy inflexibles y estáticas, de maner
 
 \subsection{Árboles de comportamiento}
 
-Un árbol de comportamiento o Behavior Tree (BT) es un sistema similar a las FSMs ya que contamos con nodos y transiciones y solo uno de esos nodos puede estar activo al mismo tiempo. 
-La principal diferencia entre los BTs o las FSMs es que los nodos pasan de ser estados a comportamientos.
-Otra ventaja respecto a las FSMs es su modularidad, la capacidad que tiene un sistema de dividir la lógica del comportamiento en piezas independientes y reutilizables, pudiendo agrupar estas piezas en grupos que a su vez funcionan como una pieza.
-Su facilidad para ser diseñados y testeados han hecho que los árboles de comportamiento se conviertan en una opción real para modelar IA en la industria del videojuego.
+Un árbol de comportamiento o Behavior Tree (BT) es un sistema similar a las FSMs ya que contamos con nodos y transiciones y solo uno de esos nodos, que ahora pasan a ser comportamientos en lugar de estados, puede estar activo al mismo tiempo. \\
+En esencia, es un árbol de nodos que se organizan jerárquicamente y que atienden a unas normas que controlana el flujo de cambios de nodo. \\
+La principal ventaja respecto a las FSMs es su modularidad, la capacidad que tiene un sistema de dividir la lógica del comportamiento en piezas independientes y reutilizables, pudiendo agrupar estas piezas en grupos que a su vez funcionan como una pieza. \\
+\comp{Aquí podría poner una imagen de un ejemplo} \\\\
+Su facilidad para ser diseñados y testeados han hecho que los árboles de comportamiento se conviertan en una opción real para modelar IA en la industria del videojuego, con juegos como Bioshock (2K Games, 2007) y Halo 2 (Microsoft Game Studios, 2004) \comp{HALO: https://www.gamedeveloper.com/programming/gdc-2005-proceeding-handling-complexity-in-the-i-halo-2-i-ai
+Bioshock:} como referencias en el uso de BTs.\\
+Un ejemplo no tan conocido de uso de BTs en la industria del videojuego es Spore (2008, Maxis).\comp{REFERENCIAS}Spore es un videojuego en el que el jugador va a comenzar creando una célula y va encarnarla durante todo el proceso de su evolución hasta que esta se convierta en un ser mucho más complejo llegando incluso a construir una civilización muy avanzada. La inteligencia artificial de las entidades que nos rodean en este videojuego están fundamentadas en BTs.
 
+\url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}
+
+La gran diferencia de como usa BTs Spore a los juegos anteriormente mencionados es que Spore separa el concepto de "decider" de "behavior". Los BTs de Halo 2 están compuestos por "behaviors" ya sean estos comportamientos grupales o individuales e impulsos que son los saltos que se dan entre comportamientos y que se toman dependiendo de una prioridad, que a futuro resulta en problemas de escalabilidad. Para solucionar este problema, en Maxis deciden unificar el concepto de impulso y comportamientos grupales bajo el nombre de "deciders", dejando completamente separado el concepto de behavior y permitiendo que estos puedan ser reutilizados en múltiples lugares del árbol, asegurando la escalabilidad.
 \subsection{Goal-Oriented Action Planning}
+
 \comp{https://github.com/crashkonijn/GOAP herramienta que podriamos analizar}\\ 
 \subsection{Aprendizaje por Refuerzo (RL) o Redes Neuronales}
 \section{Análisis herramientas}
