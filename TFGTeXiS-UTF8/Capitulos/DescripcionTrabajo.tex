@@ -1,3 +1,4 @@
+
 \chapter{Descripción del Trabajo}
 \label{cap:descripcionTrabajo}
 En este capitulo se describe el framework de enemigos creado, mediante el diseño de componentes más sencillos. 
@@ -37,12 +38,15 @@ Además cada estado contiene una lista que definen las dimensiones, tiempo de re
 
 \subsection{Acciones (Actuadores)}
 Hace referencia a un conjunto de movimientos y habilidades que definen lo que un enemigo puede hacer en el videojuego. Esto incluye distintos tipos de desplazamientos y la capacidad de crear otros enemigos de forma independiente mediante spawners. Estas habilidades no siempre son compatibles entre sí, teniendo una tabla en la que se indicaran las relaciones entre ellas. Además no es necesario utilizar siempre todas las acciones de forma que a veces un enemigo podrá realizar un tipo de movimiento o usar un spawner de manera exclusiva, mientras que en otras podrá combinar varias habilidades según su diseño y complejidad. Esto permite adaptar las capacidades de los enemigos para diferentes situaciones en el juego.
-
+\subsubsection{Spawner}
+Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder crear nuevas unidades que actúan de forma autónoma dentro del juego.\\
+Los spawners presentan características únicas dentro del sistema de enemigos, ya que su objetivo no es solo enfrentarse al jugador, sino también aumentar el número de amenazas de manera continua o en función de ciertas condiciones.
+Implementar un spawner requiere establecer ciertas reglas de generación de enemigos, tales como la frecuencia de aparición, el número máximo de enemigos generados o si las unidades generadas son temporales o persistentes.
 \subsubsection{Movimiento}
 Podemos definir el término movimiento como el desplazamiento o cambio de posición de un enemigo dentro del juego. Sin embargo, el concepto de movimiento también puede aplicarse en el caso de enemigos que permanecen en una posición fija, haciendo referencia a la ausencia de éste. Los movimientos son fundamentales para definir el comportamiento de los personajes, ya que permiten la interacción con el jugador y el entorno.
 A continuación se describen en una tabla todos los movimientos que se han considerado esenciales y en la figura \ref{fig:TablaCompatibilidad} podemos ver la compatibilidad entre ellos
 
-\begin{table}
+\begin{table}[!h]
 	\centering
 	\begin{tabular}{|p{3cm}|p{4.5cm}|p{4cm}|p{3cm}|}
 	\hline
@@ -63,16 +67,27 @@ A continuación se describen en una tabla todos los movimientos que se han consi
 	\label{tab:movimientos}
 \end{table}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width = 0.7\textwidth]{Imagenes/TablaCompatibilidad.png}
-	\caption{TablaCompatibilidad }
-	\label{fig:TablaCompatibilidad}
-\end{figure}
-\subsubsection{Spawner}
-Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder crear nuevas unidades que actúan de forma autónoma dentro del juego.\\
-Los spawners presentan características únicas dentro del sistema de enemigos, ya que su objetivo no es solo enfrentarse al jugador, sino también aumentar el número de amenazas de manera continua o en función de ciertas condiciones.
-Implementar un spawner requiere establecer ciertas reglas de generación de enemigos, tales como la frecuencia de aparición, el número máximo de enemigos generados o si las unidades generadas son temporales o persistentes.
+\begin{table}[h]
+    \centering
+
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{4pt} % Reduce el espacio entre columnas
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{c|cccccc}
+            & \cellcolor{gray!60} Movimiento Horizontal & \cellcolor{gray!60} Movimiento Vertical & \cellcolor{gray!60} Quieto & \cellcolor{gray!60} Movimiento hacia un punto & \cellcolor{gray!60} Circular/Rotación & \cellcolor{gray!60} Péndulo \\
+            \hline
+            \cellcolor{gray!40} Movimiento Horizontal &  &  &  &  &  &  \\ \addlinespace
+            \cellcolor{gray!40} Movimiento Vertical & \cellcolor{green!70} &  &  &  &  &  \\ \addlinespace
+            \cellcolor{gray!40} Quieto & \cellcolor{red!70} & \cellcolor{red!70} &  &  &  &  \\ \addlinespace
+            \cellcolor{gray!40} Movimiento hacia un punto & \cellcolor{green!70} & \cellcolor{green!70} & \cellcolor{red!70} &  &  &  \\ \addlinespace
+            \cellcolor{gray!40} Circular/Rotación & \cellcolor{green!70} & \cellcolor{green!70} & \cellcolor{red!70} & \cellcolor{green!70} &  &  \\ \addlinespace
+            \cellcolor{gray!40} Péndulo & \cellcolor{green!70} & \cellcolor{green!70} & \cellcolor{red!70} & \cellcolor{green!70} & \cellcolor{green!70} &  \\ \addlinespace
+        \end{tabular}
+    }
+    \caption{Matriz de compatibilidad de movimientos}
+\end{table}
+
+
 \subsection{Sensores y Emisores}
 Podemos definir el término sensor como el elemento necesario para medir variables exteriores y enviar la información al enemigo. Los sensores permiten producir eventos. \\
 Definimos Emisores como anónimo de sensor, es decir, es aquel elemento que envía información del enemigo al exterior.
@@ -118,7 +133,7 @@ Además, estas cajas pueden activarse/ desactivarse y desplazarse dinámicamente
 	 \item  Optimizar las interacciones desactivando cajas no relevantes en momentos específicos del juego.
 \end{itemize}
 Además, se puede distinguir entre tres tipos de daños:
-\begin{table}
+\begin{table}[!h]
 	\centering
 	\begin{tabular}{|p{3cm}|p{4.5cm}|p{4cm}|p{3cm}|}
 	\hline
