@@ -7,7 +7,7 @@ Se mencionarán además herramientas para conseguir los fines descritos anterior
 
 La Inteligencia Artificial (IA) es la capacidad que tiene un sistema o software de realizar tareas diferentes entre sí de manera autónoma aplicando reglas, algoritmos o patrones de aprendizaje automático, simulando así comportamientos propios de la inteligencia humana.
 El potencial de la IA hoy día y por lo que está generando tanto furor es su capacidad de autonomía, ya que no solo sigue reglas, si no que tiene la capacidad de tomar decisiones\\
-En el ámbito de los videojuegos, la IA se ha hecho paso a base de demostrar su gran capacidad de adaptación a contextos diversos como la adaptación del Alien en \cite{Alien Isolation}, la manera en la que puede generar contenido procedural para juegos RogueLite como Hades(referencia) o ,por último, entrenar una IA para que se acerque lo máximo posible al comportamiento de un humano como en la serie Forza Motosport, usando redes neuronales.\\
+En el ámbito de los videojuegos, la IA se ha hecho paso a base de demostrar su gran capacidad de adaptación a contextos diversos como la adaptación del Alien en Alien Isolation \comp{ref}, la manera en la que puede generar contenido procedural para juegos RogueLite como Hades(referencia) o ,por último, entrenar una IA para que se acerque lo máximo posible al comportamiento de un humano como en la serie Forza Motosport, usando redes neuronales.\\
 \section{Tecnicas}
 
 Es muy importante a la hora de escoger una técnica para modelar la IA de una entidad el saber ciertos factores para tomar la decisión correcta, como por ejemplo la complejidad esperada del comportamiento, la escalabilidad y flexibilidad de la técnica, si queremos invertir mucho tiempo en implementar estas técnicas o queremos algo rápido de hacer y funcional, los recursos que consumen... \\
@@ -45,9 +45,23 @@ Su facilidad para ser diseñados y testeados han hecho que los árboles de compo
 Bioshock:} como referencias en el uso de BTs.\\
 Un ejemplo no tan conocido de uso de BTs en la industria del videojuego es Spore (2008, Maxis).\comp{REFERENCIAS}Spore es un videojuego en el que el jugador va a comenzar creando una célula y va encarnarla durante todo el proceso de su evolución hasta que esta se convierta en un ser mucho más complejo llegando incluso a construir una civilización muy avanzada. La inteligencia artificial de las entidades que nos rodean en este videojuego están fundamentadas en BTs.
 
-\url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}
 
-La gran diferencia de como usa BTs Spore a los juegos anteriormente mencionados es que Spore separa el concepto de "decider" de "behavior". Los BTs de Halo 2 están compuestos por "behaviors" ya sean estos comportamientos grupales o individuales e impulsos que son los saltos que se dan entre comportamientos y que se toman dependiendo de una prioridad, que a futuro resulta en problemas de escalabilidad. Para solucionar este problema, en Maxis deciden unificar el concepto de impulso y comportamientos grupales bajo el nombre de "deciders", dejando completamente separado el concepto de behavior y permitiendo que estos puedan ser reutilizados en múltiples lugares del árbol, asegurando la escalabilidad.
+
+La gran diferencia de como usa BTs Spore a los juegos anteriormente mencionados es que Spore separa el concepto de "decider" de "behavior". Los BTs de Halo 2 están compuestos por "behaviors" ya sean estos comportamientos grupales, en los que se elige entre varias opciones, o individuales, que ejecutan acciones específicas, e impulsos que son los saltos que se dan entre comportamientos y que se toman dependiendo de una prioridad, que a futuro resulta en problemas de escalabilidad. Para solucionar este problema, en Maxis deciden unificar el concepto de impulso y comportamientos grupales bajo el nombre de "deciders", dejando completamente separado el concepto de behavior y permitiendo que estos puedan ser reutilizados en múltiples lugares del árbol, asegurando la escalabilidad.
+
+A continuación se muestra un ejemplo de un BT sacado de las documentación que hay publicada del juego. \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}
+Tengo que hablar de que las opciones tienen prioridades: "the group
+ decision policy on the various groups is kGroupPrioritizedList,
+ which means each decider's Decide will be called in order until
+ either one accepts, or the execution reaches the currently active
+ decider, and then it recurses."
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/BT_Spoore.png}
+	\caption{Ejemplo BT, Documentación Spore}
+	\label{fig:BT Spore}
+\end{figure}
 \subsection{Goal-Oriented Action Planning}
 
 \comp{https://github.com/crashkonijn/GOAP herramienta que podriamos analizar}\\ 
