@@ -66,19 +66,44 @@ Un punto importante a tener en cuenta es que si un nodo tiene más de un hijo, e
 \subsection{Goal-Oriented Action Planning}
 
 GOAP es un sistema basado en planificación de acciones. En lugar de definir comportamientos fijos como hemos visto anteriormente, la entidad analiza la situación y construye un plan óptimo para alcanzar el objetivo designado.
-Un personaje que traza su propio plan para satisfacer unas metas exhibe comportamientos menos repetitivos y predecibles y puede adaptar sus acciones dependiendo de la situación en la que se encuentre.
+Esta técnica fue desarrollado en el \textit{MIT} por \textit{Jeff Orkin} a principio de siglo. 
 
-Para explicar los puntos más importantes de GOAP vamos a usar el mismo ejemplo que \citet{GOAP_Jeff_Orkin}, el videojuego \textit{NOLF 		2}\footnote{\url{https://nolf.fandom.com/wiki/No_One_Lives_Forever_2:_A_Spy_in_H.A.R.M.\%27s_Way}}.
+La entidad pasa a ser un agente autónomo que tiene la capacidad de planificar de manera dinámica una secuencia de acciones para satisfacer una meta. Para llegar a esa meta se tendrán en cuenta el contexto del agente, por lo que dependiendo de este se podrá llegar a la meta de varias maneras, aunque la utilizada sea la mejor valorada, de esta manera reducimos lo repetitivo que pueda llegar a ser lidiar con un tipo de agente, ya que siendo el enemigo, por ejemplo, el mismo este abordará al jugador de manera distinta dependiendo de la situación que se de.
 
+El enfoque de GOAP es muy parecido a una FSM, pero en GOAP las acciones y metas no van de la mano, si no que se separan para abrir la posibilidad de tener un proceso de planificación dinámico y adaptativo.
+La escalabildad  que ofrece GOAP es mayor que todas las técnicas vistas anteriormente.
 
+El considerado primer videojuego que usa GOAP es \textit{F.E.A.R, Monolith Productions}\footnote{\url{https://www.gdcvault.com/play/1013282/Three-States-and-a-Plan}}. El propio Jeff Orkin explica que en el videojuego se quería llegar a una complejidad en la IA a la que las FSMs no podían llegar, por lo que optaron por no excluirlas pero solo tener tres estados y usar un algoritmo A* para planear las acciones a realizar. Un ejemplo es que si el jugador cierra una puerta mientras persigue un enemigo, el enemigo puede dinámicamente volver a rehacer su plan y decidir si buscar un hueco para disparar, por ejemplo una ventana, o buscar una entrada alternativa. Esta libertad en las acciones de los agentes liberan a los desarrolladores para que estos puedan enfocarse en el manejo de grupos, como fuego de supresión, cobertura y búsqueda del jugador.
 
-
-Para que un sistema de esta índole pueda llevarse a cabo deben tenerse una serie de elementos clave.
+\citet{GOAP_Jeff_Orkin} nos ofrece otro ejemplo ilustrativo de lo que es GOAP. El videojuego al que se refiere es \textit{NOLF 2}\footnote{\url{https://nolf.fandom.com/wiki/No_One_Lives_Forever_2:_A_Spy_in_H.A.R.M.\%27s_Way}}, siendo este considerado el primer videojuego que usa un sistema parecido a GOAP, los agentes estaban dirigidos por metas aunque no podían planificar sus acciones.
+A continuación vamos a definir una serie de términos clave para definir el comportamiento de GOAP.
 \begin{itemize}
-	 \item Objetivos: lo que la entidad quiera lograr.
-	 \item Acciones: conjunto de acciones que la entidad pueda realizar.
-	 \item Mundo: estado actual del contexto de la entidad.
-	 \item Planificador: encuentra la secuencia óptima de acciones para lograr el objetivo.
+	 \item Objetivos: lo que la entidad quiera lograr. Un agente puede querer cumplir más de un objetivo. En el videojuego \textit{NOLF 2} los personajes tenían típicamente alrededor de 25 objetivos, aunque en cada instante solo un objetivo esté activo y este determine las acciones del agente. Un objetivo sabe como calcular su relevancia actual y sabe cuando ha sido alcanzado.\\
+Aunque conceptualmente son similares, hay una diferencia clave entre los objetivos en \textit{NOLF 2} y GOAP y es que en el primero cada objetivo tiene un plan predefinido con pasos fijos y ramas condicionales establecidas de antemano y en GOAP los objetivos solo definen las condiciones que deben cumplirse para darse por terminado, los pasos para alcanzarlos se generan dinámicamente en tiempo real.
+
+	 \item Plan: forma de denominar una secuencia de acciones. Un plan válido es aquel que lleva a un personaje desde un estado inicial hasta un estado que cumple con el objetivo. El plan se ejecuta hasta que se complete, se invalide u otro objetivo se vuelva más importante lo que obligará a que se cree formule un nuevo plan.
+Hay que tener en cuenta que GOAP necesita el funcionamiento de las FSMs y las simplifica enormemente, teniendo esto en cuenta, un plan es también una secuencia de acciones donde cada acción representa una transición entre dos estados.
+
+	 \item Acción: una acción es un paso único y atómico dentro de un plan que hace que un personaje haga algo. Algunas acciones posibles en \textit{NOLF 2} es \textit{Go To Point}, \textit{Draw Weapon}...
+La duración de una acción puede variar, por ejemplo la acción \textit{Reload Weapon} terminará cuando la acción acabe, mientras que la acción \textit{Attack} puede continuar indefinidamente hasta que el objetivo muera.\\
+Cada acción determina cuándo puede ejecutarse y qué impacto tendrá en el mundo del juego, es decir una acción conoce sus \textit{precondiciones} y sus \textit{efectos}.
+	
+	\item Mundo: estado actual del contexto de la entidad.
+ 	
+	\item Planificador: encuentra la secuencia óptima de acciones para lograr el objetivo partiendo del estado actual del agente. Si tiene éxito devolverá un plan que el personaje seguirá para guiar su comportamiento.\\
+Para ilustrar el funcionamiento del planificador usaremos la Figura \ref{fig:GOAP_Planificador}.
+Los rectángulos representan el estado inicial y el estado objetivo, los círculos representan las acciones disponibles.
+En este caso, el objetivo es matar a un enemigo, por lo que el estado final es aquel en el que el enemigo está muerto, en otras palabras, el planificador tiene que encontrar una secuencia de acciones que tome el mundo desde un estado en el que el enemigo está vivo hasta otro en el que este está muerto.\\
+Este proceso se aborda como un \textit{pathfinding}. El planificador tiene que encontrar un plan válido y no siempre este es el esperado por el usuario. Para ello debemos darle ciertos requisitos al algoritmo de \textit{pathfinding}, por ejemplo, encontrar la secuencia de acciones más baratas que nos lleven al objetivo.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/GOAP_Planificador.png}
+	\caption{El proceso de elección del plan, extraído del artículo \textit{Applying Goal-Oriented Action Planning to Games} de \citet{GOAP_Jeff_Orkin} }
+	\label{fig:GOAP_Planificador}
+\end{figure}
+
+	
+	
 \end{itemize}
 \comp{https://github.com/crashkonijn/GOAP herramienta que podriamos analizar}\\ 
 \subsection{Aprendizaje por Refuerzo (RL) o Redes Neuronales}
