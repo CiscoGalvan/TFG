@@ -36,8 +36,8 @@ public class Circular : Actuator
     private Vector2 m_direction; //vector that points from the rotation point towards the moving object
     private Vector3 m_startingPosition;
     private float m_initAngle;
-	// Start is called before the first frame update
-	private void Start()
+    // Start is called before the first frame update
+    public override void Start()
     {
         m_startingPosition = transform.position;
 		m_direction = transform.position - m_rotationPointPosition.position;
@@ -60,7 +60,7 @@ public class Circular : Actuator
 		m_currentAngularSpeed = angularSpeed;
     }
 
-    private void Update()
+    public override void Update()
 	{
 		//Debug.Log(m_currentAngle);
 		// Update speed if there's angular acceleration
@@ -149,5 +149,9 @@ public class Circular : Actuator
     public float GetRadius() { return m_radius; }
     public void SetRadius(float newValue) { m_radius = newValue; }
     public bool RotationPointAssigned() { return !m_noRotationPointAssigned; }
-	
+
+    public override void Destroy()
+    {
+        
+    }
 }

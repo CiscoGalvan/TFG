@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_transition: 0
 --- !u!212 &352670604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -562,7 +563,6 @@ GameObject:
   - component: {fileID: 620872455}
   - component: {fileID: 620872454}
   - component: {fileID: 620872453}
-  - component: {fileID: 620872452}
   - component: {fileID: 620872451}
   - component: {fileID: 620872450}
   - component: {fileID: 620872449}
@@ -659,23 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &620872452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 1
-  m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: 1
-  m_easingFunction: 21
+  m_transition: 0
 --- !u!114 &620872453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 1
-  m_maxspeed: 10
+  m_maxspeed: 17.18
   m_acceleration: 1.38
   m_dir: -1
   m_easingFunction: 21
@@ -785,11 +769,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 620872448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
+  m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actuatorList:
-  - {fileID: 0}
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

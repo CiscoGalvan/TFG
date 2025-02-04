@@ -10,37 +10,37 @@ public class StateComponentEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        State component = (State)target;
+        //State component = (State)target;
 
-        DrawDefaultInspector();
+        //DrawDefaultInspector();
 
-        if (component.actuatorList != null)
-        {
-            // Asegurarse de que el array de editores tiene el tamaño correcto
-            if (actuatorEditors == null || actuatorEditors.Length != component.actuatorList.Count)
-            {
-                actuatorEditors = new Editor[component.actuatorList.Count];
-            }
+        //if (component.actuatorList != null)
+        //{
+        //    // Asegurarse de que el array de editores tiene el tamaño correcto
+        //    if (actuatorEditors == null || actuatorEditors.Length != component.actuatorList.Count)
+        //    {
+        //        actuatorEditors = new Editor[component.actuatorList.Count];
+        //    }
 
-            for (int i = 0; i < component.actuatorList.Count; i++)
-            {
-                if (component.actuatorList[i] == null)
-                    continue;
+        //    for (int i = 0; i < component.actuatorList.Count; i++)
+        //    {
+        //        if (component.actuatorList[i] == null)
+        //            continue;
 
-                // Crear un editor si aún no existe
-                if (actuatorEditors[i] == null)
-                {
-                    actuatorEditors[i] = Editor.CreateEditor(component.actuatorList[i]);
-                }
+        //        // Crear un editor si aún no existe
+        //        if (actuatorEditors[i] == null)
+        //        {
+        //            actuatorEditors[i] = Editor.CreateEditor(component.actuatorList[i]);
+        //        }
 
-                // Dibujar el editor del actuador
-                if (actuatorEditors[i] != null)
-                {
-                    EditorGUILayout.LabelField($"Actuator {i + 1}", EditorStyles.boldLabel);
-                    actuatorEditors[i].OnInspectorGUI();
-                    EditorGUILayout.Space();
-                }
-            }
-        }
+        //        // Dibujar el editor del actuador
+        //        if (actuatorEditors[i] != null)
+        //        {
+        //            EditorGUILayout.LabelField($"Actuator {i + 1}", EditorStyles.boldLabel);
+        //            actuatorEditors[i].OnInspectorGUI();
+        //            EditorGUILayout.Space();
+        //        }
+        //    }
+        //}
     }
 }

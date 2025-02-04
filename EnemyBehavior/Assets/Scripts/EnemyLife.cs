@@ -9,12 +9,12 @@ public class EnemyLife : Life
     new void Start()
     {
         base.Start();
-        Collision.OnMessageSent += ReceiveMessage;
+        Collision.OnCollisionSensor += ReceiveMessage;
 
     }
     private void OnDestroy()
     {
-        Collision.OnMessageSent -= ReceiveMessage;
+        Collision.OnCollisionSensor -= ReceiveMessage;
     }
     void ReceiveMessage(Collision2D mensaje)
     {

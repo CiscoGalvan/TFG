@@ -6,31 +6,30 @@ public class State : MonoBehaviour
 {
     [SerializeField]
      public List<Actuator> actuatorList = new List<Actuator>();
-    private Rigidbody2D rb;
 
-    void Start()
+    [SerializeField]
+    public List<Sensors> SensorList = new List<Sensors>();
+
+    public void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         foreach (var actuator in actuatorList)
         {
-            if (actuator != null)
-            {
-               // actuator.Initialize();
-            }
+            actuator.Start();
+        }
+        foreach (var sensor in SensorList)
+        {
+            sensor.Start();
         }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    public void Update()
     {
-        foreach (var actuator in actuatorList)
+        foreach (Actuator a in actuatorList)
         {
-            if (actuator != null)
-            {
-              //  actuator.Actuate(rb);
-            }
+            a.Update();
         }
+        
     }
 
 }

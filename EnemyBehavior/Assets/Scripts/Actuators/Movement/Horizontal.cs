@@ -37,18 +37,18 @@ public class Horizontal : Actuator
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
 
-    private void Start()
+    public override void Start()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        Collision.OnMessageSent += ReceiveMessage;
+        Collision.OnCollisionSensor += ReceiveMessage;
     }
-    private void OnDestroy()
+    public override void Destroy()
     {
-        Collision.OnMessageSent -= ReceiveMessage;
+        Collision.OnCollisionSensor -= ReceiveMessage;
     }
-   
-    void FixedUpdate()
+
+    public override void Update()
     {
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
@@ -74,6 +74,7 @@ public class Horizontal : Actuator
     }
    void ReceiveMessage(Collision2D mensaje)
     {
+
        m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
     }
 

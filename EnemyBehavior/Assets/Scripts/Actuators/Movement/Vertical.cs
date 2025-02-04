@@ -37,18 +37,18 @@ public class Vertical : Actuator
 
     private EasingFunction.Function easingFunc;
     Rigidbody2D m_rigidbody;
-    private void Start()
+    public override void Start()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        Collision.OnMessageSent += ReceiveMessage;
+        Collision.OnCollisionSensor += ReceiveMessage;
     }
-    private void OnDestroy()
+    public override void Destroy()
     {
-        Collision.OnMessageSent -= ReceiveMessage;
+        Collision.OnCollisionSensor -= ReceiveMessage;
     }
-    
-    void FixedUpdate()
+
+    public override void Update()
     {
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
