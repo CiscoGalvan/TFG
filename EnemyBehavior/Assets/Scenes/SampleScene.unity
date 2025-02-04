@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destinationState: {fileID: 0}
   m_transition: 0
 --- !u!212 &352670604
 SpriteRenderer:
@@ -568,6 +569,10 @@ GameObject:
   - component: {fileID: 620872449}
   - component: {fileID: 620872456}
   - component: {fileID: 620872457}
+  - component: {fileID: 620872461}
+  - component: {fileID: 620872460}
+  - component: {fileID: 620872458}
+  - component: {fileID: 620872462}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -659,7 +664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_transition: 0
+  destinationState: {fileID: 620872460}
+  m_transition: 1
 --- !u!114 &620872453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,7 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 1
   m_maxspeed: 17.18
-  m_acceleration: 1.38
+  m_acceleration: 0
   m_dir: -1
   m_easingFunction: 21
 --- !u!212 &620872454
@@ -772,6 +778,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_initialstate: {fileID: 620872461}
+--- !u!114 &620872458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinationState: {fileID: 620872461}
+  m_transition: 1
+--- !u!114 &620872460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actuatorList:
+  - {fileID: 620872462}
+  SensorList:
+  - {fileID: 620872458}
+  name: Segundo Estado
+--- !u!114 &620872461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actuatorList:
+  - {fileID: 620872453}
+  SensorList:
+  - {fileID: 620872451}
+  name: Primer Estado
+--- !u!114 &620872462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 1
+  m_maxspeed: 71.6
+  m_acceleration: 0
+  m_dir: 1
+  m_easingFunction: 21
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +955,7 @@ Transform:
   m_GameObject: {fileID: 917179313}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.23, y: 0.25, z: 10}
+  m_LocalPosition: {x: -5.98, y: 0.25, z: 10}
   m_LocalScale: {x: 1.0735223, y: 10.500111, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

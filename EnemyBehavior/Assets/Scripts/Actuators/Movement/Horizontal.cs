@@ -48,10 +48,12 @@ public class Horizontal : Actuator
         Collision.OnCollisionSensor -= ReceiveMessage;
     }
 
-    public override void Update()
+    public override void UpdateActuator()
     {
+        Debug.Log("horizontal");
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
+        Debug.Log(dirValue);
         // MRU: x = x0 + v*t
         // MRUA: x = x0 + v0*t + 1/2 * a * t^2
         float desp;

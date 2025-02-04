@@ -60,7 +60,7 @@ public class Circular : Actuator
 		m_currentAngularSpeed = angularSpeed;
     }
 
-    public override void Update()
+    public override void UpdateActuator()
 	{
 		//Debug.Log(m_currentAngle);
 		// Update speed if there's angular acceleration

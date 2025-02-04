@@ -10,7 +10,9 @@ public class State : MonoBehaviour
     [SerializeField]
     public List<Sensors> SensorList = new List<Sensors>();
 
-    public void Start()
+
+    public string name;
+    public void StartState()
     {
         foreach (var actuator in actuatorList)
         {
@@ -23,11 +25,11 @@ public class State : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Update()
+    public void UpdateState()
     {
         foreach (Actuator a in actuatorList)
         {
-            a.Update();
+            a.UpdateActuator();
         }
         
     }

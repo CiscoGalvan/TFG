@@ -9,6 +9,7 @@ public class FSM : MonoBehaviour
 
     private State m_currentstate;
 
+    int a = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,20 +20,21 @@ public class FSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
         //update of the state
-        m_currentstate.Update();
+        m_currentstate.UpdateState();
+       
+        Debug.Log(m_currentstate.name);
         foreach (var sensor in m_currentstate.SensorList)
         {
             bool tochanage = sensor.CanTransition();
             if (tochanage)
             {
                 m_currentstate = sensor.destinationState;
+                m_currentstate.StartState();
                 break;
 
             }
         }
-        
     }
 
 }

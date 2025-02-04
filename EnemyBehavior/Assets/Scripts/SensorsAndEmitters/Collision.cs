@@ -11,12 +11,13 @@ public class Collision : Sensors
     public static event Action<Collision2D> OnCollisionSensor;
     bool col;
     Collision2D m_collisionobj;
+    int it = 0;
      private void OnCollisionEnter2D(Collision2D collision)
      {
         col =true;
         m_collisionobj = collision;
      }
-    ////public override void Update() {
+    ////public override void Update() { 
     ////     if collision{
     ////        OnCollisionSensor?.Invoke(collision);
     ////        Debug.Log("message sent");
@@ -24,8 +25,12 @@ public class Collision : Sensors
     ////}
     public override bool CanTransition()
     {
-        col=false;
-        return m_collisionobj != null;
+      
+            bool aux = col;
+            col = false;
+            return aux;
+        
+        
     }
-    public override void Start() { }
+    public override void Start() { it = 0;col = false; }
 }

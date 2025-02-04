@@ -10,9 +10,9 @@ public class StateComponentEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        //State component = (State)target;
+        State component = (State)target;
 
-        //DrawDefaultInspector();
+        DrawDefaultInspector();
 
         //if (component.actuatorList != null)
         //{

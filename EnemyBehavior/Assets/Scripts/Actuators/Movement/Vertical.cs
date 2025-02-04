@@ -48,8 +48,9 @@ public class Vertical : Actuator
         Collision.OnCollisionSensor -= ReceiveMessage;
     }
 
-    public override void Update()
+    public override void UpdateActuator()
     {
+        Debug.Log("Vertical");
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
         // MRU: x = x0 + v*t
