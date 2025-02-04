@@ -37,7 +37,7 @@ public class Vertical : Actuator
 
     private EasingFunction.Function easingFunc;
     Rigidbody2D m_rigidbody;
-    public override void Start()
+    public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);

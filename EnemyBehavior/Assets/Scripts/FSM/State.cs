@@ -16,11 +16,11 @@ public class State : MonoBehaviour
     {
         foreach (var actuator in actuatorList)
         {
-            actuator.Start();
+            actuator.StartActuator();
         }
         foreach (var sensor in SensorList)
         {
-            sensor.Start();
+            sensor.StartSensor();
         }
     }
 

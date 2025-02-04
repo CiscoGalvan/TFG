@@ -37,7 +37,7 @@ public class Circular : Actuator
     private Vector3 m_startingPosition;
     private float m_initAngle;
     // Start is called before the first frame update
-    public override void Start()
+    public override void StartActuator()
     {
         m_startingPosition = transform.position;
 		m_direction = transform.position - m_rotationPointPosition.position;

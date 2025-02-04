@@ -10,7 +10,7 @@ public abstract class Sensors : MonoBehaviour
 
     [SerializeField]
     bool m_transition;
-    public abstract void Start();
+    public abstract void StartSensor();
 
     // Update is called once per frame
     public abstract bool CanTransition();

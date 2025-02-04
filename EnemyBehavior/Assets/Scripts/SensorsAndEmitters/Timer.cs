@@ -10,24 +10,24 @@ public class Timer : Sensors
 
     private float timer = 0f;
     public static event Action OnTimeReached;
-    private void Update()
-    {
-        timer += UnityEngine.Time.deltaTime;
+    //private void Update()
+    //{
+    //    timer += UnityEngine.Time.deltaTime;
 
-        if (timer >= detectionTime)
-        {
-            OnTimeReached?.Invoke();
-            Debug.Log("Tiempo alcanzado");
-            timer = 0f; // Reiniciar el contador
-        }
-    }
+    //    if (timer >= detectionTime)
+    //    {
+    //        OnTimeReached?.Invoke();
+    //        Debug.Log("Tiempo alcanzado");
+    //        timer = 0f; // Reiniciar el contador
+    //    }
+    //}
 
     public void ResetTimer()
     {
         timer = 0f;
     }
 
-    public override void Start()
+    public override void StartSensor()
     {
         throw new NotImplementedException();
     }

@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Spawner : Actuator
 {
-    // Start is called before the first frame update
-    public override void Start()
-    {
-        
-    }
-
+   
+   
     // Update is called once per frame
     public override void UpdateActuator()
     {
@@ -18,5 +14,10 @@ public class Spawner : Actuator
     public override void Destroy()
     {
 
+    }
+    // Start is called before the first frame update
+    public override void StartActuator()
+    {
+        throw new System.NotImplementedException();
     }
 }

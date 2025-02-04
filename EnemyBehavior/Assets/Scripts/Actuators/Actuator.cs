@@ -6,6 +6,6 @@ using UnityEngine;
 public abstract class Actuator: MonoBehaviour 
 {
     public abstract void UpdateActuator();
-    public abstract void Start();
+    public abstract void StartActuator();
     public abstract void Destroy();
 }

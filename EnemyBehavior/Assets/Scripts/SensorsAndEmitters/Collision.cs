@@ -32,5 +32,5 @@ public class Collision : Sensors
         
         
     }
-    public override void Start() { it = 0;col = false; }
+    public override void StartSensor() { it = 0;col = false; }
 }

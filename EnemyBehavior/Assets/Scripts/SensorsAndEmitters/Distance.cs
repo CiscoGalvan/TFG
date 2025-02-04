@@ -33,7 +33,7 @@ public class Distance : Sensors
         }
     }
 
-    public override void Start()
+    public override void StartSensor()
     {
         throw new NotImplementedException();
     }
