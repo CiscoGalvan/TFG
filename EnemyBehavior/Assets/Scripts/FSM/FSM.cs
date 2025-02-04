@@ -9,12 +9,12 @@ public class FSM : MonoBehaviour
 
     private State m_currentstate;
 
-    int a = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
         m_currentstate = m_initialstate;
+        m_currentstate.StartState();
     }
 
     // Update is called once per frame
