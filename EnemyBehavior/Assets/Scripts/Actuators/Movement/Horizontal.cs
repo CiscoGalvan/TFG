@@ -41,13 +41,13 @@ public class Horizontal : Actuator
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        Collision.OnCollisionSensor += ReceiveMessage;
+        Collision.OnCollisionSensor += CollisionEvent;
+        //Distance.OnDistanceSensors += DistanceEvent;
     }
     public override void Destroy()
     {
-        Collision.OnCollisionSensor -= ReceiveMessage;
+        Collision.OnCollisionSensor -= CollisionEvent;
     }
-
     public override void UpdateActuator()
     {
         Debug.Log("horizontal");
@@ -74,10 +74,10 @@ public class Horizontal : Actuator
 
         m_rigidbody.position += new Vector2(desp, 0);
     }
-   void ReceiveMessage(Collision2D mensaje)
+    void CollisionEvent(Collision2D mensaje)
     {
-
-       m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
+       
+        m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
     }
 
     private void OnDrawGizmosSelected()

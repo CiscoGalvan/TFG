@@ -9,6 +9,7 @@ public class FSM : MonoBehaviour
 
     private State m_currentstate;
 
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -32,7 +33,6 @@ public class FSM : MonoBehaviour
                 m_currentstate = sensor.destinationState;
                 m_currentstate.StartState();
                 break;
-
             }
         }
     }
