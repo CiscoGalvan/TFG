@@ -6,7 +6,7 @@ using UnityEngine;
 public class Distance : Sensors
 {
     [SerializeField]
-    Transform target; // Objeto al que se mide la distancia
+    private Transform m_target; // Objeto al que se mide la distancia
     [SerializeField]
     float maxDistationRange = 20.0f; // Objeto al que se mide la distancia
     [SerializeField, Range(0.0f, 30000.0f)]
@@ -18,17 +18,17 @@ public class Distance : Sensors
 
     private void Update()
     {
-        if (target == null) return;
+        if (m_target == null) return;
 
         float distance = useMagnitude
-            ? Vector2.Distance(transform.position, target.position)
+            ? Vector2.Distance(transform.position, m_target.position)
             : checkXAxis
-                ? Mathf.Abs(transform.position.x - target.position.x)
-                : Mathf.Abs(transform.position.y - target.position.y);
+                ? Mathf.Abs(transform.position.x - m_target.position.x)
+                : Mathf.Abs(transform.position.y - m_target.position.y);
 
         if (distance <= detectionDistance)
         {
-            OnDistanceSensors?.Invoke(target);
+            OnDistanceSensors?.Invoke(m_target);
             Debug.Log("Distancia alcanzada, evento enviado.");
         }
     }

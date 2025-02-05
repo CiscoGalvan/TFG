@@ -48,7 +48,6 @@ public class MoveToAPoint : Actuator
 		Vector2 targetPos = m_objectivePosition.position;
 		elapsedTime += Time.deltaTime;
 		float t = elapsedTime / m_timeUntilReachingPosition;
-		Debug.Log(elapsedTime);
 		if (m_isAccelerated)
 		{
 			// Aplicamos una función de easing
@@ -102,4 +101,24 @@ public class MoveToAPoint : Actuator
 		return m_easingFunction;
 	}
 	#endregion
+
+	//Dibuja la misma flecha que otros comportamientos 
+	//private void OnDrawGizmosSelected()
+	//{
+	//	if (!this.isActiveAndEnabled) return;
+
+	//	Gizmos.color = Color.green;
+	//	Vector2 position = new Vector2(transform.position.x,transform.position.y);
+	//	Vector2 objectivePos = new Vector2(m_objectivePosition.position.x, m_objectivePosition.position.y);
+
+	//	Vector2 direction = (objectivePos - position).normalized;
+
+	//	// Draw direction arrow
+	//	Gizmos.DrawLine(position, position + direction);
+	//	Vector3 arrowTip = position + direction;
+	//	Vector3 right = Quaternion.Euler(0, 0, 135) * direction * 0.25f;
+	//	Vector3 left = Quaternion.Euler(0, 0, -135) * direction * 0.25f;
+	//	Gizmos.DrawLine(arrowTip, arrowTip + right);
+	//	Gizmos.DrawLine(arrowTip, arrowTip + left);
+	//}
 }

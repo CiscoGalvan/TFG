@@ -25,7 +25,7 @@ public class Horizontal : Actuator
 
     [Tooltip("Easing function for acceleration")]
     [SerializeField]
-    private EasingFunction.Ease m_easingFunction = EasingFunction.Ease.Linear;
+    private EasingFunction.Ease m_easingFunction;
 
     public enum Direction
     {
