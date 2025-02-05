@@ -8,15 +8,15 @@ public class Horizontal : Actuator
 {
     [Tooltip("Initial speed of the object in units per second")]
     [SerializeField]
-    float m_speed = 1f;
+    private float m_speed = 1f;
 
     [Tooltip("Maximum speed of the object in units per second")]
     [SerializeField]
-    float m_maxspeed = 10f;
+    private float m_maxspeed = 10f;
 
     [Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
     [SerializeField]
-    float m_acceleration = 0f;
+    private float m_acceleration = 0f;
 
     [Tooltip("Movement direction")]
     [SerializeField]
@@ -50,10 +50,10 @@ public class Horizontal : Actuator
     }
     public override void UpdateActuator()
     {
-        Debug.Log("horizontal");
+        
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
-        Debug.Log(dirValue);
+        
         // MRU: x = x0 + v*t
         // MRUA: x = x0 + v0*t + 1/2 * a * t^2
         float desp;

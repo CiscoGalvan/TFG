@@ -24,7 +24,7 @@ public class FSM : MonoBehaviour
         //update of the state
         m_currentstate.UpdateState();
        
-        Debug.Log(m_currentstate.name);
+      
         foreach (var sensor in m_currentstate.SensorList)
         {
             bool tochanage = sensor.CanTransition();
