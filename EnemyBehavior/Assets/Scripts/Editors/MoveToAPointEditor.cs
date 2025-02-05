@@ -9,9 +9,8 @@ public class MoveToAPointEditor : Editor
 	const int EASING_GRAPH_HEIGHT = 250;
 	const int EASING_GRAPH_NUMBER_OF_POINTS= 20;
 	//Poner en ingles y revisar lo escrito que no lo he mirado muy bien todo.
-	private static readonly GUIContent accelerationLabel = new GUIContent("Acceleration Value", "Define la aceleración del objeto en movimiento.");
 	private static readonly GUIContent easingFunctionLabel = new GUIContent("Easing Function", "Funcion de easing");
-	private AnimationCurve easingCurve = new AnimationCurve(); // Curva de easing
+	private AnimationCurve easingCurve = new AnimationCurve(); 
 
 	public override void OnInspectorGUI()
 	{

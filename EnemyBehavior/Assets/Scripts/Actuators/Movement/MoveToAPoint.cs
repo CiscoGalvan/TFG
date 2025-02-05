@@ -17,7 +17,7 @@ public class MoveToAPoint : Actuator
 
 	[Tooltip("The position the object moves towards")]
 	[SerializeField]
-	private Transform m_objectivePos;
+	private Transform m_objectivePosition;
 
 	[Tooltip("Is the movement accelerated?")]
 	[SerializeField]
@@ -32,7 +32,7 @@ public class MoveToAPoint : Actuator
 	public override void StartActuator()
 	{
 		m_rb = GetComponent<Rigidbody2D>();
-		if (m_objectivePos != null)
+		if (m_objectivePosition != null)
 		{
 			startPos = m_rb.position;
 			moving = true;
@@ -42,12 +42,12 @@ public class MoveToAPoint : Actuator
 	// Update is called once per frame
 	public override void UpdateActuator()
 	{
-		if (!moving || m_objectivePos == null) return;
+		if (!moving || m_objectivePosition == null) return;
 
 		#region Movement by time
-		Vector2 targetPos = m_objectivePos.position;
+		Vector2 targetPos = m_objectivePosition.position;
 		elapsedTime += Time.deltaTime;
-		float t = elapsedTime - m_timeUntilReachingPosition;
+		float t = elapsedTime / m_timeUntilReachingPosition;
 		Debug.Log(elapsedTime);
 		if (m_isAccelerated)
 		{
@@ -58,7 +58,7 @@ public class MoveToAPoint : Actuator
 		m_rb.MovePosition(newPosition);
 
 		// Si llegamos al destino, detenemos el movimiento
-		if (t >= 0f)
+		if (t >= 1f)
 		{
 			moving = false;
 			m_rb.velocity = Vector2.zero;
@@ -69,7 +69,7 @@ public class MoveToAPoint : Actuator
 	}
 	private void Start()
 	{
-		if (m_objectivePos == null)
+		if (m_objectivePosition == null)
 		{
 			Debug.LogError($"There was an error in GameObject{name}, script MoveToAPoint: You have to give 'm_objectivePos' a value");
 			UnityEditor.EditorApplication.isPlaying = false;
