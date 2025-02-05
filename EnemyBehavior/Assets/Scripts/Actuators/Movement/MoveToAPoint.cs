@@ -42,7 +42,6 @@ public class MoveToAPoint : Actuator
 	// Update is called once per frame
 	public override void UpdateActuator()
 	{
-
 		if (!moving || m_objectivePos == null) return;
 
 		#region Movement by time
@@ -72,7 +71,7 @@ public class MoveToAPoint : Actuator
 	{
 		if (m_objectivePos == null)
 		{
-			Debug.LogError($"{name}: Asigna un objetivo en 'm_objectivePos' antes de ejecutar el juego.");
+			Debug.LogError($"There was an error in GameObject{name}, script MoveToAPoint: You have to give 'm_objectivePos' a value");
 			UnityEditor.EditorApplication.isPlaying = false;
 		}
 	}
