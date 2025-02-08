@@ -95,26 +95,102 @@ Para ilustrar el funcionamiento del planificador usaremos la Figura \ref{fig:GOA
 Los rectángulos representan el estado inicial y el estado objetivo, los círculos representan las acciones disponibles.
 En este caso, el objetivo es matar a un enemigo, por lo que el estado final es aquel en el que el enemigo está muerto, en otras palabras, el planificador tiene que encontrar una secuencia de acciones que tome el mundo desde un estado en el que el enemigo está vivo hasta otro en el que este está muerto.\\
 Este proceso se aborda como un \textit{pathfinding}. El planificador tiene que encontrar un plan válido y no siempre este es el esperado por el usuario. Para ello debemos darle ciertos requisitos al algoritmo de \textit{pathfinding}, por ejemplo, encontrar la secuencia de acciones más baratas que nos lleven al objetivo.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width = 0.7\textwidth]{Imagenes/GOAP_Planificador.png}
-	\caption{El proceso de elección del plan, extraído del artículo \textit{Applying Goal-Oriented Action Planning to Games} de \citet{GOAP_Jeff_Orkin} }
-	\label{fig:GOAP_Planificador}
-\end{figure}
+
 
 	
 	
 \end{itemize}
 \comp{https://github.com/crashkonijn/GOAP herramienta que podriamos analizar}\\ 
-\subsection{Aprendizaje por Refuerzo (RL) o Redes Neuronales}
 \section{Análisis herramientas}
-\subsection{Behaviour Bricks}
+
+Tras abordar algunas técnicas usadas para crear IAs, se ha visto que en algunas ocasiones la complejidad de crear esas IAs no es del todo trivial. Por ello, surge la necesidad de crear herramientas que ayudasen a los desarrolladores a crear IAs de todo tipo. Teniendo en cuenta que la creación de IAs debe estar al alcance de personas con nulo conocimiento de programación, estas herramientas deben implementar una interfaz gráfica para que el funcionamiento de la IA sea más visual.
+A continuación, se han seleccionado algunas herramientas como ejemplo.\\
+
+\subsection{Behavior Bricks}
+
+\textit{Behavior Bricks}\footnote{\url{https://bb.padaonegames.com/doku.php}} es una herramienta disponible para el motor de videojuegos \textit{Unity} centrada en cubrir todas las necesidades de implementación de comportamientos para juegos. Con \textit{Behavior Bricks} el usuario es capaz de modelar de manera visual tanto FSMs como BTs.\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/Behavior_Bricks.jpg}
+	\caption{Ejemplo de uso de Behavior Bricks}
+	\label{fig:BH_Figure}
+\end{figure}
+Un aspecto a destacar de esta herramienta es que es totalmente gratuita y fue desarrollada por \textit{PadaOne Games}\footnote{\url{https://www.padaonegames.com/}}, empresa asociada a la Universidad Complutense de Madrid.\\
+\textit{Behavior Bricks} es una herramienta de scripting visual, por lo que favorece esa colaboración entre diseñadores y programadores que a veces es difícil de conseguir.\\
+Otra particularidad de \textit{Behavior Bricks} es su modularidad, permite modificar cada una de las partes con muy poco acoplamiento entre ellas, lo que incita a su reutilización en distintos proyectos. Esta modularidad también permite que podamos tener un estado/comportamiento que sea en sí mismo un grupo de estados/comportamientos.\\
+Esta herramienta hace hincapié en no ralentizar significativamente el rendimiento del juego, gracias a su optimización y la gestión de memoria la cual a veces es compartida entre estados/comportamientos para ahorrar recursos.\\
+
 \subsection{Play Maker}
-\subsection{Animator}
+PlayMaker es un editor visual de FSM diseñado especialmente para artistas y diseñadores, ya que permite desarrollar IA sin necesidad de escribir código.
+
+Su interfaz es altamente visual e intuitiva. Al crear una FSM, se genera automáticamente un estado inicial llamado \textit{START},como podemos ver en la Figura \ref{fig:PlayMaker_Figure}, seguido de un estado predeterminado llamado \textit{State 1}, al cual se transiciona al ejecutar \textit{Unity}. A partir de ahí, el usuario puede agregar más estados y definir eventos que permiten cambiar entre ellos según ciertas condiciones.
+
+Una de sus principales ventajas es la facilidad con la que se pueden modificar los valores de los componentes de \textit{Unity}. Basta con arrastrar un componente a la pestaña \textit{State} para ajustar sus propiedades dentro de un estado determinado. Además, Play Maker proporciona una amplia colección de acciones predefinidas, como la detección de entrada de teclas, temporizadores y movimientos entre otros. Estas acciones pueden activar eventos que actúan como transiciones entre estados, facilitando la creación de mecánicas de juego complejas sin necesidad de programación.
+
+Gracias a su flexibilidad y facilidad de uso, Play Maker es ideal para diseñar IAs, lógica de juego, animaciones, interacción con interfaces de usuario y prototipos rápidos, convirtiéndolo en una herramienta poderosa tanto para principiantes como para desarrolladores experimentados que buscan agilizar su flujo de trabajo. Otro punto fuerte de Play Maker es que permite que la herramienta sea escalable con scripts propios.
+
+Play Maker está disponible en la \textit{asset store} de \textit{Unity}, aunque su precio hacer que desarrolladores con pocos recursos tengan que descartar esta opción, no deja de ser una herramienta usada ámpliamente por la comunidad de desarrolladores, habiendo sido utilizada en juegos como el aclamado por la crítica \textit{Hollow Night}\footnote{\url{https://hollowknight.fandom.com/wiki/Hollow_Knight_Wiki}}, \textit{Firewatch}\footnote{\url{https://www.firewatchgame.com/}} la aventura narrativa del estudio norteamericano Campo Santo o el juego de plataforma de los creadores de \textit{Limbo}, \textit{INSIDE}\footnote{\url{https://inside.fandom.com/wiki/Inside_Wiki}}.\\
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/PlayMaker.jpg}
+	\caption{Ejemplo de uso de Play Maker}
+	\label{fig:PlayMaker_Figure}
+\end{figure}
+
+%\subsection{Animator}
 \section{Motores de videojuegos}
-\subsection{Unity}
-\subsection{Unreal}
+
+Se ha abordado una serie de herramientas externas que se integran en el motor de videojuegos \textit{Unity}. Ahora se procederá a hablar sobre una serie de motores de videojuegos que ofrecen sustitutos para estas herramientas que vienen integrados en el propio motor lo que ayuda a que usuarios sin conocimientos de programación puedan usar con mayor facilidad estos motores.
+
+%\subsection{Unity}
+\subsection{Unreal Engine}
+\textit{Unreal Engine}\footnote{\url{https://www.unrealengine.com/es-ES}}, desarrollado por \textit{Epic Games}\footnote{\url{https://www.epicgames.com/site/es-ES/home}}, es uno de los motores de videojuegos más potentes y utilizados en la industria de los videojuegos en títulos como la saga \textit{Hellblade}\footnote{\url{https://thehellblade.fandom.com/wiki/Hellblade:_Senua\%27s_Sacrifice}} o el éxito mundial \textit{Fornite}\footnote{\url{https://www.fortnite.com/?lang=es-ES}} y la versión más actual es Unreal Engine 5 que cuenta, entre otras cosas, con \textit{Lumen}, un sistema de iluminación global dinámica o la mejora sustancial del sistema de simulación de físicas \textit{Chaos}.\\
+A pesar de que permite la programación en C++, también ofrece un sistema visual llamado Blueprints, diseñado para que cualquier persona, sin conocimientos de programación, pueda crear videojuegos completos mediante una interfaz gráfica intuitiva.
+
+El sistema de Blueprints funciona de manera similar a un lenguaje de programación visual basado en nodos. En lugar de escribir código manualmente, el usuario conecta bloques de lógica (Figura \ref{fig:BluePrints_Figure}) para definir comportamientos, interacciones y mecánicas dentro del juego. Esto permite crear desde movimientos de personajes y mecánicas de combate hasta sistemas complejos de inteligencia artificial y físicas sin necesidad de escribir una sola línea de código.\\
+Cabe destacar que se pueden crear Blueprints en caso de que sea necesario.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/Blueprints.png}
+	\caption{Blueprints en Unreal Engine}
+	\label{fig:BluePrints_Figure}
+\end{figure}
+
+Además, Unreal Engine incluye un conjunto de herramientas preconfiguradas que facilitan el desarrollo, como sistemas de animación, iluminación, renderizado de alta calidad y físicas avanzadas. Gracias a estas características, cualquier usuario puede desarrollar videojuegos en 2D y 3D de manera accesible y rápida, sin necesidad de aprender un lenguaje de programación tradicional.
+
+Si se compara con otros motores como Unity, Unreal Engine destaca por su calidad gráfica y su sistema visual más robusto. Mientras que en Unity se requiere programación para acceder a ciertas funciones avanzadas, en Unreal es posible construir mecánicas complejas únicamente con Blueprints. Esto lo convierte en una opción ideal para desarrolladores novatos que buscan facilidad de uso sin sacrificar potencia y flexibilidad.
+
+Un punto negativo de Unreal Engine con respecto a Unity es la necesidad de recursos hardware que tiene para poder usarlo sin ningún tipo de ralentizaciones ni crasheos fortuitos, necesitando equipos muy potentes para que el desarrollo sea ameno o utilizar versiones anteriores de Unreal Engine.
+
+Gracias a los Blueprints, cualquier persona puede diseñar enemigos, implementar IA, construir niveles interactivos y desarrollar mecánicas de juego avanzadas sin tocar código. 
 \subsection{Godot}
+
+Godot, desarrollado por Juan Linietsky y Arenanet, es un motor de videojuegos de código abierto que ha ganado popularidad por su accesibilidad, flexibilidad y sencillez. Ofrece una plataforma poderosa para desarrollar videojuegos tanto en 2D como en 3D, y uno de sus mayores atractivos es que está diseñado para ser fácil de usar sin necesidad de tener conocimientos avanzados de programación.
+
+A diferencia de otros motores como Unreal Engine o Unity, Godot permite el desarrollo de videojuegos con una interfaz intuitiva, pero también brinda herramientas más accesibles para aquellos que no desean escribir código. Su sistema de GDScript, un lenguaje propio diseñado específicamente para ser fácil de aprender y usar, facilita la creación de juegos sin necesidad de un conocimiento profundo de programación. GDScript es similar a Python (comparten sintaxis y tipado dinámico), lo que lo hace accesible y amigable para desarrolladores noveles.
+
+Además, Godot ofrece un sistema de nodos (Figura \ref{fig:Godot_Figure}) que permite a los usuarios crear y organizar elementos dentro de su juego de una manera visual y modular. Cada nodo en Godot representa una pieza o componente del juego (como personajes, objetos, cámaras, luces, etc.), y los desarrolladores pueden organizarlos jerárquicamente. Esta estructura es extremadamente flexible, ya que cualquier nodo puede ser programado o configurado para comportarse de acuerdo con el flujo del juego, lo que simplifica la creación de interacciones y lógicas complejas.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/Godot.jpg}
+	\caption{Interfaz de Godot}
+	\label{fig:Godot_Figure}
+\end{figure}
+
+Para aquellos que prefieren una experiencia más visual y menos enfocada en la programación, Godot también incluye un sistema de "VisualScript" (Figura \ref{fig:Godot_VisualScript_Figure}), un lenguaje visual basado en nodos que permite desarrollar mecánicas sin escribir código. Similar a los sistemas de programación visual en otros motores como Unreal Engine. Este sistema ha sido eliminado del núcleo de Godot a partir de la versión 4.0 del motor aunque en lanzamientos futuros VisualScript será re-implementado como una extensión\footnote{\url{https://docs.godotengine.org/es/3.5/tutorials/scripting/visual_script/index.html}}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/VisualScriptGodot.pdf}
+	\caption{Sistema VisualScript en Godot}
+	\label{fig:Godot_VisualScript_Figure}
+\end{figure}
+Godot también destaca por ser un motor muy optimizado para el desarrollo de juegos en 2D, proporcionando una serie de herramientas específicas para este tipo de desarrollo, como un sistema de mallas 2D, animaciones, efectos y un conjunto de físicas dedicadas al mundo 2D. De esta manera, los desarrolladores pueden crear juegos con un rendimiento óptimo, incluso para dispositivos de baja gama, y con un flujo de trabajo ágil.
+
+Comparado con otros motores como Unreal Engine o Unity, Godot se distingue por su flexibilidad y ligereza. No requiere licencias ni regalías, lo que lo convierte en una excelente opción para proyectos indie como el roguelite \textit{Brotato}\footnote{\url{https://brotato.wiki.spellsandguns.com/Brotato_Wiki}} y desarrolladores independientes. También es especialmente potente para aquellos interesados en el desarrollo de juegos 2D, ya que ofrece herramientas específicamente diseñadas para este propósito, algo en lo que otros motores como Unity o Unreal Engine no se enfocan tanto.
+
+Gracias a su accesibilidad y herramientas poderosas, Godot permite a desarrolladores sin experiencia en programación crear juegos completos, desde mecánicas simples hasta sistemas complejos, sin necesidad de escribir código avanzado. Esta facilidad de uso, combinada con un motor robusto y libre, hace que Godot sea una opción popular para quienes buscan comenzar en el mundo del desarrollo de videojuegos o aquellos que desean una solución completamente gratuita y personalizable para sus proyectos.
 \subsection{GameMaker}
 \subsection{Construct 3}
 \section{Conclusiones}
