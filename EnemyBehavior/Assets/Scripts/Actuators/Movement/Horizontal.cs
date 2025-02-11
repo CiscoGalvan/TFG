@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -28,7 +29,8 @@ public class Horizontal : Actuator
 
     [SerializeField]
     private List<Sensors> m_eventsToReact;
-    public enum Direction
+
+	public enum Direction
     {
         Left = -1,
         Right = 1
@@ -38,26 +40,27 @@ public class Horizontal : Actuator
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
 
-	private void Start()
-	{
-        m_eventsToReact = new List<Sensors>();
-        foreach(var sensor in m_eventsToReact)
-        {
-
-        }
-	}
+	
 	public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
         //Collision.OnCollisionSensor += CollisionEvent;
         m_time = 0;
-		
+		foreach (var sensor in m_eventsToReact)
+		{
+            sensor.onEventDetected += CollisionEvent;
+		}
+
 	}
     public override void DestroyActuator()
     {
-        //Collision.OnCollisionSensor -= CollisionEvent;
-    }
+		//Collision.OnCollisionSensor -= CollisionEvent;
+		foreach (var sensor in m_eventsToReact)
+		{
+			sensor.onEventDetected -= CollisionEvent;
+		}
+	}
     public override void UpdateActuator()
     {
         m_time += Time.deltaTime;
@@ -83,9 +86,9 @@ public class Horizontal : Actuator
 
         m_rigidbody.position += new Vector2(desp, 0);
     }
-    void CollisionEvent(Collision2D mensaje)
+    void CollisionEvent()
     {
-       
+        Debug.Log("B");
         m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
     }
 
@@ -107,4 +110,8 @@ public class Horizontal : Actuator
         Gizmos.DrawLine(arrowTip, arrowTip + left);
        
     }
+    public List<Sensors> GetSensors()
+    {
+        return m_eventsToReact;
+	}
 }

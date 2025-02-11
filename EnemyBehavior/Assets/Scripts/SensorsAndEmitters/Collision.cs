@@ -8,7 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Collision : Sensors
 {
-    public event Action<Collision2D> OnCollisionSensor;
     bool col;
 	bool m_isChecking;	//estará a false cuando el sensor no esté activo y a true cuando lo esté
     Collision2D m_collisionobj;
@@ -23,7 +22,7 @@ public class Collision : Sensors
 		{
 			col = true;
 			m_collisionobj = collision;
-			OnCollisionSensor?.Invoke(m_collisionobj);
+			EventDetected();
 			Debug.Log("message sent");
 		}
        
@@ -35,8 +34,10 @@ public class Collision : Sensors
     }
     public override void StartSensor() 
 	{
+		
 		m_isChecking = true;
 		col = false;
 	}
 
+	Collision2D GetCollidedObject(){ return m_collisionobj; }
 }
