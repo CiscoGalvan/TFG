@@ -10,7 +10,14 @@ public class Timer : Sensors
     private float timer = 0f;
     private bool startTimer;
     public static event Action OnTimeReached;
-    private void Update()
+
+
+
+	//Dibujado 
+	//Medir en un solo eje (X o Y)
+	//Lanzamiento de eventos
+	//Repasar código
+	private void Update()
     {
         if (startTimer)
         {

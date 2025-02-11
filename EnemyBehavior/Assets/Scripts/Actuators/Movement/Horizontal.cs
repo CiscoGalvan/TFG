@@ -22,35 +22,44 @@ public class Horizontal : Actuator
     [SerializeField]
     private Direction m_dir = Direction.Right;
 
-
     [Tooltip("Easing function for acceleration")]
     [SerializeField]
     private EasingFunction.Ease m_easingFunction;
 
+    [SerializeField]
+    private List<Sensors> m_eventsToReact;
     public enum Direction
     {
         Left = -1,
         Right = 1
     }
 
-    float m_time =0;
+    float m_time;
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
 
-    public override void StartActuator()
+	private void Start()
+	{
+        m_eventsToReact = new List<Sensors>();
+        foreach(var sensor in m_eventsToReact)
+        {
+
+        }
+	}
+	public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        Collision.OnCollisionSensor += CollisionEvent;
-        //Distance.OnDistanceSensors += DistanceEvent;
-    }
-    public override void Destroy()
+        //Collision.OnCollisionSensor += CollisionEvent;
+        m_time = 0;
+		
+	}
+    public override void DestroyActuator()
     {
-        Collision.OnCollisionSensor -= CollisionEvent;
+        //Collision.OnCollisionSensor -= CollisionEvent;
     }
     public override void UpdateActuator()
     {
-        
         m_time += Time.deltaTime;
         int dirValue = (int)m_dir;
         

@@ -11,7 +11,7 @@ public class Spawner : Actuator
     {
         
     }
-    public override void Destroy()
+    public override void DestroyActuator()
     {
 
     }

@@ -150,7 +150,7 @@ public class Circular : Actuator
     public void SetRadius(float newValue) { m_radius = newValue; }
     public bool RotationPointAssigned() { return !m_noRotationPointAssigned; }
 
-    public override void Destroy()
+    public override void DestroyActuator()
     {
         
     }

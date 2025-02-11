@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class Actuator: MonoBehaviour 
-{   
-    public abstract void UpdateActuator();
+public abstract class Actuator: MonoBehaviour
+{
+	public abstract void UpdateActuator();
     public abstract void StartActuator();
-    public abstract void Destroy();
+    public abstract void DestroyActuator();
 }

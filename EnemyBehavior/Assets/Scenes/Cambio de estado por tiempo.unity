@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 620872462}
   - component: {fileID: 620872463}
   - component: {fileID: 620872464}
+  - component: {fileID: 620872465}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -778,7 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 620872462}
+  - {fileID: 620872465}
   SensorList:
   - {fileID: 620872464}
   name: Segundo Estado
@@ -830,7 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 620872460}
   m_transition: 0
-  detectionTime: 0
+  detectionTime: 2
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +847,23 @@ MonoBehaviour:
   destinationState: {fileID: 620872461}
   m_transition: 0
   detectionTime: 2
+--- !u!114 &620872465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 1
+  m_maxspeed: 10
+  m_acceleration: 0
+  m_dir: -1
+  m_easingFunction: 21
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

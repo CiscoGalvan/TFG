@@ -41,11 +41,11 @@ public class Vertical : Actuator
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        Collision.OnCollisionSensor += ReceiveMessage;
+        //Collision.OnCollisionSensor += ReceiveMessage;
     }
-    public override void Destroy()
+    public override void DestroyActuator()
     {
-        Collision.OnCollisionSensor -= ReceiveMessage;
+        //Collision.OnCollisionSensor -= ReceiveMessage;
     }
 
     public override void UpdateActuator()

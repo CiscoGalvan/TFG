@@ -26,17 +26,20 @@ public class MoveToAPoint : Actuator
 	private float m_accelerationValue;
 	private EasingFunction.Ease m_easingFunction;
 	private Rigidbody2D m_rb;
-	private bool moving = false;
-	private float elapsedTime = 0f;
+	private bool moving;
+	private float elapsedTime;
 	private Vector2 startPos;
 	public override void StartActuator()
 	{
 		m_rb = GetComponent<Rigidbody2D>();
+		elapsedTime = 0f;
+		moving = false;
 		if (m_objectivePosition != null)
 		{
 			startPos = m_rb.position;
 			moving = true;
 		}
+	
 	}
 
 	// Update is called once per frame
@@ -74,7 +77,7 @@ public class MoveToAPoint : Actuator
 			UnityEditor.EditorApplication.isPlaying = false;
 		}
 	}
-	public override void Destroy()
+	public override void DestroyActuator()
 	{
 
 	}

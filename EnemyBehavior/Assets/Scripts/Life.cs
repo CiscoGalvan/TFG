@@ -55,4 +55,8 @@ public class Life : MonoBehaviour
             lifeText.text = textname + m_actualLife; 
         }
     }
+    public bool IsLifeLessThan(int value)
+    {
+        return m_actualLife < value;
+    }
 }
