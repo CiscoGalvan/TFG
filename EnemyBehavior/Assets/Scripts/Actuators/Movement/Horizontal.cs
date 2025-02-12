@@ -20,10 +20,10 @@ public class Horizontal : Actuator
 	[SerializeField]
 	[HideInInspector]
 	private float m_interpolationTime = 0;
-   
 
- 
 
+
+	private float m_initial_speed = 0;
 
     //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
     
@@ -53,8 +53,11 @@ public class Horizontal : Actuator
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
         //Collision.OnCollisionSensor += CollisionEvent;
         m_time = 0;
-		if(m_isAccelerated)
+		if (m_isAccelerated)
+		{
 			m_speed = m_rigidbody.velocity.x;
+		}
+		m_initial_speed = m_speed;
 		foreach (var sensor in m_eventsToReact)
 		{
             sensor.onEventDetected += CollisionEvent;
@@ -85,11 +88,11 @@ public class Horizontal : Actuator
 			//MRUA
 			t = (m_time / m_interpolationTime);
 
-		
-			
-			float easedSpeed = easingFunc(m_speed, m_goalSpeed, t);
 
-			
+			float easedSpeed = easingFunc(m_initial_speed, m_goalSpeed, t);
+
+		
+
 			m_rigidbody.velocity = new Vector2(easedSpeed * dirValue, m_rigidbody.velocity.y);
 			
 			if (t >= 1.0f)
@@ -99,7 +102,6 @@ public class Horizontal : Actuator
 			}
 			else
 			{
-				
 				m_speed = easedSpeed;
 			}
 		}
