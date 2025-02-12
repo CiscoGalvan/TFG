@@ -141,9 +141,26 @@ Play Maker está disponible en la \textit{asset store} de \textit{Unity}, aunque
 %\subsection{Animator}
 \section{Motores de videojuegos}
 
-Se ha abordado una serie de herramientas externas que se integran en el motor de videojuegos \textit{Unity}. Ahora se procederá a hablar sobre una serie de motores de videojuegos que ofrecen sustitutos para estas herramientas que vienen integrados en el propio motor lo que ayuda a que usuarios sin conocimientos de programación puedan usar con mayor facilidad estos motores.
+Anteriormente se ha abordado una serie de herramientas externas que se integran en el motor de videojuegos \textit{Unity}. Ahora se procederá a hablar sobre una serie de motores de videojuegos que ofrecen sustitutos para estas herramientas que vienen integrados en el propio motor lo que ayuda a que usuarios sin conocimientos de programación puedan usar con mayor facilidad estos motores.
 
-%\subsection{Unity}
+\subsection{Unity}
+\textit{Unity}\footnote{\url{https://unity.com}} es un motor de videojuegos desarrollado por \textit{Unity Technologies} que se ha convertido en una de las herramientas más utilizadas en la industria del desarrollo de videojuegos. Su versatilidad y facilidad de uso han permitido la creación de títulos de gran éxito como \textit{Hollow Knight}\footnote{\url{https://www.hollowknight.com}}, \textit{Cuphead}\footnote{\url{https://cupheadgame.com}} y \textit{Genshin Impact}\footnote{\url{https://genshin.hoyoverse.com/es}}. La versión más actual del motor, \textit{Unity 2023}, incorpora mejoras en su sistema de renderizado, herramientas avanzadas de optimización y un motor de físicas más eficiente.\\
+
+Uno de los aspectos más destacados de \textit{Unity} es su capacidad para desarrollar videojuegos tanto en 2D como en 3D, lo que lo convierte en una opción ideal para una amplia variedad de proyectos. El motor ofrece dos principales opciones para la programación: el lenguaje \textit{C\#}, utilizado para la creación de scripts avanzados, y el sistema visual \textit{Bolt}, que permite desarrollar mecánicas sin necesidad de escribir código.\\
+
+El sistema de scripting en \textit{Unity} está basado en \textit{C\#} y funciona a través del uso de \textit{MonoBehaviour}, una clase base que permite definir el comportamiento de los objetos del juego. Los scripts se adjuntan a los objetos dentro del editor y pueden controlar aspectos como la física, la inteligencia artificial y las interacciones del jugador \comp{faltan imagenes}.\\
+
+
+Por otro lado, el sistema de programación visual \textit{Bolt} permite a los desarrolladores sin experiencia en programación crear juegos mediante una interfaz basada en nodos. Similar a \textit{Blueprints} en \textit{Unreal Engine}, este sistema permite definir lógica de juego conectando bloques de funciones y eventos sin necesidad de escribir una sola línea de código.\
+
+Además de su versatilidad en la programación, \textit{Unity} cuenta con un conjunto de herramientas avanzadas para la creación de entornos, animaciones y físicas. Su sistema de renderizado \textit{Universal Render Pipeline (URP)} permite optimizar los gráficos para múltiples plataformas, mientras que el \textit{High Definition Render Pipeline (HDRP)} está diseñado para juegos con gráficos de alta calidad en PC y consolas de última generación.\
+
+Si se compara con otros motores como \textit{Unreal Engine}, \textit{Unity} destaca por su flexibilidad y menor consumo de recursos. Mientras que \textit{Unreal Engine} es ampliamente reconocido por su calidad gráfica superior, \textit{Unity} ofrece un entorno más ligero y optimizado, lo que lo convierte en una mejor opción para desarrolladores independientes o proyectos móviles. Sin embargo, su sistema visual de nodos es menos avanzado que el de \textit{Unreal}, lo que puede requerir el uso de \textit{C\#} para acceder a funcionalidades más complejas.\
+
+Un punto negativo de \textit{Unity} con respecto a otros motores es su modelo de licencias y sus cambios recientes en la política de precios, lo que ha generado controversia entre los desarrolladores. A pesar de esto, su comunidad activa, su gran cantidad de recursos educativos y su compatibilidad con una amplia variedad de plataformas lo mantienen como una de las opciones más accesibles y populares para la creación de videojuegos.
+
+La combinación de herramientas avanzadas y la facilidad de uso hace que cualquier persona pueda desarrollar desde juegos móviles y experiencias en realidad virtual hasta títulos en 3D de gran escala sin necesidad de contar con un equipo grande o conocimientos avanzados de programación.
+
 \subsection{Unreal Engine}
 \textit{Unreal Engine}\footnote{\url{https://www.unrealengine.com/es-ES}}, desarrollado por \textit{Epic Games}\footnote{\url{https://www.epicgames.com/site/es-ES/home}}, es uno de los motores de videojuegos más potentes y utilizados en la industria de los videojuegos en títulos como la saga \textit{Hellblade}\footnote{\url{https://thehellblade.fandom.com/wiki/Hellblade:_Senua\%27s_Sacrifice}} o el éxito mundial \textit{Fornite}\footnote{\url{https://www.fortnite.com/?lang=es-ES}} y la versión más actual es Unreal Engine 5 que cuenta, entre otras cosas, con \textit{Lumen}, un sistema de iluminación global dinámica o la mejora sustancial del sistema de simulación de físicas \textit{Chaos}.\\
 A pesar de que permite la programación en C++, también ofrece un sistema visual llamado Blueprints, diseñado para que cualquier persona, sin conocimientos de programación, pueda crear videojuegos completos mediante una interfaz gráfica intuitiva.
@@ -190,21 +207,22 @@ Godot también destaca por ser un motor muy optimizado para el desarrollo de jue
 
 Comparado con otros motores como Unreal Engine o Unity, Godot se distingue por su flexibilidad y ligereza. No requiere licencias ni regalías, lo que lo convierte en una excelente opción para proyectos indie como el roguelite \textit{Brotato}\footnote{\url{https://brotato.wiki.spellsandguns.com/Brotato_Wiki}} y desarrolladores independientes. También es especialmente potente para aquellos interesados en el desarrollo de juegos 2D, ya que ofrece herramientas específicamente diseñadas para este propósito, algo en lo que otros motores como Unity o Unreal Engine no se enfocan tanto.
 
-Gracias a su accesibilidad y herramientas poderosas, Godot permite a desarrolladores sin experiencia en programación crear juegos completos, desde mecánicas simples hasta sistemas complejos, sin necesidad de escribir código avanzado. Esta facilidad de uso, combinada con un motor robusto y libre, hace que Godot sea una opción popular para quienes buscan comenzar en el mundo del desarrollo de videojuegos o aquellos que desean una solución completamente gratuita y personalizable para sus proyectos.
+La combinación de su accesibilidad y herramientas solventes hace que Godot permita a sus desarrolladores sin experiencia en programación crear juegos completos, desde mecánicas simples hasta sistemas complejos, sin necesidad de escribir código avanzado. Esta facilidad de uso, combinada con un motor robusto y libre, hace que Godot sea una opción popular para quienes buscan comenzar en el mundo del desarrollo de videojuegos o aquellos que desean una solución completamente gratuita y personalizable para sus proyectos.
+
 \subsection{GameMaker}
-\subsection{Construct 3}
+\textit{GameMaker}\footnote{\url{https://gamemaker.io/en}} es un motor de videojuegos desarrollado por \textit{YoYo Games} que se especializa en la creación de juegos en 2D, aunque también cuenta con soporte limitado para gráficos en 3D. Su accesibilidad y facilidad de uso lo han convertido en una de las herramientas más populares entre desarrolladores indie, permitiendo la creación de títulos exitosos como \textit{Undertale}\footnote{\url{https://undertale.com}}, \textit{Hotline Miami}\footnote{\url{https://store.steampowered.com/app/219150/Hotline_Miami/}} o \textit{Katana ZERO}\footnote{\url{https://katanazero.com}}.\\
+
+A diferencia de otros motores, GameMaker ofrece dos formas principales de desarrollo: un sistema de programación visual basado en eventos llamado \textit{Drag and Drop (D\&D)} y un lenguaje de scripting propio llamado \textit{GameMaker Language (GML)}. La opción de \textit{Drag and Drop} permite a los usuarios sin experiencia en programación crear juegos completos mediante una interfaz intuitiva de bloques gráficos, mientras que \textit{GML} proporciona mayor control y flexibilidad a desarrolladores con conocimientos de programación.\
+
+El sistema de \textit{Drag and Drop} funciona mediante la asignación de eventos y acciones a los objetos del juego. Por ejemplo, se pueden definir eventos como "cuando el jugador presione una tecla", seguido de una acción como "mover el personaje en una dirección" \comp{faltan imagenes}. Esta metodología facilita la creación de juegos sin necesidad de escribir código, aunque también permite una transición fluida a \textit{GML} en caso de que el usuario desee más control sobre la lógica del juego.\\
+
+
+Además de su sistema de scripting y su interfaz intuitiva, GameMaker incluye diversas herramientas preconfiguradas que agilizan el desarrollo, como un editor de sprites incorporado, un sistema de animación, un motor de colisiones y soporte para efectos visuales mediante \textit{shaders}. Gracias a estas características, cualquier usuario puede desarrollar videojuegos en 2D sin necesidad de aprender un lenguaje de programación desde cero.\
+
+Si se compara con otros motores como \textit{Unity}, GameMaker se destaca por su rapidez y facilidad de uso en proyectos en 2D. Mientras que en \textit{Unity} la configuración de un juego en 2D puede requerir una mayor curva de aprendizaje, GameMaker permite comenzar a desarrollar desde el primer momento con una interfaz optimizada para este tipo de juegos. Sin embargo, su soporte para gráficos en 3D es limitado en comparación con \textit{Unreal Engine} o \textit{Unity}, lo que lo hace menos adecuado para proyectos que requieran entornos tridimensionales complejos.\
+
+Un punto negativo de GameMaker con respecto a otros motores es que algunas funciones avanzadas, como la exportación a consolas o la personalización del motor, requieren licencias de pago, lo que puede representar una barrera para algunos desarrolladores. Sin embargo, su modelo de suscripción y la posibilidad de utilizar la versión gratuita para prototipado lo convierten en una opción accesible para quienes buscan una herramienta de desarrollo rápida y eficiente.
+
+Gracias al sistema de \textit{Drag and Drop} y \textit{GML}, cualquier persona puede crear plataformas interactivas, implementar inteligencia artificial básica, desarrollar mecánicas de combate y programar juegos completos sin necesidad de utilizar motores más complejos.
 \section{Conclusiones}
------------------------------------------------------\\
-En el estado de la cuestión es donde aparecen gran parte de las referencias bibliográficas del trabajo. Una de las formas más cómodas de gestionar la bibliografía en {\LaTeX} es utilizando \textbf{bibtex}. Las entradas bibliográficas deben estar en un fichero con extensión \textit{.bib} (con esta plantilla se proporciona el fichero biblio.bib, donde están las entradas referenciadas más abajo). Cada entrada bibliográfica tiene una clave que permite referenciarla desde cualquier parte del texto con los siguiente comandos:
 
-\begin{itemize}
-\item Referencia bibliografica con cite: \cite{ldesc2e}
-\item Referencia bibliográfica con citep: \citep{notsoshort}
-\item Referencia bibliográfica con citet: \citet{latexAPrimer}
-\end{itemize}
-
-Es posible citar más de una fuente, como por ejemplo \citep{latexCompanion,LaTeXLamport,texKnuth}
-
-Después, \LaTeX se ocupa de rellenar la sección de bibliografía con las entradas \textbf{que hayan sido citadas} (es decir, no con todas las entradas que hay en el .bib, sino sólo con aquellas que se hayan citado en alguna parte del texto).
-
-Bibtex es un programa separado de latex, pdflatex o cualquier otra cosa que se use para compilar los .tex, de manera que para que se rellene correctamente la sección de bibliografía es necesario compilar primero el trabajo (a veces es necesario compilarlo dos veces), compilar después con bibtex, y volver a compilar otra vez el trabajo (de nuevo, puede ser necesario compilarlo dos veces). 
