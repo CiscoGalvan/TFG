@@ -563,7 +563,6 @@ GameObject:
   m_Component:
   - component: {fileID: 620872455}
   - component: {fileID: 620872454}
-  - component: {fileID: 620872453}
   - component: {fileID: 620872451}
   - component: {fileID: 620872450}
   - component: {fileID: 620872449}
@@ -571,8 +570,9 @@ GameObject:
   - component: {fileID: 620872457}
   - component: {fileID: 620872461}
   - component: {fileID: 620872460}
-  - component: {fileID: 620872462}
   - component: {fileID: 620872463}
+  - component: {fileID: 620872465}
+  - component: {fileID: 620872464}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -666,25 +666,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 620872460}
   m_transition: 1
---- !u!114 &620872453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
-  m_speed: 1
-  m_goalSpeed: 1
-  m_interpolationTime: 0
-  m_direction: -1
-  m_eventsToReact: []
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -794,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 620872462}
+  - {fileID: 620872464}
   SensorList:
   - {fileID: 620872463}
   name: Segundo Estado
@@ -811,29 +792,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 620872453}
+  - {fileID: 620872465}
   SensorList:
   - {fileID: 620872451}
   name: Primer Estado
---- !u!114 &620872462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_isAccelerated: 1
-  m_easingFunction: 11
-  m_speed: 1
-  m_goalSpeed: 4
-  m_interpolationTime: 4
-  m_direction: 1
-  m_eventsToReact: []
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,6 +810,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 620872461}
   m_transition: 1
+--- !u!114 &620872464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isAccelerated: 1
+  m_easingFunction: 0
+  m_speed: 1
+  m_goalSpeed: 4
+  m_interpolationTime: 4
+  m_direction: -1
+--- !u!114 &620872465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isAccelerated: 1
+  m_easingFunction: 0
+  m_speed: 1
+  m_goalSpeed: 3
+  m_interpolationTime: 0.2
+  m_direction: 1
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1476,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -5.25, z: 10}
-  m_LocalScale: {x: 17.176249, y: 1, z: 1}
+  m_LocalScale: {x: 17.691536, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2069529775}

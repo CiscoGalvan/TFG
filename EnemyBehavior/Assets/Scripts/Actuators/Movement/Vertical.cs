@@ -8,41 +8,50 @@ using UnityEngine.UIElements;
 
 public class Vertical : Actuator
 {
-    [Tooltip("Initial speed of the object in units per second")]
-    [SerializeField]
-    float m_speed = 1f;
 
-    [Tooltip("Maximum speed of the object in units per second")]
-    [SerializeField]
-    float m_maxspeed = 10f;
+	[SerializeField]
+	[HideInInspector]
+	private float m_speed;
 
-    //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
-    //[SerializeField]
-    //float m_acceleration = 0f;
 
-    [Tooltip("Movement direction")]
+	[SerializeField]
+	[HideInInspector]
+	private float m_goalSpeed;
+
+
+	[SerializeField]
+	[HideInInspector]
+	private float m_interpolationTime = 0;
+
+
+	[Tooltip("Movement direction")]
     [SerializeField]
     private Direction m_direction = Direction.Down;
 
-    //[Tooltip("Easing function for acceleration")]
-    //[SerializeField]
-    //private EasingFunction.Ease m_easingFunction = EasingFunction.Ease.Linear;
-    public enum Direction
+
+	private float m_initial_speed = 0;
+
+	private enum Direction
     {
         Down = -1,
         Up = 1
     }
 
-    float m_time =0;
-
+    private float m_time = 0;
     private EasingFunction.Function easingFunc;
-    Rigidbody2D m_rigidbody;
+    private Rigidbody2D m_rigidbody;
     public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        //Collision.OnCollisionSensor += ReceiveMessage;
-    }
+		m_time = 0;
+		if (m_isAccelerated)
+		{
+			m_speed = m_rigidbody.velocity.x;
+		}
+		m_initial_speed = m_speed;
+		//Collision.OnCollisionSensor += ReceiveMessage;
+	}
     public override void DestroyActuator()
     {
         //Collision.OnCollisionSensor -= ReceiveMessage;
@@ -50,34 +59,36 @@ public class Vertical : Actuator
 
     public override void UpdateActuator()
     {
-        Debug.Log("Vertical");
-        m_time += Time.deltaTime;
-        int dirValue = (int)m_direction;
-        // MRU: x = x0 + v*t
-        // MRUA: x = x0 + v0*t + 1/2 * a * t^2
-        float desp;
-        if (m_accelerationValue == 0)
-        {
-            // MRU
-            desp = m_speed * Time.deltaTime * dirValue;
-        }
-        else
-        {
-            float easedAcceleration = m_accelerationValue > 0 ? easingFunc(0, m_accelerationValue, Mathf.Clamp01(m_time)) : 0;
+		m_time += Time.deltaTime;
+		int dirValue = (int)m_direction;
+		if (!m_isAccelerated)
+		{
+			//MRU
+			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x,m_speed * dirValue);
+		}
+		else
+		{
+			//MRUA
+			float t = (m_time / m_interpolationTime);
+			float easedSpeed = easingFunc(m_initial_speed, m_goalSpeed, t);
+			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, easedSpeed * dirValue);
 
-            // MRUA
-            desp = m_speed * Time.deltaTime * dirValue + 0.5f * easedAcceleration * Mathf.Pow(Time.deltaTime, 2) * dirValue;
-            m_speed += easedAcceleration * Time.deltaTime; // Update speed in accelerated motion
-            if (m_speed > m_maxspeed) m_speed = m_maxspeed;
-        }
+			if (t >= 1.0f)
+			{
+				m_speed = m_goalSpeed;
+				m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_goalSpeed * dirValue);
+			}
+			else
+			{
+				m_speed = easedSpeed;
+			}
+		}
+	}
+    //void ReceiveMessage(Collision2D mensaje)
+    //{
 
-        m_rigidbody.position += new Vector2(0, desp);
-    }
-   void ReceiveMessage(Collision2D mensaje)
-    {
-
-        m_direction = m_direction == Direction.Down ? Direction.Up: Direction.Down;
-    }
+    //    m_direction = m_direction == Direction.Down ? Direction.Up: Direction.Down;
+    //}
     private void OnDrawGizmosSelected()
     {
         if (!this.isActiveAndEnabled) return;
@@ -95,4 +106,29 @@ public class Vertical : Actuator
         Gizmos.DrawLine(arrowTip, arrowTip + right);
         Gizmos.DrawLine(arrowTip, arrowTip + left);
     }
+
+	public void SetSpeed(float newValue)
+	{
+		m_speed = newValue;
+	}
+	public float GetSpeed()
+	{
+		return m_speed;
+	}
+	public void SetGoalSpeed(float newValue)
+	{
+		m_goalSpeed = newValue;
+	}
+	public float GetGoalSpeed()
+	{
+		return m_goalSpeed;
+	}
+	public void SetInterpolationTime(float newValue)
+	{
+		m_interpolationTime = newValue;
+	}
+	public float GetInterpolationTime()
+	{
+		return m_interpolationTime;
+	}
 }

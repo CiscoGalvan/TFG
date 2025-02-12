@@ -36,16 +36,16 @@ public class Horizontal : Actuator
     [SerializeField]
     private List<Sensors> m_eventsToReact;
 
-	public enum Direction
+	private enum Direction
     {
         Left = -1,
         Right = 1
     }
 
-    float m_time;
+    private float m_time;
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
-	float t;
+
 	
 	public override void StartActuator()
     {
@@ -71,13 +71,11 @@ public class Horizontal : Actuator
 		{
 			sensor.onEventDetected -= CollisionEvent;
 		}
-		Debug.Log(t);
 	}
 	public override void UpdateActuator()
 	{
 		m_time += Time.deltaTime;
 		int dirValue = (int)m_direction;
-
 		if (!m_isAccelerated)
 		{
 			//MRU
@@ -86,13 +84,8 @@ public class Horizontal : Actuator
 		else
 		{
 			//MRUA
-			t = (m_time / m_interpolationTime);
-
-
+			float t = (m_time / m_interpolationTime);
 			float easedSpeed = easingFunc(m_initial_speed, m_goalSpeed, t);
-
-		
-
 			m_rigidbody.velocity = new Vector2(easedSpeed * dirValue, m_rigidbody.velocity.y);
 			
 			if (t >= 1.0f)
@@ -130,10 +123,7 @@ public class Horizontal : Actuator
         Gizmos.DrawLine(arrowTip, arrowTip + left);
        
     }
-    public List<Sensors> GetSensors()
-    {
-        return m_eventsToReact;
-	}
+  
 
 	#region Setters and Getters 
     public void SetSpeed(float newValue)
@@ -159,6 +149,11 @@ public class Horizontal : Actuator
 	public float GetInterpolationTime()
 	{
 		return m_interpolationTime;
+	}
+
+	public List<Sensors> GetSensors()
+	{
+		return m_eventsToReact;
 	}
 	#endregion
 }
