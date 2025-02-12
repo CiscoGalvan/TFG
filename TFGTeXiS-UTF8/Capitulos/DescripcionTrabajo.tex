@@ -23,7 +23,7 @@ Las transiciones permiten cambiar de un estado a otro y son activadas por sensor
 Estos conceptos (estados, sensores, emisores y eventos) se desarrollan con mayor detalle en los apartados siguientes.
 
 El objeto enemigo se define mediante una máquina de estados finita y un script que contiene información relevante. A continuación, se describen ambos conceptos y sus propiedades.\\
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/EnemigoGeneral.png}
 	\caption{Enemigo General }
@@ -46,7 +46,7 @@ Implementar un spawner requiere establecer ciertas reglas de generación de enem
 Podemos definir el término movimiento como el desplazamiento o cambio de posición de un enemigo dentro del juego. Sin embargo, el concepto de movimiento también puede aplicarse en el caso de enemigos que permanecen en una posición fija, haciendo referencia a la ausencia de éste. Los movimientos son fundamentales para definir el comportamiento de los personajes, ya que permiten la interacción con el jugador y el entorno.
 A continuación se describen en una tabla todos los movimientos que se han considerado esenciales y en la figura \ref{fig:TablaCompatibilidad} podemos ver la compatibilidad entre ellos
 
-\begin{table}[!h]
+\begin{table}[t]
 	\centering
 	\begin{tabular}{|p{3cm}|p{4.5cm}|p{4cm}|p{3cm}|}
 	\hline
@@ -67,7 +67,7 @@ A continuación se describen en una tabla todos los movimientos que se han consi
 	\label{tab:movimientos}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[t]
     \centering
 
     \renewcommand{\arraystretch}{1.5}
@@ -133,7 +133,7 @@ Además, estas cajas pueden activarse/ desactivarse y desplazarse dinámicamente
 	 \item  Optimizar las interacciones desactivando cajas no relevantes en momentos específicos del juego.
 \end{itemize}
 Además, se puede distinguir entre tres tipos de daños:
-\begin{table}[!h]
+\begin{table}[t]
 	\centering
 	\begin{tabular}{|p{3cm}|p{4.5cm}|p{4cm}|p{3cm}|}
 	\hline

@@ -816,7 +816,7 @@ MonoBehaviour:
   m_maxspeed: 10
   m_acceleration: 0
   m_dir: 1
-  m_easingFunction: 21
+  m_easingFunction: 23
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0

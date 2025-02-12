@@ -1,7 +1,7 @@
 \chapter{Estado de la Cuestión}
 \label{cap:estadoDeLaCuestion}
 En este capítulo se hará una investigación sobre las técnicas, herramientas y formas de crear inteligencias artificiales para enemigos.
-Para ello vamos a comenzar haciendo un recorrido por todo lo relacionado con la inteligencia artificial en general y cómo se usa esta en videojuegos 2D de plataformas, ya sea para crear un NPC, un enemigo o para optimizar alguna función más a bajo nivel del juego.
+Para ello vamos a comenzar haciendo un recorrido por elementos generales relacionados con la inteligencia artificial y cómo se usan en videojuegos 2D de plataformas, ya sea para crear un NPC, un enemigo o para optimizar alguna función más a bajo nivel del juego.
 Se mencionarán además herramientas para conseguir los fines descritos anteriormente y se hablará de algunos motores de videojuegos que han inspirado en cierta manera algunos aspectos de nuetras herramienta. \\
 \section{Introducción a la Inteligencia Artificial}
 
@@ -33,7 +33,7 @@ A continuación se enumerarán los fantasmas y sus formas de comportarse.
 \end{itemize}
 Para ilustrar el funcionamiento del juego se usará la Figura \ref{fig:Comportamiento jugador Pac-Man} que representa una posible FSM para el jugador, lo que haría que las decisiones tomadas fueran lo más eficientes posibles en el momento.\\
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/FMS_MsPac-man.png}
 	\caption{Comportamiento jugador Pac-Man, extraído del libro de Yannakakis y Togelius (2018)}
@@ -57,7 +57,7 @@ La gran diferencia de como usa BTs Spore a los juegos anteriormente mencionados 
 La Figura \ref{fig:BT Spore} es un ejemplo de un BT sacado de las documentación\footnote{ \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}} que hay publicada del juego.
 Un punto importante a tener en cuenta es que si un nodo tiene más de un hijo, estos se comprueban si son o no elegidos en un orden determinado hasta que un de los \textit{deciders} acepte la petición del padre o ninguno acepte y se vuelva al nodo actual volviendo a repetir el proceso.\\
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/BT_Spoore.png}
 	\caption{Ejemplo BT, Documentación Spore}
@@ -109,7 +109,7 @@ A continuación, se han seleccionado algunas herramientas como ejemplo.\\
 \subsection{Behavior Bricks}
 
 \textit{Behavior Bricks}\footnote{\url{https://bb.padaonegames.com/doku.php}} es una herramienta disponible para el motor de videojuegos \textit{Unity} centrada en cubrir todas las necesidades de implementación de comportamientos para juegos. Con \textit{Behavior Bricks} el usuario es capaz de modelar de manera visual tanto FSMs como BTs.\\
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/Behavior_Bricks.jpg}
 	\caption{Ejemplo de uso de Behavior Bricks}
@@ -131,7 +131,7 @@ Gracias a su flexibilidad y facilidad de uso, Play Maker es ideal para diseñar 
 
 Play Maker está disponible en la \textit{asset store} de \textit{Unity}, aunque su precio hacer que desarrolladores con pocos recursos tengan que descartar esta opción, no deja de ser una herramienta usada ámpliamente por la comunidad de desarrolladores, habiendo sido utilizada en juegos como el aclamado por la crítica \textit{Hollow Night}\footnote{\url{https://hollowknight.fandom.com/wiki/Hollow_Knight_Wiki}}, \textit{Firewatch}\footnote{\url{https://www.firewatchgame.com/}} la aventura narrativa del estudio norteamericano Campo Santo o el juego de plataforma de los creadores de \textit{Limbo}, \textit{INSIDE}\footnote{\url{https://inside.fandom.com/wiki/Inside_Wiki}}.\\
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/PlayMaker.jpg}
 	\caption{Ejemplo de uso de Play Maker}
@@ -167,7 +167,7 @@ A pesar de que permite la programación en C++, también ofrece un sistema visua
 
 El sistema de Blueprints funciona de manera similar a un lenguaje de programación visual basado en nodos. En lugar de escribir código manualmente, el usuario conecta bloques de lógica (Figura \ref{fig:BluePrints_Figure}) para definir comportamientos, interacciones y mecánicas dentro del juego. Esto permite crear desde movimientos de personajes y mecánicas de combate hasta sistemas complejos de inteligencia artificial y físicas sin necesidad de escribir una sola línea de código.\\
 Cabe destacar que se pueden crear Blueprints en caso de que sea necesario.
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/Blueprints.png}
 	\caption{Blueprints en Unreal Engine}
@@ -188,7 +188,7 @@ Godot, desarrollado por Juan Linietsky y Arenanet, es un motor de videojuegos de
 A diferencia de otros motores como Unreal Engine o Unity, Godot permite el desarrollo de videojuegos con una interfaz intuitiva, pero también brinda herramientas más accesibles para aquellos que no desean escribir código. Su sistema de GDScript, un lenguaje propio diseñado específicamente para ser fácil de aprender y usar, facilita la creación de juegos sin necesidad de un conocimiento profundo de programación. GDScript es similar a Python (comparten sintaxis y tipado dinámico), lo que lo hace accesible y amigable para desarrolladores noveles.
 
 Además, Godot ofrece un sistema de nodos (Figura \ref{fig:Godot_Figure}) que permite a los usuarios crear y organizar elementos dentro de su juego de una manera visual y modular. Cada nodo en Godot representa una pieza o componente del juego (como personajes, objetos, cámaras, luces, etc.), y los desarrolladores pueden organizarlos jerárquicamente. Esta estructura es extremadamente flexible, ya que cualquier nodo puede ser programado o configurado para comportarse de acuerdo con el flujo del juego, lo que simplifica la creación de interacciones y lógicas complejas.
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/Godot.jpg}
 	\caption{Interfaz de Godot}
@@ -197,7 +197,7 @@ Además, Godot ofrece un sistema de nodos (Figura \ref{fig:Godot_Figure}) que pe
 
 Para aquellos que prefieren una experiencia más visual y menos enfocada en la programación, Godot también incluye un sistema de "VisualScript" (Figura \ref{fig:Godot_VisualScript_Figure}), un lenguaje visual basado en nodos que permite desarrollar mecánicas sin escribir código. Similar a los sistemas de programación visual en otros motores como Unreal Engine. Este sistema ha sido eliminado del núcleo de Godot a partir de la versión 4.0 del motor aunque en lanzamientos futuros VisualScript será re-implementado como una extensión\footnote{\url{https://docs.godotengine.org/es/3.5/tutorials/scripting/visual_script/index.html}}.
 
-\begin{figure}[h]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/VisualScriptGodot.pdf}
 	\caption{Sistema VisualScript en Godot}
