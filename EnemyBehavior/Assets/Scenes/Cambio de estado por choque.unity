@@ -571,8 +571,8 @@ GameObject:
   - component: {fileID: 620872457}
   - component: {fileID: 620872461}
   - component: {fileID: 620872460}
-  - component: {fileID: 620872458}
   - component: {fileID: 620872462}
+  - component: {fileID: 620872463}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationState: {fileID: 620872460}
-  m_transition: 0
+  m_transition: 1
 --- !u!114 &620872453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,13 +678,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAccelerated: 0
+  m_easingFunction: 0
   m_speed: 1
-  m_maxspeed: 17.18
-  m_acceleration: 0
-  m_dir: -1
-  m_easingFunction: 21
-  m_eventsToReact:
-  - {fileID: 620872451}
+  m_goalSpeed: 1
+  m_interpolationTime: 0
+  m_direction: -1
+  m_eventsToReact: []
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -781,20 +781,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialstate: {fileID: 620872461}
---- !u!114 &620872458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinationState: {fileID: 620872461}
-  m_transition: 1
 --- !u!114 &620872460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,7 +796,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 620872462}
   SensorList:
-  - {fileID: 620872458}
+  - {fileID: 620872463}
   name: Segundo Estado
 --- !u!114 &620872461
 MonoBehaviour:
@@ -841,12 +827,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAccelerated: 1
+  m_easingFunction: 11
   m_speed: 1
-  m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: 1
-  m_easingFunction: 21
+  m_goalSpeed: 4
+  m_interpolationTime: 4
+  m_direction: 1
   m_eventsToReact: []
+--- !u!114 &620872463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinationState: {fileID: 620872461}
+  m_transition: 1
+  detectionTime: 4
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

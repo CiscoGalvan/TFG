@@ -3,13 +3,40 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 [CustomEditor(typeof(Horizontal))]
-public class HorizontalComponentEditor : Editor
+public class HorizontalComponentEditor : ActuatorEditor
 {
+
+	#region Accelerated movement
+	private static readonly GUIContent goalSpeedLabel = new GUIContent("Goal Speed", "Speed the object will reach");
+	private static readonly GUIContent interpolationTimeLabel = new GUIContent("Interpolation Time", "Time it takes to reach Max Speed");
+	#endregion
+
+	#region  Non-accelerated movement
+	private static readonly GUIContent constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
+	#endregion
+
 	public override void OnInspectorGUI()
 	{
-		base.OnInspectorGUI();
-		//Coge la lista de sensores y por cada sensor nos creamos una lista en el editor, donde se pondrán los eventos a los que reaccionamos que son del tipo Action/UnityAction y con eso rellenamos el diccionario de la clase Horizontal.
-		//Este funcionamiento tendrá que ser para todos los actuators así que a lo mejor deberíamos abstraer algo más este comportamiento.
-	}
 
+		Horizontal component = (Horizontal)target;
+		DrawDefaultInspector();
+		//creo que este es el lineal y el else el acelerado.
+		if (component.IsMovementAccelerated())
+		{
+			component.SetGoalSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed()))));
+			component.SetInterpolationTime(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(interpolationTimeLabel, component.GetInterpolationTime()))));
+			component.SetEasingFunction((EasingFunction.Ease)EditorGUILayout.EnumPopup(easingFunctionLabel, component.GetEasingFunctionValue()));
+			DrawEasingCurve(component.GetEasingFunctionValue());
+		}
+		else
+		{
+			component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
+		}
+
+		// If GUI changed we must applicate those changes in editor
+		if (GUI.changed)
+		{
+			EditorUtility.SetDirty(component);
+		}
+	}
 }

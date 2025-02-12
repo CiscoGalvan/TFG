@@ -7,25 +7,31 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Horizontal : Actuator
 {
-    [Tooltip("Initial speed of the object in units per second")]
-    [SerializeField]
-    private float m_speed = 1f;
+	//Tenemos que serializar y esconder en el inspector toda variable que querramos que sea cambiada con un editor pero que esta no aparezca desde un principio en el inspector.
 
-    [Tooltip("Maximum speed of the object in units per second")]
-    [SerializeField]
-    private float m_maxspeed = 10f;
+	[SerializeField]
+	[HideInInspector]
+    private float m_speed;
 
-    [Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
-    [SerializeField]
-    private float m_acceleration = 0f;
+	[SerializeField]
+	[HideInInspector]
+	private float m_goalSpeed;
+
+	[SerializeField]
+	[HideInInspector]
+	private float m_interpolationTime = 0;
+   
+
+ 
+
+
+    //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
+    
+    //private float m_acceleration = 0f;
 
     [Tooltip("Movement direction")]
     [SerializeField]
-    private Direction m_dir = Direction.Right;
-
-    [Tooltip("Easing function for acceleration")]
-    [SerializeField]
-    private EasingFunction.Ease m_easingFunction;
+    private Direction m_direction = Direction.Left;
 
     [SerializeField]
     private List<Sensors> m_eventsToReact;
@@ -39,7 +45,7 @@ public class Horizontal : Actuator
     float m_time;
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
-
+	float t;
 	
 	public override void StartActuator()
     {
@@ -47,6 +53,8 @@ public class Horizontal : Actuator
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
         //Collision.OnCollisionSensor += CollisionEvent;
         m_time = 0;
+		if(m_isAccelerated)
+			m_speed = m_rigidbody.velocity.x;
 		foreach (var sensor in m_eventsToReact)
 		{
             sensor.onEventDetected += CollisionEvent;
@@ -60,36 +68,46 @@ public class Horizontal : Actuator
 		{
 			sensor.onEventDetected -= CollisionEvent;
 		}
+		Debug.Log(t);
 	}
-    public override void UpdateActuator()
-    {
-        m_time += Time.deltaTime;
-        int dirValue = (int)m_dir;
-        
-        // MRU: x = x0 + v*t
-        // MRUA: x = x0 + v0*t + 1/2 * a * t^2
-        float desp;
-        if (m_acceleration == 0)
-        {
-            // MRU
-            desp = m_speed * Time.deltaTime * dirValue;
-        }
-        else
-        {
-            float easedAcceleration = m_acceleration > 0 ? easingFunc(0, m_acceleration, Mathf.Clamp01(m_time)) : 0;
+	public override void UpdateActuator()
+	{
+		m_time += Time.deltaTime;
+		int dirValue = (int)m_direction;
 
-            // MRUA
-            desp = m_speed * Time.deltaTime * dirValue + 0.5f * easedAcceleration * Mathf.Pow(Time.deltaTime, 2) * dirValue;
-            m_speed += easedAcceleration * Time.deltaTime; // Update speed in accelerated motion
-            if (m_speed > m_maxspeed) m_speed = m_maxspeed;
-        }
+		if (!m_isAccelerated)
+		{
+			//MRU
+			m_rigidbody.velocity = new Vector2(m_speed * dirValue, m_rigidbody.velocity.y);
+		}
+		else
+		{
+			//MRUA
+			t = (m_time / m_interpolationTime);
 
-        m_rigidbody.position += new Vector2(desp, 0);
-    }
-    void CollisionEvent()
+		
+			
+			float easedSpeed = easingFunc(m_speed, m_goalSpeed, t);
+
+			
+			m_rigidbody.velocity = new Vector2(easedSpeed * dirValue, m_rigidbody.velocity.y);
+			
+			if (t >= 1.0f)
+			{
+				m_speed = m_goalSpeed;
+				m_rigidbody.velocity = new Vector2(m_goalSpeed * dirValue, m_rigidbody.velocity.y);
+			}
+			else
+			{
+				
+				m_speed = easedSpeed;
+			}
+		}
+	}
+
+	void CollisionEvent()
     {
-        Debug.Log("B");
-        m_dir = m_dir == Direction.Left ? Direction.Right : Direction.Left;
+        m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
     }
 
     private void OnDrawGizmosSelected()
@@ -99,7 +117,7 @@ public class Horizontal : Actuator
         Gizmos.color = Color.green;
         Vector3 position = transform.position;
 
-        Vector3 direction = new Vector3((int)m_dir, 0, 0);
+        Vector3 direction = new Vector3((int)m_direction, 0, 0);
 
         // Draw direction arrow
         Gizmos.DrawLine(position, position + direction );
@@ -114,4 +132,31 @@ public class Horizontal : Actuator
     {
         return m_eventsToReact;
 	}
+
+	#region Setters and Getters 
+    public void SetSpeed(float newValue)
+    {
+        m_speed = newValue;
+    }
+    public float GetSpeed()
+    {
+        return m_speed;
+    }
+	public void SetGoalSpeed(float newValue)
+	{
+		m_goalSpeed = newValue;
+	}
+	public float GetGoalSpeed()
+	{
+		return m_goalSpeed;
+	}
+	public void SetInterpolationTime(float newValue)
+	{
+		m_interpolationTime = newValue;
+	}
+	public float GetInterpolationTime()
+	{
+		return m_interpolationTime;
+	}
+	#endregion
 }

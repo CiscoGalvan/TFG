@@ -29,7 +29,7 @@ public class Collision : Sensors
 	}
 	public override bool CanTransition()
     {
-		m_isChecking = false;
+		if(col)m_isChecking = false;
         return col;
     }
     public override void StartSensor() 

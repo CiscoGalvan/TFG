@@ -18,17 +18,10 @@ public class MoveToAPoint : Actuator
 	[Tooltip("The position the object moves towards")]
 	[SerializeField]
 	private Transform m_objectivePosition;
-
-	[Tooltip("Is the movement accelerated?")]
-	[SerializeField]
-	bool m_isAccelerated = false;
-
-	private float m_accelerationValue;
-	private EasingFunction.Ease m_easingFunction;
 	private Rigidbody2D m_rb;
 	private bool moving;
 	private float elapsedTime;
-	private Vector2 startPos;
+	private Vector2 startPos; float t;
 	public override void StartActuator()
 	{
 		m_rb = GetComponent<Rigidbody2D>();
@@ -50,7 +43,7 @@ public class MoveToAPoint : Actuator
 		#region Movement by time
 		Vector2 targetPos = m_objectivePosition.position;
 		elapsedTime += Time.deltaTime;
-		float t = elapsedTime / m_timeUntilReachingPosition;
+		t = elapsedTime / m_timeUntilReachingPosition;
 		if (m_isAccelerated)
 		{
 			// Aplicamos una función de easing
@@ -79,30 +72,9 @@ public class MoveToAPoint : Actuator
 	}
 	public override void DestroyActuator()
 	{
-
+		Debug.Log(t);
 	}
 	#region Setters and Getters
-	public bool IsMovementAccelerated()
-	{
-		return m_isAccelerated;	
-	}
-	public void SetAccelerationValue(float value)
-	{
-		m_accelerationValue = value;
-	}
-	public float GetAccelerationValue()
-	{
-		return m_accelerationValue;
-	}
-
-	public void SetEasingFunction(EasingFunction.Ease value)
-	{
-		m_easingFunction = value;
-	}
-	public EasingFunction.Ease GetEasingFunctionValue()
-	{
-		return m_easingFunction;
-	}
 	#endregion
 
 	//Dibuja la misma flecha que otros comportamientos 

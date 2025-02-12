@@ -761,11 +761,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
-  m_maxspeed: 17.18
-  m_acceleration: 0
-  m_dir: -1
-  m_easingFunction: 21
+  m_isAccelerated: 0
+  m_easingFunction: 0
+  m_speed: 0
+  m_goalSpeed: 0
+  m_interpolationTime: 0
+  m_direction: -1
+  m_eventsToReact: []
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1523,9 +1525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334863e3342ad2d4f8d12ed5a5704237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeUntilReachingPosition: 3
-  m_objectivePosition: {fileID: 936425214}
   m_isAccelerated: 1
+  m_easingFunction: 0
+  m_timeUntilReachingPosition: 1
+  m_objectivePosition: {fileID: 936425214}
 --- !u!114 &1337041705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,11 +1688,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 3.31
-  m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: -1
+  m_isAccelerated: 0
   m_easingFunction: 0
+  m_speed: 1
+  m_goalSpeed: 0
+  m_interpolationTime: 0
+  m_direction: -1
+  m_eventsToReact: []
 --- !u!114 &1337041712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1754,11 +1759,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAccelerated: 0
+  m_easingFunction: 0
   m_speed: 3
   m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: -1
-  m_easingFunction: 21
+  m_direction: -1
 --- !u!114 &1337041716
 MonoBehaviour:
   m_ObjectHideFlags: 0

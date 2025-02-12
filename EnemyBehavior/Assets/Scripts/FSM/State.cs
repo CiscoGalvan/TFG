@@ -10,11 +10,11 @@ public class State : MonoBehaviour
     [SerializeField]
     public List<Sensors> SensorList = new List<Sensors>();
 
-
-    public string name;
+    [SerializeField]
+    public string name = "State";
     public void StartState()
     {
-        Debug.Log(name);
+        //Debug.Log(name);
         foreach (var actuator in actuatorList)
         {
             actuator.StartActuator();
