@@ -22,12 +22,11 @@ public class Timer : Sensors
         if (startTimer)
         {
             timer += UnityEngine.Time.deltaTime;
-            //if (timer >= detectionTime)
-            //{
-            //    OnTimeReached?.Invoke();
-            //    Debug.Log("Tiempo alcanzado");
-            //    timer = 0f; // Reiniciar el contador
-            //}
+            if (timer >= detectionTime)
+            {
+                EventDetected();
+                timer = 0f; // Reiniciar el contador
+            }
         }
     }
     public override void StartSensor()

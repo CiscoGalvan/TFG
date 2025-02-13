@@ -4,20 +4,58 @@ using UnityEngine;
 
 public class Spawner : Actuator
 {
-   
-   
+    [SerializeField]
+   // [HideInInspector]
+    private int m_numOfEnemiesToSpawn = 1;
+    [SerializeField]
+    // [HideInInspector]
+    private bool m_infiniteEnemies = true;
+    [SerializeField]
+   // [HideInInspector]
+    private GameObject m_PrefavToSpawn;
+
+    [SerializeField]
+    // [HideInInspector]
+    private Transform m_pointToSpawn;
+    [SerializeField]
+    private List<Sensors> m_eventsToReact;
+
+
+    //necesita un transform para saber donde crear el 
+
+    private int m_numEnemiesAlrreadySpawn;
     // Update is called once per frame
-    public override void UpdateActuator()
-    {
-        
-    }
     public override void DestroyActuator()
     {
+        foreach (var sensor in m_eventsToReact)
+        {
+            sensor.onEventDetected -= SpawnEvent;
+        }
 
     }
     // Start is called before the first frame update
     public override void StartActuator()
     {
-        throw new System.NotImplementedException();
+        foreach (var sensor in m_eventsToReact)
+        {
+            sensor.onEventDetected += SpawnEvent;
+        }
+        m_numEnemiesAlrreadySpawn = 0;
     }
+
+    public override void UpdateActuator()
+    {
+       
+    }
+
+    void SpawnEvent()
+    {
+        if (m_infiniteEnemies || m_numEnemiesAlrreadySpawn < m_numOfEnemiesToSpawn)
+        {
+            m_numEnemiesAlrreadySpawn++;
+            //hacer el new del prefab en el transform indicado
+            GameObject newEnemy = Instantiate(m_PrefavToSpawn, m_pointToSpawn.position, m_pointToSpawn.rotation);
+        }
+    }
+
 }
