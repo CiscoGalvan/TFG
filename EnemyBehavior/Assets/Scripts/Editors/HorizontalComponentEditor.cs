@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-[CustomEditor(typeof(Horizontal))]
+[CustomEditor(typeof(Horizontal_Actuator))]
 public class HorizontalComponentEditor : ActuatorEditor
 {
 
@@ -18,7 +18,7 @@ public class HorizontalComponentEditor : ActuatorEditor
 	public override void OnInspectorGUI()
 	{
 
-		Horizontal component = (Horizontal)target;
+		Horizontal_Actuator component = (Horizontal_Actuator)target;
 		DrawDefaultInspector();
 		//creo que este es el lineal y el else el acelerado.
 		if (component.IsMovementAccelerated())

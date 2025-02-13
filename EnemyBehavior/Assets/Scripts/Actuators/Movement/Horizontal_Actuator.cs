@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Horizontal : Actuator
+public class Horizontal_Actuator : Actuator
 {
 	//Tenemos que serializar y esconder en el inspector toda variable que querramos que sea cambiada con un editor pero que esta no aparezca desde un principio en el inspector.
 
