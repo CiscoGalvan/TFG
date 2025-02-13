@@ -46,7 +46,6 @@ public class Horizontal : Actuator
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
 
-	
 	public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
@@ -62,7 +61,6 @@ public class Horizontal : Actuator
 		{
             sensor.onEventDetected += CollisionEvent;
 		}
-
 	}
     public override void DestroyActuator()
     {
