@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-[CustomEditor(typeof(Vertical))]
+[CustomEditor(typeof(Vertical_Actuator))]
 public class VerticalComponentEditor : ActuatorEditor
 {
 
@@ -18,7 +18,7 @@ public class VerticalComponentEditor : ActuatorEditor
 	public override void OnInspectorGUI()
 	{
 
-		Vertical component = (Vertical)target;
+        Vertical_Actuator component = (Vertical_Actuator)target;
 		DrawDefaultInspector();
 		//creo que este es el lineal y el else el acelerado.
 		if (component.IsMovementAccelerated())

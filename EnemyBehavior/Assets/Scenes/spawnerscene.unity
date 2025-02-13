@@ -880,7 +880,7 @@ MonoBehaviour:
   m_numOfEnemiesToSpawn: 43
   m_infiniteEnemies: 1
   m_PrefavToSpawn: {fileID: 5448254636898456325, guid: f86580f4afe7f344390fbc2b7bd49e21, type: 3}
-  m_pointToSpawn: {fileID: 60297245}
+  m_pointToSpawn: {fileID: 620872455}
   m_eventsToReact:
   - {fileID: 620872462}
 --- !u!114 &620872464

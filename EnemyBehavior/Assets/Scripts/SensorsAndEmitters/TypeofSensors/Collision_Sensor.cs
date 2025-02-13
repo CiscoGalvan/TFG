@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Collision : Sensors
+public class Collision_Sensor : Sensors
 {
     bool col;
 	bool m_isChecking;	//estará a false cuando el sensor no esté activo y a true cuando lo esté

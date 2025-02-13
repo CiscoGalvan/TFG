@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Distance : Sensors
+public class Distance_Sensor : Sensors
 {
     [SerializeField]
     private Transform m_target; // Objeto al que se mide la distancia

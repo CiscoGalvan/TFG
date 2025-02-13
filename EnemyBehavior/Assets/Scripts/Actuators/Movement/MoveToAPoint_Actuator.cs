@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode] 
 
-public class MoveToAPoint : Actuator
+public class MoveToAPoint_Actuator : Actuator
 {
 
 	//No tiene sentido que en este movimiento preguntemos si el usuario quiere que sea o no acelerado cuando una de las opciones de las EasingFunctions es Lineal. -> quitar el booleno? 

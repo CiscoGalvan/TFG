@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-[CustomEditor(typeof(MoveToAPoint))]
+[CustomEditor(typeof(MoveToAPoint_Actuator))]
 public class MoveToAPointEditor : ActuatorEditor
 {
 	public override void OnInspectorGUI()
 	{
-		
-		MoveToAPoint component = (MoveToAPoint)target;
+
+        MoveToAPoint_Actuator component = (MoveToAPoint_Actuator)target;
 
 		DrawDefaultInspector();
 

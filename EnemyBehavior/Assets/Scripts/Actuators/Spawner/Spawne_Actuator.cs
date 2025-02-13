@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : Actuator
+public class Spawner_Actuator : Actuator
 {
     [SerializeField]
    // [HideInInspector]
