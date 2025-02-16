@@ -22,8 +22,8 @@ public class Damage_Sensor : Sensors
     [SerializeField]
     private float amountofdamage= 0; //para tipo 0,1 y 2
     [SerializeField]
-    private float damageCooldown = 1f; // para tipo 1 y 2
-    private float lastDamageTime; // Último momento en que recibió daño
+    private float damageCooldown = 1f; // para tipo  2
+
     [SerializeField]
     private int numofdamage = 2; //cuantas veces haces daño
 
@@ -61,33 +61,13 @@ public class Damage_Sensor : Sensors
             // ini residual
            
         }
-
-        //if (collision.CompareTag("CCED")) // Si colisiona con una Caja de Colisión Emitir Daño
-        //{
-        //    lastDamageTime = Time.time; // Actualiza el último tiempo de daño
-        //    EventDetected(); // Call the event handler method
-        //}
-        //else if (collision.CompareTag("CCRD"))
-        //{
-        //    lastDamageTime = Time.time;
-
-        //}
-        //else if (collision.CompareTag("CCND"))
-        //{
-        //    lastDamageTime = Time.time;
-        //    EventDetected();
-        //}
-        //else
-
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (m_isChecking && damageType==1)
         {
-          
             col = false;
             findañopersistente = true;
-        
         }
     }
     public override bool CanTransition()
@@ -128,6 +108,5 @@ public class Damage_Sensor : Sensors
     public int GetDamageType() => damageType;
     public float GetAmountOfDamage() => amountofdamage;
     public float GetDamageCooldown() => damageCooldown;
-    public float GetLastDamageTime() => lastDamageTime;
     public int GetNumOfDamage() => numofdamage;
 }

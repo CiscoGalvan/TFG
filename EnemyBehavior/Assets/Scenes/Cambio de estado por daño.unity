@@ -292,7 +292,7 @@ Transform:
   m_GameObject: {fileID: 352670598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.25, y: -3.8, z: 0}
+  m_LocalPosition: {x: 0.88, y: -3.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -731,7 +731,7 @@ Transform:
   m_GameObject: {fileID: 620872448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.436076, y: -3.45, z: 0}
+  m_LocalPosition: {x: 5.21, y: -3.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -831,8 +831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 620872460}
   m_transition: 1
-  damageType: 1
-  amountofdamage: 0.01
+  damageType: 2
+  amountofdamage: 1
   damageCooldown: 1
   numofdamage: 2
 --- !u!114 &620872468

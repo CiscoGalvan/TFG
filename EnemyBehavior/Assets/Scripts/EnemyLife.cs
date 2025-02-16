@@ -12,6 +12,11 @@ public class EnemyLife : Life
     bool m_update=false;
     float m_amount = -1;
     Damage_Sensor sensor;
+    private float lastDamageTime; // Último momento en que recibió daño
+    
+    private float damageCooldown =-1;
+    private int numofdamage ;
+    private bool persistent;
     new void Start()
     {
         base.Start();
@@ -39,17 +44,32 @@ public class EnemyLife : Life
     }
     public void Update()
     {
-        Debug.Log(m_update);
         if (m_update && m_amount !=-1)
         {
-           
-            base.DecreaseLife(m_amount);
-            Debug.Log(sensor);
-            if (sensor!= null)
+            if (persistent)  //si es de tipo persistente
             {
-                Debug.Log("update = " + sensor.EndPersistentDamage());
-                m_update = !sensor.EndPersistentDamage(); //se sigue actualizando hasta que termine el daño persistente
+                base.DecreaseLife(m_amount);
+               
+                if (sensor != null)
+                {
+                    m_update = !sensor.EndPersistentDamage(); //se sigue actualizando hasta que termine el daño persistente
+                }
             }
+            else if(numofdamage>0)//si es detipo residual (son las unicas 2 que se actualizan)
+            {
+              
+
+                lastDamageTime += Time.deltaTime;
+                Debug.Log(lastDamageTime);
+                if (lastDamageTime> damageCooldown)
+                {
+                    numofdamage--;
+                    lastDamageTime-= damageCooldown;
+                    base.DecreaseLife(m_amount);
+                }
+                
+            }
+           
         }
     }
     private void OnDestroy()
@@ -94,6 +114,7 @@ public class EnemyLife : Life
             m_amount = sensor.GetAmountOfDamage();
             m_update = true;
             this.sensor = sensor;
+            persistent = true;
         }
     }
 
@@ -102,7 +123,16 @@ public class EnemyLife : Life
         Damage_Sensor sensor = s as Damage_Sensor;
         if (sensor != null)
         {
-            base.DecreaseLife(sensor.GetAmountOfDamage());
+            m_amount = sensor.GetAmountOfDamage();
+            m_update = true;
+            this.sensor = sensor;
+            damageCooldown = sensor.GetDamageCooldown();
+            numofdamage = sensor.GetNumOfDamage();
+            base.DecreaseLife(m_amount);
+            numofdamage--;
+            lastDamageTime = 0;
+            persistent = false;
+
         }
     }
 
