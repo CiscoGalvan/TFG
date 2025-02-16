@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 620872463}
   - component: {fileID: 620872464}
   - component: {fileID: 620872465}
+  - component: {fileID: 620872466}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -665,11 +666,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
-  m_maxspeed: 17.18
-  m_acceleration: 0
-  m_dir: -1
+  m_isAccelerated: 0
   m_easingFunction: 21
+  m_speed: 1
+  m_goalSpeed: 0
+  m_interpolationTime: 0
+  m_direction: -1
+  m_eventsToReact: []
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -731,7 +734,7 @@ Transform:
   m_GameObject: {fileID: 620872448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.436076, y: 0.74, z: 0}
+  m_LocalPosition: {x: -2.436076, y: -3.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -812,11 +815,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
-  m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: 1
+  m_isAccelerated: 0
   m_easingFunction: 23
+  m_speed: 1
+  m_goalSpeed: 0
+  m_interpolationTime: 0
+  m_direction: -1
+  m_eventsToReact: []
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,11 +864,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
-  m_maxspeed: 10
-  m_acceleration: 0
-  m_dir: -1
+  m_isAccelerated: 0
   m_easingFunction: 21
+  m_speed: 1
+  m_goalSpeed: 0
+  m_interpolationTime: 0
+  m_direction: -1
+  m_eventsToReact: []
+--- !u!114 &620872466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4d50162f412b1408ad64e2569835cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_initialLife: 5
+  m_actualLife: 5
+  lifeText: {fileID: 503575023}
+  textname: 'Enemy:'
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

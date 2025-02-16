@@ -98,7 +98,7 @@ public class Horizontal_Actuator : Actuator
 		}
 	}
 
-	void CollisionEvent()
+	void CollisionEvent(Sensors s)
     {
         m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
     }

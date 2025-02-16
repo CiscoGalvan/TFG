@@ -7,9 +7,9 @@ public class Life : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private float m_initialLife =5;
-    [SerializeField]
-    private float m_actualLife = 5;
+    private float m_initialLife = 5;
+
+    private float m_currentLife;
     [SerializeField]
     private TextMeshProUGUI lifeText;
     [SerializeField]
@@ -25,38 +25,38 @@ public class Life : MonoBehaviour
     }
     protected void Start()
     {
-        m_actualLife = m_initialLife;
+        m_currentLife = m_initialLife;
         UpdateLifeText();
     }
     public void DecreaseLife(float num)
     {
-        m_actualLife -= num;
+        m_currentLife -= num;
         UpdateLifeText();
     }
     public void IncreaseLife(float num)
     {
-        m_actualLife += num;
+        m_currentLife += num;
         UpdateLifeText();
     }
     public void SetLife(float num)
     {
-        m_actualLife = num;
+        m_currentLife = num;
         UpdateLifeText();
     }
     public void SetInitialLife()
     {
-        m_actualLife = m_initialLife;
+        m_currentLife = m_initialLife;
         UpdateLifeText();
     }
     private void UpdateLifeText()
     {
         if (lifeText != null)
         {
-            lifeText.text = textname + m_actualLife; 
+            lifeText.text = textname + m_currentLife; 
         }
     }
     public bool IsLifeLessThan(int value)
     {
-        return m_actualLife < value;
+        return m_currentLife < value;
     }
 }

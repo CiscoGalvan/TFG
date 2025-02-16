@@ -48,7 +48,7 @@ public class Spawner_Actuator : Actuator
        
     }
 
-    void SpawnEvent()
+    void SpawnEvent(Sensors s)
     {
         if (m_infiniteEnemies || m_numEnemiesAlrreadySpawn < m_numOfEnemiesToSpawn)
         {

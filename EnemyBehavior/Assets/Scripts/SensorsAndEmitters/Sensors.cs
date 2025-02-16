@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class Sensors : MonoBehaviour
 {
@@ -10,17 +11,17 @@ public abstract class Sensors : MonoBehaviour
 	[SerializeField]
 	protected bool m_transition;
 
-	// Evento Action
-	private Action onEventDetectedInternal;
+    // Evento Action
+    private Action<Sensors> onEventDetectedInternal;
 
-	// Contador de suscriptores
-	private int subscriberCount = 0;
+    // Contador de suscriptores
+    private int subscriberCount = 0;
 
 	// Propiedad pública para obtener el número de suscriptores
 	public int SubscriberCount => subscriberCount;
 
 	// Sobrescribir las propiedades add y remove del evento
-	public event Action onEventDetected
+	public event Action<Sensors> onEventDetected
 	{
 		add
 		{	
@@ -37,7 +38,7 @@ public abstract class Sensors : MonoBehaviour
 	// Método para disparar el evento
 	public void EventDetected()
 	{
-		onEventDetectedInternal?.Invoke();
+		onEventDetectedInternal?.Invoke(this);
 	}
 
 	public abstract void StartSensor();

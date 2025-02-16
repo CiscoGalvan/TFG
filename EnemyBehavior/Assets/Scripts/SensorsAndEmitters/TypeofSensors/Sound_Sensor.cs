@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class Sound : MonoBehaviour
+public class Sound : Sensors
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void StartSensor()
     {
-        
+      
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool CanTransition()
     {
-        
+         return false;
     }
 }
