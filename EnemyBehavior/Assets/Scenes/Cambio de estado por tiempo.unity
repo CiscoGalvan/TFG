@@ -324,7 +324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialLife: 5
-  m_actualLife: 5
   lifeText: {fileID: 1191659703}
   textname: 'Player:'
 --- !u!1 &503575021
@@ -753,9 +752,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialLife: 5
-  m_actualLife: 5
   lifeText: {fileID: 503575023}
   textname: 'Enemy:'
+  m_eventsToReact: []
 --- !u!114 &620872457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 620872460}
   m_transition: 0
-  detectionTime: 2
+  detectionTime: 4.77
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,7 +883,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialLife: 5
-  m_actualLife: 5
   lifeText: {fileID: 503575023}
   textname: 'Enemy:'
 --- !u!1 &705025380

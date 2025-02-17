@@ -367,9 +367,9 @@ MonoBehaviour:
   destinationState: {fileID: 506784534}
   m_transition: 1
   m_target: {fileID: 651361868}
-  detectionDistance: 4.19
-  useMagnitude: 1
-  checkXAxis: 1
+  m_detectionDistance: 6.23
+  m_useMagnitude: 0
+  m_checkXAxis: 0
 --- !u!114 &506784544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isAccelerated: 0
-  m_easingFunction: 0
+  m_easingFunction: 21
   m_speed: 1.8
   m_goalSpeed: 0
   m_interpolationTime: 0
@@ -404,9 +404,9 @@ MonoBehaviour:
   destinationState: {fileID: 506784535}
   m_transition: 1
   m_target: {fileID: 651361868}
-  detectionDistance: 0.81
-  useMagnitude: 1
-  checkXAxis: 1
+  m_detectionDistance: 0
+  m_useMagnitude: 0
+  m_checkXAxis: 1
 --- !u!114 &506784546
 MonoBehaviour:
   m_ObjectHideFlags: 0
