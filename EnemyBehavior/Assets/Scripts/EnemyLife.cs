@@ -23,16 +23,16 @@ public class EnemyLife : Life
         // Collision.OnCollisionSensor += ReceiveMessage;
         foreach (var sensor in m_eventsToReact)
         {
-            int type = sensor.GetDamageType();
+            Damage_Sensor.DamageType type = sensor.GetDamageType();
             switch (type)
             {
-                case 0: // instantáneo
+                case Damage_Sensor.DamageType.Instant: 
                     sensor.onEventDetected += Instantaneo;
                     break;
-                case 1: //persistente
+                case Damage_Sensor.DamageType.Persistent:
                     sensor.onEventDetected += Persistente;
                     break;
-                case 2: //residual
+                case Damage_Sensor.DamageType.Residual: 
                     sensor.onEventDetected += Residual;
                     break;
                 default:
@@ -77,17 +77,17 @@ public class EnemyLife : Life
         //Collision.OnCollisionSensor -= ReceiveMessage;
         foreach (var sensor in m_eventsToReact)
         {
-           
-            int type = sensor.GetDamageType();
-            switch (type)
+
+			Damage_Sensor.DamageType type = sensor.GetDamageType();
+			switch (type)
             {
-                case 0: // instantáneo
+                case Damage_Sensor.DamageType.Instant:
                     sensor.onEventDetected -= Instantaneo;
                     break;
-                case 1: //persistente
+                case Damage_Sensor.DamageType.Persistent:
                     sensor.onEventDetected -= Persistente;
                     break;
-                case 2: //residual
+                case Damage_Sensor.DamageType.Residual:
                     sensor.onEventDetected -= Residual;
                     break;
                 default:

@@ -19,6 +19,7 @@ public class Distance_Sensor : Sensors
     // Initializes the sensor settings
     public override void StartSensor()
     {
+        
         useMagnitude = true;
         checkXAxis = true;
     }
