@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 506784534}
   - component: {fileID: 506784546}
   - component: {fileID: 506784545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,8 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 506784534}
   m_transition: 1
-  m_target: {fileID: 651361875}
-  detectionDistance: 4.12
+  m_target: {fileID: 651361868}
+  detectionDistance: 4.19
   useMagnitude: 1
   checkXAxis: 1
 --- !u!114 &506784544
@@ -403,8 +403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationState: {fileID: 506784535}
   m_transition: 1
-  m_target: {fileID: 1502076471}
-  detectionDistance: 2
+  m_target: {fileID: 651361868}
+  detectionDistance: 0.81
   useMagnitude: 1
   checkXAxis: 1
 --- !u!114 &506784546
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 651361871}
   - component: {fileID: 651361870}
   - component: {fileID: 651361869}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,7 +7,7 @@ using UnityEngine;
 public class Distance_Sensor : Sensors
 {
     [SerializeField]
-    private Transform m_target; // Target object whose distance is measured
+    private GameObject m_target; // Target object whose distance is measured
 
     [SerializeField, Min(0)]
     public float detectionDistance = 5f; // Threshold distance to trigger the event
@@ -16,12 +16,21 @@ public class Distance_Sensor : Sensors
 
     public bool checkXAxis = true; // If true, measures along the X-axis; otherwise, measures along the Y-axis
 
+    private float m_maxDistance;
+    int layerMask;
     // Initializes the sensor settings
     public override void StartSensor()
     {
         
         useMagnitude = true;
         checkXAxis = true;
+        if (m_target != null)
+        {
+          Vector3 outerpoint = m_target.GetComponent<Collider2D>().bounds.max;
+            Vector2 outerpoint2D = new Vector2 (outerpoint.x, outerpoint.y);
+            m_maxDistance = Vector2.Distance(outerpoint2D, m_target.transform.position);
+            layerMask = ~LayerMask.GetMask("Enemies");
+        }
     }
 
     // Determines if the sensor should transition based on distance
@@ -32,16 +41,31 @@ public class Distance_Sensor : Sensors
 
         // Calculate distance based on the selected method
         float distance = useMagnitude
-            ? Vector2.Distance(transform.position, m_target.position) // Full magnitude distance
+            ? Vector2.Distance(transform.position, m_target.transform.position) // Full magnitude distance
             : checkXAxis
-                ? Mathf.Abs(transform.position.x - m_target.position.x) // Distance along X-axis
-                : Mathf.Abs(transform.position.y - m_target.position.y); // Distance along Y-axis
+                ? Mathf.Abs(transform.position.x - m_target.transform.position.x) // Distance along X-axis
+                : Mathf.Abs(transform.position.y - m_target.transform.position.y); // Distance along Y-axis
 
+       // Debug.Log(distance + "distance" + detectionDistance +" _"+  m_maxDistance + "other ");    
         // Check if the distance is within the threshold
-        if (distance <= detectionDistance)
+        if (distance <= detectionDistance + m_maxDistance)
         {
-            EventDetected(); // Trigger the event
-            return true;
+            // Direction from current position to target
+            Vector2 direction = (m_target.transform.position - transform.position).normalized;
+
+            // Perform the Raycast
+
+           
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionDistance, layerMask);
+            Debug.DrawRay(transform.position, direction * detectionDistance, Color.red, 0.1f);
+            
+            // Check if the Raycast hits something before the target
+            if (hit.collider != null && hit.collider.gameObject == m_target)
+            {
+                EventDetected(); // Trigger the event
+                return true;
+            }
+            else return false;
         }
         else return false;
     }
