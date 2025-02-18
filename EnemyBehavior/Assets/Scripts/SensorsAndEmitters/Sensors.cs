@@ -4,13 +4,6 @@ using UnityEngine.UIElements;
 
 public abstract class Sensors : MonoBehaviour
 {
-	// Start is called before the first frame update
-	[SerializeField]
-	public State destinationState;
-
-	[SerializeField]
-	protected bool m_transition;
-
     // Evento Action
     private Action<Sensors> onEventDetectedInternal;
 
@@ -45,5 +38,4 @@ public abstract class Sensors : MonoBehaviour
 
 	public abstract bool CanTransition();
 
-	public bool WantTransition() { return m_transition; }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class Horizontal_Actuator : Actuator
 	[HideInInspector]
 	private float m_interpolationTime = 0;
 
-
+	Collision_Sensor collisionSensor;
 
 	private float m_initial_speed = 0;
 
@@ -32,9 +33,6 @@ public class Horizontal_Actuator : Actuator
     [Tooltip("Movement direction")]
     [SerializeField]
     private Direction m_direction = Direction.Left;
-
-    [SerializeField]
-    private List<Sensors> m_eventsToReact;
 
 	private enum Direction
     {
@@ -50,26 +48,26 @@ public class Horizontal_Actuator : Actuator
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        //Collision.OnCollisionSensor += CollisionEvent;
+        collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+		if(collisionSensor != null)
+		{
+            collisionSensor.onEventDetected += CollisionEvent;
+        }
         m_time = 0;
 		if (m_isAccelerated)
 		{
 			m_speed = m_rigidbody.velocity.x;
 		}
 		m_initial_speed = m_speed;
-		foreach (var sensor in m_eventsToReact)
-		{
-            sensor.onEventDetected += CollisionEvent;
-		}
+		
 	}
     public override void DestroyActuator()
     {
-		//Collision.OnCollisionSensor -= CollisionEvent;
-		foreach (var sensor in m_eventsToReact)
-		{
-			sensor.onEventDetected -= CollisionEvent;
-		}
-	}
+        if (collisionSensor != null)
+        {
+            collisionSensor.onEventDetected += CollisionEvent;
+        }
+    }
 	public override void UpdateActuator()
 	{
 		m_time += Time.deltaTime;
@@ -149,9 +147,5 @@ public class Horizontal_Actuator : Actuator
 		return m_interpolationTime;
 	}
 
-	public List<Sensors> GetSensors()
-	{
-		return m_eventsToReact;
-	}
 	#endregion
 }

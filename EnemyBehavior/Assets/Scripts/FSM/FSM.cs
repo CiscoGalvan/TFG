@@ -25,20 +25,20 @@ public class FSM : MonoBehaviour
     {
         //update of the state
         m_currentstate.UpdateState();
-        foreach (var sensor in m_currentstate.SensorList)
-        {
-            if (sensor.WantTransition())
-            {
-				bool changeState = sensor.CanTransition();
-				if (changeState)
-				{
-                    m_currentstate.DestroyState();
-					m_currentstate = sensor.destinationState;
-					m_currentstate.StartState();
-					break;
-				}
-			}
-        }
+   //     foreach (var sensor in m_currentstate.SensorList)
+   //     {
+   //         if (sensor.WantTransition())
+   //         {
+			//	bool changeState = sensor.CanTransition();
+			//	if (changeState)
+			//	{
+   //                 m_currentstate.DestroyState();
+			//		m_currentstate = sensor.destinationState;
+			//		m_currentstate.StartState();
+			//		break;
+			//	}
+			//}
+   //     }
     }
 
 }
