@@ -46,7 +46,7 @@ public class Collision_Sensor : Sensors
    
 
     // Returns the last collided object
-    Collision2D GetCollidedObject() { return m_collisionobj; }
+    public Collision2D GetCollidedObject() { return m_collisionobj; }
 
     // Returns whether a collision has been detected
     bool GetBooleanCollision() { return col; }

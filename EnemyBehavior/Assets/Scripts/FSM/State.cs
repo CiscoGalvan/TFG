@@ -17,11 +17,14 @@ public class State : MonoBehaviour
         //Debug.Log(name);
         foreach (var actuator in actuatorList)
         {
-            actuator.StartActuator();
+            if(actuator)
+                actuator.StartActuator();
         }
         foreach (var sensor in SensorList)
         {
-            sensor.StartSensor();
+            // This conditional is used to check when the list size is not zero and there is no sensor in it
+            if(sensor)
+                sensor.StartSensor();
         }
     }
 	public void DestroyState()

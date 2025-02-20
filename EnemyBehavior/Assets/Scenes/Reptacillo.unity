@@ -179,7 +179,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: 1
-  m_eventsToReact: []
 --- !u!114 &284517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +226,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
-  m_eventsToReact: []
 --- !u!114 &284517627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,10 +943,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -959,7 +957,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1099,11 +1097,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAccelerated: 0
   m_easingFunction: 0
-  m_speed: 0
+  m_speed: 5
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
-  m_eventsToReact: []
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &917179317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1607,7 +1604,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &1478895730
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1765,7 +1762,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &1705750598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2026,7 +2023,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &1782011209
 BoxCollider2D:
   m_ObjectHideFlags: 0
