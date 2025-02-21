@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,39 +23,50 @@ public class Vertical_Actuator : Actuator
 	[SerializeField]
 	[HideInInspector]
 	private float m_interpolationTime = 0;
+    Collision_Sensor collisionSensor;
 
+    private float m_initial_speed = 0;
+    //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
 
-	[Tooltip("Movement direction")]
+    //private float m_acceleration = 0f;
+
+    [Tooltip("Movement direction")]
     [SerializeField]
-    private Direction m_direction = Direction.Down;
+    private Direction m_direction = Direction.Up;
 
-
-	private float m_initial_speed = 0;
-
-	private enum Direction
+    private enum Direction
     {
-        Down = -1,
-        Up = 1
+        Up = -1,
+        Down = 1
     }
 
-    private float m_time = 0;
+    private float m_time;
+    Rigidbody2D m_rigidbody;
+
     private EasingFunction.Function easingFunc;
-    private Rigidbody2D m_rigidbody;
     public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-		m_time = 0;
-		if (m_isAccelerated)
-		{
-			m_speed = m_rigidbody.velocity.x;
-		}
-		m_initial_speed = m_speed;
-		//Collision.OnCollisionSensor += ReceiveMessage;
-	}
+        collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+        if (collisionSensor != null)
+        {
+            collisionSensor.onEventDetected += CollisionEvent;
+        }
+        m_time = 0;
+        if (m_isAccelerated)
+        {
+            m_speed = m_rigidbody.velocity.x;
+        }
+        m_initial_speed = m_speed;
+
+    }
     public override void DestroyActuator()
     {
-        //Collision.OnCollisionSensor -= ReceiveMessage;
+        if (collisionSensor != null)
+        {
+            collisionSensor.onEventDetected += CollisionEvent;
+        }
     }
 
     public override void UpdateActuator()
@@ -84,11 +96,25 @@ public class Vertical_Actuator : Actuator
 			}
 		}
 	}
-    //void ReceiveMessage(Collision2D mensaje)
-    //{
+    void CollisionEvent(Sensors s)
+    {
 
-    //    m_direction = m_direction == Direction.Down ? Direction.Up: Direction.Down;
-    //}
+        Collision2D col = collisionSensor.GetCollidedObject();
+
+        if (col == null) return;
+        //comprobacion  de:
+        // choque enemigo con mundo 
+        //choque por izquierda o derecha
+        if (col.gameObject.layer != LayerMask.NameToLayer("World")) return;
+        ContactPoint2D contact = col.contacts[0];
+        Vector2 normal = contact.normal;
+
+        if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
+        {
+            m_direction = m_direction == Direction.Up ? Direction.Down : Direction.Up;
+        }
+
+    }
     private void OnDrawGizmosSelected()
     {
         if (!this.isActiveAndEnabled) return;
@@ -127,7 +153,15 @@ public class Vertical_Actuator : Actuator
 	{
 		m_interpolationTime = newValue;
 	}
-	public float GetInterpolationTime()
+    public void SetDirectionUP()
+    {
+		m_direction = Direction.Up;
+    }
+    public void SetDirectionDown()
+    {
+        m_direction = Direction.Down;
+    }
+    public float GetInterpolationTime()
 	{
 		return m_interpolationTime;
 	}

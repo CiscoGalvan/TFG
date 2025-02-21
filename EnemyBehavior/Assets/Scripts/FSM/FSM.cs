@@ -9,7 +9,7 @@ public class FSM : MonoBehaviour
     public State m_initialstate;
 
     private State m_currentstate;
-	//public static List<Action> eventsToProcess;
+    private State m_nextState;
 
 
 	// Start is called before the first frame update
@@ -17,7 +17,6 @@ public class FSM : MonoBehaviour
     {
         m_currentstate = m_initialstate;
         m_currentstate.StartState();
-		//eventsToProcess = new List<Action>();
 	}
 
     // Update is called once per frame
@@ -40,6 +39,10 @@ public class FSM : MonoBehaviour
 			//}
    //     }
     }
+    private void LateUpdate()
+    {
+        //cambio de estados una vez se ha actualizado todo
 
+    }
 }
 

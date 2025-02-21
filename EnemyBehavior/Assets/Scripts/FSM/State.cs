@@ -50,5 +50,12 @@ public class State : MonoBehaviour
         }
         
     }
-
+    public void AddActuator( Actuator act)
+    {
+        actuatorList.Add(act);
+    }
+    public void AddSensor(Sensors sen)
+    {
+       SensorList.Add(sen); 
+    }
 }

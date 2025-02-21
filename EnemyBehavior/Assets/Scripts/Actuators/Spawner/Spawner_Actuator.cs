@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Spawner_Actuator : Actuator
 {
-    [SerializeField]
-   // [HideInInspector]
-    private int m_numOfEnemiesToSpawn = 1;
+    
     [SerializeField]
     // [HideInInspector]
     private bool m_infiniteEnemies = true;
+    [SerializeField]
+    // [HideInInspector]
+    private int m_numOfEnemiesToSpawn = 1;
+
     [SerializeField]
    // [HideInInspector]
     private GameObject m_PrefavToSpawn;
@@ -17,28 +20,26 @@ public class Spawner_Actuator : Actuator
     [SerializeField]
     // [HideInInspector]
     private Transform m_pointToSpawn;
-    [SerializeField]
-    private List<Sensors> m_eventsToReact;
 
-
-    //necesita un transform para saber donde crear el 
+    Timer_Sensor timerSensor;
 
     private int m_numEnemiesAlrreadySpawn;
     // Update is called once per frame
     public override void DestroyActuator()
     {
-        foreach (var sensor in m_eventsToReact)
+        if (timerSensor != null)
         {
-            sensor.onEventDetected -= SpawnEvent;
+            timerSensor.onEventDetected -= SpawnEvent;
         }
 
     }
     // Start is called before the first frame update
     public override void StartActuator()
     {
-        foreach (var sensor in m_eventsToReact)
+       timerSensor = this.gameObject.GetComponent<Timer_Sensor>();
+        if (timerSensor != null)
         {
-            sensor.onEventDetected += SpawnEvent;
+            timerSensor.onEventDetected += SpawnEvent;
         }
         m_numEnemiesAlrreadySpawn = 0;
     }
@@ -55,6 +56,7 @@ public class Spawner_Actuator : Actuator
             m_numEnemiesAlrreadySpawn++;
             //hacer el new del prefab en el transform indicado
             GameObject newEnemy = Instantiate(m_PrefavToSpawn, m_pointToSpawn.position, m_pointToSpawn.rotation);
+          
         }
     }
 

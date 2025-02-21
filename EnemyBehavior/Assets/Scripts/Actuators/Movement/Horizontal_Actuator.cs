@@ -98,7 +98,22 @@ public class Horizontal_Actuator : Actuator
 
 	void CollisionEvent(Sensors s)
     {
-        m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
+       
+        Collision2D col = collisionSensor.GetCollidedObject();
+
+        if (col == null) return;    
+		//comprobacion  de:
+		// choque enemigo con mundo 
+		//choque por izquierda o derecha
+        if (col.gameObject.layer != LayerMask.NameToLayer("World")) return;
+        ContactPoint2D contact = col.contacts[0];
+        Vector2 normal = contact.normal;
+
+        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+        {
+            m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
+        }
+       
     }
 
     private void OnDrawGizmosSelected()
