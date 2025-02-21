@@ -15,7 +15,7 @@ public class Spawner_Actuator : Actuator
 
     [SerializeField]
    // [HideInInspector]
-    private GameObject m_PrefavToSpawn;
+    private GameObject _prefabToSpawn;
 
     [SerializeField]
     // [HideInInspector]
@@ -55,8 +55,8 @@ public class Spawner_Actuator : Actuator
         {
             m_numEnemiesAlrreadySpawn++;
             //hacer el new del prefab en el transform indicado
-            GameObject newEnemy = Instantiate(m_PrefavToSpawn, m_pointToSpawn.position, m_pointToSpawn.rotation);
-          
+            GameObject newEnemy = Instantiate(_prefabToSpawn, m_pointToSpawn.position, m_pointToSpawn.rotation);
+            
         }
     }
 

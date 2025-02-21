@@ -179,7 +179,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: 1
-  m_eventsToReact: []
 --- !u!114 &284517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +226,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
-  m_eventsToReact: []
 --- !u!114 &284517627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +874,6 @@ GameObject:
   - component: {fileID: 620872454}
   - component: {fileID: 620872450}
   - component: {fileID: 620872449}
-  - component: {fileID: 620872456}
   - component: {fileID: 620872457}
   - component: {fileID: 620872461}
   - component: {fileID: 620872463}
@@ -1027,22 +1024,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &620872456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07e49891abbe09429fc4a1c418314c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_initialLife: 5
-  lifeText: {fileID: 503575023}
-  textname: 'Enemy:'
-  m_eventsToReact: []
 --- !u!114 &620872457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1084,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
-  m_eventsToReact: []
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

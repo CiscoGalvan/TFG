@@ -161,8 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationState: {fileID: 284517627}
-  m_transition: 1
 --- !u!114 &284517623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +179,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: 1
-  m_eventsToReact: []
 --- !u!114 &284517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,8 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationState: {fileID: 284517624}
-  m_transition: 1
 --- !u!114 &284517626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +226,6 @@ MonoBehaviour:
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
-  m_eventsToReact: []
 --- !u!114 &284517627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +412,7 @@ GameObject:
   - component: {fileID: 352670599}
   - component: {fileID: 352670606}
   - component: {fileID: 352670607}
+  - component: {fileID: 352670608}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -509,8 +504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationState: {fileID: 0}
-  m_transition: 0
 --- !u!212 &352670604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -604,9 +597,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialLife: 5
-  m_actualLife: 5
   lifeText: {fileID: 1191659703}
   textname: 'Player:'
+--- !u!114 &352670608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352670598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &503575021
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,10 +875,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAccelerated: 0
   m_easingFunction: 0
-  angularSpeed: 50
+  m_angularSpeed: 0
   m_rotationPointPosition: {fileID: 705025381}
   m_maxAngle: 360
   m_angularAcceleration: 0
+  m_interpolationTime: 0
 --- !u!114 &602385897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,8 +1009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationState: {fileID: 0}
-  m_transition: 1
 --- !u!212 &602385903
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1086,7 +1089,6 @@ GameObject:
   - component: {fileID: 620872451}
   - component: {fileID: 620872450}
   - component: {fileID: 620872449}
-  - component: {fileID: 620872456}
   - component: {fileID: 620872457}
   - component: {fileID: 620872461}
   - component: {fileID: 620872460}
@@ -1184,8 +1186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationState: {fileID: 620872460}
-  m_transition: 1
 --- !u!212 &620872454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1253,22 +1253,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &620872456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07e49891abbe09429fc4a1c418314c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_initialLife: 5
-  m_actualLife: 5
-  lifeText: {fileID: 503575023}
-  textname: 'Enemy:'
 --- !u!114 &620872457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,8 +1312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationState: {fileID: 620872461}
-  m_transition: 1
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0

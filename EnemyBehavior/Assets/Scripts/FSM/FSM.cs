@@ -9,17 +9,15 @@ public class FSM : MonoBehaviour
     public State m_initialstate;
 
     private State m_currentstate;
-    private State m_nextState;
 
+    // Necesitamos acciones al entrar al estado y al salir de él, las de durante las tenemos.
 
-	// Start is called before the first frame update
 	void Awake()
     {
         m_currentstate = m_initialstate;
         m_currentstate.StartState();
 	}
 
-    // Update is called once per frame
     void Update()
     {
         //update of the state
@@ -44,5 +42,10 @@ public class FSM : MonoBehaviour
         //cambio de estados una vez se ha actualizado todo
 
     }
+
+	private void OnDestroy()
+	{
+	    // Hace las acciones de salida del ultimo estado.
+	}
 }
 

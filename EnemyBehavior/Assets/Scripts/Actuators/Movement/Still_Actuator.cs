@@ -6,40 +6,53 @@ using UnityEngine;
 public class Still_Actuator : Actuator
 {
 
-	private Rigidbody2D m_rigidbody;
-	private Damage_Sensor _damageSensor;
+	//private Rigidbody2D m_rigidbody;
+	//private Damage_Sensor _damageSensor;
+	//public override void DestroyActuator()
+	//{
+
+	//}
+
+	//public override void StartActuator()
+	//{
+	//	m_rigidbody = this.GetComponent<Rigidbody2D>();
+	//	_damageSensor = this.GameObject().GetComponent<Damage_Sensor>();
+	//	if (_damageSensor != null)
+	//	{
+	//		_damageSensor.onEventDetected += HarmPlayer;
+	//	}
+	//}
+
+	//public override void UpdateActuator()
+	//{
+
+	//}
+
+	////Esto tiene que ir aqui?
+	//void HarmPlayer(Sensors s)
+	//{
+	//	if (_damageSensor.GetCollisionObject().gameObject.tag == "Player")
+	//	{
+	//		if (!_damageSensor.GetInstaKill())
+	//		{
+	//			_damageSensor.GetCollisionObject().gameObject.SendMessage("DecreaseLife", _damageSensor.GetAmountOfDamage());
+	//		}
+	//		else _damageSensor.GetCollisionObject().gameObject.SendMessage("InstantKill");
+
+	//	}
+	//}
 	public override void DestroyActuator()
 	{
-		
+		throw new System.NotImplementedException();
 	}
 
 	public override void StartActuator()
 	{
-		m_rigidbody = this.GetComponent<Rigidbody2D>();
-		_damageSensor = this.GameObject().GetComponent<Damage_Sensor>();
-		if (_damageSensor != null)
-		{
-			_damageSensor.onEventDetected += HarmPlayer;
-		}
+		throw new System.NotImplementedException();
 	}
 
 	public override void UpdateActuator()
 	{
-		
+		throw new System.NotImplementedException();
 	}
-
-	//Esto tiene que ir aqui?
-	void HarmPlayer(Sensors s)
-	{
-		if (_damageSensor.GetCollisionObject().gameObject.tag == "Player")
-		{
-			if (!_damageSensor.GetInstaKill())
-			{
-				_damageSensor.GetCollisionObject().gameObject.SendMessage("DecreaseLife", _damageSensor.GetAmountOfDamage());
-			}
-			else _damageSensor.GetCollisionObject().gameObject.SendMessage("InstantKill");
-
-		}
-	}
-
 }

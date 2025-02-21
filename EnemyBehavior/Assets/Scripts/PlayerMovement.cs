@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
         // Detect user input
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //  -1 for left, 1 for right, 0 for no input
         movement = new Vector2(horizontalInput, 0).normalized;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(new Vector2(0, 10000));
+        }
     }
 
     private void FixedUpdate()

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3588139151138850515}
   - component: {fileID: 3803489501963382602}
   - component: {fileID: 6814205925652726563}
+  - component: {fileID: 2168806952316149805}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 698430477260255160}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8170262, y: 1.9297379, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,6 +213,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2168806952316149805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698430477260255160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016eafcff9d8bd2458a5b8d0af2b2576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageType: 1
+  _instaKill: 0
+  _amountOfDamage: 1
+  _damageCooldown: 1
+  _numOfDamage: 2
 --- !u!1 &6312299861578909251
 GameObject:
   m_ObjectHideFlags: 0
