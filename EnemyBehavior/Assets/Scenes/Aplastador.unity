@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 405269257}
-  SensorList:
+  sensorList:
   - {fileID: 405269249}
   name: Primer Estado
 --- !u!114 &405269251
