@@ -12,7 +12,7 @@ using UnityEngine;
 // Falla el movimiento al hacerlo completamente circular ya que el radio acaba variando y no se mantiene constante.
 // Al cambiar el ángulo máximo se dan cosas extrañas.
 [RequireComponent(typeof(Rigidbody2D))]
-public class Circular_Actuator : Actuator
+public class Circular_Actuator : Movement_Actuator
 {
 	// Velocidad angular en grados por segundo (se convertirá a radianes)
 	[SerializeField, HideInInspector]

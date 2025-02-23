@@ -6,6 +6,9 @@ using UnityEngine;
 public class HorizontalComponentEditor : ActuatorEditor
 {
 
+	private static readonly GUIContent bouncingLabel = new GUIContent("Bounce Object", "Does the object bounce after collision?");
+
+
 	#region Accelerated movement
 	private static readonly GUIContent goalSpeedLabel = new GUIContent("Goal Speed", "Speed the object will reach");
 	private static readonly GUIContent interpolationTimeLabel = new GUIContent("Interpolation Time", "Time it takes to reach Max Speed");
@@ -20,6 +23,8 @@ public class HorizontalComponentEditor : ActuatorEditor
 
 		Horizontal_Actuator component = (Horizontal_Actuator)target;
 		DrawDefaultInspector();
+		component.SetBouncesAfterCollision(EditorGUILayout.Toggle(bouncingLabel, component.GetBouncesAfterCollision()));
+
 		//creo que este es el lineal y el else el acelerado.
 		if (component.IsMovementAccelerated())
 		{
@@ -33,6 +38,7 @@ public class HorizontalComponentEditor : ActuatorEditor
 			component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
 		}
 
+		
 		// If GUI changed we must applicate those changes in editor
 		if (GUI.changed)
 		{

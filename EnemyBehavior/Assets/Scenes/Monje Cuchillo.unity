@@ -175,10 +175,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAccelerated: 0
   m_easingFunction: 0
+  _bounceAfterCollision: 0
   m_speed: 0
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: 1
+  _destroyAfterCollision: 0
 --- !u!114 &284517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,8 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 284517623}
-  SensorList:
-  - {fileID: 284517622}
+  sensorList: []
   name: State
 --- !u!114 &284517625
 MonoBehaviour:
@@ -222,10 +223,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAccelerated: 0
   m_easingFunction: 0
+  _bounceAfterCollision: 0
   m_speed: 0
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
+  _destroyAfterCollision: 0
 --- !u!114 &284517627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 284517626}
-  SensorList:
-  - {fileID: 284517625}
+  sensorList: []
   name: State
 --- !u!114 &284517628
 MonoBehaviour:
@@ -397,6 +399,63 @@ Transform:
   - {fileID: 602385904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &353920732
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
 --- !u!1 &503575021
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 602385896}
-  SensorList: []
+  sensorList: []
   name: Primer Estado
 --- !u!114 &602385898
 MonoBehaviour:
@@ -1051,8 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 620872464}
-  SensorList:
-  - {fileID: 620872463}
+  sensorList: []
   name: Primer Estado
 --- !u!114 &620872463
 MonoBehaviour:
@@ -1080,10 +1138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAccelerated: 0
   m_easingFunction: 0
+  _bounceAfterCollision: 0
   m_speed: 0
   m_goalSpeed: 0
   m_interpolationTime: 0
   m_direction: -1
+  _destroyAfterCollision: 0
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,3 +2157,4 @@ SceneRoots:
   - {fileID: 938084507}
   - {fileID: 620872455}
   - {fileID: 284517632}
+  - {fileID: 353920732}

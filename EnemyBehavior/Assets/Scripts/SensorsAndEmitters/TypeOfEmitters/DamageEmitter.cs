@@ -16,28 +16,38 @@ public class DamageEmitter : MonoBehaviour
 
 	[SerializeField, HideInInspector]
 	private bool _instaKill = false;
-	[SerializeField]
+	[SerializeField,HideInInspector]
 	private float _amountOfDamage = 0; //para tipo 0,1 y 2
 	#region Persistent Damage Variables
 
-	[SerializeField]
+	[SerializeField,HideInInspector]
 	private float _damageCooldown = 1f; // para tipo  2
 	#endregion
 	#region Residual Damage Variables
-	[SerializeField]
-	private int _numOfDamage = 2; //cuantas veces haces daño
+	[SerializeField,HideInInspector]
+	private int _numOfDamageApplication= 2; //cuantas veces haces daño
+	[SerializeField, HideInInspector]
+	private float _residualDamageAmount = 0;
 	#endregion
 	private bool m_endPersistentDamage;
+	#region Getters and setters
+	public void SetResidualDamageAmount(float newValue)
+	{
+		_residualDamageAmount = newValue;
+	}
+	public float GetResidualDamageAmount() => _residualDamageAmount;
 	public DamageType GetDamageType() => _damageType;
-
 	public float GetAmountOfDamage() => _amountOfDamage;
 	public void SetAmountOfDamage(float newValue)
 	{
 		_amountOfDamage = newValue;
 	}
 	public float GetDamageCooldown() => _damageCooldown;
-	public int GetNumOfDamage() => _numOfDamage;
-
+	public int GetNumberOfResidualApplication() => _numOfDamageApplication;
+	public void SetNumberOfResidualApplication(int newValue) 
+	{
+		_numOfDamageApplication = newValue;
+	}
 	public void SetDamageCooldown(float newValue)
 	{
 		_damageCooldown = newValue;
@@ -47,6 +57,6 @@ public class DamageEmitter : MonoBehaviour
 	{
 		_instaKill = newValue;
 	}
-
 	public bool EndPersistentDamage() => m_endPersistentDamage;
+	#endregion
 }

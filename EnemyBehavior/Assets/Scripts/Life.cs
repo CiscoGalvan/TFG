@@ -16,8 +16,10 @@ public class Life : MonoBehaviour
 	private string textname;
 
 
-	bool m_update = false;
-	float m_amount = -1;
+	private bool m_update = false;
+	private float m_amount = -1;
+
+	private float _residualDamageAmount = 0;
 	private Damage_Sensor _sensor;
 	private DamageEmitter _damageEmitter;
 	private float _actualDamageCooldown = -1;
@@ -63,12 +65,11 @@ public class Life : MonoBehaviour
 						if (_numOfDamage > 0)
 						{
 							_actualDamageCooldown += Time.deltaTime;
-							Debug.Log(_actualDamageCooldown);
 							if (_actualDamageCooldown > _damageCooldown)
 							{
 								_numOfDamage--;
 								_actualDamageCooldown = 0;
-								DecreaseLife(m_amount);
+								DecreaseLife(_residualDamageAmount);
 							}
 						}
 					}
@@ -97,7 +98,10 @@ public class Life : MonoBehaviour
 				switch (_damageEmitter.GetDamageType())
 				{
 					case DamageEmitter.DamageType.Instant:
-						DecreaseLife(_damageEmitter.GetAmountOfDamage());
+						if (_damageEmitter.GetInstaKill())
+							InstantKill();
+						else
+							DecreaseLife(_damageEmitter.GetAmountOfDamage());
 						break;
 					case DamageEmitter.DamageType.Persistent:
 						{
@@ -111,11 +115,11 @@ public class Life : MonoBehaviour
 						{
 							m_amount = _damageEmitter.GetAmountOfDamage();
 							m_update = true;
+							_residualDamageAmount = _damageEmitter.GetResidualDamageAmount();
 							_damageCooldown = _damageEmitter.GetDamageCooldown();
-							_numOfDamage = _damageEmitter.GetNumOfDamage();
+							_numOfDamage = _damageEmitter.GetNumberOfResidualApplication();
 							DecreaseLife(m_amount);
 							_actualDamageCooldown = 0;
-
 						}
 						break;
 					default:

@@ -6,10 +6,12 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Horizontal_Actuator : Actuator
+public class Horizontal_Actuator : Movement_Actuator
 {
-	//Tenemos que serializar y esconder en el inspector toda variable que querramos que sea cambiada con un editor pero que esta no aparezca desde un principio en el inspector.
 
+	// ¿Qué pasa si el disenhador setea esto a true y en ejecución lo cambia a false?
+	[SerializeField,HideInInspector]
+	private bool _bounceAfterCollision = false;
 	[SerializeField]
 	[HideInInspector]
     private float m_speed;
@@ -22,7 +24,7 @@ public class Horizontal_Actuator : Actuator
 	[HideInInspector]
 	private float m_interpolationTime = 0;
 
-	Collision_Sensor collisionSensor;
+	private Collision_Sensor collisionSensor;
 
 	private float m_initial_speed = 0;
 
@@ -44,6 +46,8 @@ public class Horizontal_Actuator : Actuator
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
 
+	[SerializeField]
+	private bool _destroyAfterCollision = false;
 	public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
@@ -65,7 +69,7 @@ public class Horizontal_Actuator : Actuator
     {
         if (collisionSensor != null)
         {
-            collisionSensor.onEventDetected += CollisionEvent;
+            collisionSensor.onEventDetected -= CollisionEvent;
         }
     }
 	public override void UpdateActuator()
@@ -98,23 +102,29 @@ public class Horizontal_Actuator : Actuator
 
 	void CollisionEvent(Sensors s)
     {
-       
-        Collision2D col = collisionSensor.GetCollidedObject();
+		if (_bounceAfterCollision)
+		{
+			Collision2D col = collisionSensor.GetCollidedObject();
 
-        if (col == null) return;    
-		//comprobacion  de:
-		// choque enemigo con mundo 
-		//choque por izquierda o derecha
-        if (col.gameObject.layer != LayerMask.NameToLayer("World")) return;
-        ContactPoint2D contact = col.contacts[0];
-        Vector2 normal = contact.normal;
+			if (col == null) return;
+			//comprobacion  de:
+			// choque enemigo con mundo 
+			//choque por izquierda o derecha
+			if (col.gameObject.layer != LayerMask.NameToLayer("World")) return;
+			ContactPoint2D contact = col.contacts[0];
+			Vector2 normal = contact.normal;
 
-        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
-        {
-            m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
-        }
-       
-    }
+			if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+			{
+				m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
+			}
+
+		}
+		else if (_destroyAfterCollision)
+		{
+			Destroy(this.gameObject);
+		}
+	}
 
     private void OnDrawGizmosSelected()
     {
@@ -162,5 +172,10 @@ public class Horizontal_Actuator : Actuator
 		return m_interpolationTime;
 	}
 
+	public void SetBouncesAfterCollision(bool newValue)
+	{
+		_bounceAfterCollision = newValue;
+	}
+	public bool GetBouncesAfterCollision() => _bounceAfterCollision;
 	#endregion
 }

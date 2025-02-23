@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class Vertical_Actuator : Actuator
+public class Vertical_Actuator : Movement_Actuator
 {
 
 	[SerializeField]
