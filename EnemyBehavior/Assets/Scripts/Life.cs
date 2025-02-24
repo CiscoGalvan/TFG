@@ -7,25 +7,25 @@ public class Life : MonoBehaviour
 {
 	
 	[SerializeField]
-	private float m_initialLife = 5;
+	private float initialLife = 5;
 
-	private float m_currentLife;
+	private float currentLife;
 	[SerializeField]
 	private TextMeshProUGUI lifeText;
 	[SerializeField]
 	private string textname;
 
 
-	private bool m_update = false;
-	private float m_amount = -1;
+	private bool update = false;
+	private float amount = -1;
 
-	private float _residualDamageAmount = 0;
-	private Damage_Sensor _sensor;
-	private DamageEmitter _damageEmitter;
-	private float _actualDamageCooldown = -1;
+	private float residualDamageAmount = 0;
+	private Damage_Sensor sensor;
+	private DamageEmitter damageEmitter;
+	private float actualDamageCooldown = -1;
 
-	private float _damageCooldown = 0;
-	private int _numOfDamage;
+	private float damageCooldown = 0;
+	private int numOfDamage;
 	private  void Awake()
 	{
 		// Validar que lifeText tenga un valor asignado
@@ -37,39 +37,39 @@ public class Life : MonoBehaviour
 	}
 	private void Start()
 	{
-		m_currentLife = m_initialLife;
-		_sensor = GetComponent<Damage_Sensor>();
-		_sensor.onEventDetected += ReceiveDamageEmitter;
-		_actualDamageCooldown = 0f;
+		currentLife = initialLife;
+		sensor = GetComponent<Damage_Sensor>();
+		sensor.onEventDetected += ReceiveDamageEmitter;
+		actualDamageCooldown = 0f;
 		UpdateLifeText();
 	}
 
 	private void Update()
 	{
-		if (m_update)
+		if (update)
 		{
-			switch (_damageEmitter.GetDamageType())
+			switch (damageEmitter.GetDamageType())
 			{
 				case DamageEmitter.DamageType.Persistent:
 					{
-						_actualDamageCooldown += Time.deltaTime;
-						if (_actualDamageCooldown > _damageCooldown)
+						actualDamageCooldown += Time.deltaTime;
+						if (actualDamageCooldown > damageCooldown)
 						{
-							DecreaseLife(m_amount);
-							_actualDamageCooldown = 0;
+							DecreaseLife(amount);
+							actualDamageCooldown = 0;
 						}
 					}
 					break;
 				case DamageEmitter.DamageType.Residual:
 					{
-						if (_numOfDamage > 0)
+						if (numOfDamage > 0)
 						{
-							_actualDamageCooldown += Time.deltaTime;
-							if (_actualDamageCooldown > _damageCooldown)
+							actualDamageCooldown += Time.deltaTime;
+							if (actualDamageCooldown > damageCooldown)
 							{
-								_numOfDamage--;
-								_actualDamageCooldown = 0;
-								DecreaseLife(_residualDamageAmount);
+								numOfDamage--;
+								actualDamageCooldown = 0;
+								DecreaseLife(residualDamageAmount);
 							}
 						}
 					}
@@ -77,7 +77,7 @@ public class Life : MonoBehaviour
 			}
 		}
 
-		if(m_currentLife <=0)
+		if(currentLife <=0)
 		{
 			Destroy(this.gameObject);
 		}
@@ -85,41 +85,41 @@ public class Life : MonoBehaviour
 	
 	private void OnDestroy()
 	{
-		_sensor.onEventDetected -= ReceiveDamageEmitter;
+		sensor.onEventDetected -= ReceiveDamageEmitter;
 	}
 
 	private void ReceiveDamageEmitter(Sensors damageSensor)
 	{
-		_damageEmitter = (damageSensor as Damage_Sensor).GetDamageEmitter();
-		if (_damageEmitter != null)
+		damageEmitter = (damageSensor as Damage_Sensor).GetDamageEmitter();
+		if (damageEmitter != null)
 		{
-			if (_sensor.HasCollisionOccurred())
+			if (sensor.HasCollisionOccurred())
 			{
-				switch (_damageEmitter.GetDamageType())
+				switch (damageEmitter.GetDamageType())
 				{
 					case DamageEmitter.DamageType.Instant:
-						if (_damageEmitter.GetInstaKill())
+						if (damageEmitter.GetInstaKill())
 							InstantKill();
 						else
-							DecreaseLife(_damageEmitter.GetAmountOfDamage());
+							DecreaseLife(damageEmitter.GetAmountOfDamage());
 						break;
 					case DamageEmitter.DamageType.Persistent:
 						{
-							m_amount = _damageEmitter.GetAmountOfDamage();
-							DecreaseLife(m_amount);
-							m_update = true;
-							_damageCooldown = _damageEmitter.GetDamageCooldown();
+							amount = damageEmitter.GetAmountOfDamage();
+							DecreaseLife(amount);
+							update = true;
+							damageCooldown = damageEmitter.GetDamageCooldown();
 						}
 						break;
 					case DamageEmitter.DamageType.Residual:
 						{
-							m_amount = _damageEmitter.GetAmountOfDamage();
-							m_update = true;
-							_residualDamageAmount = _damageEmitter.GetResidualDamageAmount();
-							_damageCooldown = _damageEmitter.GetDamageCooldown();
-							_numOfDamage = _damageEmitter.GetNumberOfResidualApplication();
-							DecreaseLife(m_amount);
-							_actualDamageCooldown = 0;
+							amount = damageEmitter.GetAmountOfDamage();
+							update = true;
+							residualDamageAmount = damageEmitter.GetResidualDamageAmount();
+							damageCooldown = damageEmitter.GetDamageCooldown();
+							numOfDamage = damageEmitter.GetNumberOfResidualApplication();
+							DecreaseLife(amount);
+							actualDamageCooldown = 0;
 						}
 						break;
 					default:
@@ -129,8 +129,8 @@ public class Life : MonoBehaviour
 			else
 			{
 				// Reinciar variables.
-				m_update = false;
-				_actualDamageCooldown = 0;
+				update = false;
+				actualDamageCooldown = 0;
 			}
 
 		}
@@ -138,41 +138,41 @@ public class Life : MonoBehaviour
 	}
 	private void DecreaseLife(float num)
 	{
-		m_currentLife -= num;
-		Debug.Log("Life = " + m_currentLife);
+		currentLife -= num;
+		Debug.Log("Life = " + currentLife);
 		UpdateLifeText();
 	}
 	private void InstantKill()
 	{
-		m_currentLife = 0;
-		Debug.Log("Life = " + m_currentLife);
+		currentLife = 0;
+		Debug.Log("Life = " + currentLife);
 		UpdateLifeText();
 	}
 	private void IncreaseLife(float num)
 	{
-		m_currentLife += num;
+		currentLife += num;
 		UpdateLifeText();
 	}
 	private void SetLife(float num)
 	{
-		m_currentLife = num;
+		currentLife = num;
 		UpdateLifeText();
 	}
 	private void SetInitialLife()
 	{
-		m_currentLife = m_initialLife;
+		currentLife = initialLife;
 		UpdateLifeText();
 	}
 	private void UpdateLifeText()
 	{
 		if (lifeText != null)
 		{
-			lifeText.text = textname + m_currentLife;
+			lifeText.text = textname + currentLife;
 		}
 	}
 	private bool IsLifeLessThan(int value)
 	{
-		return m_currentLife < value;
+		return currentLife < value;
 	}
 
 }

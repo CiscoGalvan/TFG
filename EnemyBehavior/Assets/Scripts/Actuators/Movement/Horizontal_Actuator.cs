@@ -10,9 +10,11 @@ public class Horizontal_Actuator : Movement_Actuator
 {
 
 	// ¿Qué pasa si el disenhador setea esto a true y en ejecución lo cambia a false?
-	[SerializeField,HideInInspector]
+	[SerializeField, HideInInspector]
 	private bool _bounceAfterCollision = false;
-	[SerializeField]
+    [SerializeField, HideInInspector]
+    private bool _destroyAfterCollision = false;
+    [SerializeField]
 	[HideInInspector]
     private float m_speed;
 
@@ -46,17 +48,22 @@ public class Horizontal_Actuator : Movement_Actuator
     Rigidbody2D m_rigidbody;
     private EasingFunction.Function easingFunc;
 
-	[SerializeField]
-	private bool _destroyAfterCollision = false;
+
 	public override void StartActuator()
     {
         m_rigidbody = this.GetComponent<Rigidbody2D>();
-        easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-        collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
-		if(collisionSensor != null)
+		easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
+		if (_bounceAfterCollision || _destroyAfterCollision)
 		{
+            collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+            if (collisionSensor == null) //si no esta creado lo crea
+            {
+                collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+            }
             collisionSensor.onEventDetected += CollisionEvent;
+			sensors.Add(collisionSensor);
         }
+		
         m_time = 0;
 		if (m_isAccelerated)
 		{
@@ -102,8 +109,8 @@ public class Horizontal_Actuator : Movement_Actuator
 
 	void CollisionEvent(Sensors s)
     {
-		if (_bounceAfterCollision)
-		{
+		Debug.Log("bounce: " + _bounceAfterCollision + "destroy:"+ _destroyAfterCollision);
+		
 			Collision2D col = collisionSensor.GetCollidedObject();
 
 			if (col == null) return;
@@ -116,14 +123,16 @@ public class Horizontal_Actuator : Movement_Actuator
 
 			if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
 			{
-				m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
+				if (_bounceAfterCollision)
+				{
+                m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
+				}
+				else if (_destroyAfterCollision)
+				{
+					Destroy(this.gameObject);
+				}
 			}
-
-		}
-		else if (_destroyAfterCollision)
-		{
-			Destroy(this.gameObject);
-		}
+		
 	}
 
     private void OnDrawGizmosSelected()
@@ -177,5 +186,10 @@ public class Horizontal_Actuator : Movement_Actuator
 		_bounceAfterCollision = newValue;
 	}
 	public bool GetBouncesAfterCollision() => _bounceAfterCollision;
-	#endregion
+    public void SetDestroyAfterCollision(bool newValue)
+    {
+        _destroyAfterCollision = newValue;
+    }
+    public bool GetDestroyAfterCollision() => _destroyAfterCollision;
+    #endregion
 }

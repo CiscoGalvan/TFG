@@ -7,6 +7,7 @@ public class HorizontalComponentEditor : ActuatorEditor
 {
 
 	private static readonly GUIContent bouncingLabel = new GUIContent("Bounce Object", "Does the object bounce after collision?");
+    private static readonly GUIContent destroyLabel = new GUIContent("Destoy Object", "Does the object self-destruct after the collision?");
 
 
 	#region Accelerated movement
@@ -23,7 +24,19 @@ public class HorizontalComponentEditor : ActuatorEditor
 
 		Horizontal_Actuator component = (Horizontal_Actuator)target;
 		DrawDefaultInspector();
-		component.SetBouncesAfterCollision(EditorGUILayout.Toggle(bouncingLabel, component.GetBouncesAfterCollision()));
+        // Variables auxiliares para evitar selección simultánea
+        bool bounces = component.GetBouncesAfterCollision();
+        bool destroys = component.GetDestroyAfterCollision();
+
+        bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
+        if (bounces) destroys = false; // Si se selecciona rebotar, desactiva destruir
+
+        destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
+        if (destroys) bounces = false; // Si se selecciona destruir, desactiva rebotar
+
+        component.SetBouncesAfterCollision(bounces);
+        component.SetDestroyAfterCollision(destroys);
+       
 
 		//creo que este es el lineal y el else el acelerado.
 		if (component.IsMovementAccelerated())

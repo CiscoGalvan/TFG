@@ -11,7 +11,7 @@ public class State : MonoBehaviour
     private int numElementsActuator = -1;
 
     [SerializeField]
-    public List<Sensors> sensorList = new List<Sensors>();
+    public HashSet<Sensors> sensorHashSet = new HashSet<Sensors>();
     private int numElementsSensor = -1;
 
     [SerializeField]
@@ -21,10 +21,14 @@ public class State : MonoBehaviour
         //Debug.Log(name);
         foreach (var actuator in actuatorList)
         {
-            if(actuator)
+            if (actuator)
+            {
                 actuator.StartActuator();
+                sensorHashSet.UnionWith(actuator.GetSenors());
+            }
+               
         }
-        foreach (var sensor in sensorList)
+        foreach (var sensor in sensorHashSet)
         {
             // This conditional is used to check when the list size is not zero and there is no sensor in it
             if(sensor)
@@ -60,7 +64,7 @@ public class State : MonoBehaviour
     }
     public void AddSensor(Sensors sen)
     {
-       sensorList.Add(sen); 
+        sensorHashSet.Add(sen); 
     }
 
     #region Editor listas evitar duplicados
@@ -71,7 +75,7 @@ public class State : MonoBehaviour
 
         // queremos comprobar que no existan duplicados en actuadores y sensores si la lista se ha modificado
         if(actuatorList.Count != numElementsActuator) numElementsActuator = VerificarLista(actuatorList, "actuatorList");
-        if (sensorList.Count != numElementsSensor) numElementsSensor = VerificarLista(sensorList, "sensorList");
+       
 
         }
 

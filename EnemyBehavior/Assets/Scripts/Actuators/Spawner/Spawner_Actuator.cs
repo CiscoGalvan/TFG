@@ -42,11 +42,6 @@ public class Spawner_Actuator : Actuator
 		_numEnemiesAlreadySpawn = 0;
     }
 
-    public override void UpdateActuator()
-    {
-       
-    }
-
     void SpawnEvent(Sensors s)
     {
         if (_infiniteEnemies || _numEnemiesAlreadySpawn < m_numOfEnemiesToSpawn)
@@ -63,6 +58,11 @@ public class Spawner_Actuator : Actuator
         m_numOfEnemiesToSpawn = newValue;
 	}
     public int GetNumberOfEnemiesToSpawn() => m_numOfEnemiesToSpawn;
+
+    public override void UpdateActuator()
+    {
+        throw new System.NotImplementedException();
+    }
     #endregion
 
 }
