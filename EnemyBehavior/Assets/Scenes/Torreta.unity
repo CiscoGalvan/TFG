@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &117079686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4312339885726134922, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+  m_PrefabInstance: {fileID: 1741528454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &296686439
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,8 +762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1009835260}
-  sensorList:
-  - {fileID: 1009835261}
   name: Primer Estado
 --- !u!114 &1009835254
 MonoBehaviour:
@@ -772,7 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 1009835253}
+  initialState: {fileID: 1009835253}
 --- !u!61 &1009835256
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -925,8 +928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3db287016e5a146906aea374dd5ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _infiniteEnemies: 0
-  m_numOfEnemiesToSpawn: 1
+  _infiniteEnemies: 1
+  _numOfEnemiesToSpawn: 0
   _prefabToSpawn: {fileID: 6312299861578909251, guid: 99182299bda6a0441b148bc8c2516f5b, type: 3}
   _spawnPoint: {fileID: 1466693878}
 --- !u!114 &1009835261
@@ -941,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionTime: 1
+  _detectionTime: 1
 --- !u!1 &1151592761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1512379615609595223, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _groundCheck
+      value: 
+      objectReference: {fileID: 117079686}
     - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.76
@@ -1468,6 +1475,14 @@ PrefabInstance:
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 551894149}
+    - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _lifeText
+      value: 
+      objectReference: {fileID: 551894149}
+    - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _textname
+      value: 'Player:'
+      objectReference: {fileID: 0}
     - target: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_Name
       value: Player

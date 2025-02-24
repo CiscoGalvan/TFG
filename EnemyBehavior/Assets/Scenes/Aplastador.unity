@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 228051916}
+    - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _lifeText
+      value: 
+      objectReference: {fileID: 228051916}
     - target: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_Name
       value: Player
@@ -368,8 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 405269257}
-  sensorList:
-  - {fileID: 405269249}
   name: Primer Estado
 --- !u!114 &405269251
 MonoBehaviour:
@@ -383,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 405269250}
+  initialState: {fileID: 405269250}
 --- !u!61 &405269253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,12 +537,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
-  m_speed: 5.36
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: -1
+  _isAccelerated: 0
+  _easingFunction: 0
+  _bounceAfterCollision: 1
+  _destroyAfterCollision: 0
+  _speed: 10
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!114 &405269258
 MonoBehaviour:
   m_ObjectHideFlags: 0

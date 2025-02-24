@@ -11,28 +11,20 @@ public class Horizontal_Actuator : Movement_Actuator
 
 	// ¿Qué pasa si el disenhador setea esto a true y en ejecución lo cambia a false?
 	[SerializeField, HideInInspector]
-	private bool bounceAfterCollision = false;
+	private bool _bounceAfterCollision = false;
     [SerializeField, HideInInspector]
-    private bool destroyAfterCollision = false;
-    [SerializeField]
-	[HideInInspector]
-    private float speed;
-
-	[SerializeField]
-	[HideInInspector]
+    private bool _destroyAfterCollision = false;
+    [SerializeField,HideInInspector]
+    private float _speed;
+	[SerializeField,HideInInspector]
 	private float _goalSpeed;
 
-	[SerializeField]
-	[HideInInspector]
+	[SerializeField, HideInInspector]
 	private float _interpolationTime = 0;
 
-	private Collision_Sensor collisionSensor;
+	private Collision_Sensor _collisionSensor;
 
 	private float _initial_speed = 0;
-
-    //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
-    
-    //private float m_acceleration = 0f;
 
     [Tooltip("Movement direction")]
     [SerializeField]
@@ -45,93 +37,93 @@ public class Horizontal_Actuator : Movement_Actuator
     }
 
     private float _time;
-    Rigidbody2D _rigidbody;
-    private EasingFunction.Function easingFunc;
+    private Rigidbody2D _rigidbody;
+    private EasingFunction.Function _easingFunc;
 
 
 	public override void StartActuator()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
-		easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-		if (bounceAfterCollision || destroyAfterCollision)
+		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
+		if (_bounceAfterCollision || _destroyAfterCollision)
 		{
-            collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
-            if (collisionSensor == null) //si no esta creado lo crea
+            _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+            if (_collisionSensor == null) //si no esta creado lo crea
             {
-                collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+                _collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
             }
-            collisionSensor.onEventDetected += CollisionEvent;
-			sensors.Add(collisionSensor);
+            _collisionSensor.onEventDetected += CollisionEvent;
+			sensors.Add(_collisionSensor);
         }
 		
         _time = 0;
-		if (m_isAccelerated)
+		if (_isAccelerated)
 		{
-			speed = _rigidbody.velocity.x;
+			_speed = _rigidbody.velocity.x;
 		}
-		_initial_speed = speed;
+		_initial_speed = _speed;
 		
 	}
     public override void DestroyActuator()
     {
-        if (collisionSensor != null)
+        if (_collisionSensor != null)
         {
-            collisionSensor.onEventDetected -= CollisionEvent;
+            _collisionSensor.onEventDetected -= CollisionEvent;
         }
     }
 	public override void UpdateActuator()
 	{
 		_time += Time.deltaTime;
 		int dirValue = (int)_direction;
-		if (!m_isAccelerated)
+		if (!_isAccelerated)
 		{
 			//MRU
-			_rigidbody.velocity = new Vector2(speed * dirValue, _rigidbody.velocity.y);
+			_rigidbody.velocity = new Vector2(_speed * dirValue, _rigidbody.velocity.y);
 		}
 		else
 		{
 			//MRUA
 			float t = (_time /_interpolationTime);
-			float easedSpeed = easingFunc(_initial_speed, _goalSpeed, t);
+			float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
 			_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
 			
 			if (t >= 1.0f)
 			{
-				speed = _goalSpeed;
+				_speed = _goalSpeed;
 				_rigidbody.velocity = new Vector2(_goalSpeed * dirValue, _rigidbody.velocity.y);
 			}
 			else
 			{
-				speed = easedSpeed;
+				_speed = easedSpeed;
 			}
 		}
 	}
 
 	void CollisionEvent(Sensors s)
     {
-		Debug.Log("bounce: " + bounceAfterCollision + "destroy:"+ destroyAfterCollision);
+		Debug.Log("bounce: " + _bounceAfterCollision + "destroy:"+ _destroyAfterCollision);
 		
-			Collision2D col = collisionSensor.GetCollidedObject();
+		Collision2D col = _collisionSensor.GetCollidedObject();
 
-			if (col == null) return;
-			//comprobacion  de:
-			// choque enemigo con mundo 
-			//choque por izquierda o derecha
-			if (col.gameObject.layer != LayerMask.NameToLayer("World")) return;
-			ContactPoint2D contact = col.contacts[0];
-			Vector2 normal = contact.normal;
+		if (col == null) return;
+		//comprobacion  de:
+		// choque enemigo con mundo 
+		//choque por izquierda o derecha
+		if (col.gameObject.layer != LayerMask.NameToLayer("World") && col.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+		ContactPoint2D contact = col.contacts[0];
+		Vector2 normal = contact.normal;
 
-			if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+		if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+		{
+			if (_bounceAfterCollision)
 			{
-				if (bounceAfterCollision)
-				{
-                _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-				}
-				else if (destroyAfterCollision)
-				{
-					Destroy(this.gameObject);
-				}
+            _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
 			}
+			else if (_destroyAfterCollision)
+			{
+				Destroy(this.gameObject);
+			}
+		}
 		
 	}
 
@@ -158,11 +150,11 @@ public class Horizontal_Actuator : Movement_Actuator
 	#region Setters and Getters 
     public void SetSpeed(float newValue)
     {
-        speed = newValue;
+        _speed = newValue;
     }
     public float GetSpeed()
     {
-        return speed;
+        return _speed;
     }
 	public void SetGoalSpeed(float newValue)
 	{
@@ -183,13 +175,13 @@ public class Horizontal_Actuator : Movement_Actuator
 
 	public void SetBouncesAfterCollision(bool newValue)
 	{
-		bounceAfterCollision = newValue;
+		_bounceAfterCollision = newValue;
 	}
-	public bool GetBouncesAfterCollision() => bounceAfterCollision;
+	public bool GetBouncesAfterCollision() => _bounceAfterCollision;
     public void SetDestroyAfterCollision(bool newValue)
     {
-        destroyAfterCollision = newValue;
+        _destroyAfterCollision = newValue;
     }
-    public bool GetDestroyAfterCollision() => destroyAfterCollision;
+    public bool GetDestroyAfterCollision() => _destroyAfterCollision;
     #endregion
 }

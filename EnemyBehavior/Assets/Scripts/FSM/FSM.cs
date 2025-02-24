@@ -6,22 +6,22 @@ using UnityEngine;
 public class FSM : MonoBehaviour
 {
     [SerializeField]
-    public State m_initialstate;
+    public State initialState;
 
-    private State m_currentstate;
+    private State _currentstate;
 
     // Necesitamos acciones al entrar al estado y al salir de él, las de durante las tenemos.
 
 	void Awake()
     {
-        m_currentstate = m_initialstate;
-        m_currentstate.StartState();
+        _currentstate = initialState;
+        _currentstate.StartState();
 	}
 
     void Update()
     {
         //update of the state
-        m_currentstate.UpdateState();
+        _currentstate.UpdateState();
    //     foreach (var sensor in m_currentstate.SensorList)
    //     {
    //         if (sensor.WantTransition())

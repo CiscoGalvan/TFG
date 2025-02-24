@@ -8,29 +8,28 @@ using UnityEngine;
 public class MoveToAPoint_Actuator : Movement_Actuator
 {
 
-	//No tiene sentido que en este movimiento preguntemos si el usuario quiere que sea o no acelerado cuando una de las opciones de las EasingFunctions es Lineal. -> quitar el booleno? 
-	//Podriamos poner también que en vez de tomar como referencia el tiempo, poner velocidad minima, máxima y aceleracion como en los otros tipos de movimiento, así el booleano de si es o no acelerado cobraría sentido.
 
 	[Tooltip("Time until the object speed reaches the position it moves to")]
 	[SerializeField]
-	private float m_timeUntilReachingPosition = 0f;
+	private float _timeUntilReachingPosition = 0f;
 
 	[Tooltip("The position the object moves towards")]
 	[SerializeField]
-	private Transform m_objectivePosition;
-	private Rigidbody2D m_rb;
-	private bool moving;
-	private float elapsedTime;
-	private Vector2 startPos; float t;
+	private Transform _objectivePosition;
+	private Rigidbody2D _rb;
+	private bool _moving;
+	private float _elapsedTime;
+	private Vector2 _startPos;
+	private float _t;
 	public override void StartActuator()
 	{
-		m_rb = GetComponent<Rigidbody2D>();
-		elapsedTime = 0f;
-		moving = false;
-		if (m_objectivePosition != null)
+		_rb = GetComponent<Rigidbody2D>();
+		_elapsedTime = 0f;
+		_moving = false;
+		if (_objectivePosition != null)
 		{
-			startPos = m_rb.position;
-			moving = true;
+			_startPos = _rb.position;
+			_moving = true;
 		}
 	
 	}
@@ -38,25 +37,25 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	// Update is called once per frame
 	public override void UpdateActuator()
 	{
-		if (!moving || m_objectivePosition == null) return;
+		if (!_moving || _objectivePosition == null) return;
 
 		#region Movement by time
-		Vector2 targetPos = m_objectivePosition.position;
-		elapsedTime += Time.deltaTime;
-		t = elapsedTime / m_timeUntilReachingPosition;
-		if (m_isAccelerated)
+		Vector2 targetPos = _objectivePosition.position;
+		_elapsedTime += Time.deltaTime;
+		_t = _elapsedTime / _timeUntilReachingPosition;
+		if (_isAccelerated)
 		{
 			// Aplicamos una función de easing
-			t = EasingFunction.GetEasingFunction(m_easingFunction)(0, 1, t);
+			_t = EasingFunction.GetEasingFunction(_easingFunction)(0, 1, _t);
 		}
-		Vector2 newPosition = Vector2.Lerp(startPos, targetPos, t);
-		m_rb.MovePosition(newPosition);
+		Vector2 newPosition = Vector2.Lerp(_startPos, targetPos, _t);
+		_rb.MovePosition(newPosition);
 
 		// Si llegamos al destino, detenemos el movimiento
-		if (t >= 1f)
+		if (_t >= 1f)
 		{
-			moving = false;
-			m_rb.velocity = Vector2.zero;
+			_moving = false;
+			_rb.velocity = Vector2.zero;
 		}
 		#endregion
 		#region Movement by velocities
@@ -64,7 +63,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	private void Start()
 	{
-		if (m_objectivePosition == null)
+		if (_objectivePosition == null)
 		{
 			Debug.LogError($"There was an error in GameObject{name}, script MoveToAPoint: You have to give 'm_objectivePos' a value");
 			UnityEditor.EditorApplication.isPlaying = false;
@@ -72,7 +71,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	public override void DestroyActuator()
 	{
-		Debug.Log(t);
+		Debug.Log(_t);
 	}
 	#region Setters and Getters
 	#endregion

@@ -187,10 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12110d349874cfc44a5bd41158e2103a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 10
-  groundCheck: {fileID: 4312339885726134922}
-  groundCheckRadius: 0.2
+  _moveSpeed: 5
+  _jumpForce: 10
+  _groundCheck: {fileID: 4312339885726134922}
+  _groundCheckRadius: 0.2
 --- !u!114 &2814373487444332747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,9 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4d50162f412b1408ad64e2569835cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialLife: 5
-  lifeText: {fileID: 0}
-  textname: 'Player:'
+  _initialLife: 5
+  _lifeText: {fileID: 0}
+  _textname: 'Player:'
 --- !u!114 &7786128978587167430
 MonoBehaviour:
   m_ObjectHideFlags: 0

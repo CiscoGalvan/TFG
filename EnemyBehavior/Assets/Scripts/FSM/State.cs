@@ -8,11 +8,11 @@ public class State : MonoBehaviour
 {
     [SerializeField]
     public List<Actuator> actuatorList = new List<Actuator>();
-    private int numElementsActuator = -1;
+    private int _numElementsActuator = -1;
 
-    [SerializeField]
+    
     public HashSet<Sensors> sensorHashSet = new HashSet<Sensors>();
-    private int numElementsSensor = -1;
+    private int _numElementsSensor = -1;
 
     [SerializeField]
     public string name = "State";
@@ -74,7 +74,7 @@ public class State : MonoBehaviour
         {
 
         // queremos comprobar que no existan duplicados en actuadores y sensores si la lista se ha modificado
-        if(actuatorList.Count != numElementsActuator) numElementsActuator = VerificarLista(actuatorList, "actuatorList");
+        if(actuatorList.Count != _numElementsActuator) _numElementsActuator = VerificarLista(actuatorList, "actuatorList");
        
 
         }

@@ -8,33 +8,33 @@ using UnityEngine;
 public class Damage_Sensor : Sensors
 {
     // Boolean to track whether the sensor is actively checking for collisions
-    private bool m_isChecking;
+    private bool _isChecking;
     // Boolean to track if a collision has occurred
-    private bool m_col;
-	DamageEmitter _damageEmitter;
+    private bool _col;
+	private DamageEmitter _damageEmitter;
 
 	#region Trigger Methods
 	private void OnTriggerEnter2D(Collider2D collision)
     {
-		if (m_isChecking)
+		if (_isChecking)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if(_damageEmitter != null)
 			{
-				m_col = true;
+				_col = true;
 				EventDetected();
 			}
 		}
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (m_isChecking) 
+		if (_isChecking) 
 		{
 			_damageEmitter= collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null)
 			{
 				
-				m_col = false;
+				_col = false;
 				EventDetected();
 			}
 		}
@@ -44,25 +44,25 @@ public class Damage_Sensor : Sensors
 	#region Collision Methods
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (m_isChecking)
+		if (_isChecking)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null)
 			{
-				m_col = true;
+				_col = true;
 				EventDetected();
 			}
 		}
 	}
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		if (m_isChecking)
+		if (_isChecking)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null)
 			{
 
-				m_col = false;
+				_col = false;
 				EventDetected();
 			}
 		}
@@ -96,19 +96,19 @@ public class Damage_Sensor : Sensors
 
     public override void StartSensor()
 	{
-		m_col = false;
-        m_isChecking = true;
+		_col = false;
+        _isChecking = true;
     }
 	private void Start()
 	{
 		if (gameObject.layer == LayerMask.NameToLayer("Player"))
 		{
-			m_col = false;
-			m_isChecking = true;
+			_col = false;
+			_isChecking = true;
 		} 
 	}
 	// Getters
-	public bool IsChecking() => m_isChecking;
-    public bool HasCollisionOccurred() => m_col;
+	public bool IsChecking() => _isChecking;
+    public bool HasCollisionOccurred() => _col;
 	public DamageEmitter GetDamageEmitter() => _damageEmitter;
 }

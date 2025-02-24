@@ -6,11 +6,10 @@ public abstract class Movement_Actuator : Actuator
 {
 	[Tooltip("Is the movement accelerated?")]
 	[SerializeField]
-	protected bool m_isAccelerated = false;
-	[SerializeField]
-	[HideInInspector]
-	protected EasingFunction.Ease m_easingFunction;
-	protected float m_accelerationValue;
+	protected bool _isAccelerated = false;
+	[SerializeField,HideInInspector]
+	protected EasingFunction.Ease _easingFunction;
+	protected float _accelerationValue;
 
 	public abstract override void DestroyActuator();
 
@@ -21,23 +20,23 @@ public abstract class Movement_Actuator : Actuator
 	#region Setters and Getters
 	public void SetEasingFunction(EasingFunction.Ease value)
 	{
-		m_easingFunction = value;
+		_easingFunction = value;
 	}
 	public EasingFunction.Ease GetEasingFunctionValue()
 	{
-		return m_easingFunction;
+		return _easingFunction;
 	}
 	public bool IsMovementAccelerated()
 	{
-		return m_isAccelerated;
+		return _isAccelerated;
 	}
 	public void SetAccelerationValue(float value)
 	{
-		m_accelerationValue = value;
+		_accelerationValue = value;
 	}
 	public float GetAccelerationValue()
 	{
-		return m_accelerationValue;
+		return _accelerationValue;
 	}
 	#endregion
 }

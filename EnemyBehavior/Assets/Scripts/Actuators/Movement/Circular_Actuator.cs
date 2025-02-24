@@ -16,135 +16,135 @@ public class Circular_Actuator : Movement_Actuator
 {
 	// Velocidad angular en grados por segundo (se convertirá a radianes)
 	[SerializeField, HideInInspector]
-	private float m_angularSpeed;
+	private float _angularSpeed;
 
 	[Tooltip("Center of rotation (if not specified, uses the object's initial position)")]
 	[SerializeField]
-	private Transform m_rotationPointPosition;
+	private Transform _rotationPointPosition;
 
 	[Tooltip("Maximum allowed angle in degrees. Use 360 for a full circle, less for pendulum-like motion")]
 	[SerializeField, Range(0f, 360f)]
-	private float m_maxAngle = 360f;
+	private float _maxAngle = 360f;
 
 	[SerializeField, HideInInspector]
-	private float m_angularAcceleration = 0f;
+	private float _angularAcceleration = 0f;
 
-	private Rigidbody2D m_rigidbody;
+	private Rigidbody2D _rigidbody;
 	
-	private float m_currentAngularSpeed;
+	private float _currentAngularSpeed;
 	
-	private float m_currentAngle;
+	private float _currentAngle;
 
-	private bool m_reversing = false;
-	private float m_radius = 0;
+	private bool _reversing = false;
+	private float _radius = 0;
 	
-	private float m_initAngle;
-	private float m_initAngularSpeed;
-	private float m_goalAngularSpeed;
+	private float _initAngle;
+	private float _initAngularSpeed;
+	private float _goalAngularSpeed;
 
-	float m_time;
+	private float _time;
 	[SerializeField, HideInInspector]
-	float m_interpolationTime;
+	private float _interpolationTime;
 
-	private Vector3 m_startingPosition;
-	private EasingFunction.Function easingFunc;
+	private Vector3 _startingPosition;
+	private EasingFunction.Function _easingFunc;
 	
 	public override void StartActuator()
 	{
-		m_startingPosition = transform.position;
-		m_rigidbody = GetComponent<Rigidbody2D>();
+		_startingPosition = transform.position;
+		_rigidbody = GetComponent<Rigidbody2D>();
 		
-		m_rigidbody.gravityScale = 0f;
-		if (m_rotationPointPosition == null)
+		_rigidbody.gravityScale = 0f;
+		if (_rotationPointPosition == null)
 		{
 			Debug.Log("No rotation point assigned. Using object's initial position.");
-			m_rotationPointPosition = new GameObject(gameObject.name + " RotationPoint").transform;
-			m_rotationPointPosition.position = transform.position;
+			_rotationPointPosition = new GameObject(gameObject.name + " RotationPoint").transform;
+			_rotationPointPosition.position = transform.position;
 		}
 
 		
-		m_radius = Vector3.Distance(m_rotationPointPosition.position, transform.position);
+		_radius = Vector3.Distance(_rotationPointPosition.position, transform.position);
 
 		
-		Vector3 dir = transform.position - m_rotationPointPosition.position;
-		m_initAngle = Mathf.Atan2(dir.y, dir.x);
-		m_currentAngle = m_initAngle;
+		Vector3 dir = transform.position - _rotationPointPosition.position;
+		_initAngle = Mathf.Atan2(dir.y, dir.x);
+		_currentAngle = _initAngle;
 
 		
-		m_currentAngularSpeed = m_angularSpeed * Mathf.Deg2Rad;
-		m_initAngularSpeed = m_currentAngularSpeed;
-		m_time = 0;
+		_currentAngularSpeed = _angularSpeed * Mathf.Deg2Rad;
+		_initAngularSpeed = _currentAngularSpeed;
+		_time = 0;
 
 		
-		easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
+		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 	}
 
 	public override void UpdateActuator()
 	{
-		m_time += Time.deltaTime;
+		_time += Time.deltaTime;
 
 		
-		if (m_isAccelerated)
+		if (_isAccelerated)
 		{
-			float t = Mathf.Clamp01(m_time / m_interpolationTime);
-			m_currentAngularSpeed = easingFunc(m_initAngularSpeed, m_goalAngularSpeed, t);
+			float t = Mathf.Clamp01(_time / _interpolationTime);
+			_currentAngularSpeed = _easingFunc(_initAngularSpeed, _goalAngularSpeed, t);
 			if (t >= 1.0f)
 			{
-				m_currentAngularSpeed = m_goalAngularSpeed;
+				_currentAngularSpeed = _goalAngularSpeed;
 			}
 		}
 
 		
-		float maxAngleRad = m_maxAngle * Mathf.Deg2Rad;
+		float maxAngleRad = _maxAngle * Mathf.Deg2Rad;
 
-		if (m_maxAngle < 360f) // Modo pendular
+		if (_maxAngle < 360f) // Modo pendular
 		{
 			
-			float upperLimit = m_initAngle + (maxAngleRad / 2f);
-			float lowerLimit = m_initAngle - (maxAngleRad / 2f);
+			float upperLimit = _initAngle + (maxAngleRad / 2f);
+			float lowerLimit = _initAngle - (maxAngleRad / 2f);
 
-			if (!m_reversing)
+			if (!_reversing)
 			{
-				m_currentAngle += m_currentAngularSpeed * Time.deltaTime;
-				if (m_currentAngle > upperLimit)
+				_currentAngle += _currentAngularSpeed * Time.deltaTime;
+				if (_currentAngle > upperLimit)
 				{
-					m_currentAngle = upperLimit;
-					m_reversing = true;
+					_currentAngle = upperLimit;
+					_reversing = true;
 				}
 			}
 			else
 			{
-				m_currentAngle -= m_currentAngularSpeed * Time.deltaTime;
-				if (m_currentAngle < lowerLimit)
+				_currentAngle -= _currentAngularSpeed * Time.deltaTime;
+				if (_currentAngle < lowerLimit)
 				{
-					m_currentAngle = lowerLimit;
-					m_reversing = false;
+					_currentAngle = lowerLimit;
+					_reversing = false;
 				}
 			}
 		}
 		else // Movimiento circular completo
 		{
-			m_currentAngle += m_currentAngularSpeed * Time.deltaTime;
+			_currentAngle += _currentAngularSpeed * Time.deltaTime;
 			
-			m_currentAngle = Mathf.Repeat(m_currentAngle, 2 * Mathf.PI);
+			_currentAngle = Mathf.Repeat(_currentAngle, 2 * Mathf.PI);
 		}
 
 	
-		float tangentialSpeed = m_currentAngularSpeed * m_radius;
+		float tangentialSpeed = _currentAngularSpeed * _radius;
 		
-		if (m_maxAngle < 360f && m_reversing)
+		if (_maxAngle < 360f && _reversing)
 		{
 			tangentialSpeed *= -1;
 		}
 
 		
 		Vector2 tangentialVelocity = new Vector2(
-			-Mathf.Sin(m_currentAngle) * tangentialSpeed,
-			Mathf.Cos(m_currentAngle) * tangentialSpeed
+			-Mathf.Sin(_currentAngle) * tangentialSpeed,
+			Mathf.Cos(_currentAngle) * tangentialSpeed
 		);
 
 		
-		m_rigidbody.velocity = tangentialVelocity;
+		_rigidbody.velocity = tangentialVelocity;
 	}
 
 #if UNITY_EDITOR
@@ -152,55 +152,55 @@ public class Circular_Actuator : Movement_Actuator
 	{
 		if (this.isActiveAndEnabled)
 		{
-			if (m_maxAngle == 360f)
+			if (_maxAngle == 360f)
 			{
-				if (m_rotationPointPosition == null)
+				if (_rotationPointPosition == null)
 				{
-					Gizmos.DrawWireSphere(transform.position, m_radius);
+					Gizmos.DrawWireSphere(transform.position, _radius);
 				}
 				else
 				{
-					m_radius = Vector3.Distance(m_rotationPointPosition.position, transform.position);
-					Gizmos.DrawWireSphere(m_rotationPointPosition.position, m_radius);
+					_radius = Vector3.Distance(_rotationPointPosition.position, transform.position);
+					Gizmos.DrawWireSphere(_rotationPointPosition.position, _radius);
 				}
 			}
 			else
 			{
-				Vector3 direction = m_startingPosition - m_rotationPointPosition.position;
+				Vector3 direction = _startingPosition - _rotationPointPosition.position;
 				float initialAngleDegrees = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-				float halfAngleRange = m_maxAngle / 2f;
+				float halfAngleRange = _maxAngle / 2f;
 
 				Handles.color = Color.red;
-				Handles.DrawWireArc(m_rotationPointPosition.position, Vector3.forward,
+				Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
 					Quaternion.Euler(0, 0, initialAngleDegrees + halfAngleRange) * Vector3.right,
-					-halfAngleRange, m_radius);
+					-halfAngleRange, _radius);
 
 				Handles.color = Color.blue;
-				Handles.DrawWireArc(m_rotationPointPosition.position, Vector3.forward,
+				Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
 					Quaternion.Euler(0, 0, initialAngleDegrees) * Vector3.right,
-					-halfAngleRange, m_radius);
+					-halfAngleRange, _radius);
 			}
 		}
 	}
 #endif
 
-	public Transform GetRotationPoint() { return m_rotationPointPosition; }
-	public float GetRadius() { return m_radius; }
-	public void SetRadius(float newValue) { m_radius = newValue; }
-	public bool RotationPointAssigned() { return m_rotationPointPosition != null; }
+	public Transform GetRotationPoint() { return _rotationPointPosition; }
+	public float GetRadius() { return _radius; }
+	public void SetRadius(float newValue) { _radius = newValue; }
+	public bool RotationPointAssigned() { return _rotationPointPosition != null; }
 
 	public override void DestroyActuator() { }
 
 	#region Setters and getters
 	public void SetAngularSpeed(float newValue)
 	{
-		m_angularSpeed = newValue;
-		m_currentAngularSpeed = m_angularSpeed * Mathf.Deg2Rad;
+		_angularSpeed = newValue;
+		_currentAngularSpeed = _angularSpeed * Mathf.Deg2Rad;
 	}
-	public float GetAngularSpeed() { return m_angularSpeed; }
-	public void SetGoalAngularSpeed(float newValue) { m_goalAngularSpeed = newValue; }
-	public float GetGoalAngularSpeed() { return m_goalAngularSpeed; }
-	public void SetInterpolationTime(float newValue) { m_interpolationTime = newValue; }
-	public float GetInterpolationTime() { return m_interpolationTime; }
+	public float GetAngularSpeed() { return _angularSpeed; }
+	public void SetGoalAngularSpeed(float newValue) { _goalAngularSpeed = newValue; }
+	public float GetGoalAngularSpeed() { return _goalAngularSpeed; }
+	public void SetInterpolationTime(float newValue) { _interpolationTime = newValue; }
+	public float GetInterpolationTime() { return _interpolationTime; }
 	#endregion
 }

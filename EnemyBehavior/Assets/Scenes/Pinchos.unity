@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageType: 0
-  _instaKill: 0
+  _instaKill: 1
   _amountOfDamage: 10
   _damageCooldown: 1
   _numOfDamageApplication: 2
@@ -686,14 +686,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 0
-  m_speed: 0
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: 1
   _destroyAfterCollision: 0
+  _speed: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!114 &970876492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 970876491}
-  sensorList: []
   name: State
 --- !u!114 &970876493
 MonoBehaviour:
@@ -734,14 +733,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 0
-  m_speed: 0
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: -1
   _destroyAfterCollision: 0
+  _speed: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!114 &970876495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,7 +755,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 970876494}
-  sensorList: []
   name: State
 --- !u!114 &970876496
 MonoBehaviour:
@@ -770,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 970876495}
+  initialstate: {fileID: 0}
 --- !u!61 &970876497
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1000,13 +998,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266a7348fa3afe842baa7fa92000694f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
-  m_angularSpeed: 0
-  m_rotationPointPosition: {fileID: 1336072631}
-  m_maxAngle: 360
-  m_angularAcceleration: 0
-  m_interpolationTime: 0
+  _isAccelerated: 0
+  _easingFunction: 0
+  _angularSpeed: 0
+  _rotationPointPosition: {fileID: 0}
+  _maxAngle: 360
+  _angularAcceleration: 0
+  _interpolationTime: 0
 --- !u!114 &1490970073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,7 +1019,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1490970072}
-  sensorList: []
   name: Primer Estado
 --- !u!114 &1490970074
 MonoBehaviour:
@@ -1035,7 +1032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 1490970073}
+  initialstate: {fileID: 0}
 --- !u!114 &1490970075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,17 +1045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07e49891abbe09429fc4a1c418314c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialLife: 5
-  m_currentLife: 0
-  lifeText: {fileID: 898272248}
-  textname: 'Enemy:'
-  m_update: 0
-  m_amount: -1
-  _sensor: {fileID: 0}
-  _damageEmitter: {fileID: 0}
-  _actualDamageCooldown: -1
-  _damageCooldown: 0
-  _numOfDamage: 0
 --- !u!61 &1490970076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1507,6 +1493,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: lifeText
+      value: 
+      objectReference: {fileID: 84151155}
+    - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _lifeText
       value: 
       objectReference: {fileID: 84151155}
     - target: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}

@@ -29,7 +29,7 @@ public class DamageEmitter : MonoBehaviour
 	[SerializeField, HideInInspector]
 	private float _residualDamageAmount = 0;
 	#endregion
-	private bool m_endPersistentDamage;
+	private bool _endPersistentDamage;
 	#region Getters and setters
 	public void SetResidualDamageAmount(float newValue)
 	{
@@ -57,6 +57,6 @@ public class DamageEmitter : MonoBehaviour
 	{
 		_instaKill = newValue;
 	}
-	public bool EndPersistentDamage() => m_endPersistentDamage;
+	public bool EndPersistentDamage() => _endPersistentDamage;
 	#endregion
 }

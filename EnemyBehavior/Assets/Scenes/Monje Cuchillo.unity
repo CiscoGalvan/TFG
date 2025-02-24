@@ -173,14 +173,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 0
-  m_speed: 0
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: 1
   _destroyAfterCollision: 0
+  _speed: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!114 &284517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 284517623}
-  sensorList: []
   name: State
 --- !u!114 &284517625
 MonoBehaviour:
@@ -221,14 +220,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 0
-  m_speed: 0
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: -1
   _destroyAfterCollision: 0
+  _speed: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!114 &284517627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 284517626}
-  sensorList: []
   name: State
 --- !u!114 &284517628
 MonoBehaviour:
@@ -257,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 284517627}
+  initialState: {fileID: 0}
 --- !u!61 &284517629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -718,13 +716,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266a7348fa3afe842baa7fa92000694f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
-  m_angularSpeed: 0
-  m_rotationPointPosition: {fileID: 705025381}
-  m_maxAngle: 360
-  m_angularAcceleration: 0
-  m_interpolationTime: 0
+  _isAccelerated: 0
+  _easingFunction: 0
+  _angularSpeed: 0
+  _rotationPointPosition: {fileID: 0}
+  _maxAngle: 360
+  _angularAcceleration: 0
+  _interpolationTime: 0
 --- !u!114 &602385897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,7 +737,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 602385896}
-  sensorList: []
   name: Primer Estado
 --- !u!114 &602385898
 MonoBehaviour:
@@ -753,7 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 602385897}
+  initialState: {fileID: 0}
 --- !u!114 &602385899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 620872461}
+  initialState: {fileID: 620872461}
 --- !u!114 &620872461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,7 +1107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 620872464}
-  sensorList: []
   name: Primer Estado
 --- !u!114 &620872463
 MonoBehaviour:
@@ -1136,14 +1132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 0
-  m_speed: 0
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: -1
   _destroyAfterCollision: 0
+  _speed: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

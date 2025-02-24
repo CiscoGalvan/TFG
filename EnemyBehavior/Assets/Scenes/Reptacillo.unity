@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 1191659703}
+    - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _lifeText
+      value: 
+      objectReference: {fileID: 1191659703}
     - target: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_Name
       value: Player
@@ -588,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11797b5dceee92243935bea57c693ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialstate: {fileID: 620872461}
+  initialstate: {fileID: 620872461}
 --- !u!114 &620872461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,14 +620,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isAccelerated: 0
-  m_easingFunction: 0
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 1
   _destroyAfterCollision: 0
-  m_speed: 1.22
-  m_goalSpeed: 0
-  m_interpolationTime: 0
-  m_direction: -1
+  _speed: 5
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: -1
 --- !u!114 &620872465
 MonoBehaviour:
   m_ObjectHideFlags: 0

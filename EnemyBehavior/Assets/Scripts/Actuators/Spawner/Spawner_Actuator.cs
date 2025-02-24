@@ -7,64 +7,60 @@ public class Spawner_Actuator : Actuator
     
     [SerializeField]
     // [HideInInspector]
-    private bool infiniteEnemies = true;
+    private bool _infiniteEnemies = true;
     [SerializeField,HideInInspector]
-    private int numOfEnemiesToSpawn = 0;
+    private int _numOfEnemiesToSpawn = 0;
 
     [SerializeField]
-   // [HideInInspector]
-    private GameObject prefabToSpawn;
+    private GameObject _prefabToSpawn;
 
     [SerializeField]
-    // [HideInInspector]
-    private Transform spawnPoint;
+    private Transform _spawnPoint;
 
-    private Timer_Sensor timerSensor;
+    private Timer_Sensor _timerSensor;
 
-    private int numEnemiesAlreadySpawn;
+    private int _numEnemiesAlreadySpawn;
     // Update is called once per frame
     public override void DestroyActuator()
     {
-        if (timerSensor != null)
+        if (_timerSensor != null)
         {
-			timerSensor.onEventDetected -= SpawnEvent;
+			_timerSensor.onEventDetected -= SpawnEvent;
         }
 
     }
     // Start is called before the first frame update
     public override void StartActuator()
     {
-		timerSensor = this.gameObject.GetComponent<Timer_Sensor>();
-        if (timerSensor == null)
+		_timerSensor = this.gameObject.GetComponent<Timer_Sensor>();
+        if (_timerSensor == null)
         {
-            timerSensor = this.gameObject.AddComponent<Timer_Sensor>();
+            _timerSensor = this.gameObject.AddComponent<Timer_Sensor>();
         }
-        timerSensor.onEventDetected += SpawnEvent;
-        sensors.Add(timerSensor);
-        numEnemiesAlreadySpawn = 0;
+        _timerSensor.onEventDetected += SpawnEvent;
+        sensors.Add(_timerSensor);
+        _numEnemiesAlreadySpawn = 0;
     }
 
     void SpawnEvent(Sensors s)
     {
-        if (infiniteEnemies || numEnemiesAlreadySpawn < numOfEnemiesToSpawn)
+        if (_infiniteEnemies || _numEnemiesAlreadySpawn < _numOfEnemiesToSpawn)
         {
-			numEnemiesAlreadySpawn++;
-            GameObject newEnemy = Instantiate(prefabToSpawn, spawnPoint.position,spawnPoint.rotation);
+			_numEnemiesAlreadySpawn++;
+            GameObject newEnemy = Instantiate(_prefabToSpawn, _spawnPoint.position,_spawnPoint.rotation);
         }
     }
+	public override void UpdateActuator()
+	{
 
-    #region Setters and getters
-    public bool GetInfiniteEnemies() => infiniteEnemies;
+	}
+
+	#region Setters and getters
+	public bool GetInfiniteEnemies() => _infiniteEnemies;
 	public void SetNumberOfEnemiesToSpawn(int newValue)
     {
-        numOfEnemiesToSpawn = newValue;
+        _numOfEnemiesToSpawn = newValue;
 	}
-    public int GetNumberOfEnemiesToSpawn() => numOfEnemiesToSpawn;
-
-    public override void UpdateActuator()
-    {
-        throw new System.NotImplementedException();
-    }
-    #endregion
-
+    public int GetNumberOfEnemiesToSpawn() => _numOfEnemiesToSpawn;
+	#endregion
 }

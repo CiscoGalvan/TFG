@@ -5,33 +5,33 @@ using UnityEngine.UIElements;
 public abstract class Sensors : MonoBehaviour
 {
     // Evento Action
-    private Action<Sensors> onEventDetectedInternal;
+    private Action<Sensors> _onEventDetectedInternal;
 
     // Contador de suscriptores
-    private int subscriberCount = 0;
+    private int _subscriberCount = 0;
 
 	// Propiedad pública para obtener el número de suscriptores
-	public int SubscriberCount => subscriberCount;
+	public int SubscriberCount => _subscriberCount;
 
 	// Sobrescribir las propiedades add y remove del evento
 	public event Action<Sensors> onEventDetected
 	{
 		add
 		{	
-			onEventDetectedInternal += value;
-			subscriberCount++; // Incrementar el contador de suscriptores
+			_onEventDetectedInternal += value;
+			_subscriberCount++; // Incrementar el contador de suscriptores
 		}
 		remove
 		{
-			onEventDetectedInternal -= value;
-			subscriberCount--; // Decrementar el contador de suscriptores
+			_onEventDetectedInternal -= value;
+			_subscriberCount--; // Decrementar el contador de suscriptores
 		}
 	}
 
 	// Método para disparar el evento
 	public void EventDetected()
 	{
-		onEventDetectedInternal?.Invoke(this);
+		_onEventDetectedInternal?.Invoke(this);
 	}
 
 	public abstract void StartSensor();
