@@ -10,5 +10,5 @@ public abstract class Actuator: MonoBehaviour
 	public abstract void UpdateActuator();
     public abstract void StartActuator();
     public abstract void DestroyActuator();
-    public HashSet<Sensors> GetSenors() { return sensors; }
+    public HashSet<Sensors> GetSensors() { return sensors; }
 }

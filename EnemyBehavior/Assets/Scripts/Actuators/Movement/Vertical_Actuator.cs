@@ -9,30 +9,34 @@ using UnityEngine.UIElements;
 
 public class Vertical_Actuator : Movement_Actuator
 {
+    [SerializeField, HideInInspector]
+    private bool bounceAfterCollision = false;
+    [SerializeField, HideInInspector]
+    private bool destroyAfterCollision = false;
+
+    [SerializeField]
+	[HideInInspector]
+	private float speed;
+
 
 	[SerializeField]
 	[HideInInspector]
-	private float m_speed;
+	private float goalSpeed;
 
 
 	[SerializeField]
 	[HideInInspector]
-	private float m_goalSpeed;
-
-
-	[SerializeField]
-	[HideInInspector]
-	private float m_interpolationTime = 0;
+	private float interpolationTime = 0;
     Collision_Sensor collisionSensor;
 
-    private float m_initial_speed = 0;
+    private float initial_speed = 0;
     //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
 
     //private float m_acceleration = 0f;
 
     [Tooltip("Movement direction")]
     [SerializeField]
-    private Direction m_direction = Direction.Up;
+    private Direction direction = Direction.Up;
 
     private enum Direction
     {
@@ -40,25 +44,32 @@ public class Vertical_Actuator : Movement_Actuator
         Down = 1
     }
 
-    private float m_time;
-    Rigidbody2D m_rigidbody;
+    private float time;
+    Rigidbody2D rigidbody;
 
     private EasingFunction.Function easingFunc;
     public override void StartActuator()
     {
-        m_rigidbody = this.GetComponent<Rigidbody2D>();
+        rigidbody = this.GetComponent<Rigidbody2D>();
         easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
         collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
-        if (collisionSensor != null)
+        if (bounceAfterCollision || destroyAfterCollision)
         {
+            collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+            if (collisionSensor == null) //si no esta creado lo crea
+            {
+                collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+            }
             collisionSensor.onEventDetected += CollisionEvent;
+            sensors.Add(collisionSensor);
         }
-        m_time = 0;
+        
+        time = 0;
         if (m_isAccelerated)
         {
-            m_speed = m_rigidbody.velocity.x;
+            speed = rigidbody.velocity.x;
         }
-        m_initial_speed = m_speed;
+        initial_speed = speed;
 
     }
     public override void DestroyActuator()
@@ -71,28 +82,28 @@ public class Vertical_Actuator : Movement_Actuator
 
     public override void UpdateActuator()
     {
-		m_time += Time.deltaTime;
-		int dirValue = (int)m_direction;
+		time += Time.deltaTime;
+		int dirValue = (int)direction;
 		if (!m_isAccelerated)
 		{
 			//MRU
-			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x,m_speed * dirValue);
+			rigidbody.velocity = new Vector2(rigidbody.velocity.x,speed * dirValue);
 		}
 		else
 		{
 			//MRUA
-			float t = (m_time / m_interpolationTime);
-			float easedSpeed = easingFunc(m_initial_speed, m_goalSpeed, t);
-			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, easedSpeed * dirValue);
+			float t = (time / interpolationTime);
+			float easedSpeed = easingFunc(initial_speed, goalSpeed, t);
+			rigidbody.velocity = new Vector2(rigidbody.velocity.x, easedSpeed * dirValue);
 
 			if (t >= 1.0f)
 			{
-				m_speed = m_goalSpeed;
-				m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, m_goalSpeed * dirValue);
+				speed = goalSpeed;
+			    rigidbody.velocity = new Vector2( rigidbody.velocity.x, goalSpeed * dirValue);
 			}
 			else
 			{
-				m_speed = easedSpeed;
+				speed = easedSpeed;
 			}
 		}
 	}
@@ -111,7 +122,15 @@ public class Vertical_Actuator : Movement_Actuator
 
         if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
         {
-            m_direction = m_direction == Direction.Up ? Direction.Down : Direction.Up;
+           
+            if (bounceAfterCollision)
+            {
+                direction = direction == Direction.Up ? Direction.Down : Direction.Up;
+            }
+            else if (destroyAfterCollision)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
     }
@@ -122,47 +141,57 @@ public class Vertical_Actuator : Movement_Actuator
         Gizmos.color = Color.green;
         Vector3 position = transform.position;
 
-        Vector3 direction = new Vector3(0, (int)m_direction, 0);
+        Vector3 dir = new Vector3(0, (int)direction, 0);
 
         // Draw direction arrow
-        Gizmos.DrawLine(position, position + direction);
-        Vector3 arrowTip = position + direction;
-        Vector3 right = Quaternion.Euler(0, 0, 135) * direction * 0.25f;
-        Vector3 left = Quaternion.Euler(0, 0, -135) * direction * 0.25f;
+        Gizmos.DrawLine(position, position + dir);
+        Vector3 arrowTip = position + dir;
+        Vector3 right = Quaternion.Euler(0, 0, 135) * dir * 0.25f;
+        Vector3 left = Quaternion.Euler(0, 0, -135) * dir * 0.25f;
         Gizmos.DrawLine(arrowTip, arrowTip + right);
         Gizmos.DrawLine(arrowTip, arrowTip + left);
     }
 
 	public void SetSpeed(float newValue)
 	{
-		m_speed = newValue;
+		speed = newValue;
 	}
 	public float GetSpeed()
 	{
-		return m_speed;
+		return speed;
 	}
 	public void SetGoalSpeed(float newValue)
 	{
-		m_goalSpeed = newValue;
+		goalSpeed = newValue;
 	}
 	public float GetGoalSpeed()
 	{
-		return m_goalSpeed;
+		return goalSpeed;
 	}
 	public void SetInterpolationTime(float newValue)
 	{
-		m_interpolationTime = newValue;
+		interpolationTime = newValue;
 	}
     public void SetDirectionUP()
     {
-		m_direction = Direction.Up;
+		direction = Direction.Up;
     }
     public void SetDirectionDown()
     {
-        m_direction = Direction.Down;
+        direction = Direction.Down;
     }
     public float GetInterpolationTime()
-	{
-		return m_interpolationTime;
-	}
+    {
+        return interpolationTime;
+    }
+    public void SetBouncesAfterCollision(bool newValue)
+    {
+        bounceAfterCollision = newValue;
+    }
+    public bool GetBouncesAfterCollision() => bounceAfterCollision;
+    public void SetDestroyAfterCollision(bool newValue)
+    {
+        destroyAfterCollision = newValue;
+    }
+    public bool GetDestroyAfterCollision() => destroyAfterCollision;
 }

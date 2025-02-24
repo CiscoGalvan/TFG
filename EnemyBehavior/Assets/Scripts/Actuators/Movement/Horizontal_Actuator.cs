@@ -11,24 +11,24 @@ public class Horizontal_Actuator : Movement_Actuator
 
 	// ¿Qué pasa si el disenhador setea esto a true y en ejecución lo cambia a false?
 	[SerializeField, HideInInspector]
-	private bool _bounceAfterCollision = false;
+	private bool bounceAfterCollision = false;
     [SerializeField, HideInInspector]
-    private bool _destroyAfterCollision = false;
+    private bool destroyAfterCollision = false;
     [SerializeField]
 	[HideInInspector]
-    private float m_speed;
+    private float speed;
 
 	[SerializeField]
 	[HideInInspector]
-	private float m_goalSpeed;
+	private float _goalSpeed;
 
 	[SerializeField]
 	[HideInInspector]
-	private float m_interpolationTime = 0;
+	private float _interpolationTime = 0;
 
 	private Collision_Sensor collisionSensor;
 
-	private float m_initial_speed = 0;
+	private float _initial_speed = 0;
 
     //[Tooltip("Object acceleration in units per second squared. Set to 0 for uniform motion")]
     
@@ -36,7 +36,7 @@ public class Horizontal_Actuator : Movement_Actuator
 
     [Tooltip("Movement direction")]
     [SerializeField]
-    private Direction m_direction = Direction.Left;
+    private Direction _direction = Direction.Left;
 
 	private enum Direction
     {
@@ -44,16 +44,16 @@ public class Horizontal_Actuator : Movement_Actuator
         Right = 1
     }
 
-    private float m_time;
-    Rigidbody2D m_rigidbody;
+    private float _time;
+    Rigidbody2D _rigidbody;
     private EasingFunction.Function easingFunc;
 
 
 	public override void StartActuator()
     {
-        m_rigidbody = this.GetComponent<Rigidbody2D>();
+        _rigidbody = this.GetComponent<Rigidbody2D>();
 		easingFunc = EasingFunction.GetEasingFunction(m_easingFunction);
-		if (_bounceAfterCollision || _destroyAfterCollision)
+		if (bounceAfterCollision || destroyAfterCollision)
 		{
             collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
             if (collisionSensor == null) //si no esta creado lo crea
@@ -64,12 +64,12 @@ public class Horizontal_Actuator : Movement_Actuator
 			sensors.Add(collisionSensor);
         }
 		
-        m_time = 0;
+        _time = 0;
 		if (m_isAccelerated)
 		{
-			m_speed = m_rigidbody.velocity.x;
+			speed = _rigidbody.velocity.x;
 		}
-		m_initial_speed = m_speed;
+		_initial_speed = speed;
 		
 	}
     public override void DestroyActuator()
@@ -81,35 +81,35 @@ public class Horizontal_Actuator : Movement_Actuator
     }
 	public override void UpdateActuator()
 	{
-		m_time += Time.deltaTime;
-		int dirValue = (int)m_direction;
+		_time += Time.deltaTime;
+		int dirValue = (int)_direction;
 		if (!m_isAccelerated)
 		{
 			//MRU
-			m_rigidbody.velocity = new Vector2(m_speed * dirValue, m_rigidbody.velocity.y);
+			_rigidbody.velocity = new Vector2(speed * dirValue, _rigidbody.velocity.y);
 		}
 		else
 		{
 			//MRUA
-			float t = (m_time / m_interpolationTime);
-			float easedSpeed = easingFunc(m_initial_speed, m_goalSpeed, t);
-			m_rigidbody.velocity = new Vector2(easedSpeed * dirValue, m_rigidbody.velocity.y);
+			float t = (_time /_interpolationTime);
+			float easedSpeed = easingFunc(_initial_speed, _goalSpeed, t);
+			_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
 			
 			if (t >= 1.0f)
 			{
-				m_speed = m_goalSpeed;
-				m_rigidbody.velocity = new Vector2(m_goalSpeed * dirValue, m_rigidbody.velocity.y);
+				speed = _goalSpeed;
+				_rigidbody.velocity = new Vector2(_goalSpeed * dirValue, _rigidbody.velocity.y);
 			}
 			else
 			{
-				m_speed = easedSpeed;
+				speed = easedSpeed;
 			}
 		}
 	}
 
 	void CollisionEvent(Sensors s)
     {
-		Debug.Log("bounce: " + _bounceAfterCollision + "destroy:"+ _destroyAfterCollision);
+		Debug.Log("bounce: " + bounceAfterCollision + "destroy:"+ destroyAfterCollision);
 		
 			Collision2D col = collisionSensor.GetCollidedObject();
 
@@ -123,11 +123,11 @@ public class Horizontal_Actuator : Movement_Actuator
 
 			if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
 			{
-				if (_bounceAfterCollision)
+				if (bounceAfterCollision)
 				{
-                m_direction = m_direction == Direction.Left ? Direction.Right : Direction.Left;
+                _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
 				}
-				else if (_destroyAfterCollision)
+				else if (destroyAfterCollision)
 				{
 					Destroy(this.gameObject);
 				}
@@ -142,7 +142,7 @@ public class Horizontal_Actuator : Movement_Actuator
         Gizmos.color = Color.green;
         Vector3 position = transform.position;
 
-        Vector3 direction = new Vector3((int)m_direction, 0, 0);
+        Vector3 direction = new Vector3((int)_direction, 0, 0);
 
         // Draw direction arrow
         Gizmos.DrawLine(position, position + direction );
@@ -158,38 +158,38 @@ public class Horizontal_Actuator : Movement_Actuator
 	#region Setters and Getters 
     public void SetSpeed(float newValue)
     {
-        m_speed = newValue;
+        speed = newValue;
     }
     public float GetSpeed()
     {
-        return m_speed;
+        return speed;
     }
 	public void SetGoalSpeed(float newValue)
 	{
-		m_goalSpeed = newValue;
+		_goalSpeed = newValue;
 	}
 	public float GetGoalSpeed()
 	{
-		return m_goalSpeed;
+		return _goalSpeed;
 	}
 	public void SetInterpolationTime(float newValue)
 	{
-		m_interpolationTime = newValue;
+		_interpolationTime = newValue;
 	}
 	public float GetInterpolationTime()
 	{
-		return m_interpolationTime;
+		return _interpolationTime;
 	}
 
 	public void SetBouncesAfterCollision(bool newValue)
 	{
-		_bounceAfterCollision = newValue;
+		bounceAfterCollision = newValue;
 	}
-	public bool GetBouncesAfterCollision() => _bounceAfterCollision;
+	public bool GetBouncesAfterCollision() => bounceAfterCollision;
     public void SetDestroyAfterCollision(bool newValue)
     {
-        _destroyAfterCollision = newValue;
+        destroyAfterCollision = newValue;
     }
-    public bool GetDestroyAfterCollision() => _destroyAfterCollision;
+    public bool GetDestroyAfterCollision() => destroyAfterCollision;
     #endregion
 }

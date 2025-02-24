@@ -7,7 +7,7 @@ public class HorizontalComponentEditor : ActuatorEditor
 {
 
 	private static readonly GUIContent bouncingLabel = new GUIContent("Bounce Object", "Does the object bounce after collision?");
-    private static readonly GUIContent destroyLabel = new GUIContent("Destoy Object", "Does the object self-destruct after the collision?");
+    private static readonly GUIContent destroyLabel = new GUIContent("Destroy Object", "Does the object self-destruct after the collision?");
 
 
 	#region Accelerated movement

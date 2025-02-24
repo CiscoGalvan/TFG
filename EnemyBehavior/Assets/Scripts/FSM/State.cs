@@ -24,7 +24,7 @@ public class State : MonoBehaviour
             if (actuator)
             {
                 actuator.StartActuator();
-                sensorHashSet.UnionWith(actuator.GetSenors());
+                sensorHashSet.UnionWith(actuator.GetSensors());
             }
                
         }

@@ -7,57 +7,59 @@ public class Spawner_Actuator : Actuator
     
     [SerializeField]
     // [HideInInspector]
-    private bool _infiniteEnemies = true;
+    private bool infiniteEnemies = true;
     [SerializeField,HideInInspector]
-    private int m_numOfEnemiesToSpawn = 0;
+    private int numOfEnemiesToSpawn = 0;
 
     [SerializeField]
    // [HideInInspector]
-    private GameObject _prefabToSpawn;
+    private GameObject prefabToSpawn;
 
     [SerializeField]
     // [HideInInspector]
-    private Transform _spawnPoint;
+    private Transform spawnPoint;
 
-    private Timer_Sensor _timerSensor;
+    private Timer_Sensor timerSensor;
 
-    private int _numEnemiesAlreadySpawn;
+    private int numEnemiesAlreadySpawn;
     // Update is called once per frame
     public override void DestroyActuator()
     {
-        if (_timerSensor != null)
+        if (timerSensor != null)
         {
-			_timerSensor.onEventDetected -= SpawnEvent;
+			timerSensor.onEventDetected -= SpawnEvent;
         }
 
     }
     // Start is called before the first frame update
     public override void StartActuator()
     {
-		_timerSensor = this.gameObject.GetComponent<Timer_Sensor>();
-        if (_timerSensor != null)
+		timerSensor = this.gameObject.GetComponent<Timer_Sensor>();
+        if (timerSensor == null)
         {
-			_timerSensor.onEventDetected += SpawnEvent;
+            timerSensor = this.gameObject.AddComponent<Timer_Sensor>();
         }
-		_numEnemiesAlreadySpawn = 0;
+        timerSensor.onEventDetected += SpawnEvent;
+        sensors.Add(timerSensor);
+        numEnemiesAlreadySpawn = 0;
     }
 
     void SpawnEvent(Sensors s)
     {
-        if (_infiniteEnemies || _numEnemiesAlreadySpawn < m_numOfEnemiesToSpawn)
+        if (infiniteEnemies || numEnemiesAlreadySpawn < numOfEnemiesToSpawn)
         {
-			_numEnemiesAlreadySpawn++;
-            GameObject newEnemy = Instantiate(_prefabToSpawn, _spawnPoint.position, _spawnPoint.rotation);
+			numEnemiesAlreadySpawn++;
+            GameObject newEnemy = Instantiate(prefabToSpawn, spawnPoint.position,spawnPoint.rotation);
         }
     }
 
     #region Setters and getters
-    public bool GetInfiniteEnemies() => _infiniteEnemies;
+    public bool GetInfiniteEnemies() => infiniteEnemies;
 	public void SetNumberOfEnemiesToSpawn(int newValue)
     {
-        m_numOfEnemiesToSpawn = newValue;
+        numOfEnemiesToSpawn = newValue;
 	}
-    public int GetNumberOfEnemiesToSpawn() => m_numOfEnemiesToSpawn;
+    public int GetNumberOfEnemiesToSpawn() => numOfEnemiesToSpawn;
 
     public override void UpdateActuator()
     {
