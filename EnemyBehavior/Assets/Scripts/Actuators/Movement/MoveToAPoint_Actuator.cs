@@ -5,16 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode] 
 
+
 public class MoveToAPoint_Actuator : Movement_Actuator
 {
 
 
 	[Tooltip("Time until the object speed reaches the position it moves to")]
 	[SerializeField]
+
+	//ARRAY/VECTOR/LISTA, TIENEN QUE SER VARIOS ELEMENTOS
 	private float _timeUntilReachingPosition = 0f;
 
 	[Tooltip("The position the object moves towards")]
 	[SerializeField]
+	//ARRAY/VECTOR/LISTA, TIENEN QUE SER VARIOS ELEMENTOS
 	private Transform _objectivePosition;
 	private Rigidbody2D _rb;
 	private bool _moving;
@@ -38,7 +42,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	public override void UpdateActuator()
 	{
 		if (!_moving || _objectivePosition == null) return;
-
 		#region Movement by time
 		Vector2 targetPos = _objectivePosition.position;
 		_elapsedTime += Time.deltaTime;
@@ -58,8 +61,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 			_rb.velocity = Vector2.zero;
 		}
 		#endregion
-		#region Movement by velocities
-		#endregion
 	}
 	private void Start()
 	{
@@ -71,7 +72,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	public override void DestroyActuator()
 	{
-		Debug.Log(_t);
+		
 	}
 	#region Setters and Getters
 	#endregion
