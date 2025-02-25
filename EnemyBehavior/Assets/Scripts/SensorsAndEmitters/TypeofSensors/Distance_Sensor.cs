@@ -17,7 +17,7 @@ public class Distance_Sensor : Sensors
    
     [SerializeField]
     [HideInInspector]
-    private bool _checkXAxis = true; // If true, measures along the X-axis; otherwise, measures along the Y-axis
+    private bool _checkXAxis = false; // If true, measures along the X-axis; otherwise, measures along the Y-axis
 
     private float _maxDistance;
     private int _layerMask; //no collision mask
@@ -26,7 +26,7 @@ public class Distance_Sensor : Sensors
     {
         
         _useMagnitude = true;
-        _checkXAxis = true;
+        _checkXAxis = false;
         if (_target != null)
         {
             Vector3 outerPoint = _target.GetComponent<Collider2D>().bounds.max;
@@ -106,5 +106,13 @@ public class Distance_Sensor : Sensors
     public void SetCheckXAxis(bool b)
     {
          _checkXAxis = b;
+    }
+    public void SetDetectionDistance(float newValue)
+    {
+        _detectionDistance = newValue;
+    }
+    public void SetTarget(GameObject g)
+    {
+        _target = g;
     }
 }
