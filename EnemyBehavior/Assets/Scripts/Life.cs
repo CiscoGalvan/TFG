@@ -41,6 +41,7 @@ public class Life : MonoBehaviour
 		_sensor = GetComponent<Damage_Sensor>();
 		_sensor.onEventDetected += ReceiveDamageEmitter;
 		_actualDamageCooldown = 0f;
+		_numOfDamage = 0;
 		UpdateLifeText();
 	}
 
@@ -64,9 +65,11 @@ public class Life : MonoBehaviour
 					{
 						if (_numOfDamage > 0)
 						{
+							Debug.Log("NumOfDamage > 0");
 							_actualDamageCooldown += Time.deltaTime;
 							if (_actualDamageCooldown > _damageCooldown)
 							{
+								Debug.Log("DAÑO");
 								_numOfDamage--;
 								_actualDamageCooldown = 0;
 								DecreaseLife(_residualDamageAmount);
@@ -90,6 +93,7 @@ public class Life : MonoBehaviour
 
 	private void ReceiveDamageEmitter(Sensors damageSensor)
 	{
+		//El residual esta mal, ya que al separarse no hace el daño residual.
 		_damageEmitter = (damageSensor as Damage_Sensor).GetDamageEmitter();
 		if (_damageEmitter != null)
 		{
@@ -117,6 +121,9 @@ public class Life : MonoBehaviour
 							_update = true;
 							_residualDamageAmount = _damageEmitter.GetResidualDamageAmount();
 							_damageCooldown = _damageEmitter.GetDamageCooldown();
+
+							// El numero de aplicaciones se iguala o es +=
+							// Imagina que te envenenan y estas recibiendo danho residual y te vuelve a golpear el mismo enemigo, reinicias las veces que te hace daño, las sumas o al gusto del disenahor?
 							_numOfDamage = _damageEmitter.GetNumberOfResidualApplication();
 							DecreaseLife(_amount);
 							_actualDamageCooldown = 0;
@@ -129,8 +136,12 @@ public class Life : MonoBehaviour
 			else
 			{
 				// Reinciar variables.
-				_update = false;
-				_actualDamageCooldown = 0;
+				if(_numOfDamage <= 0)
+				{
+					_update = false;
+					_actualDamageCooldown = 0;
+				}
+				
 			}
 
 		}

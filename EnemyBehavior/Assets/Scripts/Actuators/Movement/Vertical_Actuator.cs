@@ -32,7 +32,7 @@ public class Vertical_Actuator : Movement_Actuator
     private float _initial_speed = 0;
    
     [Tooltip("Movement direction")]
-    [SerializeField]
+    [SerializeField,HideInInspector]
     private Direction _direction = Direction.Up;
 
     private enum Direction
@@ -64,7 +64,7 @@ public class Vertical_Actuator : Movement_Actuator
         _time = 0;
         if (_isAccelerated)
         {
-            _speed = GetComponent<Rigidbody>().velocity.x;
+            _speed = GetComponent<Rigidbody2D>().velocity.x;
         }
         _initial_speed = _speed;
 
@@ -95,7 +95,7 @@ public class Vertical_Actuator : Movement_Actuator
 
 			if (t >= 1.0f)
 			{
-				_speed = _goalSpeed;
+                _speed = _goalSpeed;
 			    _rigidbody.velocity = new Vector2( _rigidbody.velocity.x, _goalSpeed * dirValue);
 			}
 			else

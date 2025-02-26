@@ -33,7 +33,6 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 	public override void OnInspectorGUI()
 	{
 		serializedObject.Update();
-		MoveToAPoint_Actuator component = (MoveToAPoint_Actuator)target;
 		EditorGUILayout.PropertyField(usageWay, new GUIContent("Usage Way"));
 		if (usageWay.intValue == 1)
 		{

@@ -27,7 +27,7 @@ public class Horizontal_Actuator : Movement_Actuator
 	private float _initial_speed = 0;
 
     [Tooltip("Movement direction")]
-    [SerializeField]
+    [SerializeField,HideInInspector]
     private Direction _direction = Direction.Left;
 
 	private enum Direction

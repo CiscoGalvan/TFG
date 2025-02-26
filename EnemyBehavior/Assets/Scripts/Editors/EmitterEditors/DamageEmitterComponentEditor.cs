@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static MoveToAPoint_Actuator;
+
 [CustomEditor(typeof(DamageEmitter))]
-public class EmitterComponentEditor : Editor
+public class DamageEmitterComponentEditor : Editor
 {
 	private static readonly GUIContent amountOfDamage = new GUIContent("Damage Amount", "Amount of damage the enemy will deal the player");
 	private static readonly GUIContent damageCooldown = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again");
@@ -17,36 +19,42 @@ public class EmitterComponentEditor : Editor
 	#endregion
 
 
+	private bool _showDamageInfo = true;
+
+
 	public override void OnInspectorGUI()
 	{
-
-
 		DamageEmitter component = (DamageEmitter)target;
 		DrawDefaultInspector();
 
-		switch (component.GetDamageType())
+		EditorGUI.indentLevel++;
+		_showDamageInfo = EditorGUILayout.Foldout(_showDamageInfo, "Damage Info", true);
+		if (_showDamageInfo)
 		{
-			case DamageEmitter.DamageType.Instant:
-				component.SetInstaKill(EditorGUILayout.Toggle(instaKill, component.GetInstaKill()));
-				if (!component.GetInstaKill())
-				{
+			switch (component.GetDamageType())
+			{
+				case DamageEmitter.DamageType.Instant:
+					component.SetInstaKill(EditorGUILayout.Toggle(instaKill, component.GetInstaKill()));
+					if (!component.GetInstaKill())
+					{
+						component.SetAmountOfDamage(EditorGUILayout.FloatField(amountOfDamage, component.GetAmountOfDamage()));
+					}
+					break;
+				case DamageEmitter.DamageType.Persistent:
 					component.SetAmountOfDamage(EditorGUILayout.FloatField(amountOfDamage, component.GetAmountOfDamage()));
-				}
-				break;
-			case DamageEmitter.DamageType.Persistent:
-				component.SetAmountOfDamage(EditorGUILayout.FloatField(amountOfDamage, component.GetAmountOfDamage()));
-				component.SetDamageCooldown(EditorGUILayout.FloatField(damageCooldown, component.GetDamageCooldown()));
-				break;
-			case DamageEmitter.DamageType.Residual:
-				// Diferenciar entre daño por contacto y daño residual.
-				component.SetAmountOfDamage(EditorGUILayout.FloatField(instantDamageAmount, component.GetAmountOfDamage()));
-				component.SetResidualDamageAmount(EditorGUILayout.FloatField(residualDamageLabel, component.GetResidualDamageAmount()));
-				component.SetDamageCooldown(EditorGUILayout.FloatField(damageCooldown, component.GetDamageCooldown()));
-				component.SetNumberOfResidualApplication(EditorGUILayout.IntField(numberOfTicks, component.GetNumberOfResidualApplication()));
-				break;
+					component.SetDamageCooldown(EditorGUILayout.FloatField(damageCooldown, component.GetDamageCooldown()));
+					break;
+				case DamageEmitter.DamageType.Residual:
+					component.SetAmountOfDamage(EditorGUILayout.FloatField(instantDamageAmount, component.GetAmountOfDamage()));
+					component.SetResidualDamageAmount(EditorGUILayout.FloatField(residualDamageLabel, component.GetResidualDamageAmount()));
+					component.SetDamageCooldown(EditorGUILayout.FloatField(damageCooldown, component.GetDamageCooldown()));
+					component.SetNumberOfResidualApplication(EditorGUILayout.IntField(numberOfTicks, component.GetNumberOfResidualApplication()));
+					break;
+			}
+			EditorGUI.indentLevel--; 
 		}
 
-		// If GUI changed we must applicate those changes in editor
+		
 		if (GUI.changed)
 		{
 			EditorUtility.SetDirty(component);
