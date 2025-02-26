@@ -338,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 307179855}
+  _sensorTransitions: []
   name: Primer Estado
 --- !u!114 &307179850
 MonoBehaviour:
@@ -523,7 +524,7 @@ MonoBehaviour:
   _isACicle: 1
   _ciclicWaypointAdded: 0
   _timeBetweenRandomPoints: 0.4
-  _seekPlayer: 0
+  _seekPlayer: 1
   _detectionDistance: 3
   _playerTransform: {fileID: 768066766}
   _reachingPlayerData:

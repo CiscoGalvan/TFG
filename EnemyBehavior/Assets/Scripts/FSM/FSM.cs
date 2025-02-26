@@ -22,30 +22,28 @@ public class FSM : MonoBehaviour
     {
         //update of the state
         _currentstate.UpdateState();
-   //     foreach (var sensor in m_currentstate.SensorList)
-   //     {
-   //         if (sensor.WantTransition())
-   //         {
-			//	bool changeState = sensor.CanTransition();
-			//	if (changeState)
-			//	{
-   //                 m_currentstate.DestroyState();
-			//		m_currentstate = sensor.destinationState;
-			//		m_currentstate.StartState();
-			//		break;
-			//	}
-			//}
-   //     }
     }
-    private void LateUpdate()
+  
+    private void OnDestroy()
+    {
+        // Hace las acciones de salida del ultimo estado.
+        _currentstate.DestroyState();
+    }
+    void LateUpdate()
     {
         //cambio de estados una vez se ha actualizado todo
-
+        State newState = _currentstate.CheckTransitions();
+        if (newState != null && newState != _currentstate)
+        {
+            ChangeState(newState);
+        }
     }
 
-	private void OnDestroy()
-	{
-	    // Hace las acciones de salida del ultimo estado.
-	}
+    private void ChangeState(State newState)
+    {
+        _currentstate.DestroyState();
+        _currentstate = newState;
+        _currentstate.StartState();
+    }
 }
 

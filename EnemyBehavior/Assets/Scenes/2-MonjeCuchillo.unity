@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 284517623}
+  _sensorTransitions: []
   name: State
 --- !u!114 &284517625
 MonoBehaviour:
@@ -242,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 284517626}
+  _sensorTransitions: []
   name: State
 --- !u!114 &284517628
 MonoBehaviour:
@@ -445,6 +447,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2814373487444332747, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+      propertyPath: _lifeText
+      value: 
+      objectReference: {fileID: 1191659703}
     - target: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_Name
       value: Player
@@ -737,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 602385896}
+  _sensorTransitions: []
   name: Primer Estado
 --- !u!114 &602385898
 MonoBehaviour:
@@ -763,10 +770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07e49891abbe09429fc4a1c418314c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialLife: 5
-  lifeText: {fileID: 503575023}
-  textname: 'Enemy:'
-  m_eventsToReact: []
 --- !u!61 &602385900
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1107,6 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 620872464}
+  _sensorTransitions: []
   name: Primer Estado
 --- !u!114 &620872463
 MonoBehaviour:
@@ -1801,7 +1805,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &1705750598
 BoxCollider2D:
   m_ObjectHideFlags: 0

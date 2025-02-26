@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
-
+[System.Serializable]
+public class SensorStatePair
+{
+    public Sensors sensor;
+    public State targetState;
+}
 public class State : MonoBehaviour
 {
+    
     [SerializeField]
     public List<Actuator> actuatorList = new List<Actuator>();
+
     private int _numElementsActuator = -1;
 
-    
+    //hashset con todos los sensores
     public HashSet<Sensors> sensorHashSet = new HashSet<Sensors>();
+    //Lista con los sensores que pueden transicionara transicionar
+    [SerializeField]
+    private List<SensorStatePair> _sensorTransitions = new List<SensorStatePair>();
+
     private int _numElementsSensor = -1;
+    private State _nextState = null;
+
 
     [SerializeField]
     public string name = "State";
@@ -28,12 +42,22 @@ public class State : MonoBehaviour
             }
                
         }
+        // Iniciar todos los sensores de _sensorTransitions
+        foreach (var pair in _sensorTransitions)
+        {
+            if (pair.sensor != null)
+            {
+                pair.sensor.StartSensor();
+                sensorHashSet.Add(pair.sensor); // Opcional, si quieres que también estén en sensorHashSet
+            }
+        }
         foreach (var sensor in sensorHashSet)
         {
             // This conditional is used to check when the list size is not zero and there is no sensor in it
             if(sensor)
                 sensor.StartSensor();
         }
+        SubscribeToSensorEvents();
     }
 	public void DestroyState()
 	{
@@ -42,12 +66,8 @@ public class State : MonoBehaviour
 		{
             actuator.DestroyActuator();
 		}
-        //Pueden tener este mismo destroy?
-		//foreach (var sensor in SensorList)
-		//{
-		//	sensor.StartSensor();
-		//}
-	}
+        UnsubscribeFromSensorEvents();
+    }
 
 	// Update is called once per frame
 	public void UpdateState()
@@ -64,13 +84,52 @@ public class State : MonoBehaviour
     }
     public void AddSensor(Sensors sen)
     {
-        sensorHashSet.Add(sen); 
+        sensorHashSet.Add(sen);
+    }
+    public State CheckTransitions()
+    {
+        return _nextState;
+    }
+    private void SubscribeToSensorEvents()
+    {
+        foreach (var pair in _sensorTransitions)
+        {
+            if (pair.sensor != null && pair.targetState != null) //si los datos no son nulos
+            {
+                pair.sensor.onEventDetected += SensorTriggeredWrapper;
+            }
+        }
     }
 
+    private void UnsubscribeFromSensorEvents()
+    {
+        foreach (var pair in _sensorTransitions)
+        {
+            if (pair.sensor != null)
+            {
+                pair.sensor.onEventDetected -= SensorTriggeredWrapper;
+            }
+        }
+    }
+    private void SensorTriggeredWrapper(Sensors sensor)
+    {
+        foreach (var pair in _sensorTransitions)
+        {
+            if (pair.sensor == sensor)
+            {
+                SensorTriggered(pair);
+                break;
+            }
+        }
+    }
+    private void SensorTriggered(SensorStatePair pair)
+    {
+        _nextState = pair.targetState;
+    }
     #region Editor listas evitar duplicados
-       
 
-        private void OnValidate() //metodo que se llama cuandocambiamosalgo del editor
+
+    private void OnValidate() //metodo que se llama cuandocambiamosalgo del editor
         {
 
         // queremos comprobar que no existan duplicados en actuadores y sensores si la lista se ha modificado

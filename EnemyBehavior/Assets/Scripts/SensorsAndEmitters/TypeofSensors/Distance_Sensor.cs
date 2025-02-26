@@ -19,21 +19,14 @@ public class Distance_Sensor : Sensors
     [HideInInspector]
     private bool _checkXAxis = false; // If true, measures along the X-axis; otherwise, measures along the Y-axis
 
-    private float _maxDistance;
+    
     private int _layerMask; //no collision mask
     // Initializes the sensor settings
     public override void StartSensor()
     {
         
         _useMagnitude = true;
-        _checkXAxis = false;
-        if (_target != null)
-        {
-            Vector3 outerPoint = _target.GetComponent<Collider2D>().bounds.max;
-            Vector2 outerPoint2D = new Vector2 (outerPoint.x, outerPoint.y);
-            _maxDistance = Vector2.Distance(outerPoint2D, _target.transform.position);
-            _layerMask = ~LayerMask.GetMask("Enemies");
-        }
+   
     }
 
     // Determines if the sensor should transition based on distance
@@ -49,26 +42,14 @@ public class Distance_Sensor : Sensors
                 ? Mathf.Abs(transform.position.x - _target.transform.position.x) // Distance along X-axis
                 : Mathf.Abs(transform.position.y - _target.transform.position.y); // Distance along Y-axis
 
-       // Debug.Log(distance + "distance" + detectionDistance +" _"+  m_maxDistance + "other ");    
+     
         // Check if the distance is within the threshold
-        if (distance <= _detectionDistance + _maxDistance)
+        if (distance <= _detectionDistance )
         {
-            // Direction from current position to target
-            Vector2 direction = (_target.transform.position - transform.position).normalized;
-
-            // Perform the Raycast
-
-           
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, _detectionDistance, _layerMask);
-            Debug.DrawRay(transform.position, direction * _detectionDistance, Color.red, 0.1f);
             
-            // Check if the Raycast hits something before the target
-            if (hit.collider != null && hit.collider.gameObject == _target)
-            {
-                EventDetected(); // Trigger the event
-                return true;
-            }
-            else return false;
+            EventDetected(); // Trigger the event
+            return true;
+            
         }
         else return false;
     }

@@ -7,16 +7,13 @@ using UnityEditor;
 using UnityEngine;
 
 
-// Falta añadir la aceleracion.
 
-// Falla el movimiento al hacerlo completamente circular ya que el radio acaba variando y no se mantiene constante.
-// Al cambiar el ángulo máximo se dan cosas extrañas.
 [RequireComponent(typeof(Rigidbody2D))]
 public class Circular_Actuator : Movement_Actuator
 {
 	// Velocidad angular en grados por segundo (se convertirá a radianes)
 	[SerializeField, HideInInspector]
-	private float _angularSpeed;
+	private float _angularSpeed ;
 
 	[Tooltip("Center of rotation (if not specified, uses the object's initial position)")]
 	[SerializeField]
@@ -26,10 +23,11 @@ public class Circular_Actuator : Movement_Actuator
 	[SerializeField, Range(0f, 360f)]
 	private float _maxAngle = 360f;
 
-	[SerializeField, HideInInspector]
-	private float _angularAcceleration = 0f;
+    [SerializeField, HideInInspector]
+    private float _angularAcceleration = 0f; 
 
-	private Rigidbody2D _rigidbody;
+
+    private Rigidbody2D _rigidbody;
 	
 	private float _currentAngularSpeed;
 	
@@ -53,8 +51,8 @@ public class Circular_Actuator : Movement_Actuator
 	{
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();
-		
-		_rigidbody.gravityScale = 0f;
+
+        _rigidbody.gravityScale = 0f;
 		if (_rotationPointPosition == null)
 		{
 			Debug.Log("No rotation point assigned. Using object's initial position.");
@@ -66,8 +64,8 @@ public class Circular_Actuator : Movement_Actuator
 		_radius = Vector3.Distance(_rotationPointPosition.position, transform.position);
 
 		
-		Vector3 dir = transform.position - _rotationPointPosition.position;
-		_initAngle = Mathf.Atan2(dir.y, dir.x);
+		Vector2 dir = transform.position - _rotationPointPosition.position;
+		_initAngle = Mathf.Atan2(dir.y, dir.x) ;
 		_currentAngle = _initAngle;
 
 		
@@ -143,8 +141,13 @@ public class Circular_Actuator : Movement_Actuator
 			Mathf.Cos(_currentAngle) * tangentialSpeed
 		);
 
-		
 		_rigidbody.velocity = tangentialVelocity;
+		// Correccion de posicion para mantener el radio constante
+		
+            Vector3 expectedPosition = _rotationPointPosition.position + new Vector3( Mathf.Cos(_currentAngle) * _radius,Mathf.Sin(_currentAngle) * _radius,0f);
+            _rigidbody.MovePosition(expectedPosition);
+        
+		
 	}
 
 #if UNITY_EDITOR

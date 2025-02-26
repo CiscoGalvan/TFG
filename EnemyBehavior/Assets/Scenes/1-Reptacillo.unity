@@ -670,6 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextState: {fileID: 0}
   actuatorList:
   - {fileID: 620872464}
   name: Primer Estado

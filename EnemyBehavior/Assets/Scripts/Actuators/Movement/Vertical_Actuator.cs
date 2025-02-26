@@ -14,12 +14,12 @@ public class Vertical_Actuator : Movement_Actuator
     [SerializeField, HideInInspector]
     private bool _destroyAfterCollision = false;
 
-    [SerializeField]
-	[HideInInspector]
+    [SerializeField, HideInInspector]
 	private float _speed;
+    [SerializeField]
+    private bool _throw; //if this is activated the velocity will be update just ones
 
-
-	[SerializeField]
+    [SerializeField]
 	[HideInInspector]
 	private float _goalSpeed;
 
@@ -67,6 +67,7 @@ public class Vertical_Actuator : Movement_Actuator
             _speed = GetComponent<Rigidbody2D>().velocity.x;
         }
         _initial_speed = _speed;
+      //  UpdateActuator2();
 
     }
     public override void DestroyActuator()
@@ -79,23 +80,25 @@ public class Vertical_Actuator : Movement_Actuator
 
     public override void UpdateActuator()
     {
-		_time += Time.deltaTime;
-		int dirValue = (int)_direction;
-		if (!_isAccelerated)
-		{
-			//MRU
-			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x,_speed * dirValue);
-		}
-		else
-		{
-			//MRUA
-			float t = (_time / _interpolationTime);
-			float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
-			_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, easedSpeed * dirValue);
+       
+   
+        _time += Time.deltaTime;
+        int dirValue = (int)_direction;
+        if (!_isAccelerated)
+        {
+            //MRU
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _speed * dirValue);
+        }
+        else
+        {
+            //MRUA
+            float t = (_time / _interpolationTime);
+            float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, easedSpeed * dirValue);
 
 			if (t >= 1.0f)
 			{
-                _speed = _goalSpeed;
+				_speed = _goalSpeed;
 			    _rigidbody.velocity = new Vector2( _rigidbody.velocity.x, _goalSpeed * dirValue);
 			}
 			else
