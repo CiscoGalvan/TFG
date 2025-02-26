@@ -23,11 +23,11 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		isACicle = serializedObject.FindProperty("_isACicle");
 		usageWay = serializedObject.FindProperty("_usageWay");
 		randomArea = serializedObject.FindProperty("_randomArea");
-		timeBetweenRandomPoints = serializedObject.FindProperty("_timeBetweenRandomPoints");
 		seekPlayer = serializedObject.FindProperty("_seekPlayer");
 		detectionDistance = serializedObject.FindProperty("_detectionDistance");
 		playerTransform = serializedObject.FindProperty("_playerTransform");
 		reachingPlayerData = serializedObject.FindProperty("_reachingPlayerData");
+		timeBetweenRandomPoints = serializedObject.FindProperty("_timeBetweenRandomPoints");
 	}
 
 	public override void OnInspectorGUI()
@@ -38,6 +38,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		if (usageWay.intValue == 1)
 		{
 			EditorGUILayout.PropertyField(randomArea, new GUIContent("Random Area"));
+			timeBetweenRandomPoints.floatValue = Mathf.Max(0, timeBetweenRandomPoints.floatValue);
 			EditorGUILayout.PropertyField(timeBetweenRandomPoints, new GUIContent("Time between random points"));
 		}
 		else
@@ -60,7 +61,9 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 						var waypointTransform = waypoint.FindPropertyRelative("waypoint");
 						EditorGUILayout.PropertyField(waypointTransform);
 
+
 						var timeToReach = waypoint.FindPropertyRelative("timeToReach");
+						timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
 						EditorGUILayout.PropertyField(timeToReach);
 
 						var isAccelerated = waypoint.FindPropertyRelative("isAccelerated");
@@ -99,6 +102,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 				EditorGUILayout.PropertyField(playerTransform, new GUIContent("Player Transform"));
 
 				var timeToReach = reachingPlayerData.FindPropertyRelative("timeToReach");
+				timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
 				EditorGUILayout.PropertyField(timeToReach);
 
 				var isAccelerated = reachingPlayerData.FindPropertyRelative("isAccelerated");
@@ -106,6 +110,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 
 				if (isAccelerated.boolValue)
 				{
+					EditorGUI.indentLevel++;
 					var easingFunctionProp = reachingPlayerData.FindPropertyRelative("easingFunction");
 					EditorGUILayout.PropertyField(easingFunctionProp, new GUIContent("Easing Function"));
 					EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
@@ -116,6 +121,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 				EditorGUILayout.PropertyField(shouldStop);
 				if (shouldStop.boolValue)
 				{
+					EditorGUI.indentLevel++;
 					var stopDuration = reachingPlayerData.FindPropertyRelative("stopDuration");
 					stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(new GUIContent("Stop Duration"), stopDuration.floatValue));
 				}

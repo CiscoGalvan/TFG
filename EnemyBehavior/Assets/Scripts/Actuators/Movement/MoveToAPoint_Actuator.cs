@@ -9,6 +9,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 [ExecuteInEditMode]
 public class MoveToAPoint_Actuator : Movement_Actuator
 {
+	const float ALMOST_REACHED_ONE = 0.999f;
 	[System.Serializable]
 	public struct WaypointData
 	{
@@ -209,14 +210,22 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		_travelElapsedTime += Time.deltaTime;
 		_t = _travelElapsedTime / waypoint.timeToReach;
 
+	
+
 		if (waypoint.isAccelerated)
 		{
 			_t = EasingFunction.GetEasingFunction(waypoint.easingFunction)(0, 1, _t);
+			
+			// Al interpolar entre 0 y 1 hay veces que t nunca llega a 1 y se queda a nada, por lo que la condición para pasar al siguiente waypoint queda anulada y falla.
+			// Si se queda muy cerca, forzamos a que sea 1.
+			if (_t >= ALMOST_REACHED_ONE)
+				_t = 1f;
 		}
 
 		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, targetPos, _t);
 		_rb.MovePosition(newPosition);
 
+		
 		if (_t >= 1f && !waypoint.shouldStop)
 		{
 			AdvanceToNextWaypoint(targetPos);
@@ -226,8 +235,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	{
 		if (_playerTransform == null)
 			return;
-
-		// Usamos los datos de _reachingPlayerData para configurar el movimiento hacia el jugador.
 		float travelTime = _reachingPlayerData.timeToReach;
 		_travelElapsedTime += Time.deltaTime;
 		_t = _travelElapsedTime / travelTime;
@@ -235,13 +242,16 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		if (_reachingPlayerData.isAccelerated)
 		{
 			_t = EasingFunction.GetEasingFunction(_reachingPlayerData.easingFunction)(0, 1, _t);
+			// Al interpolar entre 0 y 1 hay veces que t nunca llega a 1 y se queda a nada, por lo que la condición para pasar al siguiente waypoint queda anulada y falla.
+			// Si se queda muy cerca, forzamos a que sea 1.
+			if (_t >= ALMOST_REACHED_ONE)
+				_t = 1f;
 		}
 
-		// Siempre interpolamos desde la posición de inicio actual hacia la posición actual del jugador.
+		
 		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, _playerTransform.position, _t);
 		_rb.MovePosition(newPosition);
 
-		// Cuando se complete la interpolación, reiniciamos los valores para la siguiente etapa
 		if (_t >= 1f)
 		{
 			_startInterpolationPosition = _rb.position;
@@ -251,6 +261,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	private void AdvanceToNextWaypoint(Vector2 reachedPos)
 	{
+		
 		_travelElapsedTime = 0f;
 		_stopElapsedTime = 0f;
 		_t = 0f;

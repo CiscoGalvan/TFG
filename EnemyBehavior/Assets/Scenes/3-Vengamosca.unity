@@ -367,7 +367,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -512,17 +512,17 @@ MonoBehaviour:
     isAccelerated: 1
     shouldStop: 0
     stopDuration: 0
-    easingFunction: 20
+    easingFunction: 29
   - waypoint: {fileID: 2095510031}
     timeToReach: 1
-    isAccelerated: 1
+    isAccelerated: 0
     shouldStop: 0
     stopDuration: 0
-    easingFunction: 28
+    easingFunction: 0
   _randomArea: {fileID: 533422646}
   _isACicle: 1
   _ciclicWaypointAdded: 0
-  _timeBetweenRandomPoints: 1
+  _timeBetweenRandomPoints: 0.4
   _seekPlayer: 1
   _detectionDistance: 3
   _playerTransform: {fileID: 768066766}
@@ -532,7 +532,7 @@ MonoBehaviour:
     isAccelerated: 0
     shouldStop: 0
     stopDuration: 0
-    easingFunction: 26
+    easingFunction: 30
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +809,7 @@ GameObject:
   m_Layer: 0
   m_Name: PathWay
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1208,7 +1208,7 @@ GameObject:
   m_Layer: 0
   m_Name: PathWay2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
