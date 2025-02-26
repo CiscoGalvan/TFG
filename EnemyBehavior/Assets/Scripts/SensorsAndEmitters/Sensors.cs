@@ -36,6 +36,5 @@ public abstract class Sensors : MonoBehaviour
 
 	public abstract void StartSensor();
 
-	public abstract bool CanTransition();
 
 }

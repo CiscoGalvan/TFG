@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4793919446405510322}
   - component: {fileID: 916467186555705770}
   - component: {fileID: 2284073555286176473}
-  - component: {fileID: 7435139541866563041}
+  - component: {fileID: 6112096039114555898}
   m_Layer: 0
   m_Name: Piedra
   m_TagString: Untagged
@@ -178,10 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextState: {fileID: 0}
   actuatorList:
   - {fileID: 916467186555705770}
-  - {fileID: 7435139541866563041}
+  - {fileID: 6112096039114555898}
+  _sensorTransitions: []
   name: State
 --- !u!114 &916467186555705770
 MonoBehaviour:
@@ -195,13 +195,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAccelerated: 1
+  _isAccelerated: 0
   _easingFunction: 21
   _bounceAfterCollision: 0
   _destroyAfterCollision: 1
-  _speed: 0
+  _speed: 14
   _goalSpeed: 15
   _interpolationTime: 1
+  _throw: 1
   _direction: -1
 --- !u!114 &2284073555286176473
 MonoBehaviour:
@@ -221,7 +222,7 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
---- !u!114 &7435139541866563041
+--- !u!114 &6112096039114555898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,14 +231,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6312299861578909251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
+  m_Script: {fileID: 11500000, guid: e0bdd30f95e5152479a19033f11d6077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAccelerated: 1
-  _easingFunction: 21
+  _isAccelerated: 0
+  _easingFunction: 0
   _bounceAfterCollision: 0
   _destroyAfterCollision: 0
-  _speed: 0
+  _speed: 14
+  _throw: 1
   _goalSpeed: 0
   _interpolationTime: 0
-  _direction: -1
+  _direction: 1

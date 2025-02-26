@@ -295,10 +295,10 @@ GameObject:
   - component: {fileID: 467376207}
   - component: {fileID: 467376206}
   - component: {fileID: 467376205}
-  - component: {fileID: 467376204}
+  - component: {fileID: 467376215}
   - component: {fileID: 467376213}
-  - component: {fileID: 467376212}
-  - component: {fileID: 467376211}
+  - component: {fileID: 467376214}
+  - component: {fileID: 467376216}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -306,19 +306,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &467376204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467376202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detectionTime: 2
 --- !u!114 &467376205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,10 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actuatorList:
-  - {fileID: 467376212}
+  actuatorList: []
   _sensorTransitions:
-  - sensor: {fileID: 467376204}
+  - sensor: {fileID: 467376215}
     targetState: {fileID: 467376213}
   name: Primer Estado
 --- !u!114 &467376206
@@ -483,54 +469,13 @@ Transform:
   m_GameObject: {fileID: 467376202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.71, y: -0.69, z: 0}
+  m_LocalPosition: {x: 5.19, y: -4.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1015356596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &467376211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467376202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0bdd30f95e5152479a19033f11d6077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAccelerated: 0
-  _easingFunction: 0
-  _bounceAfterCollision: 0
-  _destroyAfterCollision: 0
-  _speed: 10
-  _throw: 0
-  _goalSpeed: 0
-  _interpolationTime: 0
-  _direction: 1
---- !u!114 &467376212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467376202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAccelerated: 0
-  _easingFunction: 0
-  _bounceAfterCollision: 0
-  _destroyAfterCollision: 0
-  _speed: 2
-  _goalSpeed: 0
-  _interpolationTime: 0
-  _direction: -1
 --- !u!114 &467376213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,9 +489,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 467376211}
+  - {fileID: 467376214}
   _sensorTransitions: []
   name: State
+--- !u!114 &467376214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467376202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3db287016e5a146906aea374dd5ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _infiniteEnemies: 1
+  _numOfEnemiesToSpawn: 0
+  _prefabToSpawn: {fileID: 6312299861578909251, guid: 25eade96c457482468ad86409d76b463, type: 3}
+  _spawnPoint: {fileID: 1015356596}
+--- !u!114 &467376215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467376202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 2140087170}
+  _detectionDistance: 7.18
+  _useMagnitude: 1
+  _checkXAxis: 0
+--- !u!114 &467376216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467376202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionTime: 2.55
 --- !u!1 &524568657
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +707,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1694,6 +1684,11 @@ PrefabInstance:
 --- !u!4 &2140087169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4312339885726134922, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+  m_PrefabInstance: {fileID: 2140087168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2140087170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
   m_PrefabInstance: {fileID: 2140087168}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

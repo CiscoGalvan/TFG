@@ -67,6 +67,7 @@ public class Vertical_Actuator : Movement_Actuator
             _speed = GetComponent<Rigidbody2D>().velocity.x;
         }
         _initial_speed = _speed;
+        if (_throw) ApllyForce();
       //  UpdateActuator2();
 
     }
@@ -81,7 +82,11 @@ public class Vertical_Actuator : Movement_Actuator
     public override void UpdateActuator()
     {
        
-   
+        if(!_throw) ApllyForce();
+
+    }
+    private void ApllyForce()
+    {
         _time += Time.deltaTime;
         int dirValue = (int)_direction;
         if (!_isAccelerated)
@@ -96,17 +101,17 @@ public class Vertical_Actuator : Movement_Actuator
             float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, easedSpeed * dirValue);
 
-			if (t >= 1.0f)
-			{
-				_speed = _goalSpeed;
-			    _rigidbody.velocity = new Vector2( _rigidbody.velocity.x, _goalSpeed * dirValue);
-			}
-			else
-			{
-				_speed = easedSpeed;
-			}
-		}
-	}
+            if (t >= 1.0f)
+            {
+                _speed = _goalSpeed;
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _goalSpeed * dirValue);
+            }
+            else
+            {
+                _speed = easedSpeed;
+            }
+        }
+    }
     void CollisionEvent(Sensors s)
     {
 

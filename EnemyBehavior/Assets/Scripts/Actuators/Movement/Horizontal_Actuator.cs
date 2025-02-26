@@ -23,8 +23,11 @@ public class Horizontal_Actuator : Movement_Actuator
 	private float _interpolationTime = 0;
 
 	private Collision_Sensor _collisionSensor;
+    [SerializeField]
+    private bool _throw; //if this is activated the velocity will be update just ones
 
-	private float _initial_speed = 0;
+
+    private float _initial_speed = 0;
 
     [Tooltip("Movement direction")]
     [SerializeField,HideInInspector]
@@ -62,8 +65,9 @@ public class Horizontal_Actuator : Movement_Actuator
 			_speed = _rigidbody.velocity.x;
 		}
 		_initial_speed = _speed;
-		
-	}
+        if (_throw) ApllyForce();
+
+    }
     public override void DestroyActuator()
     {
         if (_collisionSensor != null)
@@ -73,6 +77,11 @@ public class Horizontal_Actuator : Movement_Actuator
     }
 	public override void UpdateActuator()
 	{
+        if (!_throw) ApllyForce();
+       
+	}
+	private void ApllyForce()
+	{ 
 		_time += Time.deltaTime;
 		int dirValue = (int)_direction;
 		if (!_isAccelerated)
@@ -98,8 +107,7 @@ public class Horizontal_Actuator : Movement_Actuator
 			}
 		}
 	}
-
-	void CollisionEvent(Sensors s)
+        void CollisionEvent(Sensors s)
     {
 		Debug.Log("bounce: " + _bounceAfterCollision + "destroy:"+ _destroyAfterCollision);
 		

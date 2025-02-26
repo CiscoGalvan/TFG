@@ -413,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
       propertyPath: m_LocalPosition.z
@@ -460,6 +460,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+--- !u!1 &353920733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+  m_PrefabInstance: {fileID: 353920732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &503575021
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,8 +940,9 @@ GameObject:
   - component: {fileID: 620872449}
   - component: {fileID: 620872457}
   - component: {fileID: 620872461}
-  - component: {fileID: 620872463}
   - component: {fileID: 620872464}
+  - component: {fileID: 620872463}
+  - component: {fileID: 620872462}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1004,7 +1010,7 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 9.14
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1077,7 +1083,7 @@ Transform:
   m_GameObject: {fileID: 620872448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09, y: -4.05, z: 0}
+  m_LocalPosition: {x: 3.93, y: -4.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1108,23 +1114,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actuatorList:
-  - {fileID: 620872464}
-  _sensorTransitions: []
+  actuatorList: []
+  _sensorTransitions:
+  - sensor: {fileID: 620872464}
+    targetState: {fileID: 620872463}
   name: Primer Estado
---- !u!114 &620872463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &620872464
+--- !u!114 &620872462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1140,10 +1135,42 @@ MonoBehaviour:
   _easingFunction: 0
   _bounceAfterCollision: 0
   _destroyAfterCollision: 0
-  _speed: 0
+  _speed: 1
   _goalSpeed: 0
   _interpolationTime: 0
   _direction: -1
+--- !u!114 &620872463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actuatorList:
+  - {fileID: 620872462}
+  _sensorTransitions: []
+  name: State
+--- !u!114 &620872464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 353920733}
+  _detectionDistance: 4.36
+  _useMagnitude: 1
+  _checkXAxis: 1
 --- !u!1 &705025380
 GameObject:
   m_ObjectHideFlags: 0

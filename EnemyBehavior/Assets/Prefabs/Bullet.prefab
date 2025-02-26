@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 916467186555705770}
+  _sensorTransitions: []
   name: State
 --- !u!114 &916467186555705770
 MonoBehaviour:
@@ -199,6 +200,7 @@ MonoBehaviour:
   _speed: 0
   _goalSpeed: 15
   _interpolationTime: 1
+  _throw: 0
   _direction: -1
 --- !u!114 &2284073555286176473
 MonoBehaviour:

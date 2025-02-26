@@ -60,7 +60,8 @@ public class HorizontalComponentEditor : ActuatorEditor
 				component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
 			}
 		}
-		EditorGUI.indentLevel--;
+        serializedObject.ApplyModifiedProperties();
+        EditorGUI.indentLevel--;
 		// If GUI changed we must applicate those changes in editor
 		if (GUI.changed)
 		{

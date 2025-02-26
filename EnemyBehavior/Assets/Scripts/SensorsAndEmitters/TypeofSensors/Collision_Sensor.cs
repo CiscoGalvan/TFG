@@ -36,14 +36,6 @@ public class Collision_Sensor : Sensors
         _col = false;
     }
 
-    // Determines if the sensor whants to change the state
-    public override bool CanTransition()
-    {
-        if (_col) _isChecking = false; // Deactivates checking after a collision is detected
-        return _col;
-    }
-
-   
 
     // Returns the last collided object
     public Collision2D GetCollidedObject() { return _collisionObject; }

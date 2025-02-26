@@ -69,8 +69,8 @@ public class Damage_Sensor : Sensors
 	}
 
 	#endregion
-	public override bool CanTransition()
-    {
+	//public override bool CanTransition()
+    //{
   //      //la transicion depende del tipo de daño, 
   //          //intantaneo al inicio
   //          //persistente cuando salga
@@ -91,8 +91,8 @@ public class Damage_Sensor : Sensors
   //          //???
   //          return true;
   //      }
-       return false; 
-    }
+    //   return false; 
+   // }
 
     public override void StartSensor()
 	{

@@ -19,39 +19,40 @@ public class Distance_Sensor : Sensors
     [HideInInspector]
     private bool _checkXAxis = false; // If true, measures along the X-axis; otherwise, measures along the Y-axis
 
-    
-    private int _layerMask; //no collision mask
+    // Indicates whether the timer is active
+    private bool _startDistance;
     // Initializes the sensor settings
     public override void StartSensor()
     {
         
         _useMagnitude = true;
-   
+        _startDistance = true;
+
     }
 
     // Determines if the sensor should transition based on distance
-    public override bool CanTransition()
+    private void Update()
     {
         // If there is no target, return false
-        if (_target == null) return false;
-
-        // Calculate distance based on the selected method
-        float distance = _useMagnitude
-            ? Vector2.Distance(transform.position, _target.transform.position) // Full magnitude distance
-            : _checkXAxis
-                ? Mathf.Abs(transform.position.x - _target.transform.position.x) // Distance along X-axis
-                : Mathf.Abs(transform.position.y - _target.transform.position.y); // Distance along Y-axis
+        if (_target != null && _startDistance)
+        {
+            // Calculate distance based on the selected method
+            float distance = _useMagnitude
+                ? Vector2.Distance(transform.position, _target.transform.position) // Full magnitude distance
+                : _checkXAxis
+                    ? Mathf.Abs(transform.position.x - _target.transform.position.x) // Distance along X-axis
+                    : Mathf.Abs(transform.position.y - _target.transform.position.y); // Distance along Y-axis
 
      
-        // Check if the distance is within the threshold
-        if (distance <= _detectionDistance )
-        {
+            // Check if the distance is within the threshold
+            if (distance <= _detectionDistance )
+            {
             
-            EventDetected(); // Trigger the event
-            return true;
-            
+                EventDetected(); // Trigger the event
+                 
+            }
         }
-        else return false;
+       
     }
     // Draws the detection range in the scene view
     private void OnDrawGizmos()

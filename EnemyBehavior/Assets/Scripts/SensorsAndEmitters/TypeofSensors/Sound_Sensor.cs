@@ -10,8 +10,5 @@ public class Sound : Sensors
       
     }
 
-    public override bool CanTransition()
-    {
-         return false;
-    }
+    
 }

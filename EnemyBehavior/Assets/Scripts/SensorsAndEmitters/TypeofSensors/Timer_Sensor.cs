@@ -38,12 +38,6 @@ public class Timer_Sensor : Sensors
         _startTimer = true;
     }
 
-    // Determines if the sensor whants to change the state
-    public override bool CanTransition()
-    {
-        return _timer >= _detectionTime;
-    }
-
     // Displays the remaining time in the scene view (editor only)
     private void OnDrawGizmos()
     {
