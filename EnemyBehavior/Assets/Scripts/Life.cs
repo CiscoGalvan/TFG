@@ -5,18 +5,25 @@ using TMPro;
 [RequireComponent(typeof(Damage_Sensor))]
 public class Life : MonoBehaviour
 {
-	
-	[SerializeField]
-	private float _initialLife = 5;
 
-	private float _currentLife;
-	[SerializeField]
-	private TextMeshProUGUI _lifeText;
-	[SerializeField]
-	private string _textname;
+    [Header("Life Settings")]
+    [Tooltip("Initial life value of the object.")]
+    [SerializeField]
+    private float _initialLife = 5; // Initial life value
+
+    private float _currentLife;
+
+    [Header("UI Settings")]
+    [Tooltip("UI text component to display life value.")]
+    [SerializeField]
+    private TextMeshProUGUI _lifeText; // UI text to display life value
+
+    [Tooltip("Prefix text for the life display.")]
+    [SerializeField]
+    private string _textname; // Prefix for life text display
 
 
-	private bool _update = false;
+    private bool _update = false;
 	private float _amount = -1;
 
 	private float _residualDamageAmount = 0;
@@ -39,6 +46,10 @@ public class Life : MonoBehaviour
 	{
 		_currentLife = _initialLife;
 		_sensor = GetComponent<Damage_Sensor>();
+		if (_sensor == null)
+		{
+			_sensor = new Damage_Sensor();
+		}
 		_sensor.onEventDetected += ReceiveDamageEmitter;
 		_actualDamageCooldown = 0f;
 		_numOfDamage = 0;

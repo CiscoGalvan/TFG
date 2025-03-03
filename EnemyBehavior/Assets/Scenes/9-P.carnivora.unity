@@ -814,9 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList: []
-  _sensorTransitions:
-  - sensor: {fileID: 0}
-    targetState: {fileID: 0}
+  _sensorTransitions: []
   name: Primer Estado
 --- !u!114 &1975109566
 MonoBehaviour:
