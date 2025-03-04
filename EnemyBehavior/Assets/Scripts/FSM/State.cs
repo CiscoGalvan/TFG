@@ -66,6 +66,7 @@ public class State : MonoBehaviour
 		{
             actuator.DestroyActuator();
 		}
+        _nextState = null;
         UnsubscribeFromSensorEvents();
     }
 

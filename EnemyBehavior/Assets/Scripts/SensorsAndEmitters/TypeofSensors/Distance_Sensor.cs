@@ -21,13 +21,17 @@ public class Distance_Sensor : Sensors
 
     // Indicates whether the timer is active
     private bool _startDistance;
+
+    [SerializeField]
+    [Tooltip("if this is active the message is send on Distance enter otherway it is send when its far")]
+    private bool _onDistanceEnter= true; // Target object whose distance is measured
+    //private bool _isNear;
     // Initializes the sensor settings
     public override void StartSensor()
     {
         
         _useMagnitude = true;
         _startDistance = true;
-
     }
 
     // Determines if the sensor should transition based on distance
@@ -45,11 +49,16 @@ public class Distance_Sensor : Sensors
 
      
             // Check if the distance is within the threshold
-            if (distance <= _detectionDistance )
+            if (distance <= _detectionDistance && _onDistanceEnter)
             {
-            
+                
                 EventDetected(); // Trigger the event
                  
+            }
+            else if (!_onDistanceEnter)
+            {
+                
+                EventDetected(); // Trigger the event
             }
         }
        
@@ -97,4 +106,5 @@ public class Distance_Sensor : Sensors
     {
         _target = g;
     }
+    
 }
