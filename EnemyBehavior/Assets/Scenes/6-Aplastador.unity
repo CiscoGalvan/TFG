@@ -471,8 +471,8 @@ GameObject:
   - component: {fileID: 405269251}
   - component: {fileID: 405269249}
   - component: {fileID: 405269250}
-  - component: {fileID: 405269257}
   - component: {fileID: 405269258}
+  - component: {fileID: 405269259}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 0}
+  - {fileID: 405269259}
   _sensorTransitions: []
   name: Primer Estado
 --- !u!114 &405269251
@@ -660,26 +660,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &405269257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405269247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0e9c5eab63b3049bac432d66096533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAccelerated: 1
-  _easingFunction: 13
-  _bounceAfterCollision: 1
-  _destroyAfterCollision: 0
-  _speed: 10
-  _goalSpeed: 10
-  _interpolationTime: 4
-  _direction: -1
 --- !u!114 &405269258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +678,26 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+--- !u!114 &405269259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405269247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bdd30f95e5152479a19033f11d6077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAccelerated: 0
+  _easingFunction: 0
+  _speed: 5
+  _throw: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _direction: 1
+  _onCollisionReaction: 1
 --- !u!1 &579760015
 GameObject:
   m_ObjectHideFlags: 0

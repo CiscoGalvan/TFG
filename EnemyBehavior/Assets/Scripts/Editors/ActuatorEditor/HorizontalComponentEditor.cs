@@ -6,8 +6,11 @@ using UnityEngine;
 public class HorizontalComponentEditor : ActuatorEditor
 {
 
-	private static readonly GUIContent bouncingLabel = new GUIContent("Bounce Object", "Does the object bounce after collision?");
-    private static readonly GUIContent destroyLabel = new GUIContent("Destroy Object", "Does the object self-destruct after the collision?");
+	private static readonly GUIContent _onCollisionReactionLabel = new GUIContent("Reaction after collision", "What will the object do after collision?\n" +
+		"None: The object will not react to the collision\n" +
+		"Bounce: The object will bounce and to the opposite direction\n" +
+		"Destroy: The object will be destroyed after the contact");
+	private static readonly GUIContent _directionLabel = new GUIContent("Direction", "Direction of the horizontal movement");
 	private bool _showMovementInfo = true;
 
 	#region Accelerated movement
@@ -19,35 +22,39 @@ public class HorizontalComponentEditor : ActuatorEditor
 	private static readonly GUIContent constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
 	#endregion
 
-	private SerializedProperty directionProperty;
+	private SerializedProperty _directionProperty;
+	private SerializedProperty _onCollisionReaction;
 
 	private void OnEnable()
 	{
-		directionProperty = serializedObject.FindProperty("_direction");
+		_directionProperty = serializedObject.FindProperty("_direction");
+		_onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
 	}
 	public override void OnInspectorGUI()
 	{
 
 		Horizontal_Actuator component = (Horizontal_Actuator)target;
 		DrawDefaultInspector();
-        // Variables auxiliares para evitar selección simultánea
-        bool bounces = component.GetBouncesAfterCollision();
-        bool destroys = component.GetDestroyAfterCollision();
 
-        bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
-        if (bounces) destroys = false; // Si se selecciona rebotar, desactiva destruir
+		#region Old OnCollisionReaction
+		//bool bounces = component.GetBouncesAfterCollision();
+		//bool destroys = component.GetDestroyAfterCollision();
 
-        destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
-        if (destroys) bounces = false; // Si se selecciona destruir, desactiva rebotar
+		//bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
+		//if (bounces) destroys = false; 
 
-        component.SetBouncesAfterCollision(bounces);
-        component.SetDestroyAfterCollision(destroys);
+		//destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
+		//if (destroys) bounces = false; 
 
+		//component.SetBouncesAfterCollision(bounces);
+		//component.SetDestroyAfterCollision(destroys);
+# endregion
+		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
 		if (_showMovementInfo)
 		{
-			EditorGUILayout.PropertyField(directionProperty, new GUIContent("Direction"));
+			EditorGUILayout.PropertyField(_directionProperty, _directionLabel);
 			if (component.IsMovementAccelerated())
 			{
 				component.SetGoalSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed()))));

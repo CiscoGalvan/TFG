@@ -21,10 +21,11 @@ public class VerticalComponentEditor : ActuatorEditor
 	#endregion
 
 	private SerializedProperty directionProperty;
-
+	private SerializedProperty _onCollisionReaction;
 	private void OnEnable()
 	{
 		directionProperty = serializedObject.FindProperty("_direction");
+		_onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
 	}
 
 	public override void OnInspectorGUI()
@@ -32,18 +33,21 @@ public class VerticalComponentEditor : ActuatorEditor
 
         Vertical_Actuator component = (Vertical_Actuator)target;
 		DrawDefaultInspector();
-        // Variables auxiliares para evitar selección simultánea
-        bool bounces = component.GetBouncesAfterCollision();
-        bool destroys = component.GetDestroyAfterCollision();
+		#region Old OnCollisionReaction
+		// Variables auxiliares para evitar selección simultánea
+		//bool bounces = component.GetBouncesAfterCollision();
+		//      bool destroys = component.GetDestroyAfterCollision();
 
-        bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
-        if (bounces) destroys = false; // Si se selecciona rebotar, desactiva destruir
+		//      bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
+		//      if (bounces) destroys = false; // Si se selecciona rebotar, desactiva destruir
 
-        destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
-        if (destroys) bounces = false; // Si se selecciona destruir, desactiva rebotar
+		//      destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
+		//      if (destroys) bounces = false; // Si se selecciona destruir, desactiva rebotar
 
-        component.SetBouncesAfterCollision(bounces);
-        component.SetDestroyAfterCollision(destroys);
+		//      component.SetBouncesAfterCollision(bounces);
+		//      component.SetDestroyAfterCollision(destroys);
+		#endregion
+		EditorGUILayout.PropertyField(_onCollisionReaction, new GUIContent("Collision Reaction"));
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
 		if (_showMovementInfo)

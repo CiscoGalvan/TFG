@@ -9,10 +9,21 @@ using UnityEngine.UIElements;
 
 public class Vertical_Actuator : Movement_Actuator
 {
-    [SerializeField, HideInInspector]
-    private bool _bounceAfterCollision = false;
-    [SerializeField, HideInInspector]
-    private bool _destroyAfterCollision = false;
+	private enum Direction
+	{
+		Down = -1,
+		Up = 1
+	}
+	public enum OnCollisionReaction
+	{
+		None = 0,
+		Bounce = 1,
+		Destroy = 2
+	}
+	//[SerializeField, HideInInspector]
+ //   private bool _bounceAfterCollision = false;
+ //   [SerializeField, HideInInspector]
+ //   private bool _destroyAfterCollision = false;
 
     [SerializeField, HideInInspector]
 	private float _speed;
@@ -35,33 +46,32 @@ public class Vertical_Actuator : Movement_Actuator
     [SerializeField,HideInInspector]
     private Direction _direction = Direction.Up;
 
-    private enum Direction
-    {
-        Up = -1,
-        Down = 1
-    }
+    
 
     private float _time;
     private Rigidbody2D _rigidbody;
 
     private EasingFunction.Function _easingFunc;
-    public override void StartActuator()
+
+	[SerializeField, HideInInspector]
+	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
+	public override void StartActuator()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
         _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
-        if (_bounceAfterCollision || _destroyAfterCollision)
-        {
-            _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
-            if (_collisionSensor == null) //si no esta creado lo crea
-            {
-                _collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
-            }
-            _collisionSensor.onEventDetected += CollisionEvent;
-            sensors.Add(_collisionSensor);
-        }
-        
-        _time = 0;
+		if (_onCollisionReaction == OnCollisionReaction.Bounce || _onCollisionReaction == OnCollisionReaction.Destroy)
+		{
+			_collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+			if (_collisionSensor == null) //si no esta creado lo crea
+			{
+				_collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+			}
+			_collisionSensor.onEventDetected += CollisionEvent;
+			sensors.Add(_collisionSensor);
+		}
+
+		_time = 0;
         if (_isAccelerated)
         {
             _speed = GetComponent<Rigidbody2D>().velocity.x;
@@ -127,13 +137,13 @@ public class Vertical_Actuator : Movement_Actuator
 
         if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
         {
-           
-            if (_bounceAfterCollision)
-            {
+
+			if (_onCollisionReaction == OnCollisionReaction.Bounce)
+			{
                 _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
             }
-            else if (_destroyAfterCollision)
-            {
+			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
+			{
                 Destroy(this.gameObject);
             }
         }
@@ -177,26 +187,8 @@ public class Vertical_Actuator : Movement_Actuator
 	{
 		_interpolationTime = newValue;
 	}
-    public void SetDirectionUP()
-    {
-		_direction = Direction.Up;
-    }
-    public void SetDirectionDown()
-    {
-        _direction = Direction.Down;
-    }
     public float GetInterpolationTime()
     {
         return _interpolationTime;
     }
-    public void SetBouncesAfterCollision(bool newValue)
-    {
-        _bounceAfterCollision = newValue;
-    }
-    public bool GetBouncesAfterCollision() => _bounceAfterCollision;
-    public void SetDestroyAfterCollision(bool newValue)
-    {
-        _destroyAfterCollision = newValue;
-    }
-    public bool GetDestroyAfterCollision() => _destroyAfterCollision;
 }

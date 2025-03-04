@@ -15,8 +15,12 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 	private SerializedProperty detectionDistance;
 	private SerializedProperty reachingPlayerData;
 
+	private bool _showWaypointsData= true;
 
-	//Los GUIContent deben ir aqui y con su correspondiente descripcion
+
+	private static readonly GUIContent _usageWayLabel = new GUIContent("Usage Way", "How will the waypoints be set?\n" +
+		"");
+
 	private void OnEnable()
 	{
 		waypointsData = serializedObject.FindProperty("_waypointsData");
@@ -43,12 +47,12 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		else
 		{
 			EditorGUILayout.PropertyField(isACicle);
-			EditorGUILayout.PropertyField(waypointsData, new GUIContent("Waypoints Data"), false);
-			if (waypointsData.isExpanded)
+			_showWaypointsData = EditorGUILayout.Foldout(_showWaypointsData, "Waypoint Data", true);
+			if (_showWaypointsData)
 			{
 				EditorGUI.indentLevel++;
 				waypointsData.arraySize = EditorGUILayout.IntField("Size", waypointsData.arraySize);
-
+				EditorGUI.indentLevel++;
 				for (int i = 0; i < waypointsData.arraySize; i++)
 				{
 					var waypoint = waypointsData.GetArrayElementAtIndex(i);

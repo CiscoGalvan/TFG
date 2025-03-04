@@ -11,7 +11,5 @@ public class FSMEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        VisualElement root = new VisualElement();
-       
     }
 }

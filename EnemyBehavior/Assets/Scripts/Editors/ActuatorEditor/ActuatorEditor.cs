@@ -10,7 +10,7 @@ public class ActuatorEditor : Editor
 	protected const int EASING_GRAPH_HEIGHT = 250;
 	protected const int EASING_GRAPH_NUMBER_OF_POINTS = 20;
 
-	protected static readonly GUIContent easingFunctionLabel = new GUIContent("Easing Function", "Funcion de easing");
+	protected static readonly GUIContent easingFunctionLabel = new GUIContent("Easing Function", "Easing function that will describe the progress of the velocity");
 	protected AnimationCurve easingCurve = new AnimationCurve();
 	protected void DrawEasingCurve(EasingFunction.Ease easing)
 	{

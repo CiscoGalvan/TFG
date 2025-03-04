@@ -8,12 +8,31 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Horizontal_Actuator : Movement_Actuator
 {
+	//private static readonly GUIContent bouncingLabel = new GUIContent("Bounce Object", "Does the object bounce after collision?");
+	//private static readonly GUIContent destroyLabel = new GUIContent("Destroy Object", "Does the object self-destruct after the collision?");
 
+	private enum Direction
+	{
+		Left = -1,
+		Right = 1
+	}
+	public enum OnCollisionReaction
+	{
+		None = 0,
+		Bounce = 1,
+		Destroy = 2
+	}
+	//private enum MovementType
+	//{
+	//	Force = 0,
+	//	Lineal = 1,
+	//	Accelerated = 2
+	//}
 	// ¿Qué pasa si el disenhador setea esto a true y en ejecución lo cambia a false?
-	[SerializeField, HideInInspector]
-	private bool _bounceAfterCollision = false;
-    [SerializeField, HideInInspector]
-    private bool _destroyAfterCollision = false;
+	//[SerializeField, HideInInspector]
+	//private bool _bounceAfterCollision = false;
+    //[SerializeField, HideInInspector]
+    //private bool _destroyAfterCollision = false;
     [SerializeField,HideInInspector]
     private float _speed;
 	[SerializeField,HideInInspector]
@@ -33,13 +52,13 @@ public class Horizontal_Actuator : Movement_Actuator
     [SerializeField,HideInInspector]
     private Direction _direction = Direction.Left;
 
-	private enum Direction
-    {
-        Left = -1,
-        Right = 1
-    }
 
-    private float _time;
+	[SerializeField, HideInInspector]
+	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
+
+
+
+	private float _time;
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
 
@@ -48,7 +67,7 @@ public class Horizontal_Actuator : Movement_Actuator
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
-		if (_bounceAfterCollision || _destroyAfterCollision)
+		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
 		{
             _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
             if (_collisionSensor == null) //si no esta creado lo crea
@@ -65,7 +84,7 @@ public class Horizontal_Actuator : Movement_Actuator
 			_speed = _rigidbody.velocity.x;
 		}
 		_initial_speed = _speed;
-        if (_throw) ApllyForce();
+        if (_throw) ApplyForce();
 
     }
     public override void DestroyActuator()
@@ -77,10 +96,9 @@ public class Horizontal_Actuator : Movement_Actuator
     }
 	public override void UpdateActuator()
 	{
-        if (!_throw) ApllyForce();
-       
+        if (!_throw) ApplyForce();
 	}
-	private void ApllyForce()
+	private void ApplyForce()
 	{ 
 		_time += Time.deltaTime;
 		int dirValue = (int)_direction;
@@ -107,10 +125,8 @@ public class Horizontal_Actuator : Movement_Actuator
 			}
 		}
 	}
-        void CollisionEvent(Sensors s)
+	void CollisionEvent(Sensors s)
     {
-		Debug.Log("bounce: " + _bounceAfterCollision + "destroy:"+ _destroyAfterCollision);
-		
 		Collision2D col = _collisionSensor.GetCollidedObject();
 
 		if (col == null) return;
@@ -123,11 +139,11 @@ public class Horizontal_Actuator : Movement_Actuator
 
 		if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
 		{
-			if (_bounceAfterCollision)
+			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
-            _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
+				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
 			}
-			else if (_destroyAfterCollision)
+			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
 				Destroy(this.gameObject);
 			}
@@ -180,16 +196,5 @@ public class Horizontal_Actuator : Movement_Actuator
 	{
 		return _interpolationTime;
 	}
-
-	public void SetBouncesAfterCollision(bool newValue)
-	{
-		_bounceAfterCollision = newValue;
-	}
-	public bool GetBouncesAfterCollision() => _bounceAfterCollision;
-    public void SetDestroyAfterCollision(bool newValue)
-    {
-        _destroyAfterCollision = newValue;
-    }
-    public bool GetDestroyAfterCollision() => _destroyAfterCollision;
     #endregion
 }

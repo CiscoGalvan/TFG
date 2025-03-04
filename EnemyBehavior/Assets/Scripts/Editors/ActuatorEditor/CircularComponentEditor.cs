@@ -32,11 +32,7 @@ public class CircularComponentEditor : ActuatorEditor
 		{
 			component.SetAngularSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetAngularSpeed()))));
 		}
-		//if (component.GetRotationPoint() == null || !component.RotationPointAssigned())
-		//{
-		//	component.SetRadius(EditorGUILayout.Slider("Radio", component.GetRadius(), 0, float.MaxValue));
-		//}
-
+		
 		// If GUI changed we must applicate those changes in editor
 		if (GUI.changed)
 		{
