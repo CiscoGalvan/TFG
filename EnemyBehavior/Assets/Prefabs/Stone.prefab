@@ -197,13 +197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 21
-  _bounceAfterCollision: 0
-  _destroyAfterCollision: 1
   _speed: 14
   _goalSpeed: 15
   _interpolationTime: 1
   _throw: 1
   _direction: -1
+  _onCollisionReaction: 2
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,10 +235,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
-  _bounceAfterCollision: 0
-  _destroyAfterCollision: 0
   _speed: 14
   _throw: 1
   _goalSpeed: 0
   _interpolationTime: 0
   _direction: 1
+  _onCollisionReaction: 0

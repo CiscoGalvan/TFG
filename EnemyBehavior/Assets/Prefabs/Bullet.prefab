@@ -195,13 +195,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 1
   _easingFunction: 0
-  _bounceAfterCollision: 0
-  _destroyAfterCollision: 1
   _speed: 0
   _goalSpeed: 15
   _interpolationTime: 1
   _throw: 0
   _direction: -1
+  _onCollisionReaction: 2
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0

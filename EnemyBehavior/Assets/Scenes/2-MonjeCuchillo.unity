@@ -628,7 +628,7 @@ MonoBehaviour:
   _interpolationTime: 0
   _throw: 0
   _direction: -1
-  _onCollisionReaction: 0
+  _onCollisionReaction: 1
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
