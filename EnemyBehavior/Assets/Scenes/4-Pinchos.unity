@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.115845, y: -8.796265}
+  m_AnchoredPosition: {x: 336, y: 393}
   m_SizeDelta: {x: 1032.9602, y: 165.7856}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &30135251
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The enemy walks horizontally until it bounces and changes direction. '
+  m_text: It is still. It only hurts by contact
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 167.94458, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -291,7 +291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -751.1311, y: 428.26184}
+  m_AnchoredPosition: {x: -685, y: 446}
   m_SizeDelta: {x: 355.7378, y: 83.4764}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84151155
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 97328913}
   - component: {fileID: 97328912}
   - component: {fileID: 97328916}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -756.5863, y: 348.3048}
+  m_AnchoredPosition: {x: -690.4552, y: 366.04297}
   m_SizeDelta: {x: 344.8273, y: 101.3904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1392078853 stripped

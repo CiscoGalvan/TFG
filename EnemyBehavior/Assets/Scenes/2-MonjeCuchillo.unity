@@ -223,7 +223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -756.5863, y: 348.3048}
+  m_AnchoredPosition: {x: -712.4552, y: 354.04297}
   m_SizeDelta: {x: 344.8273, y: 101.3904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503575023
@@ -623,13 +623,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
-  _bounceAfterCollision: 0
-  _destroyAfterCollision: 0
   _speed: 4.23
   _goalSpeed: 0
   _interpolationTime: 0
   _throw: 0
   _direction: -1
+  _onCollisionReaction: 0
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +793,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &917179317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -942,7 +941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -751.1311, y: 428.26184}
+  m_AnchoredPosition: {x: -707, y: 434}
   m_SizeDelta: {x: 355.7378, y: 83.4764}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1191659703
@@ -1076,8 +1075,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.115845, y: -8.796265}
-  m_SizeDelta: {x: 1032.9602, y: 165.7856}
+  m_AnchoredPosition: {x: 293, y: 396.84}
+  m_SizeDelta: {x: 1210.8413, y: 146.3298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1475118695
 MonoBehaviour:
@@ -1099,7 +1098,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The enemy walks horizontally until it bounces and changes direction. '
+  m_text: The enemy walks horizontally (left or right) as long as it is inside a
+    zone, otherwise it is still.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -2.779541, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1288,7 +1288,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &1478895730
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1708,7 +1708,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &1782011209
 BoxCollider2D:
   m_ObjectHideFlags: 0
