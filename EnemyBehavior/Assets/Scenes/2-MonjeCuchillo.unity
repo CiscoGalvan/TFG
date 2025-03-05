@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 620872463}
   - component: {fileID: 620872462}
   - component: {fileID: 620872465}
+  - component: {fileID: 620872466}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -628,7 +629,7 @@ MonoBehaviour:
   _interpolationTime: 0
   _throw: 0
   _direction: -1
-  _onCollisionReaction: 1
+  _onCollisionReaction: 0
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +682,24 @@ MonoBehaviour:
   _useMagnitude: 1
   _checkXAxis: 0
   _onDistanceEnter: 0
+--- !u!114 &620872466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016eafcff9d8bd2458a5b8d0af2b2576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageType: 0
+  _instaKill: 0
+  _amountOfDamage: 1
+  _damageCooldown: 1
+  _numOfDamageApplication: 2
+  _residualDamageAmount: 0
 --- !u!1 &917179313
 GameObject:
   m_ObjectHideFlags: 0

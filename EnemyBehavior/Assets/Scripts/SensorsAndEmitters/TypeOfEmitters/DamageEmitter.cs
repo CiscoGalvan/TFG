@@ -12,7 +12,7 @@ public class DamageEmitter : MonoBehaviour
         Persistent, // Damage is applied over time
         Residual    // Damage is applied in multiple instances after the initial hit
     }
-    [SerializeField]
+    [SerializeField,HideInInspector]
     private DamageType _damageType; // Stores the selected type of damage
 
     [SerializeField, HideInInspector]

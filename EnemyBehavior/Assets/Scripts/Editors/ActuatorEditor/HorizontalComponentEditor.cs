@@ -6,10 +6,10 @@ using UnityEngine;
 public class HorizontalComponentEditor : ActuatorEditor
 {
 
-	private static readonly GUIContent _onCollisionReactionLabel = new GUIContent("Reaction after collision", "What will the object do after collision?\n" +
-		"None: The object will not react to the collision\n" +
-		"Bounce: The object will bounce and to the opposite direction\n" +
-		"Destroy: The object will be destroyed after the contact");
+	private static readonly GUIContent _onCollisionReactionLabel = new GUIContent("Reaction After Collision", "What will the object do after collision?\n" +
+		"None: The object will not react to the collision.\n" +
+		"Bounce: The object will bounce to the opposite direction.\n" +
+		"Destroy: The object will be destroyed after the contact.");
 	private static readonly GUIContent _directionLabel = new GUIContent("Direction", "Direction of the horizontal movement");
 	private bool _showMovementInfo = true;
 
@@ -36,22 +36,11 @@ public class HorizontalComponentEditor : ActuatorEditor
 		Horizontal_Actuator component = (Horizontal_Actuator)target;
 		DrawDefaultInspector();
 
-		#region Old OnCollisionReaction
-		//bool bounces = component.GetBouncesAfterCollision();
-		//bool destroys = component.GetDestroyAfterCollision();
 
-		//bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
-		//if (bounces) destroys = false; 
-
-		//destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
-		//if (destroys) bounces = false; 
-
-		//component.SetBouncesAfterCollision(bounces);
-		//component.SetDestroyAfterCollision(destroys);
-# endregion
 		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
+		EditorGUI.indentLevel++;
 		if (_showMovementInfo)
 		{
 			EditorGUILayout.PropertyField(_directionProperty, _directionLabel);

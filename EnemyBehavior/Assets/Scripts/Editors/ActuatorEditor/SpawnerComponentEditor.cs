@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 [CustomEditor(typeof(Spawner_Actuator))]
 public class SpawnerComponentEditor : Editor
 {
-	private static readonly GUIContent numEnemiesLabel = new GUIContent("Amount of enemies", "Amount of enemies the spawner will spawn");
+	private static readonly GUIContent numEnemiesLabel = new GUIContent("Amount Of Enemies", "Amount of enemies the spawner will spawn");
 	public override void OnInspectorGUI()
 	{
 

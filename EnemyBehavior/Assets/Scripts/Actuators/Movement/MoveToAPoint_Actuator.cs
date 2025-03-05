@@ -231,34 +231,48 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 			AdvanceToNextWaypoint(targetPos);
 		}
 	}
+	// This method need some review
 	private void PursuePlayer()
 	{
 		if (_playerTransform == null)
 			return;
-		float travelTime = _reachingPlayerData.timeToReach;
+
 		_travelElapsedTime += Time.deltaTime;
-		_t = _travelElapsedTime / travelTime;
+		_t = _travelElapsedTime / _reachingPlayerData.timeToReach;
 
 		if (_reachingPlayerData.isAccelerated)
 		{
 			_t = EasingFunction.GetEasingFunction(_reachingPlayerData.easingFunction)(0, 1, _t);
-			// Al interpolar entre 0 y 1 hay veces que t nunca llega a 1 y se queda a nada, por lo que la condición para pasar al siguiente waypoint queda anulada y falla.
-			// Si se queda muy cerca, forzamos a que sea 1.
 			if (_t >= ALMOST_REACHED_ONE)
 				_t = 1f;
 		}
 
 		
+		if (_t >= 1f && _reachingPlayerData.shouldStop)
+		{
+			_stopElapsedTime += Time.deltaTime;
+			if (_stopElapsedTime < _reachingPlayerData.stopDuration)
+				return; 
+
+			
+			_stopElapsedTime = 0f;
+			_travelElapsedTime = 0f;
+			_t = 0f;
+			_startInterpolationPosition = _rb.position;
+		}
+
 		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, _playerTransform.position, _t);
 		_rb.MovePosition(newPosition);
 
-		if (_t >= 1f)
+		if (_t >= 1f && !_reachingPlayerData.shouldStop)
 		{
 			_startInterpolationPosition = _rb.position;
 			_travelElapsedTime = 0f;
 			_t = 0f;
 		}
 	}
+
+
 	private void AdvanceToNextWaypoint(Vector2 reachedPos)
 	{
 		

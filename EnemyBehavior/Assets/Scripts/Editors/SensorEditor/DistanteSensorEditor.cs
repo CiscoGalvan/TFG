@@ -5,7 +5,7 @@ using UnityEngine;
 [CustomEditor(typeof(Distance_Sensor))]
 public class DistanteSensorEditor : Editor
 {
-    private static readonly GUIContent goalSpeedLabel = new GUIContent("X-axis", "If true, measures along the X-axis; otherwise, measures along the Y-axis");
+    private static readonly GUIContent goalSpeedLabel = new GUIContent("X-Axis", "If true, measures along the X-axis; otherwise, measures along the Y-axis");
     public override void OnInspectorGUI()
     {
 
