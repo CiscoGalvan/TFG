@@ -66,25 +66,22 @@ public class Distance_Sensor : Sensors
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul semitransparente
         if (_useMagnitude)
         {
-            // Draw a circle representing the detection radius
-            Gizmos.DrawWireSphere(transform.position, _detectionDistance);
+            Gizmos.DrawSphere(transform.position, _detectionDistance);
         }
         else
         {
-            // Draw a line representing the detection range along a single axis
             Vector3 start = transform.position;
-            Vector3 end = _checkXAxis
-                ? new Vector3(transform.position.x + _detectionDistance, transform.position.y, transform.position.z)
-                : new Vector3(transform.position.x, transform.position.y + _detectionDistance, transform.position.z);
+            Vector3 size = _checkXAxis
+                ? new Vector3(_detectionDistance * 2, 1, 1)
+                : new Vector3(1, _detectionDistance * 2, 1);
 
-            Gizmos.DrawLine(start, end);
-            Gizmos.DrawLine(start, start - (end - start)); // Draw opposite side for better visualization
+            Gizmos.DrawCube(start, size);
         }
     }
-    
+
     public bool GetUseMagnitude()
     {
         return _useMagnitude;
