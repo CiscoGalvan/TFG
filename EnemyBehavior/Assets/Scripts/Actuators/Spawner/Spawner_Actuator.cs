@@ -6,7 +6,6 @@ public class Spawner_Actuator : Actuator
 {
     
     [SerializeField]
-    // [HideInInspector]
     private bool _infiniteEnemies = true;
     [SerializeField,HideInInspector]
     private int _numOfEnemiesToSpawn = 0;
@@ -17,43 +16,42 @@ public class Spawner_Actuator : Actuator
     [SerializeField]
     private Transform _spawnPoint;
 
-    private Timer_Sensor _timerSensor;
+    [SerializeField, Min(0)]
+    private float _spawnInterval = 5f; // Tiempo de spawn ajustable desde el editor
 
+    private Timer _timer;
     private int _numEnemiesAlreadySpawn;
     // Update is called once per frame
     public override void DestroyActuator()
     {
-        if (_timerSensor != null)
-        {
-			_timerSensor.onEventDetected -= SpawnEvent;
-        }
 
     }
     // Start is called before the first frame update
     public override void StartActuator()
     {
-		_timerSensor = this.gameObject.GetComponent<Timer_Sensor>();
-        if (_timerSensor == null)
-        {
-            _timerSensor = this.gameObject.AddComponent<Timer_Sensor>();
-        }
-        _timerSensor.onEventDetected += SpawnEvent;
-        sensors.Add(_timerSensor);
+        _timer = new Timer(_spawnInterval);
+        _numEnemiesAlreadySpawn = 0;
+        _timer.Start();
         _numEnemiesAlreadySpawn = 0;
     }
 
-    void SpawnEvent(Sensors s)
+    void SpawnEvent()
     {
         if (_infiniteEnemies || _numEnemiesAlreadySpawn < _numOfEnemiesToSpawn)
         {
 			_numEnemiesAlreadySpawn++;
-            GameObject newEnemy = Instantiate(_prefabToSpawn, _spawnPoint.position,_spawnPoint.rotation);
+            Instantiate(_prefabToSpawn, _spawnPoint.position,_spawnPoint.rotation);
         }
     }
 	public override void UpdateActuator()
 	{
-
-	}
+        _timer.Update(Time.deltaTime);
+        if (_timer.GetTimeRemaining() <= 0)
+        {
+            SpawnEvent();
+            _timer.Start(); // Reiniciar el temporizador después de cada spawn
+        }
+    }
 
 	#region Setters and getters
 	public bool GetInfiniteEnemies() => _infiniteEnemies;

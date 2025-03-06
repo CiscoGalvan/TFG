@@ -8,41 +8,35 @@ public class Timer_Sensor : Sensors
     [SerializeField, Min(0)]
     private float _detectionTime = 5f;
 
-    // Tracks the elapsed time
-    private float _timer = 0f;
-
-    // Indicates whether the timer is active
-    private bool _startTimer;
-
-
+    // Instancia de Timer
+    private Timer _timer;
+    private void Awake()
+    {
+        _timer = new Timer(_detectionTime);
+    }
     private void Update()
     {
-        // If the timer is active, increment time
-        if (_startTimer)
-        {
-            _timer += UnityEngine.Time.deltaTime;
+        _timer.Update(Time.deltaTime);
 
-            // Check if the timer has reached the detection time
-            if (_timer >= _detectionTime)
-            {
-                EventDetected(); // Trigger event
-                _timer = 0f; // Reset timer
-            }
+        // Si el temporizador llegó al tiempo de detección, activar evento
+        if (_timer.GetTimeRemaining() <= 0)
+        {
+            EventDetected();
+            _timer.Reset(); // Reiniciar el temporizador después de la detección
         }
     }
 
     // Activates the sensor. Is the firts method call
     public override void StartSensor()
     {
-        _timer = 0f;
-        _startTimer = true;
+        _timer.Start();
     }
 
     // Displays the remaining time in the scene view (editor only)
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        float timeRemaining = Mathf.Max(0, _detectionTime - _timer);
+        float timeRemaining = _timer != null ? _timer.GetTimeRemaining() : _detectionTime;
         Handles.Label(transform.position + Vector3.up * 1.5f, $"Time Remaining: {timeRemaining:0.00}s");
     }
 }

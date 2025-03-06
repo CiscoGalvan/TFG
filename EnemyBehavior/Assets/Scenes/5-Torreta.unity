@@ -740,7 +740,6 @@ GameObject:
   - component: {fileID: 1009835256}
   - component: {fileID: 1009835254}
   - component: {fileID: 1009835253}
-  - component: {fileID: 1009835261}
   - component: {fileID: 1009835260}
   m_Layer: 6
   m_Name: Enemy
@@ -934,19 +933,7 @@ MonoBehaviour:
   _numOfEnemiesToSpawn: 0
   _prefabToSpawn: {fileID: 6312299861578909251, guid: 99182299bda6a0441b148bc8c2516f5b, type: 3}
   _spawnPoint: {fileID: 1466693878}
---- !u!114 &1009835261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009835250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detectionTime: 1
+  _spawnInterval: 5
 --- !u!1 &1151592761
 GameObject:
   m_ObjectHideFlags: 0
