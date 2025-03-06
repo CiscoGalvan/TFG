@@ -90,7 +90,9 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 							var easingFunctionProp = waypoint.FindPropertyRelative("easingFunction");
 							EditorGUILayout.PropertyField(easingFunctionProp, new GUIContent("Easing Function"));
 							EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
-							DrawEasingCurve(easingEnum);
+                            EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
+                            EditorGUILayout.LabelField("X-axis: Time, Y-axis: Position");
+                            DrawEasingCurve(easingEnum);
 						}
 
 						var shouldStop = waypoint.FindPropertyRelative("shouldStop");
