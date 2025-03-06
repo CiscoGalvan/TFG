@@ -325,6 +325,7 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+  _damageEmitterCollider: {fileID: 0}
 --- !u!114 &307179849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +513,7 @@ MonoBehaviour:
   _shouldThemStop: 1
   _stopTime: 1
   _easingFunctionForAllWaypoints: 9
-  _usageWay: 1
+  _usageWay: 0
   _waypointsData:
   - waypoint: {fileID: 686178266}
     timeToReach: 1

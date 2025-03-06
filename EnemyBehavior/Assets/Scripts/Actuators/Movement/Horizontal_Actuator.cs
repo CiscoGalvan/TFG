@@ -8,8 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Horizontal_Actuator : Movement_Actuator
 {
-	//private static readonly GUIContent bouncingLabel = new GUIContent("Bounce Object", "Does the object bounce after collision?");
-	//private static readonly GUIContent destroyLabel = new GUIContent("Destroy Object", "Does the object self-destruct after the collision?");
 
 	private enum Direction
 	{
@@ -22,17 +20,7 @@ public class Horizontal_Actuator : Movement_Actuator
 		Bounce = 1,
 		Destroy = 2
 	}
-	//private enum MovementType
-	//{
-	//	Force = 0,
-	//	Lineal = 1,
-	//	Accelerated = 2
-	//}
-	// ¿Qué pasa si el disenhador setea esto a true y en ejecución lo cambia a false?
-	//[SerializeField, HideInInspector]
-	//private bool _bounceAfterCollision = false;
-    //[SerializeField, HideInInspector]
-    //private bool _destroyAfterCollision = false;
+
     [SerializeField,HideInInspector]
     private float _speed;
 	[SerializeField,HideInInspector]
@@ -46,7 +34,7 @@ public class Horizontal_Actuator : Movement_Actuator
     private bool _throw; //if this is activated the velocity will be update just ones
 
 
-    private float _initial_speed = 0;
+    private float _initialSpeed = 0;
 
     [Tooltip("Movement direction")]
     [SerializeField,HideInInspector]
@@ -83,7 +71,7 @@ public class Horizontal_Actuator : Movement_Actuator
 		{
 			_speed = _rigidbody.velocity.x;
 		}
-		_initial_speed = _speed;
+		_initialSpeed = _speed;
         if (_throw) ApplyForce();
 
     }
@@ -111,7 +99,7 @@ public class Horizontal_Actuator : Movement_Actuator
 		{
 			//MRUA
 			float t = (_time /_interpolationTime);
-			float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
+			float easedSpeed = _easingFunc(_initialSpeed, _goalSpeed, t);
 
 			if (t >= 1.0f)
 			{

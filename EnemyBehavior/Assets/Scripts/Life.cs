@@ -161,13 +161,11 @@ public class Life : MonoBehaviour
 	private void DecreaseLife(float num)
 	{
 		_currentLife -= num;
-		Debug.Log("Life = " + _currentLife);
 		UpdateLifeText();
 	}
 	private void InstantKill()
 	{
 		_currentLife = 0;
-		Debug.Log("Life = " + _currentLife);
 		UpdateLifeText();
 	}
 	private void IncreaseLife(float num)

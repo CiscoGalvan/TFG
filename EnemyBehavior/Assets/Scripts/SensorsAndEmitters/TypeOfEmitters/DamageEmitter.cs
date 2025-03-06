@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static DamageEmitter;
 
+[RequireComponent(typeof(Collider2D))]
 public class DamageEmitter : MonoBehaviour
 {
     // Enum representing different types of damage
@@ -38,6 +39,11 @@ public class DamageEmitter : MonoBehaviour
 
     private bool _endPersistentDamage; // Tracks whether persistent damage has ended
 
+    [SerializeField, HideInInspector]
+    private Collider2D _damageEmitterCollider;
+
+	[SerializeField, HideInInspector]
+	private bool _moreThanOneCollider;
     #region Getters and Setters
 
     // Sets the amount of residual damage
@@ -91,5 +97,13 @@ public class DamageEmitter : MonoBehaviour
     // Returns whether persistent damage has ended
     public bool EndPersistentDamage() => _endPersistentDamage;
 
-    #endregion
+	#endregion
+
+	private void Start()
+	{
+		if(_damageEmitterCollider == null)
+        {
+            _damageEmitterCollider = GetComponent<Collider2D>();
+        }
+	}
 }

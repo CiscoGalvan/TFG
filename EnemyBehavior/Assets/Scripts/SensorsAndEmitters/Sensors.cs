@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public abstract class Sensors : MonoBehaviour
 {
-    // Action event
-    private Action<Sensors> _onEventDetectedInternal;
+	[SerializeField]
+	public UnityEvent<Sensors> a;
+
+	// Action event
+	private Action<Sensors> _onEventDetectedInternal;
 
     // Subscriber counter
     private int _subscriberCount = 0;

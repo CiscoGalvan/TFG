@@ -8,9 +8,14 @@ using static MoveToAPoint_Actuator;
 public class DamageEmitterComponentEditor : Editor
 {
 	private SerializedProperty _damageType;
+	private SerializedProperty _damageEmitterCollider;
+	private SerializedProperty _moreThanOneCollider;
 
-	private static readonly GUIContent _amountOfDamage = new GUIContent("Damage Amount", "Amount of damage the enemy will deal the player.");
-	private static readonly GUIContent _damageCooldown = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again.");
+	private static readonly GUIContent _amountOfDamageLabel = new GUIContent("Damage Amount", "Amount of damage the enemy will deal the player.");
+	private static readonly GUIContent _moreThanOneColliderLabel = new GUIContent("More Than One Collider?", "If the object has more than one collider, it is needed to specify which one will be the damage emitter.\n" +
+		"If it has more than one collider and this value is not set to true, the behaviour may not be accurate.");
+	private static readonly GUIContent _damageEmitterColliderLabel = new GUIContent("Damage Zone", "The collider that will deal damage to the player in case they make contact");
+	private static readonly GUIContent _damageCooldownLabel = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again.");
 	private static readonly GUIContent _damageTypeLabel = new GUIContent("Damage Type", "How will the damage be dealt?\n" +
 		"Instant: The damage will be applied instantly.\n" +
 		"Persistent: The damage will be applied while the enemy is in contact with the player.\n" +
@@ -29,6 +34,8 @@ public class DamageEmitterComponentEditor : Editor
 	private void OnEnable()
 	{
 		_damageType = serializedObject.FindProperty("_damageType");
+		_damageEmitterCollider = serializedObject.FindProperty("_damageEmitterCollider");
+		_moreThanOneCollider = serializedObject.FindProperty("_moreThanOneCollider");
 	}
 	public override void OnInspectorGUI()
 	{
@@ -42,23 +49,32 @@ public class DamageEmitterComponentEditor : Editor
 		if (_showDamageInfo)
 		{
 			EditorGUI.indentLevel++;
+			EditorGUILayout.PropertyField(_moreThanOneCollider, _moreThanOneColliderLabel);
+			if (_moreThanOneCollider.boolValue)
+			{
+				EditorGUI.indentLevel++;
+				EditorGUILayout.PropertyField(_damageEmitterCollider, _damageEmitterColliderLabel);
+				EditorGUI.indentLevel--;
+			}
 			switch (component.GetDamageType())
 			{
 				case DamageEmitter.DamageType.Instant:
 					component.SetInstaKill(EditorGUILayout.Toggle(instaKill, component.GetInstaKill()));
 					if (!component.GetInstaKill())
 					{
-						component.SetAmountOfDamage(EditorGUILayout.FloatField(_amountOfDamage, component.GetAmountOfDamage()));
+						EditorGUI.indentLevel++;
+						component.SetAmountOfDamage(EditorGUILayout.FloatField(_amountOfDamageLabel, component.GetAmountOfDamage()));
+						EditorGUI.indentLevel--;
 					}
 					break;
 				case DamageEmitter.DamageType.Persistent:
-					component.SetAmountOfDamage(EditorGUILayout.FloatField(_amountOfDamage, component.GetAmountOfDamage()));
-					component.SetDamageCooldown(EditorGUILayout.FloatField(_damageCooldown, component.GetDamageCooldown()));
+					component.SetAmountOfDamage(EditorGUILayout.FloatField(_amountOfDamageLabel, component.GetAmountOfDamage()));
+					component.SetDamageCooldown(EditorGUILayout.FloatField(_damageCooldownLabel, component.GetDamageCooldown()));
 					break;
 				case DamageEmitter.DamageType.Residual:
 					component.SetAmountOfDamage(EditorGUILayout.FloatField(instantDamageAmount, component.GetAmountOfDamage()));
 					component.SetResidualDamageAmount(EditorGUILayout.FloatField(residualDamageLabel, component.GetResidualDamageAmount()));
-					component.SetDamageCooldown(EditorGUILayout.FloatField(_damageCooldown, component.GetDamageCooldown()));
+					component.SetDamageCooldown(EditorGUILayout.FloatField(_damageCooldownLabel, component.GetDamageCooldown()));
 					component.SetNumberOfResidualApplication(EditorGUILayout.IntField(numberOfTicks, component.GetNumberOfResidualApplication()));
 					break;
 			}
