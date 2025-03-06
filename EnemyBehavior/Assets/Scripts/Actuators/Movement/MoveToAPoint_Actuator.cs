@@ -27,6 +27,19 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		Waypoint = 0,
 		RandomArea = 1
 	};
+
+	#region Values whether every Waypoint have same behaviour
+	[SerializeField, HideInInspector]
+	private float _timeToReachForAllWaypoints;
+	[SerializeField,HideInInspector]
+	private bool _areAccelerated;
+	[SerializeField, HideInInspector]
+	private bool _shouldThemStop;
+	[SerializeField, HideInInspector]
+	private float _stopTime;
+	[SerializeField, HideInInspector]
+	private EasingFunction.Ease _easingFunctionForAllWaypoints;
+	#endregion
 	[SerializeField]
 	private UsageWay _usageWay;
 	[Tooltip("Configure each waypoint with its time, acceleration, and easing function")]
@@ -49,6 +62,8 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 
 	[SerializeField]
 	private bool _isACicle = false;
+	[SerializeField,HideInInspector]
+	private bool _allWaypointsHaveTheSameData = false;
 
 	[SerializeField, HideInInspector]
 	private bool _ciclicWaypointAdded;
@@ -104,47 +119,23 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 
 	public override void UpdateActuator()
 	{
-		// Si en un inicio no era un ciclo y luego si, que vuelva a moverse.
+		
 		if (!_moving && _isACicle)
 		{
-			Debug.Log("Muevete");
 			_moving = true;
 			_currentWaypointIndex = 0;
 		}
 		if (!_moving)
 			return;
-		// Si se permite buscar al jugador y aún no se ha activado el modo persecución,
-		// se verifica la distancia.
-		//if (_seekPlayer && _playerTransform != null && !_seekingPlayer)
-		//{
-		//	float distanceToPlayer = Vector2.Distance(_rb.position, _playerTransform.position);
-		//	if (distanceToPlayer <= _detectionDistance)
-		//	{
-		//		// Activamos la persecución de forma permanente.
-		//		_seekingPlayer = true;
-		//		// Reiniciamos los valores de interpolación para empezar a perseguir
-		//		_startInterpolationPosition = _rb.position;
-		//		_travelElapsedTime = 0f;
-		//		_t = 0f;
-		//	}
-		//}
-
-		//if (_seekingPlayer)
-		//{
-		//	PursuePlayer();
-		//}
-		//else
-		//{
-			switch (_usageWay)
-			{
-				case UsageWay.Waypoint:
-					MoveAlongWaypoints();
-					break;
-				case UsageWay.RandomArea:
-					MoveToRandomPoint();
-					break;
-			}
-	//	}
+		switch (_usageWay)
+		{
+			case UsageWay.Waypoint:
+				MoveAlongWaypoints();
+				break;
+			case UsageWay.RandomArea:
+				MoveToRandomPoint();
+				break;
+		}
 	}
 	private void MoveToRandomPoint()
 	{
@@ -205,9 +196,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		if (waypoint.isAccelerated)
 		{
 			_t = EasingFunction.GetEasingFunction(waypoint.easingFunction)(0, 1, _t);
-			
-			// Al interpolar entre 0 y 1 hay veces que t nunca llega a 1 y se queda a nada, por lo que la condición para pasar al siguiente waypoint queda anulada y falla.
-			// Si se queda muy cerca, forzamos a que sea 1.
 			if (_t >= ALMOST_REACHED_ONE)
 				_t = 1f;
 		}
@@ -215,53 +203,11 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, targetPos, _t);
 		_rb.MovePosition(newPosition);
 
-		
 		if (_t >= 1f && !waypoint.shouldStop)
 		{
 			AdvanceToNextWaypoint(targetPos);
 		}
 	}
-	// This method need some review
-	//private void PursuePlayer()
-	//{
-	//	if (_playerTransform == null)
-	//		return;
-
-	//	_travelElapsedTime += Time.deltaTime;
-	//	_t = _travelElapsedTime / _reachingPlayerData.timeToReach;
-
-	//	if (_reachingPlayerData.isAccelerated)
-	//	{
-	//		_t = EasingFunction.GetEasingFunction(_reachingPlayerData.easingFunction)(0, 1, _t);
-	//		if (_t >= ALMOST_REACHED_ONE)
-	//			_t = 1f;
-	//	}
-
-		
-	//	if (_t >= 1f && _reachingPlayerData.shouldStop)
-	//	{
-	//		_stopElapsedTime += Time.deltaTime;
-	//		if (_stopElapsedTime < _reachingPlayerData.stopDuration)
-	//			return; 
-
-			
-	//		_stopElapsedTime = 0f;
-	//		_travelElapsedTime = 0f;
-	//		_t = 0f;
-	//		_startInterpolationPosition = _rb.position;
-	//	}
-
-	//	Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, _playerTransform.position, _t);
-	//	_rb.MovePosition(newPosition);
-
-	//	if (_t >= 1f && !_reachingPlayerData.shouldStop)
-	//	{
-	//		_startInterpolationPosition = _rb.position;
-	//		_travelElapsedTime = 0f;
-	//		_t = 0f;
-	//	}
-	//}
-
 
 	private void AdvanceToNextWaypoint(Vector2 reachedPos)
 	{
@@ -286,7 +232,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 			{
 				_moving = false;
 				_rb.velocity = Vector2.zero;
-				Debug.Log("Movimiento finalizado, todos los waypoints alcanzados.");
 			}
 		}
 	}

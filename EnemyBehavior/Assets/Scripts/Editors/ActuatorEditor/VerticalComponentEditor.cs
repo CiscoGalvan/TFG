@@ -61,7 +61,7 @@ public class VerticalComponentEditor : ActuatorEditor
 			{
 				component.SetGoalSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed()))));
 				component.SetInterpolationTime(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(interpolationTimeLabel, component.GetInterpolationTime()))));
-				component.SetEasingFunction((EasingFunction.Ease)EditorGUILayout.EnumPopup(easingFunctionLabel, component.GetEasingFunctionValue()));
+				component.SetEasingFunction((EasingFunction.Ease)EditorGUILayout.EnumPopup(_easingFunctionLabel, component.GetEasingFunctionValue()));
                 EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
                 EditorGUILayout.LabelField("X-axis: Time, Y-axis: Speed"); 
 				DrawEasingCurve(component.GetEasingFunctionValue());

@@ -1,150 +1,187 @@
-﻿using UnityEditor;
+﻿using System.ComponentModel;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static MoveToAPoint_Actuator;
 
 [CustomEditor(typeof(MoveToAPoint_Actuator))]
 public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 {
-	private SerializedProperty waypointsData;
-	private SerializedProperty isACicle;
-	private SerializedProperty usageWay;
-	private SerializedProperty randomArea;
-	private SerializedProperty timeBetweenRandomPoints;
-	private SerializedProperty seekPlayer;
-	private SerializedProperty playerTransform;
-	private SerializedProperty detectionDistance;
-	private SerializedProperty reachingPlayerData;
+	private SerializedProperty _waypointsData;
+	private SerializedProperty _isACicle;
+	private SerializedProperty _usageWay;
+	private SerializedProperty _randomArea;
+	private SerializedProperty _timeBetweenRandomPoints;
+	private SerializedProperty _allWaypointsHaveTheSameData;
+
+
 
 	private bool _showWaypointsData= true;
+	private bool _showAllSameData = false;
 
+	#region Values for same data in case it's needed
+	private SerializedProperty _timeToReachForAllWaypoints;
+	private SerializedProperty _areAccelerated;
+	private SerializedProperty _shouldThemStop;
+	private SerializedProperty _stopTime;
+	private SerializedProperty _easingFunctionForAllWaypoints;
+	private static readonly GUIContent _allTheSameDataLabel = new GUIContent("Same Waypoint Behaviour", "If true, every movement toward any waypoint will have the same behaviour.\n" +
+	"A Waypoint Transform will still be needed.");
+	private static readonly GUIContent _timeToReachEveryWaypointLabel = new GUIContent("Time Between Waypoints", "Time it takes to reach each waypoint.");
+	private static readonly GUIContent _areAcceleratedLabel = new GUIContent("Are Accelerated", "Are the movements accelerated?");
+	private static readonly GUIContent _shouldThemStopLabel = new GUIContent("Should Stop", "Indicates whether the enemy should stop upon reaching each waypoint.");
+	#endregion
 
 	private static readonly GUIContent _usageWayLabel = new GUIContent("Usage Way", "How will the waypoints be set?\n" +
 		"Random Area: A collider will be given and the waypoints will be generated inside it.\n" +
 		"Waypoint: A sequence of waypoints will be given from start.\n");
 	private static readonly GUIContent _randomAreaLabel = new GUIContent("Random Area", "Area that will describe where the next waypoints will be generated.");
 	private static readonly GUIContent _timeBetweenWaypointsLabel = new GUIContent("Time between random points", "Time that will take to go from one point to another.");
-	private static readonly GUIContent _seekPlayerLabel = new GUIContent("Seek Player", "Determines whether the enemy will chase the player if it is close enough.");
-	private static readonly GUIContent _seekingPlayerDataLabel = new GUIContent("Seeking Player Data", "Group of values that will describe how the enemy behaves in case it seeks the player.");
-	private static readonly GUIContent _detectionDistanceLabel = new GUIContent("Detection Distance", "Distance needed to trigger the seeking behaviour.");
-	private static readonly GUIContent _playerTransformLabel = new GUIContent("Player Transform", "Reference to the player transform.");
-	private static readonly GUIContent _timeToReachPlayerLabel = new GUIContent("Time To Reach The Player", "Time it takes to reach the player.");
-	private static readonly GUIContent _isSeekingAcceleratedLabel = new GUIContent("Is Accelerated", "Is the movement towards the enemy accelerated?");
-	private static readonly GUIContent _seekingEasingFunctionLabel = new GUIContent("Easing Function", "Function that defines how the enemy moves towards the player.");
-	private static readonly GUIContent _shouldStopAfterSeekingLabel = new GUIContent("Should Stop", "Indicates whether the enemy should stop upon reaching the player.");
-	private static readonly GUIContent _stopAfterSeekingDurationLabel = new GUIContent("Stop Duration", "Time it will take the enemy to start seeking the player again.");
+	private static readonly GUIContent _stopDurationLabel = new GUIContent("Stop duration", "Time it will take the enemy to start movement to the next waypoint.");
+	private static readonly GUIContent _shouldStopLabel = new GUIContent("Should Stop", "Indicates whether the enemy should stop upon reaching the waypoint.");
+	private static readonly GUIContent _easingFunctionToAPointLabel = new GUIContent("Easing Function", "Easing function that will describe the progress of the position.");
+	private static readonly GUIContent _timeToReachLabel = new GUIContent("Time To Reach", "Time it takes to reach the waypoint.");
+	private static readonly GUIContent _waypointTransformLabel = new GUIContent("Waypoint Transform", "Reference to the waypoint transform.");
+	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the movement towards the waypoint accelerated?");
+	private static readonly GUIContent _sizeLabel = new GUIContent("Size", "Number of waypoints");
 
 
+
+	
 	private void OnEnable()
 	{
-		waypointsData = serializedObject.FindProperty("_waypointsData");
-		isACicle = serializedObject.FindProperty("_isACicle");
-		usageWay = serializedObject.FindProperty("_usageWay");
-		randomArea = serializedObject.FindProperty("_randomArea");
-		seekPlayer = serializedObject.FindProperty("_seekPlayer");
-		detectionDistance = serializedObject.FindProperty("_detectionDistance");
-		playerTransform = serializedObject.FindProperty("_playerTransform");
-		reachingPlayerData = serializedObject.FindProperty("_reachingPlayerData");
-		timeBetweenRandomPoints = serializedObject.FindProperty("_timeBetweenRandomPoints");
+		_waypointsData = serializedObject.FindProperty("_waypointsData");
+		_isACicle = serializedObject.FindProperty("_isACicle");
+		_usageWay = serializedObject.FindProperty("_usageWay");
+		_randomArea = serializedObject.FindProperty("_randomArea");
+		_timeBetweenRandomPoints = serializedObject.FindProperty("_timeBetweenRandomPoints");
+		_allWaypointsHaveTheSameData = serializedObject.FindProperty("_allWaypointsHaveTheSameData");
+
+		#region Values for same data in case it's needed
+		_timeToReachForAllWaypoints = serializedObject.FindProperty("_timeToReachForAllWaypoints");
+		_areAccelerated = serializedObject.FindProperty("_areAccelerated");
+		_shouldThemStop = serializedObject.FindProperty("_shouldThemStop");
+		_stopTime = serializedObject.FindProperty("_stopTime");
+		_easingFunctionForAllWaypoints = serializedObject.FindProperty("_easingFunctionForAllWaypoints");
+		#endregion
 	}
 
 	public override void OnInspectorGUI()
 	{
 		serializedObject.Update();
-		EditorGUILayout.PropertyField(usageWay, _usageWayLabel);
-		if (usageWay.intValue == 1)
+		EditorGUILayout.PropertyField(_usageWay, _usageWayLabel);
+		if (_usageWay.intValue == 1)
 		{
-			EditorGUILayout.PropertyField(randomArea, _randomAreaLabel);
-			timeBetweenRandomPoints.floatValue = Mathf.Max(0, timeBetweenRandomPoints.floatValue);
-			EditorGUILayout.PropertyField(timeBetweenRandomPoints, _timeBetweenWaypointsLabel);
+			EditorGUILayout.PropertyField(_randomArea, _randomAreaLabel);
+			_timeBetweenRandomPoints.floatValue = Mathf.Max(0, _timeBetweenRandomPoints.floatValue);
+			EditorGUILayout.PropertyField(_timeBetweenRandomPoints, _timeBetweenWaypointsLabel);
 		}
 		else
 		{
-			EditorGUILayout.PropertyField(isACicle);
-			_showWaypointsData = EditorGUILayout.Foldout(_showWaypointsData, "Waypoint Data", true);
+			EditorGUILayout.PropertyField(_isACicle);
+			EditorGUILayout.PropertyField(_allWaypointsHaveTheSameData,_allTheSameDataLabel);
+			EditorGUI.indentLevel++;
+			if (_allWaypointsHaveTheSameData.boolValue)
+			{
+				_showAllSameData = EditorGUILayout.Foldout(_showAllSameData, "Waypoints Data", true);
+				if (_showAllSameData)
+				{
+					EditorGUI.indentLevel++;
+					EditorGUILayout.PropertyField(_timeToReachForAllWaypoints, _timeToReachEveryWaypointLabel);
+					_timeToReachForAllWaypoints.floatValue = Mathf.Max(0, _timeToReachForAllWaypoints.floatValue);
+
+				    EditorGUILayout.PropertyField(_areAccelerated,_areAcceleratedLabel);
+					if (_areAccelerated.boolValue)
+					{
+						EditorGUI.indentLevel++;
+						EditorGUILayout.PropertyField(_easingFunctionForAllWaypoints, _easingFunctionToAPointLabel);
+						EasingFunction.Ease easingEnum = (EasingFunction.Ease)_easingFunctionForAllWaypoints.intValue;
+						EditorGUILayout.LabelField("X-axis: Time, Y-axis: Position");
+						DrawEasingCurve(easingEnum);
+						EditorGUI.indentLevel--;
+					}
+					EditorGUILayout.PropertyField(_shouldThemStop, _shouldThemStopLabel);
+					if (_shouldThemStop.boolValue)
+					{
+						EditorGUI.indentLevel++;
+						EditorGUILayout.PropertyField(_stopTime, _stopDurationLabel);
+						_stopTime.floatValue = Mathf.Max(0, _stopTime.floatValue);
+						EditorGUI.indentLevel--;
+					}
+					EditorGUI.indentLevel--;
+				}
+			}
+			_showWaypointsData = EditorGUILayout.Foldout(_showWaypointsData, "Waypoints", true);
 			if (_showWaypointsData)
 			{
 				EditorGUI.indentLevel++;
-				waypointsData.arraySize = EditorGUILayout.IntField("Size", waypointsData.arraySize);
+				_waypointsData.arraySize = EditorGUILayout.IntField(_sizeLabel, _waypointsData.arraySize);
 				EditorGUI.indentLevel++;
-				for (int i = 0; i < waypointsData.arraySize; i++)
+				for (int i = 0; i < _waypointsData.arraySize; i++)
 				{
-					var waypoint = waypointsData.GetArrayElementAtIndex(i);
+					var waypoint = _waypointsData.GetArrayElementAtIndex(i);
 					EditorGUILayout.PropertyField(waypoint, new GUIContent("Waypoint " + i), false);
 					if (waypoint.isExpanded)
 					{
 						EditorGUI.indentLevel++;
 
 						var waypointTransform = waypoint.FindPropertyRelative("waypoint");
-						EditorGUILayout.PropertyField(waypointTransform);
+						EditorGUILayout.PropertyField(waypointTransform, _waypointTransformLabel);
 
-
-						var timeToReach = waypoint.FindPropertyRelative("timeToReach");
-						timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
-						EditorGUILayout.PropertyField(timeToReach);
-
-						var isAccelerated = waypoint.FindPropertyRelative("isAccelerated");
-						EditorGUILayout.PropertyField(isAccelerated);
-
-						if (isAccelerated.boolValue)
+						if (!_allWaypointsHaveTheSameData.boolValue)
 						{
-							var easingFunctionProp = waypoint.FindPropertyRelative("easingFunction");
-							EditorGUILayout.PropertyField(easingFunctionProp, new GUIContent("Easing Function"));
-							EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
-                            EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
-                            EditorGUILayout.LabelField("X-axis: Time, Y-axis: Position");
-                            DrawEasingCurve(easingEnum);
+							var timeToReach = waypoint.FindPropertyRelative("timeToReach");
+							timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
+							EditorGUILayout.PropertyField(timeToReach, _timeToReachLabel);
+
+							var isAccelerated = waypoint.FindPropertyRelative("isAccelerated");
+							EditorGUILayout.PropertyField(isAccelerated, _isAcceleratedLabel);
+
+							if (isAccelerated.boolValue)
+							{
+								var easingFunctionProp = waypoint.FindPropertyRelative("easingFunction");
+								EditorGUILayout.PropertyField(easingFunctionProp, _easingFunctionToAPointLabel);
+								EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
+								EditorGUILayout.LabelField("X-axis: Time, Y-axis: Position");
+								DrawEasingCurve(easingEnum);
+							}
+
+							var shouldStop = waypoint.FindPropertyRelative("shouldStop");
+							EditorGUILayout.PropertyField(shouldStop, _shouldStopLabel);
+							if (shouldStop.boolValue)
+							{
+								EditorGUI.indentLevel++;
+								var stopDuration = waypoint.FindPropertyRelative("stopDuration");
+								stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_stopDurationLabel, stopDuration.floatValue));
+							}
+							EditorGUI.indentLevel--;
 						}
-
-						var shouldStop = waypoint.FindPropertyRelative("shouldStop");
-						EditorGUILayout.PropertyField(shouldStop);
-						if (shouldStop.boolValue)
+						else
 						{
-							var stopDuration = waypoint.FindPropertyRelative("stopDuration");
-							stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(new GUIContent("Stop Duration"), stopDuration.floatValue));
+							var timeToReach = waypoint.FindPropertyRelative("timeToReach");
+							timeToReach.floatValue = _timeToReachForAllWaypoints.floatValue;
+							var isAccelerated = waypoint.FindPropertyRelative("isAccelerated");
+							isAccelerated.boolValue = _areAccelerated.boolValue;
+							if (isAccelerated.boolValue)
+							{
+								var easingFunctionProp = waypoint.FindPropertyRelative("easingFunction");
+								easingFunctionProp.intValue = (int)_easingFunctionForAllWaypoints.enumValueIndex;
+							}
+							var shouldStop = waypoint.FindPropertyRelative("shouldStop");
+							shouldStop.boolValue = _shouldThemStop.boolValue;
+							if (shouldStop.boolValue)
+							{
+								var stopDuration = waypoint.FindPropertyRelative("stopDuration");
+								stopDuration.floatValue = _stopTime.floatValue;
+							}
 						}
 						EditorGUI.indentLevel--;
 					}
 				}
 				EditorGUI.indentLevel--;
+				EditorGUI.indentLevel--;
 			}
 		}
-		//EditorGUILayout.PropertyField(seekPlayer, _seekPlayerLabel, false);
-		//if (seekPlayer.boolValue)
-		//{
-		//	EditorGUI.indentLevel++;
-		//	EditorGUILayout.PropertyField(reachingPlayerData, _seekingPlayerDataLabel, false);
-		//	if (reachingPlayerData.isExpanded)
-		//	{
-		//		EditorGUI.indentLevel++;
-		//		detectionDistance.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_detectionDistanceLabel, detectionDistance.floatValue));
-		//		EditorGUILayout.PropertyField(playerTransform, _playerTransformLabel);
-
-		//		var timeToReach = reachingPlayerData.FindPropertyRelative("timeToReach");
-		//		timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
-		//		EditorGUILayout.PropertyField(timeToReach,_timeToReachPlayerLabel);
-
-		//		var isAccelerated = reachingPlayerData.FindPropertyRelative("isAccelerated");
-		//		EditorGUILayout.PropertyField(isAccelerated, _isSeekingAcceleratedLabel);
-
-		//		if (isAccelerated.boolValue)
-		//		{
-		//			EditorGUI.indentLevel++;
-		//			var easingFunctionProp = reachingPlayerData.FindPropertyRelative("easingFunction");
-		//			EditorGUILayout.PropertyField(easingFunctionProp, _seekingEasingFunctionLabel);
-		//			EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
-		//			DrawEasingCurve(easingEnum);
-		//		}
-
-		//		var shouldStop = reachingPlayerData.FindPropertyRelative("shouldStop");
-		//		EditorGUILayout.PropertyField(shouldStop, _shouldStopAfterSeekingLabel);
-		//		if (shouldStop.boolValue)
-		//		{
-		//			EditorGUI.indentLevel++;
-		//			var stopDuration = reachingPlayerData.FindPropertyRelative("stopDuration");
-		//			stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_stopAfterSeekingDurationLabel, stopDuration.floatValue));
-		//		}
-		//	}
-		//}
 		serializedObject.ApplyModifiedProperties();
 	}
 }

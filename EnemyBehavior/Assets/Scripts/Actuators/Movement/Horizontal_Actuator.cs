@@ -112,8 +112,7 @@ public class Horizontal_Actuator : Movement_Actuator
 			//MRUA
 			float t = (_time /_interpolationTime);
 			float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
-			_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
-			
+
 			if (t >= 1.0f)
 			{
 				_speed = _goalSpeed;
@@ -121,6 +120,7 @@ public class Horizontal_Actuator : Movement_Actuator
 			}
 			else
 			{
+				_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
 				_speed = easedSpeed;
 			}
 		}

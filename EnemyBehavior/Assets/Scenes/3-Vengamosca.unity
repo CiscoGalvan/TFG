@@ -414,7 +414,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -507,22 +507,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
-  _usageWay: 0
+  _timeToReachForAllWaypoints: 1
+  _areAccelerated: 1
+  _shouldThemStop: 1
+  _stopTime: 1
+  _easingFunctionForAllWaypoints: 9
+  _usageWay: 1
   _waypointsData:
   - waypoint: {fileID: 686178266}
     timeToReach: 1
-    isAccelerated: 0
-    shouldStop: 0
-    stopDuration: 0
-    easingFunction: 29
+    isAccelerated: 1
+    shouldStop: 1
+    stopDuration: 1
+    easingFunction: 9
   - waypoint: {fileID: 2095510031}
     timeToReach: 1
-    isAccelerated: 0
-    shouldStop: 0
-    stopDuration: 0
-    easingFunction: 0
+    isAccelerated: 1
+    shouldStop: 1
+    stopDuration: 1
+    easingFunction: 9
   _randomArea: {fileID: 533422646}
   _isACicle: 1
+  _allWaypointsHaveTheSameData: 1
   _ciclicWaypointAdded: 0
   _timeBetweenRandomPoints: 0.4
   _detectionDistance: 3
