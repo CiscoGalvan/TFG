@@ -106,43 +106,43 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 				EditorGUI.indentLevel--;
 			}
 		}
-		EditorGUILayout.PropertyField(seekPlayer, _seekPlayerLabel, false);
-		if (seekPlayer.boolValue)
-		{
-			EditorGUI.indentLevel++;
-			EditorGUILayout.PropertyField(reachingPlayerData, _seekingPlayerDataLabel, false);
-			if (reachingPlayerData.isExpanded)
-			{
-				EditorGUI.indentLevel++;
-				detectionDistance.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_detectionDistanceLabel, detectionDistance.floatValue));
-				EditorGUILayout.PropertyField(playerTransform, _playerTransformLabel);
+		//EditorGUILayout.PropertyField(seekPlayer, _seekPlayerLabel, false);
+		//if (seekPlayer.boolValue)
+		//{
+		//	EditorGUI.indentLevel++;
+		//	EditorGUILayout.PropertyField(reachingPlayerData, _seekingPlayerDataLabel, false);
+		//	if (reachingPlayerData.isExpanded)
+		//	{
+		//		EditorGUI.indentLevel++;
+		//		detectionDistance.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_detectionDistanceLabel, detectionDistance.floatValue));
+		//		EditorGUILayout.PropertyField(playerTransform, _playerTransformLabel);
 
-				var timeToReach = reachingPlayerData.FindPropertyRelative("timeToReach");
-				timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
-				EditorGUILayout.PropertyField(timeToReach,_timeToReachPlayerLabel);
+		//		var timeToReach = reachingPlayerData.FindPropertyRelative("timeToReach");
+		//		timeToReach.floatValue = Mathf.Max(0, timeToReach.floatValue);
+		//		EditorGUILayout.PropertyField(timeToReach,_timeToReachPlayerLabel);
 
-				var isAccelerated = reachingPlayerData.FindPropertyRelative("isAccelerated");
-				EditorGUILayout.PropertyField(isAccelerated, _isSeekingAcceleratedLabel);
+		//		var isAccelerated = reachingPlayerData.FindPropertyRelative("isAccelerated");
+		//		EditorGUILayout.PropertyField(isAccelerated, _isSeekingAcceleratedLabel);
 
-				if (isAccelerated.boolValue)
-				{
-					EditorGUI.indentLevel++;
-					var easingFunctionProp = reachingPlayerData.FindPropertyRelative("easingFunction");
-					EditorGUILayout.PropertyField(easingFunctionProp, _seekingEasingFunctionLabel);
-					EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
-					DrawEasingCurve(easingEnum);
-				}
+		//		if (isAccelerated.boolValue)
+		//		{
+		//			EditorGUI.indentLevel++;
+		//			var easingFunctionProp = reachingPlayerData.FindPropertyRelative("easingFunction");
+		//			EditorGUILayout.PropertyField(easingFunctionProp, _seekingEasingFunctionLabel);
+		//			EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
+		//			DrawEasingCurve(easingEnum);
+		//		}
 
-				var shouldStop = reachingPlayerData.FindPropertyRelative("shouldStop");
-				EditorGUILayout.PropertyField(shouldStop, _shouldStopAfterSeekingLabel);
-				if (shouldStop.boolValue)
-				{
-					EditorGUI.indentLevel++;
-					var stopDuration = reachingPlayerData.FindPropertyRelative("stopDuration");
-					stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_stopAfterSeekingDurationLabel, stopDuration.floatValue));
-				}
-			}
-		}
+		//		var shouldStop = reachingPlayerData.FindPropertyRelative("shouldStop");
+		//		EditorGUILayout.PropertyField(shouldStop, _shouldStopAfterSeekingLabel);
+		//		if (shouldStop.boolValue)
+		//		{
+		//			EditorGUI.indentLevel++;
+		//			var stopDuration = reachingPlayerData.FindPropertyRelative("stopDuration");
+		//			stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(_stopAfterSeekingDurationLabel, stopDuration.floatValue));
+		//		}
+		//	}
+		//}
 		serializedObject.ApplyModifiedProperties();
 	}
 }

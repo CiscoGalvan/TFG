@@ -58,21 +58,11 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	[SerializeField]
 	private float _timeBetweenRandomPoints;
 
-	[SerializeField]
-	private bool _seekPlayer = false;
-
-	private bool _seekingPlayer = false;
+	
 
 	[SerializeField]
 	private float _detectionDistance = 0.0f;
 
-	[SerializeField]
-	private Transform _playerTransform;
-
-	[SerializeField]
-	private WaypointData _reachingPlayerData;
-
-	//private Distance_Sensor _distanceSensor;
 	public override void StartActuator()
 	{
 		_rb = GetComponent<Rigidbody2D>();
@@ -125,26 +115,26 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 			return;
 		// Si se permite buscar al jugador y aún no se ha activado el modo persecución,
 		// se verifica la distancia.
-		if (_seekPlayer && _playerTransform != null && !_seekingPlayer)
-		{
-			float distanceToPlayer = Vector2.Distance(_rb.position, _playerTransform.position);
-			if (distanceToPlayer <= _detectionDistance)
-			{
-				// Activamos la persecución de forma permanente.
-				_seekingPlayer = true;
-				// Reiniciamos los valores de interpolación para empezar a perseguir
-				_startInterpolationPosition = _rb.position;
-				_travelElapsedTime = 0f;
-				_t = 0f;
-			}
-		}
+		//if (_seekPlayer && _playerTransform != null && !_seekingPlayer)
+		//{
+		//	float distanceToPlayer = Vector2.Distance(_rb.position, _playerTransform.position);
+		//	if (distanceToPlayer <= _detectionDistance)
+		//	{
+		//		// Activamos la persecución de forma permanente.
+		//		_seekingPlayer = true;
+		//		// Reiniciamos los valores de interpolación para empezar a perseguir
+		//		_startInterpolationPosition = _rb.position;
+		//		_travelElapsedTime = 0f;
+		//		_t = 0f;
+		//	}
+		//}
 
-		if (_seekingPlayer)
-		{
-			PursuePlayer();
-		}
-		else
-		{
+		//if (_seekingPlayer)
+		//{
+		//	PursuePlayer();
+		//}
+		//else
+		//{
 			switch (_usageWay)
 			{
 				case UsageWay.Waypoint:
@@ -154,7 +144,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 					MoveToRandomPoint();
 					break;
 			}
-		}
+	//	}
 	}
 	private void MoveToRandomPoint()
 	{
@@ -232,45 +222,45 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		}
 	}
 	// This method need some review
-	private void PursuePlayer()
-	{
-		if (_playerTransform == null)
-			return;
+	//private void PursuePlayer()
+	//{
+	//	if (_playerTransform == null)
+	//		return;
 
-		_travelElapsedTime += Time.deltaTime;
-		_t = _travelElapsedTime / _reachingPlayerData.timeToReach;
+	//	_travelElapsedTime += Time.deltaTime;
+	//	_t = _travelElapsedTime / _reachingPlayerData.timeToReach;
 
-		if (_reachingPlayerData.isAccelerated)
-		{
-			_t = EasingFunction.GetEasingFunction(_reachingPlayerData.easingFunction)(0, 1, _t);
-			if (_t >= ALMOST_REACHED_ONE)
-				_t = 1f;
-		}
+	//	if (_reachingPlayerData.isAccelerated)
+	//	{
+	//		_t = EasingFunction.GetEasingFunction(_reachingPlayerData.easingFunction)(0, 1, _t);
+	//		if (_t >= ALMOST_REACHED_ONE)
+	//			_t = 1f;
+	//	}
 
 		
-		if (_t >= 1f && _reachingPlayerData.shouldStop)
-		{
-			_stopElapsedTime += Time.deltaTime;
-			if (_stopElapsedTime < _reachingPlayerData.stopDuration)
-				return; 
+	//	if (_t >= 1f && _reachingPlayerData.shouldStop)
+	//	{
+	//		_stopElapsedTime += Time.deltaTime;
+	//		if (_stopElapsedTime < _reachingPlayerData.stopDuration)
+	//			return; 
 
 			
-			_stopElapsedTime = 0f;
-			_travelElapsedTime = 0f;
-			_t = 0f;
-			_startInterpolationPosition = _rb.position;
-		}
+	//		_stopElapsedTime = 0f;
+	//		_travelElapsedTime = 0f;
+	//		_t = 0f;
+	//		_startInterpolationPosition = _rb.position;
+	//	}
 
-		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, _playerTransform.position, _t);
-		_rb.MovePosition(newPosition);
+	//	Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, _playerTransform.position, _t);
+	//	_rb.MovePosition(newPosition);
 
-		if (_t >= 1f && !_reachingPlayerData.shouldStop)
-		{
-			_startInterpolationPosition = _rb.position;
-			_travelElapsedTime = 0f;
-			_t = 0f;
-		}
-	}
+	//	if (_t >= 1f && !_reachingPlayerData.shouldStop)
+	//	{
+	//		_startInterpolationPosition = _rb.position;
+	//		_travelElapsedTime = 0f;
+	//		_t = 0f;
+	//	}
+	//}
 
 
 	private void AdvanceToNextWaypoint(Vector2 reachedPos)

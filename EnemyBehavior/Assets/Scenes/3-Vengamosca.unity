@@ -507,11 +507,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
-  _usageWay: 1
+  _usageWay: 0
   _waypointsData:
   - waypoint: {fileID: 686178266}
     timeToReach: 1
-    isAccelerated: 1
+    isAccelerated: 0
     shouldStop: 0
     stopDuration: 0
     easingFunction: 29
@@ -525,16 +525,7 @@ MonoBehaviour:
   _isACicle: 1
   _ciclicWaypointAdded: 0
   _timeBetweenRandomPoints: 0.4
-  _seekPlayer: 1
   _detectionDistance: 3
-  _playerTransform: {fileID: 768066766}
-  _reachingPlayerData:
-    waypoint: {fileID: 0}
-    timeToReach: 2
-    isAccelerated: 0
-    shouldStop: 0
-    stopDuration: 1
-    easingFunction: 30
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,11 +955,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752834669}
   m_CullTransparentMesh: 1
---- !u!4 &768066766 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
-  m_PrefabInstance: {fileID: 1570595272}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1161187925
 GameObject:
   m_ObjectHideFlags: 0

@@ -690,12 +690,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0bdd30f95e5152479a19033f11d6077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAccelerated: 0
-  _easingFunction: 0
+  _isAccelerated: 1
+  _easingFunction: 20
   _speed: 5
   _throw: 0
-  _goalSpeed: 0
-  _interpolationTime: 0
+  _goalSpeed: 6.39
+  _interpolationTime: 1.63
   _direction: 1
   _onCollisionReaction: 1
 --- !u!1 &579760015

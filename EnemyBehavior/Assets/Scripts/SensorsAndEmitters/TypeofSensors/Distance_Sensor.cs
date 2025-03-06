@@ -30,7 +30,7 @@ public class Distance_Sensor : Sensors
     public override void StartSensor()
     {
         
-        _useMagnitude = true;
+       // _useMagnitude = true;
         _startDistance = true;
     }
 
