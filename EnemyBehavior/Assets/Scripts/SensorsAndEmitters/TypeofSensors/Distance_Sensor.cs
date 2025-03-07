@@ -167,5 +167,13 @@ public class Distance_Sensor : Sensors
     {
         _target = g;
     }
+    public TypeOfDistance GetDistanceType()
+    {
+        return _distanceType;
+    }
+    public DetectionSide GetDetectionSide()
+    {
+        return  _detectionSide;
+    }
     
 }
