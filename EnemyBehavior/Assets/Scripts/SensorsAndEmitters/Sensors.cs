@@ -5,8 +5,8 @@ using UnityEngine.UIElements;
 
 public abstract class Sensors : MonoBehaviour
 {
-	[SerializeField]
-	public UnityEvent<Sensors> a;
+	//[SerializeField]
+	//public UnityEvent<Sensors> a;
 
 	// Action event
 	private Action<Sensors> _onEventDetectedInternal;

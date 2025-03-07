@@ -69,31 +69,6 @@ public class Damage_Sensor : Sensors
 	}
 
 	#endregion
-	//public override bool CanTransition()
-    //{
-  //      //la transicion depende del tipo de daño, 
-  //          //intantaneo al inicio
-  //          //persistente cuando salga
-  //          //resudual al aplicar el primer daño
-
-  //      if (m_damageType == DamageType.Instant && m_col)
-		//{
-  //          m_isChecking = false;
-  //          return true;
-  //      }
-  //      else if (m_damageType == DamageType.Persistent && m_endPersistentDamage)
-  //      {
-  //          m_isChecking = false; 
-  //          return true;
-  //      }
-  //      else if (m_damageType == DamageType.Residual)
-  //      {
-  //          //???
-  //          return true;
-  //      }
-    //   return false; 
-   // }
-
     public override void StartSensor()
 	{
 		_col = false;

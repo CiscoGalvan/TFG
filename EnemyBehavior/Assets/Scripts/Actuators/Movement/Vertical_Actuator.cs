@@ -78,8 +78,6 @@ public class Vertical_Actuator : Movement_Actuator
         }
         _initial_speed = _speed;
         if (_throw) ApllyForce();
-      //  UpdateActuator2();
-
     }
     public override void DestroyActuator()
     {
