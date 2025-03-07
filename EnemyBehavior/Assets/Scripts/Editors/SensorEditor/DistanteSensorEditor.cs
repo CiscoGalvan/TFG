@@ -13,17 +13,17 @@ public class DistanteSensorEditor : Editor
         Distance_Sensor component = (Distance_Sensor)target;
         DrawDefaultInspector();
 
-        if (!component.GetUseMagnitude()) //if magnitude is false then chek axis
-        {
-            component.SetCheckXAxis(EditorGUILayout.Toggle(goalSpeedLabel, component.GetCheckXAxis()));
+        //if (!component.GetUseMagnitude()) //if magnitude is false then chek axis
+        //{
+        //    component.SetCheckXAxis(EditorGUILayout.Toggle(goalSpeedLabel, component.GetCheckXAxis()));
            
-        }
+        //}
        
-        // If GUI changed we must applicate those changes in editor
-        if (GUI.changed)
-        {
-            EditorUtility.SetDirty(component);
-        }
+        //// If GUI changed we must applicate those changes in editor
+        //if (GUI.changed)
+        //{
+        //    EditorUtility.SetDirty(component);
+        //}
 
 
     }

@@ -3,98 +3,162 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Distance_Sensor;
 // Observation: The distance between the two objects is measured from their center.
 public class Distance_Sensor : Sensors
 {
-    [SerializeField]
-    private GameObject _target; // Target object whose distance is measured
+    public enum TypeOfDistance
+    {
+        Area = 0,
+        Magnitude = 1,
+        SingleAxis = 2
+    };
+    public enum Axis
+    {
+        Y = 0,
+        X = 1
+    };
+    public enum PartOfAxis
+    {
+        Up_Left = 0,
+        Down_Right = 1
+    };
+    public enum DetectionSide
+    {
+        Both = 0,
+        Single = 1
+    };
 
-    [SerializeField, Min(0)]
-    private float _detectionDistance = 5f; // Threshold distance to trigger the event
-   
+    [SerializeField] private TypeOfDistance _distanceType = TypeOfDistance.Magnitude;
+    [SerializeField] private Axis _axis = Axis.X;
+    [SerializeField] private PartOfAxis _partOfAxis = PartOfAxis.Up_Left;
+    [SerializeField] private DetectionSide _detectionSide = DetectionSide.Both;
+
+    /// <summary>
+    /// variables para magnitud y eje
+    /// </summary>
     [SerializeField]
-    private bool _useMagnitude = true; // If true, measures full magnitude; otherwise, measures a single axis
-   
-    [SerializeField]
-    [HideInInspector]
-    private bool _checkXAxis = false; // If true, measures along the X-axis; otherwise, measures along the Y-axis
+    private GameObject _target; // Target to check distance against
+    [SerializeField, Min(0)] private float _detectionDistance = 5f; // Threshold distance
+
+
+    [SerializeField, Tooltip("External trigger used for area detection.")]
+    private Collider2D _areaTrigger; // Now we use an external trigger instead of the sensor itself
+
 
     // Indicates whether the timer is active
     private bool _startDistance;
 
-    [SerializeField]
-    [Tooltip("if this is active the message is send on Distance enter otherway it is send when its far")]
-    private bool _onDistanceEnter= true; // Target object whose distance is measured
+    
     //private bool _isNear;
     // Initializes the sensor settings
     public override void StartSensor()
     {
-        
-       // _useMagnitude = true;
+
         _startDistance = true;
+
+        if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
+        {
+           
+             Debug.LogError("Area detection requires a Collider2D set as a trigger!");
+        
+        }
     }
 
     // Determines if the sensor should transition based on distance
     private void Update()
     {
-        // If there is no target, return false
-        if (_target != null && _startDistance)
-        {
-            // Calculate distance based on the selected method
-            float distance = _useMagnitude
-                ? Vector2.Distance(transform.position, _target.transform.position) // Full magnitude distance
-                : _checkXAxis
-                    ? Mathf.Abs(transform.position.x - _target.transform.position.x) // Distance along X-axis
-                    : Mathf.Abs(transform.position.y - _target.transform.position.y); // Distance along Y-axis
+        if (!_startDistance || _target == null || _distanceType == TypeOfDistance.Area)
+            return;
+        
+        Vector2 selfPos = transform.position;
+        Vector2 targetPos = _target.transform.position;
+        bool detected = false;
 
-     
-            // Check if the distance is within the threshold
-            if (distance <= _detectionDistance && _onDistanceEnter)
-            {
-                
-                EventDetected(); // Trigger the event
-                 
-            }
-            else if (!_onDistanceEnter)
-            {
-                
-                EventDetected(); // Trigger the event
-            }
+        switch (_distanceType)
+        {
+            case TypeOfDistance.Magnitude:
+                detected = Vector2.Distance(selfPos, targetPos) <= _detectionDistance;
+                break;
+
+            case TypeOfDistance.SingleAxis:
+                float distance = (_axis == Axis.X)
+                    ? Mathf.Abs(selfPos.x - targetPos.x)
+                    : Mathf.Abs(selfPos.y - targetPos.y);
+                bool correctSide = _detectionSide == DetectionSide.Both ||
+                   (_axis == Axis.X
+                       ? (_partOfAxis == PartOfAxis.Up_Left ? targetPos.x < selfPos.x : targetPos.x > selfPos.x)
+                       : (_partOfAxis == PartOfAxis.Up_Left ? targetPos.y > selfPos.y : targetPos.y < selfPos.y));
+
+                detected = distance <= _detectionDistance && correctSide;
+                break;
         }
+
+        if (detected)
+        {
+            EventDetected();
+        }
+        
        
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_startDistance &&_distanceType == TypeOfDistance.Area && other.gameObject == _target )
+        {
+            EventDetected();
+        }
     }
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul semitransparente
-        if (_useMagnitude)
+        Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul semitransparente
+
+        switch (_distanceType)
         {
-            Gizmos.DrawSphere(transform.position, _detectionDistance);
+            case TypeOfDistance.Magnitude:
+                Gizmos.DrawSphere(transform.position, _detectionDistance);
+                break;
+
+            case TypeOfDistance.SingleAxis:
+                Vector3 size;
+                Vector3 positionOffset = Vector3.zero;
+
+                if (_axis == Axis.X)
+                {
+                    if (_detectionSide == DetectionSide.Both)
+                    {
+                        size = new Vector3(_detectionDistance * 2, 10, 1);
+                    }
+                    else
+                    {
+                        size = new Vector3(_detectionDistance, 10, 1);
+                        positionOffset = new Vector3(
+                            _partOfAxis == PartOfAxis.Up_Left ? -_detectionDistance / 2 : _detectionDistance / 2,
+                            0, 0);
+                    }
+                }
+                else // Axis.Y
+                {
+                    if (_detectionSide == DetectionSide.Both)
+                    {
+                        size = new Vector3(10, _detectionDistance * 2, 1);
+                    }
+                    else
+                    {
+                        size = new Vector3(10, _detectionDistance, 1);
+                        positionOffset = new Vector3(
+                            0, _partOfAxis == PartOfAxis.Up_Left ? _detectionDistance / 2 : -_detectionDistance / 2,
+                            0);
+                    }
+                }
+
+                Gizmos.DrawCube(transform.position + positionOffset, size);
+                break;
         }
-        else
-        {
-            Vector3 start = transform.position;
-            Vector3 size = _checkXAxis
-                ? new Vector3(_detectionDistance * 2, 1, 1)
-                : new Vector3(1, _detectionDistance * 2, 1);
 
-            Gizmos.DrawCube(start, size);
-        }
     }
 
-    public bool GetUseMagnitude()
-    {
-        return _useMagnitude;
-    }
-    public bool GetCheckXAxis()
-    {
-        return _checkXAxis;
-    }
-
-    public void SetCheckXAxis(bool b)
-    {
-         _checkXAxis = b;
-    }
     public void SetDetectionDistance(float newValue)
     {
         _detectionDistance = newValue;
