@@ -239,4 +239,32 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	{
 		//_distanceSensor.onEventDetected -= SeekPlayer;
 	}
+	private void OnDrawGizmos()
+	{
+		switch (_usageWay)
+		{
+			case UsageWay.RandomArea:
+				
+				
+					Gizmos.color = Color.blue;
+
+					Gizmos.DrawSphere(_currentRandomPoint, 0.2f);
+				
+				break;
+			case UsageWay.Waypoint:
+				if (_waypointsData.Count > 0 && _currentWaypointIndex < _waypointsData.Count)
+				{
+					Transform currentWaypoint = _waypointsData[_currentWaypointIndex].waypoint;
+
+					if (currentWaypoint != null)
+					{
+						Gizmos.color = Color.blue;
+
+						Gizmos.DrawSphere(currentWaypoint.position, 0.2f);
+					}
+				}
+				break;
+		}
+		
+	}
 }

@@ -514,7 +514,7 @@ MonoBehaviour:
   _shouldThemStop: 1
   _stopTime: 1
   _easingFunctionForAllWaypoints: 9
-  _usageWay: 1
+  _usageWay: 0
   _waypointsData:
   - waypoint: {fileID: 686178266}
     timeToReach: 1
@@ -810,7 +810,7 @@ GameObject:
   m_Layer: 0
   m_Name: PathWay
   m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1338,7 +1338,7 @@ GameObject:
   m_Layer: 0
   m_Name: PathWay2
   m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

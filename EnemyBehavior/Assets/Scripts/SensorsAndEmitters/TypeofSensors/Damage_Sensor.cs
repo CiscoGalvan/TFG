@@ -13,13 +13,18 @@ public class Damage_Sensor : Sensors
     private bool _col;
 	private DamageEmitter _damageEmitter;
 
+	[SerializeField, HideInInspector]
+	private bool _moreThanOneCollider;
+
+	//[SerializeField, HideInInspector]
+	//private Collider2D _damageReceiverCollider;
 	#region Trigger Methods
 	private void OnTriggerEnter2D(Collider2D collision)
     {
 		if (_isChecking)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if(_damageEmitter != null)
+			if(_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision)
 			{
 				_col = true;
 				EventDetected();
@@ -31,7 +36,7 @@ public class Damage_Sensor : Sensors
 		if (_isChecking) 
 		{
 			_damageEmitter= collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null)
+			if (_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision)
 			{
 				
 				_col = false;
@@ -47,7 +52,7 @@ public class Damage_Sensor : Sensors
 		if (_isChecking)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null)
+			if (_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision.collider)
 			{
 				_col = true;
 				EventDetected();
@@ -59,9 +64,8 @@ public class Damage_Sensor : Sensors
 		if (_isChecking)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null)
+			if (_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision.collider)
 			{
-
 				_col = false;
 				EventDetected();
 			}

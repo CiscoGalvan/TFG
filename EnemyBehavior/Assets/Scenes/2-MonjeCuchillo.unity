@@ -434,7 +434,6 @@ GameObject:
   - component: {fileID: 620872462}
   - component: {fileID: 620872465}
   - component: {fileID: 620872466}
-  - component: {fileID: 620872467}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -661,11 +660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _distanceType: 1
+  _axis: 0
+  _partOfAxis: 0
+  _detectionSide: 1
   _target: {fileID: 353920733}
-  _detectionDistance: 4.36
-  _useMagnitude: 1
-  _checkXAxis: 1
-  _onDistanceEnter: 1
+  _detectionDistance: 5.84
+  _areaTrigger: {fileID: 0}
 --- !u!114 &620872465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,11 +679,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _distanceType: 1
+  _axis: 1
+  _partOfAxis: 1
+  _detectionSide: 0
   _target: {fileID: 353920733}
-  _detectionDistance: 4.39
-  _useMagnitude: 1
-  _checkXAxis: 0
-  _onDistanceEnter: 0
+  _detectionDistance: 5.84
+  _areaTrigger: {fileID: 0}
 --- !u!114 &620872466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,18 +706,6 @@ MonoBehaviour:
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
   _moreThanOneCollider: 0
---- !u!114 &620872467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37725c1d36a065d4aa2a189bbf19c2d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &917179313
 GameObject:
   m_ObjectHideFlags: 0

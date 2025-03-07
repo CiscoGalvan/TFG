@@ -106,4 +106,6 @@ public class DamageEmitter : MonoBehaviour
             _damageEmitterCollider = GetComponent<Collider2D>();
         }
 	}
+
+    public Collider2D GetDamageEmitterCollider() => _damageEmitterCollider;
 }

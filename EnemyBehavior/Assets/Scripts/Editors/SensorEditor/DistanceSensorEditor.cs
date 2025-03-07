@@ -38,30 +38,47 @@ public class DistanceSensorEditor : Editor
 
         EditorGUILayout.PropertyField(_distanceType, _distanceTypeLabel);
         EditorGUILayout.PropertyField(_target, _targetLabel);
-        
-
-        Distance_Sensor sensor = (Distance_Sensor)target;
-        if (sensor.GetDistanceType() == Distance_Sensor.TypeOfDistance.SingleAxis)
-        {   
-            EditorGUILayout.PropertyField(_detectionDistance, _detectionDistanceLabel);
-            EditorGUILayout.PropertyField(_axis, _axisLabel);
-            EditorGUILayout.PropertyField(_detectionSide, _detectionSideLabel);
-            if (sensor.GetDetectionSide() != Distance_Sensor.DetectionSide.Both)
-            {
-                EditorGUILayout.PropertyField(_partOfAxis, _partOfAxisLabel);
-            }
-
-        }
-        else if (sensor.GetDistanceType() == Distance_Sensor.TypeOfDistance.Area)
+        switch (_distanceType.intValue)
         {
-            EditorGUILayout.PropertyField(_areaTrigger, _areaTriggerLabel);
+            case (int)TypeOfDistance.SingleAxis:
+				EditorGUILayout.PropertyField(_detectionDistance, _detectionDistanceLabel);
+				EditorGUILayout.PropertyField(_axis, _axisLabel);
+				EditorGUILayout.PropertyField(_detectionSide, _detectionSideLabel);
+				if ((DetectionSide)_detectionSide.intValue != DetectionSide.Both)
+				{
+					// Aquí aplicamos la lógica para restringir las opciones del enum PartOfAxis
+					string[] options;
+					int[] values = new int[] { 0, 1 }; ;
+
+					if (_axis.intValue == 0) // Si Axis es 1, permitimos Up (0) y Down (1)
+					{
+						options = new string[] { "Up", "Down" };
+						
+					}
+					else // Si Axis es 0, permitimos Right (2) y Left (3)
+					{
+						options = new string[] { "Left", "Right" };
+					}
+
+					// Obtener el índice actual basado en el valor almacenado
+					int currentIndex = System.Array.IndexOf(values, _partOfAxis.intValue);
+					if (currentIndex == -1) currentIndex = 0; // En caso de valor inválido, seleccionar el primero disponible
+
+					// Dibujar el popup personalizado
+					int selectedIndex = EditorGUILayout.Popup(_partOfAxisLabel, currentIndex, options);
+
+					// Asignar el nuevo valor seleccionado
+					_partOfAxis.intValue = values[selectedIndex];
+				}
+				break;
+            case (int)TypeOfDistance.Magnitude:
+				EditorGUILayout.PropertyField(_detectionDistance, _detectionDistanceLabel);
+				break;
+            case (int)TypeOfDistance.Area:
+				EditorGUILayout.PropertyField(_areaTrigger, _areaTriggerLabel);
+				break;
 
         }
-        else if (sensor.GetDistanceType() == Distance_Sensor.TypeOfDistance.Magnitude)
-        {
-            EditorGUILayout.PropertyField(_detectionDistance, _detectionDistanceLabel);
-        }
-
        serializedObject.ApplyModifiedProperties();
     }
 }

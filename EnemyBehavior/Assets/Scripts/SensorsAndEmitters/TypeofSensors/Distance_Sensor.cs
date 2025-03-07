@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
-using static Distance_Sensor;
 // Observation: The distance between the two objects is measured from their center.
 public class Distance_Sensor : Sensors
 {
@@ -20,8 +20,8 @@ public class Distance_Sensor : Sensors
     };
     public enum PartOfAxis
     {
-        Up_Left = 0,
-        Down_Right = 1
+        UpOrLeft = 0,
+        DownOrRight = 1
     };
     public enum DetectionSide
     {
@@ -31,7 +31,7 @@ public class Distance_Sensor : Sensors
 
     [SerializeField] private TypeOfDistance _distanceType = TypeOfDistance.Magnitude;
     [SerializeField] private Axis _axis = Axis.X;
-    [SerializeField] private PartOfAxis _partOfAxis = PartOfAxis.Up_Left;
+    [SerializeField] private PartOfAxis _partOfAxis = PartOfAxis.UpOrLeft;
     [SerializeField] private DetectionSide _detectionSide = DetectionSide.Both;
 
     /// <summary>
@@ -87,8 +87,8 @@ public class Distance_Sensor : Sensors
                     : Mathf.Abs(selfPos.y - targetPos.y);
                 bool correctSide = _detectionSide == DetectionSide.Both ||
                    (_axis == Axis.X
-                       ? (_partOfAxis == PartOfAxis.Up_Left ? targetPos.x < selfPos.x : targetPos.x > selfPos.x)
-                       : (_partOfAxis == PartOfAxis.Up_Left ? targetPos.y > selfPos.y : targetPos.y < selfPos.y));
+                       ? (_partOfAxis == PartOfAxis.UpOrLeft ? targetPos.x < selfPos.x : targetPos.x > selfPos.x)
+                       : (_partOfAxis == PartOfAxis.UpOrLeft ? targetPos.y > selfPos.y : targetPos.y < selfPos.y));
 
                 detected = distance <= _detectionDistance && correctSide;
                 break;
@@ -111,14 +111,13 @@ public class Distance_Sensor : Sensors
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul semitransparente
-        Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul semitransparente
-
+        Gizmos.color = new Color(0, 0, 1, 0.3f);
         switch (_distanceType)
         {
             case TypeOfDistance.Magnitude:
-                Gizmos.DrawSphere(transform.position, _detectionDistance);
-                break;
+				Handles.color = new Color(0, 0, 1, 0.3f); 
+				Handles.SphereHandleCap(0, transform.position, Quaternion.identity, _detectionDistance * 2, EventType.Repaint);
+				break;
 
             case TypeOfDistance.SingleAxis:
                 Vector3 size;
@@ -134,7 +133,7 @@ public class Distance_Sensor : Sensors
                     {
                         size = new Vector3(_detectionDistance, 10, 1);
                         positionOffset = new Vector3(
-                            _partOfAxis == PartOfAxis.Up_Left ? -_detectionDistance / 2 : _detectionDistance / 2,
+                            _partOfAxis == PartOfAxis.UpOrLeft ? -_detectionDistance / 2 : _detectionDistance / 2,
                             0, 0);
                     }
                 }
@@ -148,7 +147,7 @@ public class Distance_Sensor : Sensors
                     {
                         size = new Vector3(10, _detectionDistance, 1);
                         positionOffset = new Vector3(
-                            0, _partOfAxis == PartOfAxis.Up_Left ? _detectionDistance / 2 : -_detectionDistance / 2,
+                            0, _partOfAxis == PartOfAxis.UpOrLeft ? _detectionDistance / 2 : -_detectionDistance / 2,
                             0);
                     }
                 }
@@ -166,14 +165,5 @@ public class Distance_Sensor : Sensors
     public void SetTarget(GameObject g)
     {
         _target = g;
-    }
-    public TypeOfDistance GetDistanceType()
-    {
-        return _distanceType;
-    }
-    public DetectionSide GetDetectionSide()
-    {
-        return  _detectionSide;
-    }
-    
+    }    
 }
