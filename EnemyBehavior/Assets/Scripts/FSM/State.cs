@@ -53,7 +53,6 @@ public class State : MonoBehaviour
 			{
 				pair.sensor.StartSensor();
                 sensorHashSet.Add(pair.sensor); // Opcional, si quieres que también estén en sensorHashSet
-				SetTransitionEvent(pair);
 			}
         }
         foreach (var sensor in sensorHashSet)
@@ -104,15 +103,15 @@ public class State : MonoBehaviour
 			{
 				SetTransitionEvent(pair); // Asegurar que transitionEvent está bien asignado
 
-				if (pair.transitionEvent != null)
-				{
-					pair.transitionEvent += SensorTriggeredWrapper;
-					Debug.Log("Evento correctamente enlazado a " + pair.sensor.name);
-				}
-				else
-				{
-					Debug.LogError("No se pudo asignar transitionEvent en " + pair.sensor.name);
-				}
+				//if (pair.transitionEvent != null)
+				//{
+				//	pair.transitionEvent += SensorTriggeredWrapper;
+				//	Debug.Log("Evento correctamente enlazado a " + pair.sensor.name);
+				//}
+				//else
+				//{
+				//	Debug.LogError("No se pudo asignar transitionEvent en " + pair.sensor.name);
+				//}
 			}
 		}
 	}
@@ -130,13 +129,16 @@ public class State : MonoBehaviour
     }
 	private void SensorTriggeredWrapper(Sensors sensor)
 	{
+        int I = 0;
 		foreach (var pair in _sensorTransitions)
 		{
+            Debug.Log("I = " + I);
 			if (pair.sensor == sensor)
 			{
 				SensorTriggered(pair);
 				break;
 			}
+            I++;
 		}
 	}
 	private void SensorTriggered(SensorStatePair pair)
@@ -158,6 +160,10 @@ public class State : MonoBehaviour
 					case Collision_Sensor.SensorEventTypes.OnCollisionEnterEvent:
 						pair.transitionEvent = collisionSensor._onCollisionEnterEvent;
 						collisionSensor._onCollisionEnterEvent += SensorTriggeredWrapper; // SUSCRIPCIÓN CORRECTA
+						break;
+                    case Collision_Sensor.SensorEventTypes.OnPlayerCollision:
+						pair.transitionEvent = collisionSensor._onPlayerCollision;
+						collisionSensor._onPlayerCollision += SensorTriggeredWrapper; // SUSCRIPCIÓN CORRECTA
 						break;
 					default:
 						pair.transitionEvent = collisionSensor._onNoCollisionEvent;

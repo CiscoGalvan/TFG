@@ -38,7 +38,6 @@ public class FSM : MonoBehaviour
         if (newState != null && newState != _currentstate)
         {
             ChangeState(newState);
-            newState =null;
         }
     }
 
