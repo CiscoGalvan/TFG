@@ -5,19 +5,21 @@ using UnityEngine.UIElements;
 
 public abstract class Sensors : MonoBehaviour
 {
-	//[SerializeField]
-	//public UnityEvent<Sensors> a;
 
 	// Action event
 	private Action<Sensors> _onEventDetectedInternal;
 
+	public enum SensorEventTypes
+	{
+		Default
+	}
     // Subscriber counter
     private int _subscriberCount = 0;
 
     // Public property to get the number of subscribers
     public int SubscriberCount => _subscriberCount;
 
-    // Override the add and remove properties of the event
+	// Override the add and remove properties of the event
     public event Action<Sensors> onEventDetected
 	{
 		add
@@ -30,7 +32,7 @@ public abstract class Sensors : MonoBehaviour
 			_onEventDetectedInternal -= value;
             if (_subscriberCount <= 0)
             {
-                Debug.LogError("Attempted to remove a subscriber when there are none.");
+                //Debug.LogError("Attempted to remove a subscriber when there are none.");
                 return;
             }
             _subscriberCount--; 
@@ -44,7 +46,20 @@ public abstract class Sensors : MonoBehaviour
 		_onEventDetectedInternal?.Invoke(this);
 	}
 
+	public void EventDetected(Action<Sensors> eventAction)
+	{
+		eventAction?.Invoke(this);
+	}
+
 	public abstract void StartSensor();
+	// Métodos para añadir o quitar eventos específicos en clases derivadas
+	protected void AddEventListener(ref Action<Sensors> eventAction, Action<Sensors> callback)
+	{
+		eventAction += callback;
+	}
 
-
+	protected void RemoveEventListener(ref Action<Sensors> eventAction, Action<Sensors> callback)
+	{
+		eventAction -= callback;
+	}
 }

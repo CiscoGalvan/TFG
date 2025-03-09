@@ -609,7 +609,7 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 620872464}
     targetState: {fileID: 620872463}
-  name: Primer Estado
+  stateName: State
 --- !u!114 &620872462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 620872465}
     targetState: {fileID: 620872461}
-  name: State
+  stateName: State
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0

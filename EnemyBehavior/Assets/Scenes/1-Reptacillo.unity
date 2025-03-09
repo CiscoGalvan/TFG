@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 620872464}
   - component: {fileID: 620872465}
   - component: {fileID: 620872466}
+  - component: {fileID: 620872467}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -805,10 +806,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateName: State
   actuatorList:
   - {fileID: 620872464}
-  _sensorTransitions: []
-  name: Primer Estado
+  _sensorTransitions:
+  - sensor: {fileID: 620872466}
+    targetState: {fileID: 0}
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +864,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _subscriberType: 1
+--- !u!114 &620872467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectionTime: 5
 --- !u!1 &938084504
 GameObject:
   m_ObjectHideFlags: 0

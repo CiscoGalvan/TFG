@@ -8,6 +8,18 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Collision_Sensor : Sensors
 {
+	//Si queremos hacer combinaciones de eventos debemos usar [Flags]
+	public new enum SensorEventTypes
+	{
+		OnCollisionEnterEvent,
+        NoCollisionEvent
+	}
+    [SerializeField, HideInInspector]
+    private SensorEventTypes _subscriberType;
+
+
+	public Action<Sensors> _onCollisionEnterEvent;
+	public Action<Sensors> _onNoCollisionEvent;
     // Boolean to track if a collision has occurred
     private bool _col;
 
@@ -17,23 +29,48 @@ public class Collision_Sensor : Sensors
     // Stores the latest collision event
     private Collision2D _collisionObject;
 
-    // Handles the collision event when the object enters a collision
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    float _dt;
+    private bool _aaa = false;
+	// Handles the collision event when the object enters a collision
+	private void OnCollisionEnter2D(Collision2D collision)
     {
         // Only process the collision if the sensor is active
         if (_isChecking)
         {
             _col = true;
             _collisionObject = collision;
-            EventDetected(); // Call the event handler method
+           
+            EventDetected(_onCollisionEnterEvent); // Call the event handler method
         }
-    }
-    // Activates the sensor. Is the firts method call
-    public override void StartSensor()
+	}
+
+	private void Update()
+	{
+        _dt += Time.deltaTime;
+        if (!_aaa && _dt > 5)
+        {
+            _aaa = true;
+            EventDetected(_onNoCollisionEvent);
+        }
+	}
+	// Activates the sensor. Is the firts method call
+	public override void StartSensor()
     {
         _isChecking = true;
         _col = false;
-    }
+		if (_onCollisionEnterEvent == null)
+		{
+			_onCollisionEnterEvent = delegate { };
+			
+		}
+
+		if (_onNoCollisionEvent == null)
+		{
+			_onNoCollisionEvent = delegate { };
+		
+		}
+	}
 
 
     // Returns the last collided object
@@ -41,4 +78,6 @@ public class Collision_Sensor : Sensors
 
     // Returns whether a collision has been detected
     bool GetBooleanCollision() { return _col; }
+
+    public SensorEventTypes GetSuscriberType() => _subscriberType;
 }

@@ -62,10 +62,9 @@ public class Horizontal_Actuator : Movement_Actuator
             {
                 _collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
             }
-            _collisionSensor.onEventDetected += CollisionEvent;
+            _collisionSensor._onCollisionEnterEvent += CollisionEvent;
 			sensors.Add(_collisionSensor);
         }
-		
         _time = 0;
 		if (_isAccelerated)
 		{
@@ -79,7 +78,7 @@ public class Horizontal_Actuator : Movement_Actuator
     {
         if (_collisionSensor != null)
         {
-            _collisionSensor.onEventDetected -= CollisionEvent;
+            _collisionSensor._onCollisionEnterEvent -= CollisionEvent;
         }
     }
 	public override void UpdateActuator()
@@ -185,4 +184,9 @@ public class Horizontal_Actuator : Movement_Actuator
 		return _interpolationTime;
 	}
     #endregion
+
+	private void TEST(Sensors s)
+	{
+		Debug.Log("AAAA");
+	}
 }
