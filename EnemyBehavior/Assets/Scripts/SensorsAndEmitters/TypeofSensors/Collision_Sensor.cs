@@ -12,7 +12,8 @@ public class Collision_Sensor : Sensors
 	public new enum SensorEventTypes
 	{
 		OnCollisionEnterEvent,
-        NoCollisionEvent
+        NoCollisionEvent,
+        OnPlayerCollision
 	}
     [SerializeField, HideInInspector]
     private SensorEventTypes _subscriberType;
@@ -20,6 +21,7 @@ public class Collision_Sensor : Sensors
 
 	public Action<Sensors> _onCollisionEnterEvent;
 	public Action<Sensors> _onNoCollisionEvent;
+	public Action<Sensors> _onPlayerCollision;
     // Boolean to track if a collision has occurred
     private bool _col;
 
@@ -40,8 +42,12 @@ public class Collision_Sensor : Sensors
         {
             _col = true;
             _collisionObject = collision;
-           
             EventDetected(_onCollisionEnterEvent); // Call the event handler method
+            if(collision.gameObject.name == "Player")
+            {
+                Debug.Log("PLAYER");   
+                EventDetected(_onPlayerCollision);
+			}
         }
 	}
 
