@@ -27,7 +27,7 @@ public class Spawner_Actuator : Actuator
 
     }
     // Start is called before the first frame update
-    public override void StartActuator()
+    public override void StartActuator(Animator _animator)
     {
         _timer = new Timer(_spawnInterval);
         _numEnemiesAlreadySpawn = 0;

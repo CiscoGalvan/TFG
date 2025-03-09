@@ -47,7 +47,7 @@ public class Circular_Actuator : Movement_Actuator
 	private Vector3 _startingPosition;
 	private EasingFunction.Function _easingFunc;
 	
-	public override void StartActuator()
+	public override void StartActuator(Animator _animator)
 	{
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();

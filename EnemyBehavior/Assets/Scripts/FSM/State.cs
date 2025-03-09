@@ -24,20 +24,16 @@ public class State : MonoBehaviour
     [SerializeField]
     private List<SensorStatePair> _sensorTransitions = new List<SensorStatePair>();
 
-    private int _numElementsSensor = -1;
     private State _nextState = null;
 
-
-    [SerializeField]
-    public string name = "State";
-    public void StartState()
+    public void StartState(Animator _animator)
     {
         //Debug.Log(name);
         foreach (var actuator in actuatorList)
         {
             if (actuator)
             {
-                actuator.StartActuator();
+                actuator.StartActuator(_animator);
                 sensorHashSet.UnionWith(actuator.GetSensors());
             }
                

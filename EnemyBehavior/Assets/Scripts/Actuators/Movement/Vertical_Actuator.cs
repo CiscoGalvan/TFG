@@ -55,7 +55,7 @@ public class Vertical_Actuator : Movement_Actuator
 
 	[SerializeField, HideInInspector]
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
-	public override void StartActuator()
+	public override void StartActuator(Animator _animator)
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);

@@ -51,8 +51,9 @@ public class Horizontal_Actuator : Movement_Actuator
     private EasingFunction.Function _easingFunc;
 
 
-	public override void StartActuator()
+	public override void StartActuator(Animator _animator)
     {
+		this._animator = _animator;
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
@@ -94,7 +95,8 @@ public class Horizontal_Actuator : Movement_Actuator
 		{
 			//MRU
 			_rigidbody.velocity = new Vector2(_speed * dirValue, _rigidbody.velocity.y);
-		}
+			
+        }
 		else
 		{
 			//MRUA
@@ -112,7 +114,8 @@ public class Horizontal_Actuator : Movement_Actuator
 				_speed = easedSpeed;
 			}
 		}
-	}
+        if (_animator != null) _animator.SetFloat("XSpeed", Mathf.Abs(_rigidbody.velocity.x));
+    }
 	void CollisionEvent(Sensors s)
     {
 		Collision2D col = _collisionSensor.GetCollidedObject();
@@ -130,7 +133,13 @@ public class Horizontal_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
 				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-			}
+                // Invertir la escala en el eje X
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1;
+                transform.localScale = localScale;
+
+
+            }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
 				Destroy(this.gameObject);
