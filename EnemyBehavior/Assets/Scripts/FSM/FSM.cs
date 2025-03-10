@@ -8,7 +8,7 @@ public class FSM : MonoBehaviour
     [Header("FSM Configuration")]
     [Tooltip("Defines the initial state of the FSM.")]
     [SerializeField]
-    private State initialState;
+    private State initialState; 
 
 
     private State _currentstate; // Stores the current active state
@@ -51,10 +51,11 @@ public class FSM : MonoBehaviour
     {
         // Execute exit actions of the current state
         _currentstate.DestroyState();
-
         // Set the new state and execute its start logic
         _currentstate = newState;
         _currentstate.StartState();
+        
     }
+  
 }
 

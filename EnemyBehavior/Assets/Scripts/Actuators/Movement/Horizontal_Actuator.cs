@@ -49,9 +49,9 @@ public class Horizontal_Actuator : Movement_Actuator
 	private float _time;
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
+    public event Action OnBounce; // Evento para notificar el rebote
 
-
-	public override void StartActuator()
+    public override void StartActuator()
     {
 		
         _rigidbody = this.GetComponent<Rigidbody2D>();
@@ -133,11 +133,8 @@ public class Horizontal_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
 				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-                // Invertir la escala en el eje X
-                Vector3 localScale = transform.localScale;
-                localScale.x *= -1;
-                transform.localScale = localScale;
-
+                // Invertir la escala en el eje 
+                OnBounce?.Invoke();
 
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)

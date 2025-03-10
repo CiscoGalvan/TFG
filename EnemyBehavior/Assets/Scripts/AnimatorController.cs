@@ -1,43 +1,94 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimatorController : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
-    Animator _animator;
+    private Animator _animator;
+    [SerializeField]
+    List<Actuator> _listofActuators;
+    [SerializeField]
+    private bool _isanimrihgtflip = true;
+    [SerializeField]
+    private bool _canFlip = true;
+    [SerializeField]
+    private bool _canRotate = false;
+
+
     Rigidbody2D _rigidbody;
-    void Start()
+
+
+
+    private bool _isMoving = false;
+    
+    private int _facingDirection = 1; // 1 = derecha, -1 = izquierda
+
+    private void Start()
     {
-        if(_animator == null)
+        _animator = GetComponent<Animator>();
+        if (_canFlip && !_isanimrihgtflip) //si no esta correctamente orientado al inicio rota el obj
         {
-            Debug.LogErrorFormat("no Animator is attached");
+            HandleBounce();
         }
-        _rigidbody = GetComponent<Rigidbody2D>();
-        if (_rigidbody == null)
+        SubscribeToActuators();
+    }
+    private void SubscribeToActuators()
+    {
+        foreach (var actuator in _listofActuators)
         {
-            Debug.LogErrorFormat("no Rigidbody2D is attached");
+            if (actuator is Horizontal_Actuator horizontalActuator)
+            {
+                horizontalActuator.OnBounce += HandleBounce;
+                //añadir el de morir para el destroy
+            }
+        }
+    }
+    private void OnDestroy()
+    {
+        UnsubscribeFromActuators();
+    }
+
+    private void Update()
+    {
+        UpdateAnimationState();
+    }
+
+    private void UpdateAnimationState()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _animator.SetFloat("XSpeed", Mathf.Abs(_rigidbody.velocity.x));
+        _animator.SetFloat("YSpeed", Mathf.Abs(_rigidbody.velocity.y));
+
+        if (_canFlip)
+        {
+            
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-         _animator.SetFloat("XSpeed", Mathf.Abs(_rigidbody.velocity.x));
-         _animator.SetFloat("YSpeed", Mathf.Abs(_rigidbody.velocity.y));
-         _animator.SetBool("LookingUP",false);
-         _animator.SetBool("LookingDown", false);
-         _animator.SetBool("LookingLeft", false);
-         _animator.SetBool("LookingRight", false);
-         _animator.SetBool("Rotating", false);
-         _animator.SetBool("Spawn", false);
-         _animator.SetBool("Damaged", false);
-         _animator.SetBool("Collisioned", false);
-         _animator.SetBool("Die", false);
-         _animator.SetBool("Delete", false);
-        //_animator.SetBool("Distanced", false);
-        //_animator.SetBool("Timer", false); //nssi lo vamos a usar para algo 
+   
 
+   
+
+    private void UnsubscribeFromActuators()
+    {
+        foreach (var actuator in _listofActuators)
+        {
+            if (actuator is Horizontal_Actuator horizontalActuator)
+            {
+                horizontalActuator.OnBounce -= HandleBounce;
+                //añadir el de morir para el destroy
+            }
+        }
+    }
+
+    private void HandleBounce()
+    {
+        //_animator.SetTrigger("Bounce");
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 }
+
