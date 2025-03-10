@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 620872466}
   - component: {fileID: 620872468}
   - component: {fileID: 620872467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036587287, y: -0.036587223}
+  m_Offset: {x: -0.036587283, y: -0.047644172}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -486,7 +486,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3189139, y: 0.24011037}
+  m_Size: {x: 0.3189139, y: 0.2622243}
   m_EdgeRadius: 0
 --- !u!50 &620872450
 Rigidbody2D:
@@ -630,7 +630,7 @@ MonoBehaviour:
   _interpolationTime: 0
   _throw: 0
   _direction: -1
-  _onCollisionReaction: 0
+  _onCollisionReaction: 1
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,9 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 620872462}
-  _sensorTransitions:
-  - sensor: {fileID: 620872465}
-    targetState: {fileID: 620872461}
+  _sensorTransitions: []
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,7 +738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 620872467}
-  _listofActuators: []
+  _listofActuators:
+  - {fileID: 620872462}
   _isanimrihgtflip: 1
   _canFlip: 1
   _canRotate: 0
@@ -756,7 +755,7 @@ GameObject:
   - component: {fileID: 917179314}
   - component: {fileID: 917179317}
   - component: {fileID: 917179316}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1250,7 @@ GameObject:
   - component: {fileID: 1478895727}
   - component: {fileID: 1478895730}
   - component: {fileID: 1478895729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1408,7 @@ GameObject:
   - component: {fileID: 1705750595}
   - component: {fileID: 1705750598}
   - component: {fileID: 1705750597}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1670,7 @@ GameObject:
   - component: {fileID: 1782011206}
   - component: {fileID: 1782011209}
   - component: {fileID: 1782011208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,7 +1825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069529775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ESCENA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

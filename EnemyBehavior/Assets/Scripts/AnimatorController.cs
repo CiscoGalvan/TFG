@@ -12,7 +12,7 @@ public class AnimatorController : MonoBehaviour
     [SerializeField]
     private bool _isanimrihgtflip = true;
     [SerializeField]
-    private bool _canFlip = true;
+    private bool _canFlip = true; //esto deberia mostrarse solo si el movhorizonal permite bounce
     [SerializeField]
     private bool _canRotate = false;
 
@@ -28,6 +28,7 @@ public class AnimatorController : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         if (_canFlip && !_isanimrihgtflip) //si no esta correctamente orientado al inicio rota el obj
         {
             HandleBounce();
@@ -57,7 +58,8 @@ public class AnimatorController : MonoBehaviour
 
     private void UpdateAnimationState()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+       if(_animator== null || _rigidbody ==null)
+            return;
         _animator.SetFloat("XSpeed", Mathf.Abs(_rigidbody.velocity.x));
         _animator.SetFloat("YSpeed", Mathf.Abs(_rigidbody.velocity.y));
 
