@@ -807,7 +807,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 2.16
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 4.58
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -900,7 +900,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 620872461}
-  _animator: {fileID: 620872467}
 --- !u!114 &620872461
 MonoBehaviour:
   m_ObjectHideFlags: 0

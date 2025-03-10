@@ -9,8 +9,7 @@ public class FSM : MonoBehaviour
     [Tooltip("Defines the initial state of the FSM.")]
     [SerializeField]
     private State initialState;
-    [SerializeField]
-    private Animator _animator;
+
 
     private State _currentstate; // Stores the current active state
 
@@ -18,7 +17,7 @@ public class FSM : MonoBehaviour
     {
         // Set the initial state and execute its start logic
         _currentstate = initialState;
-        _currentstate.StartState(_animator);
+        _currentstate.StartState();
     }
 
     void Update()
@@ -55,7 +54,7 @@ public class FSM : MonoBehaviour
 
         // Set the new state and execute its start logic
         _currentstate = newState;
-        _currentstate.StartState(_animator);
+        _currentstate.StartState();
     }
 }
 

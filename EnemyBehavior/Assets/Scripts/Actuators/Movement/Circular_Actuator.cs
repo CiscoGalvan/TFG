@@ -6,8 +6,6 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class Circular_Actuator : Movement_Actuator
 {
@@ -24,8 +22,10 @@ public class Circular_Actuator : Movement_Actuator
 	private float _maxAngle = 360f;
 
     [SerializeField, HideInInspector]
-    private float _angularAcceleration = 0f; 
+    private float _angularAcceleration = 0f;
 
+    [SerializeField]
+    private bool _canRotate = false;
 
     private Rigidbody2D _rigidbody;
 	
@@ -47,12 +47,12 @@ public class Circular_Actuator : Movement_Actuator
 	private Vector3 _startingPosition;
 	private EasingFunction.Function _easingFunc;
 	
-	public override void StartActuator(Animator _animator)
+	public override void StartActuator()
 	{
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();
-
         _rigidbody.gravityScale = 0f;
+
 		if (_rotationPointPosition == null)
 		{
 			Debug.Log("No rotation point assigned. Using object's initial position.");
@@ -60,19 +60,13 @@ public class Circular_Actuator : Movement_Actuator
 			_rotationPointPosition.position = transform.position;
 		}
 
-		
 		_radius = Vector3.Distance(_rotationPointPosition.position, transform.position);
-
-		
 		Vector2 dir = transform.position - _rotationPointPosition.position;
 		_initAngle = Mathf.Atan2(dir.y, dir.x) ;
 		_currentAngle = _initAngle;
-
-		
 		_currentAngularSpeed = _angularSpeed * Mathf.Deg2Rad;
 		_initAngularSpeed = _currentAngularSpeed;
 		_time = 0;
-
 		
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 	}
@@ -146,9 +140,13 @@ public class Circular_Actuator : Movement_Actuator
 		
             Vector3 expectedPosition = _rotationPointPosition.position + new Vector3( Mathf.Cos(_currentAngle) * _radius,Mathf.Sin(_currentAngle) * _radius,0f);
             _rigidbody.MovePosition(expectedPosition);
-        
-		
-	}
+        // Rotar el objeto si _canRotate es true
+        if (_canRotate)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle * Mathf.Rad2Deg);
+        }
+
+    }
 
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()

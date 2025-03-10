@@ -51,9 +51,9 @@ public class Horizontal_Actuator : Movement_Actuator
     private EasingFunction.Function _easingFunc;
 
 
-	public override void StartActuator(Animator _animator)
+	public override void StartActuator()
     {
-		this._animator = _animator;
+		
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
@@ -114,7 +114,7 @@ public class Horizontal_Actuator : Movement_Actuator
 				_speed = easedSpeed;
 			}
 		}
-        if (_animator != null) _animator.SetFloat("XSpeed", Mathf.Abs(_rigidbody.velocity.x));
+        
     }
 	void CollisionEvent(Sensors s)
     {

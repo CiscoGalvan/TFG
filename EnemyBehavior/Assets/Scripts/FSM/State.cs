@@ -26,14 +26,14 @@ public class State : MonoBehaviour
 
     private State _nextState = null;
 
-    public void StartState(Animator _animator)
+    public void StartState()
     {
         //Debug.Log(name);
         foreach (var actuator in actuatorList)
         {
             if (actuator)
             {
-                actuator.StartActuator(_animator);
+                actuator.StartActuator();
                 sensorHashSet.UnionWith(actuator.GetSensors());
             }
                

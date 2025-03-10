@@ -221,6 +221,7 @@ MonoBehaviour:
   _rotationPointPosition: {fileID: 464803567}
   _maxAngle: 360
   _angularAcceleration: 0
+  _canRotate: 0
   _interpolationTime: 0
 --- !u!50 &371458010
 Rigidbody2D:
@@ -264,7 +265,6 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 371458009}
   _sensorTransitions: []
-  name: State
 --- !u!114 &371458012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +363,8 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+  _damageEmitterCollider: {fileID: 0}
+  _moreThanOneCollider: 0
 --- !u!58 &371458016
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -627,6 +629,7 @@ MonoBehaviour:
   _rotationPointPosition: {fileID: 464803567}
   _maxAngle: 360
   _angularAcceleration: 0
+  _canRotate: 0
   _interpolationTime: 0
 --- !u!50 &768608821
 Rigidbody2D:
@@ -670,7 +673,6 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 768608820}
   _sensorTransitions: []
-  name: State
 --- !u!114 &768608823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,6 +771,8 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+  _damageEmitterCollider: {fileID: 0}
+  _moreThanOneCollider: 0
 --- !u!58 &768608827
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1205,6 +1209,7 @@ MonoBehaviour:
   _rotationPointPosition: {fileID: 464803567}
   _maxAngle: 360
   _angularAcceleration: 0
+  _canRotate: 1
   _interpolationTime: 0
 --- !u!50 &1495692045
 Rigidbody2D:
@@ -1248,7 +1253,6 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 1495692044}
   _sensorTransitions: []
-  name: State
 --- !u!114 &1495692047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,7 +1307,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1347,6 +1351,8 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+  _damageEmitterCollider: {fileID: 0}
+  _moreThanOneCollider: 0
 --- !u!58 &1495692051
 CircleCollider2D:
   m_ObjectHideFlags: 0

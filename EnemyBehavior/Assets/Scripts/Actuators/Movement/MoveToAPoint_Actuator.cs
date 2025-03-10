@@ -78,7 +78,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	[SerializeField]
 	private float _detectionDistance = 0.0f;
 
-	public override void StartActuator(Animator _animator)
+	public override void StartActuator()	
 	{
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;

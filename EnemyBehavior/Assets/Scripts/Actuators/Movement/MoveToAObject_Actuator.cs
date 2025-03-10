@@ -73,7 +73,7 @@ public class MoveToAObject_Actuator : Movement_Actuator
 	private WaypointData _reachingPlayerData;
 
 	//private Distance_Sensor _distanceSensor;
-	public override void StartActuator(Animator _animator)
+	public override void StartActuator()
 	{
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
