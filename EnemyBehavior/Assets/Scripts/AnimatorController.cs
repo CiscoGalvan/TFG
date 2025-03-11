@@ -10,7 +10,9 @@ public class AnimatorController : MonoBehaviour
     [SerializeField]
     List<Actuator> _listofActuators;
     [SerializeField]
-    private bool _isanimrihgtflip = true;
+    private bool _isSpriteWellOrientedX = true; //esto podria estar en un enun de como esta orientada la animacion y este bool ser privado
+    [SerializeField]
+    private bool _isSpriteWellOrientedY = true; //esto podria estar en un enun de como esta orientada la animacion y este bool ser privado
     [SerializeField]
     private bool _canFlipX = true; //esto deberia mostrarse solo si el movhorizonal permite bounce
     [SerializeField]
@@ -29,11 +31,16 @@ public class AnimatorController : MonoBehaviour
 
     private void Start()
     {
+       
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        if (_canFlipX && !_isanimrihgtflip) //si no esta correctamente orientado al inicio rota el obj
+        if (!_isSpriteWellOrientedX) //si no esta correctamente orientado al inicio rota el obj
         {
-            HandleBounce();
+            RotatesrpiteX();
+        }
+        if (!_isSpriteWellOrientedY) //si no esta correctamente orientado al inicio rota el obj
+        {
+            RotatesrpiteY();
         }
         SubscribeToActuators();
     }
@@ -41,13 +48,22 @@ public class AnimatorController : MonoBehaviour
     {
         foreach (var actuator in _listofActuators)
         {
-            if (actuator is Horizontal_Actuator horizontalActuator)
+            switch (actuator)
             {
-                if(horizontalActuator.GetBouncing() && _canFlipX)
-                 horizontalActuator.OnBounce += HandleBounce;
-                else if(horizontalActuator.GetDestroying())
-                    horizontalActuator.OnDestroy += HandleDestroy;
-                //añadir el de morir para el destroy
+                case Horizontal_Actuator horizontalActuator:
+                    if (horizontalActuator.GetBouncing() && _canFlipX)
+                        horizontalActuator.OnBounce += RotatesrpiteX;
+                    else if (horizontalActuator.GetDestroying())
+                        horizontalActuator.OnDestroy += HandleDestroy;
+                    break;
+
+                case Vertical_Actuator verticalActuator:
+                    if (verticalActuator.GetBouncing() && _canFlipY)
+                        verticalActuator.OnBounce += RotatesrpiteY;
+                    else if (verticalActuator.GetDestroying())
+                        verticalActuator.OnDestroy += HandleDestroy;
+                    // Añadir el de morir para el destroy
+                    break;
             }
         }
     }
@@ -59,16 +75,16 @@ public class AnimatorController : MonoBehaviour
             {
                 case Horizontal_Actuator horizontalActuator:
                     if (horizontalActuator.GetBouncing() && _canFlipX)
-                        horizontalActuator.OnBounce += HandleBounce;
+                        horizontalActuator.OnBounce -= RotatesrpiteX;
                     else if (horizontalActuator.GetDestroying())
-                        horizontalActuator.OnDestroy += HandleDestroy;
+                        horizontalActuator.OnDestroy -= HandleDestroy;
                     break;
 
                 case Vertical_Actuator verticalActuator:
-                    if (verticalActuator.GetBouncing() && _canFlipX)
-                        verticalActuator.OnBounce += HandleBounce;
+                    if (verticalActuator.GetBouncing() && _canFlipY)
+                        verticalActuator.OnBounce -= RotatesrpiteY;
                     else if (verticalActuator.GetDestroying())
-                        verticalActuator.OnDestroy += HandleDestroy;
+                        verticalActuator.OnDestroy -= HandleDestroy;
                     // Añadir el de morir para el destroy
                     break;
             }
@@ -98,11 +114,18 @@ public class AnimatorController : MonoBehaviour
         UnsubscribeFromActuators();
     }
 
-    private void HandleBounce()
+    private void RotatesrpiteX()
     {
         //_animator.SetTrigger("Bounce");
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
+        transform.localScale = localScale;
+    }
+    private void RotatesrpiteY()
+    {
+        //_animator.SetTrigger("Bounce");
+        Vector3 localScale = transform.localScale;
+        localScale.y *= -1;
         transform.localScale = localScale;
     }
     private void HandleDestroy()
