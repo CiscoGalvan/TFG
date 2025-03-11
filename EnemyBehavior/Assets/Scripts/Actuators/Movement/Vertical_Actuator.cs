@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -55,7 +56,10 @@ public class Vertical_Actuator : Movement_Actuator
 
 	[SerializeField, HideInInspector]
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
-	public override void StartActuator()
+
+    public event Action OnBounce; // Evento para notificar el rebote
+    public event Action OnDestroy; // Evento para notificar el rebote
+    public override void StartActuator()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
@@ -139,10 +143,12 @@ public class Vertical_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
                 _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
+                OnBounce?.Invoke();
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
-                Destroy(this.gameObject);
+                // Destroy(this.gameObject);
+                OnDestroy?.Invoke();
             }
         }
 
@@ -188,5 +194,14 @@ public class Vertical_Actuator : Movement_Actuator
     public float GetInterpolationTime()
     {
         return _interpolationTime;
+    }
+    public bool GetBouncing()
+    {
+        return _onCollisionReaction == OnCollisionReaction.Bounce;
+    }
+
+    public bool GetDestroying()
+    {
+        return _onCollisionReaction == OnCollisionReaction.Destroy;
     }
 }

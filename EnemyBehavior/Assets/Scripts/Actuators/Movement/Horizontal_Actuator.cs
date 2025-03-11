@@ -50,6 +50,7 @@ public class Horizontal_Actuator : Movement_Actuator
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
     public event Action OnBounce; // Evento para notificar el rebote
+    public event Action OnDestroy; // Evento para notificar el rebote
 
     public override void StartActuator()
     {
@@ -139,8 +140,10 @@ public class Horizontal_Actuator : Movement_Actuator
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
-				Destroy(this.gameObject);
-			}
+				//Destroy(this.gameObject);
+                OnDestroy?.Invoke();
+
+            }
 		}
 		
 	}
@@ -190,5 +193,14 @@ public class Horizontal_Actuator : Movement_Actuator
 	{
 		return _interpolationTime;
 	}
+    public bool GetBouncing()
+    {
+        return _onCollisionReaction == OnCollisionReaction.Bounce;
+    }
+
+    public bool GetDestroying()
+    {
+        return _onCollisionReaction == OnCollisionReaction.Destroy;
+    }
     #endregion
 }

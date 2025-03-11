@@ -12,9 +12,11 @@ public class AnimatorController : MonoBehaviour
     [SerializeField]
     private bool _isanimrihgtflip = true;
     [SerializeField]
-    private bool _canFlip = true; //esto deberia mostrarse solo si el movhorizonal permite bounce
+    private bool _canFlipX = true; //esto deberia mostrarse solo si el movhorizonal permite bounce
     [SerializeField]
-    private bool _canRotate = false;
+    private bool _canFlipY = true; //esto deberia mostrarse solo si el movhorizonal permite bounce
+    [SerializeField]
+    private bool _canRotate = true;
 
 
     Rigidbody2D _rigidbody;
@@ -29,7 +31,7 @@ public class AnimatorController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        if (_canFlip && !_isanimrihgtflip) //si no esta correctamente orientado al inicio rota el obj
+        if (_canFlipX && !_isanimrihgtflip) //si no esta correctamente orientado al inicio rota el obj
         {
             HandleBounce();
         }
@@ -41,48 +43,59 @@ public class AnimatorController : MonoBehaviour
         {
             if (actuator is Horizontal_Actuator horizontalActuator)
             {
-                horizontalActuator.OnBounce += HandleBounce;
+                if(horizontalActuator.GetBouncing() && _canFlipX)
+                 horizontalActuator.OnBounce += HandleBounce;
+                else if(horizontalActuator.GetDestroying())
+                    horizontalActuator.OnDestroy += HandleDestroy;
                 //añadir el de morir para el destroy
             }
         }
     }
-    private void OnDestroy()
+    private void UnsubscribeFromActuators()
     {
-        UnsubscribeFromActuators();
+        foreach (var actuator in _listofActuators)
+        {
+            switch (actuator)
+            {
+                case Horizontal_Actuator horizontalActuator:
+                    if (horizontalActuator.GetBouncing() && _canFlipX)
+                        horizontalActuator.OnBounce += HandleBounce;
+                    else if (horizontalActuator.GetDestroying())
+                        horizontalActuator.OnDestroy += HandleDestroy;
+                    break;
+
+                case Vertical_Actuator verticalActuator:
+                    if (verticalActuator.GetBouncing() && _canFlipX)
+                        verticalActuator.OnBounce += HandleBounce;
+                    else if (verticalActuator.GetDestroying())
+                        verticalActuator.OnDestroy += HandleDestroy;
+                    // Añadir el de morir para el destroy
+                    break;
+            }
+        }
+          
     }
+    
 
     private void Update()
     {
         UpdateAnimationState();
     }
-
     private void UpdateAnimationState()
     {
-       if(_animator== null || _rigidbody ==null)
+        if (_animator == null || _rigidbody == null)
             return;
-        _animator.SetFloat("XSpeed", Mathf.Abs(_rigidbody.velocity.x));
-        _animator.SetFloat("YSpeed", Mathf.Abs(_rigidbody.velocity.y));
-
-        if (_canFlip)
-        {
-            
-        }
+        float velX = _rigidbody.velocity.x;
+        float velY = _rigidbody.velocity.y;
+        _animator.SetFloat("XSpeed", Mathf.Abs(velX));
+        _animator.SetFloat("YSpeed", Mathf.Abs(velY));
+      
+       
     }
 
-   
-
-   
-
-    private void UnsubscribeFromActuators()
+    private void OnDestroy()
     {
-        foreach (var actuator in _listofActuators)
-        {
-            if (actuator is Horizontal_Actuator horizontalActuator)
-            {
-                horizontalActuator.OnBounce -= HandleBounce;
-                //añadir el de morir para el destroy
-            }
-        }
+        UnsubscribeFromActuators();
     }
 
     private void HandleBounce()
@@ -91,6 +104,11 @@ public class AnimatorController : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+    }
+    private void HandleDestroy()
+    {
+        _animator.SetTrigger("Die");
+       
     }
 }
 
