@@ -1,0 +1,49 @@
+\setcounter{secnumdepth}{3} %para tener una profundidad más en las enumeraciones
+\chapter{Implementaci\'on}
+\label{cap:implementacion}
+En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en detalles de como funcionaba esta por debajo, una visión general de lo que se iba a ofrecer, como la organización de los componentes, los tipos de daño o los diferentes tipos de actuadores. En este capítulo se va a tratar en profundidad la implementación de estos componentes, hablando de cómo funcionan, cómo se pueden personalizar y como los distintos componentes interactúan entre ellos.
+
+
+\section{Tecnología utilizada}
+Este proyecto ha sido desarrollado íntegramente con el motor de videojuegos Unity, mencionado en el Capítulo 2 de este trabajo.
+La versión escogida para desarrollar la herramientas es la 2022.3.18f1, por lo que no podemos garantizar que la herramienta funcione en versiones anteriores a la mencionada y en el caso de la versiones posteriores debería funcionar sin ningún problema a no ser que la API básica de Unity cambie en un futuro.\\
+\comp{En trabajo futuro podemos poner que en caso de que se cambie la API básica necesitaría algo de mantenimiento básico.}
+
+Unity es una herramienta muy versátil, la cúal se adapta muy bien a un gran rango de aplicaciones diferentes entre sí, desde entornos simples en dos dimensiones hasta entornos mucho más complejos en tres dimensiones, incluso en realidad virtual o realidad aumentada.
+Unity surge de la idea de acercar el desarrollo de videojuegos a segmentos de la población que se podrían ver abrumados por la necesidad de entender de programación para realizar sus proyectos ya sean estos profesionales o amateurs.Este motor de videojuegos ofrece soporte para varios lenguajes de programación a través de su sistema de \textit{plugins}, de manera nativa Unity nos ofrece los lenguajes C\# y Javascript como principales lenguajes de programación de \textit{scripts}.\\
+
+Unity no solo se usa para videojuegos, también para simuladores didácticos, cine o para modelar.
+Interfaz de usuario muy gráfica, intuitiva dentro de su complejidad, y fácilmente personalizable.
+Sistema de arrastrar soltar para construir escenas y/o asignar scripts.
+Curva de aprendizaje no muy pronunicada gracias a su extensa documentación y la cantidad de videos y tutoriales.
+Hablar de que al ser un motor de videojuegos gratuito a priori se ha creado una comunidad muy extensa de desarrolladores muy activa que suelen contestar las preguntas.\\
+
+
+¿Por qué Unity?\\
+1.-Por ser accesible y sencillo.\\
+2.-Por ser un motor con una gran cantidad de usuarios usándolo (útil para pruebas de usuario y para conocer nuestros errores) ya que nos da ciertas garantías de que nuestra herramienta será usada y servirá para confeccionar un mínimo de proyectos.\\
+3.-Sistema de arrastrar y soltar el cual facilita el uso de nuestra herramienta y la comprensión de la misma.\\
+4.-Sus sistema son de mucha ayuda y muy fáciles de implementar dentro de nuestra herramienta como el motor de físicas 2D o las herramientas que tiene para ayudar al usuario a debuggear, Gizmos.\\
+5.-Arquitectura por componentes, modularidad, capacidad de abstraer la implementacion de cada componente.\\
+
+\section{Infraestructura básica}
+
+Componentes ajenos a nuestro sistema de estados, sensors, actuators...
+Life, Player Controller...
+
+
+
+\section{Actuators}
+Hablar de los actuators
+\subsection{Movement}
+Movement contenido a ver si sale guay
+\subsubsection{AAAA}
+aaaaa
+\subsection{Spawner}
+Spawner
+\section{Sensors and emitters}
+Contenido
+\subsection{Sensors}
+mas contenido
+\subsection{Emitters}
+muchisimo mas
