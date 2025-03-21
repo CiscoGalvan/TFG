@@ -31,7 +31,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	#region Values whether every Waypoint have same behaviour
 	[SerializeField, HideInInspector]
 	private float _timeToReachForAllWaypoints;
-	[SerializeField,HideInInspector]
+	[SerializeField, HideInInspector]
 	private bool _areAccelerated;
 	[SerializeField, HideInInspector]
 	private bool _shouldThemStop;
@@ -62,7 +62,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 
 	[SerializeField]
 	private bool _isACicle = false;
-	[SerializeField,HideInInspector]
+	[SerializeField, HideInInspector]
 	private bool _allWaypointsHaveTheSameData = false;
 
 	[SerializeField, HideInInspector]
@@ -73,12 +73,12 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	[SerializeField]
 	private float _timeBetweenRandomPoints;
 
-	
+
 
 	[SerializeField]
 	private float _detectionDistance = 0.0f;
 
-	public override void StartActuator()	
+	public override void StartActuator(AnimatorController animatorController)
 	{
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
@@ -102,7 +102,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 			_randomArea.isTrigger = true;
 		}
 
-		
+
 		//if (_seekPlayer)
 		//{
 		//	_distanceSensor = this.GameObject().GetComponent<Distance_Sensor>();
@@ -119,7 +119,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 
 	public override void UpdateActuator()
 	{
-		
+
 		if (!_moving && _isACicle)
 		{
 			_moving = true;
@@ -191,7 +191,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		_travelElapsedTime += Time.deltaTime;
 		_t = _travelElapsedTime / waypoint.timeToReach;
 
-	
+
 
 		if (waypoint.isAccelerated)
 		{
@@ -211,7 +211,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 
 	private void AdvanceToNextWaypoint(Vector2 reachedPos)
 	{
-		
+
 		_travelElapsedTime = 0f;
 		_stopElapsedTime = 0f;
 		_t = 0f;
@@ -244,12 +244,12 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		switch (_usageWay)
 		{
 			case UsageWay.RandomArea:
-				
-				
-					Gizmos.color = Color.blue;
 
-					Gizmos.DrawSphere(_currentRandomPoint, 0.2f);
-				
+
+				Gizmos.color = Color.blue;
+
+				Gizmos.DrawSphere(_currentRandomPoint, 0.2f);
+
 				break;
 			case UsageWay.Waypoint:
 				if (_waypointsData.Count > 0 && _currentWaypointIndex < _waypointsData.Count)
@@ -265,6 +265,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 				}
 				break;
 		}
-		
+
 	}
 }

@@ -8,16 +8,16 @@ public class FSM : MonoBehaviour
     [Header("FSM Configuration")]
     [Tooltip("Defines the initial state of the FSM.")]
     [SerializeField]
-    private State initialState; 
-
-
+    private State initialState;
+    [SerializeField]
+    private AnimatorController animatorController;
     private State _currentstate; // Stores the current active state
 
     void Awake()
     {
         // Set the initial state and execute its start logic
         _currentstate = initialState;
-        _currentstate.StartState();
+        _currentstate.StartState(animatorController);
     }
 
     void Update()
@@ -52,8 +52,11 @@ public class FSM : MonoBehaviour
         _currentstate.DestroyState();
         // Set the new state and execute its start logic
         _currentstate = newState;
-        _currentstate.StartState();
-        
+        _currentstate.StartState(animatorController);
+        if (animatorController != null)
+        {
+            animatorController.ChangeState();
+        }
     }
   
 }

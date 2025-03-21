@@ -42,62 +42,62 @@ public class AnimatorController : MonoBehaviour
         {
             RotatesrpiteY();
         }
-        SubscribeToActuators();
+       // SubscribeToActuators();
     }
     private void SubscribeToActuators()
     {
-        foreach (var actuator in _listofActuators)
-        {
-            switch (actuator)
-            {
-                case Horizontal_Actuator horizontalActuator:
-                    if (horizontalActuator.GetBouncing() && _canFlipX)
-                        horizontalActuator.OnBounce += RotatesrpiteX;
-                    else if (horizontalActuator.GetDestroying())
-                        horizontalActuator.OnDestroy += HandleDestroy;
-                    break;
+        //foreach (var actuator in _listofActuators)
+        //{
+        //    switch (actuator)
+        //    {
+        //        case Horizontal_Actuator horizontalActuator:
+        //            if (horizontalActuator.GetBouncing() && _canFlipX)
+        //                horizontalActuator.OnBounce += RotatesrpiteX;
+        //            else if (horizontalActuator.GetDestroying())
+        //                horizontalActuator.OnDestroy += HandleDestroy;
+        //            break;
 
-                case Vertical_Actuator verticalActuator:
-                    if (verticalActuator.GetBouncing() && _canFlipY)
-                        verticalActuator.OnBounce += RotatesrpiteY;
-                    else if (verticalActuator.GetDestroying())
-                        verticalActuator.OnDestroy += HandleDestroy;
-                    // Añadir el de morir para el destroy
-                    break;
-            }
-        }
+        //        case Vertical_Actuator verticalActuator:
+        //            if (verticalActuator.GetBouncing() && _canFlipY)
+        //                verticalActuator.OnBounce += RotatesrpiteY;
+        //            else if (verticalActuator.GetDestroying())
+        //                verticalActuator.OnDestroy += HandleDestroy;
+        //            // Añadir el de morir para el destroy
+        //            break;
+        //    }
+        //}
     }
     private void UnsubscribeFromActuators()
     {
-        foreach (var actuator in _listofActuators)
-        {
-            switch (actuator)
-            {
-                case Horizontal_Actuator horizontalActuator:
-                    if (horizontalActuator.GetBouncing() && _canFlipX)
-                        horizontalActuator.OnBounce -= RotatesrpiteX;
-                    else if (horizontalActuator.GetDestroying())
-                        horizontalActuator.OnDestroy -= HandleDestroy;
-                    break;
+        //foreach (var actuator in _listofActuators)
+        //{
+        //    switch (actuator)
+        //    {
+        //        case Horizontal_Actuator horizontalActuator:
+        //            if (horizontalActuator.GetBouncing() && _canFlipX)
+        //                horizontalActuator.OnBounce -= RotatesrpiteX;
+        //            else if (horizontalActuator.GetDestroying())
+        //                horizontalActuator.OnDestroy -= HandleDestroy;
+        //            break;
 
-                case Vertical_Actuator verticalActuator:
-                    if (verticalActuator.GetBouncing() && _canFlipY)
-                        verticalActuator.OnBounce -= RotatesrpiteY;
-                    else if (verticalActuator.GetDestroying())
-                        verticalActuator.OnDestroy -= HandleDestroy;
-                    // Añadir el de morir para el destroy
-                    break;
-            }
-        }
+        //        case Vertical_Actuator verticalActuator:
+        //            if (verticalActuator.GetBouncing() && _canFlipY)
+        //                verticalActuator.OnBounce -= RotatesrpiteY;
+        //            else if (verticalActuator.GetDestroying())
+        //                verticalActuator.OnDestroy -= HandleDestroy;
+        //            // Añadir el de morir para el destroy
+        //            break;
+        //    }
+        //}
           
     }
     
 
-    private void Update()
-    {
-        UpdateAnimationState();
-    }
-    private void UpdateAnimationState()
+    //private void Update()
+    //{
+    //    UpdateAnimationState();
+    //}
+    private void UpdateAnimationState() //esto se debería de actualizar desde los actuators
     {
         if (_animator == null || _rigidbody == null)
             return;
@@ -114,24 +114,37 @@ public class AnimatorController : MonoBehaviour
         UnsubscribeFromActuators();
     }
 
-    private void RotatesrpiteX()
+    public void RotatesrpiteX()
     {
         //_animator.SetTrigger("Bounce");
+        if (!_canFlipX) return;
+
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
     }
-    private void RotatesrpiteY()
+    public void RotatesrpiteY()
     {
         //_animator.SetTrigger("Bounce");
+        if (!_canFlipY) return;
         Vector3 localScale = transform.localScale;
         localScale.y *= -1;
         transform.localScale = localScale;
     }
-    private void HandleDestroy()
+    public void HandleDestroy()
     {
         _animator.SetTrigger("Die");
        
+    }
+    public void ChangeState()
+    {
+        _animator.SetTrigger("ChangeState");
+
+    }
+    public void SpawnEvent()
+    {
+        _animator.SetTrigger("SpawnEvent");
+
     }
 }
 

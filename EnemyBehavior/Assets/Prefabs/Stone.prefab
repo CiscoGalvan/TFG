@@ -182,7 +182,6 @@ MonoBehaviour:
   - {fileID: 916467186555705770}
   - {fileID: 6112096039114555898}
   _sensorTransitions: []
-  name: State
 --- !u!114 &916467186555705770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +220,8 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+  _damageEmitterCollider: {fileID: 0}
+  _moreThanOneCollider: 0
 --- !u!114 &6112096039114555898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,4 +241,4 @@ MonoBehaviour:
   _goalSpeed: 0
   _interpolationTime: 0
   _direction: 1
-  _onCollisionReaction: 0
+  _onCollisionReaction: 2

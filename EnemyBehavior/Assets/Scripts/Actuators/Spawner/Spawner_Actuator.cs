@@ -21,18 +21,20 @@ public class Spawner_Actuator : Actuator
 
     private Timer _timer;
     private int _numEnemiesAlreadySpawn;
+    private AnimatorController _animatorController;
     // Update is called once per frame
     public override void DestroyActuator()
     {
 
     }
     // Start is called before the first frame update
-    public override void StartActuator()
+    public override void StartActuator(AnimatorController animatorController)
     {
         _timer = new Timer(_spawnInterval);
         _numEnemiesAlreadySpawn = 0;
         _timer.Start();
         _numEnemiesAlreadySpawn = 0;
+        _animatorController = animatorController;
     }
 
     void SpawnEvent()
@@ -41,6 +43,10 @@ public class Spawner_Actuator : Actuator
         {
 			_numEnemiesAlreadySpawn++;
             Instantiate(_prefabToSpawn, _spawnPoint.position,_spawnPoint.rotation);
+            if(_animatorController != null)
+            {
+                _animatorController.SpawnEvent();
+            }
         }
     }
 	public override void UpdateActuator()

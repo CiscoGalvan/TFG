@@ -13,7 +13,7 @@ public abstract class Movement_Actuator : Actuator
 
 	public abstract override void DestroyActuator();
 
-	public abstract override void StartActuator();
+	public abstract override void StartActuator(AnimatorController animatorController);
 
 	public abstract override void UpdateActuator();
 

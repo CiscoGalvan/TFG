@@ -57,10 +57,12 @@ public class Vertical_Actuator : Movement_Actuator
 	[SerializeField, HideInInspector]
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
 
-    public event Action OnBounce; // Evento para notificar el rebote
-    public event Action OnDestroy; // Evento para notificar el rebote
-    public override void StartActuator()
+   // public event Action OnBounce; // Evento para notificar el rebote
+    //public event Action OnDestroy; // Evento para notificar el rebote
+    private AnimatorController _animatorController;
+    public override void StartActuator(AnimatorController animatorController)
     {
+        _animatorController = animatorController;
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
         _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
@@ -143,12 +145,14 @@ public class Vertical_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
                 _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
-                OnBounce?.Invoke();
+                if (_animatorController != null) _animatorController.RotatesrpiteY();
+                //OnBounce?.Invoke();
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
                 // Destroy(this.gameObject);
-                OnDestroy?.Invoke();
+                if (_animatorController != null) _animatorController.HandleDestroy();
+                //OnDestroy?.Invoke();
             }
         }
 

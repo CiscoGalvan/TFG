@@ -49,12 +49,13 @@ public class Horizontal_Actuator : Movement_Actuator
 	private float _time;
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
-    public event Action OnBounce; // Evento para notificar el rebote
-    public event Action OnDestroy; // Evento para notificar el rebote
+    private AnimatorController _animatorController;
+    // public event Action OnBounce; // Evento para notificar el rebote
+    //public event Action OnDestroy; // Evento para notificar el rebote
 
-    public override void StartActuator()
+    public override void StartActuator(AnimatorController animatorController)
     {
-		
+		_animatorController = animatorController;
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
@@ -135,13 +136,16 @@ public class Horizontal_Actuator : Movement_Actuator
 			{
 				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
                 // Invertir la escala en el eje 
-                OnBounce?.Invoke();
+               // OnBounce?.Invoke();
+				if(_animatorController !=null)_animatorController.RotatesrpiteX();
 
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
-				//Destroy(this.gameObject);
-                OnDestroy?.Invoke();
+                //Destroy(this.gameObject);
+                // OnDestroy?.Invoke();
+                if (_animatorController != null) _animatorController.HandleDestroy();
+                
 
             }
 		}

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static MoveToAPoint_Actuator;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -72,16 +71,19 @@ public class MoveToAObject_Actuator : Movement_Actuator
 	[SerializeField]
 	private WaypointData _reachingPlayerData;
 
-	//private Distance_Sensor _distanceSensor;
-	public override void StartActuator()
+	private AnimatorController _animatorController;
+
+    //private Distance_Sensor _distanceSensor;
+    public override void StartActuator(AnimatorController animatorController)
 	{
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
 		_stopElapsedTime = 0f;
 		_t = 0f;
 		_currentWaypointIndex = 0;
+        _animatorController= animatorController;
 
-		if (_usageWay == UsageWay.Waypoint && (_waypointsData == null || _waypointsData.Count == 0))
+        if (_usageWay == UsageWay.Waypoint && (_waypointsData == null || _waypointsData.Count == 0))
 		{
 			Debug.LogError($"MoveToAPoint_Actuator error in {name}: No waypoints were set.");
 			UnityEditor.EditorApplication.isPlaying = false;
