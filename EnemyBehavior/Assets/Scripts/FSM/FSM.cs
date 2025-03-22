@@ -52,11 +52,12 @@ public class FSM : MonoBehaviour
         _currentstate.DestroyState();
         // Set the new state and execute its start logic
         _currentstate = newState;
-        _currentstate.StartState(animatorController);
+        
         if (animatorController != null)
         {
             animatorController.ChangeState();
         }
+        _currentstate.StartState(animatorController);
     }
   
 }

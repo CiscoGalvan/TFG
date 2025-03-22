@@ -86,6 +86,10 @@ public class AnimatorController : MonoBehaviour
     public void ChangeState()
     {
         _animator.SetTrigger("ChangeState");
+        _animator.SetBool("Left", false);
+        _animator.SetBool("Right", false);
+        _animator.SetBool("Up", false);
+        _animator.SetBool("Down", false);
 
     }
     public void SpawnEvent()
