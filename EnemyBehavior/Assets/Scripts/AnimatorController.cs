@@ -78,7 +78,7 @@ public class AnimatorController : MonoBehaviour
         localScale.y *= -1;
         transform.localScale = localScale;
     }
-    public void HandleDestroy()
+    public void Destroy()
     {
         _animator.SetTrigger("Die");
        
@@ -114,9 +114,14 @@ public class AnimatorController : MonoBehaviour
     public void UpDirection()
     {
         _animator.SetBool("Down", false);
-        _animator.SetBool("UP", true);
+        _animator.SetBool("Up", true);
 
     }
-    
+    public void OnDieEvent()
+    {
+        // Debug.Log("DIE + " + this.gameObject.ToString());
+        Destroy(gameObject);
+    }
+
 }
 

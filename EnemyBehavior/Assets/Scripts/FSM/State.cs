@@ -46,7 +46,6 @@ public class State : MonoBehaviour
         {
             if (pair.sensor != null)
             {
-                pair.sensor.StartSensor();
                 sensorHashSet.Add(pair.sensor); // Opcional, si quieres que también estén en sensorHashSet
             }
         }

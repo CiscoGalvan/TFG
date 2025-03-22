@@ -166,7 +166,7 @@ public class Vertical_Actuator : Movement_Actuator
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
                 // Destroy(this.gameObject);
-                if (_animatorController != null) _animatorController.HandleDestroy();
+                if (_animatorController != null) _animatorController.Destroy();
                 //OnDestroy?.Invoke();
             }
         }

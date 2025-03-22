@@ -159,7 +159,7 @@ public class Horizontal_Actuator : Movement_Actuator
 			{
                 //Destroy(this.gameObject);
                 // OnDestroy?.Invoke();
-                if (_animatorController != null) _animatorController.HandleDestroy();
+                if (_animatorController != null) _animatorController.Destroy();
                 
 
             }

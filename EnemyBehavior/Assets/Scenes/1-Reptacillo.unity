@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 620872461}
+  animatorController: {fileID: 0}
 --- !u!114 &620872461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,6 +916,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 620872464}
   _sensorTransitions: []
+  _debugState: 0
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
