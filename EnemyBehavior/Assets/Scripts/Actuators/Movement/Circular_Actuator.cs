@@ -46,10 +46,13 @@ public class Circular_Actuator : Movement_Actuator
 
 	private Vector3 _startingPosition;
 	private EasingFunction.Function _easingFunc;
-	
-	public override void StartActuator(AnimatorController animatorController)
+	AnimatorController _animatorController;
+
+
+    public override void StartActuator(AnimatorController animatorController)
 	{
-		_actuatorActive = true;
+        _animatorController = animatorController;
+        _actuatorActive = true;
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.gravityScale = 0f;
@@ -141,11 +144,9 @@ public class Circular_Actuator : Movement_Actuator
 		
             Vector3 expectedPosition = _rotationPointPosition.position + new Vector3( Mathf.Cos(_currentAngle) * _radius,Mathf.Sin(_currentAngle) * _radius,0f);
             _rigidbody.MovePosition(expectedPosition);
-        // Rotar el objeto si _canRotate es true
-        if (_canRotate)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle * Mathf.Rad2Deg);
-        }
+		// Rotar el objeto si _canRotate es true
+		if (_canRotate) transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle * Mathf.Rad2Deg);
+        if (_animatorController != null) _animatorController.ChangeSpeedRotation(_currentAngle * Mathf.Rad2Deg);
 
     }
 

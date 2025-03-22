@@ -79,6 +79,7 @@ public class Horizontal_Actuator : Movement_Actuator
         if (_throw) ApplyForce();
         if (_animatorController != null)
         {
+			_animatorController.ChangeSpeedX(_speed * (int)_direction);
             if (_direction == Direction.Left)
                 _animatorController.LeftDirection();
             else
@@ -105,6 +106,7 @@ public class Horizontal_Actuator : Movement_Actuator
 		{
 			//MRU
 			_rigidbody.velocity = new Vector2(_speed * dirValue, _rigidbody.velocity.y);
+
 			
         }
 		else
@@ -123,7 +125,8 @@ public class Horizontal_Actuator : Movement_Actuator
 				_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
 				_speed = easedSpeed;
 			}
-		}
+            if (_animatorController != null) _animatorController.ChangeSpeedX(_rigidbody.velocity.x);
+        }
         
     }
 	void CollisionEvent(Sensors s)

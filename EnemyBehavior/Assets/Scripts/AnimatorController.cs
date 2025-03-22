@@ -21,9 +21,6 @@ public class AnimatorController : MonoBehaviour
     private bool _canRotate = true;
 
 
-    Rigidbody2D _rigidbody;
-
-
     private void Start()
     {
        
@@ -32,7 +29,7 @@ public class AnimatorController : MonoBehaviour
         {
             Debug.LogError("NO ANIMATOR IS ATTACHED");
         }
-        _rigidbody = GetComponent<Rigidbody2D>();
+       
         if (!_isSpriteWellOrientedX) //si no esta correctamente orientado al inicio rota el obj
         {
             RotatesrpiteX();
@@ -42,26 +39,7 @@ public class AnimatorController : MonoBehaviour
             RotatesrpiteY();
         }
     }
-  
-
-    //private void Update()
-    //{
-    //    UpdateAnimationState();
-    //}
-    private void UpdateAnimationState() //esto se debería de actualizar desde los actuators
-    {
-        if (_animator == null || _rigidbody == null)
-            return;
-        float velX = _rigidbody.velocity.x;
-        float velY = _rigidbody.velocity.y;
-        _animator.SetFloat("XSpeed", Mathf.Abs(velX));
-        _animator.SetFloat("YSpeed", Mathf.Abs(velY));
-      
-       
-    }
-
-
-    public void RotatesrpiteX()
+     public void RotatesrpiteX()
     {
         //_animator.SetTrigger("Bounce");
         if (!_canFlipX) return;
@@ -121,6 +99,21 @@ public class AnimatorController : MonoBehaviour
         _animator.SetBool("Up", true);
 
     }
+    public void ChangeSpeedX(float speed)
+    {
+        _animator.SetFloat("XSpeed", speed);
+    }
+    public void ChangeSpeedY(float speed)
+    {
+        _animator.SetFloat("YSpeed", speed);
+
+    }
+    public void ChangeSpeedRotation(float speed)
+    {
+        _animator.SetFloat("RotationSpeed", speed);
+        
+    }
+
     public void OnDieEvent()
     {
         // Debug.Log("DIE + " + this.gameObject.ToString());

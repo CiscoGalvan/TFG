@@ -86,6 +86,7 @@ public class Vertical_Actuator : Movement_Actuator
         if (_throw) ApllyForce();
         if (_animatorController != null)
         {
+            _animatorController.ChangeSpeedY(_initial_speed);
             if (_direction == Direction.Up)
                 _animatorController.UpDirection();
             else
@@ -114,6 +115,7 @@ public class Vertical_Actuator : Movement_Actuator
         {
             //MRU
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _speed * dirValue);
+          
         }
         else
         {
@@ -131,6 +133,7 @@ public class Vertical_Actuator : Movement_Actuator
 				_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, easedSpeed * dirValue);
 				_speed = easedSpeed;
             }
+            if (_animatorController != null) _animatorController.ChangeSpeedY(_rigidbody.velocity.y);
         }
     }
     void CollisionEvent(Sensors s)
