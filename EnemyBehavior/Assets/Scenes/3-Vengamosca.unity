@@ -300,6 +300,10 @@ GameObject:
   - component: {fileID: 307179849}
   - component: {fileID: 307179847}
   - component: {fileID: 307179855}
+  - component: {fileID: 307179858}
+  - component: {fileID: 307179857}
+  - component: {fileID: 307179856}
+  - component: {fileID: 307179859}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -341,8 +345,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 307179855}
-  _sensorTransitions: []
-  name: Primer Estado
+  _sensorTransitions:
+  - sensor: {fileID: 307179858}
+    targetState: {fileID: 307179857}
 --- !u!114 &307179850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 307179849}
+  animatorController: {fileID: 0}
 --- !u!61 &307179851
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -489,7 +495,7 @@ Transform:
   m_GameObject: {fileID: 307179846}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 1.45, z: 0}
+  m_LocalPosition: {x: 0.05, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -514,7 +520,7 @@ MonoBehaviour:
   _shouldThemStop: 1
   _stopTime: 1
   _easingFunctionForAllWaypoints: 9
-  _usageWay: 0
+  _usageWay: 1
   _waypointsData:
   - waypoint: {fileID: 686178266}
     timeToReach: 1
@@ -533,7 +539,76 @@ MonoBehaviour:
   _allWaypointsHaveTheSameData: 0
   _ciclicWaypointAdded: 0
   _timeBetweenRandomPoints: 0.4
-  _detectionDistance: 3
+--- !u!114 &307179856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307179846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c512f751f24805549bf6bdfffa627c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAccelerated: 0
+  _easingFunction: 0
+  _waypointData:
+    waypoint: {fileID: 938128455}
+    timeToReach: 1
+    isAccelerated: 0
+    shouldStop: 0
+    stopDuration: 0
+    easingFunction: 0
+--- !u!114 &307179857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307179846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actuatorList:
+  - {fileID: 307179856}
+  _sensorTransitions:
+  - sensor: {fileID: 307179859}
+    targetState: {fileID: 307179849}
+--- !u!114 &307179858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307179846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceType: 1
+  _axis: 1
+  _partOfAxis: 0
+  _detectionSide: 0
+  _target: {fileID: 938128447}
+  _detectionDistance: 2.77
+  _areaTrigger: {fileID: 0}
+  _startDetectingTime: 3
+--- !u!114 &307179859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307179846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1038,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752834669}
   m_CullTransparentMesh: 1
+--- !u!1 &938128447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4071627762622834067, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+  m_PrefabInstance: {fileID: 1570595272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &938128455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2242220973412788967, guid: 3932d34786db0ee4981c7a88caf15357, type: 3}
+  m_PrefabInstance: {fileID: 1570595272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1161187925
 GameObject:
   m_ObjectHideFlags: 0

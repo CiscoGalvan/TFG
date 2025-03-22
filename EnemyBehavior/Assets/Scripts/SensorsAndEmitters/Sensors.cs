@@ -5,9 +5,6 @@ using UnityEngine.UIElements;
 
 public abstract class Sensors : MonoBehaviour
 {
-	//[SerializeField]
-	//public UnityEvent<Sensors> a;
-
 	// Action event
 	private Action<Sensors> _onEventDetectedInternal;
 
@@ -16,6 +13,8 @@ public abstract class Sensors : MonoBehaviour
 
     // Public property to get the number of subscribers
     public int SubscriberCount => _subscriberCount;
+
+	protected bool _sensorActive;
 
     // Override the add and remove properties of the event
     public event Action<Sensors> onEventDetected
@@ -45,6 +44,7 @@ public abstract class Sensors : MonoBehaviour
 	}
 
 	public abstract void StartSensor();
+	public abstract void StopSensor();
 
 
 }

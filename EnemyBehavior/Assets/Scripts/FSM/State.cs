@@ -66,6 +66,11 @@ public class State : MonoBehaviour
 		}
         _nextState = null;
         UnsubscribeFromSensorEvents();
+        foreach (var sensor in sensorHashSet)
+        {
+			if (sensor)
+				sensor.StopSensor();
+		}
     }
 
 	// Update is called once per frame

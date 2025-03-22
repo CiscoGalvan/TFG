@@ -11,9 +11,6 @@ public class Collision_Sensor : Sensors
     // Boolean to track if a collision has occurred
     private bool _col;
 
-    // Boolean to track whether the sensor is actively checking for collisions
-    private bool _isChecking;
-
     // Stores the latest collision event
     private Collision2D _collisionObject;
 
@@ -21,7 +18,7 @@ public class Collision_Sensor : Sensors
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Only process the collision if the sensor is active
-        if (_isChecking)
+        if (_sensorActive)
         {
             _col = true;
             _collisionObject = collision;
@@ -31,14 +28,20 @@ public class Collision_Sensor : Sensors
     // Activates the sensor. Is the firts method call
     public override void StartSensor()
     {
-        _isChecking = true;
+        _sensorActive = true;
         _col = false;
     }
+	public override void StopSensor()
+	{
+		_sensorActive = false;
+	}
 
 
-    // Returns the last collided object
-    public Collision2D GetCollidedObject() { return _collisionObject; }
+	// Returns the last collided object
+	public Collision2D GetCollidedObject() { return _collisionObject; }
 
     // Returns whether a collision has been detected
     bool GetBooleanCollision() { return _col; }
+
+	
 }

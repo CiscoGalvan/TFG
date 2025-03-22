@@ -72,14 +72,10 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	private Vector2 _currentRandomPoint;
 	[SerializeField]
 	private float _timeBetweenRandomPoints;
-
-
-
-	[SerializeField]
-	private float _detectionDistance = 0.0f;
-
+	private List<Vector2> _cachedWaypointPositions = new List<Vector2>();
 	public override void StartActuator(AnimatorController animatorController)
 	{
+		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
 		_stopElapsedTime = 0f;
@@ -92,7 +88,18 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 			UnityEditor.EditorApplication.isPlaying = false;
 		}
 		else
-		{
+		{ 
+			
+			if (_usageWay == UsageWay.Waypoint)
+			{
+				foreach (var waypoint in _waypointsData)
+				{
+					if (waypoint.waypoint != null)
+						_cachedWaypointPositions.Add(waypoint.waypoint.position);
+					else
+						_cachedWaypointPositions.Add(Vector2.zero);
+				}
+			}
 			_startInterpolationPosition = _rb.position;
 			_moving = true;
 		}
@@ -101,20 +108,6 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 		{
 			_randomArea.isTrigger = true;
 		}
-
-
-		//if (_seekPlayer)
-		//{
-		//	_distanceSensor = this.GameObject().GetComponent<Distance_Sensor>();
-		//	if (_distanceSensor == null) //si no esta creado lo crea
-		//	{
-		//		_distanceSensor = this.gameObject.AddComponent<Distance_Sensor>();
-		//	}
-		//	_distanceSensor.SetDetectionDistance(_detectionDistance);
-		//	_distanceSensor.SetTarget(_playerTransform.gameObject);
-		//	_distanceSensor.onEventDetected += SeekPlayer;
-		//	sensors.Add(_distanceSensor);
-		//}
 	}
 
 	public override void UpdateActuator()
@@ -169,11 +162,11 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	private void MoveAlongWaypoints()
 	{
-		if (_currentWaypointIndex >= _waypointsData.Count)
+		if (_currentWaypointIndex >= _cachedWaypointPositions.Count)
 			return;
 
+		Vector2 targetPos = _cachedWaypointPositions[_currentWaypointIndex];
 		WaypointData currentWaypoint = _waypointsData[_currentWaypointIndex];
-		Vector2 targetPos = currentWaypoint.waypoint.position;
 		MoveTowardsTarget(currentWaypoint, targetPos);
 	}
 	private void MoveTowardsTarget(WaypointData waypoint, Vector2 targetPos)
@@ -237,10 +230,11 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	public override void DestroyActuator()
 	{
-		//_distanceSensor.onEventDetected -= SeekPlayer;
+		_actuatorActive = false;
 	}
 	private void OnDrawGizmos()
 	{
+		if (!_actuatorActive) return;
 		switch (_usageWay)
 		{
 			case UsageWay.RandomArea:

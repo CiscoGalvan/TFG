@@ -47,27 +47,58 @@ public class Distance_Sensor : Sensors
 
 
     // Indicates whether the timer is active
-    private bool _startDistance;
+    private bool _startDistance = false;
 
-    
+
     //private bool _isNear;
+
+
+    [SerializeField]
+    private float _startDetectingTime = 0f;
+
+    private float _t;
+
     // Initializes the sensor settings
     public override void StartSensor()
     {
+        _sensorActive = true;
 
-        _startDistance = true;
+		if (_startDetectingTime == 0)
+        {
+			_startDistance = true;
+		}
+        else
+        {
+			_startDistance = false;
+		}
+		_t = 0;
 
-        if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
+		if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
         {
            
              Debug.LogError("Area detection requires a Collider2D set as a trigger!");
         
         }
     }
+	public override void StopSensor()
+	{
+        _sensorActive = false;
+	}
 
-    // Determines if the sensor should transition based on distance
-    private void Update()
+	// Determines if the sensor should transition based on distance
+	private void Update()
     {
+        if (!_sensorActive) return;
+        if (!_startDistance)
+        {
+            _t += Time.deltaTime;
+            if(_t > _startDetectingTime)
+            {
+                _t = 0;
+                _startDistance = true;
+
+			}
+        }
         if (!_startDistance || _target == null || _distanceType == TypeOfDistance.Area)
             return;
         
@@ -97,7 +128,7 @@ public class Distance_Sensor : Sensors
         if (detected)
         {
             EventDetected();
-        }
+		}
         
        
     }
@@ -106,11 +137,12 @@ public class Distance_Sensor : Sensors
         if (_startDistance &&_distanceType == TypeOfDistance.Area && other.gameObject == _target )
         {
             EventDetected();
-        }
+		}
     }
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
+        if (!_sensorActive) return;
         Gizmos.color = new Color(0, 0, 1, 0.3f);
         switch (_distanceType)
         {
@@ -165,5 +197,7 @@ public class Distance_Sensor : Sensors
     public void SetTarget(GameObject g)
     {
         _target = g;
-    }    
+    }
+
+
 }

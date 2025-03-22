@@ -12,4 +12,8 @@ public class InfoPlayer_Sensor : Sensors
 		throw new System.NotImplementedException();
 	}
 
+	public override void StopSensor()
+	{
+		throw new NotImplementedException();
+	}
 }

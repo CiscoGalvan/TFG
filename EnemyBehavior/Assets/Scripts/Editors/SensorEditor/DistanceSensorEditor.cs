@@ -12,6 +12,7 @@ public class DistanceSensorEditor : Editor
     private static readonly GUIContent _detectionDistanceLabel = new GUIContent("Detection Distance", "The threshold distance for detection.");
     private static readonly GUIContent _targetLabel = new GUIContent("Target", "The object to measure distance from.");
     private static readonly GUIContent _areaTriggerLabel = new GUIContent("Area Trigger", "External trigger used for area-based detection.");
+    private static readonly GUIContent _startDetectingTimeLabel = new GUIContent("Setting Up Time", "Initial time the sensor will need to be active");
 
     private SerializedProperty _distanceType;
     private SerializedProperty _axis;
@@ -20,8 +21,9 @@ public class DistanceSensorEditor : Editor
     private SerializedProperty _detectionDistance;
     private SerializedProperty _target;
     private SerializedProperty _areaTrigger;
+	private SerializedProperty _startDetectingTime;
 
-    private void OnEnable()
+	private void OnEnable()
     {
         _distanceType = serializedObject.FindProperty("_distanceType");
         _axis = serializedObject.FindProperty("_axis");
@@ -30,7 +32,9 @@ public class DistanceSensorEditor : Editor
         _detectionDistance = serializedObject.FindProperty("_detectionDistance");
         _target = serializedObject.FindProperty("_target");
         _areaTrigger = serializedObject.FindProperty("_areaTrigger");
-    }
+        _startDetectingTime = serializedObject.FindProperty("_startDetectingTime");
+
+	}
 
     public override void OnInspectorGUI()
     {
@@ -38,6 +42,7 @@ public class DistanceSensorEditor : Editor
 
         EditorGUILayout.PropertyField(_distanceType, _distanceTypeLabel);
         EditorGUILayout.PropertyField(_target, _targetLabel);
+        EditorGUILayout.PropertyField(_startDetectingTime, _startDetectingTimeLabel);
         switch (_distanceType.intValue)
         {
             case (int)TypeOfDistance.SingleAxis:

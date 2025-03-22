@@ -16,6 +16,7 @@ public class Timer_Sensor : Sensors
     }
     private void Update()
     {
+        if (!_sensorActive) return;
         _timer.Update(Time.deltaTime);
 
         // Si el temporizador llegó al tiempo de detección, activar evento
@@ -30,13 +31,20 @@ public class Timer_Sensor : Sensors
     public override void StartSensor()
     {
         _timer.Start();
+        _sensorActive= true;
     }
 
     // Displays the remaining time in the scene view (editor only)
     private void OnDrawGizmos()
     {
+        if (!_sensorActive) return;
         Gizmos.color = Color.blue;
         float timeRemaining = _timer != null ? _timer.GetTimeRemaining() : _detectionTime;
         Handles.Label(transform.position + Vector3.up * 1.5f, $"Time Remaining: {timeRemaining:0.00}s");
     }
+
+	public override void StopSensor()
+	{
+		_sensorActive= false;
+	}
 }

@@ -55,6 +55,7 @@ public class Horizontal_Actuator : Movement_Actuator
 
     public override void StartActuator(AnimatorController animatorController)
     {
+		_actuatorActive = true;
 		_animatorController = animatorController;
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
@@ -86,6 +87,7 @@ public class Horizontal_Actuator : Movement_Actuator
     }
     public override void DestroyActuator()
     {
+		_actuatorActive = false;
         if (_collisionSensor != null)
         {
             _collisionSensor.onEventDetected -= CollisionEvent;
@@ -167,7 +169,7 @@ public class Horizontal_Actuator : Movement_Actuator
 
     private void OnDrawGizmosSelected()
     {
-        if (! this.isActiveAndEnabled) return;
+        if (!this.isActiveAndEnabled || !_actuatorActive) return;
 
         Gizmos.color = Color.green;
         Vector3 position = transform.position;

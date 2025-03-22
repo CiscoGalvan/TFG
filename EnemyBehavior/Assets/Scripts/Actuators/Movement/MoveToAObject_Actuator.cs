@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
+using static MoveToAPoint_Actuator;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode]
-public class MoveToAObject_Actuator : Movement_Actuator
+public class MoveToAnObject : Movement_Actuator
 {
 	const float ALMOST_REACHED_ONE = 0.999f;
+
 	[System.Serializable]
 	public struct WaypointData
 	{
@@ -21,177 +24,57 @@ public class MoveToAObject_Actuator : Movement_Actuator
 		[SerializeField, HideInInspector]
 		public EasingFunction.Ease easingFunction;
 	}
-	public enum UsageWay
-	{
-		Waypoint = 0,
-		RandomArea = 1
-	};
-	[SerializeField]
-	private UsageWay _usageWay;
-	[Tooltip("Configure each waypoint with its time, acceleration, and easing function")]
-	[SerializeField] private List<WaypointData> _waypointsData = new List<WaypointData>();
-	[SerializeField] private Collider2D _randomArea;
+
+	[SerializeField, Tooltip("Configura el waypoint con su tiempo, aceleración y función de easing")]
+	private WaypointData _waypointData;
 
 	private Rigidbody2D _rb;
 	private bool _moving;
 
-
 	private float _travelElapsedTime;
 	private float _stopElapsedTime;
-
-
+	private float _t;
 
 	private Vector2 _startInterpolationPosition;
-	private float _t;
-	private int _currentWaypointIndex;
 
-
-	[SerializeField]
-	private bool _isACicle = false;
-
-	[SerializeField, HideInInspector]
-	private bool _ciclicWaypointAdded;
-
-	private bool _randomPointReached = true;
-	private Vector2 _currentRandomPoint;
-	[SerializeField]
-	private float _timeBetweenRandomPoints;
-
-	[SerializeField]
-	private bool _seekPlayer = false;
-
-	private bool _seekingPlayer = false;
-
-	[SerializeField]
-	private float _detectionDistance = 0.0f;
-
-	[SerializeField]
-	private Transform _playerTransform;
-
-	[SerializeField]
-	private WaypointData _reachingPlayerData;
-
-	private AnimatorController _animatorController;
-
-    //private Distance_Sensor _distanceSensor;
-    public override void StartActuator(AnimatorController animatorController)
+	public override void StartActuator(AnimatorController animatorController)
 	{
+		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
 		_stopElapsedTime = 0f;
 		_t = 0f;
-		_currentWaypointIndex = 0;
-        _animatorController= animatorController;
+		_moving = true;
 
-        if (_usageWay == UsageWay.Waypoint && (_waypointsData == null || _waypointsData.Count == 0))
+		if (_waypointData.waypoint == null)
 		{
-			Debug.LogError($"MoveToAPoint_Actuator error in {name}: No waypoints were set.");
+			Debug.LogError($"MoveToAnObject error in {name}: No se ha asignado ningún waypoint.");
+#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
+#endif
 		}
 		else
 		{
 			_startInterpolationPosition = _rb.position;
-			_moving = true;
 		}
-
-		if (_usageWay == UsageWay.RandomArea)
-		{
-			_randomArea.isTrigger = true;
-		}
-
 	}
 
 	public override void UpdateActuator()
 	{
-		// Si en un inicio no era un ciclo y luego si, que vuelva a moverse.
-		if (!_moving && _isACicle)
-		{
-			Debug.Log("Muevete");
-			_moving = true;
-			_currentWaypointIndex = 0;
-		}
 		if (!_moving)
 			return;
-		// Si se permite buscar al jugador y aún no se ha activado el modo persecución,
-		// se verifica la distancia.
-		if (_seekPlayer && _playerTransform != null && !_seekingPlayer)
-		{
-			float distanceToPlayer = Vector2.Distance(_rb.position, _playerTransform.position);
-			if (distanceToPlayer <= _detectionDistance)
-			{
-				// Activamos la persecución de forma permanente.
-				_seekingPlayer = true;
-				// Reiniciamos los valores de interpolación para empezar a perseguir
-				_startInterpolationPosition = _rb.position;
-				_travelElapsedTime = 0f;
-				_t = 0f;
-			}
-		}
 
-		if (_seekingPlayer)
-		{
-			PursuePlayer();
-		}
-		else
-		{
-			switch (_usageWay)
-			{
-				case UsageWay.Waypoint:
-					MoveAlongWaypoints();
-					break;
-				case UsageWay.RandomArea:
-					MoveToRandomPoint();
-					break;
-			}
-		}
-	}
-	private void MoveToRandomPoint()
-	{
-		if (_randomArea == null)
-		{
-			Debug.LogError("Random area not set!");
-			return;
-		}
-
-		if (_randomPointReached)
-		{
-			_currentRandomPoint = new Vector2(
-				Random.Range(_randomArea.bounds.min.x, _randomArea.bounds.max.x),
-				Random.Range(_randomArea.bounds.min.y, _randomArea.bounds.max.y)
-			);
-			_randomPointReached = false;
-		}
-
-		//revisar estos valores
-		WaypointData randomWaypoint = new WaypointData
-		{
-			waypoint = null,
-			timeToReach = _timeBetweenRandomPoints,
-			isAccelerated = false,
-			shouldStop = false,
-			stopDuration = Random.Range(0.5f, 2f),
-			easingFunction = EasingFunction.Ease.EaseInOutQuad
-		};
-
-		MoveTowardsTarget(randomWaypoint, _currentRandomPoint);
-	}
-	private void MoveAlongWaypoints()
-	{
-		if (_currentWaypointIndex >= _waypointsData.Count)
-			return;
-
-		WaypointData currentWaypoint = _waypointsData[_currentWaypointIndex];
-		Vector2 targetPos = currentWaypoint.waypoint.position;
-		MoveTowardsTarget(currentWaypoint, targetPos);
+		MoveTowardsTarget(_waypointData, _waypointData.waypoint.position);
 	}
 	private void MoveTowardsTarget(WaypointData waypoint, Vector2 targetPos)
 	{
+		// Si ya se llegó y se debe detener, acumula el tiempo de parada
 		if (_t >= 1f && waypoint.shouldStop)
 		{
 			_stopElapsedTime += Time.deltaTime;
 			if (_stopElapsedTime >= waypoint.stopDuration)
 			{
-				AdvanceToNextWaypoint(targetPos);
+				_moving = false;
 			}
 			return;
 		}
@@ -199,14 +82,9 @@ public class MoveToAObject_Actuator : Movement_Actuator
 		_travelElapsedTime += Time.deltaTime;
 		_t = _travelElapsedTime / waypoint.timeToReach;
 
-	
-
 		if (waypoint.isAccelerated)
 		{
 			_t = EasingFunction.GetEasingFunction(waypoint.easingFunction)(0, 1, _t);
-			
-			// Al interpolar entre 0 y 1 hay veces que t nunca llega a 1 y se queda a nada, por lo que la condición para pasar al siguiente waypoint queda anulada y falla.
-			// Si se queda muy cerca, forzamos a que sea 1.
 			if (_t >= ALMOST_REACHED_ONE)
 				_t = 1f;
 		}
@@ -214,83 +92,25 @@ public class MoveToAObject_Actuator : Movement_Actuator
 		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, targetPos, _t);
 		_rb.MovePosition(newPosition);
 
-		
-		if (_t >= 1f && !waypoint.shouldStop)
+		// Una vez alcanzado el objetivo sin requerir parada, detenemos el movimiento
+		if ((_t >= 1f && !waypoint.shouldStop) || waypoint.waypoint == null)
 		{
-			AdvanceToNextWaypoint(targetPos);
-		}
-	}
-	// This method need some review
-	private void PursuePlayer()
-	{
-		if (_playerTransform == null)
-			return;
-
-		_travelElapsedTime += Time.deltaTime;
-		_t = _travelElapsedTime / _reachingPlayerData.timeToReach;
-
-		if (_reachingPlayerData.isAccelerated)
-		{
-			_t = EasingFunction.GetEasingFunction(_reachingPlayerData.easingFunction)(0, 1, _t);
-			if (_t >= ALMOST_REACHED_ONE)
-				_t = 1f;
-		}
-
-		
-		if (_t >= 1f && _reachingPlayerData.shouldStop)
-		{
-			_stopElapsedTime += Time.deltaTime;
-			if (_stopElapsedTime < _reachingPlayerData.stopDuration)
-				return; 
-
-			
-			_stopElapsedTime = 0f;
-			_travelElapsedTime = 0f;
-			_t = 0f;
-			_startInterpolationPosition = _rb.position;
-		}
-
-		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, _playerTransform.position, _t);
-		_rb.MovePosition(newPosition);
-
-		if (_t >= 1f && !_reachingPlayerData.shouldStop)
-		{
-			_startInterpolationPosition = _rb.position;
-			_travelElapsedTime = 0f;
-			_t = 0f;
+			_moving = false;
 		}
 	}
 
-
-	private void AdvanceToNextWaypoint(Vector2 reachedPos)
-	{
-		
-		_travelElapsedTime = 0f;
-		_stopElapsedTime = 0f;
-		_t = 0f;
-		_startInterpolationPosition = reachedPos;
-		_currentWaypointIndex++;
-
-		if (_usageWay == UsageWay.RandomArea)
-		{
-			_randomPointReached = true;
-		}
-		else if (_currentWaypointIndex >= _waypointsData.Count)
-		{
-			if (_isACicle)
-			{
-				_currentWaypointIndex = 0;
-			}
-			else
-			{
-				_moving = false;
-				_rb.velocity = Vector2.zero;
-				Debug.Log("Movimiento finalizado, todos los waypoints alcanzados.");
-			}
-		}
-	}
+	
 	public override void DestroyActuator()
 	{
-		//_distanceSensor.onEventDetected -= SeekPlayer;
+		_actuatorActive = false;
+	}
+	private void OnDrawGizmos()
+	{
+		if (!_actuatorActive) return;
+		if (_waypointData.waypoint != null)
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawSphere(_waypointData.waypoint.position, 0.2f);
+		}
 	}
 }

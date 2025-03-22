@@ -49,6 +49,7 @@ public class Circular_Actuator : Movement_Actuator
 	
 	public override void StartActuator(AnimatorController animatorController)
 	{
+		_actuatorActive = true;
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.gravityScale = 0f;
@@ -151,6 +152,7 @@ public class Circular_Actuator : Movement_Actuator
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
 	{
+		if (!_actuatorActive) return;
 		if (this.isActiveAndEnabled)
 		{
 			if (_maxAngle == 360f)
@@ -190,7 +192,10 @@ public class Circular_Actuator : Movement_Actuator
 	public void SetRadius(float newValue) { _radius = newValue; }
 	public bool RotationPointAssigned() { return _rotationPointPosition != null; }
 
-	public override void DestroyActuator() { }
+	public override void DestroyActuator()
+	{
+		_actuatorActive = false;
+	}
 
 	#region Setters and getters
 	public void SetAngularSpeed(float newValue)
