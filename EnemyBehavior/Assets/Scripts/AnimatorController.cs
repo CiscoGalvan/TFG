@@ -7,8 +7,8 @@ public class AnimatorController : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator;
-    [SerializeField]
-    List<Actuator> _listofActuators;
+    //[SerializeField]
+   // List<Actuator> _listofActuators;
     [SerializeField]
     private bool _isSpriteWellOrientedX = true; //esto podria estar en un enun de como esta orientada la animacion y este bool ser privado
     [SerializeField]
@@ -24,15 +24,14 @@ public class AnimatorController : MonoBehaviour
     Rigidbody2D _rigidbody;
 
 
-
-    private bool _isMoving = false;
-    
-    private int _facingDirection = 1; // 1 = derecha, -1 = izquierda
-
     private void Start()
     {
        
-        _animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>(); 
+        if(_animator == null)
+        {
+            Debug.LogError("NO ANIMATOR IS ATTACHED");
+        }
         _rigidbody = GetComponent<Rigidbody2D>();
         if (!_isSpriteWellOrientedX) //si no esta correctamente orientado al inicio rota el obj
         {
@@ -42,56 +41,8 @@ public class AnimatorController : MonoBehaviour
         {
             RotatesrpiteY();
         }
-       // SubscribeToActuators();
     }
-    private void SubscribeToActuators()
-    {
-        //foreach (var actuator in _listofActuators)
-        //{
-        //    switch (actuator)
-        //    {
-        //        case Horizontal_Actuator horizontalActuator:
-        //            if (horizontalActuator.GetBouncing() && _canFlipX)
-        //                horizontalActuator.OnBounce += RotatesrpiteX;
-        //            else if (horizontalActuator.GetDestroying())
-        //                horizontalActuator.OnDestroy += HandleDestroy;
-        //            break;
-
-        //        case Vertical_Actuator verticalActuator:
-        //            if (verticalActuator.GetBouncing() && _canFlipY)
-        //                verticalActuator.OnBounce += RotatesrpiteY;
-        //            else if (verticalActuator.GetDestroying())
-        //                verticalActuator.OnDestroy += HandleDestroy;
-        //            // Añadir el de morir para el destroy
-        //            break;
-        //    }
-        //}
-    }
-    private void UnsubscribeFromActuators()
-    {
-        //foreach (var actuator in _listofActuators)
-        //{
-        //    switch (actuator)
-        //    {
-        //        case Horizontal_Actuator horizontalActuator:
-        //            if (horizontalActuator.GetBouncing() && _canFlipX)
-        //                horizontalActuator.OnBounce -= RotatesrpiteX;
-        //            else if (horizontalActuator.GetDestroying())
-        //                horizontalActuator.OnDestroy -= HandleDestroy;
-        //            break;
-
-        //        case Vertical_Actuator verticalActuator:
-        //            if (verticalActuator.GetBouncing() && _canFlipY)
-        //                verticalActuator.OnBounce -= RotatesrpiteY;
-        //            else if (verticalActuator.GetDestroying())
-        //                verticalActuator.OnDestroy -= HandleDestroy;
-        //            // Añadir el de morir para el destroy
-        //            break;
-        //    }
-        //}
-          
-    }
-    
+  
 
     //private void Update()
     //{
@@ -109,10 +60,6 @@ public class AnimatorController : MonoBehaviour
        
     }
 
-    private void OnDestroy()
-    {
-        UnsubscribeFromActuators();
-    }
 
     public void RotatesrpiteX()
     {
@@ -143,8 +90,33 @@ public class AnimatorController : MonoBehaviour
     }
     public void SpawnEvent()
     {
-        _animator.SetTrigger("SpawnEvent");
+        _animator.SetTrigger("Spawn");
 
     }
+    public void LeftDirection()
+    {
+        _animator.SetBool("Left", true);
+        _animator.SetBool("Right", false);
+
+    }
+    public void RightDirection()
+    {
+        _animator.SetBool("Left", false);
+        _animator.SetBool("Right",true );
+
+    }
+    public void DownDirection()
+    {
+        _animator.SetBool("Up", false);
+        _animator.SetBool("Down", true);
+
+    }
+    public void UpDirection()
+    {
+        _animator.SetBool("Down", false);
+        _animator.SetBool("UP", true);
+
+    }
+    
 }
 

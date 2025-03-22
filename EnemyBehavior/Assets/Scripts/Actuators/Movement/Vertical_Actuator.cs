@@ -84,6 +84,13 @@ public class Vertical_Actuator : Movement_Actuator
         }
         _initial_speed = _speed;
         if (_throw) ApllyForce();
+        if (_animatorController != null)
+        {
+            if (_direction == Direction.Up)
+                _animatorController.UpDirection();
+            else
+                _animatorController.DownDirection();
+        }
     }
     public override void DestroyActuator()
     {
@@ -145,7 +152,15 @@ public class Vertical_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
                 _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
-                if (_animatorController != null) _animatorController.RotatesrpiteY();
+                if (_animatorController != null)
+                {
+                    _animatorController.RotatesrpiteY();
+                    if (_direction == Direction.Up)
+                        _animatorController.UpDirection();
+                    else
+                        _animatorController.DownDirection();
+                }
+               
                 //OnBounce?.Invoke();
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)

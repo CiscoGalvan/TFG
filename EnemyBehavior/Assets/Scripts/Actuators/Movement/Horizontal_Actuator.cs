@@ -76,7 +76,13 @@ public class Horizontal_Actuator : Movement_Actuator
 		}
 		_initialSpeed = _speed;
         if (_throw) ApplyForce();
-
+        if (_animatorController != null)
+        {
+            if (_direction == Direction.Left)
+                _animatorController.LeftDirection();
+            else
+                _animatorController.RightDirection();
+        }
     }
     public override void DestroyActuator()
     {
@@ -135,9 +141,16 @@ public class Horizontal_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
 				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-                // Invertir la escala en el eje 
-               // OnBounce?.Invoke();
-				if(_animatorController !=null)_animatorController.RotatesrpiteX();
+				// Invertir la escala en el eje 
+				// OnBounce?.Invoke();
+				if (_animatorController != null)
+				{
+					_animatorController.RotatesrpiteX();
+                    if (_direction == Direction.Left)
+                        _animatorController.LeftDirection();
+                    else
+                        _animatorController.RightDirection();
+                }
 
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
