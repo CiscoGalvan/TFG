@@ -142,7 +142,8 @@ public class Distance_Sensor : Sensors
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
-        if (!_sensorActive) return;
+        Debug.Log(_debugSensor);
+        if (!_debugSensor) return;
         Gizmos.color = new Color(0, 0, 1, 0.3f);
         switch (_distanceType)
         {

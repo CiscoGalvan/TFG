@@ -152,7 +152,7 @@ public class Circular_Actuator : Movement_Actuator
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
 	{
-		if (!_actuatorActive) return;
+		if (!_debugActuator) return;
 		if (this.isActiveAndEnabled)
 		{
 			if (_maxAngle == 360f)

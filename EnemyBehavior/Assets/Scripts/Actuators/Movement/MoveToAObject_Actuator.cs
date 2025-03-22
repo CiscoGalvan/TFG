@@ -106,7 +106,7 @@ public class MoveToAnObject : Movement_Actuator
 	}
 	private void OnDrawGizmos()
 	{
-		if (!_actuatorActive) return;
+		if (!_debugActuator) return;
 		if (_waypointData.waypoint != null)
 		{
 			Gizmos.color = Color.blue;

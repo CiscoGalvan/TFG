@@ -26,11 +26,12 @@ public class State : MonoBehaviour
 
     private State _nextState = null;
 
+    [SerializeField]
+    private bool _debugState = false;
    
 
     public void StartState(AnimatorController animatorController)
     {
-        //Debug.Log(name);
         foreach (var actuator in actuatorList)
         {
             if (actuator)
@@ -130,44 +131,60 @@ public class State : MonoBehaviour
     {
         _nextState = pair.targetState;
     }
-    #region Editor listas evitar duplicados
-
-
+    #region Editor
     private void OnValidate() //metodo que se llama cuandocambiamosalgo del editor
-        {
-
+    {
         // queremos comprobar que no existan duplicados en actuadores y sensores si la lista se ha modificado
         if(actuatorList.Count != _numElementsActuator) _numElementsActuator = VerificarLista(actuatorList, "actuatorList");
-       
+		
+		foreach (var actuator in actuatorList)
+		{
+			if (actuator != null)
+			{
+				actuator.SetDebug(_debugState);
+                #if UNITY_EDITOR
+				UnityEditor.EditorUtility.SetDirty(actuator);
+                #endif
+			}
+		}
+        foreach (var sensor in _sensorTransitions)
+		{
+			if (sensor != null)
+			{
+				sensor.sensor.SetDebug(_debugState);
+                #if UNITY_EDITOR
+				UnityEditor.EditorUtility.SetDirty(sensor.sensor);
+                #endif
+			}
+		}
+	}
 
-        }
-
-        private int VerificarLista<T>(List<T> lista, string nombreLista)
+    private int VerificarLista<T>(List<T> lista, string nombreLista)
+    {
+        if (lista == null || lista.Count <= 1)// No hay suficientes elementos para verificar
         {
-            if (lista == null || lista.Count <= 1)// No hay suficientes elementos para verificar
-            {
-
-                return -1;
-            }
-            //cogemos el ultimo elemento
-            Type ultimoTipo = lista[lista.Count - 1]?.GetType();
-
-                if (ultimoTipo == null) //si es nulo, entonces nada
-                {
-                    return -1; 
-                }
-
-                for (int i = 0; i < lista.Count - 1; i++) //comprobamos si es igual a algun otro tipo de la lista
-                {
-                    if (lista[i] != null && lista[i].GetType() == ultimoTipo)
-                    {
-                        Debug.LogWarning($"Se ha intentado agregar un segundo {nombreLista.TrimEnd('s')} del tipo {ultimoTipo.Name}");
-                        lista[lista.Count - 1] = default; // Dejarlo creado pero sin tipo
-                 
-                        return lista.Count;
-                    }
-                }
-            return lista.Count;
+            return -1;
         }
+      
+	//cogemos el ultimo elemento
+	Type ultimoTipo = lista[lista.Count - 1]?.GetType();
+
+        if (ultimoTipo == null) //si es nulo, entonces nada
+        {
+            return -1; 
+        }
+
+        for (int i = 0; i < lista.Count - 1; i++) //comprobamos si es igual a algun otro tipo de la lista
+        {
+            if (lista[i] != null && lista[i].GetType() == ultimoTipo)
+            {
+                Debug.LogWarning($"Se ha intentado agregar un segundo {nombreLista.TrimEnd('s')} del tipo {ultimoTipo.Name}");
+                lista[lista.Count - 1] = default; // Dejarlo creado pero sin tipo
+                 
+                return lista.Count;
+            }
+        }
+        return lista.Count;
+    }
     #endregion
 }

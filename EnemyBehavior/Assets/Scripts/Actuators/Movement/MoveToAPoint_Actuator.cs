@@ -234,7 +234,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	}
 	private void OnDrawGizmos()
 	{
-		if (!_actuatorActive) return;
+		if (!_debugActuator) return;
 		switch (_usageWay)
 		{
 			case UsageWay.RandomArea:

@@ -8,8 +8,9 @@ public abstract class Sensors : MonoBehaviour
 	// Action event
 	private Action<Sensors> _onEventDetectedInternal;
 
-    // Subscriber counter
-    private int _subscriberCount = 0;
+	protected bool _debugSensor;
+	// Subscriber counter
+	private int _subscriberCount = 0;
 
     // Public property to get the number of subscribers
     public int SubscriberCount => _subscriberCount;
@@ -46,5 +47,9 @@ public abstract class Sensors : MonoBehaviour
 	public abstract void StartSensor();
 	public abstract void StopSensor();
 
+	public void SetDebug(bool debug)
+	{
+		_debugSensor = debug;
+	}
 
 }

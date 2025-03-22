@@ -169,7 +169,7 @@ public class Horizontal_Actuator : Movement_Actuator
 
     private void OnDrawGizmosSelected()
     {
-        if (!this.isActiveAndEnabled || !_actuatorActive) return;
+        if (!this.isActiveAndEnabled || !_debugActuator) return;
 
         Gizmos.color = Color.green;
         Vector3 position = transform.position;

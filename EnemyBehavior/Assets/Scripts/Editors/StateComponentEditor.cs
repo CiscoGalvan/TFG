@@ -6,9 +6,8 @@ using UnityEngine;
 [CustomEditor(typeof(State))]
 public class StateComponentEditor : Editor
 {
-    
-    public override void OnInspectorGUI()
+	public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-    }
+	}
 }
