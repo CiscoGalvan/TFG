@@ -46,10 +46,6 @@ public class Life : MonoBehaviour
 	{
 		_currentLife = _initialLife;
 		_sensor = GetComponent<Damage_Sensor>();
-		if (_sensor == null)
-		{
-			_sensor = new Damage_Sensor();
-		}
 		_sensor.onEventDetected += ReceiveDamageEmitter;
 		_actualDamageCooldown = 0f;
 		_numOfDamage = 0;

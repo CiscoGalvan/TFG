@@ -10,7 +10,8 @@ public class Damage_Sensor : Sensors
     // Boolean to track if a collision has occurred
     private bool _col;
 	private DamageEmitter _damageEmitter;
-
+	[SerializeField]
+	private bool _activeFromStart = false;
 	[SerializeField, HideInInspector]
 	private bool _moreThanOneCollider;
 	#region Trigger Methods
@@ -75,7 +76,7 @@ public class Damage_Sensor : Sensors
     }
 	private void Start()
 	{
-		if (gameObject.layer == LayerMask.NameToLayer("Player"))
+		if (_activeFromStart)
 		{
 			_col = false;
 			_sensorActive = true;

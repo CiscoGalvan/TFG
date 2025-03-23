@@ -50,8 +50,6 @@ public class Horizontal_Actuator : Movement_Actuator
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
     private AnimatorController _animatorController;
-    // public event Action OnBounce; // Evento para notificar el rebote
-    //public event Action OnDestroy; // Evento para notificar el rebote
 
     public override void StartActuator(AnimatorController animatorController)
     {
