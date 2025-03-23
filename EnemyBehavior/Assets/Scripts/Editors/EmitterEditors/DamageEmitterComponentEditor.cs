@@ -10,10 +10,12 @@ public class DamageEmitterComponentEditor : Editor
 	private SerializedProperty _damageType;
 	private SerializedProperty _damageEmitterCollider;
 	private SerializedProperty _moreThanOneCollider;
+	private SerializedProperty _destroyAfterDoingDamage;
 
 	private static readonly GUIContent _amountOfDamageLabel = new GUIContent("Damage Amount", "Amount of damage the enemy will deal the player.");
 	private static readonly GUIContent _moreThanOneColliderLabel = new GUIContent("More Than One Collider?", "If the object has more than one collider, it is needed to specify which one will be the damage emitter.\n" +
 		"If it has more than one collider and this value is not set to true, the behaviour may not be accurate.");
+	private static readonly GUIContent _destroyAfterDoingDamageLabel = new GUIContent("Destroy After Doing Damage", "Will the object destroy after doing damage?");
 	private static readonly GUIContent _damageEmitterColliderLabel = new GUIContent("Damage Zone", "The collider that will deal damage to the player in case they make contact");
 	private static readonly GUIContent _damageCooldownLabel = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again.");
 	private static readonly GUIContent _damageTypeLabel = new GUIContent("Damage Type", "How will the damage be dealt?\n" +
@@ -36,6 +38,7 @@ public class DamageEmitterComponentEditor : Editor
 		_damageType = serializedObject.FindProperty("_damageType");
 		_damageEmitterCollider = serializedObject.FindProperty("_damageEmitterCollider");
 		_moreThanOneCollider = serializedObject.FindProperty("_moreThanOneCollider");
+		_destroyAfterDoingDamage = serializedObject.FindProperty("_destroyAfterDoingDamage");
 	}
 	public override void OnInspectorGUI()
 	{
@@ -50,6 +53,7 @@ public class DamageEmitterComponentEditor : Editor
 		{
 			EditorGUI.indentLevel++;
 			EditorGUILayout.PropertyField(_moreThanOneCollider, _moreThanOneColliderLabel);
+			EditorGUILayout.PropertyField(_destroyAfterDoingDamage, _destroyAfterDoingDamageLabel);
 			if (_moreThanOneCollider.boolValue)
 			{
 				EditorGUI.indentLevel++;

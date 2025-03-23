@@ -22,6 +22,17 @@ public class Damage_Sensor : Sensors
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if(_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision)
 			{
+				if (_damageEmitter.GetDestroyAfterDoingDamage())
+				{
+					//Como obtenemos la animacion?
+					AnimatorController animatorController = collision.gameObject.GetComponent<AnimatorController>();
+					if(animatorController != null)
+					{
+						animatorController.Destroy();
+					}
+					else
+						Destroy(collision.gameObject);
+				}
 				_col = true;
 				EventDetected();
 			}
@@ -50,6 +61,16 @@ public class Damage_Sensor : Sensors
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision.collider)
 			{
+				if (_damageEmitter.GetDestroyAfterDoingDamage())
+				{
+					AnimatorController animatorController = collision.gameObject.GetComponent<AnimatorController>();
+					if (animatorController != null)
+					{
+						animatorController.Destroy();
+					}
+					else
+						Destroy(collision.gameObject);
+				}
 				_col = true;
 				EventDetected();
 			}

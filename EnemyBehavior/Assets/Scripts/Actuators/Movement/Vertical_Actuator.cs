@@ -170,6 +170,8 @@ public class Vertical_Actuator : Movement_Actuator
 			{
                 // Destroy(this.gameObject);
                 if (_animatorController != null) _animatorController.Destroy();
+				else
+					Destroy(this.gameObject);
                 //OnDestroy?.Invoke();
             }
         }

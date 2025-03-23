@@ -44,6 +44,9 @@ public class DamageEmitter : MonoBehaviour
 
 	[SerializeField, HideInInspector]
 	private bool _moreThanOneCollider;
+
+    [SerializeField,HideInInspector]
+    private bool _destroyAfterDoingDamage = false;
     #region Getters and Setters
 
     // Sets the amount of residual damage
@@ -108,4 +111,5 @@ public class DamageEmitter : MonoBehaviour
 	}
 
     public Collider2D GetDamageEmitterCollider() => _damageEmitterCollider;
+    public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
 }

@@ -7,25 +7,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Directional_Actuator : Movement_Actuator
 {
-	[Header("Configuración de Movimiento Direccional")]
-	[Tooltip("Velocidad inicial")]
-	[SerializeField]
+
+	[SerializeField,HideInInspector]
 	private float _speed = 5f;
 
-	[Tooltip("Velocidad meta (cuando se usa aceleración)")]
+
 	[SerializeField, HideInInspector]
 	private float _goalSpeed;
 
-	[Tooltip("Tiempo de interpolación para acelerar/desacelerar")]
+
 	[SerializeField, HideInInspector]
 	private float _interpolationTime = 0;
 
-	[Tooltip("Ángulo de movimiento (en grados)")]
-	[SerializeField]
+	
+	[SerializeField, HideInInspector]
 	private float _angle;
 
-	[Tooltip("Si se activa, la fuerza se aplica solo una vez (tipo 'throw')")]
-	[SerializeField]
+	
+	[SerializeField,HideInInspector]
 	private bool _throw;
 
 	private float _initialSpeed = 0;
@@ -34,12 +33,11 @@ public class Directional_Actuator : Movement_Actuator
 	private EasingFunction.Function _easingFunc;
 	private AnimatorController _animatorController;
 
-	[SerializeField]
+	[SerializeField,HideInInspector]
 	private Horizontal_Actuator.OnCollisionReaction _onCollisionReaction = Horizontal_Actuator.OnCollisionReaction.None;
 
 	private Collision_Sensor _collisionSensor;
 
-	// Variable para guardar la velocidad previa al choque
 	private Vector2 _prevVelocity;
 
 	private bool _alreadyThrown = false;
@@ -79,10 +77,7 @@ public class Directional_Actuator : Movement_Actuator
 		_initialSpeed = _speed;
 
 
-		//if (_throw)
-		//	ApplyForce();
-
-		// Actualización opcional del animator
+	
 		if (_animatorController != null)
 		{
 			//_animatorController.ChangeSpeed(_speed);
@@ -91,7 +86,7 @@ public class Directional_Actuator : Movement_Actuator
 
 	public override void UpdateActuator()
 	{
-		// Guarda la velocidad actual antes de aplicar la fuerza
+		
 		_prevVelocity = _rigidbody.velocity;
 
 		if (!_throw)
@@ -110,7 +105,7 @@ public class Directional_Actuator : Movement_Actuator
 	{
 		_time += Time.deltaTime;
 
-		// Convertir el ángulo (en grados) a vector unitario
+		
 		Vector2 direction = new Vector2(Mathf.Cos(_angle * Mathf.Deg2Rad), Mathf.Sin(_angle * Mathf.Deg2Rad));
 	
 		if (!_isAccelerated)
@@ -133,10 +128,10 @@ public class Directional_Actuator : Movement_Actuator
 				_speed = easedSpeed;
 			}
 
-			if (_animatorController != null)
-			{
-				//_animatorController.ChangeSpeed(_rigidbody.velocity.magnitude);
-			}
+			//if (_animatorController != null)
+			//{
+			//	//_animatorController.ChangeSpeed(_rigidbody.velocity.magnitude);
+			//}
 		}
 	}
 
@@ -145,7 +140,7 @@ public class Directional_Actuator : Movement_Actuator
 		Collision2D col = _collisionSensor.GetCollidedObject();
 		if (col == null) return;
 
-		// Comprobar colisión con objetos de World (puedes ajustar según necesites)
+		
 		if (col.gameObject.layer != LayerMask.NameToLayer("World"))
 			return;
 
@@ -153,22 +148,12 @@ public class Directional_Actuator : Movement_Actuator
 		{
 			ContactPoint2D contact = col.contacts[0];
 			Vector2 normal = contact.normal;
-			// Usamos la velocidad previa al choque para el cálculo de reflexión
+			// We use the velocity stored before the collision happened
 			Vector2 currentVelocity = _prevVelocity;
 
-			// Cálculo manual de la reflexión: V' = V - 2*(V·N)*N
+			// We calcule reflection
 			float dotProduct = Vector2.Dot(currentVelocity, normal);
 			Vector2 reflectedVelocity = currentVelocity - 2 * dotProduct * normal;
-
-			// Si el choque es con el techo (normal casi (0, -1)), forzamos una componente Y mínima
-			if (Mathf.Abs(normal.x) < 0.2f && normal.y < 0)
-			{
-				float minDownwardSpeed = _speed * 0.5f;
-				if (reflectedVelocity.y > -minDownwardSpeed)
-				{
-					reflectedVelocity.y = -minDownwardSpeed;
-				}
-			}
 
 			_rigidbody.velocity = reflectedVelocity;
 			_speed = reflectedVelocity.magnitude;
@@ -176,12 +161,37 @@ public class Directional_Actuator : Movement_Actuator
 		}
 		else if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
 		{
-			_animatorController?.Destroy();
+			if (_animatorController != null)
+				_animatorController?.Destroy();
+			else
+				Destroy(this.gameObject);
 		}
 	}
 
 	public void SetAngle(float newValue)
 	{
 		_angle = newValue;
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		if (!this.isActiveAndEnabled || !_debugActuator) return;
+		
+		Vector3 origin = transform.position;
+		float arrowLength = 2f;
+
+		
+		Vector3 direction = new Vector3(Mathf.Cos(_angle * Mathf.Deg2Rad), Mathf.Sin(_angle * Mathf.Deg2Rad), 0);
+
+		
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine(origin, origin + direction * arrowLength);
+
+		
+		Vector3 rightTip = Quaternion.Euler(0, 0, 135) * direction;
+		Vector3 leftTip = Quaternion.Euler(0, 0, -135) * direction;
+
+		Gizmos.DrawLine(origin + direction * arrowLength, origin + direction * arrowLength + rightTip * 0.5f);
+		Gizmos.DrawLine(origin + direction * arrowLength, origin + direction * arrowLength + leftTip * 0.5f);
 	}
 }
