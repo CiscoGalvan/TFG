@@ -8,7 +8,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode]
-public class MoveToAnObject : Movement_Actuator
+public class MoveToAnObject : MovementActuator
 {
 	const float ALMOST_REACHED_ONE = 0.999f;
 
@@ -37,7 +37,7 @@ public class MoveToAnObject : Movement_Actuator
 
 	private Vector2 _startInterpolationPosition;
 
-	public override void StartActuator(AnimatorController animatorController)
+	public override void StartActuator()
 	{
 		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();

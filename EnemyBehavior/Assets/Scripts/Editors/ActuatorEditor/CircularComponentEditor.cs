@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Circular_Actuator))]
+[CustomEditor(typeof(CircularActuator))]
 public class CircularComponentEditor : ActuatorEditor
 {
 	#region Accelerated movement
@@ -18,7 +18,7 @@ public class CircularComponentEditor : ActuatorEditor
 	public override void OnInspectorGUI()
 	{
 
-		Circular_Actuator component = (Circular_Actuator)target;
+		CircularActuator component = (CircularActuator)target;
 		DrawDefaultInspector();
 
 		if (component.IsMovementAccelerated())

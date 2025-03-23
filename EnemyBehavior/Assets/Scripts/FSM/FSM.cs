@@ -10,14 +10,14 @@ public class FSM : MonoBehaviour
     [SerializeField]
     private State initialState;
     [SerializeField]
-    private AnimatorController animatorController;
+   
     private State _currentstate; // Stores the current active state
 
     void Awake()
     {
         // Set the initial state and execute its start logic
         _currentstate = initialState;
-        _currentstate.StartState(animatorController);
+        _currentstate.StartState();
     }
 
     void Update()
@@ -52,12 +52,12 @@ public class FSM : MonoBehaviour
         _currentstate.DestroyState();
         // Set the new state and execute its start logic
         _currentstate = newState;
-        
-        if (animatorController != null)
+        AnimatorManager _animatorManager = this.gameObject.GetComponent<AnimatorManager>(); 
+        if (_animatorManager != null)
         {
-            animatorController.ChangeState();
+            _animatorManager.ChangeState();
         }
-        _currentstate.StartState(animatorController);
+        _currentstate.StartState();
     }
   
 }

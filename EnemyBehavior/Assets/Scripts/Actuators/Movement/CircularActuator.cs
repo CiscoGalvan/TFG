@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Circular_Actuator : Movement_Actuator
+public class CircularActuator : MovementActuator
 {
 	// Velocidad angular en grados por segundo (se convertirá a radianes)
 	[SerializeField, HideInInspector]
@@ -46,12 +46,11 @@ public class Circular_Actuator : Movement_Actuator
 
 	private Vector3 _startingPosition;
 	private EasingFunction.Function _easingFunc;
-	AnimatorController _animatorController;
+    AnimatorManager _animatorManager;
 
-
-    public override void StartActuator(AnimatorController animatorController)
+    public override void StartActuator()
 	{
-        _animatorController = animatorController;
+         _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _actuatorActive = true;
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();
@@ -146,7 +145,8 @@ public class Circular_Actuator : Movement_Actuator
             _rigidbody.MovePosition(expectedPosition);
 		// Rotar el objeto si _canRotate es true
 		if (_canRotate) transform.rotation = Quaternion.Euler(0f, 0f, _currentAngle * Mathf.Rad2Deg);
-        if (_animatorController != null) _animatorController.ChangeSpeedRotation(_currentAngle * Mathf.Rad2Deg);
+       
+        if (_animatorManager != null) _animatorManager.ChangeSpeedRotation(_currentAngle * Mathf.Rad2Deg);
 
     }
 

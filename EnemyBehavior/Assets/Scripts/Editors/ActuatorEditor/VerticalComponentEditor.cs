@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using static MoveToAPoint_Actuator;
 
-[CustomEditor(typeof(Vertical_Actuator))]
+[CustomEditor(typeof(VerticalActuator))]
 public class VerticalComponentEditor : ActuatorEditor
 {
 	private static readonly GUIContent _onCollisionReactionLabel = new GUIContent("Reaction After Collision", "What will the object do after collision?\n" +
@@ -34,7 +34,7 @@ public class VerticalComponentEditor : ActuatorEditor
 	public override void OnInspectorGUI()
 	{
 
-        Vertical_Actuator component = (Vertical_Actuator)target;
+        VerticalActuator component = (VerticalActuator)target;
 		DrawDefaultInspector();
 		#region Old OnCollisionReaction
 		// Variables auxiliares para evitar selección simultánea

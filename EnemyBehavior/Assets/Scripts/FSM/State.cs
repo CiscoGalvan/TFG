@@ -30,13 +30,13 @@ public class State : MonoBehaviour
     private bool _debugState = false;
    
 
-    public void StartState(AnimatorController animatorController)
+    public void StartState()
     {
         foreach (var actuator in actuatorList)
         {
             if (actuator)
             {
-                actuator.StartActuator(animatorController);
+                actuator.StartActuator();
                 sensorHashSet.UnionWith(actuator.GetSensors());
             }
                

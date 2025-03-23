@@ -10,7 +10,7 @@ public abstract class Actuator: MonoBehaviour
     protected bool _actuatorActive;
     protected bool _debugActuator;
 	public abstract void UpdateActuator();
-    public abstract void StartActuator(AnimatorController animatorController);
+    public abstract void StartActuator();
     public abstract void DestroyActuator();
     public HashSet<Sensors> GetSensors() { return sensors; }
 

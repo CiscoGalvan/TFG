@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Horizontal_Actuator : Movement_Actuator
+public class Horizontal_Actuator : MovementActuator
 {
 
 	private enum Direction
@@ -49,12 +49,12 @@ public class Horizontal_Actuator : Movement_Actuator
 	private float _time;
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
-    private AnimatorController _animatorController;
+    AnimatorManager _animatorManager;
 
-    public override void StartActuator(AnimatorController animatorController)
+    public override void StartActuator()
     {
 		_actuatorActive = true;
-		_animatorController = animatorController;
+        _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
@@ -75,13 +75,13 @@ public class Horizontal_Actuator : Movement_Actuator
 		}
 		_initialSpeed = _speed;
         if (_throw) ApplyForce();
-        if (_animatorController != null)
+        if (_animatorManager != null)
         {
-			_animatorController.ChangeSpeedX(_speed * (int)_direction);
+            _animatorManager.ChangeSpeedX(_speed * (int)_direction);
             if (_direction == Direction.Left)
-                _animatorController.LeftDirection();
+                _animatorManager.LeftDirection();
             else
-                _animatorController.RightDirection();
+                _animatorManager.RightDirection();
         }
     }
     public override void DestroyActuator()
@@ -123,7 +123,7 @@ public class Horizontal_Actuator : Movement_Actuator
 				_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
 				_speed = easedSpeed;
 			}
-            if (_animatorController != null) _animatorController.ChangeSpeedX(_rigidbody.velocity.x);
+           _animatorManager?.ChangeSpeedX(_rigidbody.velocity.x);
         }
         
     }
@@ -146,21 +146,19 @@ public class Horizontal_Actuator : Movement_Actuator
 				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
 				// Invertir la escala en el eje 
 				// OnBounce?.Invoke();
-				if (_animatorController != null)
-				{
-					_animatorController.RotatesrpiteX();
-                    if (_direction == Direction.Left)
-                        _animatorController.LeftDirection();
-                    else
-                        _animatorController.RightDirection();
-                }
-
+				
+				_animatorManager?.RotatesrpiteX();
+                if (_direction == Direction.Left)
+					_animatorManager?.LeftDirection();
+                else
+					_animatorManager?.RightDirection();
+              
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
 				//Destroy(this.gameObject);
 				// OnDestroy?.Invoke();
-				if (_animatorController != null) _animatorController.Destroy();
+				if (_animatorManager != null) _animatorManager.Destroy();
 				else Destroy(this.gameObject);
 
             }

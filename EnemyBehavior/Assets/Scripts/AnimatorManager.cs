@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorController : MonoBehaviour
+public class AnimatorManager : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator;
@@ -19,11 +19,11 @@ public class AnimatorController : MonoBehaviour
     private bool _canFlipY = true; //esto deberia mostrarse solo si el movhorizonal permite bounce
     [SerializeField]
     private bool _canRotate = true;
-
+    SpriteRenderer _spriteRenderer;
 
     private void Start()
     {
-       
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>(); 
         if(_animator == null)
         {
@@ -43,23 +43,30 @@ public class AnimatorController : MonoBehaviour
     {
         //_animator.SetTrigger("Bounce");
         if (!_canFlipX) return;
-
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.flipX = !_spriteRenderer.flipX; 
+        }
+       
     }
     public void RotatesrpiteY()
     {
         //_animator.SetTrigger("Bounce");
         if (!_canFlipY) return;
-        Vector3 localScale = transform.localScale;
-        localScale.y *= -1;
-        transform.localScale = localScale;
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.flipY = !_spriteRenderer.flipY;
+        }
     }
     public void Destroy()
     {
         _animator.SetTrigger("Die");
-       
+
+    }
+    public void Damage()
+    {
+        _animator.SetTrigger("Damage");
+
     }
     public void ChangeState()
     {
@@ -119,6 +126,18 @@ public class AnimatorController : MonoBehaviour
         // Debug.Log("DIE + " + this.gameObject.ToString());
         Destroy(gameObject);
     }
+    private void OnValidate()
+    {
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
 
+        if (_spriteRenderer != null)
+        {
+            
+            _spriteRenderer.flipX = !_isSpriteWellOrientedX;
+            _spriteRenderer.flipY = !_isSpriteWellOrientedY;
+        }
+            
+    }
 }
 

@@ -7,7 +7,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode]
-public class MoveToAPoint_Actuator : Movement_Actuator
+public class MoveToAPoint_Actuator : MovementActuator
 {
 	const float ALMOST_REACHED_ONE = 0.999f;
 	[System.Serializable]
@@ -73,7 +73,7 @@ public class MoveToAPoint_Actuator : Movement_Actuator
 	[SerializeField]
 	private float _timeBetweenRandomPoints;
 	private List<Vector2> _cachedWaypointPositions = new List<Vector2>();
-	public override void StartActuator(AnimatorController animatorController)
+	public override void StartActuator()
 	{
 		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();

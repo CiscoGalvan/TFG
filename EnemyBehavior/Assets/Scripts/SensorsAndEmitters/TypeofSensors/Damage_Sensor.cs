@@ -25,10 +25,10 @@ public class Damage_Sensor : Sensors
 				if (_damageEmitter.GetDestroyAfterDoingDamage())
 				{
 					//Como obtenemos la animacion?
-					AnimatorController animatorController = collision.gameObject.GetComponent<AnimatorController>();
-					if(animatorController != null)
+					AnimatorManager _animatorManager = collision.gameObject.GetComponent<AnimatorManager>();
+					if(_animatorManager != null)
 					{
-						animatorController.Destroy();
+                        _animatorManager.Destroy();
 					}
 					else
 						Destroy(collision.gameObject);
@@ -63,7 +63,7 @@ public class Damage_Sensor : Sensors
 			{
 				if (_damageEmitter.GetDestroyAfterDoingDamage())
 				{
-					AnimatorController animatorController = collision.gameObject.GetComponent<AnimatorController>();
+                    AnimatorManager animatorController = collision.gameObject.GetComponent<AnimatorManager>();
 					if (animatorController != null)
 					{
 						animatorController.Destroy();

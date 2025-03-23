@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class Vertical_Actuator : Movement_Actuator
+public class VerticalActuator : MovementActuator
 {
 	private enum Direction
 	{
@@ -57,12 +57,12 @@ public class Vertical_Actuator : Movement_Actuator
 	[SerializeField, HideInInspector]
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
 
-   // public event Action OnBounce; // Evento para notificar el rebote
+    // public event Action OnBounce; // Evento para notificar el rebote
     //public event Action OnDestroy; // Evento para notificar el rebote
-    private AnimatorController _animatorController;
-    public override void StartActuator(AnimatorController animatorController)
+    AnimatorManager _animatorManager;
+    public override void StartActuator()
     {
-        _animatorController = animatorController;
+        _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
         _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
@@ -84,13 +84,13 @@ public class Vertical_Actuator : Movement_Actuator
         }
         _initial_speed = _speed;
         if (_throw) ApllyForce();
-        if (_animatorController != null)
+        if (_animatorManager != null)
         {
-            _animatorController.ChangeSpeedY(_initial_speed);
+            _animatorManager.ChangeSpeedY(_initial_speed);
             if (_direction == Direction.Up)
-                _animatorController.UpDirection();
+                _animatorManager.UpDirection();
             else
-                _animatorController.DownDirection();
+                _animatorManager.DownDirection();
         }
     }
     public override void DestroyActuator()
@@ -133,7 +133,7 @@ public class Vertical_Actuator : Movement_Actuator
 				_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, easedSpeed * dirValue);
 				_speed = easedSpeed;
             }
-            if (_animatorController != null) _animatorController.ChangeSpeedY(_rigidbody.velocity.y);
+            if (_animatorManager != null) _animatorManager.ChangeSpeedY(_rigidbody.velocity.y);
         }
     }
     void CollisionEvent(Sensors s)
@@ -155,13 +155,13 @@ public class Vertical_Actuator : Movement_Actuator
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
                 _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
-                if (_animatorController != null)
+                if (_animatorManager != null)
                 {
-                    _animatorController.RotatesrpiteY();
+                    _animatorManager.RotatesrpiteY();
                     if (_direction == Direction.Up)
-                        _animatorController.UpDirection();
+                        _animatorManager.UpDirection();
                     else
-                        _animatorController.DownDirection();
+                        _animatorManager.DownDirection();
                 }
                
                 //OnBounce?.Invoke();
@@ -169,7 +169,7 @@ public class Vertical_Actuator : Movement_Actuator
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
                 // Destroy(this.gameObject);
-                if (_animatorController != null) _animatorController.Destroy();
+                if (_animatorManager != null) _animatorManager.Destroy();
 				else
 					Destroy(this.gameObject);
                 //OnDestroy?.Invoke();

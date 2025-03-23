@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Directional_Actuator : Movement_Actuator
+public class Directional_Actuator : MovementActuator
 {
 
 	[SerializeField,HideInInspector]
@@ -31,9 +31,9 @@ public class Directional_Actuator : Movement_Actuator
 	private float _time;
 	private Rigidbody2D _rigidbody;
 	private EasingFunction.Function _easingFunc;
-	private AnimatorController _animatorController;
+	AnimatorManager _animatorManager;
 
-	[SerializeField,HideInInspector]
+    [SerializeField,HideInInspector]
 	private Horizontal_Actuator.OnCollisionReaction _onCollisionReaction = Horizontal_Actuator.OnCollisionReaction.None;
 
 	private Collision_Sensor _collisionSensor;
@@ -50,11 +50,11 @@ public class Directional_Actuator : Movement_Actuator
 		}
 	}
 
-	public override void StartActuator(AnimatorController animatorController)
+	public override void StartActuator()
 	{
 		_actuatorActive = true;
-		_animatorController = animatorController;
-		_rigidbody = GetComponent<Rigidbody2D>();
+        _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
+        _rigidbody = GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		_time = 0;
 
@@ -78,10 +78,10 @@ public class Directional_Actuator : Movement_Actuator
 
 
 	
-		if (_animatorController != null)
-		{
-			//_animatorController.ChangeSpeed(_speed);
-		}
+		//if (_animatorController != null)
+		//{
+		//	//_animatorController.ChangeSpeed(_speed);
+		//}
 	}
 
 	public override void UpdateActuator()
@@ -161,8 +161,9 @@ public class Directional_Actuator : Movement_Actuator
 		}
 		else if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
 		{
-			if (_animatorController != null)
-				_animatorController?.Destroy();
+
+			if (_animatorManager != null)
+				_animatorManager.Destroy();
 			else
 				Destroy(this.gameObject);
 		}
