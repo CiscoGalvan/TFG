@@ -1,0 +1,65 @@
+\documentclass[a4paper,12pt]{article}
+
+% Paquetes necesarios
+\usepackage[utf8]{inputenc} % Codificación UTF-8
+\usepackage[spanish]{babel} % Idioma español
+\usepackage{graphicx} % Para incluir imágenes
+\usepackage{hyperref} % Hipervínculos
+\usepackage{amsmath, amssymb} % Símbolos matemáticos
+\usepackage{geometry} % Ajuste de márgenes
+\usepackage{fancyhdr} % Encabezado y pie de página
+\usepackage{titlesec} % Formato de secciones
+
+% Configuración de página
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+
+% Configuración del encabezado y pie de página
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Manual de Usuario}
+\lhead{\leftmark}
+\cfoot{\thepage}
+
+% Configuración de títulos de sección
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \centering
+    \vfill
+    {\Huge \textbf{Manual de Usuario} \par}
+    \vfill
+    {\Large Autores:\par Cristina Mora Velasco \par Francisco Miguel Galván Muñoz \par}
+    \vfill
+    \today
+    \vfill
+\end{titlepage}
+
+% Índice
+\tableofcontents
+\newpage
+
+% Introducción
+\section{Introducción}
+Escribe aquí la introducción del manual.
+
+% Sección de uso básico
+\section{Uso Básico}
+Describe aquí las funcionalidades básicas del sistema.
+
+% Sección de configuración
+\section{Configuración}
+Explica cómo configurar el sistema.
+
+% Sección de solución de problemas
+\section{Solución de Problemas}
+Lista de problemas comunes y sus soluciones.
+
+% Conclusión
+\section{Conclusión}
+Resumen del documento y próximos pasos.
+
+\end{document}
