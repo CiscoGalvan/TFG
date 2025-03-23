@@ -39,6 +39,10 @@ public class Directional_Actuator : Movement_Actuator
 
 	private Collision_Sensor _collisionSensor;
 
+	// Variable para guardar la velocidad previa al choque
+	private Vector2 _prevVelocity;
+
+	private bool _alreadyThrown = false;
 	public override void DestroyActuator()
 	{
 		_actuatorActive = false;
@@ -48,8 +52,6 @@ public class Directional_Actuator : Movement_Actuator
 		}
 	}
 
-	
-
 	public override void StartActuator(AnimatorController animatorController)
 	{
 		_actuatorActive = true;
@@ -58,10 +60,11 @@ public class Directional_Actuator : Movement_Actuator
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		_time = 0;
 
-		if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Bounce || _onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
+		if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Bounce ||
+			_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
 		{
 			_collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
-			if (_collisionSensor == null) // Si no existe, lo crea
+			if (_collisionSensor == null)
 			{
 				_collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
 			}
@@ -71,16 +74,15 @@ public class Directional_Actuator : Movement_Actuator
 
 		if (_isAccelerated)
 		{
-			// Si se usa aceleración, se toma la velocidad actual (magnitud) del Rigidbody
 			_speed = _rigidbody.velocity.magnitude;
 		}
 		_initialSpeed = _speed;
 
-		// Aplicar fuerza inicial si se configuró en modo 'throw'
-		if (_throw)
-			ApplyForce();
 
-		// Opcional: actualizar el animator con la dirección o velocidad si se requiere
+		//if (_throw)
+		//	ApplyForce();
+
+		// Actualización opcional del animator
 		if (_animatorController != null)
 		{
 			//_animatorController.ChangeSpeed(_speed);
@@ -89,25 +91,34 @@ public class Directional_Actuator : Movement_Actuator
 
 	public override void UpdateActuator()
 	{
+		// Guarda la velocidad actual antes de aplicar la fuerza
+		_prevVelocity = _rigidbody.velocity;
+
 		if (!_throw)
 			ApplyForce();
+		else
+		{
+			if (!_alreadyThrown)
+			{
+				ApplyForce();
+				_alreadyThrown = true;
+			}
+		}
 	}
 
 	private void ApplyForce()
 	{
 		_time += Time.deltaTime;
 
-		// Convertir el ángulo (en grados) a un vector unitario
+		// Convertir el ángulo (en grados) a vector unitario
 		Vector2 direction = new Vector2(Mathf.Cos(_angle * Mathf.Deg2Rad), Mathf.Sin(_angle * Mathf.Deg2Rad));
-
+	
 		if (!_isAccelerated)
 		{
-			// Movimiento uniforme (MRU)
 			_rigidbody.velocity = direction * _speed;
 		}
 		else
 		{
-			// Movimiento uniformemente acelerado (MRUA) usando interpolación con easing
 			float t = (_time / _interpolationTime);
 			float easedSpeed = _easingFunc(_initialSpeed, _goalSpeed, t);
 
@@ -134,36 +145,43 @@ public class Directional_Actuator : Movement_Actuator
 		Collision2D col = _collisionSensor.GetCollidedObject();
 		if (col == null) return;
 
-		// Se comprueba la colisión únicamente con objetos de World o Player
-		if (col.gameObject.layer != LayerMask.NameToLayer("World") /*&& col.gameObject.layer != LayerMask.NameToLayer("Player")*/)
+		// Comprobar colisión con objetos de World (puedes ajustar según necesites)
+		if (col.gameObject.layer != LayerMask.NameToLayer("World"))
 			return;
-
-		ContactPoint2D contact = col.contacts[0];
-		Vector2 normal = contact.normal;
 
 		if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Bounce)
 		{
-			// Rebote en cualquier dirección reflejando la velocidad respecto a la normal
-			Vector2 currentVelocity = _rigidbody.velocity;
-			Vector2 reflectedVelocity = Vector2.Reflect(currentVelocity, normal);
-			_rigidbody.velocity = reflectedVelocity;
+			ContactPoint2D contact = col.contacts[0];
+			Vector2 normal = contact.normal;
+			// Usamos la velocidad previa al choque para el cálculo de reflexión
+			Vector2 currentVelocity = _prevVelocity;
 
-			// Actualizar el ángulo a partir del vector reflejado
-			_angle = Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x) * Mathf.Rad2Deg;
+			// Cálculo manual de la reflexión: V' = V - 2*(V·N)*N
+			float dotProduct = Vector2.Dot(currentVelocity, normal);
+			Vector2 reflectedVelocity = currentVelocity - 2 * dotProduct * normal;
 
-			if (_animatorController != null)
+			// Si el choque es con el techo (normal casi (0, -1)), forzamos una componente Y mínima
+			if (Mathf.Abs(normal.x) < 0.2f && normal.y < 0)
 			{
-				_animatorController.RotatesrpiteX();
+				float minDownwardSpeed = _speed * 0.5f;
+				if (reflectedVelocity.y > -minDownwardSpeed)
+				{
+					reflectedVelocity.y = -minDownwardSpeed;
+				}
 			}
+
+			_rigidbody.velocity = reflectedVelocity;
+			_speed = reflectedVelocity.magnitude;
+			_angle = Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x) * Mathf.Rad2Deg;
 		}
 		else if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
 		{
-			if (_animatorController != null)
-				_animatorController.Destroy();
+			_animatorController?.Destroy();
 		}
 	}
+
 	public void SetAngle(float newValue)
 	{
-		_angle= newValue;
+		_angle = newValue;
 	}
 }
