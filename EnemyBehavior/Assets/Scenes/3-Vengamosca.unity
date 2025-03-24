@@ -306,6 +306,8 @@ GameObject:
   - component: {fileID: 307179860}
   - component: {fileID: 307179861}
   - component: {fileID: 307179862}
+  - component: {fileID: 307179864}
+  - component: {fileID: 307179863}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -630,6 +632,45 @@ MonoBehaviour:
   _allWaypointsHaveTheSameData: 0
   _ciclicWaypointAdded: 0
   _timeBetweenRandomPoints: 0.8
+--- !u!114 &307179863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307179846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 307179864}
+  _isSpriteWellOrientedX: 1
+  _isSpriteWellOrientedY: 1
+  _canFlipX: 1
+  _canFlipY: 1
+  _canRotate: 1
+--- !u!95 &307179864
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307179846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9136fd134d8cad841be2d74a94d73812, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0

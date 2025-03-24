@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageType: 0
-  _instaKill: 1
-  _amountOfDamage: 0
+  _instaKill: 0
+  _amountOfDamage: 1
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0

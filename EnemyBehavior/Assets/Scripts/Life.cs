@@ -39,7 +39,7 @@ public class Life : MonoBehaviour
 	private  void Awake()
 	{
 		// Validar que lifeText tenga un valor asignado
-		if (_lifeText == null)
+		if (_lifeText == null && _entityType == EntityType.Player)
 		{
 			Debug.LogError($"The TextMeshProUGUI reference in {gameObject.name} is not assigned. Please assign it in the inspector.", this);
 			enabled = false; // Desactiva el script si no está configurado correctamente
@@ -192,7 +192,7 @@ public class Life : MonoBehaviour
     }
     private void UpdateLifeText()
 	{
-		if (_lifeText != null)
+		if (_lifeText != null && _entityType == EntityType.Player)
 		{
 			_lifeText.text = _textname + _currentLife;
 		}
