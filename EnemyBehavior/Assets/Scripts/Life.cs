@@ -5,8 +5,11 @@ using TMPro;
 [RequireComponent(typeof(Damage_Sensor))]
 public class Life : MonoBehaviour
 {
+    public enum EntityType { Player, Enemy }
+    [SerializeField]
+    private EntityType _entityType;
 
-    [Header("Life Settings")]
+    [HideInInspector,Header("Life Settings")]
     [Tooltip("Initial life value of the object.")]
     [SerializeField]
     private float _initialLife = 5; // Initial life value
@@ -164,31 +167,67 @@ public class Life : MonoBehaviour
 		_currentLife = 0;
 		UpdateLifeText();
 	}
-	private void IncreaseLife(float num)
+    public void IncreaseLife(float num)
 	{
 		_currentLife += num;
 		UpdateLifeText();
 	}
-	private void SetLife(float num)
+    public void SetLife(float num)
 	{
 		_currentLife = num;
 		UpdateLifeText();
 	}
-	private void SetInitialLife()
+	public void ResetLife()
 	{
 		_currentLife = _initialLife;
 		UpdateLifeText();
 	}
-	private void UpdateLifeText()
+    public float GetInitialLife()
+    {
+        return _initialLife;
+    }
+    public void SetInitialLife(float value)
+    {
+        _initialLife = value;
+    }
+    private void UpdateLifeText()
 	{
 		if (_lifeText != null)
 		{
 			_lifeText.text = _textname + _currentLife;
 		}
 	}
-	private bool IsLifeLessThan(int value)
+    public bool IsLifeLessThan(int value)
 	{
 		return _currentLife < value;
 	}
 
+    public string GetTextName()
+    {
+        return _textname;
+    }
+
+    public void SetTextName(string value)
+    {
+        _textname = value;
+    }
+
+    public TextMeshProUGUI GetLifeText()
+    {
+        return _lifeText;
+    }
+
+    public void SetLifeText(TextMeshProUGUI value)
+    {
+        _lifeText = value;
+    }
+    public EntityType GetEntityType()
+    {
+        return _entityType;
+    }
+
+    public void SetEntityType(EntityType value)
+    {
+        _entityType = value;
+    }
 }

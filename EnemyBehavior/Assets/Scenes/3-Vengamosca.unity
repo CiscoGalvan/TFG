@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 307179849}
-  animatorController: {fileID: 0}
+  _currentstate: {fileID: 0}
 --- !u!61 &307179851
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -626,9 +626,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4d50162f412b1408ad64e2569835cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityType: 0
   _initialLife: 5
   _lifeText: {fileID: 427668949}
-  _textname: 'Enemy:'
+  _textname: 
 --- !u!114 &307179861
 MonoBehaviour:
   m_ObjectHideFlags: 0

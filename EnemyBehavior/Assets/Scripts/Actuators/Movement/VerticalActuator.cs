@@ -28,7 +28,7 @@ public class VerticalActuator : MovementActuator
 
     [SerializeField, HideInInspector]
 	private float _speed;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private bool _throw; //if this is activated the velocity will be update just ones
 
     [SerializeField]
@@ -227,5 +227,13 @@ public class VerticalActuator : MovementActuator
     public bool GetDestroying()
     {
         return _onCollisionReaction == OnCollisionReaction.Destroy;
+    }
+    public void SetThrow(bool newValue)
+    {
+        _throw = newValue;
+    }
+    public bool GetThrow()
+    {
+        return _throw;
     }
 }

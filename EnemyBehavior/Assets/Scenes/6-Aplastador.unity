@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 405269250}
-  animatorController: {fileID: 0}
+  _currentstate: {fileID: 0}
 --- !u!61 &405269253
 BoxCollider2D:
   m_ObjectHideFlags: 0

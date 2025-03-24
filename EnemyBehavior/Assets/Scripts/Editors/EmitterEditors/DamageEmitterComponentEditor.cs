@@ -53,7 +53,7 @@ public class DamageEmitterComponentEditor : Editor
 		{
 			EditorGUI.indentLevel++;
 			EditorGUILayout.PropertyField(_moreThanOneCollider, _moreThanOneColliderLabel);
-			EditorGUILayout.PropertyField(_destroyAfterDoingDamage, _destroyAfterDoingDamageLabel);
+			
 			if (_moreThanOneCollider.boolValue)
 			{
 				EditorGUI.indentLevel++;
@@ -63,7 +63,8 @@ public class DamageEmitterComponentEditor : Editor
 			switch (component.GetDamageType())
 			{
 				case DamageEmitter.DamageType.Instant:
-					component.SetInstaKill(EditorGUILayout.Toggle(instaKill, component.GetInstaKill()));
+                    EditorGUILayout.PropertyField(_destroyAfterDoingDamage, _destroyAfterDoingDamageLabel);
+                    component.SetInstaKill(EditorGUILayout.Toggle(instaKill, component.GetInstaKill()));
 					if (!component.GetInstaKill())
 					{
 						EditorGUI.indentLevel++;
@@ -76,7 +77,8 @@ public class DamageEmitterComponentEditor : Editor
 					component.SetDamageCooldown(EditorGUILayout.FloatField(_damageCooldownLabel, component.GetDamageCooldown()));
 					break;
 				case DamageEmitter.DamageType.Residual:
-					component.SetAmountOfDamage(EditorGUILayout.FloatField(instantDamageAmount, component.GetAmountOfDamage()));
+                    EditorGUILayout.PropertyField(_destroyAfterDoingDamage, _destroyAfterDoingDamageLabel);
+                    component.SetAmountOfDamage(EditorGUILayout.FloatField(instantDamageAmount, component.GetAmountOfDamage()));
 					component.SetResidualDamageAmount(EditorGUILayout.FloatField(residualDamageLabel, component.GetResidualDamageAmount()));
 					component.SetDamageCooldown(EditorGUILayout.FloatField(_damageCooldownLabel, component.GetDamageCooldown()));
 					component.SetNumberOfResidualApplication(EditorGUILayout.IntField(numberOfTicks, component.GetNumberOfResidualApplication()));

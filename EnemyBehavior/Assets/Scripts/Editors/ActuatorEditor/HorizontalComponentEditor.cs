@@ -16,11 +16,12 @@ public class HorizontalComponentEditor : ActuatorEditor
 	#region Accelerated movement
 	private static readonly GUIContent goalSpeedLabel = new GUIContent("Goal Speed", "Speed the object will reach");
 	private static readonly GUIContent interpolationTimeLabel = new GUIContent("Interpolation Time", "Time it takes to reach Max Speed");
-	#endregion
+    #endregion
 
-	#region  Non-accelerated movement
-	private static readonly GUIContent constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
-	#endregion
+    #region  Non-accelerated movement
+    private static readonly GUIContent trowLabel = new GUIContent("Throw", "The object will move with an initial speed.");
+    private static readonly GUIContent constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
+   	#endregion
 
 	private SerializedProperty _directionProperty;
 	private SerializedProperty _onCollisionReaction;
@@ -55,7 +56,8 @@ public class HorizontalComponentEditor : ActuatorEditor
 			}
 			else
 			{
-				component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
+				component.SetThrow(EditorGUILayout.Toggle(trowLabel, component.GetThrow()));
+                component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
 			}
 		}
         serializedObject.ApplyModifiedProperties();
