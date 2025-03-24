@@ -145,8 +145,6 @@ public class HorizontalActuator : MovementActuator
 			{
 				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
 				// Invertir la escala en el eje 
-				// OnBounce?.Invoke();
-				
 				_animatorManager?.RotatesrpiteX();
                 if (_direction == Direction.Left)
 					_animatorManager?.LeftDirection();
@@ -156,8 +154,6 @@ public class HorizontalActuator : MovementActuator
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
-				//Destroy(this.gameObject);
-				// OnDestroy?.Invoke();
 				if (_animatorManager != null) _animatorManager.Destroy();
 				else Destroy(this.gameObject);
 

@@ -27,7 +27,8 @@ public class State : MonoBehaviour
     private State _nextState = null;
 
     [SerializeField]
-    private bool _debugState = false;
+	[Tooltip("It determines whether the debug elements from the actuators and sensors included in this state are visible or not")]
+	private bool _debugState = false;
    
 
     public void StartState()

@@ -9,33 +9,33 @@ public class FSM : MonoBehaviour
     [Tooltip("Defines the initial state of the FSM.")]
     [SerializeField]
     private State initialState;
-   
-    private State _currentstate; // Stores the current active state
+    
+    private State _currentState; // Stores the current active state
 
     void Awake()
     {
         // Set the initial state and execute its start logic
-        _currentstate = initialState;
-        _currentstate.StartState();
+        _currentState = initialState;
+        _currentState.StartState();
     }
 
     void Update()
     {
         // Executes the logic of the current state in each frame
-        _currentstate.UpdateState();
+        _currentState.UpdateState();
     }
   
      private void OnDestroy()
     {
         // Executes the exit actions of the last state when the FSM is destroyed
-        _currentstate.DestroyState();
+        _currentState.DestroyState();
     }
 
     void LateUpdate()
     {
         // Checks for state transitions after all updates are processed
-        State newState = _currentstate.CheckTransitions();
-        if (newState != null && newState != _currentstate)
+        State newState = _currentState.CheckTransitions();
+        if (newState != null && newState != _currentState)
         {
             ChangeState(newState);
         }
@@ -48,15 +48,15 @@ public class FSM : MonoBehaviour
     private void ChangeState(State newState)
     {
         // Execute exit actions of the current state
-        _currentstate.DestroyState();
+        _currentState.DestroyState();
         // Set the new state and execute its start logic
-        _currentstate = newState;
+        _currentState = newState;
         AnimatorManager _animatorManager = this.gameObject.GetComponent<AnimatorManager>(); 
         if (_animatorManager != null)
         {
             _animatorManager.ChangeState();
         }
-        _currentstate.StartState();
+        _currentState.StartState();
     }
   
 }
