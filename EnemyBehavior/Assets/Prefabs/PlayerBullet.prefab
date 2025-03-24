@@ -153,7 +153,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6842284584051503067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,12 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 1575611272841410677}
   _isSpriteWellOrientedX: 1
   _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
-  _canRotate: 1
+  _canRotate: 0
 --- !u!95 &1575611272841410677
 Animator:
   serializedVersion: 5

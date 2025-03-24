@@ -5,7 +5,7 @@ using TMPro;
 [RequireComponent(typeof(DamageSensor))]
 public class Life : MonoBehaviour
 {
-    public enum EntityType { Player, Enemy }
+    public enum EntityType {Enemy, Player}
     [SerializeField]
     private EntityType _entityType;
 
@@ -92,7 +92,14 @@ public class Life : MonoBehaviour
 
 		if(_currentLife <=0)
 		{
+			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
+
+            if (_animatorManager == null)
 			Destroy(this.gameObject);
+			else
+			{
+				_animatorManager.Destroy();
+			}
 		}
 	}
 	
@@ -159,7 +166,12 @@ public class Life : MonoBehaviour
 	}
 	private void DecreaseLife(float num)
 	{
-		_currentLife -= num;
+        AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
+
+        
+         _animatorManager?.Damage();
+        
+        _currentLife -= num;
 		UpdateLifeText();
 	}
 	private void InstantKill()

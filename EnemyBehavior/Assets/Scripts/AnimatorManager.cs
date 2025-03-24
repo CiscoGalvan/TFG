@@ -61,6 +61,7 @@ public class AnimatorManager : MonoBehaviour
     public void Destroy()
     {
         _animator.SetTrigger("Die");
+       this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
     }
     public void Damage()

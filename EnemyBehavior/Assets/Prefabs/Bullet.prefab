@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 4793919446405510322}
-  animatorController: {fileID: 2845174822851550775}
 --- !u!114 &4793919446405510322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +241,7 @@ MonoBehaviour:
   _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
-  _canRotate: 1
+  _canRotate: 0
 --- !u!95 &1575611272841410677
 Animator:
   serializedVersion: 5
