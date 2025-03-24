@@ -57,6 +57,7 @@ public class Life : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.Log(_currentLife);
 		if (_update)
 		{
 			switch (_damageEmitter.GetDamageType())
@@ -95,7 +96,9 @@ public class Life : MonoBehaviour
 			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
 
             if (_animatorManager == null)
-			Destroy(this.gameObject);
+			{
+                Destroy(this.gameObject);
+            }			
 			else
 			{
 				_animatorManager.Destroy();
