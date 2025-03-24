@@ -143,13 +143,17 @@ public class HorizontalActuator : MovementActuator
 		{
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
-				_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-				// Invertir la escala en el eje 
-				_animatorManager?.RotatesrpiteX();
-                if (_direction == Direction.Left)
-					_animatorManager?.LeftDirection();
-                else
-					_animatorManager?.RightDirection();
+                bool hitFromCorrectSide = (_direction == Direction.Left && normal.x > 0) || (_direction == Direction.Right && normal.x < 0);
+                if (hitFromCorrectSide)
+                {
+                    _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
+                    // Invertir la escala en el eje 
+                    _animatorManager?.RotatesrpiteX();
+                    if (_direction == Direction.Left)
+                        _animatorManager?.LeftDirection();
+                    else
+                        _animatorManager?.RightDirection();
+                }
               
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
@@ -161,7 +165,7 @@ public class HorizontalActuator : MovementActuator
 		}
 		
 	}
-
+    
     private void OnDrawGizmosSelected()
     {
         if (!this.isActiveAndEnabled || !_debugActuator) return;

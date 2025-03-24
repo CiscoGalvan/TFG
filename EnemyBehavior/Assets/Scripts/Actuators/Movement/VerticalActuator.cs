@@ -150,15 +150,19 @@ public class VerticalActuator : MovementActuator
 
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
-                _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
-                if (_animatorManager != null)
-                {
-                    _animatorManager.RotatesrpiteY();
-                    if (_direction == Direction.Up)
-                        _animatorManager.UpDirection();
-                    else
-                        _animatorManager.DownDirection();
+                bool correctCollision = (_direction == Direction.Up && normal.y < 0) || (_direction == Direction.Down && normal.y > 0);
+                if (correctCollision) {
+                    _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
+                    if (_animatorManager != null)
+                    {
+                        _animatorManager.RotatesrpiteY();
+                        if (_direction == Direction.Up)
+                            _animatorManager.UpDirection();
+                        else
+                            _animatorManager.DownDirection();
+                    }
                 }
+                
                
                 //OnBounce?.Invoke();
             }

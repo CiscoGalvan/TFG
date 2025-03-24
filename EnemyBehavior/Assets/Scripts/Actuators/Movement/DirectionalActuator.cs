@@ -146,11 +146,16 @@ public class Directional_Actuator : MovementActuator
 
 		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
 		{
-			ContactPoint2D contact = col.contacts[0];
+
+            
+            ContactPoint2D contact = col.contacts[0];
 			Vector2 normal = contact.normal;
 			// We use the velocity stored before the collision happened
 			Vector2 currentVelocity = _prevVelocity;
-
+			if (Vector2.Dot(currentVelocity, normal) >= 0)
+            {
+                return; // Ignorar colisión no válida
+            }
 			// We calcule reflection
 			float dotProduct = Vector2.Dot(currentVelocity, normal);
 			Vector2 reflectedVelocity = currentVelocity - 2 * dotProduct * normal;
