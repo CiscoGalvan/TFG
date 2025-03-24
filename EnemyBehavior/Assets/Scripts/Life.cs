@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-[RequireComponent(typeof(Damage_Sensor))]
+[RequireComponent(typeof(DamageSensor))]
 public class Life : MonoBehaviour
 {
     public enum EntityType { Player, Enemy }
@@ -30,7 +30,7 @@ public class Life : MonoBehaviour
 	private float _amount = -1;
 
 	private float _residualDamageAmount = 0;
-	private Damage_Sensor _sensor;
+	private DamageSensor _sensor;
 	private DamageEmitter _damageEmitter;
 	private float _actualDamageCooldown = -1;
 
@@ -48,7 +48,7 @@ public class Life : MonoBehaviour
 	private void Start()
 	{
 		_currentLife = _initialLife;
-		_sensor = GetComponent<Damage_Sensor>();
+		_sensor = GetComponent<DamageSensor>();
 		_sensor.onEventDetected += ReceiveDamageEmitter;
 		_actualDamageCooldown = 0f;
 		_numOfDamage = 0;
@@ -104,7 +104,7 @@ public class Life : MonoBehaviour
 	private void ReceiveDamageEmitter(Sensors damageSensor)
 	{
 		//El residual esta mal, ya que al separarse no hace el daño residual.
-		_damageEmitter = (damageSensor as Damage_Sensor).GetDamageEmitter();
+		_damageEmitter = (damageSensor as DamageSensor).GetDamageEmitter();
 		if (_damageEmitter != null)
 		{
 			if (_sensor.HasCollisionOccurred())

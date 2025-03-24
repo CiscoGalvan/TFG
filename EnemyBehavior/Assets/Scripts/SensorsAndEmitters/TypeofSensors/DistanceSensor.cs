@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 // Observation: The distance between the two objects is measured from their center.
-public class Distance_Sensor : Sensors
+public class DistanceSensor : Sensors
 {
     public enum TypeOfDistance
     {

@@ -25,10 +25,14 @@ Unity funciona mediante una arquitectura por componentes, lo que es muy útil pa
 \section{Infraestructura básica}
 
 Para contextualizar la herramienta y para poder realizar la implementación de los componentes se crearán un repertorio de componentes propios de un videojuego 2D que no forman parte de la arquitectura básica de nuestra herramienta.\\
+\subsection{PlayerMovement}
+La clase \textit{Player Movement} sirve como controlador del jugador. Esta clase es la encargada de gestionar el input del jugador y acorde a este mover al jugador. También es la clase encargada de detectar si el jugador está situado en el suelo, para ello se usa un objeto auxiliar \textit{GroundCheck}. Este se encuentra en la parte inferior del objeto \textit{Player} y utiliza una circunferencia de radio configurable para determinar si colisiona con alguna superficie. Si hay superposición, se considera que el personaje está en el suelo y, por lo tanto, puede saltar.\\
+Esta clase permite modificar ciertos valores como la velocidad de movimiento o la potencia de salto.\\
 
-La clase \textit{Player Movement } sirve como controlador del jugador. Esta clase es la encargada de gestionar el input del jugador y acorde a este mover al jugador. Esta clase permite modificar ciertos valores como la velocidad de movimiento o la potencia de salto.
-
+\subsection{Life}
 Se ha implementado una clase Life que gestiona los puntos de salud del objeto al que está adjunto y que se encarga de eliminar el objeto en el caso que su vida llegue a 0. Este componente está estrechamente ligado al \textit{DamageSensor} el cual será mencionado más adelante y que detecta si ha habido una colisión con un objeto que aplique daño, esta relación es necesaria ya que para que se detecte el daño que decrementa la salud del objeto se necesita este sensor.
+\subsection{PlayerDistanceAttack}
+Ataque a distancia del player
 \section {FSM}
 El comportamiento de la entidad estará encapsulado en una FSM cuya única funcionalidad es la de gestionar el estado actual y comprobar que no ha habido ningún cambio de estado. Esta comprobación se hará al finalizar la actualización del estado actual para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.
 

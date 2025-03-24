@@ -6,7 +6,7 @@ using UnityEngine;
 
 // Ensures that this component has both a Collider2D and a Rigidbody2D
 [RequireComponent(typeof(Collider2D))]
-public class Collision_Sensor : Sensors
+public class CollisionSensor : Sensors
 {
     // Boolean to track if a collision has occurred
     private bool _col;

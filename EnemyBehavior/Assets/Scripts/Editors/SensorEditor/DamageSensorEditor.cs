@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-[CustomEditor(typeof(Damage_Sensor))]
+[CustomEditor(typeof(DamageSensor))]
 public class DamageSensorEditor : Editor
 {
 	//private static readonly GUIContent damageCooldown = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again");

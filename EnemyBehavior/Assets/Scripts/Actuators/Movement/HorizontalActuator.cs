@@ -29,7 +29,7 @@ public class HorizontalActuator : MovementActuator
 	[SerializeField, HideInInspector]
 	private float _interpolationTime = 0;
 
-	private Collision_Sensor _collisionSensor;
+	private CollisionSensor _collisionSensor;
     [SerializeField, HideInInspector]
     private bool _throw; //if this is activated the velocity will be update just ones
 
@@ -59,10 +59,10 @@ public class HorizontalActuator : MovementActuator
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
 		{
-            _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+            _collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
             if (_collisionSensor == null) //si no esta creado lo crea
             {
-                _collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+                _collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
             }
             _collisionSensor.onEventDetected += CollisionEvent;
 			sensors.Add(_collisionSensor);

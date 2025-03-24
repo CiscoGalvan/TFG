@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Damage_Sensor : Sensors
+public class DamageSensor : Sensors
 {
     // Boolean to track if a collision has occurred
     private bool _col;

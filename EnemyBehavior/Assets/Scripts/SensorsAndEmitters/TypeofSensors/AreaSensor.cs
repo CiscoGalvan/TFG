@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Area_Sensor : Sensors
+public class AreaSensor : Sensors
 {
 	[SerializeField]
 	private GameObject _target; 

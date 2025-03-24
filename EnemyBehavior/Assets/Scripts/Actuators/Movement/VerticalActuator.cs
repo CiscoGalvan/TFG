@@ -35,7 +35,7 @@ public class VerticalActuator : MovementActuator
 	[SerializeField]
 	[HideInInspector]
 	private float _interpolationTime = 0;
-    private Collision_Sensor _collisionSensor;
+    private CollisionSensor _collisionSensor;
 
     private float _initial_speed = 0;
    
@@ -61,13 +61,13 @@ public class VerticalActuator : MovementActuator
         _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
-        _collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+        _collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
 		if (_onCollisionReaction == OnCollisionReaction.Bounce || _onCollisionReaction == OnCollisionReaction.Destroy)
 		{
-			_collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+			_collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
 			if (_collisionSensor == null) //si no esta creado lo crea
 			{
-				_collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+				_collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
 			}
 			_collisionSensor.onEventDetected += CollisionEvent;
 			sensors.Add(_collisionSensor);

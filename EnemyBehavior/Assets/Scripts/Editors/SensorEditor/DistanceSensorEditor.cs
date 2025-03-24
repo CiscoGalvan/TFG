@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
-using static Distance_Sensor;
+using static DistanceSensor;
 
-[CustomEditor(typeof(Distance_Sensor))]
+[CustomEditor(typeof(DistanceSensor))]
 public class DistanceSensorEditor : Editor
 {
     private static readonly GUIContent _distanceTypeLabel = new GUIContent("Distance Type", "Select the type of distance measurement.");

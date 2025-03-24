@@ -36,7 +36,7 @@ public class Directional_Actuator : MovementActuator
     [SerializeField,HideInInspector]
 	private HorizontalActuator.OnCollisionReaction _onCollisionReaction = HorizontalActuator.OnCollisionReaction.None;
 
-	private Collision_Sensor _collisionSensor;
+	private CollisionSensor _collisionSensor;
 
 	private Vector2 _prevVelocity;
 
@@ -61,10 +61,10 @@ public class Directional_Actuator : MovementActuator
 		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce ||
 			_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
 		{
-			_collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
+			_collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
 			if (_collisionSensor == null)
 			{
-				_collisionSensor = this.gameObject.AddComponent<Collision_Sensor>();
+				_collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
 			}
 			_collisionSensor.onEventDetected += CollisionEvent;
 			sensors.Add(_collisionSensor);
