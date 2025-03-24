@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-[CustomEditor(typeof(Horizontal_Actuator))]
+[CustomEditor(typeof(HorizontalActuator))]
 public class HorizontalComponentEditor : ActuatorEditor
 {
 
@@ -19,22 +19,24 @@ public class HorizontalComponentEditor : ActuatorEditor
     #endregion
 
     #region  Non-accelerated movement
-    private static readonly GUIContent trowLabel = new GUIContent("Throw", "The object will move with an initial speed.");
-    private static readonly GUIContent constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
+    private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
+    private static readonly GUIContent _constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
    	#endregion
 
 	private SerializedProperty _directionProperty;
 	private SerializedProperty _onCollisionReaction;
+	private SerializedProperty _throw;
 
 	private void OnEnable()
 	{
 		_directionProperty = serializedObject.FindProperty("_direction");
 		_onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
+		_throw = serializedObject.FindProperty("_throw");
 	}
 	public override void OnInspectorGUI()
 	{
 
-		Horizontal_Actuator component = (Horizontal_Actuator)target;
+		HorizontalActuator component = (HorizontalActuator)target;
 		DrawDefaultInspector();
 
 
@@ -50,14 +52,16 @@ public class HorizontalComponentEditor : ActuatorEditor
 				component.SetGoalSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed()))));
 				component.SetInterpolationTime(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(interpolationTimeLabel, component.GetInterpolationTime()))));
 				component.SetEasingFunction((EasingFunction.Ease)EditorGUILayout.EnumPopup(_easingFunctionLabel, component.GetEasingFunctionValue()));
-                EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
+				EditorGUI.indentLevel++;
+				EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
                 EditorGUILayout.LabelField("X-axis: Time, Y-axis: Speed"); 
 				DrawEasingCurve(component.GetEasingFunctionValue());
+				EditorGUI.indentLevel--;
 			}
 			else
 			{
-				component.SetThrow(EditorGUILayout.Toggle(trowLabel, component.GetThrow()));
-                component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
+				EditorGUILayout.PropertyField(_throw, _throwLabel);
+				component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(_constantSpeedLabel, component.GetSpeed()))));
 			}
 		}
         serializedObject.ApplyModifiedProperties();

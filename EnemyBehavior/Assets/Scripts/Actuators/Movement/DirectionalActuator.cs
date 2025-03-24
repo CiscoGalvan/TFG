@@ -34,7 +34,7 @@ public class Directional_Actuator : MovementActuator
 	AnimatorManager _animatorManager;
 
     [SerializeField,HideInInspector]
-	private Horizontal_Actuator.OnCollisionReaction _onCollisionReaction = Horizontal_Actuator.OnCollisionReaction.None;
+	private HorizontalActuator.OnCollisionReaction _onCollisionReaction = HorizontalActuator.OnCollisionReaction.None;
 
 	private Collision_Sensor _collisionSensor;
 
@@ -58,8 +58,8 @@ public class Directional_Actuator : MovementActuator
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		_time = 0;
 
-		if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Bounce ||
-			_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
+		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce ||
+			_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
 		{
 			_collisionSensor = this.GameObject().GetComponent<Collision_Sensor>();
 			if (_collisionSensor == null)
@@ -144,7 +144,7 @@ public class Directional_Actuator : MovementActuator
 		if (col.gameObject.layer != LayerMask.NameToLayer("World"))
 			return;
 
-		if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Bounce)
+		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
 		{
 			ContactPoint2D contact = col.contacts[0];
 			Vector2 normal = contact.normal;
@@ -159,7 +159,7 @@ public class Directional_Actuator : MovementActuator
 			_speed = reflectedVelocity.magnitude;
 			_angle = Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x) * Mathf.Rad2Deg;
 		}
-		else if (_onCollisionReaction == Horizontal_Actuator.OnCollisionReaction.Destroy)
+		else if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
 		{
 
 			if (_animatorManager != null)

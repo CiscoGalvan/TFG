@@ -2,9 +2,9 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static MoveToAPoint_Actuator;
+using static MoveToAPointActuator;
 
-[CustomEditor(typeof(MoveToAPoint_Actuator))]
+[CustomEditor(typeof(MoveToAPointActuator))]
 public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 {
 	private SerializedProperty _waypointsData;

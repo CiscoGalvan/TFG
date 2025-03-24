@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static MoveToAPoint_Actuator;
+using static MoveToAPointActuator;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode]
-public class MoveToAPoint_Actuator : MovementActuator
+public class MoveToAPointActuator : MovementActuator
 {
 	const float ALMOST_REACHED_ONE = 0.999f;
 	[System.Serializable]

@@ -336,7 +336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 467376205}
-  animatorController: {fileID: 0}
 --- !u!61 &467376207
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -526,7 +525,7 @@ MonoBehaviour:
   _axis: 1
   _partOfAxis: 0
   _detectionSide: 0
-  _target: {fileID: 0}
+  _target: {fileID: 1758811872}
   _detectionDistance: 7.1
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 0
@@ -1505,6 +1504,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e14f04292779f145863bbf3a7f0f315, type: 3}
+--- !u!1 &1758811872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080627236427244570, guid: 6e14f04292779f145863bbf3a7f0f315, type: 3}
+  m_PrefabInstance: {fileID: 1758811871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1761650415
 GameObject:
   m_ObjectHideFlags: 0

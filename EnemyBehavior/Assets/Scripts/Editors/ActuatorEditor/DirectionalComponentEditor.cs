@@ -17,7 +17,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 	private static readonly GUIContent _interpolationTimeLabel = new GUIContent("Interpolation Time", "Time needed to reach the goal speed.");
 	private static readonly GUIContent _angleLabel = new GUIContent("Angle", "Launch angle [0,360]");
 	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the object movement accelerated?");
-	private static readonly GUIContent _throwLabel = new GUIContent("Throw", "If true the velocity will be apllyed once.");
+	private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
 
     private SerializedProperty _onCollisionReaction;
 	private SerializedProperty _speed;

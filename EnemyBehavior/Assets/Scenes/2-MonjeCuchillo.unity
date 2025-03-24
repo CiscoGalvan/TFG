@@ -530,7 +530,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 620872461}
-  animatorController: {fileID: 0}
 --- !u!114 &620872461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +619,7 @@ MonoBehaviour:
   _axis: 1
   _partOfAxis: 1
   _detectionSide: 0
-  _target: {fileID: 0}
+  _target: {fileID: 1264212447}
   _detectionDistance: 5.84
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 0
@@ -703,7 +702,6 @@ MonoBehaviour:
     timeToReach: 0
     isAccelerated: 0
     shouldStop: 0
-    stopDuration: 0
     easingFunction: 0
 --- !u!1 &917179313
 GameObject:
@@ -1126,6 +1124,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e14f04292779f145863bbf3a7f0f315, type: 3}
+--- !u!1 &1264212447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080627236427244570, guid: 6e14f04292779f145863bbf3a7f0f315, type: 3}
+  m_PrefabInstance: {fileID: 1264212446}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1475118693
 GameObject:
   m_ObjectHideFlags: 0

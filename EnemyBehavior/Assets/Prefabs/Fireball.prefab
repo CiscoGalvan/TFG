@@ -180,7 +180,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 6112096039114555898}
   _sensorTransitions: []
-  name: State
+  _debugState: 0
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +199,9 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
+  _damageEmitterCollider: {fileID: 0}
+  _moreThanOneCollider: 0
+  _destroyAfterDoingDamage: 0
 --- !u!114 &6112096039114555898
 MonoBehaviour:
   m_ObjectHideFlags: 0

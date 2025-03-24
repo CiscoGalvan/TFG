@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static MoveToAPoint_Actuator;
+using static MoveToAPointActuator;
 
 [CustomEditor(typeof(VerticalActuator))]
 public class VerticalComponentEditor : ActuatorEditor
@@ -20,16 +20,18 @@ public class VerticalComponentEditor : ActuatorEditor
     #endregion
 
     #region  Non-accelerated movement
-    private static readonly GUIContent trowLabel = new GUIContent("Throw", "The object will move with an initial speed.");
-    private static readonly GUIContent constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
+    private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
+    private static readonly GUIContent _constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
 	#endregion
 
 	private SerializedProperty _directionProperty;
 	private SerializedProperty _onCollisionReaction;
+	private SerializedProperty _throw;
 	private void OnEnable()
 	{
 		_directionProperty = serializedObject.FindProperty("_direction");
 		_onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
+		_throw = serializedObject.FindProperty("_throw");
 	}
 
 	public override void OnInspectorGUI()
@@ -69,8 +71,8 @@ public class VerticalComponentEditor : ActuatorEditor
 			}
 			else
 			{
-                component.SetThrow(EditorGUILayout.Toggle(trowLabel, component.GetThrow()));
-                component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(constantSpeedLabel, component.GetSpeed()))));
+				EditorGUILayout.PropertyField(_throw, _throwLabel);
+				component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(_constantSpeedLabel, component.GetSpeed()))));
 			}
 		}
         serializedObject.ApplyModifiedProperties();

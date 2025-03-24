@@ -21,10 +21,6 @@ public class VerticalActuator : MovementActuator
 		Bounce = 1,
 		Destroy = 2
 	}
-	//[SerializeField, HideInInspector]
- //   private bool _bounceAfterCollision = false;
- //   [SerializeField, HideInInspector]
- //   private bool _destroyAfterCollision = false;
 
     [SerializeField, HideInInspector]
 	private float _speed;
@@ -227,13 +223,5 @@ public class VerticalActuator : MovementActuator
     public bool GetDestroying()
     {
         return _onCollisionReaction == OnCollisionReaction.Destroy;
-    }
-    public void SetThrow(bool newValue)
-    {
-        _throw = newValue;
-    }
-    public bool GetThrow()
-    {
-        return _throw;
     }
 }

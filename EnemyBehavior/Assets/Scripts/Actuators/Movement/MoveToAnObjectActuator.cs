@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
-using static MoveToAPoint_Actuator;
+using static MoveToAPointActuator;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [ExecuteInEditMode]
-public class MoveToAnObject : MovementActuator
+public class MoveToAnObjectActuator : MovementActuator
 {
 	const float ALMOST_REACHED_ONE = 0.999f;
 
@@ -19,8 +19,8 @@ public class MoveToAnObject : MovementActuator
 		public float timeToReach;
 		public bool isAccelerated;
 		public bool shouldStop;      // Indica si se debe detener en este waypoint
-		[HideInInspector]
-		public float stopDuration;   // Tiempo de parada en segundos
+		//[HideInInspector]
+		//public float stopDuration;   // Tiempo de parada en segundos
 		[SerializeField, HideInInspector]
 		public EasingFunction.Ease easingFunction;
 	}
@@ -68,16 +68,16 @@ public class MoveToAnObject : MovementActuator
 	}
 	private void MoveTowardsTarget(WaypointData waypoint, Vector2 targetPos)
 	{
-		// Si ya se llegó y se debe detener, acumula el tiempo de parada
-		if (_t >= 1f && waypoint.shouldStop)
-		{
-			_stopElapsedTime += Time.deltaTime;
-			if (_stopElapsedTime >= waypoint.stopDuration)
-			{
-				_moving = false;
-			}
-			return;
-		}
+		//// Si ya se llegó y se debe detener, acumula el tiempo de parada
+		//if (_t >= 1f && waypoint.shouldStop)
+		//{
+		//	_stopElapsedTime += Time.deltaTime;
+		//	if (_stopElapsedTime >= waypoint.stopDuration)
+		//	{
+		//		_moving = false;
+		//	}
+		//	return;
+		//}
 
 		_travelElapsedTime += Time.deltaTime;
 		_t = _travelElapsedTime / waypoint.timeToReach;

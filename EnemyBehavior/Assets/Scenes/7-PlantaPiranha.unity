@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 97328916}
   - component: {fileID: 97328919}
   - component: {fileID: 97328918}
-  - component: {fileID: 97328917}
+  - component: {fileID: 97328920}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -440,44 +440,6 @@ MonoBehaviour:
   _damageEmitterCollider: {fileID: 0}
   _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
---- !u!114 &97328917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97328906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 334863e3342ad2d4f8d12ed5a5704237, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isAccelerated: 0
-  _easingFunction: 0
-  _timeToReachForAllWaypoints: 0
-  _areAccelerated: 0
-  _shouldThemStop: 0
-  _stopTime: 0
-  _easingFunctionForAllWaypoints: 0
-  _usageWay: 0
-  _waypointsData:
-  - waypoint: {fileID: 1668653119}
-    timeToReach: 1
-    isAccelerated: 0
-    shouldStop: 1
-    stopDuration: 3
-    easingFunction: 0
-  - waypoint: {fileID: 622024236}
-    timeToReach: 0.5
-    isAccelerated: 0
-    shouldStop: 1
-    stopDuration: 1
-    easingFunction: 0
-  _randomArea: {fileID: 0}
-  _isACicle: 1
-  _allWaypointsHaveTheSameData: 0
-  _ciclicWaypointAdded: 1
-  _timeBetweenRandomPoints: 0
 --- !u!114 &97328918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 97328917}
+  - {fileID: 97328920}
   _sensorTransitions: []
   _debugState: 0
 --- !u!114 &97328919
@@ -507,7 +469,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 97328918}
-  animatorController: {fileID: 0}
+--- !u!114 &97328920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97328906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e4ea98fc61f3f4e8e4895bfbc5f069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isAccelerated: 0
+  _easingFunction: 0
+  _timeToReachForAllWaypoints: 0
+  _areAccelerated: 0
+  _shouldThemStop: 0
+  _stopTime: 0
+  _easingFunctionForAllWaypoints: 0
+  _usageWay: 0
+  _waypointsData:
+  - waypoint: {fileID: 1668653119}
+    timeToReach: 1
+    isAccelerated: 0
+    shouldStop: 1
+    stopDuration: 2
+    easingFunction: 0
+  - waypoint: {fileID: 622024236}
+    timeToReach: 1
+    isAccelerated: 0
+    shouldStop: 1
+    stopDuration: 3
+    easingFunction: 0
+  _randomArea: {fileID: 0}
+  _isACicle: 1
+  _allWaypointsHaveTheSameData: 0
+  _ciclicWaypointAdded: 0
+  _timeBetweenRandomPoints: 0
 --- !u!1 &540529473
 GameObject:
   m_ObjectHideFlags: 0

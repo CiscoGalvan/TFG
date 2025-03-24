@@ -849,7 +849,6 @@ GameObject:
   - component: {fileID: 1012068511}
   - component: {fileID: 1012068510}
   - component: {fileID: 1012068509}
-  - component: {fileID: 1012068508}
   - component: {fileID: 1012068507}
   m_Layer: 6
   m_Name: Spawner
@@ -874,20 +873,7 @@ MonoBehaviour:
   _numOfEnemiesToSpawn: 0
   _prefabToSpawn: {fileID: 6312299861578909251, guid: b9e9ade329657a84ca75e8d4658b8aa9, type: 3}
   _spawnPoint: {fileID: 2104074709}
-  _spawnInterval: 5
---- !u!114 &1012068508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012068506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detectionTime: 1
+  _spawnInterval: 2
 --- !u!114 &1012068509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,7 +903,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 1012068509}
-  animatorController: {fileID: 0}
 --- !u!61 &1012068511
 BoxCollider2D:
   m_ObjectHideFlags: 0

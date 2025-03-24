@@ -726,7 +726,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 620872461}
-  _currentstate: {fileID: 0}
 --- !u!114 &620872461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,7 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAccelerated: 0
+  _isAccelerated: 1
   _easingFunction: 0
   _speed: 5
   _goalSpeed: 0

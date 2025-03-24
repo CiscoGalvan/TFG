@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Horizontal_Actuator : MovementActuator
+public class HorizontalActuator : MovementActuator
 {
 
 	private enum Direction
@@ -220,14 +220,5 @@ public class Horizontal_Actuator : MovementActuator
     {
         return _onCollisionReaction == OnCollisionReaction.Destroy;
     }
-    public void SetThrow(bool newValue)
-    {
-        _throw = newValue;
-    }
-    public bool GetThrow()
-    {
-        return _throw;
-    }
-    
     #endregion
 }
