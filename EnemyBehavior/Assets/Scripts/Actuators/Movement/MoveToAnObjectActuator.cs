@@ -57,7 +57,9 @@ public class MoveToAnObjectActuator : MovementActuator
 		{
 			_startInterpolationPosition = _rb.position;
 		}
-	}
+        AnimatorManager _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
+        if (_animatorManager != null) _animatorManager.Follow();
+    }
 
 	public override void UpdateActuator()
 	{

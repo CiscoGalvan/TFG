@@ -57,7 +57,6 @@ public class Life : MonoBehaviour
 
 	private void Update()
 	{
-		Debug.Log(_currentLife);
 		if (_update)
 		{
 			switch (_damageEmitter.GetDamageType())

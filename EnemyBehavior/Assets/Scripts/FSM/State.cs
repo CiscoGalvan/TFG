@@ -131,6 +131,16 @@ public class State : MonoBehaviour
     {
         _nextState = pair.targetState;
     }
+    public void DeactivateAllActuators()
+    {
+        foreach (var actuator in actuatorList)
+        {
+            if (actuator != null)
+            {
+                actuator.enabled= false;
+            }
+        }
+    }
     #region Editor
     private void OnValidate() //metodo que se llama cuandocambiamosalgo del editor
     {

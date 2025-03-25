@@ -58,6 +58,16 @@ public class FSM : MonoBehaviour
         }
         _currentState.StartState();
     }
-  
+    public void DeactivateCurrentStateActuators()
+    {
+        if (_currentState != null)
+        {
+            _currentState.DeactivateAllActuators();
+        }
+        Rigidbody2D rb = this.gameObject.GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+    }
 }
+
 

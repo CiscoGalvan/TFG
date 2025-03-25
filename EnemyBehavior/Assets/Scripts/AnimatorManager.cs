@@ -76,6 +76,7 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Right", false);
         _animator.SetBool("Up", false);
         _animator.SetBool("Down", false);
+        _animator.SetBool("Follow", false);
 
     }
     public void SpawnEvent()
@@ -120,6 +121,10 @@ public class AnimatorManager : MonoBehaviour
     {
         _animator.SetFloat("RotationSpeed", speed);
         
+    }
+    public void Follow()
+    {
+        _animator.SetBool("Follow", true);
     }
 
     public void OnDieEvent()
