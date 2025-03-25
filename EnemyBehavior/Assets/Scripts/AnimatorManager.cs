@@ -108,6 +108,24 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Up", true);
 
     }
+    public void XLeftChangeandFlip()
+    {
+
+        if (_animator.GetBool("Right")) // Solo volteamos el sprite si antes iba a la derecha
+        {
+            RotatesrpiteX();
+        }
+        LeftDirection(); // Cambiamos la direccion a la izquierda
+    }
+    public void XRightChangeandFlip()
+    {
+
+        if (_animator.GetBool("Left")) // Solo volteamos el sprite si antes iba a la derecha
+        {
+            RotatesrpiteX();
+        }
+        RightDirection(); // Cambiamos la direccion a la izquierda
+    }
     public void ChangeSpeedX(float speed)
     {
         _animator.SetFloat("XSpeed", speed);

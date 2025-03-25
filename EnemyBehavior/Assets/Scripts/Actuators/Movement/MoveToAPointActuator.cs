@@ -73,7 +73,10 @@ public class MoveToAPointActuator : MovementActuator
 	[SerializeField]
 	private float _timeBetweenRandomPoints;
 	private List<Vector2> _cachedWaypointPositions = new List<Vector2>();
-	public override void StartActuator()
+	AnimatorManager _animatorManager;
+	Vector2 _previousPosition;
+
+    public override void StartActuator()
 	{
 		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();
@@ -108,7 +111,9 @@ public class MoveToAPointActuator : MovementActuator
 		{
 			_randomArea.isTrigger = true;
 		}
-	}
+        _animatorManager = this.GetComponent<AnimatorManager>();
+        _previousPosition = _rb.position;
+    }
 
 	public override void UpdateActuator()
 	{
@@ -120,7 +125,8 @@ public class MoveToAPointActuator : MovementActuator
 		}
 		if (!_moving)
 			return;
-		switch (_usageWay)
+        
+        switch (_usageWay)
 		{
 			case UsageWay.Waypoint:
 				MoveAlongWaypoints();
@@ -129,7 +135,11 @@ public class MoveToAPointActuator : MovementActuator
 				MoveToRandomPoint();
 				break;
 		}
-	}
+		Debug.Log("Animator");
+		if (!_animatorManager)
+			return;
+       
+    }
 	private void MoveToRandomPoint()
 	{
 		if (_randomArea == null)
@@ -193,10 +203,23 @@ public class MoveToAPointActuator : MovementActuator
 				_t = 1f;
 		}
 
-		Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, targetPos, _t);
-		_rb.MovePosition(newPosition);
+        Vector2 newPosition = Vector2.Lerp(_startInterpolationPosition, targetPos, _t);
+        _rb.MovePosition(newPosition);
 
-		if (_t >= 1f && !waypoint.shouldStop)
+        // Comparar posiciones para determinar la dirección del movimiento
+        if (newPosition.x < _previousPosition.x)
+        {
+            _animatorManager.XLeftChangeandFlip();
+        }
+        else if (newPosition.x > _previousPosition.x)
+        {
+            _animatorManager.XRightChangeandFlip();
+        }
+
+        // Guardar la posición actual para la próxima comparación
+        _previousPosition = newPosition;
+
+        if (_t >= 1f && !waypoint.shouldStop)
 		{
 			AdvanceToNextWaypoint(targetPos);
 		}
