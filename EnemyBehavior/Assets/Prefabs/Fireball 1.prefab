@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6842284584051503067}
   - component: {fileID: 4793919446405510322}
   - component: {fileID: 2284073555286176473}
-  - component: {fileID: 7205557931357183638}
-  m_Layer: 0
-  m_Name: Stone 2
+  - component: {fileID: 6112096039114555898}
+  m_Layer: 6
+  m_Name: Fireball 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 180ad6e0a857a6e49abf24dc0e85c711, type: 2}
+  - {fileID: 2100000, guid: ee336f6a274434f4089dee569142539a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,7 +147,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -178,9 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList:
-  - {fileID: 7205557931357183638}
+  - {fileID: 6112096039114555898}
   _sensorTransitions: []
-  _debugState: 1
+  _debugState: 0
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,16 +193,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016eafcff9d8bd2458a5b8d0af2b2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageType: 2
-  _instaKill: 0
-  _amountOfDamage: 1.26
-  _damageCooldown: 0.07
+  _damageType: 0
+  _instaKill: 1
+  _amountOfDamage: 0
+  _damageCooldown: 1
   _numOfDamageApplication: 2
-  _residualDamageAmount: 2.59
+  _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
   _moreThanOneCollider: 0
-  _destroyAfterDoingDamage: 1
---- !u!114 &7205557931357183638
+  _destroyAfterDoingDamage: 0
+--- !u!114 &6112096039114555898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,15 +211,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6312299861578909251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63efd33cc1d2db41b807cdc77b0d96b, type: 3}
+  m_Script: {fileID: 11500000, guid: e0bdd30f95e5152479a19033f11d6077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
-  _speed: 27.45
+  _speed: 43
+  _throw: 1
   _goalSpeed: 0
   _interpolationTime: 0
-  _angle: 115
-  _throw: 1
+  _direction: 1
   _onCollisionReaction: 2
-  _aimPlayer: 0

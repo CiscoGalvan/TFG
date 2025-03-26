@@ -41,6 +41,11 @@ public class Directional_Actuator : MovementActuator
 	private Vector2 _prevVelocity;
 
 	private bool _alreadyThrown = false;
+
+	[SerializeField, HideInInspector]
+	private bool _aimPlayer = false;
+
+	private GameObject _playerReference;
 	public override void DestroyActuator()
 	{
 		_actuatorActive = false;
@@ -77,7 +82,7 @@ public class Directional_Actuator : MovementActuator
 		_initialSpeed = _speed;
 
 
-	
+		
 		//if (_animatorController != null)
 		//{
 		//	//_animatorController.ChangeSpeed(_speed);

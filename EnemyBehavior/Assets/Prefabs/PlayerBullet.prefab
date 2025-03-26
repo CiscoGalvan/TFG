@@ -245,6 +245,7 @@ MonoBehaviour:
   _angle: 0
   _throw: 0
   _onCollisionReaction: 2
+  _aimPlayer: 0
 --- !u!114 &2294954173113373433
 MonoBehaviour:
   m_ObjectHideFlags: 0

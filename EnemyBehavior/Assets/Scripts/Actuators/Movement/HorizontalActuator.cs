@@ -147,18 +147,21 @@ public class HorizontalActuator : MovementActuator
                 if (hitFromCorrectSide)
                 {
                     _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-                    // Invertir la escala en el eje 
-                    _animatorManager?.RotatesrpiteX();
-                    if (_direction == Direction.Left)
-                        _animatorManager?.LeftDirection();
-                    else
-                        _animatorManager?.RightDirection();
+					 
+					if (_animatorManager.enabled)
+					{
+						_animatorManager?.RotatesrpiteX();
+						if (_direction == Direction.Left)
+							_animatorManager?.LeftDirection();
+						else
+							_animatorManager?.RightDirection();
+					}
                 }
               
             }
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
-				if (_animatorManager != null) _animatorManager.Destroy();
+				if (_animatorManager != null || !_animatorManager.enabled) _animatorManager.Destroy();
 				else Destroy(this.gameObject);
 
             }

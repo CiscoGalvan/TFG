@@ -18,6 +18,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 	private static readonly GUIContent _angleLabel = new GUIContent("Angle", "Launch angle [0,360]");
 	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the object movement accelerated?");
 	private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
+	private static readonly GUIContent _aimPlayerLabel = new GUIContent("Aim Player", "The object will move towards player direction.");
 
     private SerializedProperty _onCollisionReaction;
 	private SerializedProperty _speed;
@@ -27,6 +28,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 	private SerializedProperty _angle;
 	private SerializedProperty _throw;
 	private SerializedProperty _easingFunction;
+	private SerializedProperty _aimPlayer;
 
 	private bool _showMovementInfo = true;
 	private void OnEnable()
@@ -39,6 +41,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 		_angle = serializedObject.FindProperty("_angle");
 		_throw = serializedObject.FindProperty("_throw");
 		_easingFunction = serializedObject.FindProperty("_easingFunction");
+		_aimPlayer = serializedObject.FindProperty("_aimPlayer");
 	}
 
 	public override void OnInspectorGUI()
@@ -50,6 +53,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 		if (_showMovementInfo)
 		{
 			EditorGUILayout.PropertyField(_isAccelerated, _isAcceleratedLabel);
+			EditorGUILayout.PropertyField(_aimPlayer, _aimPlayerLabel);
 
 			if (_isAccelerated.boolValue)
 			{

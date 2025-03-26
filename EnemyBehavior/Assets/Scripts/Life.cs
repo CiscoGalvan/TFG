@@ -94,7 +94,7 @@ public class Life : MonoBehaviour
 		{
 			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
 
-            if (_animatorManager == null)
+            if (_animatorManager == null || !_animatorManager.enabled)
 			{
                 Destroy(this.gameObject);
             }			

@@ -135,10 +135,6 @@ public class MoveToAPointActuator : MovementActuator
 				MoveToRandomPoint();
 				break;
 		}
-		Debug.Log("Animator");
-		if (!_animatorManager)
-			return;
-       
     }
 	private void MoveToRandomPoint()
 	{
