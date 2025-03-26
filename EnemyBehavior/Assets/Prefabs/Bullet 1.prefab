@@ -182,7 +182,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 152223750201730518}
   _sensorTransitions: []
-  _debugState: 0
+  _debugState: 1
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   _speed: 20
   _goalSpeed: 0
   _interpolationTime: 0
-  _angle: 220
+  _angle: 165.4
   _throw: 0
   _onCollisionReaction: 2
   _aimPlayer: 0
