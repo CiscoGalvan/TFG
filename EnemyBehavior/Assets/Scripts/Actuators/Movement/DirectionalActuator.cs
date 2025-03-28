@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -66,7 +65,7 @@ public class Directional_Actuator : MovementActuator
 		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce ||
 			_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
 		{
-			_collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
+			_collisionSensor = this.gameObject.GetComponent<CollisionSensor>();
 			if (_collisionSensor == null)
 			{
 				_collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
