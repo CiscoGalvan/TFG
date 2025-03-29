@@ -4,14 +4,14 @@ using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-[CustomEditor(typeof(Spawner_Actuator))]
+[CustomEditor(typeof(SpawnerActuator))]
 public class SpawnerComponentEditor : Editor
 {
 	private static readonly GUIContent numEnemiesLabel = new GUIContent("Amount Of Enemies", "Amount of enemies the spawner will spawn");
 	public override void OnInspectorGUI()
 	{
 
-		Spawner_Actuator component = (Spawner_Actuator)target;
+		SpawnerActuator component = (SpawnerActuator)target;
 
 		DrawDefaultInspector();
 
