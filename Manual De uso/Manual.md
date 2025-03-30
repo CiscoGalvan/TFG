@@ -12,13 +12,13 @@
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
 - [Contenido del Paquete](#contenido-del-paquete)
-- [Componentes del Framework](#componentes-del-framework)
+- [Componentes Detallados](#componentes-del-framework)
   - [Máquina de Estados Finita (FSM)](#máquina-de-estados-finita-fsm)
   - [Estado (State)](#estado-state)
   - [Sensores](#sensores)
   - [Actuadores](#actuadores)
   - [Animator Manager](#animator-manager)
-- [Ejemplos de Uso](#ejemplos-de-uso)
+- [Ejemplos Prácticos](#ejemplos-de-uso)
   - [Ejemplo básico](#ejemplo-básico)
   - [Ejemplo intermedio](#ejemplo-intermedio)
   - [Ejemplo avanzado](#ejemplo-avanzado)
@@ -81,23 +81,144 @@ Una vez en el repositorio, presione las teclas: `control + shift + s` o dele a `
 - Compatible con el sistema de `Animator` de Unity.
 ## Componentes del Framework
 ### Máquina de Estados Finita (FSM)
-![FSM](./FSM.png)
+  ![FSM](./FSM.png)  
 La FSM es la encargada de llamar y gestionar todos los estados de un enemigo.  
 Es necesario especificarle cual va a ser el `estado inicial` del enemigo.
 
+---
+
 ### Estado (State)
- ![State](./State.png)
+ ![State](./State.png)  
 Dentro de cada estado debemos especificar que acción/acciones vamos a realizar `Actuator List`.  
 Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y  el estado al que sedesea pasar.  
-Por ultimo, si deseamos `ver mediante gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
+Por ultimo, si deseamos `ver mediante Gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
+
+---
 
 ### Sensores
 Los sensores permiten detectar elementos en el entorno y activar transiciones. Disponemos de 5 sensores:
-- **Area Sensor**: 
-- **Collision Sensor**: 
-- **Distance Sensor**: 
-- **Timer Sensor**: 
-- **Damage Sensor**:
+
+- **Area Sensor**:  
+![AreaSensor](./AreaSensor.png)  
+  El sensor de área detecta cuando un objeto específico (Target) entra dentro de su zona de detección. Para ello, su collider debe estar configurado como `Trigger`, lo que significa que no colisiona físicamente, sino que simplemente detecta la presencia de otros objetos.
+
+- **Collision Sensor**:  
+![CollisionSensor](./CollisionSensor.png)  
+  Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del `Area Sensor`, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.
+
+- **Distance Sensor**:  
+![DistanceSensor](./DistanceSensor.png)  
+  Detcecta cuando un objeto específico (Target) está a una determinada distancia del enemigo. 
+  Es necesario especificar el `tiempo que está inactivo al inicio` (Setting Up Time), si este es 0 la el sensor inicia activado. También es necesario especificar el `radio de la distancia`.
+
+- **Time Sensor**:   
+![TimeSensor](./TimeSensor.png)  
+ Detecta cuando pasa un `tiempo` específico, que es necesario especificar.
+
+- **Damage Sensor**:  
+![DamageSensor](./DamageSensor.png)  
+  Detecta cuando una entidad `recive dsaño`.
+
+- **Damage Emitter**:  
+  Es el encargado de `hacer daño`, en el tienes que especificar el tipo de daño, cada tipo de daño tiene sus porpios parámetros:
+  - Intant:  
+  ![DamagEmitter](./DamageEmitter.png)  
+  El daño instantáneo es aquel que te afecta una única vez al entrar encontacto contigo. Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, si queremos que se `elimine el objeto después de hacer daño`, si queremos que `directamente mate a la entidad con la que colisiona`. En caso de no querer que se mate directamente al jugador, indicaremos el `daño que quremos hacerle`.
+  - Persistent:  
+ ![DamagEmitter](./DamageEmitterP.png)  
+ El daño persistente es el que te afectamientras que estés dentro del objeto.Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, la `cantidad de daño` que hacemos y `cada cuanto` se lo hacemos.
+  - Residual:  
+ ![DamagEmitter](./DamageEmitterR.png)  
+ Por último tenemos el daño residual. Este es el que te va afectando incluso cuando ya no estás en contacto. Como parámetros, podremos especificar si se quiere `más de un collider`, si queremos que se `destruya el objeto después del primer contacto`, la `cantidad de daño al primer golpe` (que generalmente suele ser más grande), `cantidad del resto de daños`, `cada cuanto` y `cuantos` se hacen.
+---
+
+### Actuadores
+Los actuadores permiten realizar acciones durante los estados de los enemigos. Disponemos de 7 tipos de actuadores:
+
+- **Spawner Actuator**:   
+![SpawnerActuator](./SpawnerActuator.png)  
+  Permite generar (spawnear) nuevos enemigo. Tiene como parámetros, si se quiere crear infinitos enemigos (en caso contrario se debe especificar cuantos se quieren crear.), el objeto que queremos crear, la posición desde donde queremos crearlos y cada cuanto tiempo.
+
+- **Horizontal Actuator**:  
+![HorizontalActuator](./HorizontalActuator.png)  
+Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamiento tras una colisión. Tiene distintas configuraciones.
+
+  - `Reaction After Collision`  
+  Define qué sucede cuando el objeto choca contra otro:
+    - `None:` No hay ninguna reacción al colisionar
+    - `Bounce:` El objeto cambia de dirección y sigue moviéndose en sentido contrario.
+    - `Destroy:` El objeto desaparece al colisionar.
+  - `Direction `  
+  Determina hacia dónde se mueve el objeto:
+    - `Left:` El objeto se moverá hacia la izquierda.
+    - `Right:` El objeto se moverá hacia la derecha.
+  - `Is Accelerated`  
+    - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podá configurar:  
+      - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
+      - `Speed:` Establece la velocidad a la que se moverá el objeto    
+    - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
+      - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto después de acelerar.
+      - `Interpolation Time:`Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+      - `Easing Function:` Define cómo se comporta la aceleración
+
+- **Vertical Actuator**:  
+ ![VerticalActuator](./VerticalActuator.png)  
+  Este actuador permite mover un objeto vertical, ya sea a arriba o a abajo, con diferentes configuraciones de velocidad y comportamiento tras una colisión. Tiene distintas configuraciones.
+
+  - `Reaction After Collision`  
+  Define qué sucede cuando el objeto choca contra otro:
+    - `None:` No hay ninguna reacción al colisionar
+    - `Bounce:` El objeto cambia de dirección y sigue moviéndose en sentido contrario.
+    - `Destroy:` El objeto desaparece al colisionar.
+  - `Direction `  
+  Determina hacia dónde se mueve el objeto:
+    - `Up:` El objeto se moverá hacia arriba.
+    - `Down:` El objeto se moverá hacia abajo.
+  - `Is Accelerated`  
+    - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podá configurar:  
+      - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
+      - `Speed:` Establece la velocidad a la que se moverá el objeto    
+    - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
+      - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto después de acelerar.
+      - `Interpolation Time:`Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+      - `Easing Function:` Define cómo se comporta la aceleración
+
+
+- **Directional Actuator**:  
+![DirectionalActuator](./DirectionalActuator.png)  
+  Hace que el enemigo se mueva en una dirección específica definida previamente. 
+
+- **Circular Actuator**:  
+![CircularrActuator](./CircularActuator.png)  
+ permite movimientos circulares en torno a un punto de rotación determinado.
+  - `Rotation Point Position`  
+    Define el punto central sobre el cual se realiza la rotación.  
+    - `None:` Si no se asigna, el objeto girará en torno a su propio centro.  
+    - `Transform:` Si se asigna un objeto, la rotación se realizará alrededor de ese punto.  
+
+  - `Max Angle`  
+    Ángulo máximo que puede alcanzar el movimiento circular (360 indica un círculocompleto, el resto de ángulos se comporta como un péndulo).  
+
+  - `Can Rotate`  
+    Determina si el objeto puede rotar sobre su propio eje además de moverse en círculo.  
+    - `Falso:` El objeto solo se moverá en la trayectoria circular sin girar sobre sí mismo.  
+    - `Verdadero:` El objeto girará sobre su propio eje mientras se mueve.  
+
+  - `Is Accelerated`
+    - `Falso:` Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro `Speed`.  
+    - `Verdadero:` Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
+      - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto.  
+      - `Interpolation Time:` Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.  
+      - `Easing Function:` Define cómo se comporta la aceleración. 
+
+- **Move to a Point Actuator**:  
+![MoveToAPointActuator](./MoveToAPointActuator.png)  
+  Hace que el enemigo se mueva hacia un punto fijo específico del escenario. 
+
+- **Move to an Object Actuator**:  
+![MoveToAnObjectActuator](./MoveToAnObjectActuator.png)  
+  Hace que el enemigo se desplace automáticamente hacia un objeto determinado (se va actualizando). 
+
 
 
 ### Animator Manager
@@ -105,36 +226,17 @@ Se encarga de gestionar las animaciones de los enemigos en función de sus estad
 
 ## Ejemplos de Uso
 
-### Ejemplo básico
-Definir un enemigo que patrulle entre dos puntos:
-1. Crear un nuevo enemigo.
-2. Agregar el actuador de `patrulla`.
-3. Definir dos puntos de referencia.
-4. Asignar animaciones de `walk` y `idle`.
-
-### Ejemplo intermedio
-Un enemigo que patrulla y ataca al ver al jugador:
-1. Agregar un sensor de `línea de visión`.
-2. Si detecta al jugador, cambiar el estado a `perseguir`.
-3. Si está cerca, cambiar a `ataque cuerpo a cuerpo`.
-
-### Ejemplo avanzado
-Un enemigo que patrulla, usa ataques a distancia y huye cuando recibe daño:
-1. Configurar un sensor de `línea de visión` para detectar al jugador.
-2. Si está en rango, cambiar a `ataque a distancia`.
-3. Agregar un sensor de `daño`.
-4. Si recibe daño, cambiar a `huir`.
+### Primer Ejemplo
 
 
-Descripción General de las Máquinas de Estados Finitas para la IA de Enemigos: en glosario
 
 
 ## Solución de Problemas
 | Problema                  | Solución                          |
 |---------------------------|----------------------------------|
-| La aplicación no inicia   | Verifica la instalación y dependencias. |
-| Error al abrir un archivo | Asegúrate de que el formato es compatible. |
-| Rendimiento lento         | Cierra otras aplicaciones y reinicia el programa. |
+| El paquete inicia con errores en consola   | Verifica la instalación y dependencias del proyecto. |
+| | |
+| | |
 
 ## Preguntas Frecuentes
 Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUANDO HAGAMOS PRUEBAS DE USUARIOS
@@ -143,6 +245,7 @@ Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUAN
 Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual:
 - ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita  es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados . En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicos, a menudo generados por la interacción del enemigo con su entorno.
 - ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado `Idle`, `Patrol`, `Attack`, ...
+- ***Serializado:***
 
 ## Contacto y Soporte
 
@@ -153,7 +256,3 @@ Para obtener soporte técnico adicional o para proporcionar comentarios sobre la
 ---
 © 2025 Cristina Mora Velasco y Francisco Miguel Galván Muñoz. Todos los derechos reservados.
 
-
-
-
-![Mi GIF](a.gif)
