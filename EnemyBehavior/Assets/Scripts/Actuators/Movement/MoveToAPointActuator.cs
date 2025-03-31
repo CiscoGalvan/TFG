@@ -205,11 +205,11 @@ public class MoveToAPointActuator : MovementActuator
         // Comparar posiciones para determinar la dirección del movimiento
         if (newPosition.x < _previousPosition.x)
         {
-            _animatorManager.XLeftChangeandFlip();
+            _animatorManager.XLeftChangeAndFlip();
         }
         else if (newPosition.x > _previousPosition.x)
         {
-            _animatorManager.XRightChangeandFlip();
+            _animatorManager.XRightChangeAndFlip();
         }
 
         // Guardar la posición actual para la próxima comparación

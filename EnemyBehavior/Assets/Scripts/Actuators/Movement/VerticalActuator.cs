@@ -155,7 +155,7 @@ public class VerticalActuator : MovementActuator
                     _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
                     if (_animatorManager != null)
                     {
-                        _animatorManager.RotatesrpiteY();
+                        _animatorManager.RotateSpriteY();
                         if (_direction == Direction.Up)
                             _animatorManager.UpDirection();
                         else

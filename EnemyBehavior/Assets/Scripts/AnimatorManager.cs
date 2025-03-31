@@ -31,14 +31,14 @@ public class AnimatorManager : MonoBehaviour
        
         if (!_isSpriteWellOrientedX) //si no esta correctamente orientado al inicio rota el obj
         {
-            RotatesrpiteX();
+            RotateSpriteX();
         }
         if (!_isSpriteWellOrientedY) //si no esta correctamente orientado al inicio rota el obj
         {
-            RotatesrpiteY();
+            RotateSpriteY();
         }
     }
-     public void RotatesrpiteX()
+     public void RotateSpriteX()
     {
         //_animator.SetTrigger("Bounce");
         if (!_canFlipX) return;
@@ -48,7 +48,7 @@ public class AnimatorManager : MonoBehaviour
         }
        
     }
-    public void RotatesrpiteY()
+    public void RotateSpriteY()
     {
         //_animator.SetTrigger("Bounce");
         if (!_canFlipY) return;
@@ -107,21 +107,21 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Up", true);
 
     }
-    public void XLeftChangeandFlip()
+    public void XLeftChangeAndFlip()
     {
 
         if (_animator.GetBool("Right")) // Solo volteamos el sprite si antes iba a la derecha
         {
-            RotatesrpiteX();
+            RotateSpriteX();
         }
         LeftDirection(); // Cambiamos la direccion a la izquierda
     }
-    public void XRightChangeandFlip()
+    public void XRightChangeAndFlip()
     {
 
         if (_animator.GetBool("Left")) // Solo volteamos el sprite si antes iba a la derecha
         {
-            RotatesrpiteX();
+            RotateSpriteX();
         }
         RightDirection(); // Cambiamos la direccion a la izquierda
     }

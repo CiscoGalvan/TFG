@@ -150,7 +150,7 @@ public class HorizontalActuator : MovementActuator
 					 
 					if (_animatorManager.enabled)
 					{
-						_animatorManager?.RotatesrpiteX();
+						_animatorManager?.RotateSpriteX();
 						if (_direction == Direction.Left)
 							_animatorManager?.LeftDirection();
 						else

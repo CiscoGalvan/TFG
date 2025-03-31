@@ -36,8 +36,8 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		"Random Area: A collider will be given and the waypoints will be generated inside it.\n" +
 		"Waypoint: A sequence of waypoints will be given from start.\n");
 	private static readonly GUIContent _randomAreaLabel = new GUIContent("Random Area", "Area that will describe where the next waypoints will be generated.");
-	private static readonly GUIContent _timeBetweenWaypointsLabel = new GUIContent("Time between random points", "Time that will take to go from one point to another.");
-	private static readonly GUIContent _stopDurationLabel = new GUIContent("Stop duration", "Time it will take the enemy to start movement to the next waypoint.");
+	private static readonly GUIContent _timeBetweenWaypointsLabel = new GUIContent("Time Between Random Points", "Time that will take to go from one point to another.");
+	private static readonly GUIContent _stopDurationLabel = new GUIContent("Stop Duration", "Time it will take the enemy to start movement to the next waypoint.");
 	private static readonly GUIContent _shouldStopLabel = new GUIContent("Should Stop", "Indicates whether the enemy should stop upon reaching the waypoint.");
 	private static readonly GUIContent _easingFunctionToAPointLabel = new GUIContent("Easing Function", "Easing function that will describe the progress of the position.");
 	private static readonly GUIContent _timeToReachLabel = new GUIContent("Time To Reach", "Time it takes to reach the waypoint.");

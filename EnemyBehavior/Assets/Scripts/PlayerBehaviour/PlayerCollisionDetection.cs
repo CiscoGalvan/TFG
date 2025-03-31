@@ -19,19 +19,14 @@ public class PlayerCollisionDetection : MonoBehaviour
 	private bool onLeftWall;
 	private int wallSide;
 
-	[Space]
-
 	[Header("Offsets")]
+	[Space]
 	public Vector2 bottomOffset, rightOffset, leftOffset;
 
-	[Space]
-	[Header("Sizes")]
-	public Vector2 bottomSize, rightSize, leftSize;
-	// Start is called before the first frame update
-	void Start()
-	{
 
-	}
+	[Header("Sizes")]
+	[Space]
+	public Vector2 bottomSize, rightSize, leftSize;
 
 	// Update is called once per frame
 	void Update()
@@ -48,6 +43,7 @@ public class PlayerCollisionDetection : MonoBehaviour
 
 	void OnDrawGizmos()
 	{
+		if (!_debugBoxes) return;
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireCube((Vector2)transform.position + bottomOffset, bottomSize);
 		Gizmos.DrawWireCube((Vector2)transform.position + rightOffset, rightSize);
