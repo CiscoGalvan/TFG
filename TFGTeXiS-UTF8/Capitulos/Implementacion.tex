@@ -22,20 +22,33 @@ Se hará uso de otros elementos de Unity para llevar a cabo esta herramienta com
 Unity funciona mediante una arquitectura por componentes, lo que es muy útil para que el programa sea modular, que pueda ser dividido en piezas más pequeñas y que estas piezas sean independientes.\\
 \comp{Faltan fotos en este apartado.}
 
-\section{Infraestructura básica}
+\subsection{Movimiento del jugador}
 
-Para contextualizar la herramienta y para poder realizar la implementación de los componentes se crearán un repertorio de componentes propios de un videojuego 2D que no forman parte de la arquitectura básica de nuestra herramienta.\\
+A la hora de implementar el movimiento del jugador usamos de base la implementación usada por el canal de YouTube \textit{Mix and Jam} en su interpretación del videojuego \textit{Celeste}\footnote{\url{https://www.youtube.com/watch?v=STyY26a_dPY}}.
 
-\subsection{PlayerMovement}
 
-La clase \textit{Player Movement} sirve como controlador del jugador. Esta clase es la encargada de gestionar el input del jugador y acorde a este mover al jugador. También es la clase encargada de detectar si el jugador está situado en el suelo, para ello se usa un objeto auxiliar \textit{GroundCheck}. Este se encuentra en la parte inferior del objeto \textit{Player} y utiliza una circunferencia de radio configurable (\autoref{fig:Player_Figure}) para determinar si colisiona con alguna superficie. Si hay superposición, se considera que el personaje está en el suelo y, por lo tanto, puede saltar.\\
-Esta clase permite modificar ciertos valores como la velocidad de movimiento o la potencia de salto.\\
+\subsubsection{PlayerMovement}
+
+La clase \textit{PlayerMovement} actúa como el controlador del jugador. Su función principal es gestionar la entrada del usuario y, en consecuencia, mover al personaje. Además, si el jugador se encuentra en el suelo y se presiona la tecla de salto, la clase se encarga de ejecutar el salto.
+Asimismo, maneja una situación particular en la que el jugador queda suspendido en el aire mientras se mueve hacia una pared. Si este caso no se contempla, la fuerza ejercida en el eje X puede anular la del eje Y, haciendo que el personaje quede inmóvil en una posición poco natural. Para evitar este comportamiento, si el jugador está en el aire y colisiona lateralmente con una superficie, se le fuerza a deslizarse a lo largo de esta con una velocidad constante.
+Esta clase permite modificar ciertos valores como la velocidad de movimiento, la potencia de salto o la velocidad con la que el jugador se desliza por las superficies anteriormente mencionadas.\\
+
+\subsubsection{PlayerCollisionDetection}
+
+Este script se encarga de detectar las colisiones del jugadorPara ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo.
+\textit{PlayerCollisionDetection} será usado por \textit{PlayerMovement} para gestionar acciones como determinar cuando el jugador debe deslizarse por una superficie o cuándo puede saltar.\\
+
 \begin{figure}[t]
 	\centering
-	\includegraphics[width = 0.7\textwidth]{Imagenes/PlayerPhoto.png}
-	\caption{Representación básica del jugador junto a GroundCheck}
-	\label{fig:Player_Figure}
+	\includegraphics[width = 0.7\textwidth]{Imagenes/CollDetector.png}
+	\caption{Representación de las cajas de detección de colisiones del jugador}
+	\label{fig:Player_Coll_Detector}
 \end{figure}
+\subsubsection{PlayerBetterJumping}
+
+Para que el salto se ajuste más al estándar de los juegos de plataformas 2D, este script mejora la sensación de salto para que el personaje caiga más rápido, evitando una sensación de flotación. Además, permite realizar saltos más pequeños si el jugador suelta el botón antes.\\
+Para lograrlo, el script ajusta dos multiplicadores: uno que incrementa la gravedad cuando el jugador está cayendo y otro que reduce la altura del salto cuando este es interrumpido antes de tiempo.\\
+
 \subsection{Life}
 
 Se ha implementado una clase Life que gestiona los puntos de salud del objeto al que está adjunto y que se encarga de eliminar el objeto en el caso que su vida llegue a cero. El componente pedirá al usuario un valor inicial para los puntos de vida del objeto.\\
@@ -50,11 +63,22 @@ Para evitar que el jugador pueda disparar sin restricción, se ha introducido un
 
 \section {FSM}
 
-El comportamiento de la entidad estará encapsulado en una FSM cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y en caso de haberlo manejar el cambio de estado. Esta comprobación se hará al finalizar la actualización del estado actual (en el \textit{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.
+El comportamiento de la entidad estará encapsulado en una FSM, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio de estado.\\
+Esta comprobación se hará al finalizar la actualización del estado actual (en el \textit{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.
+
+\subsection{SensorStatePair}
+Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.\\
+Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
 
 \subsection{State}
 
+La clase \textit{State} representa un estado de comportamiento de un enemigo. Para ello gestiona dos elementos fundamentales: \textit{Actuators} y \textit{Sensores}.\\
 
+\begin{itemize}
+	 \item Actuators: son actualizados en cada bucle y representan acciones.
+	\item Sensors: pueden ser activados, lo que supone un cambio de estado al estado objetivo asociado en \textit{SensorStatePair}.
+\end{itemize}
+En caso de cambio de estado, se detienen todos los actuadores y sensores y se desuscriben de todos los eventos de los sensores.\\
 
 \section{Actuators}
 \subsection{Movement}

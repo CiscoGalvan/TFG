@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-// Dar créditos a Mix and Jam
-
 public class PlayerCollisionDetection : MonoBehaviour
 {
 	[Header("Layers")]
@@ -17,7 +13,6 @@ public class PlayerCollisionDetection : MonoBehaviour
 	private bool onWall;
 	private bool onRightWall;
 	private bool onLeftWall;
-	private int wallSide;
 
 	[Header("Offsets")]
 	[Space]
@@ -37,8 +32,6 @@ public class PlayerCollisionDetection : MonoBehaviour
 
 		onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, groundLayer);
 		onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, groundLayer);
-
-		wallSide = onRightWall ? -1 : 1;
 	}
 
 	void OnDrawGizmos()

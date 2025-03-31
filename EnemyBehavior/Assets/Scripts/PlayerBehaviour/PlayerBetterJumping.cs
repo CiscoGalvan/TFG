@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Dar créditos a Mix and Jam
 public class PlayerBetterJumping : MonoBehaviour
 {
 	private Rigidbody2D rb;

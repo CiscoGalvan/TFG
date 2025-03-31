@@ -26,10 +26,10 @@ public class FSM : MonoBehaviour
     }
   
      private void OnDestroy()
-    {
+     {
         // Executes the exit actions of the last state when the FSM is destroyed
         _currentState.DestroyState();
-    }
+     }
 
     void LateUpdate()
     {
