@@ -34,7 +34,7 @@ Este manual se divide en varias secciones que cubren todos los aspectos necesari
 ## Objetivo 
 Este manual tiene como objetivo proporcionar una guía clara y detallada para que los usuarios puedan instalar, configurar y utilizar la herramienta con mayor facilidad.  
 
-`La herramienta ha sido diseñada para simplificar y optimizar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity`. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los desarrolladores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
+`La herramienta ha sido diseñada para simplificar y optimizar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity`. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los diseñadores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
 
 
 ## Funcionalidad
@@ -47,7 +47,6 @@ Si bien se `recomienda tener un conocimiento básico de Unity` y de los concepto
 
 ## Requisitos
 Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
-- Sistema operativo compatible: Windows, macOS o Linux.  
 - Disponer de una versión igual o superior a `2022.3.18 (LTS)` de Unity.
 
 ## Instalación
@@ -137,7 +136,11 @@ Los actuadores permiten realizar acciones durante los estados de los enemigos. D
 
 - **Spawner Actuator**:   
 ![SpawnerActuator](./SpawnerActuator.png)  
-  Permite generar (spawnear) nuevos enemigo. Tiene como parámetros, si se quiere crear infinitos enemigos (en caso contrario se debe especificar cuantos se quieren crear.), el objeto que queremos crear, la posición desde donde queremos crearlos y cada cuanto tiempo.
+  Permite generar (spawnear) nuevos enemigo. 
+  - `Infinite Enemies:`si se quiere crear infinitos enemigos, en caso contrario se debe especificar cuantos se quieren crear.
+  - `Prefab to Spawn:` Objeto que queremos crear.
+  - `Spawn Point:` Posición donde queremos que se cree el objeto.
+  - `Spawn Interval:`cada cuanto tiempo se crean.
 
 - **Horizontal Actuator**:  
 ![HorizontalActuator](./HorizontalActuator.png)  
@@ -145,7 +148,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
 
   - `Reaction After Collision`  
   Define qué sucede cuando el objeto choca contra otro:
-    - `None:` No hay ninguna reacción al colisionar
+    - `None:` No hay ninguna reacción al colisionar.
     - `Bounce:` El objeto cambia de dirección y sigue moviéndose en sentido contrario.
     - `Destroy:` El objeto desaparece al colisionar.
   - `Direction `  
@@ -153,7 +156,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - `Left:` El objeto se moverá hacia la izquierda.
     - `Right:` El objeto se moverá hacia la derecha.
   - `Is Accelerated`  
-    - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podá configurar:  
+    - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
       - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
       - `Speed:` Establece la velocidad a la que se moverá el objeto    
     - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
@@ -175,7 +178,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - `Up:` El objeto se moverá hacia arriba.
     - `Down:` El objeto se moverá hacia abajo.
   - `Is Accelerated`  
-    - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podá configurar:  
+    - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
       - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
       - `Speed:` Establece la velocidad a la que se moverá el objeto    
     - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
@@ -186,7 +189,23 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
 
 - **Directional Actuator**:  
 ![DirectionalActuator](./DirectionalActuator.png)  
-  Hace que el enemigo se mueva en una dirección específica definida previamente. 
+  Hace que el enemigo se mueva en una dirección específica definida previamente.
+   - `Reaction After Collision`  
+  Define qué sucede cuando el objeto choca contra otro:
+      - `None:` No hay ninguna reacción al colisionar
+      - `Bounce:` El objeto cambia de dirección y sigue moviéndose en sentido contrario.
+      - `Destroy:` El objeto desaparece al colisionar. 
+    - `Angle:`  ángulo con el que va a moverse elobjeto
+    - `Aim Player:` Indica si el objeto va a seguir la direción del jugador (con esta opción el ángulo no aparece  porque se setea en función de tu posición y la del objetivo)
+    - `Is Accelerated`  
+      - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+        - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
+        - `Speed:` Establece la velocidad a la que se moverá el objeto    
+        
+      - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
+        - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto después de acelerar.
+        - `Interpolation Time:`Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+        - `Easing Function:` Define cómo se comporta la aceleración
 
 - **Circular Actuator**:  
 ![CircularrActuator](./CircularActuator.png)  
@@ -212,18 +231,44 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
       - `Easing Function:` Define cómo se comporta la aceleración. 
 
 - **Move to a Point Actuator**:  
-![MoveToAPointActuator](./MoveToAPointActuator.png)  
-  Hace que el enemigo se mueva hacia un punto fijo específico del escenario. 
+Hace que el enemigo se mueva hacia un punto fijo específico del escenario. Hay dos configuraciones dependiendo del `Use Way`
+  - `Random Area`  
+![MoveToAPointActuator](./MoveToAPointActuatorA.png)   
+Random area coge puntos aleatorios dentro de un área.
+    - `Random Area:` Collider que servirá para la referencia del área
+     - `Time Between Random Points:` Cada cuanto cambia el punto a otro distinto
+  - `Waypoint`: indica que queremos seguir un camino predeterminado de puntos
+    - `Is aCicle:` indica si queremos que al llegar al final de los waypoints, se vuelva a iniciar la lista.
+    - `Same waypoints behaviour:` indica si queremos que el comportamiento sea el mismo para todos los waypoints.
+      -  Si es así, se creará un manel único de especificiación de puntos:  
+![MoveToAPointActuator](./MoveToAPointActuatorS.png)  
+          - `Time betweenwaypoints:` tiempo que se tarda entre un punto y otro 
+          - `Are accelerated:` si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con que aceleración se mueve. 
+          - `Should Stop:` indica si debe o no parar al llegar a un punto. Si se debe parar, hay que  indicarcuanto tiempo.  
+      - Si no es así, aparecerán los mismos datos por cada waypoint.  
+    ![MoveToAPointActuator](./MoveToAPointActuator.png)  
+
+  
 
 - **Move to an Object Actuator**:  
 ![MoveToAnObjectActuator](./MoveToAnObjectActuator.png)  
   Hace que el enemigo se desplace automáticamente hacia un objeto determinado (se va actualizando). 
+  - `Waypoint Transformm:` Transform del objeto al que se quiere perseguir.
+  - `Time to Reach:` Tiempo que tarda en llegar al objetivo
+  - `Is Accelerated:`
+    - `Falso:` Si no es acelerado, la posición se definirá en función del parámetro `Time`.  
+    - `Verdadero:` Si es acelerado, la posición se definirá mediante  la funcion easin  
+    ![MoveToAnObjectActuator](./MoveToAnObjectActuatorA.png)  
 
 
 
 ### Animator Manager
-Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones.
-
+Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadirtambien un animator de unity.
+### Life
+Gestiona la vida de los objetos.  
+ ![Life](./Life.png)  
+ - `Initial Life:` vida inicial.
+ - `Entity type:` tipo de entidad (player o enemy)
 ## Ejemplos de Uso
 
 ### Primer Ejemplo
@@ -246,6 +291,7 @@ Lista de términos técnicos y sus definiciones para facilitar la comprensión d
 - ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita  es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados . En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicos, a menudo generados por la interacción del enemigo con su entorno.
 - ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado `Idle`, `Patrol`, `Attack`, ...
 - ***Serializado:***
+- ***Transform:***
 
 ## Contacto y Soporte
 
