@@ -22,9 +22,12 @@ public class AnimatorManager : MonoBehaviour
 
     private void Start()
     {
+
+        Debug.Log(_animator);
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>(); 
-        if(_animator == null)
+        _animator = GetComponent<Animator>();
+        Debug.Log(_animator + "despues");
+        if (_animator == null)
         {
             Debug.LogError("NO ANIMATOR IS ATTACHED");
         }
@@ -80,6 +83,7 @@ public class AnimatorManager : MonoBehaviour
     }
     public void SpawnEvent()
     {
+        Debug.Log(_animator + " " + this.gameObject);
         _animator.SetTrigger("Spawn");
 
     }

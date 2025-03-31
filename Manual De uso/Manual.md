@@ -86,7 +86,7 @@ Es necesario especificarle cual va a ser el `estado inicial` del enemigo.
 
 ---
 
-### Estado (State)
+### Estado 
  ![State](./State.png)  
 Dentro de cada estado debemos especificar que acción/acciones vamos a realizar `Actuator List`.  
 Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y  el estado al que sedesea pasar.  
