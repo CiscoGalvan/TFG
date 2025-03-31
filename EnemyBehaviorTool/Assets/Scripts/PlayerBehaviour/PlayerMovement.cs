@@ -49,8 +49,9 @@ public class PlayerMovement : MonoBehaviour
 
 		if (coll.GetPlayerOnGround() )
 		{
-			
-			GetComponent<PlayerBetterJumping>().enabled = true;
+			PlayerBetterJumping _bestjump = GetComponent<PlayerBetterJumping>();
+			if(_bestjump != null)
+				_bestjump.enabled = true;
 		}
 
 		
