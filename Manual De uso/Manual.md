@@ -1,5 +1,4 @@
 # ***Manual de Uso para Framework de comportamientos de enemigos para videojuegos 2D***
-[🇬🇧 Read in English](Manual_en.md)  
 ***Bienvenido al manual de uso.***  
 **Creadores:** Cristina Mora Velasco y Francisco Miguel Galván Muñoz  
 **Fecha:** Marzo de 2025
@@ -11,12 +10,12 @@
 - [Público Objetivo](#público-objetivo)
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
-- [Contenido del Paquete](#contenido-del-paquete)
+- [Contenido del Paquete](#Contenido-del-Paquete)
 - [Componentes del Framework](#componentes-del-framework)
-  - [Máquina de Estados Finita (FSM)](#máquina-de-estados-finita-fsm)
-  - [Estado (State)](#estado-state)
   - [Sensores](#sensores)
   - [Actuadores](#actuadores)
+  - [Estado (State)](#estado-state)
+  - [Máquina de Estados Finita (FSM)](#máquina-de-estados-finita-fsm)
   - [Animator Manager](#animator-manager)
 - [Ejemplos de Uso](#ejemplos-de-uso)
   - [Ejemplo básico](#ejemplo-básico)
@@ -34,7 +33,7 @@ Este manual se divide en varias secciones que cubren todos los aspectos necesari
 ## Objetivo 
 Este manual tiene como objetivo proporcionar una guía clara y detallada para que los usuarios puedan instalar, configurar y utilizar la herramienta con mayor facilidad.  
 
-`La herramienta ha sido diseñada para simplificar y optimizar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity`. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los desarrolladores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
+La herramienta ha sido diseñada para simplificar y optimizar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los desarrolladores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
 
 
 ## Funcionalidad
@@ -68,62 +67,21 @@ Una vez en el repositorio, presione las teclas: `control + shift + s` o dele a `
 - Incluye lógica de gestión de estados, comportamientos de enemigos y detección de colisiones.
 - Organizados en subcarpetas según su funcionalidad (`FSM`, `Actuators`, `SensorsAndEmitters`, `Editors`, `PlayerBehaviour`, `Basic Components`, `Editors`, `Animation`).
 
-### 🎮 `Scenes`
+### 🎮 Carpeta `Scenes`
 - Contiene escenas de ejemplo con enemigos funcionales.
 - Cada escena muestra configuraciones distintas.
 
-### 🏗️ `Prefabs`
+### 🏗️ Carpeta `Prefabs`
 - Incluye prefabs de enemigos preconfigurados listos para su uso.
 
-### 🎞️ `Animations`
+### 🎞️ Carpeta `Animations`
 - Contiene clips de animación de enemigos.
 - Incluye animaciones como `Idle`, `Walk`, `Attack` y `Death`.
 - Compatible con el sistema de `Animator` de Unity.
-## Componentes del Framework
-### Máquina de Estados Finita (FSM)
-![FSM](./FSM.png)
-La FSM es la encargada de llamar y gestionar todos los estados de un enemigo.  
-Es necesario especificarle cual va a ser el `estado inicial` del enemigo.
-
-### Estado (State)
- ![State](./State.png)
-Dentro de cada estado debemos especificar que acción/acciones vamos a realizar `Actuator List`.  
-Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y  el estado al que sedesea pasar.  
-Por ultimo, si deseamos `ver mediante gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
-
-### Sensores
-Los sensores permiten detectar elementos en el entorno y activar transiciones. Disponemos de 5 sensores:
-- **Area Sensor**: 
-- **Collision Sensor**: 
-- **Distance Sensor**: 
-- **Timer Sensor**: 
-- **Damage Sensor**:
 
 
-### Animator Manager
-Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones.
-
-## Ejemplos de Uso
-
-### Ejemplo básico
-Definir un enemigo que patrulle entre dos puntos:
-1. Crear un nuevo enemigo.
-2. Agregar el actuador de `patrulla`.
-3. Definir dos puntos de referencia.
-4. Asignar animaciones de `walk` y `idle`.
-
-### Ejemplo intermedio
-Un enemigo que patrulla y ataca al ver al jugador:
-1. Agregar un sensor de `línea de visión`.
-2. Si detecta al jugador, cambiar el estado a `perseguir`.
-3. Si está cerca, cambiar a `ataque cuerpo a cuerpo`.
-
-### Ejemplo avanzado
-Un enemigo que patrulla, usa ataques a distancia y huye cuando recibe daño:
-1. Configurar un sensor de `línea de visión` para detectar al jugador.
-2. Si está en rango, cambiar a `ataque a distancia`.
-3. Agregar un sensor de `daño`.
-4. Si recibe daño, cambiar a `huir`.
+## Mapa de Navegación
+Explicación sobre la estructura de la herramienta, menús y funciones principales.
 
 
 Descripción General de las Máquinas de Estados Finitas para la IA de Enemigos: en glosario
@@ -140,9 +98,8 @@ Descripción General de las Máquinas de Estados Finitas para la IA de Enemigos:
 Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUANDO HAGAMOS PRUEBAS DE USUARIOS
 
 ## Glosario
-Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual:
-- ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita  es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados . En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicos, a menudo generados por la interacción del enemigo con su entorno.
-- ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado `Idle`, `Patrol`, `Attack`, ...
+Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual.
+- ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita  es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados . En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico que un enemigo puede exhibir, como estar inactivo (Idle), patrullar un área (Patrol), atacar al jugador (Attack) o perseguirlo (Chase). Las transiciones entre estos estados se activan mediante condiciones o eventos específicos, a menudo generados por la interacción del enemigo con su entorno a través de sensores. En cualquier momento dado, el enemigo se encuentra en un único estado "actual", y su comportamiento está determinado por las reglas definidas para ese estado. Las FSMs son una técnica fundamental en la IA de videojuegos, ofreciendo una manera clara y controlada de gestionar comportamientos complejos . Su naturaleza determinista facilita la depuración y la comprensión del flujo de la lógica del enemigo.   
 
 ## Contacto y Soporte
 
@@ -155,5 +112,5 @@ Para obtener soporte técnico adicional o para proporcionar comentarios sobre la
 
 
 
-
+![Mi imagen](./imagen.png)
 ![Mi GIF](a.gif)

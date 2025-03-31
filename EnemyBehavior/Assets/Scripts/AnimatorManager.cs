@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
+    [SerializeField]
     private Animator _animator;
     //[SerializeField]
    // List<Actuator> _listofActuators;
