@@ -65,8 +65,12 @@ public class MoveToAnObjectActuator : MovementActuator
 	{
 		if (!_moving)
 			return;
-
-		MoveTowardsTarget(_waypointData, _waypointData.waypoint.position);
+		if(_waypointData.waypoint.position != null)
+			MoveTowardsTarget(_waypointData, _waypointData.waypoint.position);
+		else
+		{
+			Debug.LogWarning("The MoveToAnObjectActuator goal Transform is null");
+		}
 	}
 	private void MoveTowardsTarget(WaypointData waypoint, Vector2 targetPos)
 	{

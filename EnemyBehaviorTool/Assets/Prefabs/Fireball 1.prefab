@@ -218,7 +218,7 @@ MonoBehaviour:
   _easingFunction: 0
   _layersToCollide:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _speed: 43
   _throw: 1
   _goalSpeed: 0

@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerCollisionDetection : MonoBehaviour
 {
 	[Header("Layers")]
-	public LayerMask groundLayer;
+	public LayerMask _slideLayers;
 
 	[SerializeField]
 	private bool _debugBoxes = false;
@@ -31,12 +31,12 @@ public class PlayerCollisionDetection : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		onGround = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, bottomSize, 0f, groundLayer);
-		onWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, groundLayer)
-			|| Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, groundLayer);
+		onGround = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, bottomSize, 0f, _slideLayers);
+		onWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _slideLayers)
+			|| Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _slideLayers);
 
-		onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, groundLayer);
-		onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, groundLayer);
+		onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _slideLayers);
+		onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _slideLayers);
 
 		wallSide = onRightWall ? -1 : 1;
 	}

@@ -8,8 +8,13 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class CollisionSensor : Sensors
 {
-    // Boolean to track if a collision has occurred
-    private bool _col;
+
+	[Header("Layers")]
+    [SerializeField]
+    private LayerMask _layersToCollide =~0;
+
+	// Boolean to track if a collision has occurred
+	private bool _col;
 
     // Stores the latest collision event
     private Collision2D _collisionObject;
@@ -17,8 +22,9 @@ public class CollisionSensor : Sensors
     // Handles the collision event when the object enters a collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Only process the collision if the sensor is active
-        if (_sensorActive)
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0) return;
+		// Only process the collision if the sensor is active
+		if (_sensorActive)
         {
             _col = true;
             _collisionObject = collision;

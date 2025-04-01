@@ -1875,12 +1875,12 @@ GameObject:
   - component: {fileID: 356613018}
   - component: {fileID: 356613017}
   - component: {fileID: 356613016}
-  - component: {fileID: 356613015}
   - component: {fileID: 356613014}
   - component: {fileID: 356613013}
   - component: {fileID: 356613012}
   - component: {fileID: 356613011}
   - component: {fileID: 356613010}
+  - component: {fileID: 356613025}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -1997,18 +1997,6 @@ MonoBehaviour:
   _initialLife: 5
   _lifeText: {fileID: 0}
   _textName: 
---- !u!114 &356613015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356613008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &356613016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2044,7 +2032,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 356613016}
   _sensorTransitions:
-  - sensor: {fileID: 356613015}
+  - sensor: {fileID: 356613025}
     targetState: {fileID: 356613020}
   _debugState: 0
 --- !u!114 &356613018
@@ -2175,7 +2163,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 356613008}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -2184,10 +2172,10 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2244,6 +2232,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &356613025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356613008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,7 +4744,7 @@ MonoBehaviour:
   _axis: 1
   _partOfAxis: 0
   _detectionSide: 0
-  _target: {fileID: 0}
+  _target: {fileID: 1701558568}
   _detectionDistance: 15.5
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 1
@@ -7311,7 +7314,7 @@ MonoBehaviour:
   _axis: 1
   _partOfAxis: 0
   _detectionSide: 0
-  _target: {fileID: 0}
+  _target: {fileID: 1701558568}
   _detectionDistance: 8.3
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 1
@@ -7787,6 +7790,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &1703530032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8286,17 +8292,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
+      propertyPath: _debugBoxes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
+      propertyPath: _slideLayers.m_Bits
+      value: 136
+      objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _lifeText
       value: 
       objectReference: {fileID: 1161187926}
     - target: {fileID: 9038349572681355833, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.91
+      value: 59.53
       objectReference: {fileID: 0}
     - target: {fileID: 9038349572681355833, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -3.58
       objectReference: {fileID: 0}
     - target: {fileID: 9038349572681355833, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: m_LocalPosition.z

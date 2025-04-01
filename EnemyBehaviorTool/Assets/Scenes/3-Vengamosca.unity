@@ -420,7 +420,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307179846}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -431,10 +431,10 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -564,6 +564,7 @@ MonoBehaviour:
   _detectionDistance: 5.09
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 3
+  _detectionCondition: 0
 --- !u!114 &307179859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &307179860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,6 +1412,10 @@ PrefabInstance:
     - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _debugBoxes
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
+      propertyPath: _slideLayers.m_Bits
+      value: 264
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _lifeText

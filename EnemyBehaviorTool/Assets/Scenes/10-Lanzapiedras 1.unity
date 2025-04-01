@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 399495424}
   - component: {fileID: 399495423}
   - component: {fileID: 399495422}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 467376214}
-  _sensorTransitions: []
+  _sensorTransitions:
+  - sensor: {fileID: 467376216}
+    targetState: {fileID: 467376205}
   _debugState: 0
 --- !u!114 &467376214
 MonoBehaviour:
@@ -528,7 +530,8 @@ MonoBehaviour:
   _target: {fileID: 1060559320}
   _detectionDistance: 7.1
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 0
+  _startDetectingTime: 2
+  _detectionCondition: 0
 --- !u!114 &467376216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,10 +541,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 467376202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionTime: 2.55
+  _distanceType: 1
+  _axis: 1
+  _partOfAxis: 0
+  _detectionSide: 0
+  _target: {fileID: 1060559320}
+  _detectionDistance: 7.1
+  _areaTrigger: {fileID: 0}
+  _startDetectingTime: 0
+  _detectionCondition: 1
 --- !u!1 &524568657
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +565,7 @@ GameObject:
   - component: {fileID: 524568661}
   - component: {fileID: 524568660}
   - component: {fileID: 524568659}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +912,7 @@ GameObject:
   - component: {fileID: 1155923382}
   - component: {fileID: 1155923381}
   - component: {fileID: 1155923380}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1059,7 +1070,7 @@ GameObject:
   - component: {fileID: 1343292299}
   - component: {fileID: 1343292298}
   - component: {fileID: 1343292297}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,7 +1494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665599417}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: ESCENA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

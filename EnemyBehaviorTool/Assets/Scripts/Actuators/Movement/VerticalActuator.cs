@@ -144,7 +144,6 @@ public class VerticalActuator : MovementActuator
         // choque enemigo con mundo 
         //choque por izquierda o derecha
         if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
-        Debug.Log("fsgsdfg");
         ContactPoint2D contact = col.contacts[0];
         Vector2 normal = contact.normal;
 
