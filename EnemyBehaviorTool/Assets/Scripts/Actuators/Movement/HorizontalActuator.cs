@@ -8,8 +8,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class HorizontalActuator : MovementActuator
 {
-
-	private enum Direction
+    [Header("Layers")]
+    public LayerMask _layersToCollide;
+    private enum Direction
 	{
 		Left = -1,
 		Right = 1
@@ -132,11 +133,11 @@ public class HorizontalActuator : MovementActuator
 		Collision2D col = _collisionSensor.GetCollidedObject();
 
 		if (col == null) return;
-		//comprobacion  de:
-		// choque enemigo con mundo 
-		//choque por izquierda o derecha
-		if (col.gameObject.layer != LayerMask.NameToLayer("World") && col.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-		ContactPoint2D contact = col.contacts[0];
+        //comprobacion  de:
+        // choque enemigo con mundo 
+        //choque por izquierda o derecha
+        if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
+        ContactPoint2D contact = col.contacts[0];
 		Vector2 normal = contact.normal;
 
 		if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))

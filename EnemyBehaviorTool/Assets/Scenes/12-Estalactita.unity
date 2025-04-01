@@ -934,6 +934,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 136
   _speed: 12.81
   _throw: 0
   _goalSpeed: 0

@@ -758,6 +758,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 1
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 136
   _speed: 5
   _goalSpeed: 2
   _interpolationTime: 1
@@ -1252,7 +1255,7 @@ GameObject:
   - component: {fileID: 2122896624}
   - component: {fileID: 2122896623}
   - component: {fileID: 2122896622}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

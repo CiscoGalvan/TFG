@@ -10,7 +10,9 @@ using UnityEngine.UIElements;
 
 public class VerticalActuator : MovementActuator
 {
-	private enum Direction
+    [Header("Layers")]
+    public LayerMask _layersToCollide;
+    private enum Direction
 	{
 		Down = -1,
 		Up = 1
@@ -141,7 +143,8 @@ public class VerticalActuator : MovementActuator
         //comprobacion  de:
         // choque enemigo con mundo 
         //choque por izquierda o derecha
-        if (col.gameObject.layer != LayerMask.NameToLayer("World") && col.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+        if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
+        Debug.Log("fsgsdfg");
         ContactPoint2D contact = col.contacts[0];
         Vector2 normal = contact.normal;
 

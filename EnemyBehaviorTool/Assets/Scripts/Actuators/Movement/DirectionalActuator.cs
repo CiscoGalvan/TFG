@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Directional_Actuator : MovementActuator
 {
+	[Header("Layers")]
+	public LayerMask _layersToCollide;
 
 	[SerializeField,HideInInspector]
 	private float _speed = 5f;
@@ -144,11 +146,10 @@ public class Directional_Actuator : MovementActuator
 		Collision2D col = _collisionSensor.GetCollidedObject();
 		if (col == null) return;
 
-		
-		if (col.gameObject.layer != LayerMask.NameToLayer("World"))
-			return;
 
-		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
+        if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
+
+        if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
 		{
 
             

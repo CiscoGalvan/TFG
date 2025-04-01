@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class AnimatorManager : MonoBehaviour
 {
@@ -17,6 +20,21 @@ public class AnimatorManager : MonoBehaviour
     [SerializeField]
     private bool _canRotate = true;
     SpriteRenderer _spriteRenderer;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.flipX = !_isSpriteWellOrientedX;
+            _spriteRenderer.flipY = !_isSpriteWellOrientedY;
+        }
+
+    }
+  #endif
 
     private void Start()
     {
@@ -162,17 +180,5 @@ public class AnimatorManager : MonoBehaviour
     public void OnDieEvent()
     {
         Destroy(gameObject);
-    }
-
-    private void OnValidate()
-    {
-        if (_spriteRenderer == null)
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (_spriteRenderer != null)
-        {
-            _spriteRenderer.flipX = !_isSpriteWellOrientedX;
-            _spriteRenderer.flipY = !_isSpriteWellOrientedY;
-        }
     }
 }

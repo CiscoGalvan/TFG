@@ -124,7 +124,7 @@ SpriteRenderer:
   m_Size: {x: 0.15, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6405463156459697231
@@ -239,6 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 10
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 10
   _goalSpeed: 10
   _interpolationTime: 0.2

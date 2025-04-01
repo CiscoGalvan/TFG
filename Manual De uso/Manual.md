@@ -1,3 +1,4 @@
+
 # ***Manual de Uso para Framework de comportamientos de enemigos para videojuegos 2D***
 [🇬🇧 Read in English](Manual_en.md)  
 ***Bienvenido al manual de uso.***  
@@ -33,33 +34,30 @@ Este manual se divide en varias secciones que cubren todos los aspectos necesari
 
 ## Objetivo 
 Este manual tiene como objetivo proporcionar una guía clara y detallada para que los usuarios puedan instalar, configurar y utilizar la herramienta con mayor facilidad.  
-
 `La herramienta ha sido diseñada para simplificar y optimizar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity`. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los diseñadores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
-
 
 ## Funcionalidad
 - Creación y gestión de comportamientos de enemigos en 2D.
 - Implementación de máquinas de estados para definir la IA de los enemigos.
 
 ## Público objetivo
-Tanto la herramienta como el manual han sido `creados para diseñadores o personas sin conocimientos avanzados en programación`.   
-Si bien se `recomienda tener un conocimiento básico de Unity` y de los conceptos fundamentales del desarrollo de juegos, este manual se ha elaborado con la intención de ser lo suficientemente completo como para que usuarios con distintos niveles de experiencia puedan utilizar la herramienta de manera efectiva.
+Tanto la herramienta como el manual han sido `creados para diseñadores o personas sin conocimientos avanzados en programación`.  
+Si bien `se recomienda tener un conocimiento básico de Unity` y de los conceptos fundamentales del desarrollo de juegos, este manual se ha elaborado con la intención de ser lo suficientemente completo como para que usuarios con distintos niveles de experiencia puedan utilizar la herramienta de manera efectiva.
 
 ## Requisitos
 Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
 - Disponer de una versión igual o superior a `2022.3.18 (LTS)` de Unity.
 
 ## Instalación
-Paso a paso para la intalación:  
-1. Descarge de la Herramienta desde GitHub: 
-&nbsp;&nbsp;La herramienta se distribuye como un paquete de Unity a través de una URL de GitHub.Para obtener la herramienta, accede al  [Link](https://github.com/CiscoGalvan/TFG/blob/main/Package/FrameworkEnemies2D.unitypackage).  
-Una vez en el repositorio, presione las teclas: `control + shift + s` o dele a `more file actions` (botón de los 3 puntos) y seleccionar `descargar`.  
-2. Abra Unity y carge su proyecto o cree un nuevo proyecto 2D.
-3. En Unity, ve a `Assets > Import Package > Custom Package`.
-4. Selecciona el archivo descargado (`.unitypackage`).
-5. Presiona `Importar` y asegúrate de marcar todas las opciones necesarias.
-6. Una vez importado, verifica que los activos de la herramienta aparecen en la ventana `Project` de Unity.
-
+Paso a paso para la instalación:  
+1. **Descarga de la Herramienta desde GitHub:**
+   - La herramienta se distribuye como un paquete de Unity a través de una URL de GitHub. Para obtener la herramienta, accede al [Link](https://github.com/CiscoGalvan/TFG/blob/main/Package/FrameworkEnemies2D.unitypackage).
+   - Una vez en el repositorio, presiona las teclas `control + shift + S` o haz clic en `More File Actions` (botón de los tres puntos) y selecciona `Descargar`.
+2. **Abre Unity y carga tu proyecto o crea un nuevo proyecto 2D.**
+3. **En Unity, ve a `Assets > Import Package > Custom Package`.**
+4. **Selecciona el archivo descargado (`.unitypackage`).**
+5. **Presiona `Importar` y asegúrate de marcar todas las opciones necesarias.**
+6. **Una vez importado, verifica que los activos de la herramienta aparecen en la ventana `Project` de Unity.**
 
 ## Contenido del Paquete
 ### 📂 `Scripts`
@@ -78,54 +76,51 @@ Una vez en el repositorio, presione las teclas: `control + shift + s` o dele a `
 - Contiene clips de animación de enemigos.
 - Incluye animaciones como `Idle`, `Walk`, `Attack` y `Death`.
 - Compatible con el sistema de `Animator` de Unity.
+
 ## Componentes del Framework
 ### Máquina de Estados Finita (FSM)
   ![FSM](./FSM.png)  
-La FSM es la encargada de llamar y gestionar todos los estados de un enemigo.  
-Es necesario especificarle cual va a ser el `estado inicial` del enemigo.
+  La FSM es la encargada de llamar y gestionar todos los estados de un enemigo.  
+  Es necesario especificarle cuál va a ser el `estado inicial` del enemigo.
 
----
-
-### Estado 
- ![State](./State.png)  
-Dentro de cada estado debemos especificar que acción/acciones vamos a realizar `Actuator List`.  
-Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y  el estado al que sedesea pasar.  
-Por ultimo, si deseamos `ver mediante Gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
-
----
+### Estado
+  ![State](./State.png)  
+  Dentro de cada estado debemos especificar qué acción/acciones vamos a realizar en `Actuator List`.  
+  Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.  
+  Por último, si deseamos `ver mediante Gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
 
 ### Sensores
-Los sensores permiten detectar elementos en el entorno y activar transiciones. Disponemos de 5 sensores:
+Los sensores permiten detectar elementos en el entorno y activar transiciones. Disponemos de cinco sensores:
 
-- **Area Sensor**:  
-![AreaSensor](./AreaSensor.png)  
+- **Area Sensor:**  
+  ![AreaSensor](./AreaSensor.png)  
   El sensor de área detecta cuando un objeto específico (Target) entra dentro de su zona de detección. Para ello, su collider debe estar configurado como `Trigger`, lo que significa que no colisiona físicamente, sino que simplemente detecta la presencia de otros objetos.
 
-- **Collision Sensor**:  
-![CollisionSensor](./CollisionSensor.png)  
+- **Collision Sensor:**  
+  ![CollisionSensor](./CollisionSensor.png)  
   Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del `Area Sensor`, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.
 
-- **Distance Sensor**:  
+- **Distance Sensor:**  
 ![DistanceSensor](./DistanceSensor.png)  
   Detcecta cuando un objeto específico (Target) está a una determinada distancia del enemigo. 
   Es necesario especificar el `tiempo que está inactivo al inicio` (Setting Up Time), si este es 0 la el sensor inicia activado. También es necesario especificar el `radio de la distancia`.
 
-- **Time Sensor**:   
+- **Time Sensor:**    
 ![TimeSensor](./TimeSensor.png)  
  Detecta cuando pasa un `tiempo` específico, que es necesario especificar.
 
-- **Damage Sensor**:  
+- **Damage Sensor:**  
 ![DamageSensor](./DamageSensor.png)  
-  Detecta cuando una entidad `recive dsaño`.
+  Detecta cuando una entidad `recibe daño`.
 
-- **Damage Emitter**:  
-  Es el encargado de `hacer daño`, en el tienes que especificar el tipo de daño, cada tipo de daño tiene sus porpios parámetros:
+- **Damage Emitter:**  
+  Es el encargado de `hacer daño`, en el tienes que especificar el tipo de daño, cada tipo de daño tiene sus propios parámetros:
   - Intant:  
   ![DamagEmitter](./DamageEmitter.png)  
-  El daño instantáneo es aquel que te afecta una única vez al entrar encontacto contigo. Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, si queremos que se `elimine el objeto después de hacer daño`, si queremos que `directamente mate a la entidad con la que colisiona`. En caso de no querer que se mate directamente al jugador, indicaremos el `daño que quremos hacerle`.
+  El daño instantáneo es aquel que te afecta una única vez al entrar en contacto contigo. Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, si queremos que se `elimine el objeto después de hacer daño`, si queremos que `directamente mate a la entidad con la que colisiona`. En caso de no querer que se mate directamente al jugador, indicaremos el `daño que queremos hacerle`.
   - Persistent:  
  ![DamagEmitter](./DamageEmitterP.png)  
- El daño persistente es el que te afectamientras que estés dentro del objeto.Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, la `cantidad de daño` que hacemos y `cada cuanto` se lo hacemos.
+ El daño persistente es el que te afecta mientras que estés dentro del objeto.Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, la `cantidad de daño` que hacemos y `cada cuanto` se lo hacemos.
   - Residual:  
  ![DamagEmitter](./DamageEmitterR.png)  
  Por último tenemos el daño residual. Este es el que te va afectando incluso cuando ya no estás en contacto. Como parámetros, podremos especificar si se quiere `más de un collider`, si queremos que se `destruya el objeto después del primer contacto`, la `cantidad de daño al primer golpe` (que generalmente suele ser más grande), `cantidad del resto de daños`, `cada cuanto` y `cuantos` se hacen.
@@ -157,7 +152,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - `Right:` El objeto se moverá hacia la derecha.
   - `Is Accelerated`  
     - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
-      - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
+      - `Throw:` Se aplicará una única vez la fuerza, simulando un lanzamiento
       - `Speed:` Establece la velocidad a la que se moverá el objeto    
     - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
       - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto después de acelerar.
@@ -179,7 +174,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - `Down:` El objeto se moverá hacia abajo.
   - `Is Accelerated`  
     - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
-      - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
+      - `Throw:` Se aplicará una única vez la fuerza, simulando un lanzamiento
       - `Speed:` Establece la velocidad a la que se moverá el objeto    
     - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
       - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto después de acelerar.
@@ -195,11 +190,11 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
       - `None:` No hay ninguna reacción al colisionar
       - `Bounce:` El objeto cambia de dirección y sigue moviéndose en sentido contrario.
       - `Destroy:` El objeto desaparece al colisionar. 
-    - `Angle:`  ángulo con el que va a moverse elobjeto
-    - `Aim Player:` Indica si el objeto va a seguir la direción del jugador (con esta opción el ángulo no aparece  porque se setea en función de tu posición y la del objetivo)
+    - `Angle:`  ángulo con el que va a moverse el objeto
+    - `Aim Player:` Indica si el objeto va a seguir la dirección del jugador (con esta opción el ángulo no aparece  porque se le da valor en función de tu posición y la del objetivo)
     - `Is Accelerated`  
       - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
-        - `Throw:` Se aplicará una unica vez la fuerza, simulando un lanzamiento
+        - `Throw:` Se aplicará una única vez la fuerza, simulando un lanzamiento
         - `Speed:` Establece la velocidad a la que se moverá el objeto    
         
       - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
@@ -216,7 +211,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - `Transform:` Si se asigna un objeto, la rotación se realizará alrededor de ese punto.  
 
   - `Max Angle`  
-    Ángulo máximo que puede alcanzar el movimiento circular (360 indica un círculocompleto, el resto de ángulos se comporta como un péndulo).  
+    Ángulo máximo que puede alcanzar el movimiento circular (360 indica un círculo completo, el resto de ángulos se comporta como un péndulo).  
 
   - `Can Rotate`  
     Determina si el objeto puede rotar sobre su propio eje además de moverse en círculo.  
@@ -244,7 +239,7 @@ Random area coge puntos aleatorios dentro de un área.
 ![MoveToAPointActuator](./MoveToAPointActuatorS.png)  
           - `Time betweenwaypoints:` tiempo que se tarda entre un punto y otro 
           - `Are accelerated:` si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con que aceleración se mueve. 
-          - `Should Stop:` indica si debe o no parar al llegar a un punto. Si se debe parar, hay que  indicarcuanto tiempo.  
+          - `Should Stop:` indica si debe o no parar al llegar a un punto. Si se debe parar, hay que  indicar cuanto tiempo.  
       - Si no es así, aparecerán los mismos datos por cada waypoint.  
     ![MoveToAPointActuator](./MoveToAPointActuator.png)  
 
@@ -257,13 +252,14 @@ Random area coge puntos aleatorios dentro de un área.
   - `Time to Reach:` Tiempo que tarda en llegar al objetivo
   - `Is Accelerated:`
     - `Falso:` Si no es acelerado, la posición se definirá en función del parámetro `Time`.  
-    - `Verdadero:` Si es acelerado, la posición se definirá mediante  la funcion easin  
+    - `Verdadero:` Si es acelerado, la posición se definirá mediante  la función easing  
     ![MoveToAnObjectActuator](./MoveToAnObjectActuatorA.png)  
 
 
 
 ### Animator Manager
-Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadirtambien un animator de unity.
+Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadir tambien un animator de Unity.  
+Es importante que todos los Sprites que se quieran utilizar `se orienten hacia la derecha``.
 ### Life
 Gestiona la vida de los objetos.  
  ![Life](./Life.png)  
@@ -288,17 +284,23 @@ Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUAN
 
 ## Glosario
 Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual:
-- ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita  es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados . En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicos, a menudo generados por la interacción del enemigo con su entorno.
-- ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado `Idle`, `Patrol`, `Attack`, ...
-- ***Serializado:***
-- ***Transform:***
+- ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados. En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicas, a menudo generadas por la interacción del enemigo con su entorno.
+
+- ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado `Idle`, `Patrol`, `Attack`, etc.
+
+- ***Serializado:*** Permite modificar valores sin necesidad de cambiar el código, editandolos desde el editor de Unity.
+- ***Transform:*** Es un componente de Unity que almacena y gestiona la posición, rotación y escala de un objeto en la escena. Es fundamental para manipular cualquier objeto dentro del mundo del juego, ya que permite moverlo, rotarlo y escalarlo.
+
+
+- ***Serializado:*** En términos simples, significa que la información de un objeto puede guardarse y recuperarse más tarde sin perder sus datos. En Unity, esto se usa para recordar configuraciones o guardar partidas.
+
+
 
 ## Contacto y Soporte
 
-Se recomienda revisar escenas de ejemplo ydocumentación adicional de los desarrolladores.
+Se recomienda revisar escenas de ejemplo y documentación adicional de los desarrolladores.
 Para obtener soporte técnico adicional o para proporcionar comentarios sobre la herramienta, puede contactar directamente a los desarrolladores a través de los siguientes medios: [soporte@ejemplo.com](mailto:soporte@ejemplo.com).
 
 
 ---
 © 2025 Cristina Mora Velasco y Francisco Miguel Galván Muñoz. Todos los derechos reservados.
-

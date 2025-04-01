@@ -630,6 +630,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 11
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 136
   _speed: 5
   _throw: 0
   _goalSpeed: 6.39
@@ -648,7 +651,7 @@ GameObject:
   - component: {fileID: 579760019}
   - component: {fileID: 579760018}
   - component: {fileID: 579760017}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -806,7 +809,7 @@ GameObject:
   - component: {fileID: 741742350}
   - component: {fileID: 741742349}
   - component: {fileID: 741742348}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +967,7 @@ GameObject:
   - component: {fileID: 1137969447}
   - component: {fileID: 1137969446}
   - component: {fileID: 1137969445}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1282,7 +1285,7 @@ GameObject:
   - component: {fileID: 1565017371}
   - component: {fileID: 1565017370}
   - component: {fileID: 1565017369}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1541,7 +1544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1686333279}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: ESCENA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1645,7 @@ GameObject:
   - component: {fileID: 1844846003}
   - component: {fileID: 1844846002}
   - component: {fileID: 1844846001}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1800,7 +1803,7 @@ GameObject:
   - component: {fileID: 1990924557}
   - component: {fileID: 1990924556}
   - component: {fileID: 1990924555}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
