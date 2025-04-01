@@ -19,6 +19,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the object movement accelerated?");
 	private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
 	private static readonly GUIContent _aimPlayerLabel = new GUIContent("Aim Player", "The object will move towards player direction.");
+    private static readonly GUIContent _layermaskLabel = new GUIContent("Collision LayerMask", "Select the layers that the object will interact with");
 
     private SerializedProperty _onCollisionReaction;
 	private SerializedProperty _speed;
@@ -29,6 +30,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 	private SerializedProperty _throw;
 	private SerializedProperty _easingFunction;
 	private SerializedProperty _aimPlayer;
+    private SerializedProperty _layerMask;
 
 	private bool _showMovementInfo = true;
 	private void OnEnable()
@@ -42,11 +44,13 @@ public class DirectionalComponentEditor : ActuatorEditor
 		_throw = serializedObject.FindProperty("_throw");
 		_easingFunction = serializedObject.FindProperty("_easingFunction");
 		_aimPlayer = serializedObject.FindProperty("_aimPlayer");
-	}
+        _layerMask = serializedObject.FindProperty("_layersToCollide");
+    }
 
 	public override void OnInspectorGUI()
 	{
-		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
+        EditorGUILayout.PropertyField(_layerMask, new GUIContent("Collision LayerMask", "Select the layers that the object will interact with"));
+        EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
 		EditorGUI.indentLevel++;

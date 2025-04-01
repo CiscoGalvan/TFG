@@ -241,7 +241,7 @@ MonoBehaviour:
   _easingFunction: 10
   _layersToCollide:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 264
   _speed: 10
   _goalSpeed: 10
   _interpolationTime: 0.2

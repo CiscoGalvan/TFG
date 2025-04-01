@@ -358,6 +358,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 5
   _goalSpeed: 0
   _interpolationTime: 0
@@ -2644,6 +2647,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 5
   _goalSpeed: 0
   _interpolationTime: 0
@@ -3185,6 +3191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 136
   _speed: 3
   _goalSpeed: 0
   _interpolationTime: 0
@@ -4791,6 +4800,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 3
   _goalSpeed: 0
   _interpolationTime: 0
@@ -6211,6 +6223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 10
   _goalSpeed: 0
   _interpolationTime: 0
@@ -7465,6 +7480,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 3
   _goalSpeed: 0
   _interpolationTime: 0
@@ -7625,6 +7643,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 0
   _throw: 0
   _goalSpeed: 0
@@ -7691,6 +7712,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 1
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 0
   _goalSpeed: 0
   _interpolationTime: 0
@@ -7711,6 +7735,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAccelerated: 0
   _easingFunction: 0
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 0
   _speed: 5
   _goalSpeed: 0
   _interpolationTime: 0
