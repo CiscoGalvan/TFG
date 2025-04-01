@@ -19,7 +19,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the object movement accelerated?");
 	private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
 	private static readonly GUIContent _aimPlayerLabel = new GUIContent("Aim Player", "The object will move towards player direction.");
-    private static readonly GUIContent _layermaskLabel = new GUIContent("Collision LayerMask", "Select the layers that the object will interact with");
+    private static readonly GUIContent _layerMaskLabel = new GUIContent("Collision LayerMask", "Select the layers that the object will interact with");
 
     private SerializedProperty _onCollisionReaction;
 	private SerializedProperty _speed;
@@ -49,7 +49,7 @@ public class DirectionalComponentEditor : ActuatorEditor
 
 	public override void OnInspectorGUI()
 	{
-        EditorGUILayout.PropertyField(_layerMask, new GUIContent("Collision LayerMask", "Select the layers that the object will interact with"));
+        EditorGUILayout.PropertyField(_layerMask, _layerMaskLabel);
         EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
@@ -58,7 +58,12 @@ public class DirectionalComponentEditor : ActuatorEditor
 		{
 			EditorGUILayout.PropertyField(_isAccelerated, _isAcceleratedLabel);
 			EditorGUILayout.PropertyField(_aimPlayer, _aimPlayerLabel);
-
+			if (!_aimPlayer.boolValue)
+			{
+				EditorGUI.indentLevel++;
+				_angle.floatValue = Mathf.Clamp(EditorGUILayout.FloatField(_angleLabel, _angle.floatValue), 0, 360);
+				EditorGUI.indentLevel--;
+			}
 			if (_isAccelerated.boolValue)
 			{
 				_goalSpeed.floatValue = Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(_goalSpeedLabel, _goalSpeed.floatValue)));
@@ -73,7 +78,8 @@ public class DirectionalComponentEditor : ActuatorEditor
 				EditorGUILayout.PropertyField(_throw, _throwLabel);
 				_speed.floatValue = Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(_speedLabel, _speed.floatValue)));
 			}
-			_angle.floatValue = Mathf.Clamp(EditorGUILayout.FloatField(_angleLabel, _angle.floatValue), 0, 360);
+
+			
 
 		}
 

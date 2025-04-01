@@ -13,7 +13,12 @@ public class DistanceSensor : Sensors
         Magnitude = 1,
         SingleAxis = 2
     };
-    public enum Axis
+	public enum DetectionCondition
+	{
+        InsideMagnitude = 0,
+        OutsideMagnitude = 1
+	};
+	public enum Axis
     {
         Y = 0,
         X = 1
@@ -57,6 +62,11 @@ public class DistanceSensor : Sensors
     private float _startDetectingTime = 0f;
 
     private float _t;
+
+    [SerializeField]
+    private DetectionCondition _detectionCondition = DetectionCondition.InsideMagnitude;
+
+    
 
     // Initializes the sensor settings
     public override void StartSensor()
@@ -109,10 +119,11 @@ public class DistanceSensor : Sensors
         switch (_distanceType)
         {
             case TypeOfDistance.Magnitude:
-                detected = Vector2.Distance(selfPos, targetPos) <= _detectionDistance;
-                break;
+                bool isWithinMagnitude = Vector2.Distance(selfPos, targetPos) <= _detectionDistance;
+				detected = (_detectionCondition == DetectionCondition.InsideMagnitude) ? isWithinMagnitude : !isWithinMagnitude;
+				break;
 
-            case TypeOfDistance.SingleAxis:
+			case TypeOfDistance.SingleAxis:
                 float distance = (_axis == Axis.X)
                     ? Mathf.Abs(selfPos.x - targetPos.x)
                     : Mathf.Abs(selfPos.y - targetPos.y);
@@ -121,9 +132,10 @@ public class DistanceSensor : Sensors
                        ? (_partOfAxis == PartOfAxis.UpOrLeft ? targetPos.x < selfPos.x : targetPos.x > selfPos.x)
                        : (_partOfAxis == PartOfAxis.UpOrLeft ? targetPos.y > selfPos.y : targetPos.y < selfPos.y));
 
-                detected = distance <= _detectionDistance && correctSide;
-                break;
-        }
+				bool isWithinSingleAxis = distance <= _detectionDistance && correctSide;
+                detected = (_detectionCondition == DetectionCondition.InsideMagnitude) ? isWithinSingleAxis : !isWithinSingleAxis;
+				break;
+		}
 
         if (detected)
         {
@@ -136,11 +148,25 @@ public class DistanceSensor : Sensors
     {
         if (_startDistance &&_distanceType == TypeOfDistance.Area && other.gameObject == _target )
         {
-            EventDetected();
+			if (_detectionCondition == DetectionCondition.InsideMagnitude)
+			{
+				EventDetected(); 
+			}
 		}
     }
-    // Draws the detection range in the scene view
-    private void OnDrawGizmos()
+
+	private void OnTriggerExit2D(Collider2D other)
+	{
+		if (_startDistance && _distanceType == TypeOfDistance.Area && other.gameObject == _target)
+		{
+			if (_detectionCondition == DetectionCondition.OutsideMagnitude)
+			{
+				EventDetected(); 
+			}
+		}
+	}
+	// Draws the detection range in the scene view
+	private void OnDrawGizmos()
     {
        
         if (!_debugSensor) return;

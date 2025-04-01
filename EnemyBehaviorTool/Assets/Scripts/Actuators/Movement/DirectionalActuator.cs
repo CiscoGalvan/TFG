@@ -64,6 +64,22 @@ public class Directional_Actuator : MovementActuator
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		_time = 0;
 
+		if (_aimPlayer)
+		{
+			var objectsWithPlayerTagArray = GameObject.FindGameObjectsWithTag("Player");
+			if(objectsWithPlayerTagArray.Length == 0)
+			{
+				Debug.LogWarning("There was no object with Player tag, the proyectile angle won't be controlled");
+			}
+			else 
+			{
+				_playerReference = objectsWithPlayerTagArray[0];
+				Vector3 direction = _playerReference.transform.position - transform.position;
+				_angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+			}
+			
+		}
+
 		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce ||
 			_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
 		{
@@ -171,7 +187,6 @@ public class Directional_Actuator : MovementActuator
 		}
 		else if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
 		{
-
 			if (_animatorManager != null)
 				_animatorManager.Destroy();
 			else
