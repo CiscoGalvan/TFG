@@ -8,8 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class CollisionSensor : Sensors
 {
-
-	[Header("Layers")]
+    [Tooltip("Layers that, in case of collision, will activate the sensor.")]
     [SerializeField]
     private LayerMask _layersToCollide =~0;
 
@@ -49,5 +48,9 @@ public class CollisionSensor : Sensors
     // Returns whether a collision has been detected
     bool GetBooleanCollision() { return _col; }
 
+    public void SetLayersToCollide(LayerMask newValue)
+    {
+        _layersToCollide = newValue;
+    }
 	
 }

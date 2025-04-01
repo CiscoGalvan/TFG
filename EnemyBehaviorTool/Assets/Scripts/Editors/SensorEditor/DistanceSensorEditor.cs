@@ -44,9 +44,10 @@ public class DistanceSensorEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(_distanceType, _distanceTypeLabel);
-        EditorGUILayout.PropertyField(_target, _targetLabel);
+		EditorGUILayout.PropertyField(_detectionCondition, _detectionConditionLabel);
+		EditorGUILayout.PropertyField(_target, _targetLabel);
         EditorGUILayout.PropertyField(_startDetectingTime, _startDetectingTimeLabel);
-        EditorGUILayout.PropertyField(_detectionCondition, _detectionConditionLabel);
+     
         switch (_distanceType.intValue)
         {
             case (int)TypeOfDistance.SingleAxis:

@@ -11,6 +11,7 @@ public class HorizontalComponentEditor : ActuatorEditor
 		"Bounce: The object will bounce to the opposite direction.\n" +
 		"Destroy: The object will be destroyed after the contact.");
 	private static readonly GUIContent _directionLabel = new GUIContent("Direction", "Direction of the horizontal movement");
+	private static readonly GUIContent _layersToCollideLabel = new GUIContent("Layers To Collide", "Layers that will activate the Reaction After Collision event in case there is a collision.");
 	private bool _showMovementInfo = true;
 
 	#region Accelerated movement
@@ -26,12 +27,14 @@ public class HorizontalComponentEditor : ActuatorEditor
 	private SerializedProperty _directionProperty;
 	private SerializedProperty _onCollisionReaction;
 	private SerializedProperty _throw;
+	private SerializedProperty _layersToCollide;
 
 	private void OnEnable()
 	{
 		_directionProperty = serializedObject.FindProperty("_direction");
 		_onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
 		_throw = serializedObject.FindProperty("_throw");
+		_layersToCollide = serializedObject.FindProperty("_layersToCollide");
 	}
 	public override void OnInspectorGUI()
 	{
@@ -41,7 +44,12 @@ public class HorizontalComponentEditor : ActuatorEditor
 
 
 		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
-		EditorGUI.indentLevel++;
+		if(_onCollisionReaction.intValue != 0)
+		{
+			EditorGUI.indentLevel++;
+			EditorGUILayout.PropertyField(_layersToCollide, _layersToCollideLabel);
+			EditorGUI.indentLevel--;
+		}
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
 		EditorGUI.indentLevel++;
 		if (_showMovementInfo)
@@ -63,9 +71,10 @@ public class HorizontalComponentEditor : ActuatorEditor
 				EditorGUILayout.PropertyField(_throw, _throwLabel);
 				component.SetSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(_constantSpeedLabel, component.GetSpeed()))));
 			}
+			EditorGUI.indentLevel--;
 		}
         serializedObject.ApplyModifiedProperties();
-        EditorGUI.indentLevel--;
+       
 		// If GUI changed we must applicate those changes in editor
 		if (GUI.changed)
 		{

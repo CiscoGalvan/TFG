@@ -10,6 +10,7 @@ public class DamageSensor : Sensors
     // Boolean to track if a collision has occurred
     private bool _col;
 	private DamageEmitter _damageEmitter;
+	[Tooltip("If true, the Damage Sensor won't need to be included in any State in order to activate itself.")]
 	[SerializeField]
 	private bool _activeFromStart = false;
 	[SerializeField, HideInInspector]

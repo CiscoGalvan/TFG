@@ -8,8 +8,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class HorizontalActuator : MovementActuator
 {
-    [Header("Layers")]
-    public LayerMask _layersToCollide;
+
+	[SerializeField,HideInInspector]
+    private LayerMask _layersToCollide = ~0;
     private enum Direction
 	{
 		Left = -1,
@@ -37,7 +38,6 @@ public class HorizontalActuator : MovementActuator
 
     private float _initialSpeed = 0;
 
-    [Tooltip("Movement direction")]
     [SerializeField,HideInInspector]
     private Direction _direction = Direction.Left;
 
@@ -65,6 +65,7 @@ public class HorizontalActuator : MovementActuator
             {
                 _collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
             }
+			_collisionSensor.SetLayersToCollide(_layersToCollide);
             _collisionSensor.onEventDetected += CollisionEvent;
 			sensors.Add(_collisionSensor);
         }

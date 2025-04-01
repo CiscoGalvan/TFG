@@ -523,7 +523,7 @@ MonoBehaviour:
   _waypointData:
     waypoint: {fileID: 1942720467}
     timeToReach: 2
-    isAccelerated: 1
+    isAccelerated: 0
     shouldStop: 0
     easingFunction: 0
 --- !u!114 &307179857

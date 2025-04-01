@@ -8,7 +8,8 @@ using UnityEngine;
 public class PlayerCollisionDetection : MonoBehaviour
 {
 	[Header("Layers")]
-	public LayerMask _slideLayers;
+	[Tooltip("ESCIBID ALGO AQUI")]
+	public LayerMask _detectionLayers;
 
 	[SerializeField]
 	private bool _debugBoxes = false;
@@ -31,12 +32,12 @@ public class PlayerCollisionDetection : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		onGround = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, bottomSize, 0f, _slideLayers);
-		onWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _slideLayers)
-			|| Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _slideLayers);
+		onGround = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, bottomSize, 0f, _detectionLayers);
+		onWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _detectionLayers)
+			|| Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _detectionLayers);
 
-		onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _slideLayers);
-		onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _slideLayers);
+		onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _detectionLayers);
+		onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _detectionLayers);
 
 		wallSide = onRightWall ? -1 : 1;
 	}

@@ -564,11 +564,11 @@ GameObject:
   - component: {fileID: 620872461}
   - component: {fileID: 620872464}
   - component: {fileID: 620872465}
-  - component: {fileID: 620872466}
   - component: {fileID: 620872467}
   - component: {fileID: 620872468}
   - component: {fileID: 620872470}
   - component: {fileID: 620872469}
+  - component: {fileID: 620872471}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -756,11 +756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affac3741314594b91f394bfc33e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAccelerated: 1
+  _isAccelerated: 0
   _easingFunction: 0
   _layersToCollide:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 8
   _speed: 5
   _goalSpeed: 2
   _interpolationTime: 1
@@ -788,18 +788,6 @@ MonoBehaviour:
   _damageEmitterCollider: {fileID: 0}
   _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 1
---- !u!114 &620872466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620872448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &620872467
 Animator:
   serializedVersion: 5
@@ -868,6 +856,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _activeFromStart: 1
   _moreThanOneCollider: 0
+--- !u!114 &620872471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layersToCollide:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &650567831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -879,6 +882,10 @@ PrefabInstance:
     - target: {fileID: 3598148207369516525, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
+      propertyPath: _slideLayers.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _lifeText
