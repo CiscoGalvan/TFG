@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 8761735468437078765}
   - component: {fileID: 2695464878517782105}
   - component: {fileID: 6500649440640481016}
-  - component: {fileID: 757568115045636584}
   - component: {fileID: 4305333652292435932}
   - component: {fileID: 8727700008215509112}
   - component: {fileID: 4670813427920242121}
   - component: {fileID: 5653970946125908240}
+  - component: {fileID: 8054706839123588735}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -34,11 +34,10 @@ Transform:
   m_GameObject: {fileID: 3598148207369516525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.09, y: -4.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 895461743784060770}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6582927871472901150
@@ -135,7 +134,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -181,22 +180,6 @@ MonoBehaviour:
   speed: 10
   jumpForce: 15
   slideSpeed: 5
---- !u!114 &757568115045636584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3598148207369516525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4d50162f412b1408ad64e2569835cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityType: 0
-  _initialLife: 5
-  _lifeText: {fileID: 0}
-  _textname: 'Player:'
 --- !u!114 &4305333652292435932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
-  _debugBoxes: 0
+    m_Bits: 8
+  _debugBoxes: 1
   bottomOffset: {x: 0, y: -0.5}
   rightOffset: {x: 0.49, y: 0}
   leftOffset: {x: -0.49, y: 0}
@@ -261,34 +244,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
---- !u!1 &5058696140579843476
-GameObject:
+--- !u!114 &8054706839123588735
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 895461743784060770}
-  m_Layer: 0
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &895461743784060770
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5058696140579843476}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000009313226, y: -0.325, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9038349572681355833}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 3598148207369516525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4d50162f412b1408ad64e2569835cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityType: 1
+  _initialLife: 5
+  _lifeText: {fileID: 0}
+  _textName: 'Player:'

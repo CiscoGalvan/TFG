@@ -33,6 +33,13 @@ La clase \textit{PlayerMovement} actúa como el controlador del jugador. Su func
 Asimismo, maneja una situación particular en la que el jugador queda suspendido en el aire mientras se mueve hacia una pared. Si este caso no se contempla, la fuerza ejercida en el eje X puede anular la del eje Y, haciendo que el personaje quede inmóvil en una posición poco natural. Para evitar este comportamiento, si el jugador está en el aire y colisiona lateralmente con una superficie, se le fuerza a deslizarse a lo largo de esta con una velocidad constante.
 Esta clase permite modificar ciertos valores como la velocidad de movimiento, la potencia de salto o la velocidad con la que el jugador se desliza por las superficies anteriormente mencionadas.\\
 
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item A
+	\item B
+	\item C
+\end{itemize}
+
 \subsubsection{PlayerCollisionDetection}
 
 Este script se encarga de detectar las colisiones del jugadorPara ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo.
@@ -78,10 +85,15 @@ La clase \textit{State} representa un estado de comportamiento de un enemigo. Pa
 	 \item Actuators: son actualizados en cada bucle y representan acciones.
 	\item Sensors: pueden ser activados, lo que supone un cambio de estado al estado objetivo asociado en \textit{SensorStatePair}.
 \end{itemize}
-En caso de cambio de estado, se detienen todos los actuadores y sensores y se desuscriben de todos los eventos de los sensores.\\
+Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todos los eventos a los que estuvieran vinculados.\\
 
 \section{Actuators}
-\subsection{Movement}
+
+Como se ha mencionado anteriormente, un actuator es el script encargado de ejecutar una acción, por lo que para cada tipo de acción existirá un actuator que la represente.
+La clase \textit{Actuator} representa la clase base de la que heredarán todos los tipos de actuadores.
+Esta clase contiene métodos abstractos para iniciar, actualizar y destruir un actuador. Al ser abstractos cada clase que herede de \textit{Actuator} deberá implementar estos métodos.\\
+
+\subsection{MovementActuators}
 Movement contenido a ver si sale guay
 \subsubsection{AAAA}
 aaaaa

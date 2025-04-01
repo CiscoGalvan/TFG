@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1575611272841410677}
   - component: {fileID: 3019478861570162642}
   - component: {fileID: 2294954173113373433}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

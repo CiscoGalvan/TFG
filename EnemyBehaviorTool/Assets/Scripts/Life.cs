@@ -9,21 +9,19 @@ public class Life : MonoBehaviour
     [SerializeField]
     private EntityType _entityType;
 
-    [HideInInspector,Header("Life Settings")]
-    [Tooltip("Initial life value of the object.")]
+    
     [SerializeField]
     private float _initialLife = 5; // Initial life value
 
     private float _currentLife;
 
-    [Header("UI Settings")]
-    [Tooltip("UI text component to display life value.")]
+
     [SerializeField]
     private TextMeshProUGUI _lifeText; // UI text to display life value
 
-    [Tooltip("Prefix text for the life display.")]
+    
     [SerializeField]
-    private string _textname; // Prefix for life text display
+    private string _textName; // Prefix for life text display
 
 
     private bool _update = false;
@@ -75,11 +73,9 @@ public class Life : MonoBehaviour
 					{
 						if (_numOfDamage > 0)
 						{
-							Debug.Log("NumOfDamage > 0");
 							_actualDamageCooldown += Time.deltaTime;
 							if (_actualDamageCooldown > _damageCooldown)
-							{
-								Debug.Log("DAÑO");
+							{		
 								_numOfDamage--;
 								_actualDamageCooldown = 0;
 								DecreaseLife(_residualDamageAmount);
@@ -168,13 +164,13 @@ public class Life : MonoBehaviour
 	}
 	private void DecreaseLife(float num)
 	{
-        AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
-
-        
-         _animatorManager?.Damage();
-        
-        _currentLife -= num;
-		UpdateLifeText();
+		if(num > 0)
+		{
+			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
+			_animatorManager?.Damage();
+			_currentLife -= num;
+			UpdateLifeText();
+		}
 	}
 	private void InstantKill()
 	{
@@ -208,7 +204,7 @@ public class Life : MonoBehaviour
 	{
 		if (_lifeText != null && _entityType == EntityType.Player)
 		{
-			_lifeText.text = _textname + _currentLife;
+			_lifeText.text = _textName + _currentLife;
 		}
 	}
     public bool IsLifeLessThan(int value)
@@ -218,12 +214,12 @@ public class Life : MonoBehaviour
 
     public string GetTextName()
     {
-        return _textname;
+        return _textName;
     }
 
     public void SetTextName(string value)
     {
-        _textname = value;
+        _textName = value;
     }
 
     public TextMeshProUGUI GetLifeText()

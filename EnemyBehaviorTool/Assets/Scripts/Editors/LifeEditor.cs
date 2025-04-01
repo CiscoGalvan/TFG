@@ -5,23 +5,41 @@ using TMPro;
 [CustomEditor(typeof(Life))]
 public class LifeEditor : Editor
 {
-   
-    public override void OnInspectorGUI()
+	SerializedProperty _initialLife;
+	SerializedProperty _entityType;
+	SerializedProperty _textName;
+	SerializedProperty _lifeText;
+
+	private static readonly GUIContent _initialLifeLabel = new GUIContent("Initial Life", "Amount of life the entity will have since it's creation.");
+	private static readonly GUIContent _entityTypeLabel = new GUIContent("Entity Type", "Whether the entity is an Enemy or the Player.");
+	private static readonly GUIContent _textNameLabel = new GUIContent("Text Name", "Text that will be shown before the life amount.");
+	private static readonly GUIContent _lifeTextLabel = new GUIContent("Life Text", "Reference to the text that will show the life amount.");
+
+	private void OnEnable()
+	{
+		_initialLife = serializedObject.FindProperty("_initialLife");
+		_entityType = serializedObject.FindProperty("_entityType");
+		_textName = serializedObject.FindProperty("_textName");
+		_lifeText = serializedObject.FindProperty("_lifeText");
+	}
+	public override void OnInspectorGUI()
     {
-        Life life = (Life)target;
+		serializedObject.Update();
+		EditorGUILayout.LabelField("Life Settings", EditorStyles.boldLabel);
+		EditorGUI.indentLevel++;
+		EditorGUILayout.PropertyField(_initialLife, _initialLifeLabel);
+		EditorGUILayout.PropertyField(_entityType, _entityTypeLabel);
+		EditorGUI.indentLevel--;
 
-        EditorGUILayout.LabelField("Life Settings", EditorStyles.boldLabel);
-        life.SetInitialLife(EditorGUILayout.FloatField("Initial Life", life.GetInitialLife()));
 
-        life.SetEntityType((Life.EntityType)EditorGUILayout.EnumPopup("Entity Type", life.GetEntityType()));
-
-        if (life.GetEntityType() == Life.EntityType.Player)
+		if (_entityType.intValue == 1)
         {
             EditorGUILayout.LabelField("UI Settings", EditorStyles.boldLabel);
-            life.SetTextName(EditorGUILayout.TextField("Text Name", life.GetTextName()));
-            life.SetLifeText((TextMeshProUGUI)EditorGUILayout.ObjectField("Life Text", life.GetLifeText(), typeof(TextMeshProUGUI), true));
-
-        }
-
-    }
+			EditorGUI.indentLevel++;
+			EditorGUILayout.PropertyField(_textName, _textNameLabel);
+			EditorGUILayout.PropertyField(_lifeText, _lifeTextLabel);
+			EditorGUI.indentLevel--;
+		}
+		serializedObject.ApplyModifiedProperties();
+	}
 }

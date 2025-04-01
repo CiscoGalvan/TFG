@@ -159,7 +159,7 @@ public class State : MonoBehaviour
 		}
         foreach (var sensor in _sensorTransitions)
 		{
-			if (sensor != null)
+			if (sensor.sensor != null)
 			{
 				sensor.sensor.SetDebug(_debugState);
                 #if UNITY_EDITOR
