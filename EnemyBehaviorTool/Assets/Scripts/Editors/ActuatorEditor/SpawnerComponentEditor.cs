@@ -2,27 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 [CustomEditor(typeof(SpawnerActuator))]
 public class SpawnerComponentEditor : Editor
 {
-	private static readonly GUIContent numEnemiesLabel = new GUIContent("Amount Of Enemies", "Amount of enemies the spawner will spawn");
-	public override void OnInspectorGUI()
-	{
+    private GUIContent infiniteEnemiesLabel = new GUIContent("Infinite Enemies", "If true, the spawner will spawn enemies indefinitely. If false, it will spawn a limited number of enemies");
+    private GUIContent numOfEnemiesToSpawnLabel = new GUIContent("Amount of Enemies", "The number of enemies to spawn before stopping");
+    private GUIContent spawnIntervalLabel = new GUIContent("Spawn Interval", "The time interval (in seconds) between each spawn");
+    private GUIContent spawnListLabel = new GUIContent("Spawn List", "List of prefabs to spawn and their respective spawn points");
 
-		SpawnerActuator component = (SpawnerActuator)target;
+    private SerializedProperty infiniteEnemiesProp;
+    private SerializedProperty numOfEnemiesToSpawnProp;
+    private SerializedProperty spawnIntervalProp;
+    private SerializedProperty spawnListProp;
 
-		DrawDefaultInspector();
+    private void OnEnable()
+    {
+        
+        infiniteEnemiesProp = serializedObject.FindProperty("_infiniteEnemies");
+        numOfEnemiesToSpawnProp = serializedObject.FindProperty("_numOfEnemiesToSpawn");
+        spawnIntervalProp = serializedObject.FindProperty("_spawnInterval");
+        spawnListProp = serializedObject.FindProperty("_spawnList");
+    }
 
-		if (!component.GetInfiniteEnemies())
-		{
-			component.SetNumberOfEnemiesToSpawn(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.IntField(numEnemiesLabel, component.GetNumberOfEnemiesToSpawn()))));
-		}
-		// If GUI changed we must applicate those changes in editor
-		if (GUI.changed)
-		{
-			EditorUtility.SetDirty(component);
-		}
-	}
+    public override void OnInspectorGUI()
+    {
+
+      EditorGUILayout.PropertyField(infiniteEnemiesProp, infiniteEnemiesLabel);
+        if (!infiniteEnemiesProp.boolValue)
+          EditorGUILayout.PropertyField(numOfEnemiesToSpawnProp, numOfEnemiesToSpawnLabel);
+        
+        EditorGUILayout.PropertyField(spawnIntervalProp, spawnIntervalLabel);
+        EditorGUILayout.PropertyField(spawnListProp, spawnListLabel);
+
+        serializedObject.ApplyModifiedProperties();
+    }
 }

@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SpawnInfo
+{
+    [SerializeField]
+    public GameObject _prefabToSpawn;
+
+    [SerializeField]
+    public Transform _spawnPoint;
+}
 public class SpawnerActuator : Actuator
 {
-    
-    [SerializeField]
-    private bool _infiniteEnemies = true;
-    [SerializeField,HideInInspector]
-    private int _numOfEnemiesToSpawn = 0;
-
-    [SerializeField]
-    private GameObject _prefabToSpawn;
-
-    [SerializeField]
-    private Transform _spawnPoint;
 
     [SerializeField, Min(0)]
     private float _spawnInterval = 5f; // Tiempo de spawn ajustable desde el editor
+    [SerializeField]
+    private bool _infiniteEnemies = true;
+    [SerializeField, HideInInspector]
+    private int _numOfEnemiesToSpawn = 0;
+    [SerializeField] private List<SpawnInfo> _spawnList = new List<SpawnInfo>();
+    
 
     private Timer _timer;
     private int _numEnemiesAlreadySpawn;
@@ -41,10 +45,15 @@ public class SpawnerActuator : Actuator
     {
         if (_infiniteEnemies || _numEnemiesAlreadySpawn < _numOfEnemiesToSpawn)
         {
-			_numEnemiesAlreadySpawn++;
-            Instantiate(_prefabToSpawn, _spawnPoint.position,_spawnPoint.rotation);
+            _numEnemiesAlreadySpawn++;
+            foreach (var spawnInfo in _spawnList)
+            {
+                if (spawnInfo._prefabToSpawn != null && spawnInfo._spawnPoint != null)
+                {
+                    Instantiate(spawnInfo._prefabToSpawn, spawnInfo._spawnPoint.position, spawnInfo._spawnPoint.rotation);
+                }
+            }
             _animatorManager?.SpawnEvent();
-            
         }
     }
 	public override void UpdateActuator()

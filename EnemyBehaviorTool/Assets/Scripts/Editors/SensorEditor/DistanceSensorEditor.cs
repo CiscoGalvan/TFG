@@ -12,7 +12,7 @@ public class DistanceSensorEditor : Editor
     private static readonly GUIContent _detectionDistanceLabel = new GUIContent("Detection Distance", "The threshold distance for detection.");
     private static readonly GUIContent _targetLabel = new GUIContent("Target", "The object to measure distance from.");
     private static readonly GUIContent _areaTriggerLabel = new GUIContent("Area Trigger", "External trigger used for area-based detection.");
-    private static readonly GUIContent _startDetectingTimeLabel = new GUIContent("Setting Up Time", "Initial time the sensor will need to be active");
+    private static readonly GUIContent _startDetectingTimeLabel = new GUIContent("Start Detecting Time", "Initial time the sensor will need to be active");
     private static readonly GUIContent _detectionConditionLabel = new GUIContent("Detection Condition", "Specifies whether the target object is detected when it is inside or outside the defined magnitude range.");
 
     private SerializedProperty _distanceType;

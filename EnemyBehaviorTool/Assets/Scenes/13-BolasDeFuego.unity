@@ -808,11 +808,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3db287016e5a146906aea374dd5ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnInterval: 2
   _infiniteEnemies: 1
   _numOfEnemiesToSpawn: 0
-  _prefabToSpawn: {fileID: 6312299861578909251, guid: b9e9ade329657a84ca75e8d4658b8aa9, type: 3}
-  _spawnPoint: {fileID: 2104074709}
-  _spawnInterval: 2
+  _spawnList:
+  - _prefabToSpawn: {fileID: 6312299861578909251, guid: b9e9ade329657a84ca75e8d4658b8aa9, type: 3}
+    _spawnPoint: {fileID: 2104074709}
 --- !u!114 &1012068509
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -174,9 +174,9 @@ public class DistanceSensor : Sensors
         switch (_distanceType)
         {
             case TypeOfDistance.Magnitude:
-				Handles.color = new Color(0, 0, 1, 0.3f); 
-				Handles.SphereHandleCap(0, transform.position, Quaternion.identity, _detectionDistance * 2, EventType.Repaint);
-				break;
+                Handles.color = new Color(0, 0, 1, 0.3f);
+                Handles.DrawSolidDisc(transform.position, Vector3.forward, _detectionDistance);
+                break;
 
             case TypeOfDistance.SingleAxis:
                 Vector3 size;
