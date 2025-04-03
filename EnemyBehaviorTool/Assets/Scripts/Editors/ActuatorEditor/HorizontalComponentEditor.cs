@@ -11,6 +11,7 @@ public class HorizontalComponentEditor : ActuatorEditor
 		"Bounce: The object will bounce to the opposite direction.\n" +
 		"Destroy: The object will be destroyed after the contact.");
 	private static readonly GUIContent _directionLabel = new GUIContent("Direction", "Direction of the horizontal movement");
+    private static readonly GUIContent _followPlayerLabel = new GUIContent("Follow Player", "Direction of the horizontal movement will be the nearest to the player");
 	private static readonly GUIContent _layersToCollideLabel = new GUIContent("Layers To Collide", "Layers that will activate the Reaction After Collision event in case there is a collision.");
 	private bool _showMovementInfo = true;
 
@@ -24,14 +25,16 @@ public class HorizontalComponentEditor : ActuatorEditor
     private static readonly GUIContent _constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
    	#endregion
 
-	private SerializedProperty _directionProperty;
+	private SerializedProperty _followPlayerProperty;
+    private SerializedProperty _directionProperty;
 	private SerializedProperty _onCollisionReaction;
 	private SerializedProperty _throw;
 	private SerializedProperty _layersToCollide;
 
 	private void OnEnable()
 	{
-		_directionProperty = serializedObject.FindProperty("_direction");
+        _followPlayerProperty = serializedObject.FindProperty("_followPlayer");
+        _directionProperty = serializedObject.FindProperty("_direction");
 		_onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
 		_throw = serializedObject.FindProperty("_throw");
 		_layersToCollide = serializedObject.FindProperty("_layersToCollide");
@@ -54,8 +57,10 @@ public class HorizontalComponentEditor : ActuatorEditor
 		EditorGUI.indentLevel++;
 		if (_showMovementInfo)
 		{
-			EditorGUILayout.PropertyField(_directionProperty, _directionLabel);
-			if (component.IsMovementAccelerated())
+			EditorGUILayout.PropertyField(_followPlayerProperty, _followPlayerLabel);
+			if(!_followPlayerProperty.boolValue)
+				EditorGUILayout.PropertyField(_directionProperty, _directionLabel);
+            if (component.IsMovementAccelerated())
 			{
 				component.SetGoalSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed()))));
 				component.SetInterpolationTime(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(interpolationTimeLabel, component.GetInterpolationTime()))));

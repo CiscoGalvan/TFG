@@ -547,7 +547,8 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 620872464}
     targetState: {fileID: 620872463}
-  _debugState: 0
+  _damageEmittersInState: []
+  _debugState: 1
 --- !u!114 &620872462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +572,7 @@ MonoBehaviour:
   _throw: 0
   _direction: -1
   _onCollisionReaction: 1
+  _followPlayer: 1
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +590,8 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 620872465}
     targetState: {fileID: 620872461}
-  _debugState: 0
+  _damageEmittersInState: []
+  _debugState: 1
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +612,7 @@ MonoBehaviour:
   _detectionDistance: 5.84
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 0
+  _detectionCondition: 0
 --- !u!114 &620872465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,6 +633,7 @@ MonoBehaviour:
   _detectionDistance: 5.84
   _areaTrigger: {fileID: 0}
   _startDetectingTime: 0
+  _detectionCondition: 0
 --- !u!114 &620872466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,6 +737,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: groundLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670813427920242121, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
+      propertyPath: _detectionLayers.m_Bits
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}

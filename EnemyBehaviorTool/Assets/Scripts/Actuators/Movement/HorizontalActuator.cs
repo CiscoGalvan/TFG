@@ -46,12 +46,16 @@ public class HorizontalActuator : MovementActuator
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
 
 
+    [SerializeField, HideInInspector]
+    private bool _followPlayer = true;
 
-	private float _time;
+
+
+    private float _time;
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
     AnimatorManager _animatorManager;
-
+    private GameObject _playerReference;
     public override void StartActuator()
     {
 		_actuatorActive = true;
@@ -77,16 +81,40 @@ public class HorizontalActuator : MovementActuator
 		}
 		_initialSpeed = _speed;
         if (_throw) ApplyForce();
-        if (_animatorManager != null)
+		
+        if (_followPlayer)
         {
-            _animatorManager.ChangeSpeedX(_speed * (int)_direction);
-            if (_direction == Direction.Left)
-                _animatorManager.LeftDirection();
+            var objectsWithPlayerTagArray = GameObject.FindGameObjectsWithTag("Player");
+            if (objectsWithPlayerTagArray.Length == 0)
+            {
+                Debug.LogWarning("There was no object with Player tag, the proyectile angle won't be controlled");
+            }
             else
-                _animatorManager.RightDirection();
+            {
+                _playerReference = objectsWithPlayerTagArray[0];
+                Vector3 direction = _playerReference.transform.position - transform.position;
+                if (direction.x > 0)
+                {
+                    _direction = Direction.Right;
+
+                }
+                else
+                {
+                    _direction = Direction.Left;
+                }
+            }
+
         }
+		if (_animatorManager != null)
+		{
+			_animatorManager.ChangeSpeedX(_speed * (int)_direction);
+			if (_direction == Direction.Left)
+				_animatorManager.LeftDirection();
+			else
+				_animatorManager.RightDirection();
+		}
     }
-    public override void DestroyActuator()
+	public override void DestroyActuator()
     {
 		_actuatorActive = false;
         if (_collisionSensor != null)
@@ -99,9 +127,23 @@ public class HorizontalActuator : MovementActuator
         if (!_throw) ApplyForce();
 	}
 	private void ApplyForce()
-	{ 
+	{
 		_time += Time.deltaTime;
-		int dirValue = (int)_direction;
+        if (_followPlayer)
+        {        
+            Vector3 direction = _playerReference.transform.position - transform.position;
+            if (direction.x > 0)
+            {
+                _direction = Direction.Right;
+
+            }
+            else
+            {
+                _direction = Direction.Left;
+            }
+            
+        }
+        int dirValue = (int)_direction;
 		if (!_isAccelerated)
 		{
 			//MRU

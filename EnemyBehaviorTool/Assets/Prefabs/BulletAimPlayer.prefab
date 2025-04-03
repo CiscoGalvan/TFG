@@ -182,6 +182,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 152223750201730518}
   _sensorTransitions: []
+  _damageEmittersInState: []
   _debugState: 1
 --- !u!114 &2284073555286176473
 MonoBehaviour:

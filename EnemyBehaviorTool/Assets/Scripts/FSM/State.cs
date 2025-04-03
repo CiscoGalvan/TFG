@@ -32,7 +32,7 @@ public class State : MonoBehaviour
 
 	[SerializeField]
 	[Tooltip("It determines whether the debug elements from the actuators and sensors included in this state are visible or not")]
-	private bool _debugState = false;
+	private bool _debugState = true;
 
 
 	public void StartState()
@@ -51,7 +51,7 @@ public class State : MonoBehaviour
         {
             if (pair.sensor != null)
             {
-                sensorHashSet.Add(pair.sensor); // Opcional, si quieres que también estén en sensorHashSet
+                sensorHashSet.Add(pair.sensor); // Opcional, si quieres que tambiï¿½n estï¿½n en sensorHashSet
             }
         }
         foreach (var sensor in sensorHashSet)

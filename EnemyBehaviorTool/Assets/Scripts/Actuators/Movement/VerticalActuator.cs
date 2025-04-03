@@ -58,6 +58,9 @@ public class VerticalActuator : MovementActuator
     // public event Action OnBounce; // Evento para notificar el rebote
     //public event Action OnDestroy; // Evento para notificar el rebote
     AnimatorManager _animatorManager;
+    [SerializeField, HideInInspector]
+    private bool _followPlayer = true;
+    private GameObject _playerReference;
     public override void StartActuator()
     {
         _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
@@ -81,7 +84,34 @@ public class VerticalActuator : MovementActuator
             _speed = GetComponent<Rigidbody2D>().velocity.x;
         }
         _initial_speed = _speed;
-        if (_throw) ApllyForce();
+        if (_throw)
+        {
+            
+ApllyForce(); }
+        if (_followPlayer)
+            {
+                var objectsWithPlayerTagArray = GameObject.FindGameObjectsWithTag("Player");
+                if (objectsWithPlayerTagArray.Length == 0)
+                {
+                    Debug.LogWarning("There was no object with Player tag, the proyectile angle won't be controlled");
+                }
+                else
+                {
+                    _playerReference = objectsWithPlayerTagArray[0];
+                    Vector3 direction = _playerReference.transform.position - transform.position;
+                    if (direction.y > 0)
+                    {
+                        _direction = Direction.Up;
+
+                    }
+                    else
+                    {
+                        _direction = Direction.Down;
+                    }
+                }
+
+            }
+       
         if (_animatorManager != null)
         {
             _animatorManager.ChangeSpeedY(_initial_speed);
@@ -108,6 +138,20 @@ public class VerticalActuator : MovementActuator
     private void ApllyForce()
     {
         _time += Time.deltaTime;
+        if (_followPlayer)
+        {
+            Vector3 direction = _playerReference.transform.position - transform.position;
+            if (direction.y > 0)
+            {
+                _direction = Direction.Up;
+
+            }
+            else
+            {
+                _direction = Direction.Down;
+            }
+
+        }
         int dirValue = (int)_direction;
         if (!_isAccelerated)
         {
