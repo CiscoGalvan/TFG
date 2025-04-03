@@ -819,6 +819,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 1009835260}
   _sensorTransitions: []
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!114 &1009835254
 MonoBehaviour:
@@ -989,7 +990,7 @@ MonoBehaviour:
   _infiniteEnemies: 1
   _numOfEnemiesToSpawn: 0
   _spawnList:
-  - _prefabToSpawn: {fileID: 6312299861578909251, guid: 99182299bda6a0441b148bc8c2516f5b, type: 3}
+  - _prefabToSpawn: {fileID: 6312299861578909251, guid: f54b6bc18190ec248a00bdb1acfaeb4d, type: 3}
     _spawnPoint: {fileID: 1466693878}
 --- !u!1 &1151592761
 GameObject:

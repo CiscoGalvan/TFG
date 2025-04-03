@@ -333,7 +333,7 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
+  _damageEmitterCollider: {fileID: 307179851}
   _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
 --- !u!114 &307179849
@@ -353,6 +353,7 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 307179858}
     targetState: {fileID: 307179857}
+  _damageEmittersInState: []
   _debugState: 1
 --- !u!114 &307179850
 MonoBehaviour:
@@ -543,6 +544,7 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 307179859}
     targetState: {fileID: 307179849}
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!114 &307179858
 MonoBehaviour:

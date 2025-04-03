@@ -7,7 +7,7 @@ public abstract class Actuator: MonoBehaviour
 {
     //hasset of sensors needed by the actuator
     protected HashSet<Sensors> sensors = new HashSet<Sensors>();
-    protected bool _actuatorActive;
+   
     protected bool _debugActuator;
 	public abstract void UpdateActuator();
     public abstract void StartActuator();

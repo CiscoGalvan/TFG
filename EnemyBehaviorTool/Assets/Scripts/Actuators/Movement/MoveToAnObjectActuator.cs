@@ -32,17 +32,15 @@ public class MoveToAnObjectActuator : MovementActuator
 	private bool _moving;
 
 	private float _travelElapsedTime;
-	private float _stopElapsedTime;
+
 	private float _t;
 
 	private Vector2 _startInterpolationPosition;
 
 	public override void StartActuator()
 	{
-		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
-		_stopElapsedTime = 0f;
 		_t = 0f;
 		_moving = true;
 
@@ -74,17 +72,6 @@ public class MoveToAnObjectActuator : MovementActuator
 	}
 	private void MoveTowardsTarget(WaypointData waypoint, Vector2 targetPos)
 	{
-		//// Si ya se llegó y se debe detener, acumula el tiempo de parada
-		//if (_t >= 1f && waypoint.shouldStop)
-		//{
-		//	_stopElapsedTime += Time.deltaTime;
-		//	if (_stopElapsedTime >= waypoint.stopDuration)
-		//	{
-		//		_moving = false;
-		//	}
-		//	return;
-		//}
-
 		_travelElapsedTime += Time.deltaTime;
 		_t = _travelElapsedTime / waypoint.timeToReach;
 
@@ -108,7 +95,7 @@ public class MoveToAnObjectActuator : MovementActuator
 	
 	public override void DestroyActuator()
 	{
-		_actuatorActive = false;
+			
 	}
 	private void OnDrawGizmos()
 	{

@@ -64,10 +64,11 @@ public class State : MonoBehaviour
         {
             var damageEmitter = GetComponent<DamageEmitter>();
             if (damageEmitter != null)
-                Debug.LogWarning("While there was a DamageEmitter detected there wasn't any in the DamageEmitterInState list.\n" +
-                    this.gameObject.name +" won't report any damage.\n"+
-                    "Please include it int the State's DamageEmitterInState list.");
-        }
+				Debug.Log($"A DamageEmitter was detected, but it is not in the DamageEmitterInState list.\n" +
+			      $"{this.gameObject.name} will not report any damage.\n" +
+			      $"Please include it in the State's DamageEmitterInState list if {this.gameObject.name} should deal damage.");
+
+		}
 		foreach (var damageEmitter in _damageEmittersInState)
 		{
             if (damageEmitter)

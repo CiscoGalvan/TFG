@@ -37,7 +37,6 @@ public class VerticalActuator : MovementActuator
 	[SerializeField]
 	[HideInInspector]
 	private float _interpolationTime = 0;
-    private CollisionSensor _collisionSensor;
 
     private float _initial_speed = 0;
    
@@ -55,28 +54,17 @@ public class VerticalActuator : MovementActuator
 	[SerializeField, HideInInspector]
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
 
-    // public event Action OnBounce; // Evento para notificar el rebote
-    //public event Action OnDestroy; // Evento para notificar el rebote
     AnimatorManager _animatorManager;
     [SerializeField, HideInInspector]
     private bool _followPlayer = true;
     private GameObject _playerReference;
     public override void StartActuator()
     {
+      
         _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
-        _collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
-		if (_onCollisionReaction == OnCollisionReaction.Bounce || _onCollisionReaction == OnCollisionReaction.Destroy)
-		{
-			_collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
-			if (_collisionSensor == null) //si no esta creado lo crea
-			{
-				_collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
-			}
-			_collisionSensor.onEventDetected += CollisionEvent;
-			sensors.Add(_collisionSensor);
-		}
+
 
 		_time = 0;
         if (_isAccelerated)
@@ -86,8 +74,8 @@ public class VerticalActuator : MovementActuator
         _initial_speed = _speed;
         if (_throw)
         {
-            
-ApllyForce(); }
+            ApllyForce(); 
+        }
         if (_followPlayer)
             {
                 var objectsWithPlayerTagArray = GameObject.FindGameObjectsWithTag("Player");
@@ -123,10 +111,7 @@ ApllyForce(); }
     }
     public override void DestroyActuator()
     {
-        if (_collisionSensor != null)
-        {
-            _collisionSensor.onEventDetected += CollisionEvent;
-        }
+        
     }
 
     public override void UpdateActuator()
@@ -178,52 +163,44 @@ ApllyForce(); }
             if (_animatorManager != null) _animatorManager.ChangeSpeedY(_rigidbody.velocity.y);
         }
     }
-    void CollisionEvent(Sensors s)
-    {
 
-        Collision2D col = _collisionSensor.GetCollidedObject();
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == OnCollisionReaction.None) return;
+		
+        ContactPoint2D contact = collision.contacts[0];
+		Vector2 normal = contact.normal;
 
-        if (col == null) return;
-        //comprobacion  de:
-        // choque enemigo con mundo 
-        //choque por izquierda o derecha
-        if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
-        ContactPoint2D contact = col.contacts[0];
-        Vector2 normal = contact.normal;
-
-        if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
-        {
+		if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
+		{
 
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
-                bool correctCollision = (_direction == Direction.Up && normal.y < 0) || (_direction == Direction.Down && normal.y > 0);
-                if (correctCollision) {
-                    _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
-                    if (_animatorManager != null)
-                    {
-                        _animatorManager.RotateSpriteY();
-                        if (_direction == Direction.Up)
-                            _animatorManager.UpDirection();
-                        else
-                            _animatorManager.DownDirection();
-                    }
-                }
-                
-               
-                //OnBounce?.Invoke();
-            }
+				bool correctCollision = (_direction == Direction.Up && normal.y < 0) || (_direction == Direction.Down && normal.y > 0);
+				if (correctCollision)
+				{
+					_direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
+					if (_animatorManager != null)
+					{
+						_animatorManager.RotateSpriteY();
+						if (_direction == Direction.Up)
+							_animatorManager.UpDirection();
+						else
+							_animatorManager.DownDirection();
+					}
+				}
+			}
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
-                // Destroy(this.gameObject);
-                if (_animatorManager != null) _animatorManager.Destroy();
+				if (_animatorManager != null && _animatorManager.enabled ) _animatorManager.Destroy();
 				else
 					Destroy(this.gameObject);
-                //OnDestroy?.Invoke();
-            }
-        }
+			}
+		}
 
-    }
-    private void OnDrawGizmosSelected()
+	}
+	
+	private void OnDrawGizmosSelected()
     {
         if (!this.isActiveAndEnabled || !_debugActuator) return;
 

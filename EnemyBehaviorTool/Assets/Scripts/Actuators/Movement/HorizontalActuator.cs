@@ -31,7 +31,7 @@ public class HorizontalActuator : MovementActuator
 	[SerializeField, HideInInspector]
 	private float _interpolationTime = 0;
 
-	private CollisionSensor _collisionSensor;
+	//private CollisionSensor _collisionSensor;
     [SerializeField, HideInInspector]
     private bool _throw; //if this is activated the velocity will be update just ones
 
@@ -45,36 +45,23 @@ public class HorizontalActuator : MovementActuator
 	[SerializeField, HideInInspector]
 	private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
 
-
     [SerializeField, HideInInspector]
     private bool _followPlayer = true;
 
-
-
     private float _time;
+
     private Rigidbody2D _rigidbody;
     private EasingFunction.Function _easingFunc;
     AnimatorManager _animatorManager;
     private GameObject _playerReference;
     public override void StartActuator()
     {
-		_actuatorActive = true;
+		
         _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _rigidbody = this.GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
-		if (_onCollisionReaction == OnCollisionReaction.Bounce ||_onCollisionReaction == OnCollisionReaction.Destroy)
-		{
-            _collisionSensor = this.GameObject().GetComponent<CollisionSensor>();
-            if (_collisionSensor == null) //si no esta creado lo crea
-            {
-                _collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
-            }
-			_collisionSensor.SetLayersToCollide(_layersToCollide);
-            _collisionSensor.onEventDetected += CollisionEvent;
-			sensors.Add(_collisionSensor);
-        }
-		
-        _time = 0;
+
+		_time = 0;
 		if (_isAccelerated)
 		{
 			_speed = _rigidbody.velocity.x;
@@ -116,11 +103,7 @@ public class HorizontalActuator : MovementActuator
     }
 	public override void DestroyActuator()
     {
-		_actuatorActive = false;
-        if (_collisionSensor != null)
-        {
-            _collisionSensor.onEventDetected -= CollisionEvent;
-        }
+		
     }
 	public override void UpdateActuator()
 	{
@@ -169,29 +152,23 @@ public class HorizontalActuator : MovementActuator
 			}
            _animatorManager?.ChangeSpeedX(_rigidbody.velocity.x);
         }
-        
     }
-	void CollisionEvent(Sensors s)
-    {
-		Collision2D col = _collisionSensor.GetCollidedObject();
 
-		if (col == null) return;
-        //comprobacion  de:
-        // choque enemigo con mundo 
-        //choque por izquierda o derecha
-        if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
-        ContactPoint2D contact = col.contacts[0];
-		Vector2 normal = contact.normal;
-
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction ==  OnCollisionReaction.None) return;
+		
+		ContactPoint2D contact = collision.contacts[0];
+		Vector2 normal = contact.normal; 
 		if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
 		{
 			if (_onCollisionReaction == OnCollisionReaction.Bounce)
 			{
-                bool hitFromCorrectSide = (_direction == Direction.Left && normal.x > 0) || (_direction == Direction.Right && normal.x < 0);
-                if (hitFromCorrectSide)
-                {
-                    _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-					 
+				bool hitFromCorrectSide = (_direction == Direction.Left && normal.x > 0) || (_direction == Direction.Right && normal.x < 0);
+				if (hitFromCorrectSide)
+				{
+					_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
+
 					if (_animatorManager.enabled)
 					{
 						_animatorManager?.RotateSpriteX();
@@ -200,20 +177,20 @@ public class HorizontalActuator : MovementActuator
 						else
 							_animatorManager?.RightDirection();
 					}
-                }
-              
-            }
+				}
+
+			}
 			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 			{
 				if (_animatorManager != null || !_animatorManager.enabled) _animatorManager.Destroy();
 				else Destroy(this.gameObject);
 
-            }
+			}
 		}
 		
 	}
-    
-    private void OnDrawGizmosSelected()
+	
+	private void OnDrawGizmosSelected()
     {
         if (!this.isActiveAndEnabled || !_debugActuator) return;
 

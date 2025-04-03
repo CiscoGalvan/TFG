@@ -78,7 +78,6 @@ public class MoveToAPointActuator : MovementActuator
 
     public override void StartActuator()
 	{
-		_actuatorActive = true;
 		_rb = GetComponent<Rigidbody2D>();
 		_travelElapsedTime = 0f;
 		_stopElapsedTime = 0f;
@@ -249,7 +248,7 @@ public class MoveToAPointActuator : MovementActuator
 	}
 	public override void DestroyActuator()
 	{
-		_actuatorActive = false;
+			
 	}
 	private void OnDrawGizmos()
 	{

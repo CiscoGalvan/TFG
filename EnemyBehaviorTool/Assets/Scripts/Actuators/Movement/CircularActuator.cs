@@ -51,7 +51,7 @@ public class CircularActuator : MovementActuator
     public override void StartActuator()
 	{
          _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
-        _actuatorActive = true;
+        
 		_startingPosition = transform.position;
 		_rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.gravityScale = 0f;
@@ -195,7 +195,7 @@ public class CircularActuator : MovementActuator
 
 	public override void DestroyActuator()
 	{
-		_actuatorActive = false;
+		
 	}
 
 	#region Setters and getters

@@ -37,7 +37,6 @@ public class Directional_Actuator : MovementActuator
     [SerializeField,HideInInspector]
 	private HorizontalActuator.OnCollisionReaction _onCollisionReaction = HorizontalActuator.OnCollisionReaction.None;
 
-	private CollisionSensor _collisionSensor;
 
 	private Vector2 _prevVelocity;
 
@@ -49,17 +48,12 @@ public class Directional_Actuator : MovementActuator
 	private GameObject _playerReference;
 	public override void DestroyActuator()
 	{
-		_actuatorActive = false;
-		if (_collisionSensor != null)
-		{
-			_collisionSensor.onEventDetected -= CollisionEvent;
-		}
+		
 	}
 
 	public override void StartActuator()
 	{
-		_actuatorActive = true;
-        _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
+		_animatorManager = this.gameObject.GetComponent<AnimatorManager>();
         _rigidbody = GetComponent<Rigidbody2D>();
 		_easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
 		_time = 0;
@@ -80,17 +74,6 @@ public class Directional_Actuator : MovementActuator
 			
 		}
 
-		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce ||
-			_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
-		{
-			_collisionSensor = this.gameObject.GetComponent<CollisionSensor>();
-			if (_collisionSensor == null)
-			{
-				_collisionSensor = this.gameObject.AddComponent<CollisionSensor>();
-			}
-			_collisionSensor.onEventDetected += CollisionEvent;
-			sensors.Add(_collisionSensor);
-		}
 
 		if (_isAccelerated)
 		{
@@ -156,27 +139,20 @@ public class Directional_Actuator : MovementActuator
 			//}
 		}
 	}
-
-	void CollisionEvent(Sensors s)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		Collision2D col = _collisionSensor.GetCollidedObject();
-		if (col == null) return;
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == HorizontalActuator.OnCollisionReaction.None) return;
 
-
-        if ((_layersToCollide.value & (1 << col.gameObject.layer)) == 0) return;
-
-        if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
+		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
 		{
-
-            
-            ContactPoint2D contact = col.contacts[0];
+			ContactPoint2D contact = collision.contacts[0];
 			Vector2 normal = contact.normal;
 			// We use the velocity stored before the collision happened
 			Vector2 currentVelocity = _prevVelocity;
 			if (Vector2.Dot(currentVelocity, normal) >= 0)
-            {
-                return; // Ignorar colisión no válida
-            }
+			{
+				return; // Ignorar colisión no válida
+			}
 			// We calcule reflection
 			float dotProduct = Vector2.Dot(currentVelocity, normal);
 			Vector2 reflectedVelocity = currentVelocity - 2 * dotProduct * normal;

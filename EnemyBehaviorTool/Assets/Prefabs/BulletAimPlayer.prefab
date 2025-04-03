@@ -149,7 +149,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 256
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -182,7 +182,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 152223750201730518}
   _sensorTransitions: []
-  _damageEmittersInState: []
+  _damageEmittersInState:
+  - {fileID: 2284073555286176473}
   _debugState: 1
 --- !u!114 &2284073555286176473
 MonoBehaviour:
@@ -259,7 +260,7 @@ MonoBehaviour:
   _easingFunction: 0
   _layersToCollide:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   _speed: 10
   _goalSpeed: 0
   _interpolationTime: 0
