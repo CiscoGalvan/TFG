@@ -42,9 +42,6 @@ public class DamageEmitter : MonoBehaviour
     [SerializeField, HideInInspector]
     private Collider2D _damageEmitterCollider;
 
-	[SerializeField, HideInInspector]
-	private bool _moreThanOneCollider;
-
     [SerializeField,HideInInspector]
     private bool _destroyAfterDoingDamage = false;
     #region Getters and Setters
@@ -104,16 +101,8 @@ public class DamageEmitter : MonoBehaviour
 
 
     private bool _isEmitting = false;
-	private void Start()
-	{
-		if(_damageEmitterCollider == null)
-        {
-            _damageEmitterCollider = GetComponent<Collider2D>();
-        }
 
-	}
-
-    public Collider2D GetDamageEmitterCollider() => _damageEmitterCollider;
+   
     public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
     public void SetEmitting(bool newValue)
     {
