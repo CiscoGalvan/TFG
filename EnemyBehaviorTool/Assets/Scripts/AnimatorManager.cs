@@ -9,10 +9,7 @@ using UnityEditor;
 public class AnimatorManager : MonoBehaviour
 {
     private Animator _animator;
-    [SerializeField]
-    private bool _isSpriteWellOrientedX = true;
-    [SerializeField]
-    private bool _isSpriteWellOrientedY = true;
+   
     [SerializeField]
     private bool _canFlipX = true;
     [SerializeField]
@@ -20,21 +17,6 @@ public class AnimatorManager : MonoBehaviour
     [SerializeField]
     private bool _canRotate = true;
     SpriteRenderer _spriteRenderer;
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if (_spriteRenderer == null)
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (_spriteRenderer != null)
-        {
-            _spriteRenderer.flipX = !_isSpriteWellOrientedX;
-            _spriteRenderer.flipY = !_isSpriteWellOrientedY;
-        }
-
-    }
-  #endif
 
     private void Start()
     {
@@ -47,14 +29,6 @@ public class AnimatorManager : MonoBehaviour
             return;
         }
 
-        if (!_isSpriteWellOrientedX)
-        {
-            RotateSpriteX();
-        }
-        if (!_isSpriteWellOrientedY)
-        {
-            RotateSpriteY();
-        }
     }
 
     public void RotateSpriteX()

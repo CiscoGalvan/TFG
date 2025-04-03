@@ -262,8 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSpriteWellOrientedX: 1
-  _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
   _canRotate: 1
