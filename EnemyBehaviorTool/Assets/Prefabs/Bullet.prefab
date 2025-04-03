@@ -182,6 +182,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 916467186555705770}
   _sensorTransitions: []
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!114 &916467186555705770
 MonoBehaviour:
@@ -206,6 +207,7 @@ MonoBehaviour:
   _throw: 0
   _direction: -1
   _onCollisionReaction: 2
+  _followPlayer: 1
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSpriteWellOrientedX: 1
-  _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
   _canRotate: 0

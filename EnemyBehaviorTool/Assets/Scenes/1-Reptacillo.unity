@@ -754,7 +754,7 @@ MonoBehaviour:
   _sensorTransitions: []
   _damageEmittersInState:
   - {fileID: 620872465}
-  _debugState: 0
+  _debugState: 1
 --- !u!114 &620872464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,8 +833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSpriteWellOrientedX: 1
-  _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
   _canRotate: 1
@@ -1717,8 +1715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSpriteWellOrientedX: 1
-  _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
   _canRotate: 1
