@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272dcdf8a9ae8034fa510e3386fe48fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer:
+  _detectionLayers:
     serializedVersion: 2
     m_Bits: 8
   _debugBoxes: 1

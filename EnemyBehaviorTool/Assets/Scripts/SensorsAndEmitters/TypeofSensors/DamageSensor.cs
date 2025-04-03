@@ -60,7 +60,7 @@ public class DamageSensor : Sensors
 		if (_sensorActive)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null && _damageEmitter.GetDamageEmitterCollider() == collision.collider)
+			if (_damageEmitter != null && _damageEmitter.GetEmitting() && _damageEmitter.GetDamageEmitterCollider() == collision.collider)
 			{
 				if (_damageEmitter.GetDestroyAfterDoingDamage())
 				{

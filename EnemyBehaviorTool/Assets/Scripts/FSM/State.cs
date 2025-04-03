@@ -26,12 +26,16 @@ public class State : MonoBehaviour
 
     private State _nextState = null;
 
-    [SerializeField]
+   
+	[SerializeField]
+	private List<DamageEmitter> _damageEmittersInState = new List<DamageEmitter>();
+
+	[SerializeField]
 	[Tooltip("It determines whether the debug elements from the actuators and sensors included in this state are visible or not")]
 	private bool _debugState = false;
-   
 
-    public void StartState()
+
+	public void StartState()
     {
         foreach (var actuator in actuatorList)
         {
@@ -56,7 +60,20 @@ public class State : MonoBehaviour
             if(sensor)
                 sensor.StartSensor();
         }
-        SubscribeToSensorEvents();
+        if(_damageEmittersInState.Count == 0)
+        {
+            var damageEmitter = GetComponent<DamageEmitter>();
+            if (damageEmitter != null)
+                Debug.LogWarning("While there was a DamageEmitter detected there wasn't any in the DamageEmitterInState list.\n" +
+                    this.gameObject.name +" won't report any damage.\n"+
+                    "Please include it int the State's DamageEmitterInState list.");
+        }
+		foreach (var damageEmitter in _damageEmittersInState)
+		{
+            if (damageEmitter)
+                damageEmitter.SetEmitting(true);
+		}
+		SubscribeToSensorEvents();
     }
 	public void DestroyState()
 	{
@@ -72,7 +89,12 @@ public class State : MonoBehaviour
 			if (sensor)
 				sensor.StopSensor();
 		}
-    }
+		foreach (var damageEmitter in _damageEmittersInState)
+		{
+			if (damageEmitter)
+				damageEmitter.SetEmitting(false);
+		}
+	}
 
 	// Update is called once per frame
 	public void UpdateState()

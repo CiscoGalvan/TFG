@@ -743,6 +743,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 620872464}
   _sensorTransitions: []
+  _damageEmittersInState:
+  - {fileID: 620872465}
   _debugState: 0
 --- !u!114 &620872464
 MonoBehaviour:
@@ -779,15 +781,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016eafcff9d8bd2458a5b8d0af2b2576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageType: 2
-  _instaKill: 0
+  _damageType: 0
+  _instaKill: 1
   _amountOfDamage: 1
   _damageCooldown: 0.2
   _numOfDamageApplication: 10
   _residualDamageAmount: 0.2
   _damageEmitterCollider: {fileID: 0}
   _moreThanOneCollider: 0
-  _destroyAfterDoingDamage: 1
+  _destroyAfterDoingDamage: 0
 --- !u!95 &620872467
 Animator:
   serializedVersion: 5

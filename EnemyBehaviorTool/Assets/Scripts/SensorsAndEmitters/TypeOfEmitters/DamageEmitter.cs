@@ -100,16 +100,24 @@ public class DamageEmitter : MonoBehaviour
     // Returns whether persistent damage has ended
     public bool EndPersistentDamage() => _endPersistentDamage;
 
-	#endregion
+    #endregion
 
+
+    private bool _isEmitting = false;
 	private void Start()
 	{
 		if(_damageEmitterCollider == null)
         {
             _damageEmitterCollider = GetComponent<Collider2D>();
         }
+
 	}
 
     public Collider2D GetDamageEmitterCollider() => _damageEmitterCollider;
     public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
+    public void SetEmitting(bool newValue)
+    {
+        _isEmitting = newValue;
+    }
+    public bool GetEmitting() => _isEmitting;
 }
