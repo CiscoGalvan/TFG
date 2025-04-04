@@ -86,16 +86,23 @@ public class VerticalActuator : MovementActuator
                 else
                 {
                     _playerReference = objectsWithPlayerTagArray[0];
-                    Vector3 direction = _playerReference.transform.position - transform.position;
-                    if (direction.y > 0)
+                    if(_playerReference == null)
                     {
-                        _direction = Direction.Up;
-
+                    	Debug.LogWarning("Player reference was null, the actuator may not be precise.");
                     }
                     else
                     {
-                        _direction = Direction.Down;
-                    }
+					    Vector3 direction = _playerReference.transform.position - transform.position;
+					    if (direction.y > 0)
+					    {
+						    _direction = Direction.Up;
+
+					    }
+					    else
+					    {
+						    _direction = Direction.Down;
+					    }
+				    }
                 }
 
             }
@@ -123,7 +130,7 @@ public class VerticalActuator : MovementActuator
     private void ApllyForce()
     {
         _time += Time.deltaTime;
-        if (_followPlayer)
+        if (_followPlayer && _playerReference != null)
         {
             Vector3 direction = _playerReference.transform.position - transform.position;
             if (direction.y > 0)
@@ -137,7 +144,11 @@ public class VerticalActuator : MovementActuator
             }
 
         }
-        int dirValue = (int)_direction;
+		else if (_playerReference == null)
+		{
+			Debug.LogWarning("Player reference was null, the actuator may not be precise.");
+		}
+		int dirValue = (int)_direction;
         if (!_isAccelerated)
         {
             //MRU
