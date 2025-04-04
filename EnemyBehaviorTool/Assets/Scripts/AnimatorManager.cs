@@ -17,12 +17,13 @@ public class AnimatorManager : MonoBehaviour
     [SerializeField]
     private bool _canRotate = true;
     SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rb;
 
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-
+        _rb = GetComponent<Rigidbody2D>();
         if (_animator == null)
         {
             Debug.LogError("NO ANIMATOR IS ATTACHED");
@@ -30,13 +31,30 @@ public class AnimatorManager : MonoBehaviour
         }
 
     }
-
-    public void RotateSpriteX()
+    private void Update()
+    {
+        if(_rb != null)
+        {
+            Vector2 velocity = _rb.velocity;
+            _animator.SetFloat("XSpeed", velocity.x);
+            _animator.SetFloat("YSpeed", velocity.y);
+        }
+      
+    }
+    private void RotateSpriteXLeft()
     {
         if (!_canFlipX) return;
         if (_spriteRenderer != null)
         {
-            _spriteRenderer.flipX = !_spriteRenderer.flipX;
+            _spriteRenderer.flipX = true;
+        }
+    }
+    private void RotateSpriteXRight()
+    {
+        if (!_canFlipX) return;
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.flipX = false;
         }
     }
 
@@ -79,14 +97,14 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetTrigger("Spawn");
     }
 
-    public void LeftDirection()
+    private void LeftDirection()
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetBool("Left", true);
         _animator.SetBool("Right", false);
     }
 
-    public void RightDirection()
+    private void RightDirection()
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetBool("Left", false);
@@ -110,29 +128,17 @@ public class AnimatorManager : MonoBehaviour
     public void XLeftChangeAndFlip()
     {
         if (_animator == null || !_animator.enabled) return;
-        if (_animator.GetBool("Right"))
-        {
-            RotateSpriteX();
-        }
-        LeftDirection();
+       
+       RotateSpriteXLeft();
+       LeftDirection();
     }
 
     public void XRightChangeAndFlip()
     {
         if (_animator == null || !_animator.enabled) return;
-        if (_animator.GetBool("Left"))
-        {
-            RotateSpriteX();
-        }
+        RotateSpriteXRight();
         RightDirection();
     }
-
-    public void ChangeSpeedX(float speed)
-    {
-        if (_animator == null || !_animator.enabled) return;
-        _animator.SetFloat("XSpeed", speed);
-    }
-
     public void ChangeSpeedY(float speed)
     {
         if (_animator == null || !_animator.enabled) return;

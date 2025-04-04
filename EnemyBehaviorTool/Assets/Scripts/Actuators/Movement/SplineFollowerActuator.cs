@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.Splines;
-using Unity.Mathematics; // Necesario para float3
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class SplineFollowerActuator : Actuator
 {
+    private enum TeleportToClosestPoint
+    {
+        None = 0,
+        Player = 1,
+        Spline = 2
+    }
     [SerializeField] private SplineContainer _splineContainer;
     [SerializeField] private float _speed = 5f;
-    [SerializeField] private bool _teleportToClosestPoint = false;
+    [SerializeField] private TeleportToClosestPoint _teleportToClosestPoint = TeleportToClosestPoint.None;
     private Rigidbody2D _rb;
     private float _distancePercentage=0;
     float splinelength;
@@ -24,26 +29,32 @@ public class SplineFollowerActuator : Actuator
         splinelength = _splineContainer.CalculateLength();
         _distanceBetweenPoints = 0.05f;
         //pasar el gameobject a spline (punto más cercano)
-
-        if (_teleportToClosestPoint)
-        {
-            Vector3 currentPosition = _splineContainer.EvaluatePosition(_distancePercentage);
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0);
-        }
-
         _distancePercentage = GetClosestPointOnSpline(transform.position);
-        //la spline se desplaza
-        //_distanceBeweenPoints = 0.05f;
-        //// Encuentra el punto más cercano en el spline
-        //float closestT = GetClosestPointOnSpline(transform.position);
-        //Vector3 closestPoint = _splineContainer.EvaluatePosition(closestT);
+        switch (_teleportToClosestPoint)
+        {
+            case TeleportToClosestPoint.Player:
+                Vector3 currentPosition = _splineContainer.EvaluatePosition(_distancePercentage);
+                transform.position = new Vector3(currentPosition.x, currentPosition.y, 0);
+                break;
+            case TeleportToClosestPoint.Spline:
+                // Encuentra el punto más cercano en el spline
+               
+                Vector3 closestPoint = _splineContainer.EvaluatePosition(_distancePercentage);
 
-        //// Desplaza la spline sin deformarla
-        //Vector3 offset = transform.position - closestPoint;
-        //_splineContainer.transform.position += offset;
+                // Desplaza la spline sin deformarla
+                Vector3 offset = transform.position - closestPoint;
+                _splineContainer.transform.position += offset;
+                break;
+            
 
-        //// Inicia el movimiento desde el punto más cercano
-        //_distancePercentage = closestT;
+        }
+       
+       
+      
+       
+       
+
+       
     }
 
     public override void UpdateActuator()
@@ -55,11 +66,12 @@ public class SplineFollowerActuator : Actuator
 
         Vector3 currentPosition = _splineContainer.EvaluatePosition(_distancePercentage); 
         Vector3 nextPosition = _splineContainer.EvaluatePosition(_distancePercentage + _distanceBetweenPoints);
-       // transform.position = new Vector3(currentPosition.x, currentPosition.y, 0);
-      
+        // transform.position = new Vector3(currentPosition.x, currentPosition.y, 0);
+        _rb.MovePosition(new Vector2(currentPosition.x, currentPosition.y));
         Vector3 direction = (nextPosition - currentPosition);
         Vector3 directionnormalized = (nextPosition - currentPosition).normalized;
-        _rb.velocity = new Vector2(directionnormalized.x, directionnormalized.y) * _speed;
+        // _rb.velocity = new Vector2(directionnormalized.x, directionnormalized.y) * _speed;
+      
         // Si el spline es cerrado, se reinicia el progreso al llegar al final
         if (_distancePercentage > 1f)
         {

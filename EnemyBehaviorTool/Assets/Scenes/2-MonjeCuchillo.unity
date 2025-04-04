@@ -571,7 +571,7 @@ MonoBehaviour:
   _throw: 0
   _direction: -1
   _onCollisionReaction: 1
-  _followPlayer: 1
+  _followPlayer: 0
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
   _target: {fileID: 672768707}
   _detectionDistance: 5.78
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 6
+  _startDetectingTime: 0
   _detectionCondition: 0
 --- !u!114 &620872466
 MonoBehaviour:

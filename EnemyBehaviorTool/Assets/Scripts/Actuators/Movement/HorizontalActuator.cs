@@ -31,7 +31,7 @@ public class HorizontalActuator : MovementActuator
 	[SerializeField, HideInInspector]
 	private float _interpolationTime = 0;
 
-	//private CollisionSensor _collisionSensor;
+	
     [SerializeField, HideInInspector]
     private bool _throw; //if this is activated the velocity will be update just ones
 
@@ -92,13 +92,12 @@ public class HorizontalActuator : MovementActuator
             }
 
         }
-		if (_animatorManager != null)
+		if (_animatorManager != null && _animatorManager.enabled)
 		{
-			_animatorManager.ChangeSpeedX(_speed * (int)_direction);
 			if (_direction == Direction.Left)
-				_animatorManager.LeftDirection();
+				_animatorManager.XLeftChangeAndFlip();
 			else
-				_animatorManager.RightDirection();
+				_animatorManager.XRightChangeAndFlip();
 		}
     }
 	public override void DestroyActuator()
@@ -145,12 +144,12 @@ public class HorizontalActuator : MovementActuator
 			//MRU
 			_rigidbody.velocity = new Vector2(_speed * dirValue, _rigidbody.velocity.y);
 
-			
-        }
+
+		}
 		else
 		{
 			//MRUA
-			float t = (_time /_interpolationTime);
+			float t = (_time / _interpolationTime);
 			float easedSpeed = _easingFunc(_initialSpeed, _goalSpeed, t);
 
 			if (t >= 1.0f)
@@ -163,7 +162,13 @@ public class HorizontalActuator : MovementActuator
 				_rigidbody.velocity = new Vector2(easedSpeed * dirValue, _rigidbody.velocity.y);
 				_speed = easedSpeed;
 			}
-           _animatorManager?.ChangeSpeedX(_rigidbody.velocity.x);
+		}
+        if (_animatorManager != null && _animatorManager.enabled)
+        {
+            if (_direction == Direction.Left)
+                _animatorManager.XLeftChangeAndFlip();
+            else
+                _animatorManager.XRightChangeAndFlip();
         }
     }
 
@@ -181,15 +186,6 @@ public class HorizontalActuator : MovementActuator
 				if (hitFromCorrectSide)
 				{
 					_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-
-					if (_animatorManager.enabled)
-					{
-						_animatorManager?.RotateSpriteX();
-						if (_direction == Direction.Left)
-							_animatorManager?.LeftDirection();
-						else
-							_animatorManager?.RightDirection();
-					}
 				}
 
 			}
