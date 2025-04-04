@@ -52,7 +52,7 @@ Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
 Paso a paso para la instalación:  
 1. **Descarga de la Herramienta desde GitHub:**
    - La herramienta se distribuye como un paquete de Unity a través de una URL de GitHub. Para obtener la herramienta, accede al [Link](https://github.com/CiscoGalvan/TFG/blob/main/Package/FrameworkEnemies2D.unitypackage).
-   - Una vez en el repositorio, presiona las teclas `control + shift + S` o haz clic en `More File Actions` (botón de los tres puntos) y selecciona `Descargar`.
+   - Una vez en el repositorio, presiona las teclas `Control + Shift + S` o haz clic en `More File Actions` (botón de los tres puntos) y selecciona `Descargar`.
 2. **Abre Unity y carga tu proyecto o crea un nuevo proyecto 2D.**
 3. **En Unity, ve a `Assets > Import Package > Custom Package`.**
 4. **Selecciona el archivo descargado (`.unitypackage`).**
@@ -86,44 +86,52 @@ Paso a paso para la instalación:
 ### Estado
   ![State](./Manual/State.png)  
   Dentro de cada estado debemos especificar qué acción/acciones vamos a realizar en `Actuator List`.  
-  Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.  
+  Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.
+  En caso de que queramos que en el estado se realice daño, se deberá especificar que `DamageEmitter` se encontrará activo.   
   Por último, si deseamos `ver mediante Gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
 
 ### Sensores
-Los sensores permiten detectar elementos en el entorno y activar transiciones. Disponemos de cinco sensores:
+Los sensores permiten detectar información del entorno y activar transiciones. Disponemos de cinco sensores:
 
 - **Area Sensor:**  
   ![AreaSensor](./Manual/AreaSensor.png)  
-  El sensor de área detecta cuando un objeto específico (Target) entra dentro de su zona de detección. Para ello, su collider debe estar configurado como `Trigger`, lo que significa que no colisiona físicamente, sino que simplemente detecta la presencia de otros objetos.
+  El sensor de área detecta cuando un objeto específico (Target) entra dentro de su zona de detección.<br>
+  Este sensor hace que el Collider asociado al objeto pase a ser un `Trigger`. 
 
 - **Collision Sensor:**  
   ![CollisionSensor](./Manual/CollisionSensor.png)  
-  Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del `Area Sensor`, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.
+  Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del `Area Sensor`, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.<br>
+  Se debe especificar que `capas` activan el sensor. 
 
 - **Distance Sensor:**  
 ![DistanceSensor](./Manual/DistanceSensor.png)  
-  Detcecta cuando un objeto específico (Target) está a una determinada distancia del enemigo. 
-  Es necesario especificar el `tiempo que está inactivo al inicio` (Setting Up Time), si este es 0 la el sensor inicia activado. También es necesario especificar el `radio de la distancia`.
+  Detecta cuando un objeto específico (Target) está a una `determinada distancia del enemigo`.<br> 
+  Se requiere una `condición de detección` siendo estas:
+  -  Estar dentro de la distancia de detección.
+  -  Estar fuera de ella.<br>
+  
+  Es necesario especificar el `tiempo que está inactivo al inicio` (Start Detecting Time), si este es 0 el sensor inicia activado.<br>
 
 - **Time Sensor:**    
 ![TimeSensor](./Manual/TimeSensor.png)  
- Detecta cuando pasa un `tiempo` específico, que es necesario especificar.
+ Detecta cuando pasa un `tiempo` específico.
 
 - **Damage Sensor:**  
 ![DamageSensor](./Manual/DamageSensor.png)  
   Detecta cuando una entidad `recibe daño`.
+  Este sensor es utilizado a la hora de gestionar la `vida` tanto de los enemigos como del propio jugador.<br> Para que se pueda recibir daño se debe tener `Active From Start` a true. 
 
 - **Damage Emitter:**  
   Es el encargado de `hacer daño`, en el tienes que especificar el tipo de daño, cada tipo de daño tiene sus propios parámetros:
-  - Intant:  
+  - Instant:  
   ![DamagEmitter](./Manual/DamageEmitter.png)  
-  El daño instantáneo es aquel que te afecta una única vez al entrar en contacto contigo. Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, si queremos que se `elimine el objeto después de hacer daño`, si queremos que `directamente mate a la entidad con la que colisiona`. En caso de no querer que se mate directamente al jugador, indicaremos el `daño que queremos hacerle`.
+  El daño instantáneo es aquel que te afecta una única vez al entrar en contacto contigo. Como parámetros, podremos especificar si queremos que se `elimine el objeto después de hacer daño`, si queremos que `directamente mate a la entidad con la que colisiona`. En caso de no querer que elimine directamente el objetivo, indicaremos el `daño que queremos hacerle`.
   - Persistent:  
  ![DamagEmitter](./Manual/DamageEmitterP.png)  
- El daño persistente es el que te afecta mientras que estés dentro del objeto.Como parámetros, podremos especificar si se quiere `más de un collider` con el que colisionar, la `cantidad de daño` que hacemos y `cada cuanto` se lo hacemos.
+ El daño persistente es el que te afecta mientras que estés dentro del objeto. Como parámetros, podremos especificar la `cantidad de daño` que hacemos y `cada cuanto` lo hacemos.
   - Residual:  
  ![DamagEmitter](./Manual/DamageEmitterR.png)  
- Por último tenemos el daño residual. Este es el que te va afectando incluso cuando ya no estás en contacto. Como parámetros, podremos especificar si se quiere `más de un collider`, si queremos que se `destruya el objeto después del primer contacto`, la `cantidad de daño al primer golpe` (que generalmente suele ser más grande), `cantidad del resto de daños`, `cada cuanto` y `cuantos` se hacen.
+ Por último tenemos el daño residual. Este es el que te va afectando incluso cuando ya no estás en contacto. Como parámetros, podremos especificar si queremos que se `destruya el objeto después del primer contacto`, la `cantidad de daño al primer golpe` (que generalmente suele ser más grande), `cantidad de daño por aplicación`, `cada cuanto` y `cuantas` aplicaciones de daño residual se hacen.
 ---
 
 ### Actuadores
@@ -131,11 +139,14 @@ Los actuadores permiten realizar acciones durante los estados de los enemigos. D
 
 - **Spawner Actuator**:   
 ![SpawnerActuator](./Manual/SpawnerActuator.png)  
-  Permite generar (spawnear) nuevos enemigo. 
-  - `Infinite Enemies:`si se quiere crear infinitos enemigos, en caso contrario se debe especificar cuantos se quieren crear.
-  - `Prefab to Spawn:` Objeto que queremos crear.
-  - `Spawn Point:` Posición donde queremos que se cree el objeto.
-  - `Spawn Interval:`cada cuanto tiempo se crean.
+  Permite generar (spawnear) nuevos enemigo.  
+  - `Infinite Enemies:` si se quiere crear infinitos enemigos, en caso contrario se debe especificar la cantidad de veces que vamos a spawnear la lista.
+  - `Spawn Interval:` cada cuanto tiempo se crean.
+  - `Prefab to Spawn:` objeto que queremos crear.
+  - `Spawn Point:` posición donde queremos que se cree el objeto.
+
+  Al ser una lista, podemos spawnear más de un objeto a la vez.
+
 
 - **Horizontal Actuator**:  
 ![HorizontalActuator](./Manual/HorizontalActuator.png)  
@@ -184,14 +195,14 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
 
 - **Directional Actuator**:  
 ![DirectionalActuator](./Manual/DirectionalActuator.png)  
-  Hace que el enemigo se mueva en una dirección específica definida previamente.
+  Hace que el enemigo se mueva en una dirección específica descrita por un ángulo.
    - `Reaction After Collision`  
   Define qué sucede cuando el objeto choca contra otro:
       - `None:` No hay ninguna reacción al colisionar
-      - `Bounce:` El objeto cambia de dirección y sigue moviéndose en sentido contrario.
+      - `Bounce:` El objeto cambia de dirección y simula un rebote.
       - `Destroy:` El objeto desaparece al colisionar. 
-    - `Angle:`  ángulo con el que va a moverse el objeto
-    - `Aim Player:` Indica si el objeto va a seguir la dirección del jugador (con esta opción el ángulo no aparece  porque se le da valor en función de tu posición y la del objetivo)
+    - `Angle:`  Ángulo con el que va a moverse el objeto
+    - `Aim Player:` Indica si el objeto va a seguir la dirección del jugador (con esta opción el ángulo no aparece porque se le da valor en función de tu posición y la del objetivo)
     - `Is Accelerated`  
       - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
         - `Throw:` Se aplicará una única vez la fuerza, simulando un lanzamiento
@@ -204,7 +215,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
 
 - **Circular Actuator**:  
 ![CircularrActuator](./Manual/CircularActuator.png)  
- permite movimientos circulares en torno a un punto de rotación determinado.
+ Permite movimientos circulares en torno a un punto de rotación determinado.
   - `Rotation Point Position`  
     Define el punto central sobre el cual se realiza la rotación.  
     - `None:` Si no se asigna, el objeto girará en torno a su propio centro.  
@@ -232,13 +243,13 @@ Hace que el enemigo se mueva hacia un punto fijo específico del escenario. Hay 
 Random area coge puntos aleatorios dentro de un área.
     - `Random Area:` Collider que servirá para la referencia del área
      - `Time Between Random Points:` Cada cuanto cambia el punto a otro distinto
-  - `Waypoint`: indica que queremos seguir un camino predeterminado de puntos
-    - `Is aCicle:` indica si queremos que al llegar al final de los waypoints, se vuelva a iniciar la lista.
-    - `Same waypoints behaviour:` indica si queremos que el comportamiento sea el mismo para todos los waypoints.
-      -  Si es así, se creará un manel único de especificiación de puntos:  
+  - `Waypoint`: Indica que queremos seguir un camino predeterminado de puntos
+    - `Is A Cicle:` Indica si queremos que al llegar al final de los waypoints, se vuelva a iniciar la lista.
+    - `Same Waypoints Behaviour:` Indica si queremos que el comportamiento sea el mismo para todos los waypoints.
+      -  Si es así, se creará un panel único de especificiación de puntos:  
 ![MoveToAPointActuator](./Manual/MoveToAPointActuatorS.png)  
-          - `Time betweenwaypoints:` tiempo que se tarda entre un punto y otro 
-          - `Are accelerated:` si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con que aceleración se mueve. 
+          - `Time Between Waypoints:` tiempo que se tarda entre un punto y otro 
+          - `Are Accelerated:` si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con que aceleración se mueve. 
           - `Should Stop:` indica si debe o no parar al llegar a un punto. Si se debe parar, hay que  indicar cuanto tiempo.  
       - Si no es así, aparecerán los mismos datos por cada waypoint.  
     ![MoveToAPointActuator](./Manual/MoveToAPointActuator.png)  
@@ -247,12 +258,12 @@ Random area coge puntos aleatorios dentro de un área.
 
 - **Move to an Object Actuator**:  
 ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuator.png)  
-  Hace que el enemigo se desplace automáticamente hacia un objeto determinado (se va actualizando). 
+  Hace que el enemigo se desplace automáticamente hacia un objeto determinado, si el objeto se mueve, el enemigo cambiará su dirección para ir hacia el objeto
   - `Waypoint Transformm:` Transform del objeto al que se quiere perseguir.
   - `Time to Reach:` Tiempo que tarda en llegar al objetivo
   - `Is Accelerated:`
-    - `Falso:` Si no es acelerado, la posición se definirá en función del parámetro `Time`.  
-    - `Verdadero:` Si es acelerado, la posición se definirá mediante  la función easing  
+    - `Falso:` Si no es acelerado, la posición cambiará de manera constante.  
+    - `Verdadero:` Si es acelerado, la posición se definirá mediante la función de easing  
     ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuatorA.png)  
 
 
