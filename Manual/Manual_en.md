@@ -1,4 +1,4 @@
 # ***This will be a user manual :)***
-[🇬🇧 Read in Spanish](./../Manual.md)  
+[🇬🇧 Read in Spanish](./../readme.md)  
 
 :)
