@@ -204,7 +204,6 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
 --- !u!114 &2845174822851550775
 MonoBehaviour:

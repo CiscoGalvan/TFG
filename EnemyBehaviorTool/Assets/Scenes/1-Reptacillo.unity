@@ -1776,7 +1776,7 @@ MonoBehaviour:
   _layersToCollide:
     serializedVersion: 2
     m_Bits: 8
-  _speed: 5
+  _speed: 0.59
   _goalSpeed: 2
   _interpolationTime: 1
   _throw: 0
@@ -1795,10 +1795,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actuatorList: []
+  actuatorList:
+  - {fileID: 1533672315}
   _sensorTransitions: []
   _damageEmittersInState: []
-  _debugState: 0
+  _debugState: 1
 --- !u!114 &1533672317
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -102,8 +102,8 @@ public class MoveToAnObjectActuator : MovementActuator
 		if (!_debugActuator) return;
 		if (_waypointData.waypoint != null)
 		{
-			Gizmos.color = Color.blue;
-			Gizmos.DrawSphere(_waypointData.waypoint.position, 0.2f);
+            Gizmos.color = new Color(1f, 0.5f, 0f);
+            Gizmos.DrawSphere(_waypointData.waypoint.position, 0.2f);
 		}
 	}
 }

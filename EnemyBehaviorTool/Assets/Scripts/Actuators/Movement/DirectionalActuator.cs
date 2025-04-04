@@ -185,9 +185,9 @@ public class Directional_Actuator : MovementActuator
 		
 		Vector3 direction = new Vector3(Mathf.Cos(_angle * Mathf.Deg2Rad), Mathf.Sin(_angle * Mathf.Deg2Rad), 0);
 
-		
-		Gizmos.color = Color.red;
-		Gizmos.DrawLine(origin, origin + direction * arrowLength);
+
+        Gizmos.color = new Color(1f, 0.5f, 0f);
+        Gizmos.DrawLine(origin, origin + direction * arrowLength);
 
 		
 		Vector3 rightTip = Quaternion.Euler(0, 0, 135) * direction;

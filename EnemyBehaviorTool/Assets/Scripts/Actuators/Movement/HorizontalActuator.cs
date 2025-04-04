@@ -113,16 +113,29 @@ public class HorizontalActuator : MovementActuator
 	{
 		_time += Time.deltaTime;
         if (_followPlayer)
-        {        
-            Vector3 direction = _playerReference.transform.position - transform.position;
-            if (direction.x > 0)
-            {
-                _direction = Direction.Right;
+        {
+            float playerX = _playerReference.transform.position.x;
+            float playerWidth = 0f;
 
+            // Intentamos obtener el ancho del jugador (half width)
+            Collider2D playerCollider = _playerReference.GetComponent<Collider2D>();
+            if (playerCollider != null)
+            {
+                playerWidth = playerCollider.bounds.extents.x;
             }
-            else
+
+            float playerLeft = playerX - playerWidth;
+            float playerRight = playerX + playerWidth;
+			float enemyX = transform.position.x;
+
+			Vector3 direction = _playerReference.transform.position - transform.position;
+            if (enemyX > playerRight)
             {
                 _direction = Direction.Left;
+            }
+            else if (enemyX < playerLeft)
+            {
+                _direction = Direction.Right;
             }
             
         }
@@ -194,7 +207,7 @@ public class HorizontalActuator : MovementActuator
     {
         if (!this.isActiveAndEnabled || !_debugActuator) return;
 
-        Gizmos.color = Color.green;
+        Gizmos.color = new Color(1f, 0.5f, 0f);
         Vector3 position = transform.position;
 
         Vector3 direction = new Vector3((int)_direction, 0, 0);

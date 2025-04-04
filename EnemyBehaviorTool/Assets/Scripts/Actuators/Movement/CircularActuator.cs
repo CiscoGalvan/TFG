@@ -153,39 +153,41 @@ public class CircularActuator : MovementActuator
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
 	{
-		if (!_debugActuator) return;
-		if (this.isActiveAndEnabled)
-		{
-			if (_maxAngle == 360f)
-			{
-				if (_rotationPointPosition == null)
-				{
-					Gizmos.DrawWireSphere(transform.position, _radius);
-				}
-				else
-				{
-					_radius = Vector3.Distance(_rotationPointPosition.position, transform.position);
-					Gizmos.DrawWireSphere(_rotationPointPosition.position, _radius);
-				}
-			}
-			else
-			{
-				Vector3 direction = _startingPosition - _rotationPointPosition.position;
-				float initialAngleDegrees = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-				float halfAngleRange = _maxAngle / 2f;
+        if (!_debugActuator) return;
+        if (this.isActiveAndEnabled)
+        {
+            if (_maxAngle == 360f)
+            {
+                Gizmos.color = new Color(1f, 0.5f, 0f); // Naranja
 
-				Handles.color = Color.red;
-				Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
-					Quaternion.Euler(0, 0, initialAngleDegrees + halfAngleRange) * Vector3.right,
-					-halfAngleRange, _radius);
+                if (_rotationPointPosition == null)
+                {
+                    Gizmos.DrawWireSphere(transform.position, _radius);
+                }
+                else
+                {
+                    _radius = Vector3.Distance(_rotationPointPosition.position, transform.position);
+                    Gizmos.DrawWireSphere(_rotationPointPosition.position, _radius);
+                }
+            }
+            else
+            {
+                Vector3 direction = _startingPosition - _rotationPointPosition.position;
+                float initialAngleDegrees = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                float halfAngleRange = _maxAngle / 2f;
 
-				Handles.color = Color.blue;
-				Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
-					Quaternion.Euler(0, 0, initialAngleDegrees) * Vector3.right,
-					-halfAngleRange, _radius);
-			}
-		}
-	}
+                Handles.color = new Color(1f, 0.5f, 0f); // Naranja
+                Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
+                    Quaternion.Euler(0, 0, initialAngleDegrees + halfAngleRange) * Vector3.right,
+                    -halfAngleRange, _radius);
+
+                Handles.color = new Color(0.5f, 0f, 0.5f); // Morado
+                Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
+                    Quaternion.Euler(0, 0, initialAngleDegrees) * Vector3.right,
+                    -halfAngleRange, _radius);
+            }
+        }
+    }
 #endif
 
 	public Transform GetRotationPoint() { return _rotationPointPosition; }

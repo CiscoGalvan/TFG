@@ -204,7 +204,7 @@ public class VerticalActuator : MovementActuator
     {
         if (!this.isActiveAndEnabled || !_debugActuator) return;
 
-        Gizmos.color = Color.green;
+        Gizmos.color = new Color(1f, 0.5f, 0f);
         Vector3 position = transform.position;
 
         Vector3 dir = new Vector3(0, (int)_direction, 0);

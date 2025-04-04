@@ -252,15 +252,16 @@ public class MoveToAPointActuator : MovementActuator
 	}
 	private void OnDrawGizmos()
 	{
-		if (!_debugActuator) return;
+		if (!_debugActuator) return;  
+		Gizmos.color = new Color(1f, 0.5f, 0f);
 		switch (_usageWay)
 		{
 			case UsageWay.RandomArea:
 
 
-				Gizmos.color = Color.blue;
+              
 
-				Gizmos.DrawSphere(_currentRandomPoint, 0.2f);
+                Gizmos.DrawSphere(_currentRandomPoint, 0.2f);
 
 				break;
 			case UsageWay.Waypoint:
@@ -270,7 +271,7 @@ public class MoveToAPointActuator : MovementActuator
 
 					if (currentWaypoint != null)
 					{
-						Gizmos.color = Color.blue;
+						
 
 						Gizmos.DrawSphere(currentWaypoint.position, 0.2f);
 					}

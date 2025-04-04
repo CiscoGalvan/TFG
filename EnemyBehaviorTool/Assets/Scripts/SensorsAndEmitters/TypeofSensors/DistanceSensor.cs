@@ -13,12 +13,12 @@ public class DistanceSensor : Sensors
         Magnitude = 1,
         SingleAxis = 2
     };
-	public enum DetectionCondition
-	{
+    public enum DetectionCondition
+    {
         InsideMagnitude = 0,
         OutsideMagnitude = 1
-	};
-	public enum Axis
+    };
+    public enum Axis
     {
         Y = 0,
         X = 1
@@ -50,68 +50,67 @@ public class DistanceSensor : Sensors
     [SerializeField, Tooltip("External trigger used for area detection.")]
     private Collider2D _areaTrigger; // Now we use an external trigger instead of the sensor itself
 
-
-    // Indicates whether the timer is active
-    private bool _startDistance = false;
-
-
     //private bool _isNear;
 
 
     [SerializeField]
     private float _startDetectingTime = 0f;
-
-    private float _t;
+    private Timer _timer;
+    private bool _timerFinished = false;
 
     [SerializeField]
     private DetectionCondition _detectionCondition = DetectionCondition.InsideMagnitude;
 
-    
+
 
     // Initializes the sensor settings
     public override void StartSensor()
     {
         _sensorActive = true;
+        _timer = new Timer(_startDetectingTime);
 
-		if (_startDetectingTime == 0)
+        if (_startDetectingTime > 0)
         {
-			_startDistance = true;
-		}
+            _timer.Start();
+            _timerFinished = false;
+        }
         else
         {
-			_startDistance = false;
-		}
-		_t = 0;
+            _timerFinished = true;
+        }
 
-		if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
+
+        if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
         {
-           
-             Debug.LogError("Area detection requires a Collider2D set as a trigger!");
-        
+
+            Debug.LogError("Area detection requires a Collider2D set as a trigger!");
+
         }
     }
-	public override void StopSensor()
-	{
+    public override void StopSensor()
+    {
         _sensorActive = false;
-	}
+    }
 
-	// Determines if the sensor should transition based on distance
-	private void Update()
+    // Determines if the sensor should transition based on distance
+    private void Update()
     {
         if (!_sensorActive) return;
-        if (!_startDistance)
+        if (!_timerFinished)
         {
-            _t += Time.deltaTime;
-            if(_t > _startDetectingTime)
+            _timer.Update(Time.deltaTime);
+            if (_timer.GetTimeRemaining() <= 0)
             {
-                _t = 0;
-                _startDistance = true;
-
-			}
+                _timerFinished = true;
+            }
+            else
+            {
+                return;
+            }
         }
-        if (!_startDistance || _target == null || _distanceType == TypeOfDistance.Area)
+        if (_target == null || _distanceType == TypeOfDistance.Area)
             return;
-        
+
         Vector2 selfPos = transform.position;
         Vector2 targetPos = _target.transform.position;
         bool detected = false;
@@ -120,10 +119,10 @@ public class DistanceSensor : Sensors
         {
             case TypeOfDistance.Magnitude:
                 bool isWithinMagnitude = Vector2.Distance(selfPos, targetPos) <= _detectionDistance;
-				detected = (_detectionCondition == DetectionCondition.InsideMagnitude) ? isWithinMagnitude : !isWithinMagnitude;
-				break;
+                detected = (_detectionCondition == DetectionCondition.InsideMagnitude) ? isWithinMagnitude : !isWithinMagnitude;
+                break;
 
-			case TypeOfDistance.SingleAxis:
+            case TypeOfDistance.SingleAxis:
                 float distance = (_axis == Axis.X)
                     ? Mathf.Abs(selfPos.x - targetPos.x)
                     : Mathf.Abs(selfPos.y - targetPos.y);
@@ -132,43 +131,43 @@ public class DistanceSensor : Sensors
                        ? (_partOfAxis == PartOfAxis.UpOrLeft ? targetPos.x < selfPos.x : targetPos.x > selfPos.x)
                        : (_partOfAxis == PartOfAxis.UpOrLeft ? targetPos.y > selfPos.y : targetPos.y < selfPos.y));
 
-				bool isWithinSingleAxis = distance <= _detectionDistance && correctSide;
+                bool isWithinSingleAxis = distance <= _detectionDistance && correctSide;
                 detected = (_detectionCondition == DetectionCondition.InsideMagnitude) ? isWithinSingleAxis : !isWithinSingleAxis;
-				break;
-		}
+                break;
+        }
 
         if (detected)
         {
             EventDetected();
-		}
-        
-       
+        }
+
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_startDistance &&_distanceType == TypeOfDistance.Area && other.gameObject == _target )
+        if (_timerFinished && _distanceType == TypeOfDistance.Area && other.gameObject == _target)
         {
-			if (_detectionCondition == DetectionCondition.InsideMagnitude)
-			{
-				EventDetected(); 
-			}
-		}
+            if (_detectionCondition == DetectionCondition.InsideMagnitude)
+            {
+                EventDetected();
+            }
+        }
     }
 
-	private void OnTriggerExit2D(Collider2D other)
-	{
-		if (_startDistance && _distanceType == TypeOfDistance.Area && other.gameObject == _target)
-		{
-			if (_detectionCondition == DetectionCondition.OutsideMagnitude)
-			{
-				EventDetected(); 
-			}
-		}
-	}
-	// Draws the detection range in the scene view
-	private void OnDrawGizmos()
+    private void OnTriggerExit2D(Collider2D other)
     {
-       
+        if (_timerFinished && _distanceType == TypeOfDistance.Area && other.gameObject == _target)
+        {
+            if (_detectionCondition == DetectionCondition.OutsideMagnitude)
+            {
+                EventDetected();
+            }
+        }
+    }
+    // Draws the detection range in the scene view
+    private void OnDrawGizmos()
+    {
+
         if (!_debugSensor) return;
         Gizmos.color = new Color(0, 0, 1, 0.3f);
         switch (_distanceType)
