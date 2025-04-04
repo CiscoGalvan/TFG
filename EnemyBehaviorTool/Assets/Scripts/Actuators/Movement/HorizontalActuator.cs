@@ -79,16 +79,24 @@ public class HorizontalActuator : MovementActuator
             else
             {
                 _playerReference = objectsWithPlayerTagArray[0];
-                Vector3 direction = _playerReference.transform.position - transform.position;
-                if (direction.x > 0)
-                {
-                    _direction = Direction.Right;
+				if(_playerReference == null)
+				{
+					Debug.LogWarning("Player reference was null, the actuator may not be precise.");
+				}
+				else
+				{
+					Vector3 direction = _playerReference.transform.position - transform.position;
+					if (direction.x > 0)
+					{
+						_direction = Direction.Right;
 
-                }
-                else
-                {
-                    _direction = Direction.Left;
-                }
+					}
+					else
+					{
+						_direction = Direction.Left;
+					}
+				}
+             
             }
 
         }
@@ -111,23 +119,21 @@ public class HorizontalActuator : MovementActuator
 	private void ApplyForce()
 	{
 		_time += Time.deltaTime;
-        if (_followPlayer)
+        if (_followPlayer && _playerReference != null)
         {
             float playerX = _playerReference.transform.position.x;
             float playerWidth = 0f;
 
             // Intentamos obtener el ancho del jugador (half width)
             Collider2D playerCollider = _playerReference.GetComponent<Collider2D>();
-            if (playerCollider != null)
-            {
-                playerWidth = playerCollider.bounds.extents.x;
-            }
+          
+            playerWidth = playerCollider.bounds.extents.x;
+            
 
             float playerLeft = playerX - playerWidth;
             float playerRight = playerX + playerWidth;
 			float enemyX = transform.position.x;
 
-			Vector3 direction = _playerReference.transform.position - transform.position;
             if (enemyX > playerRight)
             {
                 _direction = Direction.Left;
@@ -138,6 +144,10 @@ public class HorizontalActuator : MovementActuator
             }
             
         }
+		else if(_playerReference == null)
+		{
+			Debug.LogWarning("Player reference was null, the actuator may not be precise.");
+		}
         int dirValue = (int)_direction;
 		if (!_isAccelerated)
 		{

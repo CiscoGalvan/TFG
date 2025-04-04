@@ -265,6 +265,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 371458009}
   _sensorTransitions: []
+  _damageEmittersInState:
+  - {fileID: 371458015}
   _debugState: 0
 --- !u!114 &371458012
 MonoBehaviour:
@@ -365,8 +367,8 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!58 &371458016
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -675,6 +677,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 768608820}
   _sensorTransitions: []
+  _damageEmittersInState:
+  - {fileID: 768608826}
   _debugState: 0
 --- !u!114 &768608823
 MonoBehaviour:
@@ -775,8 +779,8 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!58 &768608827
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1257,6 +1261,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 1495692044}
   _sensorTransitions: []
+  _damageEmittersInState:
+  - {fileID: 1495692050}
   _debugState: 0
 --- !u!114 &1495692047
 MonoBehaviour:
@@ -1357,8 +1363,8 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!58 &1495692051
 CircleCollider2D:
   m_ObjectHideFlags: 0

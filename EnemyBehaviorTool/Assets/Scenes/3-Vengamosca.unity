@@ -308,7 +308,6 @@ GameObject:
   - component: {fileID: 307179862}
   - component: {fileID: 307179864}
   - component: {fileID: 307179863}
-  - component: {fileID: 307179865}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -351,7 +350,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 307179862}
   _sensorTransitions:
-  - sensor: {fileID: 307179865}
+  - sensor: {fileID: 307179858}
     targetState: {fileID: 307179857}
   _damageEmittersInState: []
   _debugState: 1
@@ -544,7 +543,8 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 307179859}
     targetState: {fileID: 307179849}
-  _damageEmittersInState: []
+  _damageEmittersInState:
+  - {fileID: 307179847}
   _debugState: 0
 --- !u!114 &307179858
 MonoBehaviour:
@@ -582,7 +582,7 @@ MonoBehaviour:
   _layersToCollide:
     serializedVersion: 2
     m_Bits: 128
-  _startDetectingTime: 1
+  _startDetectingTime: 0
 --- !u!114 &307179860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4d50162f412b1408ad64e2569835cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityType: 1
+  _entityType: 0
   _initialLife: 5
   _lifeText: {fileID: 1161187926}
   _textName: 'Player:'
@@ -675,20 +675,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &307179865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307179846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detectionTime: 3
-  _startDetectingTime: 2
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0

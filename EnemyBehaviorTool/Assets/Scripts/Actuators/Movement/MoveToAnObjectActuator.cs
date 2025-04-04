@@ -10,7 +10,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 [ExecuteInEditMode]
 public class MoveToAnObjectActuator : MovementActuator
 {
-	const float ALMOST_REACHED_ONE = 0.999f;
+	const float ALMOST_REACHED_ONE = 0.995f;
 
 	[System.Serializable]
 	public struct WaypointData

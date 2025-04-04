@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 620872467}
   - component: {fileID: 620872471}
   - component: {fileID: 620872470}
+  - component: {fileID: 620872472}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -571,7 +572,7 @@ MonoBehaviour:
   _throw: 0
   _direction: -1
   _onCollisionReaction: 1
-  _followPlayer: 0
+  _followPlayer: 1
 --- !u!114 &620872463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,7 +588,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 620872462}
   _sensorTransitions:
-  - sensor: {fileID: 0}
+  - sensor: {fileID: 620872472}
     targetState: {fileID: 620872461}
   _damageEmittersInState:
   - {fileID: 620872466}
@@ -698,7 +699,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activeFromStart: 1
-  _moreThanOneCollider: 0
+  _startDetectingTime: 0
+--- !u!114 &620872472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620872448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceType: 1
+  _axis: 1
+  _partOfAxis: 0
+  _detectionSide: 0
+  _target: {fileID: 672768707}
+  _detectionDistance: 5.82
+  _areaTrigger: {fileID: 0}
+  _startDetectingTime: 0
+  _detectionCondition: 1
 --- !u!1001 &672768706
 PrefabInstance:
   m_ObjectHideFlags: 0

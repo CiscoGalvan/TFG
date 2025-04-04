@@ -35,6 +35,8 @@ public class CollisionSensor : Sensors
 		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0)
         {
             _col = true;
+			Debug.Log("CAMBIO");
+			Debug.Break();
             _collisionObject = collision;
             EventDetected(); // Call the event handler method
         }
@@ -45,7 +47,7 @@ public class CollisionSensor : Sensors
 		// Only process the collision if the sensor is active
 		if (!_sensorActive || !_timerFinished) return;
 
-		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0)
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) != 0)
 		{
 			_col = true;
 			_collisionObject = collision;
@@ -82,7 +84,7 @@ public class CollisionSensor : Sensors
 		if (!_timerFinished)
 		{
 			_timer.Update(Time.deltaTime);
-			Debug.Log(_timer.GetTimeRemaining());
+		
 			if (_timer.GetTimeRemaining() <= 0)
 			{
 				_timerFinished = true;

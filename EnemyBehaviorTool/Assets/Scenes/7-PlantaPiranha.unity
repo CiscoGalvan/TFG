@@ -440,8 +440,8 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!114 &97328918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +457,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 97328920}
   _sensorTransitions: []
+  _damageEmittersInState:
+  - {fileID: 97328916}
   _debugState: 0
 --- !u!114 &97328919
 MonoBehaviour:
@@ -538,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activeFromStart: 1
-  _moreThanOneCollider: 0
+  _startDetectingTime: 0
 --- !u!1001 &400364694
 PrefabInstance:
   m_ObjectHideFlags: 0

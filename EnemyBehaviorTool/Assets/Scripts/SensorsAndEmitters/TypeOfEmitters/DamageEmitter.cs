@@ -101,9 +101,16 @@ public class DamageEmitter : MonoBehaviour
 
 
     private bool _isEmitting = false;
+	[Tooltip("If true, the Damage Emitter won't need to be included in any State in order to activate itself.")]
+	[SerializeField]
+	private bool _activeFromStart = false;
 
-   
-    public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
+	private void Start()
+	{
+        if (_activeFromStart)
+            _isEmitting = true;
+	}
+	public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
     public void SetEmitting(bool newValue)
     {
         _isEmitting = newValue;

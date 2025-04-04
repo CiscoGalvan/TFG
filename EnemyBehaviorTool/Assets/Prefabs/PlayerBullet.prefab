@@ -204,6 +204,7 @@ MonoBehaviour:
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 1
+  _activeFromStart: 0
 --- !u!95 &1575611272841410677
 Animator:
   serializedVersion: 5

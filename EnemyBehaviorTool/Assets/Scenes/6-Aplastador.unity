@@ -603,8 +603,8 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!114 &405269259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +628,7 @@ MonoBehaviour:
   _interpolationTime: 1.63
   _direction: 1
   _onCollisionReaction: 1
+  _followPlayer: 0
 --- !u!1 &579760015
 GameObject:
   m_ObjectHideFlags: 0

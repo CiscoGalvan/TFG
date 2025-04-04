@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList: []
   _sensorTransitions: []
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!114 &4163608757728436586
 MonoBehaviour:
@@ -210,8 +211,8 @@ MonoBehaviour:
   _numOfDamageApplication: 10
   _residualDamageAmount: 0.2
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 1
+  _activeFromStart: 0
 --- !u!95 &1846432506730952061
 Animator:
   serializedVersion: 5
@@ -245,8 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebd0408eb931c045854e486c56b78c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isSpriteWellOrientedX: 1
-  _isSpriteWellOrientedY: 1
   _canFlipX: 1
   _canFlipY: 1
   _canRotate: 1

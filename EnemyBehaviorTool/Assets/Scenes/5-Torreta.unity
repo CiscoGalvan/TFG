@@ -992,6 +992,8 @@ MonoBehaviour:
   _spawnList:
   - _prefabToSpawn: {fileID: 6312299861578909251, guid: f54b6bc18190ec248a00bdb1acfaeb4d, type: 3}
     _spawnPoint: {fileID: 1466693878}
+  - _prefabToSpawn: {fileID: 6312299861578909251, guid: 99182299bda6a0441b148bc8c2516f5b, type: 3}
+    _spawnPoint: {fileID: 1466693878}
 --- !u!1 &1151592761
 GameObject:
   m_ObjectHideFlags: 0

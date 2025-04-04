@@ -570,8 +570,8 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!1 &540529473
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +829,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 1012068507}
   _sensorTransitions: []
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!114 &1012068510
 MonoBehaviour:
