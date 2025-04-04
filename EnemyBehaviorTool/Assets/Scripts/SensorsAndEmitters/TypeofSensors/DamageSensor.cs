@@ -13,12 +13,17 @@ public class DamageSensor : Sensors
 	[Tooltip("If true, the Damage Sensor won't need to be included in any State in order to activate itself.")]
 	[SerializeField]
 	private bool _activeFromStart = false;
-	[SerializeField, HideInInspector]
-	private bool _moreThanOneCollider;
+
+	[SerializeField]
+	[Tooltip("Initial time the sensor will need to be active")]
+	private float _startDetectingTime = 0f;
+	private Timer _timer;
+	private bool _timerFinished = false;
+
 	#region Trigger Methods
 	private void OnTriggerEnter2D(Collider2D collision)
     {
-		if (_sensorActive)
+		if (_sensorActive && _timerFinished)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if(_damageEmitter != null &&_damageEmitter.GetEmitting())
@@ -41,7 +46,7 @@ public class DamageSensor : Sensors
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (_sensorActive) 
+		if (_sensorActive && _timerFinished) 
 		{
 			_damageEmitter= collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null && _damageEmitter.GetEmitting())
@@ -57,7 +62,7 @@ public class DamageSensor : Sensors
 	#region Collision Methods
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (_sensorActive)
+		if (_sensorActive && _timerFinished)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null && _damageEmitter.GetEmitting())
@@ -79,7 +84,7 @@ public class DamageSensor : Sensors
 	}
 	private void OnCollisionExit2D(Collision2D collision)
 	{
-		if (_sensorActive)
+		if (_sensorActive && _timerFinished)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
 			if (_damageEmitter != null && _damageEmitter.GetEmitting())
@@ -95,17 +100,52 @@ public class DamageSensor : Sensors
 	{
 		_col = false;
         _sensorActive = true;
-    }
+		if (_startDetectingTime > 0)
+		{
+			_timer.Start();
+			_timerFinished = false;
+		}
+		else
+		{
+			_timerFinished = true;
+		}
+	}
 	private void Start()
 	{
 		if (_activeFromStart)
 		{
 			_col = false;
 			_sensorActive = true;
+
+			if (_startDetectingTime > 0)
+			{
+				_timer.Start();
+				_timerFinished = false;
+			}
+			else
+			{
+				_timerFinished = true;
+			}
 		} 
 	}
-	// Getters
-    public bool HasCollisionOccurred() => _col;
+
+	private void Update()
+	{
+		if (!_sensorActive) return;
+		if (!_timerFinished)
+		{
+			_timer.Update(Time.deltaTime);
+			if (_timer.GetTimeRemaining() <= 0)
+			{
+				_timerFinished = true;
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+	public bool HasCollisionOccurred() => _col;
 	public DamageEmitter GetDamageEmitter() => _damageEmitter;
 
 	public override void StopSensor()

@@ -54,7 +54,8 @@ public class DistanceSensor : Sensors
 
 
     [SerializeField]
-    private float _startDetectingTime = 0f;
+	[Tooltip("Initial time the sensor will need to be active")]
+	private float _startDetectingTime = 0f;
     private Timer _timer;
     private bool _timerFinished = false;
 
@@ -143,6 +144,7 @@ public class DistanceSensor : Sensors
 
 
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_timerFinished && _distanceType == TypeOfDistance.Area && other.gameObject == _target)

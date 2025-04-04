@@ -18,39 +18,79 @@ public class CollisionSensor : Sensors
     // Stores the latest collision event
     private Collision2D _collisionObject;
 
-    // Handles the collision event when the object enters a collision
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+	[SerializeField]
+	[Tooltip("Initial time the sensor will need to be active")]
+	private float _startDetectingTime = 0f;
+	private Timer _timer;
+	private bool _timerFinished = false;
+
+	// Handles the collision event when the object enters a collision
+	private void OnCollisionEnter2D(Collision2D collision)
     {
-		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0) return;
 		// Only process the collision if the sensor is active
-		if (_sensorActive)
+		if (!_sensorActive || !_timerFinished) return;
+		
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0)
         {
             _col = true;
             _collisionObject = collision;
             EventDetected(); // Call the event handler method
         }
     }
-    // Activates the sensor. Is the firts method call
-    public override void StartSensor()
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		// Only process the collision if the sensor is active
+		if (!_sensorActive || !_timerFinished) return;
+
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0)
+		{
+			_col = true;
+			_collisionObject = collision;
+			EventDetected(); // Call the event handler method
+		}
+	}
+	// Activates the sensor. Is the firts method call
+	public override void StartSensor()
     {
         _sensorActive = true;
         _col = false;
-    }
+
+		_timer = new Timer(_startDetectingTime);
+
+		if (_startDetectingTime > 0)
+		{
+			_timer.Start();
+			_timerFinished = false;
+		}
+		else
+		{
+			_timerFinished = true;
+		}
+
+	}
 	public override void StopSensor()
 	{
 		_sensorActive = false;
 	}
 
-
-	// Returns the last collided object
-	public Collision2D GetCollidedObject() { return _collisionObject; }
-
-    // Returns whether a collision has been detected
-    bool GetBooleanCollision() { return _col; }
-
-    public void SetLayersToCollide(LayerMask newValue)
-    {
-        _layersToCollide = newValue;
-    }
-	
+	private void Update()
+	{
+		if (!_sensorActive) return;
+		if (!_timerFinished)
+		{
+			_timer.Update(Time.deltaTime);
+			Debug.Log(_timer.GetTimeRemaining());
+			if (_timer.GetTimeRemaining() <= 0)
+			{
+				_timerFinished = true;
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
 }

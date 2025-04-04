@@ -898,6 +898,7 @@ MonoBehaviour:
   _sensorTransitions:
   - sensor: {fileID: 1151028255}
     targetState: {fileID: 620872469}
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!114 &620872465
 MonoBehaviour:
@@ -918,7 +919,6 @@ MonoBehaviour:
   _numOfDamageApplication: 10
   _residualDamageAmount: 0.2
   _damageEmitterCollider: {fileID: 0}
-  _moreThanOneCollider: 0
   _destroyAfterDoingDamage: 0
 --- !u!114 &620872467
 MonoBehaviour:
@@ -943,6 +943,7 @@ MonoBehaviour:
   _interpolationTime: 0
   _direction: -1
   _onCollisionReaction: 2
+  _followPlayer: 1
 --- !u!114 &620872469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,6 +959,7 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 620872467}
   _sensorTransitions: []
+  _damageEmittersInState: []
   _debugState: 0
 --- !u!1 &938084504
 GameObject:
@@ -1171,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 1221916438}
+  _startDetectingTime: 0
 --- !u!1 &1191659701
 GameObject:
   m_ObjectHideFlags: 0
