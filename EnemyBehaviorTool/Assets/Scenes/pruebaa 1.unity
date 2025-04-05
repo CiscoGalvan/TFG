@@ -219,10 +219,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.9600003
@@ -1915,10 +1911,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2509558
@@ -2051,7 +2043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &356613009
 Transform:
   m_ObjectHideFlags: 0
@@ -2561,7 +2553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &450035437
 Transform:
   m_ObjectHideFlags: 0
@@ -2676,10 +2668,6 @@ PrefabInstance:
     - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_Name
       value: BaseEnemy (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
@@ -3071,7 +3059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &725164224
 Transform:
   m_ObjectHideFlags: 0
@@ -3250,14 +3238,6 @@ PrefabInstance:
       propertyPath: actuatorList.Array.data[0]
       value: 
       objectReference: {fileID: 771697781}
-    - target: {fileID: 2420859877675198300, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: _damageEmittersInState.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2420859877675198300, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: _damageEmittersInState.Array.data[0]
-      value: 
-      objectReference: {fileID: 771697797}
     - target: {fileID: 3310984064998560821, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: initialState
       value: 
@@ -3389,7 +3369,7 @@ MonoBehaviour:
   _interpolationTime: 0
   _throw: 0
   _direction: -1
-  _onCollisionReaction: 0
+  _onCollisionReaction: 1
   _followPlayer: 0
 --- !u!114 &771697785 stripped
 MonoBehaviour:
@@ -3476,17 +3456,6 @@ MonoBehaviour:
     targetState: {fileID: 771697785}
   _damageEmittersInState: []
   _debugState: 0
---- !u!114 &771697797 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4163608757728436586, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-  m_PrefabInstance: {fileID: 771697779}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771697780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016eafcff9d8bd2458a5b8d0af2b2576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &777182682
 GameObject:
   m_ObjectHideFlags: 0
@@ -4829,7 +4798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
@@ -5835,10 +5804,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2509558
@@ -6056,10 +6021,6 @@ PrefabInstance:
     - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_Name
       value: BaseEnemy (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
@@ -6372,10 +6333,6 @@ PrefabInstance:
     - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_Name
       value: BaseEnemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
@@ -7604,10 +7561,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.35
@@ -8388,7 +8341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1812066761
 Transform:
   m_ObjectHideFlags: 0

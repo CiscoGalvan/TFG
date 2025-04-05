@@ -769,7 +769,7 @@ MonoBehaviour:
   _throw: 0
   _direction: -1
   _onCollisionReaction: 1
-  _followPlayer: 1
+  _followPlayer: 0
 --- !u!114 &620872465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +788,6 @@ MonoBehaviour:
   _damageCooldown: 0.2
   _numOfDamageApplication: 10
   _residualDamageAmount: 0.2
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!95 &620872467
@@ -840,7 +839,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityType: 0
-  _initialLife: 5
+  _initialLife: 6
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &620872470
@@ -900,6 +901,10 @@ PrefabInstance:
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _entityType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
+      propertyPath: _initialLife
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9038349572681355833, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: m_LocalPosition.x

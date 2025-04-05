@@ -45,7 +45,7 @@ public class HorizontalActuator : MovementActuator
 
     // Whether to follow the player’s horizontal position
     [SerializeField, HideInInspector]
-    private bool _followPlayer = true;
+    private bool _followPlayer = false;
 
     private float _time;
     private Rigidbody2D _rigidbody;

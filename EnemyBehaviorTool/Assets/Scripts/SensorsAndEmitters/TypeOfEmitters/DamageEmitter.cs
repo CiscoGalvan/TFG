@@ -30,27 +30,17 @@ public class DamageEmitter : MonoBehaviour
     #endregion
     #region Residual Damage Variables
     [SerializeField, HideInInspector]
-    private int _numOfDamageApplication = 2; // Number of times residual damage is applied
+    private int _numOfDamageApplication = 0; // Number of times residual damage is applied
 
     [SerializeField, HideInInspector]
     private float _residualDamageAmount = 0; // Damage amount per application for Residual damage
 
     #endregion
 
-    private bool _endPersistentDamage; // Tracks whether persistent damage has ended
-
-    [SerializeField, HideInInspector]
-    private Collider2D _damageEmitterCollider;
 
     [SerializeField,HideInInspector]
     private bool _destroyAfterDoingDamage = false;
     #region Getters and Setters
-
-    // Sets the amount of residual damage
-    public void SetResidualDamageAmount(float newValue)
-    {
-        _residualDamageAmount = newValue;
-    }
 
     // Returns the amount of residual damage
     public float GetResidualDamageAmount() => _residualDamageAmount;
@@ -61,48 +51,27 @@ public class DamageEmitter : MonoBehaviour
     // Returns the base damage amount
     public float GetAmountOfDamage() => _amountOfDamage;
 
-    // Sets the base damage amount
-    public void SetAmountOfDamage(float newValue)
-    {
-        _amountOfDamage = newValue;
-    }
-
     // Returns the cooldown between persistent damage applications
     public float GetDamageCooldown() => _damageCooldown;
 
     // Returns the number of times residual damage is applied
     public int GetNumberOfResidualApplication() => _numOfDamageApplication;
 
-    // Sets the number of residual damage applications
-    public void SetNumberOfResidualApplication(int newValue)
-    {
-        _numOfDamageApplication = newValue;
-    }
-
-    // Sets the cooldown duration for persistent damage
-    public void SetDamageCooldown(float newValue)
-    {
-        _damageCooldown = newValue;
-    }
-
     // Returns whether the damage is instant kill
     public bool GetInstaKill() => _instaKill;
 
-    // Sets whether the damage is instant kill
-    public void SetInstaKill(bool newValue)
-    {
-        _instaKill = newValue;
-    }
-
-    // Returns whether persistent damage has ended
-    public bool EndPersistentDamage() => _endPersistentDamage;
-
-    #endregion
+	public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
+	public void SetEmitting(bool newValue)
+	{
+		_isEmitting = newValue;
+	}
+	public bool GetEmitting() => _isEmitting;
+	#endregion
 
 
-    private bool _isEmitting = false;
-	[Tooltip("If true, the Damage Emitter won't need to be included in any State in order to activate itself.")]
-	[SerializeField]
+	private bool _isEmitting = false;
+
+	[SerializeField,HideInInspector]
 	private bool _activeFromStart = false;
 
 	private void Start()
@@ -110,10 +79,4 @@ public class DamageEmitter : MonoBehaviour
         if (_activeFromStart)
             _isEmitting = true;
 	}
-	public bool GetDestroyAfterDoingDamage() => _destroyAfterDoingDamage;
-    public void SetEmitting(bool newValue)
-    {
-        _isEmitting = newValue;
-    }
-    public bool GetEmitting() => _isEmitting;
 }

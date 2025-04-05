@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,7 +26,7 @@ public class SpawnerComponentEditor : Editor
     public override void OnInspectorGUI()
     {
 
-      EditorGUILayout.PropertyField(infiniteEnemiesProp, infiniteEnemiesLabel);
+        EditorGUILayout.PropertyField(infiniteEnemiesProp, infiniteEnemiesLabel);
         if (!infiniteEnemiesProp.boolValue)
           EditorGUILayout.PropertyField(numOfEnemiesToSpawnProp, numOfEnemiesToSpawnLabel);
         

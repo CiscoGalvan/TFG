@@ -598,6 +598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 5
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 1161187926}
   _textName: 'Player:'
 --- !u!114 &307179861

@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-using TMPro;
+
 
 [CustomEditor(typeof(Life))]
 public class LifeEditor : Editor

@@ -1,8 +1,5 @@
-﻿using System.ComponentModel;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static MoveToAPointActuator;
 
 [CustomEditor(typeof(MoveToAPointActuator))]
 public class MoveToAPoint_ActuatorEditor : ActuatorEditor

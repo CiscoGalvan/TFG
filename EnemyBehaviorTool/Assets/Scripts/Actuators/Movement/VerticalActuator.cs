@@ -8,9 +8,9 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody2D))]
 public class VerticalActuator : MovementActuator
 {
-    [Header("Layers")]
-    [Tooltip("Defines which layers this object can collide with")]
-    public LayerMask _layersToCollide; // Defines which layers this object can collide with
+   
+    [SerializeField]
+    private LayerMask _layersToCollide; // Defines which layers this object can collide with
 
     // Movement direction options
     private enum Direction
@@ -32,7 +32,7 @@ public class VerticalActuator : MovementActuator
     [SerializeField, HideInInspector] private float _goalSpeed;
     [SerializeField, HideInInspector] private float _interpolationTime = 0;
 
-    private float _initial_speed = 0;
+    private float _initialSpeed = 0;
 
     [Tooltip("Movement direction")]
     [SerializeField, HideInInspector] private Direction _direction = Direction.Up;
@@ -44,7 +44,7 @@ public class VerticalActuator : MovementActuator
     [SerializeField, HideInInspector] private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
 
     AnimatorManager _animatorManager;
-    [SerializeField, HideInInspector] private bool _followPlayer = true;
+    [SerializeField, HideInInspector] private bool _followPlayer = false;
     private GameObject _playerReference;
 
     // Called when the actuator starts
@@ -60,7 +60,7 @@ public class VerticalActuator : MovementActuator
             _speed = _rigidbody.velocity.x;
         }
 
-        _initial_speed = _speed;
+        _initialSpeed = _speed;
 
         if (_throw)
         {
@@ -92,7 +92,7 @@ public class VerticalActuator : MovementActuator
         // Update animator state based on movement direction
         if (_animatorManager != null)
         {
-            _animatorManager.ChangeSpeedY(_initial_speed);
+            _animatorManager.ChangeSpeedY(_initialSpeed);
             if (_direction == Direction.Up)
                 _animatorManager.UpDirection();
             else
@@ -140,11 +140,10 @@ public class VerticalActuator : MovementActuator
         {
             // Accelerated motion (MRUA) with easing
             float t = (_time / _interpolationTime);
-            float easedSpeed = _easingFunc(_initial_speed, _goalSpeed, t);
+            float easedSpeed = _easingFunc(_initialSpeed, _goalSpeed, t);
 
             if (t >= 1.0f)
             {
-                Debug.Break(); // Pause editor for debugging
                 _speed = _goalSpeed;
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _goalSpeed * dirValue);
             }
@@ -220,47 +219,4 @@ public class VerticalActuator : MovementActuator
         Gizmos.DrawLine(arrowTip, arrowTip + right);
         Gizmos.DrawLine(arrowTip, arrowTip + left);
     }
-
-    // Getters and Setters
-    #region Setters and getters
-    public void SetSpeed(float newValue)
-    {
-        _speed = newValue;
-    }
-
-    public float GetSpeed()
-    {
-        return _speed;
-    }
-
-    public void SetGoalSpeed(float newValue)
-    {
-        _goalSpeed = newValue;
-    }
-
-    public float GetGoalSpeed()
-    {
-        return _goalSpeed;
-    }
-
-    public void SetInterpolationTime(float newValue)
-    {
-        _interpolationTime = newValue;
-    }
-
-    public float GetInterpolationTime()
-    {
-        return _interpolationTime;
-    }
-
-    public bool GetBouncing()
-    {
-        return _onCollisionReaction == OnCollisionReaction.Bounce;
-    }
-
-    public bool GetDestroying()
-    {
-        return _onCollisionReaction == OnCollisionReaction.Destroy;
-    }
-    #endregion
 }

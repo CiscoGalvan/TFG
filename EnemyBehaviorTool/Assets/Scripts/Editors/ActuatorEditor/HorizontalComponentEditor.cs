@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,20 +14,27 @@ public class HorizontalComponentEditor : ActuatorEditor
     private bool _showMovementInfo = true;
 
     #region Accelerated movement
-    private static readonly GUIContent goalSpeedLabel = new GUIContent("Goal Speed", "Speed the object will reach");
-    private static readonly GUIContent interpolationTimeLabel = new GUIContent("Interpolation Time", "Time it takes to reach Max Speed");
-    #endregion
+    private static readonly GUIContent _goalSpeedLabel = new GUIContent("Goal Speed", "Speed the object will reach");
+	private static readonly GUIContent _interpolationTimeLabel = new GUIContent("Interpolation Time", "Time it takes to reach Goal Speed");
+	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the movement towards the waypoint accelerated?");
+	#endregion
 
-    #region  Non-accelerated movement
-    private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
+	#region  Non-accelerated movement
+	private static readonly GUIContent _throwLabel = new GUIContent("Throw", "The object will be moved only once, when the actuator is activated.");
     private static readonly GUIContent _constantSpeedLabel = new GUIContent("Speed", "The object will move with this constant speed.");
     #endregion
 
     private SerializedProperty _followPlayerProperty;
     private SerializedProperty _directionProperty;
+    private SerializedProperty _interpolationTime;
     private SerializedProperty _onCollisionReaction;
     private SerializedProperty _throw;
     private SerializedProperty _layersToCollide;
+    private SerializedProperty _isAccelerated;
+    private SerializedProperty _goalSpeed;
+    private SerializedProperty _easingFunction;
+    private SerializedProperty _speed;
+
 
     private void OnEnable()
     {
@@ -38,14 +43,17 @@ public class HorizontalComponentEditor : ActuatorEditor
         _onCollisionReaction = serializedObject.FindProperty("_onCollisionReaction");
         _throw = serializedObject.FindProperty("_throw");
         _layersToCollide = serializedObject.FindProperty("_layersToCollide");
+		_isAccelerated = serializedObject.FindProperty("_isAccelerated");
+		_goalSpeed = serializedObject.FindProperty("_goalSpeed");
+		_interpolationTime = serializedObject.FindProperty("_interpolationTime");
+		_easingFunction = serializedObject.FindProperty("_easingFunction");
+		_speed = serializedObject.FindProperty("_speed");
     }
 
     public override void OnInspectorGUI()
     {
-        HorizontalActuator component = (HorizontalActuator)target;
-        DrawDefaultInspector();
-
-        EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
+		serializedObject.Update();
+		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
         if (_onCollisionReaction.intValue != 0)
         {
             EditorGUI.indentLevel++;
@@ -68,31 +76,32 @@ public class HorizontalComponentEditor : ActuatorEditor
             {
                 EditorGUILayout.HelpBox("The object won't bounce off collisions while following the player.", MessageType.Warning);
             }
-
-            if (component.IsMovementAccelerated())
+			EditorGUILayout.PropertyField(_isAccelerated, _isAcceleratedLabel);
+			if (_isAccelerated.boolValue)
             {
-                component.SetGoalSpeed(Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed())));
-                component.SetInterpolationTime(Mathf.Max(0, EditorGUILayout.FloatField(interpolationTimeLabel, component.GetInterpolationTime())));
-                EditorGUI.indentLevel++;
-                EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField("X-axis: Time, Y-axis: Speed");
-                DrawEasingCurve(component.GetEasingFunctionValue(), new Vector2(45, 15), new Vector2(30, 2), "X: Time", "Y: Speed ", new Vector2(40, 20), new Vector2(60, 20));
+				_goalSpeed.floatValue = Mathf.Max(0, _goalSpeed.floatValue);
+				EditorGUILayout.PropertyField(_goalSpeed, _goalSpeedLabel);
+
+
+				_interpolationTime.floatValue = Mathf.Max(0, _interpolationTime.floatValue);
+				EditorGUILayout.PropertyField(_interpolationTime, _interpolationTimeLabel);
+
+				EditorGUILayout.PropertyField(_easingFunction, _easingFunctionLabel);
+				EditorGUI.indentLevel++;
+				EasingFunction.Ease easingEnum = (EasingFunction.Ease)_easingFunction.intValue;
+				DrawEasingCurve(easingEnum, new Vector2(45, 15), new Vector2(30, 2), "X: Time", "Y: Angular Velocity ", new Vector2(40, 20), new Vector2(60, 20));
                 EditorGUI.indentLevel--;
             }
             else
             {
                 EditorGUILayout.PropertyField(_throw, _throwLabel);
-                component.SetSpeed(Mathf.Max(0, EditorGUILayout.FloatField(_constantSpeedLabel, component.GetSpeed())));
-            }
+				_speed.floatValue = Mathf.Max(0, _speed.floatValue);
+				EditorGUILayout.PropertyField(_speed, _constantSpeedLabel);
+			}
             EditorGUI.indentLevel--;
         }
 
         serializedObject.ApplyModifiedProperties();
-
-        if (GUI.changed)
-        {
-            EditorUtility.SetDirty(component);
-        }
     }
      
 }

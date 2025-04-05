@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [CustomEditor(typeof(Directional_Actuator))]
 public class DirectionalComponentEditor : ActuatorEditor
