@@ -71,9 +71,18 @@ public class AnimatorManager : MonoBehaviour
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetTrigger("Die");
+        StartCoroutine(DestroyAfterAnimation());
         this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
-
+    private IEnumerator DestroyAfterAnimation()
+    {
+        // Wait for the "Die" animation to finish
+        float animationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animationLength);
+        Debug.Log("CORRUTINAAA " + this.gameObject.name);
+        // Destroy the object after the animation completes
+        Destroy(gameObject);
+    }
     public void Damage()
     {
         if (_animator == null || !_animator.enabled) return;
@@ -157,8 +166,4 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Follow", true);
     }
 
-    public void OnDieEvent()
-    {
-        Destroy(gameObject);
-    }
 }

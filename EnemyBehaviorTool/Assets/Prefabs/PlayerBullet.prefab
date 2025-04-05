@@ -182,7 +182,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 3019478861570162642}
   _sensorTransitions: []
-  _damageEmittersInState: []
+  _damageEmittersInState:
+  - {fileID: 2284073555286176473}
   _debugState: 0
 --- !u!114 &2284073555286176473
 MonoBehaviour:
@@ -204,7 +205,7 @@ MonoBehaviour:
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 1
-  _activeFromStart: 0
+  _activeFromStart: 1
 --- !u!95 &1575611272841410677
 Animator:
   serializedVersion: 5
