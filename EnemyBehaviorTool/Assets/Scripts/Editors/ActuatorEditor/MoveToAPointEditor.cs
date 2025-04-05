@@ -97,8 +97,8 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 						EditorGUILayout.PropertyField(_easingFunctionForAllWaypoints, _easingFunctionToAPointLabel);
 						EasingFunction.Ease easingEnum = (EasingFunction.Ease)_easingFunctionForAllWaypoints.intValue;
 						EditorGUILayout.LabelField("X-axis: Time, Y-axis: Position");
-						DrawEasingCurve(easingEnum);
-						EditorGUI.indentLevel--;
+                        DrawEasingCurve(easingEnum, new Vector2(45, 15), new Vector2(65, 2), "X: Time", "Y: Position ", new Vector2(40, 20), new Vector2(60, 20));
+                        EditorGUI.indentLevel--;
 					}
 					EditorGUILayout.PropertyField(_shouldThemStop, _shouldThemStopLabel);
 					if (_shouldThemStop.boolValue)
@@ -142,8 +142,8 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 								var easingFunctionProp = waypoint.FindPropertyRelative("easingFunction");
 								EditorGUILayout.PropertyField(easingFunctionProp, _easingFunctionToAPointLabel);
 								EasingFunction.Ease easingEnum = (EasingFunction.Ease)easingFunctionProp.intValue;
-								DrawEasingCurve(easingEnum);
-							}
+                                DrawEasingCurve(easingEnum, new Vector2(45, 15), new Vector2(65, 2), "X: Time", "Y: Position ", new Vector2(40, 20), new Vector2(60, 20));
+                            }
 
 							var shouldStop = waypoint.FindPropertyRelative("shouldStop");
 							EditorGUILayout.PropertyField(shouldStop, _shouldStopLabel);
@@ -183,32 +183,5 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		}
 		serializedObject.ApplyModifiedProperties();
 	}
-    public override void DrawEasingCurve(EasingFunction.Ease easing)
-    {
-        // We clean the curve's keyframes before updating them.
-        easingCurve.keys = new Keyframe[0];
-        float step = 1f / (EASING_GRAPH_NUMBER_OF_POINTS - 1);
-        for (int i = 0; i < EASING_GRAPH_NUMBER_OF_POINTS; i++)
-        {
-            float t = i * step;
-            float y = EasingFunction.GetEasingFunction(easing)(0, 1, t);
-            easingCurve.AddKey(t, y);
-        }
-
-        // Reserve space and draw the easing curve
-        Rect curveRect = GUILayoutUtility.GetRect(EASING_GRAPH_WIDTH, EASING_GRAPH_HEIGHT, GUILayout.ExpandWidth(true));
-        EditorGUI.CurveField(curveRect, easingCurve);
-
-        // Draw axis labels (small offsets to place them properly)
-        GUIStyle labelStyle = new GUIStyle(GUI.skin.label);
-        labelStyle.fontSize = 10;
-
-        // Label "X" near bottom right
-        Vector2 xLabelPos = new Vector2(curveRect.xMax - 45, curveRect.yMax - 15);
-        GUI.Label(new Rect(xLabelPos, new Vector2(40, 20)), "X: Time", labelStyle);
-
-        // Label "Y" near top left
-        Vector2 yLabelPos = new Vector2(curveRect.xMin + 65, curveRect.yMin - 2);
-        GUI.Label(new Rect(yLabelPos, new Vector2(60, 20)), "Y: Position ", labelStyle);
-    }
+   
 }

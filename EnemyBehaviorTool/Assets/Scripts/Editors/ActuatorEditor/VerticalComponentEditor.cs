@@ -62,8 +62,8 @@ public class VerticalComponentEditor : ActuatorEditor
 				component.SetInterpolationTime(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(interpolationTimeLabel, component.GetInterpolationTime()))));
 				component.SetEasingFunction((EasingFunction.Ease)EditorGUILayout.EnumPopup(_easingFunctionLabel, component.GetEasingFunctionValue()));
 				EditorGUILayout.LabelField("Easing Curve", EditorStyles.boldLabel);
-				DrawEasingCurve(component.GetEasingFunctionValue());
-			}
+                DrawEasingCurve(component.GetEasingFunctionValue(), new Vector2(45, 15), new Vector2(30, 2), "X: Time", "Y: Speed ", new Vector2(40, 20), new Vector2(60, 20));
+            }
 			else
 			{
 				EditorGUILayout.PropertyField(_throw, _throwLabel);
@@ -77,32 +77,5 @@ public class VerticalComponentEditor : ActuatorEditor
 			EditorUtility.SetDirty(component);
 		}
 	}
-    public override void DrawEasingCurve(EasingFunction.Ease easing)
-    {
-        // We clean the curve's keyframes before updating them.
-        easingCurve.keys = new Keyframe[0];
-        float step = 1f / (EASING_GRAPH_NUMBER_OF_POINTS - 1);
-        for (int i = 0; i < EASING_GRAPH_NUMBER_OF_POINTS; i++)
-        {
-            float t = i * step;
-            float y = EasingFunction.GetEasingFunction(easing)(0, 1, t);
-            easingCurve.AddKey(t, y);
-        }
-
-        // Reserve space and draw the easing curve
-        Rect curveRect = GUILayoutUtility.GetRect(EASING_GRAPH_WIDTH, EASING_GRAPH_HEIGHT, GUILayout.ExpandWidth(true));
-        EditorGUI.CurveField(curveRect, easingCurve);
-
-        // Draw axis labels (small offsets to place them properly)
-        GUIStyle labelStyle = new GUIStyle(GUI.skin.label);
-        labelStyle.fontSize = 10;
-
-        // Label "X" near bottom right
-        Vector2 xLabelPos = new Vector2(curveRect.xMax - 45, curveRect.yMax - 15);
-        GUI.Label(new Rect(xLabelPos, new Vector2(40, 20)), "X: Time", labelStyle);
-
-        // Label "Y" near top left
-        Vector2 yLabelPos = new Vector2(curveRect.xMin + 30, curveRect.yMin - 2);
-        GUI.Label(new Rect(yLabelPos, new Vector2(60, 20)), "Y: Speed ", labelStyle);
-    }
+    
 }

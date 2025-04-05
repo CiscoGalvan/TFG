@@ -7753,7 +7753,7 @@ MonoBehaviour:
   _interpolationTime: 0
   _direction: -1
   _onCollisionReaction: 0
-  _followPlayer: 0
+  _followPlayer: 1
 --- !u!114 &1703530020
 MonoBehaviour:
   m_ObjectHideFlags: 0

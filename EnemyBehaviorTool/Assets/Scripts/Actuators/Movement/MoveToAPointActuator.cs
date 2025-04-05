@@ -64,7 +64,7 @@ public class MoveToAPointActuator : MovementActuator
     private float _t;
     private int _currentWaypointIndex;
 
-    [SerializeField]
+    [SerializeField, Tooltip("If true, the waypoint path will loop: after reaching the last waypoint, it will return to the first one")]
     private bool _isACicle = false;                         // Should the path loop
     [SerializeField, HideInInspector]
     private bool _allWaypointsHaveTheSameData = false;      // Do all waypoints share settings

@@ -12,7 +12,7 @@ public class ActuatorEditor : Editor
 
 	protected static readonly GUIContent _easingFunctionLabel = new GUIContent("Easing Function", "Easing function that will describe the progress of the velocity");
 	protected AnimationCurve easingCurve = new AnimationCurve();
-    public virtual void DrawEasingCurve(EasingFunction.Ease easing)
+    public void DrawEasingCurve(EasingFunction.Ease easing, Vector2 xposition, Vector2 yposition, string xtext, string  ytext, Vector2 xwidth, Vector2 ywidth)
     {
         // We clean the curve's keyframes before updating them.
         easingCurve.keys = new Keyframe[0];
@@ -31,12 +31,10 @@ public class ActuatorEditor : Editor
         // Draw axis labels (small offsets to place them properly)
         GUIStyle labelStyle = new GUIStyle(GUI.skin.label);
         labelStyle.fontSize = 10;
+        GUI.Label(new Rect(curveRect.max -xposition, xwidth), xtext, labelStyle);
 
-        Vector2 xLabelPos = new Vector2(curveRect.xMax - 45, curveRect.yMax - 15);
-        GUI.Label(new Rect(xLabelPos, new Vector2(40, 20)), "X", labelStyle);
-
-        Vector2 yLabelPos = new Vector2(curveRect.xMin + 2, curveRect.yMin - 2);
-        GUI.Label(new Rect(yLabelPos, new Vector2(20, 20)), "Y", labelStyle);
+       
+        GUI.Label(new Rect(new Vector2(curveRect.xMin + yposition.x, curveRect.yMin - yposition.y), ywidth), ytext, labelStyle);
     }
 
 }
