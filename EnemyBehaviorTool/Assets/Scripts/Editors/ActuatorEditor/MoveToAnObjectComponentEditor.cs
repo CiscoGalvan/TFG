@@ -42,23 +42,6 @@ public class MoveToAnObjectComponentEditor : ActuatorEditor
 			DrawEasingCurve(easingEnum);
 			EditorGUI.indentLevel--;
 		}
-
-		//var shouldStop = _waypointData.FindPropertyRelative("shouldStop");
-		//EditorGUILayout.PropertyField(shouldStop, _shouldStopLabel);
-		//if (shouldStop.boolValue)
-		//{
-		//	EditorGUI.indentLevel++;
-		//	var stopDuration = _waypointData.FindPropertyRelative("stopDuration");
-		//	stopDuration.floatValue = Mathf.Max(0f, EditorGUILayout.FloatField(stopDuration.floatValue));
-		//	EditorGUI.indentLevel--;
-		//}
-		
-
-
-
-
-
-
 		serializedObject.ApplyModifiedProperties();
 	}
 }

@@ -42,20 +42,6 @@ public class VerticalComponentEditor : ActuatorEditor
 
         VerticalActuator component = (VerticalActuator)target;
 		DrawDefaultInspector();
-		#region Old OnCollisionReaction
-		// Variables auxiliares para evitar selección simultánea
-		//bool bounces = component.GetBouncesAfterCollision();
-		//      bool destroys = component.GetDestroyAfterCollision();
-
-		//      bounces = EditorGUILayout.Toggle(bouncingLabel, bounces);
-		//      if (bounces) destroys = false; // Si se selecciona rebotar, desactiva destruir
-
-		//      destroys = EditorGUILayout.Toggle(destroyLabel, destroys);
-		//      if (destroys) bounces = false; // Si se selecciona destruir, desactiva rebotar
-
-		//      component.SetBouncesAfterCollision(bounces);
-		//      component.SetDestroyAfterCollision(destroys);
-		#endregion
 		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
@@ -65,6 +51,11 @@ public class VerticalComponentEditor : ActuatorEditor
             EditorGUILayout.PropertyField(_followPlayerProperty, _followPlayerLabel);
             if (!_followPlayerProperty.boolValue)
                 EditorGUILayout.PropertyField(_directionProperty, _directionLabel);
+            if (_followPlayerProperty.boolValue && _onCollisionReaction.intValue == 1) // 1 = Bounce
+            {
+                EditorGUILayout.HelpBox("The object won't bounce off collisions while following the player.", MessageType.Warning);
+            }
+
             if (component.IsMovementAccelerated())
 			{
 				component.SetGoalSpeed(Mathf.Max(0, Mathf.Max(0, EditorGUILayout.FloatField(goalSpeedLabel, component.GetGoalSpeed()))));
