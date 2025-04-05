@@ -5,11 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-// Ensure that this component always has a Rigidbody2D
 [RequireComponent(typeof(Rigidbody2D))]
 public class VerticalActuator : MovementActuator
 {
     [Header("Layers")]
+    [Tooltip("Defines which layers this object can collide with")]
     public LayerMask _layersToCollide; // Defines which layers this object can collide with
 
     // Movement direction options
@@ -64,7 +64,7 @@ public class VerticalActuator : MovementActuator
 
         if (_throw)
         {
-            ApllyForce(); // Apply force once if "throw" is enabled
+            ApplyForce(); // Apply force once if "throw" is enabled
         }
 
         if (_followPlayer)
@@ -100,20 +100,21 @@ public class VerticalActuator : MovementActuator
         }
     }
 
+    // Called when the actuator is destroyed
     public override void DestroyActuator()
     {
-        // No specific logic needed on destroy
+        // No specific cleanup required currently
     }
 
     // Called every frame if is in the actual State
     public override void UpdateActuator()
     {
         // Continuously apply force unless it's a "throw"
-        if (!_throw) ApllyForce();
+        if (!_throw) ApplyForce();
     }
 
     // Applies the movement force to the Rigidbody2D
-    private void ApllyForce()
+    private void ApplyForce()
     {
         _time += Time.deltaTime;
 

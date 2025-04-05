@@ -20,7 +20,7 @@ public class SpawnerComponentEditor : Editor
     {
         
         infiniteEnemiesProp = serializedObject.FindProperty("_infiniteEnemies");
-        numOfEnemiesToSpawnProp = serializedObject.FindProperty("_numOfEnemiesToSpawn");
+        numOfEnemiesToSpawnProp = serializedObject.FindProperty("_numofTimesToSpawn");
         spawnIntervalProp = serializedObject.FindProperty("_spawnInterval");
         spawnListProp = serializedObject.FindProperty("_spawnList");
     }

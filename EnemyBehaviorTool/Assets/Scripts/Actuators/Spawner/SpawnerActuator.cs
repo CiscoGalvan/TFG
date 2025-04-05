@@ -22,13 +22,13 @@ public class SpawnerActuator : Actuator
     private bool _infiniteEnemies = true; // If true, enemies will spawn indefinitely
 
     [SerializeField, HideInInspector]
-    private int _numOfEnemiesToSpawn = 0; // Total number of enemies to spawn if not infinite
+    private int _numofTimesToSpawn = 0; // Total number of enemies to spawn if not infinite
 
     [SerializeField]
     private List<SpawnInfo> _spawnList = new List<SpawnInfo>(); // List of spawn points and prefabs
 
     private Timer _timer; // Controls time between spawns
-    private int _numEnemiesAlreadySpawn; // Tracks how many enemies have been spawned
+    private int _numofTimeSpawned; // Tracks how many enemies have been spawned
 
     AnimatorManager _animatorManager;
 
@@ -42,7 +42,7 @@ public class SpawnerActuator : Actuator
     public override void StartActuator()
     {
         _timer = new Timer(_spawnInterval); // Create a timer for spawning
-        _numEnemiesAlreadySpawn = 0;
+        _numofTimeSpawned = 0;
         _timer.Start(); // Start the timer
         _animatorManager = this.gameObject.GetComponent<AnimatorManager>(); 
     }
@@ -51,9 +51,9 @@ public class SpawnerActuator : Actuator
     void SpawnEvent()
     {
         // Check if we can spawn more enemies (infinite or within limit)
-        if (_infiniteEnemies || _numEnemiesAlreadySpawn < _numOfEnemiesToSpawn)
+        if (_infiniteEnemies || _numofTimeSpawned < _numofTimesToSpawn)
         {
-            _numEnemiesAlreadySpawn++;
+            _numofTimeSpawned++;
 
             // Spawn each prefab at its corresponding spawn point
             foreach (var spawnInfo in _spawnList)
@@ -61,6 +61,10 @@ public class SpawnerActuator : Actuator
                 if (spawnInfo._prefabToSpawn != null && spawnInfo._spawnPoint != null)
                 {
                     Instantiate(spawnInfo._prefabToSpawn, spawnInfo._spawnPoint.position, spawnInfo._spawnPoint.rotation);
+                }
+                else
+                {
+                    Debug.LogWarning("Try to spawn object but there is no prefab or point to spawn");
                 }
             }
 
@@ -88,10 +92,10 @@ public class SpawnerActuator : Actuator
 
     public void SetNumberOfEnemiesToSpawn(int newValue)
     {
-        _numOfEnemiesToSpawn = newValue;
+        _numofTimesToSpawn = newValue;
     }
 
-    public int GetNumberOfEnemiesToSpawn() => _numOfEnemiesToSpawn;
+    public int GetNumberOfEnemiesToSpawn() => _numofTimesToSpawn;
 
     #endregion
 }
