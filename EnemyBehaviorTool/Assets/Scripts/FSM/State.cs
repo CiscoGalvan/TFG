@@ -60,15 +60,7 @@ public class State : MonoBehaviour
             if(sensor)
                 sensor.StartSensor();
         }
-        if(_damageEmittersInState.Count == 0)
-        {
-            var damageEmitter = GetComponent<DamageEmitter>();
-            if (damageEmitter != null)
-				Debug.Log($"A DamageEmitter was detected, but it is not in the DamageEmitterInState list.\n" +
-			      $"{this.gameObject.name} will not report any damage.\n" +
-			      $"Please include it in the State's DamageEmitterInState list if {this.gameObject.name} should deal damage.");
-
-		}
+    
 		foreach (var damageEmitter in _damageEmittersInState)
 		{
             if (damageEmitter)

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
-using static DamageEmitter;
 
 [CustomEditor(typeof(CircularActuator))]
 public class CircularComponentEditor : ActuatorEditor
@@ -52,13 +51,14 @@ public class CircularComponentEditor : ActuatorEditor
 	{
 
 	    serializedObject.Update();
+		EditorGUILayout.PropertyField(_rotationPointPosition, _rotationPointPositionLabel);
 		EditorGUILayout.PropertyField(_pointPlayer, _pointPlayerLabel);
 		EditorGUILayout.PropertyField(_canRotate, _canRotateLabel);
 		if (!_pointPlayer.boolValue)
 		{
 			EditorGUI.indentLevel++;
 			EditorGUILayout.PropertyField(_isAccelerated, _isAcceleratedLabel);
-			EditorGUILayout.PropertyField(_rotationPointPosition, _rotationPointPositionLabel);
+
 			EditorGUILayout.PropertyField(_maxAngle, _maxAngleLabel);
 			if (_isAccelerated.boolValue)
 			{

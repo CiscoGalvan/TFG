@@ -190,7 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList: []
   _sensorTransitions: []
-  _damageEmittersInState: []
+  _damageEmittersInState:
+  - {fileID: 4163608757728436586}
   _debugState: 0
 --- !u!114 &4163608757728436586
 MonoBehaviour:

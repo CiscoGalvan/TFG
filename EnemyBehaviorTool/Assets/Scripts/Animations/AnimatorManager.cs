@@ -79,7 +79,6 @@ public class AnimatorManager : MonoBehaviour
         // Wait for the "Die" animation to finish
         float animationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animationLength);
-        Debug.Log("CORRUTINAAA " + this.gameObject.name);
         // Destroy the object after the animation completes
         Destroy(gameObject);
     }

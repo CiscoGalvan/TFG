@@ -16,25 +16,30 @@ public class FSM : MonoBehaviour
     {
         // Set the initial state and execute its start logic
         _currentState = initialState;
-        _currentState.StartState();
+		if (_currentState != null)
+			_currentState.StartState();
     }
 
     void Update()
     {
         // Executes the logic of the current state in each frame
-        _currentState.UpdateState();
+        if(_currentState != null ) 
+            _currentState.UpdateState();
     }
   
      private void OnDestroy()
     {
-        // Executes the exit actions of the last state when the FSM is destroyed
-        _currentState.DestroyState();
+		// Executes the exit actions of the last state when the FSM is destroyed
+		if (_currentState != null)
+			_currentState.DestroyState();
     }
 
     void LateUpdate()
     {
         // Checks for state transitions after all updates are processed
-        State newState = _currentState.CheckTransitions();
+        if (_currentState == null) return;
+
+		State newState = _currentState.CheckTransitions();
         if (newState != null && newState != _currentState)
         {
             ChangeState(newState);
@@ -47,6 +52,7 @@ public class FSM : MonoBehaviour
     /// <param name="newState">The new state to transition to.</param>
     private void ChangeState(State newState)
     {
+        if (_currentState == null) return;
         // Execute exit actions of the current state
         _currentState.DestroyState();
         // Set the new state and execute its start logic
