@@ -44,6 +44,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 	private static readonly GUIContent _waypointTransformLabel = new GUIContent("Waypoint Transform", "Reference to the waypoint transform.");
 	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the movement towards the waypoint accelerated?");
 	private static readonly GUIContent _sizeLabel = new GUIContent("Size", "Number of waypoints");
+	private static readonly GUIContent _isACicleLabel = new GUIContent("Is A Cicle", "If true, the waypoint path will loop: after reaching the last waypoint, it will return to the first one");
 
 
 
@@ -78,7 +79,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		}
 		else
 		{
-			EditorGUILayout.PropertyField(_isACicle);
+			EditorGUILayout.PropertyField(_isACicle, _isACicleLabel);
 			EditorGUILayout.PropertyField(_allWaypointsHaveTheSameData, _allTheSameDataLabel);
 			EditorGUI.indentLevel++;
 			if (_allWaypointsHaveTheSameData.boolValue)

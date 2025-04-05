@@ -335,6 +335,7 @@ MonoBehaviour:
   _residualDamageAmount: 0
   _damageEmitterCollider: {fileID: 307179851}
   _destroyAfterDoingDamage: 0
+  _activeFromStart: 0
 --- !u!114 &307179849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,7 +524,7 @@ MonoBehaviour:
   _waypointData:
     waypoint: {fileID: 1942720467}
     timeToReach: 2
-    isAccelerated: 0
+    isAccelerated: 1
     shouldStop: 0
     easingFunction: 0
 --- !u!114 &307179857
@@ -628,15 +629,15 @@ MonoBehaviour:
   _isAccelerated: 0
   _easingFunction: 0
   _timeToReachForAllWaypoints: 0
-  _areAccelerated: 0
+  _areAccelerated: 1
   _shouldThemStop: 0
   _stopTime: 0
   _easingFunctionForAllWaypoints: 0
-  _usageWay: 1
+  _usageWay: 0
   _waypointsData: []
   _randomArea: {fileID: 533422646}
   _isACicle: 0
-  _allWaypointsHaveTheSameData: 0
+  _allWaypointsHaveTheSameData: 1
   _ciclicWaypointAdded: 0
   _timeBetweenRandomPoints: 0.8
 --- !u!114 &307179863

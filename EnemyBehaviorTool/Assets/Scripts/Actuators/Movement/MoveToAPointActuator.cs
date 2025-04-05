@@ -47,7 +47,6 @@ public class MoveToAPointActuator : MovementActuator
     [SerializeField]
     private UsageWay _usageWay;
 
-    [Tooltip("Configure each waypoint with its time, acceleration, and easing function")]
     [SerializeField]
     private List<WaypointData> _waypointsData = new List<WaypointData>();
 
