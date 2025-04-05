@@ -53,7 +53,7 @@ public class DistanceSensor : Sensors
     //private bool _isNear;
 
 
-    [SerializeField]
+    [SerializeField, Min(0)]
 	[Tooltip("Initial time the sensor will need to be active")]
 	private float _startDetectingTime = 0f;
     private Timer _timer;
@@ -80,7 +80,11 @@ public class DistanceSensor : Sensors
             _timerFinished = true;
         }
 
+        if (_target ==null)
+        {
+            Debug.LogError($"No target set in Distance Sensor in object {name}");
 
+        }
         if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
         {
 

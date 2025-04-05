@@ -11,7 +11,7 @@ public class AreaSensor : Sensors
 	private Collider2D _detectionZone;
 
 	
-	[SerializeField]
+	[SerializeField, Min(0)]
 	[Tooltip("Initial time the sensor will need to be active")]
 	private float _startDetectingTime = 0f;
 	private Timer _timer;

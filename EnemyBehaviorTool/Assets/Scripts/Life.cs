@@ -9,9 +9,13 @@ public class Life : MonoBehaviour
     [SerializeField]
     private EntityType _entityType;
 
-    
+
+	[SerializeField]
+	private float _initialLife = 5; // Initial life value
+	[SerializeField]
+	private float _maxLife = 5; // Maximun life value
     [SerializeField]
-    private float _initialLife = 5; // Initial life value
+    private float _minLife = 5; // Minimun life value
 
     private float _currentLife;
 
@@ -86,7 +90,7 @@ public class Life : MonoBehaviour
 			}
 		}
 
-		if(_currentLife <=0)
+		if(_currentLife <= _minLife)
 		{
 			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
 
@@ -164,23 +168,32 @@ public class Life : MonoBehaviour
 	}
 	private void DecreaseLife(float num)
 	{
-		if(num > 0)
-		{
+		
 			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
 			_animatorManager?.Damage();
-			_currentLife -= num;
-			UpdateLifeText();
-		}
+		_currentLife -= num;
+		if (_currentLife < _minLife)
+		{
+            _currentLife= _minLife;
+
+        }
+		UpdateLifeText();
+		
 	}
 	private void InstantKill()
 	{
-		_currentLife = 0;
+		_currentLife = _minLife;
 		UpdateLifeText();
 	}
     public void IncreaseLife(float num)
 	{
 		_currentLife += num;
-		UpdateLifeText();
+        if (_currentLife > _maxLife)
+        {
+            _currentLife = _maxLife;
+
+        }
+        UpdateLifeText();
 	}
     public void SetLife(float num)
 	{
