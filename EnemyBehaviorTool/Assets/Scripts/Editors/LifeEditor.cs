@@ -30,7 +30,7 @@ public class LifeEditor : Editor
 	}
 	public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
+      
         serializedObject.Update();
 		EditorGUILayout.LabelField("Life Settings", EditorStyles.boldLabel);
 		EditorGUI.indentLevel++;

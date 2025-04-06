@@ -87,7 +87,7 @@ Paso a paso para la instalación:
   ![State](./Manual/State.png)  
   Dentro de cada estado debemos especificar qué acción/acciones vamos a realizar en `Actuator List`.  
   Para poder tener `Transiciones` de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.
-  En caso de que queramos que en el estado se realice daño, se deberá especificar que `DamageEmitter` se encontrará activo.   
+  En caso de que queramos que en el estado se realice daño, se deberá especificar qué `DamageEmitter` se encontrará activo.   
   Por último, si deseamos `ver mediante Gizmos` información sobre el movimiento que se va a realizar, debemos activar el `Debug State`.
 
 ### Sensores
@@ -101,7 +101,7 @@ Los sensores permiten detectar información del entorno y activar transiciones. 
 - **Collision Sensor:**  
   ![CollisionSensor](./Manual/CollisionSensor.png)  
   Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del `Area Sensor`, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.<br>
-  Se debe especificar que `capas` activan el sensor. 
+  Se debe especificar qué `capas` activan el sensor. 
 
 - **Distance Sensor:**  
 ![DistanceSensor](./Manual/DistanceSensor.png)  
@@ -122,7 +122,7 @@ Los sensores permiten detectar información del entorno y activar transiciones. 
   Este sensor es utilizado a la hora de gestionar la `vida` tanto de los enemigos como del propio jugador.<br> Para que se pueda recibir daño se debe tener `Active From Start` a true. 
 
 - **Damage Emitter:**  
-  Es el encargado de `hacer daño`, en el tienes que especificar el tipo de daño, cada tipo de daño tiene sus propios parámetros:
+  Es el encargado de `hacer daño`, en él tienes que especificar el tipo de daño, cada tipo de daño tiene sus propios parámetros:
   - Instant:  
   ![DamagEmitter](./Manual/DamageEmitter.png)  
   El daño instantáneo es aquel que te afecta una única vez al entrar en contacto contigo. Como parámetros, podremos especificar si queremos que se `elimine el objeto después de hacer daño`, si queremos que `directamente mate a la entidad con la que colisiona`. En caso de no querer que elimine directamente el objetivo, indicaremos el `daño que queremos hacerle`.
@@ -139,7 +139,7 @@ Los actuadores permiten realizar acciones durante los estados de los enemigos. D
 
 - **Spawner Actuator**:   
 ![SpawnerActuator](./Manual/SpawnerActuator.png)  
-  Permite generar (spawnear) nuevos enemigo.  
+  Permite generar (spawnear) nuevos enemigos.  
   - `Infinite Enemies:` si se quiere crear infinitos enemigos, en caso contrario se debe especificar la cantidad de veces que vamos a spawnear la lista.
   - `Spawn Interval:` cada cuanto tiempo se crean.
   - `Prefab to Spawn:` objeto que queremos crear.
@@ -172,7 +172,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
 
 - **Vertical Actuator**:  
  ![VerticalActuator](./Manual/VerticalActuator.png)  
-  Este actuador permite mover un objeto vertical, ya sea a arriba o a abajo, con diferentes configuraciones de velocidad y comportamiento tras una colisión. Tiene distintas configuraciones.
+  Este actuador permite mover un objeto vertical, ya sea hacia arriba o hacia abajo, con diferentes configuraciones de velocidad y comportamiento tras una colisión.
 
   - `Reaction After Collision`  
   Define qué sucede cuando el objeto choca contra otro:
@@ -187,7 +187,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - `Falso:` Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
       - `Throw:` Se aplicará una única vez la fuerza, simulando un lanzamiento
       - `Speed:` Establece la velocidad a la que se moverá el objeto    
-    - `Verdadero:` Si el movimiento si es acelerado, la velocidad irá aumentando:
+    - `Verdadero:` Si el movimiento es acelerado, la velocidad irá aumentando:
       - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto después de acelerar.
       - `Interpolation Time:`Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
       - `Easing Function:` Define cómo se comporta la aceleración
@@ -242,14 +242,14 @@ Hace que el enemigo se mueva hacia un punto fijo específico del escenario. Hay 
 ![MoveToAPointActuator](./Manual/MoveToAPointActuatorA.png)   
 Random area coge puntos aleatorios dentro de un área.
     - `Random Area:` Collider que servirá para la referencia del área
-     - `Time Between Random Points:` Cada cuanto cambia el punto a otro distinto
+     - `Time Between Random Points:` Cada cuánto cambia el punto a otro distinto
   - `Waypoint`: Indica que queremos seguir un camino predeterminado de puntos
     - `Is A Cicle:` Indica si queremos que al llegar al final de los waypoints, se vuelva a iniciar la lista.
     - `Same Waypoints Behaviour:` Indica si queremos que el comportamiento sea el mismo para todos los waypoints.
       -  Si es así, se creará un panel único de especificiación de puntos:  
 ![MoveToAPointActuator](./Manual/MoveToAPointActuatorS.png)  
           - `Time Between Waypoints:` tiempo que se tarda entre un punto y otro 
-          - `Are Accelerated:` si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con que aceleración se mueve. 
+          - `Are Accelerated:` si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con qué aceleración se mueve. 
           - `Should Stop:` indica si debe o no parar al llegar a un punto. Si se debe parar, hay que  indicar cuanto tiempo.  
       - Si no es así, aparecerán los mismos datos por cada waypoint.  
     ![MoveToAPointActuator](./Manual/MoveToAPointActuator.png)  
@@ -286,21 +286,21 @@ TODOS los ejemplos parten de la siguiente base:
   6. Añadir un componente de tipo rigidbody almundo y congelar la rotación y posición
   7. Crear un text mex pro que indicará la vida del player y asignarselo en el componente Life   
 
-Con esto tendríamos un jugador yun mundo listos par funcionar.
+Con esto tendríamos un jugador y un mundo listos para funcionar.
 ### Primer Ejemplo: PINCHOS
-Uno de los enemigos más comunes son los pinchos, que no se mueven pero si que dañan al jugador. Vamos a crearlos. 
+Uno de los enemigos más comunes son los pinchos, que no se mueven pero sí que dañan al jugador. Vamos a crearlos. 
 Para el ejemplo usaré la imagen de la piedra:  
 ![Rock](./Manual/Rock.png) 
  1. Crea un objeto partiendo del sprite de la piedra que se encuentra en Assets/Animations/Sprites
  2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
  3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints)
  4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar como queremos que hga daño el enemigo:  
+ 5. Indicar cómo queremos que haga daño el enemigo:  
      - Queremos que haga daño desde el inicio
      - Que sea de tipo Persistente
      - Que haga 1 de daño cada 2 segundos  
 
-Con eso ya tendremos un enemigo que nos hará daño al entrar en contactocon el.  
+Con eso ya tendremos un enemigo que nos hará daño al entrar en contacto con él.  
 
   6. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
   7. Configuramos el Animator Manager  
@@ -308,13 +308,50 @@ Con eso ya tendremos un enemigo que nos hará daño al entrar en contactocon el.
       - Queremos que no rote
 
   8. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
-  9. Entramos en el Editor de Animator de Unity, donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  9. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
   10. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleRock que se encuentra en Assets/Animations/Anim
-  11. Añadimos el controlador que hemos duplicado al Animator que se nos creó alañadir el AnimatorManager.
+  11. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
 Ya tendríamos un enemigo funcional con animación.
 ### Segundo Ejemplo: DEAMBULADOR
-Otro enemigo muy común son deambuladores, tambien conocidos como: goomba, reptacillo, o con otro nombre en muchos juegos.   
+Otro enemigo muy común son deambuladores, también conocidos como: goomba, reptacillo, o con otro nombre en muchos juegos.   
+Para el ejemplo usaré la imagen del oso:  
+![Oso](./Manual/Oso.png) 
+ 1. Crea un objeto partiendo del sprite del oso que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación en constraints)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente de movimiento Horizonal Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Configuramos el Movimiento horizontal:
+    - Queremos que no sea acelerado
+    - Que al colisionar rebote con las capas Mundo y Jugador
+    - Que no siga al jugador
+    - Que la dirección sea hacia la derecha
+    - Que no sea un lanzamiento
+    - Que tenga velocidad continua de 7
+10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
+Ahora vamos a añadir animaciones: 
+
+  10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  11. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje y pero que sí lo haga en el x
+      - Queremos que no rote
+
+  12. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
+  13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y movimiento horizontal, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idlebear que se encuentra en Assets/Animations/Anim
+  14. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar walkbear que se encuentra en Assets/Animations/Anim
+  
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+
+### Tercer Ejemplo: Torreta + balas 
+Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear primero las balas y luego el enemigo.  
 Para el ejemplo usaré la imagen del oso:  
 ![Oso](./Manual/Oso.png) 
  1. Crea un objeto partiendo del sprite del oso que se encuentra en Assets/Animations/Sprites
@@ -350,7 +387,6 @@ Ahora vamos a añadir animaciones:
   
   15. Añadimos el controlador que hemos duplicado al Animator que se nos creó alañadir el AnimatorManager.
 
-### Tercer Ejemplo: Torreta + balas 
 ### Cuarto Ejemplo: TikTik (splines)
 ### Quinto ejemplo: VENGAMOSCA
 
@@ -372,11 +408,11 @@ Lista de términos técnicos y sus definiciones para facilitar la comprensión d
 
 - ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado `Idle`, `Patrol`, `Attack`, etc.
 
-- ***Serializado:*** Permite modificar valores sin necesidad de cambiar el código, editandolos desde el editor de Unity.
+- ***Serializado:*** Permite modificar valores sin necesidad de cambiar el código, editándolos desde el editor de Unity.
 - ***Transform:*** Es un componente de Unity que almacena y gestiona la posición, rotación y escala de un objeto en la escena. Es fundamental para manipular cualquier objeto dentro del mundo del juego, ya que permite moverlo, rotarlo y escalarlo.
 
 
-- ***Serializado:*** En términos simples, significa que la información de un objeto puede guardarse y recuperarse más tarde sin perder sus datos. En Unity, esto se usa para recordar configuraciones o guardar partidas.
+- ***Flip:*** voltear la imagen. 
 
 
 

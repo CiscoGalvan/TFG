@@ -137,7 +137,7 @@ public class HorizontalActuator : MovementActuator
             if (enemyX > playerRight) _direction = Direction.Left;
             else if (enemyX < playerLeft) _direction = Direction.Right;
         }
-        else if (_playerReference == null)
+        else if (_followPlayer && _playerReference == null)
         {
             Debug.LogWarning("Player reference was null, the actuator may not be precise");
         }
