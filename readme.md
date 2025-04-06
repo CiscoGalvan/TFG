@@ -287,6 +287,7 @@ TODOS los ejemplos parten de la siguiente base:
   7. Crear un text mex pro que indicará la vida del player y asignarselo en el componente Life   
 
 Con esto tendríamos un jugador y un mundo listos para funcionar.
+AVISO: cuando se dice borrar todos los estados del animator, se refiere a los que no son propios de Unity, es decir, los que aparecen en color Gris.
 ### Primer Ejemplo: PINCHOS
 Uno de los enemigos más comunes son los pinchos, que no se mueven pero sí que dañan al jugador. Vamos a crearlos. 
 Para el ejemplo usaré la imagen de la piedra:  
@@ -343,7 +344,7 @@ Ahora vamos a añadir animaciones:
       - Queremos que no haga flip en el eje y pero que sí lo haga en el x
       - Queremos que no rote
 
-  12. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
+  12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
   13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y movimiento horizontal, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
   14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idlebear que se encuentra en Assets/Animations/Anim
   14. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar walkbear que se encuentra en Assets/Animations/Anim
@@ -351,44 +352,99 @@ Ahora vamos a añadir animaciones:
   15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
 ### Tercer Ejemplo: Torreta + balas 
-Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear primero las balas y luego el enemigo.  
-Para el ejemplo usaré la imagen del oso:  
-![Oso](./Manual/Oso.png) 
- 1. Crea un objeto partiendo del sprite del oso que se encuentra en Assets/Animations/Sprites
+Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear primero las balas y luego el enemigo.   
+Para el ejemplo usaré la imagen de la bala:  
+![Bullet](./Manual/Bullet.png) 
+ 1. Crea un objeto partiendo del sprite de la bala que se encuentra en Assets/Animations/Sprites
  2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
- 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación en constraints)
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D 
  4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar como queremos que hga daño el enemigo:  
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que se destruya despuhes de hacer daño
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente Directional Actuator y lo añadimos a la lista de actuadores del Estado
+ 9. Configuramos el Movimiento horizontal:
+    - Queremos que colisione con las capas Mundo y Jugador
+    - Que al colisionar se destruya
+    - Que no sea acelerado
+    - Que siga al jugador
+    - Que no sea un lanzamiento
+    - Que tenga velocidad continua de 10
+10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
+Ahora vamos a Crear la Torreta: 
+Para el ejemplo usaré la imagen de la planta:  
+![Planta](./Manual/Planta.png) 
+ 1. Crea un objeto partiendo del sprite de la planta que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
      - Queremos que haga daño desde el inicio
      - Que sea de tipo Instant
      - Que haga 1 de daño 
- 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadiomos un componente de tipo FSM
+ 6. Vamos a añadir la creación de otros enemigos (spawner), eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
  7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
- 8. Añadimos el componente de movimiento Horizonal Actuator y lo añadimos a la lista de actuadores del estado
- 9. Configuramos el Movimiento horizontal:
-    - Queremos que no sea acelerado
-    - Que al colisionar rebote con las capas Mundo y Jugador
-    - Que no siga al jugador
-    - Que la dirección seha hacia la derecha
-    - Que no sea un lanzamiento
-    - Que tenga velocidad continua de 7
+ 8. Añadimos el componente de Spawner Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Configuramos el Spawner Actuator:
+    - Queremos que cree infinitos enemigos
+    - Que sea cada 2 segundos
+    - Que cree un único enemigo a la vez
+10. Añadimos el  prefab de la bala a la lista del spawner: spawn list, en Prefab to Spawn.
+11. Creamos un nuevo objeto vacío donde queramos que se cree el nuevo enemigo y se lo asignamos a la lista del spawner: spawn list, en  Spawn Point.
+Ahora vamos a añadir animaciones: 
 
+  12. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  13. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje y ni en el eje x
+      - Queremos que no rote
+
+  14. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  15. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y spawn, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  16. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idleplant que se encuentra en Assets/Animations/Anim
+  17. Hacemos Click sobre el estado Spawn y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar SpawnPlant que se encuentra en Assets/Animations/Anim
+  
+  18. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+
+
+### Cuarto Ejemplo: TikTik (splines)
+Por último vamos a crecrear un enemigo del HollowKnigth el TikTIk, este va recorriendo una plataforma bordeándola.  
+Para el ejemplo usaré la imagen de la zarigüeya:  
+![Oso](./Manual/Zariguella.png) 
+Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints), así como, añadirlo ala capa Mundo.
+Empecemos con el enemigo:
+ 1. Crea un objeto partiendo del sprite de la zarigüeya que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D 
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente de Spline Follower Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Creamos un Spline con forma cuadrada y lo giramos 90 grados en el eje de las X
+ 9. Configuramos el Spline Follower Actuator:
+    - Añadimos el spline recien creado como referencia
+    - Asignamos la velocidad a la que queremos que vaya
+    - Queremos que se teletransporte el enemigo a la curba y no al contrario.
+10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
 Ahora vamos a añadir animaciones: 
 
   10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
   11. Configuramos el Animator Manager  
-      - Queremos que no haga flip en y pero que si lo haga en x
-      - Queremos que no rote
+      - Queremos que no haga flip en el eje Y ni en el eje X
+      - Queremos que si rote
 
-  12. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
-  13. Entramos en el Editor de Animator de Unity, donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y movimiento horizontal, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
-  14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idlebear que se encuentra en Assets/Animations/Anim
-  14. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar walkbear que se encuentra en Assets/Animations/Anim
+  12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle (selecionamos con el ratón y pulsar suprimir).
+  14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Opossumwolk que se encuentra en Assets/Animations/Anim
   
-  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó alañadir el AnimatorManager.
-
-### Cuarto Ejemplo: TikTik (splines)
-### Quinto ejemplo: VENGAMOSCA
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
 
 
