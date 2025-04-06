@@ -277,9 +277,82 @@ Gestiona la vida de los objetos.
  - `Initial Life:` vida inicial.
  - `Entity type:` tipo de entidad (player o enemy)
 ## Ejemplos de Uso
+TODOS los ejemplos parten de la siguiente base:
+  1. Creación de una escena nueva
+  2. Arrastrar el prefab *Scene* en la carpeta *Assets/Prefabs*
+  3. Añadir una nueva capa con el nombre que se quiera para el escenario, por ejemplo *Mundo* 
+  4. Arrastrar el prefab *Player* en la carpeta *Assets/Prefabs*
+  5. Añadir una nueva capa con el nombre que se quiera para el Player, por ejemplo *Jugador*
+  6. Añadir un componente de tipo rigidbody almundo y congelar la rotación y posición
+  7. Crear un text mex pro que indicará la vida del player y asignarselo en el componente Life   
 
-### Primer Ejemplo
+Con esto tendríamos un jugador yun mundo listos par funcionar.
+### Primer Ejemplo: PINCHOS
+Uno de los enemigos más comunes son los pinchos, que no se mueven pero si que dañan al jugador. Vamos a crearlos. 
+Para el ejemplo usaré la imagen de la piedra:  
+![Rock](./Manual/Rock.png) 
+ 1. Crea un objeto partiendo del sprite de la piedra que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar como queremos que hga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Persistente
+     - Que haga 1 de daño cada 2 segundos  
 
+Con eso ya tendremos un enemigo que nos hará daño al entrar en contactocon el.  
+
+  6. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  7. Configuramos el Animator Manager  
+      - Queremos que no haga flip ni en x ni en y  
+      - Queremos que no rote
+
+  8. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
+  9. Entramos en el Editor de Animator de Unity, donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  10. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleRock que se encuentra en Assets/Animations/Anim
+  11. Añadimos el controlador que hemos duplicado al Animator que se nos creó alañadir el AnimatorManager.
+
+Ya tendríamos un enemigo funcional con animación.
+### Segundo Ejemplo: DEAMBULADOR
+Otro enemigo muy común son deambuladores, tambien conocidos como: goomba, reptacillo, o con otro nombre en muchos juegos.   
+Para el ejemplo usaré la imagen del oso:  
+![Oso](./Manual/Oso.png) 
+ 1. Crea un objeto partiendo del sprite del oso que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación en constraints)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar como queremos que hga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadiomos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente de movimiento Horizonal Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Configuramos el Movimiento horizontal:
+    - Queremos que no sea acelerado
+    - Que al colisionar rebote con las capas Mundo y Jugador
+    - Que no siga al jugador
+    - Que la dirección seha hacia la derecha
+    - Que no sea un lanzamiento
+    - Que tenga velocidad continua de 7
+
+Ahora vamos a añadir animaciones: 
+
+  10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  11. Configuramos el Animator Manager  
+      - Queremos que no haga flip en y pero que si lo haga en x
+      - Queremos que no rote
+
+  12. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
+  13. Entramos en el Editor de Animator de Unity, donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y movimiento horizontal, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idlebear que se encuentra en Assets/Animations/Anim
+  14. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar walkbear que se encuentra en Assets/Animations/Anim
+  
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó alañadir el AnimatorManager.
+
+### Tercer Ejemplo: Torreta + balas 
+### Cuarto Ejemplo: TikTik (splines)
+### Quinto ejemplo: VENGAMOSCA
 
 
 

@@ -6,7 +6,7 @@ using TMPro;
 public class Life : MonoBehaviour
 {
     public enum EntityType {Enemy, Player}
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private EntityType _entityType;
 
 
@@ -15,7 +15,7 @@ public class Life : MonoBehaviour
 	[SerializeField]
 	private float _maxLife = 5; // Maximun life value
     [SerializeField]
-    private float _minLife = 5; // Minimun life value
+    private float _minLife = 0; // Minimun life value
 
     private float _currentLife;
 
@@ -169,8 +169,8 @@ public class Life : MonoBehaviour
 	private void DecreaseLife(float num)
 	{
 		
-			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
-			_animatorManager?.Damage();
+		AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
+		_animatorManager?.Damage();
 		_currentLife -= num;
 		if (_currentLife < _minLife)
 		{
@@ -198,7 +198,12 @@ public class Life : MonoBehaviour
     public void SetLife(float num)
 	{
 		_currentLife = num;
-		UpdateLifeText();
+        if (_currentLife > _maxLife)
+        {
+            _currentLife = _maxLife;
+
+        }
+        UpdateLifeText();
 	}
 	public void ResetLife()
 	{

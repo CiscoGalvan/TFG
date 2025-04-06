@@ -328,6 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &59655631
@@ -2149,6 +2151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 5
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &356613016
@@ -2229,7 +2233,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &356613020
@@ -2778,6 +2781,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &467057761
@@ -2894,7 +2899,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &666990401
@@ -3401,6 +3405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &771697792
@@ -3736,7 +3742,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &942051726
@@ -4105,7 +4110,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &1042567556
@@ -4452,6 +4456,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 5
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1115047482
@@ -4554,7 +4560,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!61 &1115047487
@@ -4954,6 +4959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1117899155
@@ -5421,7 +5428,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &1191343835
@@ -6143,6 +6149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1421668292
@@ -6443,6 +6451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1429716949
@@ -6643,7 +6653,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &1489513371
@@ -7172,7 +7181,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &1557206086
@@ -7715,6 +7723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 1
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1696577124
@@ -8110,7 +8120,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &1703530028
@@ -8241,6 +8250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityType: 0
   _initialLife: 5
+  _maxLife: 5
+  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1703530035

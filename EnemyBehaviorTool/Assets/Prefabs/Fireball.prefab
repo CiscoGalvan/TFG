@@ -201,7 +201,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &6112096039114555898

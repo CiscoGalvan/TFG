@@ -5,7 +5,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+[RequireComponent(typeof(Animator))]
 public class AnimatorManager : MonoBehaviour
 {
     private Animator _animator;
