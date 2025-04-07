@@ -264,4 +264,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canFlipX: 1
   _canFlipY: 1
-  _canRotate: 1

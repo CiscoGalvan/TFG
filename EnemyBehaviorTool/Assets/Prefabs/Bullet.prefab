@@ -228,7 +228,7 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _destroyAfterDoingDamage: 0
-  _activeFromStart: 0
+  _activeFromStart: 1
 --- !u!114 &2845174822851550775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +243,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canFlipX: 1
   _canFlipY: 1
-  _canRotate: 0
 --- !u!95 &1575611272841410677
 Animator:
   serializedVersion: 5

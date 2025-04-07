@@ -46,8 +46,17 @@ public class DirectionalComponentEditor : ActuatorEditor
 
 	public override void OnInspectorGUI()
 	{
-		EditorGUILayout.PropertyField(_layerMask, _layerMaskLabel);
+		serializedObject.Update();
+
 		EditorGUILayout.PropertyField(_onCollisionReaction, _onCollisionReactionLabel);
+		if(_onCollisionReaction.intValue != 0)
+		{
+			EditorGUI.indentLevel++;
+			EditorGUILayout.PropertyField(_layerMask, _layerMaskLabel); 
+			EditorGUI.indentLevel--;
+		}
+	
+
 		EditorGUI.indentLevel++;
 		_showMovementInfo = EditorGUILayout.Foldout(_showMovementInfo, "Movement Info", true);
 		EditorGUI.indentLevel++;

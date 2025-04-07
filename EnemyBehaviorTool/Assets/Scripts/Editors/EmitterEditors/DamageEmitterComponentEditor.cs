@@ -14,7 +14,7 @@ public class DamageEmitterComponentEditor : Editor
 	private SerializedProperty _activeFromStart;
 
 	private static readonly GUIContent _amountOfDamageLabel = new GUIContent("Damage Amount", "Amount of damage the enemy will deal the player.");
-	private static readonly GUIContent _activeFromStartLabel = new GUIContent("Active From Start", "If true, the Damage Emitter won't need to be included in any State in order to activate itself.");
+	private static readonly GUIContent _activeFromStartLabel = new GUIContent("Active From Start", "If true, the Damage Emitter won't need to be included in any State in order to activate itself, otherwise if the DamageEmitter is not included in any State and it's not Active From Start it won't deal any damage.");
 	
 	private static readonly GUIContent _destroyAfterDoingDamageLabel = new GUIContent("Destroy After Doing Damage", "Will the object destroy after doing damage?");
 	private static readonly GUIContent _damageCooldownLabel = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again.");
@@ -47,7 +47,7 @@ public class DamageEmitterComponentEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		serializedObject.Update();
-
+		EditorGUILayout.HelpBox("In case the DamageEmitter is included in the initial state, this checkbox will be automaticly set to true.", MessageType.Info);
 		EditorGUILayout.PropertyField(_activeFromStart, _activeFromStartLabel);
 		EditorGUILayout.PropertyField(_damageType, _damageTypeLabel);
 		EditorGUI.indentLevel++;

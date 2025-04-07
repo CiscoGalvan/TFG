@@ -212,4 +212,6 @@ public class State : MonoBehaviour
         return lista.Count;
     }
     #endregion
+
+    public List<DamageEmitter> GetDamageEmitters() => _damageEmittersInState;
 }

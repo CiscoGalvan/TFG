@@ -79,4 +79,9 @@ public class DamageEmitter : MonoBehaviour
         if (_activeFromStart)
             _isEmitting = true;
 	}
+
+    public void SetActiveFromStart(bool newValue)
+    {
+        _activeFromStart = newValue;
+    }
 }

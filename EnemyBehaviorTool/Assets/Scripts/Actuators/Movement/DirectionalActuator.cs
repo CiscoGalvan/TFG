@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Directional_Actuator : MovementActuator
 {
-    // Layers the object can collide with
-    [Header("Layers")]
     public LayerMask _layersToCollide;
 
     // Movement configuration variables

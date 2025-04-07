@@ -17,7 +17,7 @@ public class FSM : MonoBehaviour
         // Set the initial state and execute its start logic
         _currentState = initialState;
 		if (_currentState != null)
-			_currentState.StartState();
+        	_currentState.StartState();
     }
 
     void Update()
@@ -74,6 +74,21 @@ public class FSM : MonoBehaviour
         if (rb != null)
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
     }
+
+	private void OnValidate() 
+	{
+		if(initialState != null)
+        {
+            var damageEmitters = initialState.GetDamageEmitters();
+            foreach(var damageEmitter in damageEmitters)
+            {
+                damageEmitter.SetActiveFromStart(true);
+            }
+
+		}
+	
+	}
+
 }
 
 

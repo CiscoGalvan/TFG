@@ -204,7 +204,7 @@ MonoBehaviour:
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _destroyAfterDoingDamage: 1
-  _activeFromStart: 0
+  _activeFromStart: 1
 --- !u!114 &2845174822851550775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canFlipX: 1
   _canFlipY: 1
-  _canRotate: 0
 --- !u!95 &1575611272841410677
 Animator:
   serializedVersion: 5
@@ -263,5 +262,5 @@ MonoBehaviour:
   _interpolationTime: 0
   _angle: 165.4
   _throw: 0
-  _onCollisionReaction: 2
+  _onCollisionReaction: 0
   _aimPlayer: 1
