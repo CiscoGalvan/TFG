@@ -265,6 +265,15 @@ Random area coge puntos aleatorios dentro de un área.
     - `Falso:` Si no es acelerado, la posición cambiará de manera constante.  
     - `Verdadero:` Si es acelerado, la posición se definirá mediante la función de easing  
     ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuatorA.png)  
+- **Spline Follower Actuator**:  
+![SpllineFollowerActuator](./Manual/Spline.png)  
+  Hace que el enemigo se desplace  y rote automáticamente siguiendo una ruta definida por un spline.
+  - `Spline Container:` Transform del objeto al que se quiere perseguir.
+  - `Speed:` Tiempo que tarda en llegar al objetivo
+  - `Is Accelerated:`
+    - `Falso:` Si no es acelerado, la posición cambiará de manera constante.  
+    - `Verdadero:` Si es acelerado, la posición se definirá mediante la función de easing  
+    ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuatorA.png)  
 
 
 

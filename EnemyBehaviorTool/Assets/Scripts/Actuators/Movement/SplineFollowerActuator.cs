@@ -2,8 +2,23 @@ using UnityEngine;
 using UnityEngine.Splines;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class SplineFollowerActuator : Actuator
+public class SplineFollowerActuator : MovementActuator
 {
+
+
+    // Define reaction when a collision happens
+
+    [Tooltip("Speed at which the object moves along the spline.")]
+    [SerializeField, HideInInspector] private float _speed =5;
+    [SerializeField, HideInInspector] private float _goalSpeed;
+    [SerializeField, HideInInspector] private float _interpolationTime = 0;
+
+    private float _time;
+    private EasingFunction.Function _easingFunc;
+
+
+
+
     // Option to decide if the object or the spline moves to match the closest point
     private enum TeleportToClosestPoint
     {
@@ -14,8 +29,6 @@ public class SplineFollowerActuator : Actuator
     [Tooltip("Reference to the Spline Container that the object will follow.")]
     [SerializeField] private SplineContainer _splineContainer;
 
-    [Tooltip("Speed at which the object moves along the spline.")]
-    [SerializeField] private float _speed = 5f;
 
     [Tooltip("Defines whether the enemy teleports to the spline or moves the spline to the enemy.")]
     [SerializeField] private TeleportToClosestPoint _teleportToClosestPoint = TeleportToClosestPoint.Spline;
@@ -62,14 +75,25 @@ public class SplineFollowerActuator : Actuator
                 _splineContainer.transform.position += offset;
                 break;
         }
+        _easingFunc = EasingFunction.GetEasingFunction(_easingFunction);
     }
 
     public override void UpdateActuator()
     {
         if (_splineContainer != null)
         {
+            if (_isAccelerated)
+            {
+                float t = (_time / _interpolationTime);
+                float easedSpeed = _easingFunc(_speed, _goalSpeed, t);
+                _distancePercentage += easedSpeed * Time.deltaTime / splinelength;
+            }
+            else
+            {
+                _distancePercentage += _speed * Time.deltaTime / splinelength;
+            }
             // Advance along the spline based on speed and spline length
-            _distancePercentage += _speed * Time.deltaTime / splinelength;
+            
 
             // Evaluate current and next positions
             Vector3 currentPosition = _splineContainer.EvaluatePosition(_distancePercentage);

@@ -995,9 +995,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad27ad414b59f094eb7c62901c3e52b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splineContainer: {fileID: 29157943}
+  _isAccelerated: 1
+  _easingFunction: 0
   _speed: 3.49
-  _teleportToClosestPoint: 2
+  _goalSpeed: 0
+  _interpolationTime: 0
+  _splineContainer: {fileID: 29157943}
+  _teleportToClosestPoint: 0
 --- !u!114 &730908779
 MonoBehaviour:
   m_ObjectHideFlags: 0

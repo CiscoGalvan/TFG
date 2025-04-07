@@ -88,7 +88,7 @@ public class VerticalComponentEditor : ActuatorEditor
 				EditorGUILayout.PropertyField(_easingFunction, _easingFunctionLabel);
 				
 				EasingFunction.Ease easingEnum = (EasingFunction.Ease)_easingFunction.intValue;
-				DrawEasingCurve(easingEnum, new Vector2(45, 15), new Vector2(30, 2), "X: Time", "Y: Angular Velocity ", new Vector2(40, 20), new Vector2(60, 20));
+				DrawEasingCurve(easingEnum, new Vector2(45, 15), new Vector2(30, 2), "X: Time", "Y: Speed ", new Vector2(40, 20), new Vector2(60, 20));
 
             }
 			else
