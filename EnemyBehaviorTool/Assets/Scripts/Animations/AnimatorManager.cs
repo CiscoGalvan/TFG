@@ -9,13 +9,14 @@ using UnityEditor;
 public class AnimatorManager : MonoBehaviour
 {
     private Animator _animator;
-   
+
+    [Tooltip("If true, allows the sprite to be flipped horizontally")]
     [SerializeField]
     private bool _canFlipX = true;
+
+    [Tooltip("If true, allows the sprite to be flipped vertically")]
     [SerializeField]
     private bool _canFlipY = true;
-    [SerializeField]
-    private bool _canRotate = true;
     SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
 

@@ -14,8 +14,6 @@ public class Life : MonoBehaviour
 	private float _initialLife = 5; // Initial life value
 	[SerializeField]
 	private float _maxLife = 5; // Maximun life value
-    [SerializeField]
-    private float _minLife = 0; // Minimun life value
 
     private float _currentLife;
 
@@ -43,7 +41,7 @@ public class Life : MonoBehaviour
 		// Validar que lifeText tenga un valor asignado
 		if (_lifeText == null && _entityType == EntityType.Player)
 		{
-			Debug.LogError($"The TextMeshProUGUI reference in {gameObject.name} is not assigned. Please assign it in the inspector.", this);
+			Debug.LogWarning($"The TextMeshProUGUI reference in {gameObject.name} is not assigned. Please assign it in the inspector.", this);
 			enabled = false; // Desactiva el script si no está configurado correctamente
 		}
 	}
@@ -90,7 +88,7 @@ public class Life : MonoBehaviour
 			}
 		}
 
-		if(_currentLife <= _minLife)
+		if(_currentLife <= 0)
 		{
 			AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
 
@@ -107,6 +105,7 @@ public class Life : MonoBehaviour
 	
 	private void OnDestroy()
 	{
+		if(_sensor != null)
 		_sensor.onEventDetected -= ReceiveDamageEmitter;
 	}
 
@@ -172,9 +171,9 @@ public class Life : MonoBehaviour
 		AnimatorManager _animatorManager = this.GetComponent<AnimatorManager>();
 		_animatorManager?.Damage();
 		_currentLife -= num;
-		if (_currentLife < _minLife)
+		if (_currentLife < 0)
 		{
-            _currentLife= _minLife;
+            _currentLife= 0;
 
         }
 		UpdateLifeText();
@@ -182,7 +181,7 @@ public class Life : MonoBehaviour
 	}
 	private void InstantKill()
 	{
-		_currentLife = _minLife;
+		_currentLife = 0;
 		UpdateLifeText();
 	}
     public void IncreaseLife(float num)
