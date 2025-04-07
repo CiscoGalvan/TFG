@@ -1,7 +1,7 @@
 # ***User Manual for 2D Video Game Enemy Behavior Framework***
-[🇪🇸 Leer en Español](./Manual/Manual_es.md)
-***Welcome to the user manual.***
-**Creators:** Cristina Mora Velasco and Francisco Miguel Galván Muñoz
+[🇪🇸 Leer en Español](../readme.md)<br>
+***Welcome to the user manual.***<br>
+**Creators:** Cristina Mora Velasco and Francisco Miguel Galván Muñoz<br>
 **Date:** March 2025
 
 ## Table of Contents
@@ -33,7 +33,7 @@ This manual is divided into several sections covering all necessary aspects for 
 
 ## Objective
 This manual aims to provide a clear and detailed guide so that users can install, configure, and use the tool more easily.
-`The tool has been designed to simplify and optimize the process of creating functional 2D enemies within the Unity environment`. Using an architecture based on Finite State Machines (FSM), it allows designers to define enemy behavior visually and intuitively, through the addition of custom states and transitions.
+`The tool has been designed to simplify and optimize the process of creating functional 2D enemies within the Unity environment`. Using an architecture based on Finite State Machines (FSM), allows designers to define enemy behavior visually and intuitively, through the addition of custom states and transitions.
 
 ## Functionality
 - Creation and management of enemy behaviors in 2D.
@@ -45,7 +45,7 @@ While `basic knowledge of Unity` and fundamental game development concepts is re
 
 ## Requirements
 Before starting, make sure you meet the following requirements:
-- Have a version of Unity equal to or greater than `2022.3.18 (LTS)`.
+- A version of Unity equal to or greater than `2022.3.18 (LTS)`.
 
 ## Installation
 Step-by-step installation:
@@ -62,7 +62,7 @@ Step-by-step installation:
 ### 📂 `Scripts`
 - Contains the necessary scripts for the framework to function.
 - Includes logic for state management, enemy behaviors, and collision detection.
-- Organized into subfolders according to their functionality (`FSM`, `Actuators`, `SensorsAndEmitters`, `Editors`, `PlayerBehaviour`, `Basic Components`, `Editors`, `Animation`).
+- Organized into subfolders according to their functionality (`FSM`, `Actuators`, `SensorsAndEmitters`, `Editors`, `PlayerBehaviour`, `Basic Components`, `Animation`).
 
 ### 🎮 `Scenes`
 - Contains example scenes with functional enemies.
@@ -77,33 +77,33 @@ Step-by-step installation:
 - Compatible with Unity's `Animator` system.
 
 ## Framework Components
-### Finite State Machine (FSM)
-  ![FSM](./Manual/FSM.png)
+### Finite State Machine (FSM)<br>
+  ![FSM](./FSM.png)<br>
   The FSM is responsible for calling and managing all the states of an enemy.
   It is necessary to specify the `initial state` of the enemy.
 
-### State
-  ![State](./Manual/State.png)
+### State<br>
+  ![State](./State.png)<br>
   Within each state, we must specify which action/actions we will perform in the `Actuator List`.
   To have `Transitions` from one state to another, the sensor responsible for detecting that change and the state to which we want to transition must be specified.
-  If we want damage to be dealt in the state, we must specify that the `DamageEmitter` will be active.
+  If we want damage to be dealt in the state, we must specify which `DamageEmitter` will be active.
   Finally, if we want to `see information about the movement to be performed via Gizmos`, we must activate `Debug State`.
 
 ### Sensors
 Sensors allow detecting information from the environment and triggering transitions. We have five sensors available:
 
-- **Area Sensor:**
-  ![AreaSensor](./Manual/AreaSensor.png)
+- **Area Sensor:**<br>
+  ![AreaSensor](./AreaSensor.png)<br>
   The area sensor detects when a specific object (Target) enters its detection zone.<br>
   This sensor causes the Collider associated with the object to become a `Trigger`.
 
 - **Collision Sensor:**
-  ![CollisionSensor](./Manual/CollisionSensor.png)
+  ![CollisionSensor](./CollisionSensor.png)
   Detects when the enemy physically collides with another object. Unlike the `Area Sensor`, this requires a real collision rather than just detecting presence within an area.<br>
   You must specify which `layers` activate the sensor.
 
 - **Distance Sensor:**
-![DistanceSensor](./Manual/DistanceSensor.png)
+![DistanceSensor](./DistanceSensor.png)
   Detects when a specific object (Target) is at a `certain distance from the enemy`.<br>
   A `detection condition` is required, which can be:
   - Being within the detection distance.
@@ -111,25 +111,25 @@ Sensors allow detecting information from the environment and triggering transiti
 
   It is necessary to specify the `time it is inactive at the start` (Start Detecting Time); if this is 0, the sensor starts activated.<br>
 
-- **Time Sensor:**
-![TimeSensor](./Manual/TimeSensor.png)
+- **Time Sensor:**<br>
+![TimeSensor](./TimeSensor.png)<br>
  Detects when a specific `time` passes.
 
-- **Damage Sensor:**
-![DamageSensor](./Manual/DamageSensor.png)
+- **Damage Sensor:**<br>
+![DamageSensor](./DamageSensor.png)<br>
  Detects when an entity `receives damage`.
  This sensor is used to manage the `life` of both enemies and the player.<br> For damage to be received, `Active From Start` must be set to true.
 
 - **Damage Emitter:**
   It is responsible for `dealing damage`; you have to specify the type of damage, and each damage type has its own parameters:
   - Instant:
-    ![DamagEmitter](./Manual/DamageEmitter.png)
+    ![DamagEmitter](./DamageEmitter.png)
     Instant damage is that which affects you only once upon contact. As parameters, we can specify if we want to `destroy the object after dealing damage`, if we want it to `directly kill the entity it collides with`. If we do not want it to directly eliminate the target, we will indicate the `damage we want to inflict`.
   - Persistent:
-    ![DamagEmitter](./Manual/DamageEmitterP.png)
+    ![DamagEmitter](./DamageEmitterP.png)
     Persistent damage is that which affects you while you are inside the object. As parameters, we can specify the `amount of damage` we inflict and `how often` we inflict it.
   - Residual:
-    ![DamagEmitter](./Manual/DamageEmitterR.png)
+    ![DamagEmitter](./DamageEmitterR.png)
     Finally, we have residual damage. This is what affects you even when you are no longer in contact. As parameters, we can specify if we want to `destroy the object after the first contact`, the `amount of damage on the first hit` (which is usually larger), the `amount of damage per application`, `how often`, and `how many` applications of residual damage are applied.
 ---
 
@@ -137,7 +137,7 @@ Sensors allow detecting information from the environment and triggering transiti
 Actuators allow performing actions during enemy states. We have 7 types of actuators available:
 
 - **Spawner Actuator**:
-![SpawnerActuator](./Manual/SpawnerActuator.png)
+![SpawnerActuator](./SpawnerActuator.png)
   Allows generating (spawning) new enemies.
   - `Infinite Enemies:` if you want to create infinite enemies; otherwise, you must specify the number of times we will spawn the list.
   - `Spawn Interval:` how often they are created.
@@ -148,7 +148,8 @@ Actuators allow performing actions during enemy states. We have 7 types of actua
 
 
 - **Horizontal Actuator**:
-![HorizontalActuator](./Manual/HorizontalActuator.png)
+![HorizontalActuator](./HorizontalActuator.png)
+
 This actuator allows moving an object horizontally, either to the left or right, with different speed configurations and behavior after a collision. It has different configurations.
 
   - `Reaction After Collision`
@@ -170,7 +171,9 @@ This actuator allows moving an object horizontally, either to the left or right,
       - `Easing Function:` Defines how the acceleration behaves.
 
 - **Vertical Actuator**:
-  ![VerticalActuator](./Manual/VerticalActuator.png)
+
+  ![VerticalActuator](./VerticalActuator.png)
+
   This actuator allows moving an object vertically, either up or down, with different speed configurations and behavior after a collision. It has different configurations.
 
   - `Reaction After Collision`
@@ -193,7 +196,7 @@ This actuator allows moving an object horizontally, either to the left or right,
 
 
 - **Directional Actuator**:
-![DirectionalActuator](./Manual/DirectionalActuator.png)
+![DirectionalActuator](./DirectionalActuator.png)<br>
   Makes the enemy move in a specific direction described by an angle.
     - `Reaction After Collision`
   Defines what happens when the object collides with another:
@@ -212,8 +215,8 @@ This actuator allows moving an object horizontally, either to the left or right,
         - `Interpolation Time:` This is the time it takes for the object to go from speed 0 to its target speed.
         - `Easing Function:` Defines how the acceleration behaves.
 
-- **Circular Actuator**:
-![CircularrActuator](./Manual/CircularActuator.png)
+- **Circular Actuator**:<br>
+![CircularrActuator](./CircularActuator.png)<br>
  Allows circular movements around a specific rotation point.
   - `Rotation Point Position`
     Defines the central point around which the rotation occurs.
@@ -238,7 +241,7 @@ This actuator allows moving an object horizontally, either to the left or right,
 - **Move to a Point Actuator**:
 Makes the enemy move towards a specific fixed point in the scene. There are two configurations depending on `Use Way`:
   - `Random Area`
-![MoveToAPointActuator](./Manual/MoveToAPointActuatorA.png)
+![MoveToAPointActuator](./MoveToAPointActuatorA.png)
 Random area picks random points within an area.
     - `Random Area:` Collider that will serve as the area reference.
     - `Time Between Random Points:` How often the point changes to a different one.
@@ -246,7 +249,7 @@ Random area picks random points within an area.
     - `Is A Circle:` Indicates whether we want the list to restart when the end of the waypoints is reached.
     - `Same Waypoints Behaviour:` Indicates whether we want the behavior to be the same for all waypoints.
       - If so, a single point specification panel will be created:
-![MoveToAPointActuator](./Manual/MoveToAPointActuatorS.png)
+![MoveToAPointActuator](./MoveToAPointActuatorS.png)
         - `Time Between Waypoints:` Time taken between one point and another.
         - `Are Accelerated:` Whether the movement is accelerated or not. If so, an easing function will appear indicating the acceleration.
         - `Should Stop:` Indicates whether to stop upon reaching a point. If it should stop, the duration must be indicated.
@@ -256,14 +259,14 @@ Random area picks random points within an area.
 
 
 - **Move to an Object Actuator**:
-![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuator.png)
+![MoveToAnObjectActuator](./MoveToAnObjectActuator.png)
   Makes the enemy automatically move towards a specific object; if the object moves, the enemy will change its direction to go towards the object.
   - `Waypoint Transform:` Transform of the object to be pursued.
   - `Time to Reach:` Time it takes to reach the target.
   - `Is Accelerated:`
     - `False:` If not accelerated, the position will change constantly.
     - `True:` If accelerated, the position will be defined by the easing function.
-    ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuatorA.png)
+    ![MoveToAnObjectActuator](./MoveToAnObjectActuatorA.png)
 
 
 
@@ -272,7 +275,7 @@ It is responsible for managing enemy animations based on their states and action
 It is important that all Sprites to be used `face to the right`.
 ### Life
 Manages the life of objects.
- ![Life](./Manual/Life.png)
+ ![Life](./Life.png)
  - `Initial Life:` Initial health.
  - `Entity type:` Type of entity (player or enemy).
 ## Practical Examples
