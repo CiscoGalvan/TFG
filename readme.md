@@ -270,16 +270,18 @@ Random area coge puntos aleatorios dentro de un área.
   Hace que el enemigo se desplace  y rote automáticamente siguiendo una ruta definida por un spline.
   - `Spline Container:` Transform del objeto al que se quiere perseguir.
   - `Speed:` Tiempo que tarda en llegar al objetivo
-  - `Is Accelerated:`
-    - `Falso:` Si no es acelerado, la posición cambiará de manera constante.  
-    - `Verdadero:` Si es acelerado, la posición se definirá mediante la función de easing  
-    ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuatorA.png)  
+ - `Is Accelerated`
+    - `Falso:` Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro `Speed`.  
+    - `Verdadero:` Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
+      - `Goal Speed:` Es la velocidad máxima que alcanzará el objeto.  
+      - `Interpolation Time:` Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.  
+      - `Easing Function:` Define cómo se comporta la aceleración. 
 
 
 
 ### Animator Manager
 Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadir tambien un animator de Unity.  
-Es importante que todos los Sprites que se quieran utilizar `se orienten hacia la derecha``.
+Es importante que todos los Sprites que se quieran utilizar `se orienten hacia la derecha`.
 ### Life
 Gestiona la vida de los objetos.  
  ![Life](./Manual/Life.png)  
@@ -315,7 +317,6 @@ Con eso ya tendremos un enemigo que nos hará daño al entrar en contacto con é
   6. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
   7. Configuramos el Animator Manager  
       - Queremos que no haga flip ni en x ni en y  
-      - Queremos que no rote
 
   8. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
   9. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
@@ -351,7 +352,6 @@ Ahora vamos a añadir animaciones:
   10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
   11. Configuramos el Animator Manager  
       - Queremos que no haga flip en el eje y pero que sí lo haga en el x
-      - Queremos que no rote
 
   12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
   13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y movimiento horizontal, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
@@ -409,7 +409,6 @@ Ahora vamos a añadir animaciones:
   12. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
   13. Configuramos el Animator Manager  
       - Queremos que no haga flip en el eje y ni en el eje x
-      - Queremos que no rote
 
   14. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
   15. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y spawn, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
@@ -420,7 +419,7 @@ Ahora vamos a añadir animaciones:
 
 
 ### Cuarto Ejemplo: TikTik (splines)
-Por último vamos a crecrear un enemigo del HollowKnigth el TikTIk, este va recorriendo una plataforma bordeándola.  
+Vamos a crecrear un enemigo del HollowKnigth el TikTIk, este va recorriendo una plataforma bordeándola.  
 Para el ejemplo usaré la imagen de la zarigüeya:  
 ![Oso](./Manual/Zariguella.png) 
 Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints), así como, añadirlo ala capa Mundo.
@@ -447,15 +446,53 @@ Ahora vamos a añadir animaciones:
   10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
   11. Configuramos el Animator Manager  
       - Queremos que no haga flip en el eje Y ni en el eje X
-      - Queremos que si rote
 
   12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
-  13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle (selecionamos con el ratón y pulsar suprimir).
+  13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle borramos el resto (selecionamos con el ratón y pulsar suprimir).
   14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Opossumwolk que se encuentra en Assets/Animations/Anim
   
   15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
+### Quinto Ejemplo: Estalactitas
+Por último vamos a crecrear un enemigo común. Las estalactitas.
+Para el ejemplo usaré la imagen del pájaro:  
+![FatBird](./Manual/FatBird.png) 
+ 1. Crea un objeto partiendo del sprite de FatBird que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar la rotación en constrainsts)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que mate directamente al jugador
+ 6. Vamos a añadir acciones, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos un elemento a la lista de Sensor Transitions. Lo rellenemos creando y asignando un nuevo estado alestado de transición
+ 9. Para el sensor que activará la transición, vamos a crear un objeto 2d que contenga:
+   - Box Collider 2D
+   - Area sensor, que tenga tiempo de inicio 0 y como target el jugador.
+ 10. Para el segundo estado añadiremos un actuador a la Lista de Actuadores de tipo Vertical Actuator.
+ 11. Configuramos el Vertical Actuator:
+    - Queremos que se elimine al colisionar
+    - Que colisione con las capas Mundo y Jugador
+    - Que no siga al jugador
+    - Que no sea ni acelerado ni sea un lanzamiento
+    - Que tenga una  velocidad de 13
+12. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado dos
 
+Ahora vamos a añadir animaciones: 
+
+  13. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  14. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje Y ni en el eje X
+
+  15. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  16. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, vertical movement y die borramos el resto(selecionamos con el ratón y pulsar suprimir).
+  17. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleFatBird que se encuentra en Assets/Animations/Sprites
+  18. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar GraundFatBird que se encuentra en Assets/Animations/Sprites
+  19. Hacemos DOBLE Click sobre el estado Vertical Movement, borramos el estado UP y en Down arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar FallFatBird que se encuentra en Assets/Animations/Sprites
+  
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
 ## Solución de Problemas
 | Problema                  | Solución                          |
