@@ -29,11 +29,11 @@ public class LifeEditor : Editor
     {
       
         serializedObject.Update();
+		EditorGUILayout.PropertyField(_entityType, _entityTypeLabel);
 		EditorGUILayout.LabelField("Life Settings", EditorStyles.boldLabel);
 		EditorGUI.indentLevel++;
 		EditorGUILayout.PropertyField(_initialLife, _initialLifeLabel);
 		EditorGUILayout.PropertyField(_maxLife, _maxLifeLabel);
-		EditorGUILayout.PropertyField(_entityType, _entityTypeLabel);
 		EditorGUI.indentLevel--;
 
 

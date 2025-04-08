@@ -1,8 +1,5 @@
 using UnityEngine;
 
-
-// Dar créditos a Mix and Jam
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
 	
 	private bool groundTouch;
-
-	private int side = 1;
 
 	// Start is called before the first frame update
 	void Start()
@@ -87,17 +82,6 @@ public class PlayerMovement : MonoBehaviour
 
 		if (wallSlide)
 			return;
-
-		if (x > 0)
-		{
-			side = 1;
-		}
-		if (x < 0)
-		{
-			side = -1;
-		}
-
-
 	}
 
 	private void WallSlide()

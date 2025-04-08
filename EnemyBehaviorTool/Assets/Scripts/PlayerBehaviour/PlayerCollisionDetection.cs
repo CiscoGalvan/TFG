@@ -7,27 +7,35 @@ using UnityEngine;
 
 public class PlayerCollisionDetection : MonoBehaviour
 {
-	[Header("Layers")]
-	[Tooltip("ESCIBID ALGO AQUI")]
-	public LayerMask _detectionLayers;
+
 
 	[SerializeField]
 	private bool _debugBoxes = false;
+
+	[Header("Layers")]
+	[Tooltip("Layers that will be tracked in case there is an overlaping with one of the three boxes.")]
+	public LayerMask _detectionLayers;
+
 	
 	private bool onGround;
 	private bool onWall;
 	private bool onRightWall;
 	private bool onLeftWall;
-	private int wallSide;
-
-	[Header("Offsets")]
-	[Space]
-	public Vector2 bottomOffset, rightOffset, leftOffset;
 
 
 	[Header("Sizes")]
 	[Space]
-	public Vector2 bottomSize, rightSize, leftSize;
+	public Vector2 bottomSize;
+	public Vector2 rightSize;
+	public Vector2 leftSize;
+
+	[Header("Offsets")]
+	[Space]
+	public Vector2 bottomOffset;
+	public Vector2 rightOffset;
+	public Vector2 leftOffset;
+
+
 
 	// Update is called once per frame
 	void Update()
@@ -38,8 +46,6 @@ public class PlayerCollisionDetection : MonoBehaviour
 
 		onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rightOffset, rightSize, 0f, _detectionLayers);
 		onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _detectionLayers);
-
-		wallSide = onRightWall ? -1 : 1;
 	}
 
 	void OnDrawGizmos()
