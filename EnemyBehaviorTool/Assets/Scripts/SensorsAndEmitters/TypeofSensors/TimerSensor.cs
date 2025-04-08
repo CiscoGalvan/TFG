@@ -1,4 +1,4 @@
-using System;
+
 using UnityEditor;
 using UnityEngine;
 
@@ -67,13 +67,16 @@ public class TimeSensor : Sensors
     // Displays the remaining time in the scene view (editor only)
     private void OnDrawGizmos()
     {
+#if UNITY_EDITOR
         if (!_sensorActive) return;
         Gizmos.color = Color.blue;
         float timeRemaining = _timer != null ? _timer.GetTimeRemaining() : _detectionTime;
-        Handles.Label(transform.position + Vector3.up * 1.5f, $"Time Remaining: {timeRemaining:0.00}s");
+
+        UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f, $"Time Remaining: {timeRemaining:0.00}s");
+#endif
     }
 
-	public override void StopSensor()
+    public override void StopSensor()
 	{
 		_sensorActive= false;
 	}

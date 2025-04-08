@@ -173,7 +173,7 @@ public class DistanceSensor : Sensors
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
-
+#if UNITY_EDITOR
         if (!_debugSensor) return;
         Gizmos.color = new Color(0, 0, 1, 0.3f);
         switch (_distanceType)
@@ -219,7 +219,7 @@ public class DistanceSensor : Sensors
                 Gizmos.DrawCube(transform.position + positionOffset, size);
                 break;
         }
-
+#endif
     }
 
     public void SetDetectionDistance(float newValue)

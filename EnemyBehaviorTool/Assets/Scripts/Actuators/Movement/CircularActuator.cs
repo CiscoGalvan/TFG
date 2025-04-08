@@ -258,8 +258,11 @@ public class CircularActuator : MovementActuator
 	// Draws gizmos in the scene view for debugging purposes when the object is selected
 	private void OnDrawGizmosSelected()
 	{
-		// If debugging is off or rotation point is not set, exit the method
-		if (!_debugActuator || _rotationPointPosition == null) return;
+#if UNITY_EDITOR
+      
+
+        // If debugging is off or rotation point is not set, exit the method
+        if (!_debugActuator || _rotationPointPosition == null) return;
 
 		// If the max angle is 360 degrees, draw a full circle (wire sphere)
 		if (_maxAngle == 360f)
@@ -314,8 +317,9 @@ public class CircularActuator : MovementActuator
 			Handles.DrawWireArc(_rotationPointPosition.position, Vector3.forward,
 				Quaternion.Euler(0, 0, initialAngleDegrees) * Vector3.right,
 				-halfAngleRange, _radius);
-		}
-	}
+        }
+#endif
+    }
 
 	public override void DestroyActuator()
 	{

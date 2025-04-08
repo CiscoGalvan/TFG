@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static MoveToAPointActuator;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MoveToAPointActuator : MovementActuator
@@ -91,7 +88,9 @@ public class MoveToAPointActuator : MovementActuator
         if (_usageWay == UsageWay.Waypoint && (_waypointsData == null || _waypointsData.Count == 0))
         {
             Debug.LogError($"MoveToAPoint_Actuator error in {name}: No waypoints were set.");
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+#endif
             return;
         }
         else
