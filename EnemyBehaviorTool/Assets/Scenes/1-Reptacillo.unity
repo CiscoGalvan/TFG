@@ -607,7 +607,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003241539, y: 0.000000059604645}
+  m_Offset: {x: -0.0008635521, y: -0.01473771}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -618,7 +618,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.56563306, y: 0.6499133}
+  m_Size: {x: 0.50400937, y: 0.6043682}
   m_EdgeRadius: 0
 --- !u!50 &620872450
 Rigidbody2D:
@@ -741,8 +741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 620872464}
-  _sensorTransitions: []
-  _damageEmittersInState:
+  _transitionList: []
+  _damageEmitterList:
   - {fileID: 620872465}
   _debugState: 0
 --- !u!114 &620872464
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620872448}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 016eafcff9d8bd2458a5b8d0af2b2576, type: 3}
   m_Name: 
@@ -877,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _maxLife
-      value: 10000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _lifeText
@@ -885,7 +885,7 @@ PrefabInstance:
       objectReference: {fileID: 1191659703}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _textName
-      value: Player
+      value: 'Player:'
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _entityType
@@ -893,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054706839123588735, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: _initialLife
-      value: 70000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9038349572681355833, guid: c608b1c1176b31c42985f5410d759a9e, type: 3}
       propertyPath: m_LocalPosition.x

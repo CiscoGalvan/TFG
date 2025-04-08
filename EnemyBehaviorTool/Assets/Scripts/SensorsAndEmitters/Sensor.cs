@@ -3,22 +3,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public abstract class Sensors : MonoBehaviour
+public abstract class Sensor : MonoBehaviour
 {
 	// Action event
-	private Action<Sensors> _onEventDetectedInternal;
+	private Action<Sensor> _onEventDetectedInternal;
 
 	protected bool _debugSensor;
 	// Subscriber counter
 	private int _subscriberCount = 0;
 
-    // Public property to get the number of subscribers
-    public int SubscriberCount => _subscriberCount;
-
 	protected bool _sensorActive;
 
     // Override the add and remove properties of the event
-    public event Action<Sensors> onEventDetected
+    public event Action<Sensor> onEventDetected
 	{
 		add
 		{	

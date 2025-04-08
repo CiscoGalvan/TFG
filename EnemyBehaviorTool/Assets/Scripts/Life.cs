@@ -106,10 +106,10 @@ public class Life : MonoBehaviour
 	private void OnDestroy()
 	{
 		if(_sensor != null)
-		_sensor.onEventDetected -= ReceiveDamageEmitter;
+			_sensor.onEventDetected -= ReceiveDamageEmitter;
 	}
 
-	private void ReceiveDamageEmitter(Sensors damageSensor)
+	private void ReceiveDamageEmitter(Sensor damageSensor)
 	{
 		//El residual esta mal, ya que al separarse no hace el daño residual.
 		_damageEmitter = (damageSensor as DamageSensor).GetDamageEmitter();

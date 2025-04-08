@@ -99,14 +99,14 @@ Para evitar que el jugador pueda disparar sin restricción, se ha introducido un
 \section {FSM}
 
 El comportamiento de la entidad estará encapsulado en una FSM, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio de estado.\\
-Esta comprobación se hará al finalizar la actualización del estado actual (en el \textit{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.
+Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.
 
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (State) Initial State: Estado inicial de la FSM.
 \end{itemize}
 
-\subsection{SensorStatePair}
+\subsection{Transition}
 Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.\\
 Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
 
@@ -123,10 +123,11 @@ La clase \textit{State} representa un estado de comportamiento de un enemigo. Pa
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (List<Actuator>) Actuator List: Lista de Actuator que son actualizados en cada bucle y representan acciones, se abordarán a continuación.
-	\item (List<SensorStatePair>) Sensor Transitions: lista de SensorStatePair que pueden ser activados, lo que supone un cambio de estado al estado objetivo.
+	\item (List<SensorStatePair>) Transition List: Lista de Transition que pueden ser activadas, lo que supone un cambio de estado al estado objetivo.
 	\item (List<DamageEmitter>) Damage Emitter in State: Lista de DamageEmitter activos en el estado y que son los encargados de reportar daño.
+	\item (Bool) Debug State: Booleano utilizado para indicar si se quiere que los Actuators en \textit{Actuator List} y Sensores en \textit{Transition List} muestren información a través del Gizmos.
 \end{itemize}
-Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todos los eventos a los que estuvieran vinculados.\\
+Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todas las transiciones a los que estuvieran vinculados.\\
 
 \section{Actuator}
 
@@ -153,12 +154,28 @@ aaaaa
 
 \subsection{SpawnerActuator}
 Spawner
-\section{Sensors and emitters}
-Contenido
-\subsection{Sensors}
-mas contenido
+
+\section{Sensors and Emitters}
+
+Para que exista una comunicación entre la entidad y su entorno, esta necesita poder recibir y enviar información. Con este propósito se diseñan los sensores y los emisores.\\
+
+\subsection{Sensor}
+
+La clase \textit{Sensor} es de la que heredarán los sensores explicados a continuación. Esta clase contiene variables como el evento que almacena las funciones que se deberán de llamar en caso de que el sensor sea activado, como puede ser la función que activará la transición posteriormente.\\
+
+Cualquier clase que herede de \textit{Sensor} deberá implementar los métodos abstractos \texttt{StartSensor()} y \texttt{StopSensor()}, que son utilizados para gestionar variables de control, gestionar errores o crear los \textit{Timers} en caso de que querramos desactivar un sensor por una cantidad de tiempo (segundos) al iniciarse. También se incluye un modo debug opcional, activable mediante el método \texttt{SetDebug(bool)}, método que será llamado desde State y tomará el valor de la variable \textit{Debug State} del estado.\\
+
+La funcionalidad de los sensores se ha implementado de manera que si se quiere suscribir desde un componente a un evento de cualquier sensor se podrá hacer siempre y cuando la función que será llamada en caso de activarse el sensor reciba un objeto de tipo \textit{Sensor}.\\
+
+\comp{Veo la explicación confusa y con una imagen sería más claro, es raro poner una imagen de un trozo de código? Entiendo que sí.}
+
+La implementación del evento incluye un contador de suscriptores que permite llevar un control interno sobre cuántos componentes están actualmente registrados para recibir notificaciones del sensor. Esta es una práctica útil para evitar errores en tiempo de ejecución.\\
+
+Es importante tener en cuenta que toda suscripción a un sensor debe ir acompañada, en algún momento, de su correspondiente desuscripción. Un caso típico es realizar esta desuscripción cuando la entidad es destruida, utilizando el método \texttt{OnDestroy}.\\
+
+A continuación se enumerarán y explicarán los tipos de sensores incluidos en la herramienta.\\
 \subsubsection{AreaSensor}
-aaaaa
+
 \subsubsection{CollisionSensor}
 aaaaa
 \subsubsection{DamageSensor}

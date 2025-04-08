@@ -5,9 +5,9 @@ using System;
 using Unity.VisualScripting;
 
 [System.Serializable]
-public class SensorStatePair
+public class Transition
 {
-    public Sensors sensor;
+    public Sensor sensor;
     public State targetState;
 }
 public class State : MonoBehaviour
@@ -19,16 +19,16 @@ public class State : MonoBehaviour
     private int _numElementsActuator = -1;
 
     //hashset con todos los sensores
-    public HashSet<Sensors> sensorHashSet = new HashSet<Sensors>();
+    public HashSet<Sensor> sensorHashSet = new HashSet<Sensor>();
     //Lista con los sensores que pueden transicionara transicionar
     [SerializeField]
-    private List<SensorStatePair> _sensorTransitions = new List<SensorStatePair>();
+    private List<Transition> _transitionList = new List<Transition>();
 
     private State _nextState = null;
 
    
 	[SerializeField]
-	private List<DamageEmitter> _damageEmittersInState = new List<DamageEmitter>();
+	private List<DamageEmitter> _damageEmitterList = new List<DamageEmitter>();
 
 	[SerializeField]
 	[Tooltip("It determines whether the debug elements from the actuators and sensors included in this state are visible or not")]
@@ -47,7 +47,7 @@ public class State : MonoBehaviour
                
         }
         // Iniciar todos los sensores de _sensorTransitions
-        foreach (var pair in _sensorTransitions)
+        foreach (var pair in _transitionList)
         {
             if (pair.sensor != null)
             {
@@ -61,7 +61,7 @@ public class State : MonoBehaviour
                 sensor.StartSensor();
         }
     
-		foreach (var damageEmitter in _damageEmittersInState)
+		foreach (var damageEmitter in _damageEmitterList)
 		{
             if (damageEmitter)
                 damageEmitter.SetEmitting(true);
@@ -82,7 +82,7 @@ public class State : MonoBehaviour
 			if (sensor)
 				sensor.StopSensor();
 		}
-		foreach (var damageEmitter in _damageEmittersInState)
+		foreach (var damageEmitter in _damageEmitterList)
 		{
 			if (damageEmitter)
 				damageEmitter.SetEmitting(false);
@@ -98,11 +98,11 @@ public class State : MonoBehaviour
         }
         
     }
-    public void AddActuator( Actuator act)
+    public void AddActuator(Actuator act)
     {
         actuatorList.Add(act);
     }
-    public void AddSensor(Sensors sen)
+    public void AddSensor(Sensor sen)
     {
         sensorHashSet.Add(sen);
     }
@@ -112,7 +112,7 @@ public class State : MonoBehaviour
     }
     private void SubscribeToSensorEvents()
     {
-        foreach (var pair in _sensorTransitions)
+        foreach (var pair in _transitionList)
         {
             if (pair.sensor != null && pair.targetState != null) //si los datos no son nulos
             {
@@ -123,7 +123,7 @@ public class State : MonoBehaviour
 
     private void UnsubscribeFromSensorEvents()
     {
-        foreach (var pair in _sensorTransitions)
+        foreach (var pair in _transitionList)
         {
             if (pair.sensor != null)
             {
@@ -131,9 +131,9 @@ public class State : MonoBehaviour
             }
         }
     }
-    private void SensorTriggeredWrapper(Sensors sensor)
+    private void SensorTriggeredWrapper(Sensor sensor)
     {
-        foreach (var pair in _sensorTransitions)
+        foreach (var pair in _transitionList)
         {
             if (pair.sensor == sensor)
             {
@@ -142,7 +142,7 @@ public class State : MonoBehaviour
             }
         }
     }
-    private void SensorTriggered(SensorStatePair pair)
+    private void SensorTriggered(Transition pair)
     {
         _nextState = pair.targetState;
     }
@@ -172,7 +172,7 @@ public class State : MonoBehaviour
                 #endif
 			}
 		}
-        foreach (var sensor in _sensorTransitions)
+        foreach (var sensor in _transitionList)
 		{
 			if (sensor.sensor != null)
 			{
@@ -213,5 +213,5 @@ public class State : MonoBehaviour
     }
     #endregion
 
-    public List<DamageEmitter> GetDamageEmitters() => _damageEmittersInState;
+    public List<DamageEmitter> GetDamageEmitters() => _damageEmitterList;
 }

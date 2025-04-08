@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class TimeSensor : Sensors
+public class TimeSensor : Sensor
 {
     // Time required for detection to trigger
     [SerializeField, Min(0)]

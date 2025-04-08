@@ -6,7 +6,7 @@ using UnityEngine;
 
 // Ensures that this component has both a Collider2D and a Rigidbody2D
 [RequireComponent(typeof(Collider2D))]
-public class CollisionSensor : Sensors
+public class CollisionSensor : Sensor
 {
     [Tooltip("Layers that, in case of collision, will activate the sensor.")]
     [SerializeField]

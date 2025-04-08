@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class SoundSensor : Sensors
+public class SoundSensor : Sensor
 {
     public override void StartSensor()
     {
