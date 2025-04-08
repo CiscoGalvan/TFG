@@ -158,48 +158,49 @@ public class VerticalActuator : MovementActuator
         }
     }
 
-    // Handles collisions with defined layers and reacts accordingly
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Ignore collisions not in selected layers or with no defined reaction
-        if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == OnCollisionReaction.None) return;
+	// Handles collisions with defined layers and reacts accordingly
 
-        ContactPoint2D contact = collision.contacts[0];
-        Vector2 normal = contact.normal;
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		// Ignore collisions not in selected layers or with no defined reaction
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == OnCollisionReaction.None) return;
 
-        // Check vertical collision
-        if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
-        {
-            if (_onCollisionReaction == OnCollisionReaction.Bounce)
-            {
-                bool correctCollision = (_direction == Direction.Up && normal.y < 0) || (_direction == Direction.Down && normal.y > 0);
-                if (correctCollision)
-                {
-                    // Reverse direction
-                    _direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
+		ContactPoint2D contact = collision.contacts[0];
+		Vector2 normal = contact.normal;
 
-                    // Update animation
-                    if (_animatorManager != null)
-                    {
-                        _animatorManager.RotateSpriteY();
-                        if (_direction == Direction.Up)
-                            _animatorManager.UpDirection();
-                        else
-                            _animatorManager.DownDirection();
-                    }
-                }
-            }
-            else if (_onCollisionReaction == OnCollisionReaction.Destroy)
-            {
-                // Call animation destroy or destroy GameObject directly
-                if (_animatorManager != null && _animatorManager.enabled)
-                    _animatorManager.Destroy();
-                else
-                    Destroy(this.gameObject);
-            }
-        }
-    }
+		// Check vertical collision
+		if (Mathf.Abs(normal.x) < Mathf.Abs(normal.y))
+		{
+			if (_onCollisionReaction == OnCollisionReaction.Bounce)
+			{
+				bool correctCollision = (_direction == Direction.Up && normal.y < 0) || (_direction == Direction.Down && normal.y > 0);
+				if (correctCollision)
+				{
+					// Reverse direction
+					_direction = _direction == Direction.Up ? Direction.Down : Direction.Up;
 
+					// Update animation
+					if (_animatorManager != null)
+					{
+						_animatorManager.RotateSpriteY();
+						if (_direction == Direction.Up)
+							_animatorManager.UpDirection();
+						else
+							_animatorManager.DownDirection();
+					}
+				}
+			}
+			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
+			{
+				// Call animation destroy or destroy GameObject directly
+				if (_animatorManager != null && _animatorManager.enabled)
+					_animatorManager.Destroy();
+				else
+					Destroy(this.gameObject);
+			}
+		}
+	}
+	
     // Draws a direction arrow in the scene view
     private void OnDrawGizmosSelected()
     {

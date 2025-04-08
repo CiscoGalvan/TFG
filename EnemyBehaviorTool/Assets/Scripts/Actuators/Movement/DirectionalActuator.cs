@@ -126,40 +126,40 @@ public class Directional_Actuator : MovementActuator
         }
     }
 
-    // Handles collision reactions: bounce or destroy depending on config.
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Ignore collision if it's not in the specified layers or no reaction is selected.
-        if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == HorizontalActuator.OnCollisionReaction.None) return;
+	// Handles collision reactions: bounce or destroy depending on config.
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		// Ignore collision if it's not in the specified layers or no reaction is selected.
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == HorizontalActuator.OnCollisionReaction.None) return;
 
-        if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
-        {
-            ContactPoint2D contact = collision.contacts[0];
-            Vector2 normal = contact.normal;
-            Vector2 currentVelocity = _prevVelocity;
+		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
+		{
+			ContactPoint2D contact = collision.contacts[0];
+			Vector2 normal = contact.normal;
+			Vector2 currentVelocity = _prevVelocity;
 
-            // Ignore invalid bounce direction.
-            if (Vector2.Dot(currentVelocity, normal) >= 0)
-            {
-                return;
-            }
+			// Ignore invalid bounce direction.
+			if (Vector2.Dot(currentVelocity, normal) >= 0)
+			{
+				return;
+			}
 
-            // Reflect the velocity using the surface normal.
-            float dotProduct = Vector2.Dot(currentVelocity, normal);
-            Vector2 reflectedVelocity = currentVelocity - 2 * dotProduct * normal;
+			// Reflect the velocity using the surface normal.
+			float dotProduct = Vector2.Dot(currentVelocity, normal);
+			Vector2 reflectedVelocity = currentVelocity - 2 * dotProduct * normal;
 
-            _rigidbody.velocity = reflectedVelocity;
-            _speed = reflectedVelocity.magnitude;
-            _angle = Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x) * Mathf.Rad2Deg;
-        }
-        else if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
-        {
-            if (_animatorManager != null)
-                _animatorManager.Destroy();
-            else
-                Destroy(this.gameObject);
-        }
-    }
+			_rigidbody.velocity = reflectedVelocity;
+			_speed = reflectedVelocity.magnitude;
+			_angle = Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x) * Mathf.Rad2Deg;
+		}
+		else if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
+		{
+			if (_animatorManager != null)
+				_animatorManager.Destroy();
+			else
+				Destroy(this.gameObject);
+		}
+	}
 
     // Public method to update angle dynamically.
     public void SetAngle(float newValue)

@@ -26,7 +26,7 @@ public class DamageSensor : Sensors
 		if (_sensorActive && _timerFinished)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if(_damageEmitter != null &&_damageEmitter.GetEmitting())
+			if(_damageEmitter != null && _damageEmitter.enabled &&_damageEmitter.GetEmitting())
 			{
 				if (_damageEmitter.GetDestroyAfterDoingDamage())
 				{
@@ -49,7 +49,7 @@ public class DamageSensor : Sensors
 		if (_sensorActive && _timerFinished) 
 		{
 			_damageEmitter= collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null && _damageEmitter.GetEmitting())
+			if (_damageEmitter != null && _damageEmitter.enabled&&_damageEmitter.GetEmitting())
 			{
 				
 				_col = false;
@@ -65,7 +65,7 @@ public class DamageSensor : Sensors
 		if (_sensorActive && _timerFinished)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null && _damageEmitter.GetEmitting())
+			if (_damageEmitter != null && _damageEmitter.enabled &&_damageEmitter.GetEmitting())
 			{
 				if (_damageEmitter.GetDestroyAfterDoingDamage())
 				{
@@ -87,7 +87,7 @@ public class DamageSensor : Sensors
 		if (_sensorActive && _timerFinished)
 		{
 			_damageEmitter = collision.gameObject.GetComponent<DamageEmitter>();
-			if (_damageEmitter != null && _damageEmitter.GetEmitting())
+			if (_damageEmitter != null && _damageEmitter.enabled &&_damageEmitter.GetEmitting())
 			{
 				_col = false;
 				EventDetected();

@@ -177,35 +177,35 @@ public class HorizontalActuator : MovementActuator
         }
     }
 
-    // Handles collisions
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Ignore collisions not in the specified layers or if no reaction is defined
-        if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == OnCollisionReaction.None) return;
+	// Handles collisions
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		// Ignore collisions not in the specified layers or if no reaction is defined
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == OnCollisionReaction.None) return;
 
-        ContactPoint2D contact = collision.contacts[0];
-        Vector2 normal = contact.normal;
+		ContactPoint2D contact = collision.contacts[0];
+		Vector2 normal = contact.normal;
 
-        // Check if the collision is mostly horizontal
-        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
-        {
-            if (_onCollisionReaction == OnCollisionReaction.Bounce)
-            {
-                // Flip direction if hit from the front
-                bool hitFromCorrectSide = (_direction == Direction.Left && normal.x > 0) || (_direction == Direction.Right && normal.x < 0);
-                if (hitFromCorrectSide)
-                {
-                    _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-                }
-            }
-            else if (_onCollisionReaction == OnCollisionReaction.Destroy)
-            {
-                // Destroy the object or play destruction animation
-                if (_animatorManager != null || !_animatorManager.enabled) _animatorManager.Destroy();
-                else Destroy(this.gameObject);
-            }
-        }
-    }
+		// Check if the collision is mostly horizontal
+		if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+		{
+			if (_onCollisionReaction == OnCollisionReaction.Bounce)
+			{
+				// Flip direction if hit from the front
+				bool hitFromCorrectSide = (_direction == Direction.Left && normal.x > 0) || (_direction == Direction.Right && normal.x < 0);
+				if (hitFromCorrectSide)
+				{
+					_direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
+				}
+			}
+			else if (_onCollisionReaction == OnCollisionReaction.Destroy)
+			{
+				// Destroy the object or play destruction animation
+				if (_animatorManager != null || !_animatorManager.enabled) _animatorManager.Destroy();
+				else Destroy(this.gameObject);
+			}
+		}
+	}
 
     // Draws a gizmo in the editor indicating direction
     private void OnDrawGizmosSelected()
