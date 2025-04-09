@@ -18,8 +18,6 @@ public class State : MonoBehaviour
 
     private int _numElementsActuator = -1;
 
-    //hashset con todos los sensores
-    public HashSet<Sensor> sensorHashSet = new HashSet<Sensor>();
     //Lista con los sensores que pueden transicionara transicionar
     [SerializeField]
     private List<Transition> _transitionList = new List<Transition>();
@@ -42,7 +40,6 @@ public class State : MonoBehaviour
             if (actuator)
             {
                 actuator.StartActuator();
-                sensorHashSet.UnionWith(actuator.GetSensors());
             }
                
         }
@@ -51,16 +48,9 @@ public class State : MonoBehaviour
         {
             if (pair.sensor != null)
             {
-                sensorHashSet.Add(pair.sensor); // Opcional, si quieres que tambi�n est�n en sensorHashSet
+               pair.sensor.StartSensor();
             }
-        }
-        foreach (var sensor in sensorHashSet)
-        {
-            // This conditional is used to check when the list size is not zero and there is no sensor in it
-            if(sensor)
-                sensor.StartSensor();
-        }
-    
+        }    
 		foreach (var damageEmitter in _damageEmitterList)
 		{
             if (damageEmitter)
@@ -77,11 +67,13 @@ public class State : MonoBehaviour
 		}
         _nextState = null;
         UnsubscribeFromSensorEvents();
-        foreach (var sensor in sensorHashSet)
+        foreach (var pair in _transitionList)
         {
-			if (sensor)
-				sensor.StopSensor();
-		}
+            if (pair.sensor != null)
+            {
+                pair.sensor.StopSensor();
+            }
+        }
 		foreach (var damageEmitter in _damageEmitterList)
 		{
 			if (damageEmitter)
@@ -98,14 +90,7 @@ public class State : MonoBehaviour
         }
         
     }
-    public void AddActuator(Actuator act)
-    {
-        actuatorList.Add(act);
-    }
-    public void AddSensor(Sensor sen)
-    {
-        sensorHashSet.Add(sen);
-    }
+    
     public State CheckTransitions()
     {
         return _nextState;
