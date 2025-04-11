@@ -9,75 +9,39 @@ public class TimeSensor : Sensor
     private float _detectionTime = 5f;
 
     // Instancia de Timer
-    private Timer _timer;
+    private Timer _ownTimer;
 
-	[SerializeField, Min(0)]
-	[Tooltip("Initial time the sensor will need to be active")]
-	private float _startDetectingTime = 0f;
-	private Timer _timerStartDetectingTime;
-	private bool _timerFinished = false;
-
+	
 	private void Awake()
     {
-        _timer = new Timer(_detectionTime);
+        _ownTimer = new Timer(_detectionTime);
 	}
-    private void Update()
-    {
-        if (!_sensorActive) return;
 
-		if (!_timerFinished)
+	public override void UpdateSensor()
+	{
+		base.UpdateSensor();
+		if (!_sensorActive || !_timerFinished) return;
+
+		_ownTimer.Update(Time.deltaTime);
+
+		// Si el temporizador llegó al tiempo de detección, activar evento
+		if (_ownTimer.GetTimeRemaining() <= 0)
 		{
-			_timerStartDetectingTime.Update(Time.deltaTime);
-			if (_timerStartDetectingTime.GetTimeRemaining() <= 0)
-			{
-				_timerFinished = true;
-			}
-			else
-			{
-				return;
-			}
+			EventDetected();
+			_ownTimer.Reset(); // Reiniciar el temporizador después de la detección
 		}
-		_timer.Update(Time.deltaTime);
+	}
 
-        // Si el temporizador llegó al tiempo de detección, activar evento
-        if (_timer.GetTimeRemaining() <= 0)
-        {
-            EventDetected();
-            _timer.Reset(); // Reiniciar el temporizador después de la detección
-        }
-    }
-
-    // Activates the sensor. Is the firts method call
-    public override void StartSensor()
-    {
-        _timer.Start();
-		_timerStartDetectingTime = new Timer(_startDetectingTime);
-		if (_startDetectingTime > 0)
-		{
-			_timerStartDetectingTime.Start();
-			_timerFinished = false;
-		}
-		else
-		{
-			_timerFinished = true;
-		}
-		_sensorActive = true;
-    }
-
-    // Displays the remaining time in the scene view (editor only)
-    private void OnDrawGizmos()
+	// Displays the remaining time in the scene view (editor only)
+	private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
         if (!_sensorActive) return;
         Gizmos.color = Color.blue;
-        float timeRemaining = _timer != null ? _timer.GetTimeRemaining() : _detectionTime;
+        float timeRemaining = _ownTimer != null ? _ownTimer.GetTimeRemaining() : _detectionTime;
 
         UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f, $"Time Remaining: {timeRemaining:0.00}s");
 #endif
     }
 
-    public override void StopSensor()
-	{
-		_sensorActive= false;
-	}
 }

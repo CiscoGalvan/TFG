@@ -52,13 +52,6 @@ public class DistanceSensor : Sensor
 
     //private bool _isNear;
 
-
-    [SerializeField, Min(0)]
-	[Tooltip("Initial time the sensor will need to be active")]
-	private float _startDetectingTime = 0f;
-    private Timer _timer;
-    private bool _timerFinished = false;
-
     [SerializeField]
     private DetectionCondition _detectionCondition = DetectionCondition.InsideMagnitude;
 
@@ -67,19 +60,7 @@ public class DistanceSensor : Sensor
     // Initializes the sensor settings
     public override void StartSensor()
     {
-        _sensorActive = true;
-        _timer = new Timer(_startDetectingTime);
-
-        if (_startDetectingTime > 0)
-        {
-            _timer.Start();
-            _timerFinished = false;
-        }
-        else
-        {
-            _timerFinished = true;
-        }
-
+        base.StartSensor();
         if (_target ==null)
         {
             Debug.LogError($"No target set in Distance Sensor in object {name}");
@@ -92,28 +73,13 @@ public class DistanceSensor : Sensor
 
         }
     }
-    public override void StopSensor()
-    {
-        _sensorActive = false;
-    }
 
     // Determines if the sensor should transition based on distance
     private void Update()
     {
-        if (!_sensorActive) return;
-        if (!_timerFinished)
-        {
-            _timer.Update(Time.deltaTime);
-            if (_timer.GetTimeRemaining() <= 0)
-            {
-                _timerFinished = true;
-            }
-            else
-            {
-                return;
-            }
-        }
-        if (_target == null || _distanceType == TypeOfDistance.Area)
+        base.UpdateSensor();
+
+        if (_target == null || _distanceType == TypeOfDistance.Area || !_timerFinished)
             return;
 
         Vector2 selfPos = transform.position;

@@ -163,7 +163,19 @@ Para que exista una comunicación entre la entidad y su entorno, esta necesita p
 
 La clase \textit{Sensor} es de la que heredarán los sensores explicados a continuación. Esta clase contiene variables como el evento que almacena las funciones que se deberán de llamar en caso de que el sensor sea activado, como puede ser la función que activará la transición posteriormente.\\
 
-Cualquier clase que herede de \textit{Sensor} deberá implementar los métodos abstractos \texttt{StartSensor()} y \texttt{StopSensor()}, que son utilizados para gestionar variables de control, gestionar errores o crear los \textit{Timers} en caso de que querramos desactivar un sensor por una cantidad de tiempo (segundos) al iniciarse. También se incluye un modo debug opcional, activable mediante el método \texttt{SetDebug(bool)}, método que será llamado desde State y tomará el valor de la variable \textit{Debug State} del estado.\\
+Cualquier clase que herede de \textit{Sensor} tendrá la posibilidad de modificar tres funciones relativa a la lógica del sensor:
+
+\begin{itemize}
+	\item \texttt{StartSensor}: Función que se encargada de activar el sensor para que se pueda comenzar a captar información y en caso de querer un tiempo de espera al inicio de la activación, se crea el \textit{timer} correspondente.
+	\item \texttt{UpdateSensor}: Función llamada en cada bucle y encargada de actualizar el tiempo que queda por esperar en caso de que el \textit{timer} no haya acabado.
+	\item \texttt{StopSensor}: Función que desactiva el sensor.
+\end{itemize}
+Estas funciones son las encargadas de gestionar variables de control, comprobar errores y crear un \textit{timer} en caso de que se quiera desactivar un sensor por una cantidad determinada de tiempo (segundos) al iniciarse.\\
+
+En caso de que se quiera agregar lógica extra a alguna de estas funciones para un sensor en específico, se puede sobreescribir estos métodos en la clase del sensor correspondiente con la condición de que es indispensable que se llame al método de la clase base.
+\comp{Foto del código?}
+
+También se incluye un modo debug opcional, activable mediante el método \texttt{SetDebug(bool)}, método que será llamado desde State y tomará el valor de la variable \textit{Debug State} del propio estado.\\
 
 La funcionalidad de los sensores se ha implementado de manera que si se quiere suscribir desde un componente a un evento de cualquier sensor se podrá hacer siempre y cuando la función que será llamada en caso de activarse el sensor reciba un objeto de tipo \textit{Sensor}.\\
 
@@ -173,15 +185,57 @@ La implementación del evento incluye un contador de suscriptores que permite ll
 
 Es importante tener en cuenta que toda suscripción a un sensor debe ir acompañada, en algún momento, de su correspondiente desuscripción. Un caso típico es realizar esta desuscripción cuando la entidad es destruida, utilizando el método \texttt{OnDestroy}.\\
 
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (Float) Start Detecting Time: Tiempo que necesitará el sensor para activarse al entrar en el estado que lo alberga.
+\end{itemize}
+
+
 A continuación se enumerarán y explicarán los tipos de sensores incluidos en la herramienta.\\
 \subsubsection{AreaSensor}
 
+\textit{AreaSensor} representa un tipo de sensor espacial que detecta la presencia de un objeto objetivo dentro de una zona delimitada. Está pensado para funcionar con zonas de activación, por lo que requiere que el objeto que lo contiene tenga un componente \textit{Collider2D}. Esta condición se asegura mediante el atributo \texttt{[RequireComponent(typeof(Collider2D))]}, que obliga a Unity a añadir automáticamente ese componente si no está presente.\\
+
+La detección se realiza mediante los métodos \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D} provistos por \textit{Unity}. El primero detecta la entrada del objetivo en la zona, mientras que el segundo permite capturar situaciones en las que el objetivo ya se encuentra dentro del área al momento de activarse el sensor. Esto evita perder eventos relevantes si la detección no estaba habilitada previamente.\\
+
+Como se ha mencionado previamente, la detección de colisiones se realizará mediante \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D}, por lo que se activará automáticamente la flag que convierte un Collider2D en un trigger.\\
+
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (GameObject) Target: Objeto que se quiere detectar dentro de la zona delimitada por el Collider2D.
+\end{itemize}
+
 \subsubsection{CollisionSensor}
-aaaaa
+
+\textit{CollisionSensor} es el sensor encargado de detectar la colisión de un objeto con un grupo determinado de objetos.\\
+
+Al igual que en \textit{AreaSensor}, se necesitará un Collider2D para detectar colisiones y se obligará a Unity a añadirlo de la misma manera.\\
+
+Para acotar con que objetos se activa el sensor y con cuales no, se utilizarán las \textit{LayerMask} de \textit{Unity} y se detectarán las colisiones con \texttt{OnCollisionEnter2D} y \texttt{OnCollisionStay2D}, por lo que para reportar una colisión ninguno de los dos objetos deben ser trigger.\\
+
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (LayerMask) Layers To Collide: Máscara de capas físicas que, en caso de colisión, activarán el sensor.
+\end{itemize}
+
 \subsubsection{DamageSensor}
-aaaaa
+
+\textit{DamageSensor} es un tipo de sensor que detecta las colisiones y entradas en el área de un objeto que emite daño. Este sensor está diseñado para funcionar tanto con colisiones como con triggers. Requiere que el objeto al que se le asigne tenga un componente \textit{Collider2D}, lo cual se asegura automáticamente gracias al atributo \texttt{[RequireComponent(typeof(Collider2D))]}.\\
+
+La funcionalidad de este sensor es doble. Además de activar transiciones, se utiliza para gestionar la lógica del componente \textit{Life}. En caso de colisión, y bajo ciertas condiciones, como colisionar con un objeto que tenga el componente \textit{DamageEmitter}, el sensor se activa. Luego, desde el componente \textit{Life}, se gestiona qué hacer en función de las características del \textit{DamageEmitter}.\\
+
+El sensor puede ser configurado para que se active desde el inicio mediante el atributo \textit{Active From Start}, lo que permite que el sensor sea útil en caso de que no se quiera que el sensor esté implicado en ninguna transición, pero si en el sistema de gestión de salud.\\
+
+
+El sensor detecta las entradas y salidas de objetos mediante los métodos \texttt{OnTriggerEnter2D}, \texttt{OnTriggerExit2D}, \texttt{OnCollisionEnter2D} y \texttt{OnCollisionExit2D}. Este control será necesario para gestionar los distintos tipos de daños que serán abordados más adelante.\\
+
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (Bool) Active From Start: Si es verdadero, el \textit{DamageSensor} no tendrá porqué ser incluido en ninguna transición para que este se considere activo.
+\end{itemize}
+
 \subsubsection{DistanceSensor}
-aaaaa
+
 \subsubsection{TimerSensor}
 aaaaa
 

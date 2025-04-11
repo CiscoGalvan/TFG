@@ -14,8 +14,14 @@ public abstract class Sensor : MonoBehaviour
 
 	protected bool _sensorActive;
 
-    // Override the add and remove properties of the event
-    public event Action<Sensor> onEventDetected
+	[SerializeField, Min(0)]
+	[Tooltip("Initial time the sensor will need to be active")]
+	protected float _startDetectingTime = 0f;
+	protected Timer _timer;
+	protected bool _timerFinished = false;
+
+	// Override the add and remove properties of the event
+	public event Action<Sensor> onEventDetected
 	{
 		add
 		{	
@@ -41,12 +47,52 @@ public abstract class Sensor : MonoBehaviour
 		_onEventDetectedInternal?.Invoke(this);
 	}
 
-	public abstract void StartSensor();
-	public abstract void StopSensor();
+	public virtual void StartSensor()
+	{
+		_sensorActive = true;
+		_timer = new Timer(_startDetectingTime);
+
+		if (_startDetectingTime > 0)
+		{
+			_timer.Start();
+			_timerFinished = false;
+		}
+		else
+		{
+			_timerFinished = true;
+		}
+	}
+	public virtual void UpdateSensor()
+	{
+		if (!_sensorActive) return;
+		if (!_timerFinished)
+		{
+			_timer.Update(Time.deltaTime);
+			if (_timer.GetTimeRemaining() <= 0)
+			{
+				_timerFinished = true;
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+	public virtual void StopSensor() 
+	{
+		_sensorActive = false;
+	}
 
 	public void SetDebug(bool debug)
 	{
 		_debugSensor = debug;
 	}
+
+	
+	private void Update()
+	{
+		UpdateSensor();
+	}
+
 
 }

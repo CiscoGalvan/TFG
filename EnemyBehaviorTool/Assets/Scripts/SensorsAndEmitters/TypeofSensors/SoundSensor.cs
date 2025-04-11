@@ -12,6 +12,6 @@ public class SoundSensor : Sensor
 
 	public override void StopSensor()
 	{
-		throw new System.NotImplementedException();
+		
 	}
 }
