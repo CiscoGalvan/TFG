@@ -63,19 +63,26 @@ public class DamageEmitterComponentEditor : Editor
 					if (!_instaKill.boolValue)
 					{
 						EditorGUI.indentLevel++;
+						_amountOfDamage.floatValue = Mathf.Max(0, _amountOfDamage.floatValue);
 						EditorGUILayout.PropertyField(_amountOfDamage, _amountOfDamageLabel);
 						EditorGUI.indentLevel--;
 					}
 					break;
 				case 1: //Persistent
+					_amountOfDamage.floatValue = Mathf.Max(0, _amountOfDamage.floatValue);
 					EditorGUILayout.PropertyField(_amountOfDamage, _amountOfDamageLabel);
+					_damageCooldown.floatValue = Mathf.Max(0, _damageCooldown.floatValue);
 					EditorGUILayout.PropertyField(_damageCooldown, _damageCooldownLabel);
 					break;
 				case 2: //Residual
                     EditorGUILayout.PropertyField(_destroyAfterDoingDamage, _destroyAfterDoingDamageLabel);
+					_amountOfDamage.floatValue = Mathf.Max(0, _amountOfDamage.floatValue);
 					EditorGUILayout.PropertyField(_amountOfDamage, _instantDamageAmount);
+					_residualDamageAmount.floatValue = Mathf.Max(0, _residualDamageAmount.floatValue);
 					EditorGUILayout.PropertyField(_residualDamageAmount, _residualDamageLabel);
+					_damageCooldown.floatValue = Mathf.Max(0, _damageCooldown.floatValue);
 					EditorGUILayout.PropertyField(_damageCooldown, _damageCooldownLabel);
+					_numOfDamageApplication.intValue = Mathf.Max(0, _numOfDamageApplication.intValue);
 					EditorGUILayout.PropertyField(_numOfDamageApplication, _numberOfTicks);
 					break;
 			}

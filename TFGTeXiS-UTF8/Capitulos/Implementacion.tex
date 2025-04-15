@@ -323,7 +323,6 @@ La funcionalidad de este sensor es doble. Además de activar transiciones, se ut
 
 El sensor puede ser configurado para que se active desde el inicio mediante el atributo \textit{Active From Start}, lo que permite que el sensor sea útil en caso de que no se quiera que el sensor esté implicado en ninguna transición, pero si en el sistema de gestión de salud.\\
 
-
 El sensor detecta las entradas y salidas de objetos mediante los métodos \texttt{OnTriggerEnter2D}, \texttt{OnTriggerExit2D}, \texttt{OnCollisionEnter2D} y \texttt{OnCollisionExit2D}. Este control será necesario para gestionar los distintos tipos de daños que serán abordados más adelante.\\
 
 \textbf{Valores de configuración}
@@ -333,13 +332,120 @@ El sensor detecta las entradas y salidas de objetos mediante los métodos \textt
 
 \subsubsection{DistanceSensor}
 
-\subsubsection{TimerSensor}
-aaaaa
+\textit{DistanceSensor} es el sensor utilizado para medir la distancia entre dos puntos. La distancia se medirá tomando de referencia los \textit{Transform} de sendos objetos, uno de ellos el que posee este script y el otro el objetivo de medición.\\
 
-\subsection{Emitters}
-muchisimo mas
-\subsubsection{DamageEmitter}
-aaaaa
+El funcionamiento del sensor dependerá del valor asignado a la variable \textit{Distance Type}, la cual es de un tipo enumerado \textit{TypeOfDistance} que especifica la manera en que se calculará la distancia. Según el valor de esta variable, se requerirán distintos parámetros o configuraciones, aunque varios valores de configuración seguirán siendo necesarios.\\
+
+\textbf{Valores de configuración comunes}
+\begin{itemize}
+	\item (Enum) Distance Type: Tipo enumerado que determinará de que manera se mide la distancia y que variables se necesitarán para medirla.
+	\item (Enum) Detection Condition: Tipo enumerado que determina si el sensor se activa cuando el objetivo está dentro de esa distancia o cuando está fuera de la misma.
+	\item (GameObject) Target: Entidad con la que se mide la distancia.
+\end{itemize}
+
+A continuación se especificarán los valores que puede tomar el enumerado \textit{TypeOfDistance} y las variables específicas necesarias en cada caso.\\
+
+\textbf{Valores de \textit{TypeOfDistance}}
+
+\begin{itemize}
+	\item \textit{Area}
+
+Configuración utilizada cuando se quiere medir la distancia como magnitud. La representación gráfica de esta forma de medir la distancia es un círculo, como se muestra en la \autoref{fig:DistanceSensor_Magnitude}.\\
+
+\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item Descripción del modo A
+	        \item Parámetro necesario: Transform objetivo
+	 \end{itemize}
+	\item \textit{Magnitude}
+
+	Configuración utilizada cuando se quiere medir la distancia como magnitud. La representación gráfica de esta forma de medir la distancia es un círculo, como se muestra en la \autoref{fig:DistanceSensor_Magnitude}.\\
+Dependiendo del valor de la variable \textit{Detection Condition} el sensor se activará si el objeto objetivo está dentro o fuera del círculo.
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width = 0.7\textwidth]{Imagenes/DistanceSensorMagnitude.png}
+		\caption{Medición de distancia a través de la magnitud.}
+		\label{fig:DistanceSensor_Magnitude}
+	\end{figure}
+
+	\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item (Float) Detection Distance: Distancia necesaria para que el sensor se active.
+	 \end{itemize}
+
+	\item \textit{Single Axis}
+
+Con el tipo de medida \textit{Single Axis} se mide la distancia entre ambos objetos pero solo en uno de los dos ejes: X o Y.\\
+
+	\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item (Float) Detection Distance: Distancia necesaria para que el sensor se active.
+	        \item (Enum) Axis: Da opciones para escoger cual de los dos ejes se va a medir, si X o Y.
+	        \item (Enum) Detection Sides: Permite elegir si se quiere medir la distancia a ambos lados del eje o solo por uno de ellos. 
+	        \item (Enum) Part: En caso de que se haya determinado que solo se quiere medir la distancia en uno de los dos lados del eje elegido se deberá especificar cual de los dos es. Por ejemplo si queremos medir la distancia en el eje X, nos permite medir cuando el objetivo entra en el rango determinado por \textit{Detection Distance} por la izquierda o por la derecha.
+	 \end{itemize}
+\end{itemize}
+
+
+\subsubsection{TimeSensor}
+
+Sensor encargado de activarse cuando pasa un tiempo determinado desde su activación, la cual se produce típicamente cuando hay un cambio de estado y uno de los sensores encargados de determinar si una transición se da o no es \textit{TimeSensor}.\\
+En caso de ajustar que el sensor necesitará un tiempo de activación, primero se procederá a medir tal tiempo y cuando este llegue a su fin, se medirá el tiempo de activación propio del sensor.\\
+
+\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item (Float) Detection Time: Tiempo necesario, medido en segundos, para que el sensor se active.
+	 \end{itemize}
+
+\subsection{DamageEmitter}
+
+Para que una entidad pueda emitir daño, debe tener adjunto el componente \textit{DamageEmitter}.\\
+Este componente no implementa funcionalidad adicional en su propio script, sino que actúa como una señal para el \textit{DamageSensor}. La detección de daño por parte del sensor depende de que el objeto con el que colisiona tenga este componente adjunto.\\
+
+La manera en la que \textit{DamageEmitter} reporta daño dependerá de un tipo enumerado llamado \textit{DamageType}.\\
+Como valores de configuración comunes para todas las configuraciones disponibles encontramos.\\
+
+\textbf{Valores de configuración comunes}
+\begin{itemize}
+	\item (Bool) Active From Start: En caso de que esté desactivado, no se reportará daño a no ser que el \textit{DamageEmitter} esté incluido en un estado.
+	\item (Enum) Damage Type: Diferentes formas de producir daño a las entidades que tengan \textit{DamageSensor}.
+\end{itemize}
+
+A continuación se concretarán los valores que puede tomar el enumerado \textit{DamageType}, como funciona cada tipo de daño y que otros valores de configuración serán necesarios.\\
+
+\textbf{Valores de \textit{DamageType}}
+
+\begin{itemize}
+	\item \textit{Instant}
+Tipo de daño que se aplica una vez producido el contacto y que no se va a volver a aplicar hasta que ese contacto no haya finalizado y se de uno nuevo.\\
+
+\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item (Bool) Destroy After Doing Damage: Booleano que determina si el objeto es destruido al reportar daño.
+	        \item (Bool) Instant Kill: Determina si la entidad que reporta daño elimina a su objetivo instantáneamente.
+	        \item (Float) Damage Amount: En caso de no eliminar instantáneamente al objetivo, se especificará la cantidad de daño que se hará.
+	 \end{itemize}
+	\item \textit{Persistent}
+El daño persistente es aquel que produce constántemente una entidad cada X tiempo. Este daño se producirá mientras dure la colisión o ,en caso de que sea un trigger, la superposición.\\
+
+\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item (Float) Damage Amount: Cantidad de daño administrada cada vez.
+	        \item (Float) Damage Cooldown: Tiempo necesario para administrar daño de nuevo, medido en segundos.
+	\end{itemize}
+
+	\item \textit{Residual}
+El daño residual es aquel que produce una cantidad de daño instantáneo y tras esto produce un número determinado de aplicaciones de otra cantidad de daño cada cierto tiempo.\\
+
+\textbf{Valores de configuración}
+	\begin{itemize}
+	        \item (Bool) Destroy After Doing Damage: Booleano que determina si el objeto es destruido al reportar el daño instantáneo.
+	        \item (Float) Instant Damage Amount: Cantidad de daño administrada cuando se produce el contacto.
+	        \item (Float) Residual Damage Amount: Cantidad de daño administrada por cada aplicación de daño residual.
+	        \item (Float) Damage Cooldown: Tiempo entre aplicaciones de daño residual, medido en segundos.
+	        \item (Int) Number Of Applications: Número de veces que se aplicará el daño residual.
+	\end{itemize}
+\end{itemize}
 
 \section{Animations}
 La clase \textit{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo, en función del movimieno, es decir de los actuadores que esten activos.\\

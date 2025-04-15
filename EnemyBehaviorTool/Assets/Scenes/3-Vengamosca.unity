@@ -331,7 +331,7 @@ MonoBehaviour:
   _instaKill: 0
   _amountOfDamage: 1
   _damageCooldown: 1
-  _numOfDamageApplication: 2
+  _numOfDamageApplication: 29
   _residualDamageAmount: 0
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
