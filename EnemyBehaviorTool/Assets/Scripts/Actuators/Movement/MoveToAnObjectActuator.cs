@@ -1,5 +1,4 @@
 using UnityEngine;
-using static MoveToAPointActuator;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MoveToAnObjectActuator : MovementActuator

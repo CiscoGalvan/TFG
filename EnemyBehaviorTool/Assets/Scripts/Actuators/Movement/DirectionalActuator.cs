@@ -7,6 +7,7 @@ using UnityEngine;
 public class Directional_Actuator : MovementActuator
 {
     public LayerMask _layersToCollide;
+    public enum OnCollisionReaction { None = 0, Bounce = 1, Destroy = 2 }
 
     // Movement configuration variables
     [SerializeField, HideInInspector] private float _speed = 5f;
@@ -22,9 +23,8 @@ public class Directional_Actuator : MovementActuator
     AnimatorManager _animatorManager;
 
     // Defines how the actuator reacts when colliding with another object
-    [SerializeField, HideInInspector]
-    private HorizontalActuator.OnCollisionReaction _onCollisionReaction = HorizontalActuator.OnCollisionReaction.None;
-
+    [SerializeField, HideInInspector] 
+    private OnCollisionReaction _onCollisionReaction = OnCollisionReaction.None;
     // Stores the previous velocity before collision for accurate bounce calculation
     private Vector2 _prevVelocity;
 
@@ -130,9 +130,9 @@ public class Directional_Actuator : MovementActuator
 	private void OnCollisionStay2D(Collision2D collision)
 	{
 		// Ignore collision if it's not in the specified layers or no reaction is selected.
-		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == HorizontalActuator.OnCollisionReaction.None) return;
+		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) == 0 || _onCollisionReaction == OnCollisionReaction.None) return;
 
-		if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Bounce)
+		if (_onCollisionReaction == OnCollisionReaction.Bounce)
 		{
 			ContactPoint2D contact = collision.contacts[0];
 			Vector2 normal = contact.normal;
@@ -152,7 +152,7 @@ public class Directional_Actuator : MovementActuator
 			_speed = reflectedVelocity.magnitude;
 			_angle = Mathf.Atan2(reflectedVelocity.y, reflectedVelocity.x) * Mathf.Rad2Deg;
 		}
-		else if (_onCollisionReaction == HorizontalActuator.OnCollisionReaction.Destroy)
+		else if (_onCollisionReaction == OnCollisionReaction.Destroy)
 		{
 			if (_animatorManager != null)
 				_animatorManager.Destroy();

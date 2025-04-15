@@ -136,7 +136,7 @@ La clase \textit{Actuator} representa la clase base de la que heredarán todos l
 Esta clase abstracta contiene métodos para crear, destruir y actualizar cada actuador, así como un booleano que indica si el Actuador tiene la depuración activa o no.\\
 
 \subsection{MovementActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.\\
+La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento. \\
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (bool) Is Accelerated: bool que indica si el movimiento que se va realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true)
@@ -161,8 +161,8 @@ La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para 
 \textit{Vertical actuator}es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto verticalmente, ya sea arriba o abajo, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (LayerMask) Layers To Collide: mascara de capas que indica cuales son las que utilizamos para colisionar con el objeto.
-	\item (enum) Direction: dirección inicial del movimiento. Puede ser \textit{Up} o \textit{Down}.
+	\item (LayerMask) Layers To Collide: Mascara de capas que indica cuales son las que utilizamos para colisionar con el objeto.
+	\item (enum) Direction: Dirección inicial del movimiento. Puede ser \textit{Up} o \textit{Down}.
 	\item (enum) On Collision Reaction: Reacción que va a tener el objeto al colisionar.Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
 	\item (float) Speed: Velocidad del movimiento
 	\item (float) Goal Speed: Velocidad final del movimiento si este es acelerado.
@@ -172,43 +172,71 @@ La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para 
 \end{itemize}
 
 \subsubsection{DirectionalActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.\\
+La clase \textit{Directional Actuator} que hereda de \textit{ Movement Actuator} se usa para describir un movimiento en función de un ángulo y una velocidad.\\
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (bool) Is Accelerated: bool que indica si el movimiento que se va realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true)
-	\item (EasingFunction.Ease) Easing Function: Función que define el movimiento 
+	\item (LayerMask) Layers To Collide: capas con las que puede colisionar el objeto y activar reacciones.
+	\item (float) Speed: Velocidad del movimiento
+	\item (float) Goal Speed: Velocidad final del movimiento si este es acelerado.
+	\item (float) Interpolation Time: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}
+	\item (float) Angle: Ángulo de dirección del movimiento, en grados.
+	\item (bool) Throw:  Indica si el movimiento es un lanzamiento, es decir, si esá a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, seaplicará constantemente una fuerza.
+	\item (enum) On Collision Reaction: Reacción que va a tener el objeto al colisionar.Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
+	\item (bool) Aim Player: Si es \textit{true}, el objeto calculará automáticamente el ángulo inicial para moverse en dirección al jugador.
 \end{itemize}
 
 \subsubsection{CircularActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.
+La clase \textit{Circular Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento circular alrededor de un punto.\\
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (bool) Is Accelerated: bool que indica si el movimiento que se va realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true)
-	\item (EasingFunction.Ease) Easing Function: Función que define el movimiento 
+	\item (float) Angular Speed: Velocidad de giro en grados por segundos.
+	\item (Transform) Rotation Point Position: Punto central de lacircunferencia  que describe el objeto.
+	\item (float) Max Angle: Angulo máximo de giro. Si El ángulo es \textit{360º} entonces describirá una circunferencia completa, sino, hará un movimiento en forma de péndulo con los grados indicados. 
+	\item (float) Angular Acceleration: Aceleración angular.
+	\item (float) Goal Angular Speed: Velocidad angular que se quiere alcanzar si el objeto es acelerado.
+	\item (bool) Can Rotate: si es \textit{true}, el objeto rota sobre sí mismo siguiendo la trayectoria.
+	\item (float) Interpolation Time: tiempo en segundos que tarda desde la velocidad inicial hasta la velocidad final, \textit{Goal Speed}.
+	\item (bool) Point Player: si es \textit{true}, el objeto ajusta su trayectoria para orientarse hacia el jugador.
+
 \end{itemize}
 
 \subsubsection{SplineActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.
+La clase \textit{Spline Actuator} que hereda de \textit{ Movement Actuator} se usa para describir un movimiento mediarte curvas Splines de Unity. El Actuador sigue la curva pudiendo girar el objeto a su vez.\\
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (bool) Is Accelerated: bool que indica si el movimiento que se va realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true)
-	\item (EasingFunction.Ease) Easing Function: Función que define el movimiento 
+	\item (float) Speed: Velocidad del movimiento
+	\item (float) Goal Speed: Velocidad final del movimiento si este es acelerado.
+	\item (float) Interpolation Time: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}
+	\item (SplineContainer) Spline Container: Spline que define la trayectoria que seguirá el objeto.
+	\item (enum) Teleport To Closest Point: Define cómo se ajusta el objeto a la spline al iniciarse el movimiento. Puede tener dos valores:
+	\begin{itemize}
+		\item \textbf{Enemy}: el objeto se teletransporta a la spline.
+		\item \textbf{Spline}: la spline se desplaza para alinearse con la posición actual del objeto.
+	\end{itemize}
 \end{itemize}
 
 \subsubsection{MoveToAPointActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.
+La clase \textit{Move to a Point Actuator} que hereda de \textit{ Movement Actuator} se usa para mover el objeto en  dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios desntro de un área.\\
 \textbf{Valores de configuración}
-\begin{itemize}
-	\item (bool) Is Accelerated: bool que indica si el movimiento que se va realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true)
-	\item (EasingFunction.Ease) Easing Function: Función que define el movimiento 
+\begin{itemize} 
+	\item (UsageWay) Usage Way: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona  (\textit{RandomArea}).
+	\item (List<WaypointData>) Waypoints Data: lista de puntos que el objeto debe seguir. Cada punto incluye el tiempo que se tarda en llegar, si se desea aceleración, si se debe detener al llegar, duración de la parada y función de aceleración si es necesaria. 		
+	
+	 \item (Collider2D) Random Area: Zona dentro de la cual se moverá el objeto si está configurado como \textit{RandomArea}. 
+	\item (bool) Is a Cicle: si es true, al finalizar los puntos volverá al primero y el movimiento se repetirá. 
+	\item (bool) All Waypoints Have The Same Data: si es true, todos los puntos usarán la misma configuración. 
 \end{itemize}
 
 \subsubsection{MoveToAnObjectActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.
+La clase \textit{Move to an Object Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en  dirección a un punto actualizable, esto implica que si el punto se muve, el objeto actualizará la trayectoria a la nueva posición. \\
 \textbf{Valores de configuración}
-\begin{itemize}
-	\item (bool) Is Accelerated: bool que indica si el movimiento que se va realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true)
-	\item (EasingFunction.Ease) Easing Function: Función que define el movimiento 
+\begin{itemize} 
+	\item (UsageWay) Usage Way: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona  (\textit{RandomArea}).
+	\item (List<WaypointData>) Waypoints Data: lista de puntos que el objeto debe seguir. Cada punto incluye el tiempo que se tarda en llegar, si se desea aceleración, si se debe detener al llegar, duración de la parada y función de aceleración si es necesaria. 		
+	
+	 \item (Collider2D) Random Area: Zona dentro de la cual se moverá el objeto si está configurado como \textit{RandomArea}. 
+	\item (bool) Is a Cicle: si es true, al finalizar los puntos volverá al primero y el movimiento se repetirá. 
+	\item (bool) All Waypoints Have The Same Data: si es true, todos los puntos usarán la misma configuración. 
 \end{itemize}
 
 \subsection{SpawnerActuator}
@@ -216,11 +244,11 @@ La clase \textit{SpawnerActuator} hereda de \textit{Actuator}. Este actuador se 
 
 \textbf{Valores de configuración}
 \begin{itemize}
-    \item (class) \textbf{SpawnInfo}: Clase auxiliar serializable que almacena un prefab (\texttt{GameObject}) a instanciar y un punto de aparición (\texttt{Transform}) donde se colocará dicho objeto.
-    \item (float) \textbf{\_spawnInterval}: Intervalo de tiempo en segundos que tarda el objeto en volver a generar otro enemigo. 
-    \item (bool) \textbf{\_infiniteEnemies}: Indica si se generarán enemigo indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por  \textit{spawnInterval}  y si es falso, el número de spawns estará limitado por \texttt{\_numofTimesToSpawn}.
-    \item (int) \textbf{\_numofTimesToSpawn}: Número total de veces que se permitirá hacer spawn, si no es infinito.
-    \item (List<SpawnInfo>) \textbf{\_spawnList}: Lista de elementos de tipo \texttt{SpawnInfo}. Cada elemento contiene la información necesaria para instaciar un enemigo. Esta lista está diseñada para poder crear distintos tipos de enemigos o en varios sitios a la vez, dando así más flexibilidad.
+    \item (class) \textbf{Spawn Info}: Clase auxiliar serializable que almacena un prefab (\texttt{GameObject}) a instanciar y un punto de aparición (\texttt{Transform}) donde se colocará dicho objeto.
+    \item (float) \textbf{ Spawn Interval}: Intervalo de tiempo en segundos que tarda el objeto en volver a generar otro enemigo. 
+    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigo indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por  \textit{spawnInterval}  y si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
+    \item (int) \textbf{Number of Times To Spawn}: Número total de veces que se permitirá hacer spawn, si no es infinito.
+    \item (List<SpawnInfo>) \textbf{Spawn List}: Lista de elementos de tipo \texttt{Spawn Info}. Cada elemento contiene la información necesaria para instaciar un enemigo. Esta lista está diseñada para poder crear distintos tipos de enemigos o en varios sitios a la vez, dando así más flexibilidad.
 \end{itemize}
 
 
@@ -314,9 +342,29 @@ muchisimo mas
 aaaaa
 
 \section{Animations}
-\subsection{AnimatorManager}
-aaaaa
+La clase \textit{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo, en función del movimieno, es decir de los actuadores que esten activos.\\
 
-\section{¿Editors?}
-Yo no lo pondría pero no sé.
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (bool) Can Flip X: Indica si el sprite puede voltearse horizontalmente.
+	\item (bool) Can Flip Y: Indica si el sprite puede voltearse verticalmente. 
+\item (SpriteRender) Sprite Render: Referencia al Sprite Render del propio objeto.
+\end{itemize}
+
+Durante la ejecución, se actualizan continuamente los parámetros \textit{XSpeed},  \textit{YSpeed}  y  \textit{RotationSpeed}  del animator a partir de la velocidad del \textit{Rigidbody2D}, lo que permite que las animaciones reflejen con precisión el movimiento real del objeto. Además, si el enemigo cambia de dirección, los sprites rotarán siempreque se hayan activado  los booleanos previamente mencionados.
+
+Cuando el enemigo recibe daño o muere, se activan los triggers \textit{Damage} y \textit{Die} respectivamente, lo que lanza las animaciones correspondientes. En el caso de la muerte, el objeto se destruye automáticamente una vez finaliza la animación. 
+
+Por otro lado, la clase permite cambiar indicar si el enemigo está siguiendo a otro objeto con el parámetro \textit{Follow} o saber si la FSM ha cambiado de estadofunción \textit{ChangeState}.
+
+Finalmente, al invocar eventos de aparición, se activa el trigger \textit{Spawn}.
+
+\textbf{Parámetros requeridos en el Animator}
+\begin{itemize}
+	\item Triggers: \textit{Die}, \textit{Damage}, \textit{Spawn}, \textit{ChangeState}
+	\item Bools: \textit{Left}, \textit{Right}, \textit{Up}, \textit{Down}, \textit{Follow}, \textit{Rotating}
+	\item Floats: \textit{XSpeed}, \textit{YSpeed}, \textit{RotationSpeed}
+\end{itemize}
+Para facilitar la gestión de los estados y de los parámetros del Animator, se ha creado un controlador  \textit{Controller} que pretende servir de base para la gestión de las animaciones.
+
 
