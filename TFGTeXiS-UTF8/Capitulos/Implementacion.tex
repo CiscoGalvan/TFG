@@ -6,14 +6,15 @@ En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en det
 
 \section{Tecnología utilizada}
 Este proyecto ha sido desarrollado íntegramente con el motor de videojuegos Unity, mencionado en el Capítulo 2 de este trabajo.
-La versión escogida para desarrollar la herramientas es la 2022.3.18f1, por lo que no podemos garantizar que la herramienta funcione en versiones anteriores a la mencionada y en el caso de la versiones posteriores debería funcionar sin ningún problema a no ser que la API básica de Unity cambie en un futuro.\\
+La versión escogida para desarrollar la herramienta es la 2022.3.18f1, por lo que no podemos garantizar que la herramienta funcione en versiones anteriores a la mencionada y en el caso de la versiones posteriores debería funcionar sin ningún problema a no ser que la API básica de Unity cambie en un futuro.\\
 \comp{En trabajo futuro podemos poner que en caso de que se cambie la API básica necesitaría algo de mantenimiento básico.}
 
-Unity es una herramienta muy versátil, la cúal se adapta muy bien a un gran rango de aplicaciones diferentes entre sí, desde entornos simples en dos dimensiones hasta entornos mucho más complejos en tres dimensiones, incluso en realidad virtual o realidad aumentada.
-Unity surge de la idea de acercar el desarrollo de videojuegos a segmentos de la población que se podrían ver abrumados por la necesidad de entender de programación para realizar sus proyectos ya sean estos profesionales o amateurs.Este motor de videojuegos ofrece soporte para varios lenguajes de programación a través de su sistema de \textit{plugins}, de manera nativa Unity nos ofrece los lenguajes C\# y Javascript como principales lenguajes de programación de \textit{scripts}.\\
+Unity es una herramienta muy versátil, la cual se adapta muy bien a un gran rango de aplicaciones diferentes entre sí, desde entornos simples en dos dimensiones hasta entornos mucho más complejos en tres dimensiones, incluso en realidad virtual o realidad aumentada.
+Unity surge de la idea de acercar el desarrollo de videojuegos a segmentos de la población que se podrían ver abrumados por la necesidad de entender de programación para realizar sus proyectos ya sean estos profesionales o amateurs. Este motor de videojuegos ofrece soporte para varios lenguajes de programación a través de su sistema de \textit{plugins}, de manera nativa Unity nos ofrece los lenguajes C\# y Javascript como principales lenguajes de programación de \textit{scripts}.\\
 
-Unity cuenta con una interfaz de usuario muy gráfica la cúal resulta muy intuitiva dentro de su complejidad. También es importante mencionar la personalización de su interfaz otorgando al usuario la capacidad de distribuir en pantalla las distintas ventanas que componen la interfaz de usuario de la manera más cómoda posible.
-Otro elemento muy importante de Unity es el sistema \textit{drag and drop} el cual nos permite construir las escenas de juego de manera muy sencilla, moviendo los objetos en la escena haciendo click y arrastrándolos y también permite asignar scripts a las entidades de juego de la misma manera. Con respecto a la curva de aprendizaje de Unity esta no es muy pronunciada ya que desde Unity como empresa se toman muy enserio el tener una documentación clara y accesible, así como habilitar foros y tutoriales para que sea la propia comunidad de usuarios la que se ayuda así misma.\\
+Unity cuenta con una interfaz de usuario muy gráfica la cúal resulta muy intuitiva dentro de su complejidad. También es importante mencionar la personalización de su interfaz otorgando al usuario la capacidad de distribuir en pantalla las distintas ventanas que componen la interfaz de usuario de la manera más cómoda posible.\\
+
+Otro elemento muy importante de Unity es el sistema \textit{drag and drop} el cual nos permite construir las escenas de juego de manera muy sencilla, moviendo los objetos en la escena haciendo click y arrastrándolos y también permite asignar scripts a las entidades de juego de la misma manera. Con respecto a la curva de aprendizaje de Unity esta no es muy pronunciada ya que desde Unity como empresa se toman muy en serio el tener una documentación clara y accesible, así como habilitar foros y tutoriales para que sea la propia comunidad de usuarios la que se ayuda a sí misma.\\
 
 
 El motivo por el que se escoge Unity sobre los demás motores de videojuegos es esa accesibilidad que ha sido mencionada anteriormente que hace que Unity resulte sencillo de utilizar por cualquier persona. Otro motivo de peso por el que hemos considerado Unity como nuestra opción principal de motor de videojuegos es la cantidad de usuarios que lo usan día a día lo que lo convierte en una muy buena plataforma para poder poner a prueba nuestra herramienta a través de pruenas de usuario para su posterior uso para el gran público. Esa popularidad de Unity da ciertas garantías de que la herramienta será usada y servirá para confeccionar un mínimo de proyectos.
@@ -35,14 +36,15 @@ Esta clase permite modificar ciertos valores como la velocidad de movimiento, la
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (Float) Speed: Velocidad constante a la que se moverá el jugador.
-	\item (Float) Jump Force: Fuerza aplicada al saltar
-	\item (Float) Slide Speed: Velocidad aplicada en el eje Y cuando el jugador está en el aire y colisiona lateralmente con una superficie.
+	\item (float) Speed: Velocidad constante a la que se moverá el jugador.
+	\item (float) Jump Force: Fuerza aplicada al saltar
+	\item (float) Slide Speed: Velocidad aplicada en el eje Y cuando el jugador está en el aire y colisiona lateralmente con una superficie.
 \end{itemize}
 
 \subsubsection{PlayerCollisionDetection}
 
-Este script se encarga de detectar las colisiones del jugador. Para ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo. Las cajas no detectan realmente colisiones, si no que comprueban si estas se superponen con alguna entidad de las capas especificadas.
+Este script se encarga de detectar las colisiones del jugador. Para ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo. Las cajas no detectan realmente colisiones, si no que comprueban si estas se superponen con alguna entidad de las capas especificadas con el método \texttt{Physics2D.OverlapBox()}.\\
+
 \textit{PlayerCollisionDetection} será usado por \textit{PlayerMovement} para gestionar acciones como determinar cuando el jugador debe deslizarse por una superficie o cuándo puede saltar.\\
 
 \begin{figure}[t]
@@ -54,52 +56,54 @@ Este script se encarga de detectar las colisiones del jugador. Para ello, se aju
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (Bool) Debug Boxes: En caso de que esta variable sea true, las cajas definidas por los campos que serán presentandos a continuación serán representadas en pantalla con color rojo.
+	\item (bool) Debug Boxes: En caso de que esta variable sea true, las cajas definidas por los campos que serán presentandos a continuación serán representadas en pantalla con color rojo.
 	\item (LayerMask) Detection Layers: Capas que serán tomadas en cuenta para detectar si el jugador está en el suelo o en contacto con una pared cuando está en el aire. En este caso se querrá especificar la capa que albergue a los objetos estáticos que conforman el mundo, por ejemplo \textit{World}.
 	\item (Vector2) Bottom/Right/Left Size: Tamaño de las cajas.
-	\item (Vector2) Bottom/Right/Left Offsets: Valores usados para reposicionar las cajas para que estén en el lugar considerado por el usuario.
+	\item (Vector2) Bottom/Right/Left Offsets: Valores usados para reposicionar las cajas para que estén en el lugar considerado por el usuario, idealmente en los bordes del objeto.
 \end{itemize}
 \subsubsection{PlayerBetterJumping}
 
 Para que el salto se ajuste más al estándar de los juegos de plataformas 2D, este script mejora la sensación de salto para que el personaje caiga más rápido, evitando una sensación de flotación. Además, permite realizar saltos más pequeños si el jugador suelta el botón antes.\\
+
 Para lograrlo, el script ajusta dos multiplicadores: uno que incrementa la gravedad cuando el jugador está cayendo y otro que reduce la altura del salto cuando este es interrumpido antes de tiempo.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (Float) Fall Multiplier: Multiplicador que aumenta la gravedad cuando el personaje está cayendo, hace que el personaje caiga más rapido, dándole más peso y realismo al salto.
-	\item (Float) Low Jump Multiplier: Multiplicador que aumenta la gravedad cuando el jugador suelta el botón de salto antes de llegar al punto más alto del salto haciendo que se puedan hacer saltos cortos dando más control del movimiento al jugador.
+	\item (float) Fall Multiplier: Multiplicador que aumenta la gravedad cuando el personaje está cayendo, hace que el personaje caiga más rapido, dándole más peso y realismo al salto.
+	\item (float) Low Jump Multiplier: Multiplicador que aumenta la gravedad cuando el jugador suelta el botón de salto antes de llegar al punto más alto del salto haciendo que se puedan hacer saltos cortos dando más control del movimiento al jugador.
 \end{itemize}
 \subsection{Life}
 
 Se ha implementado una clase Life que gestiona los puntos de salud del objeto al que está adjunto y que se encarga de eliminar el objeto en el caso que su vida llegue a cero. El componente pedirá al usuario un valor inicial para los puntos de vida del objeto y un valor máximo al que puede llegar la vida, para que esta sea limitada en caso de que se quiera implementar un sistema de recuperación de vida.\\
+
 Este componente está estrechamente ligado al \textit{DamageSensor} el cual será mencionado más adelante y que detecta si ha habido una colisión con un objeto que aplique daño, esta relación es necesaria ya que para que se detecte el daño que decrementa la salud del objeto se necesita este sensor, por lo que al añadir un componente \textit{Life} se añadirá este sensor automáticamente.\\
+
 \textit{Life} diferencia entre enemigos y el jugador, en caso de que el componente esté adjunto al jugador se deberá marcar en la opción \textit{EntityType} y el componente requerirá que se le de la referencia a un texto del \textit{Canvas} donde se escribirá la vida actual del jugador.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (enum) Entity Type: Enumerado usado para diferenciar entre jugador y enemigos.
-	\item (Float) Initial Life: Cantidad de vida con la que inicia la entidad.
-	\item (Float) Max Life: Cantidad de vida máxima a la que puede llegar la entidad.
-	\item (String) Text Name: En caso de ser el jugador se pedirá un texto que precederá a los puntos de vida del jugador.
+	\item (float) Initial Life: Cantidad de vida con la que inicia la entidad.
+	\item (float) Max Life: Cantidad de vida máxima a la que puede llegar la entidad.
+	\item (string) Text Name: En caso de ser el jugador se pedirá un texto que precederá a los puntos de vida del jugador.
 	\item (TextMeshProUGUI) Life Text: Objeto del Canvas usado para representar los puntos de vida actuales del jugador.
 \end{itemize}
 
 \subsection{PlayerDistanceAttack}
 
-Componente encargado de representar un posible ataque a distancia del jugador. El ataque se activará con el clic izquierdo del ratón, lo que instanciará el prefab \textit{Bullet Prefab} en la posición del jugador (será importante que no el objeto instanciado no pueda colisionar con el jugador), el cual deberá albergar el comportamiento de una bala. La dirección que tomará la bala será aquella en la que se encuentre el cursor del ratón en el momento del clic.
+Componente encargado de representar un posible ataque a distancia del jugador. El ataque se activará con el clic izquierdo del ratón, lo que instanciará el prefab \textit{Bullet Prefab} en la posición del jugador (será importante que no el objeto instanciado no pueda colisionar con el jugador), el cual deberá albergar el comportamiento de una bala. La dirección que tomará la bala será aquella en la que se encuentre el cursor del ratón en el momento del clic.\\
 
 Para evitar que el jugador pueda disparar sin restricción, se ha introducido un tiempo de espera entre disparos.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (GameObject) Bullet Prefab: Objeto que se instancia en la posición del jugador al hacer clic.
-	\item (Float) Shooting Cooldown: Tiempo necesario (en segundos) antes de poder disparar nuevamente.
+	\item (float) Shooting Cooldown: Tiempo necesario (en segundos) antes de poder disparar nuevamente.
 \end{itemize}
 
 \section {FSM}
 
-El comportamiento de la entidad estará encapsulado en una FSM, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio de estado.\\
-Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.
+El comportamiento de la entidad estará encapsulado en una FSM, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio de estado. Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
@@ -108,24 +112,25 @@ Esta comprobación se hará al finalizar la actualización del estado actual (en
 
 \subsection{Transition}
 Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.\\
+
 Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (Sensors) Sensor: Sensor encargado de detectar el evento que hará que el cambio de estado se dé.
+	\item (Sensor) Sensor: Sensor encargado de detectar el evento que hará que el cambio de estado se dé.
 	\item (State) Target State: Estado de destino de la transición.
 \end{itemize}
 
 \subsection{State}
 
-La clase \textit{State} representa un estado de comportamiento de un enemigo. Para ello gestiona dos elementos fundamentales: \textit{Actuators} y \textit{Sensores}.\\
+La clase \textit{State} representa un estado de comportamiento de un enemigo. Para ello gestiona dos elementos fundamentales: \textit{Actuators} y \textit{Sensors}.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (List<Actuator>) Actuator List: Lista de Actuator que son actualizados en cada bucle y representan acciones, se abordarán a continuación.
 	\item (List<SensorStatePair>) Transition List: Lista de Transition que pueden ser activadas, lo que supone un cambio de estado al estado objetivo.
 	\item (List<DamageEmitter>) Damage Emitter in State: Lista de DamageEmitter activos en el estado y que son los encargados de reportar daño.
-	\item (Bool) Debug State: Booleano utilizado para indicar si se quiere que los Actuators en \textit{Actuator List} y Sensores en \textit{Transition List} muestren información a través del Gizmos.
+	\item (bool) Debug State: Booleano utilizado para indicar si se quiere que los Actuators en \textit{Actuator List} y Sensores en \textit{Transition List} muestren información a través del Gizmos.
 \end{itemize}
 Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todas las transiciones a los que estuvieran vinculados.\\
 
@@ -258,7 +263,7 @@ Para que exista una comunicación entre la entidad y su entorno, esta necesita p
 
 \subsection{Sensor}
 
-La clase \textit{Sensor} es de la que heredarán los sensores explicados a continuación. Esta clase contiene variables como el evento que almacena las funciones que se deberán de llamar en caso de que el sensor sea activado, como puede ser la función que activará la transición posteriormente.\\
+La clase \textit{Sensor} es de la que heredarán los sensores utilizados en la herramienta. Esta clase contiene variables como el evento que almacena las funciones que se deberán de llamar en caso de que el sensor sea activado, como puede ser la función que activará la transición posteriormente.\\
 
 Cualquier clase que herede de \textit{Sensor} tendrá la posibilidad de modificar tres funciones relativa a la lógica del sensor:
 
@@ -267,7 +272,7 @@ Cualquier clase que herede de \textit{Sensor} tendrá la posibilidad de modifica
 	\item \texttt{UpdateSensor}: Función llamada en cada bucle y encargada de actualizar el tiempo que queda por esperar en caso de que el \textit{timer} no haya acabado.
 	\item \texttt{StopSensor}: Función que desactiva el sensor.
 \end{itemize}
-Estas funciones son las encargadas de gestionar variables de control, comprobar errores y crear un \textit{timer} en caso de que se quiera desactivar un sensor por una cantidad determinada de tiempo (segundos) al iniciarse.\\
+Estas funciones son las encargadas de gestionar las variables de control.
 
 En caso de que se quiera agregar lógica extra a alguna de estas funciones para un sensor en específico, se puede sobreescribir estos métodos en la clase del sensor correspondiente con la condición de que es indispensable que se llame al método de la clase base.
 \comp{Foto del código?}
@@ -284,7 +289,7 @@ Es importante tener en cuenta que toda suscripción a un sensor debe ir acompañ
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (Float) Start Detecting Time: Tiempo que necesitará el sensor para activarse al entrar en el estado que lo alberga.
+	\item (float) Start Detecting Time: Tiempo que necesitará el sensor para activarse al entrar en el estado que lo alberga.
 \end{itemize}
 
 
@@ -295,7 +300,7 @@ A continuación se enumerarán y explicarán los tipos de sensores incluidos en 
 
 La detección se realiza mediante los métodos \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D} provistos por \textit{Unity}. El primero detecta la entrada del objetivo en la zona, mientras que el segundo permite capturar situaciones en las que el objetivo ya se encuentra dentro del área al momento de activarse el sensor. Esto evita perder eventos relevantes si la detección no estaba habilitada previamente.\\
 
-Como se ha mencionado previamente, la detección de colisiones se realizará mediante \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D}, por lo que se activará automáticamente la flag que convierte un Collider2D en un trigger.\\
+Al usarse métodos como \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D} se activará automáticamente la flag que convierte un \textit{Collider2D} en un trigger.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
@@ -306,7 +311,7 @@ Como se ha mencionado previamente, la detección de colisiones se realizará med
 
 \textit{CollisionSensor} es el sensor encargado de detectar la colisión de un objeto con un grupo determinado de objetos.\\
 
-Al igual que en \textit{AreaSensor}, se necesitará un Collider2D para detectar colisiones y se obligará a Unity a añadirlo de la misma manera.\\
+Al igual que en \textit{AreaSensor}, se necesitará un \textit{Collider2D} para detectar colisiones y se obligará a Unity a añadirlo de la misma manera.\\
 
 Para acotar con que objetos se activa el sensor y con cuales no, se utilizarán las \textit{LayerMask} de \textit{Unity} y se detectarán las colisiones con \texttt{OnCollisionEnter2D} y \texttt{OnCollisionStay2D}, por lo que para reportar una colisión ninguno de los dos objetos deben ser trigger.\\
 
@@ -327,19 +332,19 @@ El sensor detecta las entradas y salidas de objetos mediante los métodos \textt
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (Bool) Active From Start: Si es verdadero, el \textit{DamageSensor} no tendrá porqué ser incluido en ninguna transición para que este se considere activo.
+	\item (bool) Active From Start: Si es verdadero, el \textit{DamageSensor} no tendrá porqué ser incluido en ninguna transición para que este se considere activo.
 \end{itemize}
 
 \subsubsection{DistanceSensor}
 
-\textit{DistanceSensor} es el sensor utilizado para medir la distancia entre dos puntos. La distancia se medirá tomando de referencia los \textit{Transform} de sendos objetos, uno de ellos el que posee este script y el otro el objetivo de medición.\\
+\textit{DistanceSensor} es el sensor utilizado para medir la distancia entre dos puntos. La distancia se medirá tomando de referencia los \textit{Transform} de sendos objetos, uno de ellos el que posee este script y el otro el objetivo de la medición.\\
 
-El funcionamiento del sensor dependerá del valor asignado a la variable \textit{Distance Type}, la cual es de un tipo enumerado \textit{TypeOfDistance} que especifica la manera en que se calculará la distancia. Según el valor de esta variable, se requerirán distintos parámetros o configuraciones, aunque varios valores de configuración seguirán siendo necesarios.\\
+El funcionamiento del sensor dependerá del valor asignado a la variable \textit{Distance Type}, la cual es de un tipo enumerado \textit{TypeOfDistance} que especifica la manera en que se calculará la distancia. Según el valor de esta variable, se requerirán distintos parámetros o configuraciones, aunque varios valores de configuración seguirán siendo necesarios independientemente de \textit{Distance Type}.\\
 
 \textbf{Valores de configuración comunes}
 \begin{itemize}
-	\item (Enum) Distance Type: Tipo enumerado que determinará de que manera se mide la distancia y que variables se necesitarán para medirla.
-	\item (Enum) Detection Condition: Tipo enumerado que determina si el sensor se activa cuando el objetivo está dentro de esa distancia o cuando está fuera de la misma.
+	\item (enum) Distance Type: Tipo enumerado que determinará de que manera se mide la distancia y que variables se necesitarán para medirla.
+	\item (enum) Detection Condition: Tipo enumerado que determina si el sensor se activa cuando el objetivo está dentro de esa distancia o cuando está fuera de la misma.
 	\item (GameObject) Target: Entidad con la que se mide la distancia.
 \end{itemize}
 
@@ -350,13 +355,13 @@ A continuación se especificarán los valores que puede tomar el enumerado \text
 \begin{itemize}
 	\item \textit{Area}
 
-Configuración utilizada cuando se quiere medir la distancia como magnitud. La representación gráfica de esta forma de medir la distancia es un círculo, como se muestra en la \autoref{fig:DistanceSensor_Magnitude}.\\
+Creo que esto está mal ya que hace el mismo trabajo que el Sensor de Area.
 
 \textbf{Valores de configuración}
 	\begin{itemize}
-	        \item Descripción del modo A
-	        \item Parámetro necesario: Transform objetivo
-	 \end{itemize}
+	        \item A
+	 \end{itemize
+}
 	\item \textit{Magnitude}
 
 	Configuración utilizada cuando se quiere medir la distancia como magnitud. La representación gráfica de esta forma de medir la distancia es un círculo, como se muestra en la \autoref{fig:DistanceSensor_Magnitude}.\\
@@ -370,7 +375,7 @@ Dependiendo del valor de la variable \textit{Detection Condition} el sensor se a
 
 	\textbf{Valores de configuración}
 	\begin{itemize}
-	        \item (Float) Detection Distance: Distancia necesaria para que el sensor se active.
+	        \item (float) Detection Distance: Distancia necesaria para que el sensor se active.
 	 \end{itemize}
 
 	\item \textit{Single Axis}
@@ -379,22 +384,22 @@ Con el tipo de medida \textit{Single Axis} se mide la distancia entre ambos obje
 
 	\textbf{Valores de configuración}
 	\begin{itemize}
-	        \item (Float) Detection Distance: Distancia necesaria para que el sensor se active.
-	        \item (Enum) Axis: Da opciones para escoger cual de los dos ejes se va a medir, si X o Y.
-	        \item (Enum) Detection Sides: Permite elegir si se quiere medir la distancia a ambos lados del eje o solo por uno de ellos. 
-	        \item (Enum) Part: En caso de que se haya determinado que solo se quiere medir la distancia en uno de los dos lados del eje elegido se deberá especificar cual de los dos es. Por ejemplo si queremos medir la distancia en el eje X, nos permite medir cuando el objetivo entra en el rango determinado por \textit{Detection Distance} por la izquierda o por la derecha.
+	        \item (float) Detection Distance: Distancia necesaria para que el sensor se active.
+	        \item (enum) Axis: Da opciones para escoger cual de los dos ejes se va a medir, si X o Y.
+	        \item (enum) Detection Sides: Permite elegir si se quiere medir la distancia a ambos lados del eje o solo por uno de ellos. 
+	        \item (enum) Part: En caso de que se haya determinado que solo se quiere medir la distancia en uno de los dos lados del eje elegido se deberá especificar cual de los dos es. Por ejemplo si queremos medir la distancia en el eje X, nos permite medir cuando el objetivo entra en el rango determinado por \textit{Detection Distance} por la izquierda o por la derecha.
 	 \end{itemize}
 \end{itemize}
 
 
 \subsubsection{TimeSensor}
 
-Sensor encargado de activarse cuando pasa un tiempo determinado desde su activación, la cual se produce típicamente cuando hay un cambio de estado y uno de los sensores encargados de determinar si una transición se da o no es \textit{TimeSensor}.\\
+Sensor encargado de activarse cuando pasa un tiempo determinado desde su activación.\\
 En caso de ajustar que el sensor necesitará un tiempo de activación, primero se procederá a medir tal tiempo y cuando este llegue a su fin, se medirá el tiempo de activación propio del sensor.\\
 
 \textbf{Valores de configuración}
 	\begin{itemize}
-	        \item (Float) Detection Time: Tiempo necesario, medido en segundos, para que el sensor se active.
+	        \item (float) Detection Time: Tiempo necesario, medido en segundos, para que el sensor se active.
 	 \end{itemize}
 
 \subsection{DamageEmitter}
@@ -407,8 +412,8 @@ Como valores de configuración comunes para todas las configuraciones disponible
 
 \textbf{Valores de configuración comunes}
 \begin{itemize}
-	\item (Bool) Active From Start: En caso de que esté desactivado, no se reportará daño a no ser que el \textit{DamageEmitter} esté incluido en un estado.
-	\item (Enum) Damage Type: Diferentes formas de producir daño a las entidades que tengan \textit{DamageSensor}.
+	\item (bool) Active From Start: En caso de que esté desactivado, no se reportará daño a no ser que el \textit{DamageEmitter} esté incluido en un estado.
+	\item (enum) Damage Type: Diferentes formas de producir daño a las entidades que tengan \textit{DamageSensor}.
 \end{itemize}
 
 A continuación se concretarán los valores que puede tomar el enumerado \textit{DamageType}, como funciona cada tipo de daño y que otros valores de configuración serán necesarios.\\
@@ -421,17 +426,17 @@ Tipo de daño que se aplica una vez producido el contacto y que no se va a volve
 
 \textbf{Valores de configuración}
 	\begin{itemize}
-	        \item (Bool) Destroy After Doing Damage: Booleano que determina si el objeto es destruido al reportar daño.
-	        \item (Bool) Instant Kill: Determina si la entidad que reporta daño elimina a su objetivo instantáneamente.
-	        \item (Float) Damage Amount: En caso de no eliminar instantáneamente al objetivo, se especificará la cantidad de daño que se hará.
+	        \item (bool) Destroy After Doing Damage: Booleano que determina si el objeto es destruido al reportar daño.
+	        \item (bool) Instant Kill: Determina si la entidad que reporta daño elimina a su objetivo instantáneamente.
+	        \item (float) Damage Amount: En caso de no eliminar instantáneamente al objetivo, se especificará la cantidad de daño que se hará.
 	 \end{itemize}
 	\item \textit{Persistent}
-El daño persistente es aquel que produce constántemente una entidad cada X tiempo. Este daño se producirá mientras dure la colisión o ,en caso de que sea un trigger, la superposición.\\
+El daño persistente es aquel que produce constántemente una entidad cada X tiempo. Este daño se producirá mientras dure la colisión o, en caso de que sea un trigger, la superposición.\\
 
 \textbf{Valores de configuración}
 	\begin{itemize}
-	        \item (Float) Damage Amount: Cantidad de daño administrada cada vez.
-	        \item (Float) Damage Cooldown: Tiempo necesario para administrar daño de nuevo, medido en segundos.
+	        \item (float) Damage Amount: Cantidad de daño administrada cada vez.
+	        \item (float) Damage Cooldown: Tiempo necesario para administrar daño de nuevo, medido en segundos.
 	\end{itemize}
 
 	\item \textit{Residual}
@@ -439,11 +444,11 @@ El daño residual es aquel que produce una cantidad de daño instantáneo y tras
 
 \textbf{Valores de configuración}
 	\begin{itemize}
-	        \item (Bool) Destroy After Doing Damage: Booleano que determina si el objeto es destruido al reportar el daño instantáneo.
-	        \item (Float) Instant Damage Amount: Cantidad de daño administrada cuando se produce el contacto.
-	        \item (Float) Residual Damage Amount: Cantidad de daño administrada por cada aplicación de daño residual.
-	        \item (Float) Damage Cooldown: Tiempo entre aplicaciones de daño residual, medido en segundos.
-	        \item (Int) Number Of Applications: Número de veces que se aplicará el daño residual.
+	        \item (bool) Destroy After Doing Damage: Booleano que determina si el objeto es destruido al reportar el daño instantáneo.
+	        \item (float) Instant Damage Amount: Cantidad de daño administrada cuando se produce el contacto.
+	        \item (float) Residual Damage Amount: Cantidad de daño administrada por cada aplicación de daño residual.
+	        \item (float) Damage Cooldown: Tiempo entre aplicaciones de daño residual, medido en segundos.
+	        \item (int) Number Of Applications: Número de veces que se aplicará el daño residual.
 	\end{itemize}
 \end{itemize}
 

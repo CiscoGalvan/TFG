@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Directional_Actuator))]
+[CustomEditor(typeof(DirectionalActuator))]
 public class DirectionalComponentEditor : ActuatorEditor
 {
 	private static readonly GUIContent _onCollisionReactionLabel = new GUIContent("Reaction After Collision", "What will the object do after collision?\n" +

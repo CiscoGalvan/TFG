@@ -27,7 +27,7 @@ public class PlayerDistanceAttack : MonoBehaviour
 			Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
 			GameObject bullet = Instantiate(_bulletPrefab, transform.position, rotation);
-			var directionalMovement = bullet.GetComponent<Directional_Actuator>();
+			var directionalMovement = bullet.GetComponent<DirectionalActuator>();
 			directionalMovement.SetAngle(angle);
 		}
 	}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Directional_Actuator : MovementActuator
+public class DirectionalActuator : MovementActuator
 {
     public LayerMask _layersToCollide;
     public enum OnCollisionReaction { None = 0, Bounce = 1, Destroy = 2 }
