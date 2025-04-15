@@ -148,11 +148,7 @@ public class AnimatorManager : MonoBehaviour
         RotateSpriteXRight();
         RightDirection();
     }
-    public void ChangeSpeedY(float speed)
-    {
-        if (_animator == null || !_animator.enabled) return;
-        _animator.SetFloat("YSpeed", speed);
-    }
+    
 
     public void ChangeSpeedRotation(float speed)
     {

@@ -1,42 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public abstract class MovementActuator : Actuator
 {
-	[Tooltip("Is the movement accelerated?")]
-	[SerializeField]
-	protected bool _isAccelerated = false;
-	[SerializeField,HideInInspector]
-	protected EasingFunction.Ease _easingFunction;
-	protected float _accelerationValue;
+    // Indicates whether the movement should be accelerated or not
+    [Tooltip("Is the movement accelerated?")]
+    [SerializeField]
+    protected bool _isAccelerated = false;
 
-	public abstract override void DestroyActuator();
+    // This field defines the easing function used for acceleration/deceleration
+    [SerializeField, HideInInspector]
+    protected EasingFunction.Ease _easingFunction;
 
-	public abstract override void StartActuator();
+    // Abstract method that must be implemented to define what happens when the actuator starts
+    public abstract override void StartActuator();
 
-	public abstract override void UpdateActuator();
+    // Abstract method that must be implemented to update the actuator's behavior each frame
+    public abstract override void UpdateActuator();
 
-	#region Setters and Getters
-	public void SetEasingFunction(EasingFunction.Ease value)
-	{
-		_easingFunction = value;
-	}
-	public EasingFunction.Ease GetEasingFunctionValue()
-	{
-		return _easingFunction;
-	}
-	public bool IsMovementAccelerated()
-	{
-		return _isAccelerated;
-	}
-	public void SetAccelerationValue(float value)
-	{
-		_accelerationValue = value;
-	}
-	public float GetAccelerationValue()
-	{
-		return _accelerationValue;
-	}
-	#endregion
+    // Abstract method that must be implemented to define what happens when the actuator is deleated
+    public abstract override void DestroyActuator();
 }

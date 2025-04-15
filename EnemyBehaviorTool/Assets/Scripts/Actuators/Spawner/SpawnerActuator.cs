@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,45 +31,13 @@ public class SpawnerActuator : Actuator
 
     AnimatorManager _animatorManager;
 
-    // Called when the actuator is destroyed
-    public override void DestroyActuator()
-    {
-        // No specific cleanup required currently
-    }
-
     // Called when the actuator starts
     public override void StartActuator()
     {
         _timer = new Timer(_spawnInterval); // Create a timer for spawning
-        _numofTimeSpawned = 0;
         _timer.Start(); // Start the timer
-        _animatorManager = this.gameObject.GetComponent<AnimatorManager>(); 
-    }
-
-    // Handles the actual spawning of enemies
-    void SpawnEvent()
-    {
-        // Check if we can spawn more enemies (infinite or within limit)
-        if (_infiniteEnemies || _numofTimeSpawned < _numofTimesToSpawn)
-        {
-            _numofTimeSpawned++;
-
-            // Spawn each prefab at its corresponding spawn point
-            foreach (var spawnInfo in _spawnList)
-            {
-                if (spawnInfo._prefabToSpawn != null && spawnInfo._spawnPoint != null)
-                {
-                    Instantiate(spawnInfo._prefabToSpawn, spawnInfo._spawnPoint.position, spawnInfo._spawnPoint.rotation);
-                }
-                else
-                {
-                    Debug.LogWarning("Try to spawn object but there is no prefab or point to spawn");
-                }
-            }
-
-            // Trigger spawn animation/event if available
-            _animatorManager?.SpawnEvent();
-        }
+        _numofTimeSpawned = 0;
+        _animatorManager = this.gameObject.GetComponent<AnimatorManager>();
     }
 
     // Called every frame if is in the actual State
@@ -85,6 +52,38 @@ public class SpawnerActuator : Actuator
             _timer.Start(); // Reset timer for next spawn cycle
         }
     }
+
+    // Called when the actuator is destroyed
+    public override void DestroyActuator()
+    {
+        // No specific cleanup required currently
+    }
+    // Handles the actual spawning of enemies
+    void SpawnEvent()
+    {
+        // Check if we can spawn more enemies (infinite or within limit)
+        if (!_infiniteEnemies && _numofTimeSpawned >= _numofTimesToSpawn) return;
+
+        _numofTimeSpawned++;
+
+        // Spawn each prefab at its corresponding spawn point
+        foreach (var spawnInfo in _spawnList)
+        {
+            if (spawnInfo._prefabToSpawn != null && spawnInfo._spawnPoint != null)
+            {
+                Instantiate(spawnInfo._prefabToSpawn, spawnInfo._spawnPoint.position, spawnInfo._spawnPoint.rotation);
+            }
+            else
+            {
+                Debug.LogWarning("Try to spawn object but there is no prefab or point to spawn");
+            }
+        }
+
+        // Trigger spawn animation/event if available
+        _animatorManager?.SpawnEvent();
+        
+    }
+
 
     #region Setters and getters
 
