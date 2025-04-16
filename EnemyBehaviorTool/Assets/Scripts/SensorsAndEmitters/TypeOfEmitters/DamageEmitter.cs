@@ -10,7 +10,7 @@ public class DamageEmitter : MonoBehaviour
     public enum DamageType
 	{
         Instant,    // Damage is applied immediately
-        Persistent, // Damage is applied over time
+        Permanence, // Damage is applied over time
         Residual    // Damage is applied in multiple instances after the initial hit
     }
     [SerializeField,HideInInspector]
@@ -20,12 +20,12 @@ public class DamageEmitter : MonoBehaviour
     private bool _instaKill = false; // If true, the target is instantly killed
 
     [SerializeField, HideInInspector]
-    private float _amountOfDamage = 0; // Damage amount for Instant, Persistent, and Residual types
+    private float _amountOfDamage = 0; // Damage amount for Instant, Permanence, and Residual types
 
-    #region Persistent Damage Variables
+    #region Permanence Damage Variables
 
     [SerializeField, HideInInspector]
-    private float _damageCooldown = 1f; // Time interval between damage applications for Persistent damage
+    private float _damageCooldown = 1f; // Time interval between damage applications for Permanence damage
 
     #endregion
     #region Residual Damage Variables
@@ -51,7 +51,7 @@ public class DamageEmitter : MonoBehaviour
     // Returns the base damage amount
     public float GetAmountOfDamage() => _amountOfDamage;
 
-    // Returns the cooldown between persistent damage applications
+    // Returns the cooldown between Permanence damage applications
     public float GetDamageCooldown() => _damageCooldown;
 
     // Returns the number of times residual damage is applied

@@ -20,7 +20,7 @@ public class DamageEmitterComponentEditor : Editor
 	private static readonly GUIContent _damageCooldownLabel = new GUIContent("Damage Cooldown", "Amount of seconds it will take the player to receive damage again.");
 	private static readonly GUIContent _damageTypeLabel = new GUIContent("Damage Type", "How will the damage be dealt?\n" +
 		"Instant: The damage will be applied instantly.\n" +
-		"Persistent: The damage will be applied while the enemy is in contact with the player.\n" +
+		"Permanence: The damage will be applied while the enemy is in contact with the player.\n" +
 		"Residual: There will be a part of the damage applied instantly and another part will be in delivered \"applications\".");
 	#region Instant Damage Labels
 	private static readonly GUIContent _instaKillLabel = new GUIContent("Instant Kill", "Will the damage eliminate the player ignoring it's current life?");
@@ -68,7 +68,7 @@ public class DamageEmitterComponentEditor : Editor
 						EditorGUI.indentLevel--;
 					}
 					break;
-				case 1: //Persistent
+				case 1: //Permanence
 					_amountOfDamage.floatValue = Mathf.Max(0, _amountOfDamage.floatValue);
 					EditorGUILayout.PropertyField(_amountOfDamage, _amountOfDamageLabel);
 					_damageCooldown.floatValue = Mathf.Max(0, _damageCooldown.floatValue);

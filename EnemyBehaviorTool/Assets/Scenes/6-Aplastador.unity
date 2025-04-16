@@ -429,9 +429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 405269259}
-  _sensorTransitions: []
-  _damageEmittersInState:
-  - {fileID: 405269258}
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &405269251
 MonoBehaviour:
@@ -603,7 +602,6 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
   _activeFromStart: 0
 --- !u!114 &405269259

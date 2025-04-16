@@ -61,7 +61,7 @@ public class Life : MonoBehaviour
 		{
 			switch (_damageEmitter.GetDamageType())
 			{
-				case DamageEmitter.DamageType.Persistent:
+				case DamageEmitter.DamageType.Permanence:
 					{
 						_actualDamageCooldown += Time.deltaTime;
 						if (_actualDamageCooldown > _damageCooldown)
@@ -125,7 +125,7 @@ public class Life : MonoBehaviour
 						else
 							DecreaseLife(_damageEmitter.GetAmountOfDamage());
 						break;
-					case DamageEmitter.DamageType.Persistent:
+					case DamageEmitter.DamageType.Permanence:
 						{
 							_amount = _damageEmitter.GetAmountOfDamage();
 							DecreaseLife(_amount);
