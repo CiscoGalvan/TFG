@@ -84,9 +84,7 @@ public class DistanceSensorEditor : Editor
             case (int)TypeOfDistance.Magnitude:
 				EditorGUILayout.PropertyField(_detectionDistance, _detectionDistanceLabel);
 				break;
-            case (int)TypeOfDistance.Area:
-				EditorGUILayout.PropertyField(_areaTrigger, _areaTriggerLabel);
-				break;
+            
 
         }
        serializedObject.ApplyModifiedProperties();

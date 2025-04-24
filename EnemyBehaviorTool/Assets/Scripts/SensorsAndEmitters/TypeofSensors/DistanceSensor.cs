@@ -9,9 +9,8 @@ public class DistanceSensor : Sensor
 {
     public enum TypeOfDistance
     {
-        Area = 0,
-        Magnitude = 1,
-        SingleAxis = 2
+        Magnitude = 0,
+        SingleAxis = 1
     };
     public enum DetectionCondition
     {
@@ -66,12 +65,7 @@ public class DistanceSensor : Sensor
             Debug.LogError($"No target set in Distance Sensor in object {name}");
 
         }
-        if (_distanceType == TypeOfDistance.Area && (_areaTrigger == null || !_areaTrigger.isTrigger))
-        {
-
-            Debug.LogError("Area detection requires a Collider2D set as a trigger!");
-
-        }
+        
     }
 
     // Determines if the sensor should transition based on distance
@@ -79,7 +73,7 @@ public class DistanceSensor : Sensor
     {
         base.UpdateSensor();
 
-        if (_target == null || _distanceType == TypeOfDistance.Area || !_timerFinished)
+        if (_target == null ||  !_timerFinished)
             return;
 
         Vector2 selfPos = transform.position;
@@ -114,28 +108,7 @@ public class DistanceSensor : Sensor
 
 
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (_timerFinished && _distanceType == TypeOfDistance.Area && other.gameObject == _target)
-        {
-            if (_detectionCondition == DetectionCondition.InsideMagnitude)
-            {
-                EventDetected();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (_timerFinished && _distanceType == TypeOfDistance.Area && other.gameObject == _target)
-        {
-            if (_detectionCondition == DetectionCondition.OutsideMagnitude)
-            {
-                EventDetected();
-            }
-        }
-    }
+     
     // Draws the detection range in the scene view
     private void OnDrawGizmos()
     {
