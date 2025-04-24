@@ -13,13 +13,13 @@ En el ámbito de los videojuegos, la IA se ha hecho paso a base de demostrar su 
 
 \section{Técnicas de modelado}
 Existen muchas técnicas que se pueden abordar a la hora de modelar una IA. Para decidir cuál se ajusta mejor a un problema en concreto, es importante saber ciertos factores, como por ejemplo la complejidad esperada del comportamiento, la adaptabilidad y flexibilidad de la técnica, si queremos invertir mucho tiempo en implementar estas técnicas o queremos algo rápido de hacer y funcional o los recursos que consumen. \\
-A continuación, se presentan técnicas utilizadas en videojuegos para modelar IA, las cuales hemos seleccionado porque comparten una estructura similar a la que planteamos inicialmente. Entre ellas, las maquinas finitas de estados se ajustan especialmente a nuestro enfoque y será la que utilizaremos en nuestro desarrollo.
+A continuación, se presentan técnicas utilizadas en videojuegos para modelar IA, las cuales hemos seleccionado porque comparten una estructura similar a la que planteamos inicialmente. Entre ellas, las maquinas finitas de estados se ajustan especialmente a nuestro enfoque y serán las que utilizaremos en nuestro desarrollo.
 \subsection{Maquinas de estado finitas}
 Las máquinas de estado finitas (FSM), son un modelo computacional que solo permite estar en uno de un número finito de estados en un momento dado. Está definida por un conjunto de reglas que describen las transiciones que se pueden realizar para pasar de un estado a otro. \\
 
 Una FSM se representa como un grafo, siendo este una representación abstracta de un conjunto de objetos, eventos, acciones o propiedades conectados entre sí, siendo estos elementos nodos (estados) que realizan acciones y comprueban la posibilidad de que haya que cambiar de nodo. 
 
-En el mundo de los videojuegos, las Máquinas de Estados Finitas nos dicen cómo se va a comportar un elemento del juego en cada momento. Es una forma de diferenciar distintos "modos" en los que puede estar (corriendo, saltando, atacando...). La FSM define cuáles son esos modos y qué tiene que pasar para que el personaje cambie de uno a otro, asegurándose de que solo esté haciendo una cosa a la vez.\\
+En el mundo de los videojuegos, las Máquinas de Estados Finitas nos dicen cómo se va a comportar una entidad del juego en cada momento. Es una forma de diferenciar distintos "modos" en los que puede estar (corriendo, saltando, atacando...). La FSM define cuáles son esos modos y qué tiene que pasar para que la entidad cambie de uno a otro, asegurándose de que solo esté haciendo una cosa a la vez.\\
 
 Como se menciona en  \textit{Finite State Machine in Game Development}\footnote{\url{https://www.ijarsct.co.in/Paper2062.pdf}}, el primer videojuego documentado que utilizó FSM para implementar la lógica de juego fue \textit{Spacewar!(1961)} desarrollado en el MIT por Steve Russell. Este videojuego implementaba una lógica basada en estados para manejar el comportamiento de las naves, la detección de colisiones y la física del juego. Aunque no usaba una implementación formal de máquinas de estado, sí modelaba cambios entre estados bien definidos, como el movimiento de las naves o la activación de los disparos. \\ 
 
@@ -41,21 +41,21 @@ Para ilustrar el funcionamiento del juego se usará la Figura \ref{fig:Comportam
 	\label{fig:Comportamiento jugador Pac-Man}
 \end{figure}
 
-Una limitación de las FSMs es que son muy inflexibles y estáticas, de manera que las posibilidades de escalado de la lógica es limitada. Asimismo, son algo predecibles una vez el jugador ha analizado y comprendido el funcionamiento de la entidad. Sin embargo, esta limitación puede ser atenuada mediante la  implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones.
+Una limitación de las FSMs es que son muy inflexibles y estáticas, de manera que las posibilidades de escalado de la lógica es limitada. Asimismo, son algo predecibles una vez el jugador ha analizado y comprendido el funcionamiento de la entidad. Sin embargo, esta limitación puede ser atenuada mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones.
 
 \subsection{Árboles de comportamiento}
 
-Un árbol de comportamiento o Behavior Tree (BT) es un sistema similar a las FSMs ya que contamos con nodos y transiciones y solo uno de esos nodos, en este caso representando un comportamiento en lugar de un estado, puede estar activo al mismo tiempo. \\
-En esencia, es un árbol de nodos que se organizan jerárquicamente y que atienden a unas normas que controlana el flujo de cambios de nodo. \\
+Un árbol de comportamiento o Behavior Tree (BT) es un sistema similar a las Máquinas de Estado Finitas ya que contamos con nodos y transiciones y solo uno de esos nodos, en este caso representando un comportamiento en lugar de un estado, puede estar activo al mismo tiempo. \\
+En esencia, es un árbol de nodos que se organizan jerárquicamente y que atienden a unas normas que controlan el flujo de cambios de nodo. \\
 
-La principal ventaja respecto a las FSMs es su modularidad, la capacidad que tiene un sistema de dividir la lógica del comportamiento en piezas independientes y reutilizables, pudiendo agrupar estas piezas en grupos que a su vez funcionan como una pieza. \\
-Su facilidad para ser diseñados y testeados han hecho que los árboles de comportamiento se conviertan en una opción real para modelar IA en la industria del videojuego, con juegos como \textit{Bioshock (2K Games, 2007)}\footnote{\url{https://es.wikipedia.org/wiki/BioShock}} y \textit{Halo 2 (Microsoft Game Studios, 2004)}\footnote{\url{ https://www.gamedeveloper.com/programming/gdc-2005-proceeding-handling-complexity-in-the-i-halo-2-i-ai}} como referencias en el uso de BTs.\\
-Un ejemplo no tan conocido de uso de BTs en la industria del videojuego es \textit{Spore (2008, Maxis)}\footnote{\url{https://www.ea.com/es-es/games/spore}}. Spore es un videojuego en el que el jugador va a comenzar creando una célula y va encarnarla durante todo el proceso de su evolución hasta que esta se convierta en un ser mucho más complejo llegando incluso a construir una civilización muy avanzada. La inteligencia artificial de las entidades que nos rodean en este videojuego están fundamentadas en BTs.\\
+La principal ventaja respecto a las Máquinas de Estado Finitas es su modularidad, la capacidad que tiene un sistema de dividir la lógica del comportamiento en piezas independientes y reutilizables, pudiendo agrupar estas piezas en grupos que a su vez funcionan como una pieza. \\
+Su facilidad para ser diseñados y probados han hecho que los árboles de comportamiento se conviertan en una opción real para modelar IA en la industria del videojuego, con juegos como \textit{Bioshock (2K Games, 2007)}\footnote{\url{https://es.wikipedia.org/wiki/BioShock}} y \textit{Halo 2 (Microsoft Game Studios, 2004)}\footnote{\url{ https://www.gamedeveloper.com/programming/gdc-2005-proceeding-handling-complexity-in-the-i-halo-2-i-ai}} como referencias en el uso de Árboles de comportamiento.\\
+Un ejemplo no tan conocido de uso de Árboles de comportamiento en la industria del videojuego es \textit{Spore (2008, Maxis)}\footnote{\url{https://www.ea.com/es-es/games/spore}}. Spore es un videojuego en el que el jugador va a comenzar creando una célula y va encarnarla durante todo el proceso de su evolución hasta que esta se convierta en un ser mucho más complejo llegando incluso a construir una civilización muy avanzada. La inteligencia artificial de las entidades que nos rodean en este videojuego están fundamentadas en Árboles de comportamiento.\\
 
-La gran diferencia de como usa BTs Spore a los juegos anteriormente mencionados es que Spore separa el concepto de \textit{decider} de \textit{behavior}. Los BTs de Halo 2 están compuestos por \textit{behaviors} ya sean estos comportamientos grupales, en los que se elige entre varias opciones, o individuales, que ejecutan acciones específicas, e impulsos que son los saltos que se dan entre comportamientos y que se toman dependiendo de una prioridad, que a futuro resulta en problemas de escalabilidad. Para solucionar este problema, en Maxis deciden unificar el concepto de impulso y comportamientos grupales bajo el nombre de \textit{deciders}, dejando completamente separado el concepto de \textit{behavior} y permitiendo que estos puedan ser reutilizados en múltiples lugares del árbol, asegurando la escalabilidad.\\
+La gran diferencia de como usa los Behavior Tree Spore a los juegos anteriormente mencionados es que Spore separa el concepto de \textit{decider} de \textit{behavior}. Los Árboles de comportamiento de Halo 2 están compuestos por \textit{behaviors} ya sean estos comportamientos grupales, en los que se elige entre varias opciones, o individuales, que ejecutan acciones específicas, e impulsos que son los saltos que se dan entre comportamientos y que se toman dependiendo de una prioridad, que a futuro resulta en problemas de escalabilidad. Para solucionar este problema, en \textit{Maxis} deciden unificar el concepto de impulso y comportamientos grupales bajo el nombre de \textit{deciders}, dejando completamente separado el concepto de \textit{behavior} y permitiendo que estos puedan ser reutilizados en múltiples lugares del árbol, asegurando la escalabilidad.\\
 
 La Figura \ref{fig:BT Spore} es un ejemplo de un BT sacado de las documentación\footnote{ \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}} que hay publicada del juego.
-Un punto importante a tener en cuenta es que si un nodo tiene más de un hijo, estos se comprueban si son o no elegidos en un orden determinado hasta que un de los \textit{deciders} acepte la petición del padre o ninguno acepte y se vuelva al nodo actual volviendo a repetir el proceso.\\
+Un punto importante a tener en cuenta es que si un nodo tiene más de un hijo, estos se comprueban si son o no elegidos en un orden determinado hasta que uno de los \textit{deciders} acepte la petición del padre o ninguno acepte y se vuelva al nodo actual volviendo a repetir el proceso.\\
 
 \begin{figure}[t]
 	\centering
@@ -66,56 +66,61 @@ Un punto importante a tener en cuenta es que si un nodo tiene más de un hijo, e
 \subsection{Goal-Oriented Action Planning}
 
 GOAP es un sistema basado en planificación de acciones. En lugar de definir comportamientos fijos como hemos visto anteriormente, la entidad analiza la situación y construye un plan óptimo para alcanzar el objetivo designado.
-Esta técnica fue desarrollado en el \textit{MIT} por \textit{\citet{GOAP_Jeff_Orkin}} a principio de siglo. 
+Esta técnica fue desarrollado en el \textit{MIT} por \textit{\citet{GOAP_Jeff_Orkin}} a principio de siglo. \\
 
-La entidad pasa a ser un agente autónomo que tiene la capacidad de planificar de manera dinámica una secuencia de acciones para satisfacer una meta. Para llegar a esa meta se tendrán en cuenta el contexto del agente, por lo que dependiendo de este se podrá llegar a la meta de varias maneras, aunque la utilizada sea la mejor valorada, de esta manera se reduce lo repetitivo que pueda llegar a ser lidiar con un tipo de agente, ya que siendo el enemigo, por ejemplo, el mismo este abordará al jugador de manera distinta dependiendo de la situación en la que se encuentre.
+La entidad pasa a ser un agente autónomo que tiene la capacidad de planificar de manera dinámica una secuencia de acciones para satisfacer una meta. Para llegar a esa meta se tendrán en cuenta el contexto del agente, por lo que dependiendo de este se podrá llegar a la meta de varias maneras, aunque la utilizada será la mejor valorada, de esta manera se reduce lo repetitivo que pueda llegar a ser lidiar con un tipo de agente, ya que siendo el enemigo, por ejemplo, este abordará al jugador de manera distinta dependiendo de la situación en la que se encuentre.\\
 
-El enfoque de GOAP es muy parecido a una FSM, pero en GOAP las acciones y metas no van de la mano, si no que se separan para abrir la posibilidad de tener un proceso de planificación dinámico y adaptativo.
-La escalabildad  que ofrece GOAP es mayor a todas las técnicas vistas anteriormente.
+El enfoque de GOAP es muy parecido a una Máquina de Estado Finita, pero en GOAP las acciones y metas no van de la mano, si no que se separan para abrir la posibilidad de tener un proceso de planificación dinámico y adaptativo.
+La escalabilidad que ofrece GOAP es mayor a todas las técnicas vistas anteriormente.\\
 
-El considerado primer videojuego que usa GOAP es \textit{F.E.A.R, Monolith Productions}\footnote{\url{https://www.gdcvault.com/play/1013282/Three-States-and-a-Plan}}. El propio Jeff Orkin explica que en el videojuego se quería llegar a una complejidad en la IA a la que las FSMs no podían llegar, por lo que optaron por no excluirlas pero solo tener tres estados y usar un algoritmo A* para planear las acciones a realizar. Un ejemplo es que si el jugador cierra una puerta mientras persigue un enemigo, el enemigo puede dinámicamente volver a rehacer su plan y decidir si buscar un hueco para disparar, por ejemplo una ventana, o buscar una entrada alternativa. Esta libertad en las acciones de los agentes liberan a los desarrolladores para que estos puedan enfocarse en el manejo de grupos, como fuego de supresión, cobertura y búsqueda del jugador.
+El considerado primer videojuego que usa GOAP es \textit{F.E.A.R, Monolith Productions}\footnote{\url{https://www.gdcvault.com/play/1013282/Three-States-and-a-Plan}}. El propio Jeff Orkin explica que en el videojuego se quería llegar a una complejidad en la IA a la que las Máquinas de Estado Finitas no podían llegar, por lo que optaron por no excluirlas pero solo tener tres estados y usar un algoritmo \textit{A*} para planear las acciones a realizar. Un ejemplo es que si el jugador cierra una puerta mientras es perseguido por un enemigo, el enemigo puede dinámicamente volver a rehacer su plan y decidir si buscar un hueco para disparar, por ejemplo una ventana, o buscar una entrada alternativa. Esta libertad en las acciones de los agentes liberan a los desarrolladores para que estos puedan enfocarse en el manejo de grupos, como fuego de supresión, cobertura y búsqueda del jugador.\\
 
-\citet{GOAP_Jeff_Orkin} nos ofrece otro ejemplo ilustrativo de lo que es GOAP. El videojuego al que se refiere es \textit{NOLF 2}\footnote{\url{https://nolf.fandom.com/wiki/No_One_Lives_Forever_2:_A_Spy_in_H.A.R.M.\%27s_Way}}, siendo este considerado el primer videojuego que usa un sistema parecido a GOAP, los agentes estaban dirigidos por metas aunque no podían planificar sus acciones.
 A continuación vamos a definir una serie de términos clave para definir el comportamiento de GOAP.
 \begin{itemize}
-	 \item Objetivos: lo que la entidad quiera lograr. Un agente puede querer cumplir más de un objetivo. En el videojuego \textit{NOLF 2} los personajes tenían típicamente alrededor de 25 objetivos, aunque en cada instante solo un objetivo esté activo y este determine las acciones del agente. Un objetivo sabe como calcular su relevancia actual y sabe cuando ha sido alcanzado.\\
+	 \item Objetivos: Lo que la entidad quiera lograr. Un agente puede querer cumplir más de un objetivo. En el videojuego \textit{NOLF 2} los personajes tenían típicamente alrededor de 25 objetivos, aunque en cada instante solo un objetivo esté activo y este determine las acciones del agente. Un objetivo sabe como calcular su relevancia actual y sabe cuando ha sido alcanzado.\\
 Aunque conceptualmente son similares, hay una diferencia clave entre los objetivos en \textit{NOLF 2} y GOAP y es que en el primero cada objetivo tiene un plan predefinido con pasos fijos y ramas condicionales establecidas de antemano y en GOAP los objetivos solo definen las condiciones que deben cumplirse para darse por terminado, los pasos para alcanzarlos se generan dinámicamente en tiempo real.
 
-	 \item Plan: forma de denominar una secuencia de acciones. Un plan válido es aquel que lleva a un personaje desde un estado inicial hasta un estado que cumple con el objetivo. El plan se ejecuta hasta que se complete, se invalide u otro objetivo se vuelva más importante lo que obligará a que se cree formule un nuevo plan.
+	 \item Plan: Forma de denominar una secuencia de acciones. Un plan válido es aquel que lleva a un personaje desde un estado inicial hasta un estado que cumple con el objetivo. El plan se ejecuta hasta que se complete, se invalide u otro objetivo se vuelva más importante lo que obligará a que se cree formule un nuevo plan.
 Hay que tener en cuenta que GOAP necesita el funcionamiento de las FSMs y las simplifica enormemente, teniendo esto en cuenta, un plan es también una secuencia de acciones donde cada acción representa una transición entre dos estados.
 
-	 \item Acción: una acción es un paso único y atómico dentro de un plan que hace que un personaje haga algo. Algunas acciones posibles en \textit{NOLF 2} es \textit{Go To Point}, \textit{Draw Weapon}...
+	 \item Acción: Una acción es un paso único y atómico dentro de un plan que hace que un personaje haga algo. Algunas acciones posibles en \textit{NOLF 2} es \textit{Go To Point}, \textit{Draw Weapon}...
 La duración de una acción puede variar, por ejemplo la acción \textit{Reload Weapon} terminará cuando la acción acabe, mientras que la acción \textit{Attack} puede continuar indefinidamente hasta que el objetivo muera.\\
 Cada acción determina cuándo puede ejecutarse y qué impacto tendrá en el mundo del juego, es decir una acción conoce sus \textit{precondiciones} y sus \textit{efectos}.
 	
-	\item Mundo: estado actual del contexto de la entidad.
+	\item Mundo: Estado actual del contexto de la entidad.
  	
-	\item Planificador: encuentra la secuencia óptima de acciones para lograr el objetivo partiendo del estado actual del agente. Si tiene éxito devolverá un plan que el personaje seguirá para guiar su comportamiento.\\
+	\item Planificador: Encuentra la secuencia óptima de acciones para lograr el objetivo partiendo del estado actual del agente. Si tiene éxito devolverá un plan que el personaje seguirá para guiar su comportamiento.\\
 Para ilustrar el funcionamiento del planificador usaremos la Figura \ref{fig:GOAP_Planificador}.
 Los rectángulos representan el estado inicial y el estado objetivo, los círculos representan las acciones disponibles.
-En este caso, el objetivo es matar a un enemigo, por lo que el estado final es aquel en el que el enemigo está muerto, en otras palabras, el planificador tiene que encontrar una secuencia de acciones que tome el mundo desde un estado en el que el enemigo está vivo hasta otro en el que este está muerto.\\
-Este proceso se aborda como un \textit{pathfinding}. El planificador tiene que encontrar un plan válido y no siempre este es el esperado por el usuario. Para ello debemos darle ciertos requisitos al algoritmo de \textit{pathfinding}, por ejemplo, encontrar la secuencia de acciones más baratas que nos lleven al objetivo.
+En este caso, el objetivo es matar a un enemigo, por lo que el estado final es aquel en el que el enemigo está muerto, en otras palabras, el planificador tiene que encontrar una secuencia de acciones que tome al mundo desde un estado en el que el enemigo está vivo hasta otro en el que este está muerto.\\
+Este proceso se aborda como un \textit{pathfinding}, la búsqueda de un camino válido que nos lleve desde el estado inicial al estado final. El planificador tiene que encontrar un plan válido y no siempre este es el esperado por el usuario. Para ello debemos darle ciertos requisitos al algoritmo de \textit{pathfinding}, por ejemplo, encontrar la secuencia de acciones más baratas que nos lleven al objetivo.
 
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/GOAP_Planificador.png}
+	\caption{Ejemplo ilustrativo de GOAP donde el estado final es la eliminación de un enemigo.}
+	\label{fig:GOAP_Planificador}
+\end{figure}
 	
 	
 \end{itemize}
 \comp{https://github.com/crashkonijn/GOAP herramienta que podriamos analizar}\\ 
 \section{Análisis de herramientas}
 
-Tras abordar técnicas usadas para crear IAs, se ha visto que en ocasiones la complejidad de crear esas IAs no es del todo trivial. Por ello, surge la necesidad de crear herramientas que ayudasen a los desarrolladores a crear IAs de todo tipo. Teniendo en cuenta que la creación de IAs debe estar al alcance de personas con nulo conocimiento de programación, estas herramientas deben implementar una interfaz gráfica para que el funcionamiento de la IA sea más visual.
+Tras abordar técnicas usadas para crear IA, se ha visto que en ocasiones la complejidad de crear esa IA no es del todo trivial. Por ello, surge la necesidad de crear herramientas que ayudasen a los desarrolladores a crear Inteligencias Artificiales de todo tipo. Teniendo en cuenta que la creación de IA debe estar al alcance de personas con nulo conocimiento de programación, estas herramientas deben implementar una interfaz gráfica para que el funcionamiento de la IA sea más visual.
 A continuación, se han seleccionado algunas herramientas como ejemplo.\\
 
 \subsection{Behavior Bricks}
 
-\textit{Behavior Bricks}\footnote{\url{https://bb.padaonegames.com/doku.php}} es una herramienta disponible para el motor de videojuegos \textit{Unity} centrada en cubrir todas las necesidades de implementación de comportamientos para juegos. Con \textit{Behavior Bricks} el usuario es capaz de modelar de manera visual tanto FSMs como BTs.\\
+\textit{Behavior Bricks}\footnote{\url{https://bb.padaonegames.com/doku.php}} es una herramienta disponible para el motor de videojuegos \textit{Unity} centrada en cubrir todas las necesidades de implementación de comportamientos para juegos. Con \textit{Behavior Bricks} el usuario es capaz de modelar de manera visual tanto Máquinas de Estado Finitas como Árboles de comportamiento.\\
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/Behavior_Bricks.jpg}
 	\caption{Ejemplo de uso de Behavior Bricks}
 	\label{fig:BH_Figure}
 \end{figure}
-Un aspecto a destacar de esta herramienta es que es totalmente gratuita, fue desarrollada por \textit{PadaOne Games}\footnote{\url{https://www.padaonegames.com/}}, empresa asociada a la Universidad Complutense de Madrid.\\
+Un aspecto a destacar de esta herramienta es que es totalmente gratuita y fue desarrollada por \textit{PadaOne Games}\footnote{\url{https://www.padaonegames.com/}}, empresa asociada a la Universidad Complutense de Madrid.\\
 \textit{Behavior Bricks} es una herramienta de scripting visual, por lo que favorece una colaboración entre diseñadores y programadores un aspecto que frecuentemente plantea desafíos.\\
 Otra particularidad de \textit{Behavior Bricks} es su modularidad, permite modificar cada una de las partes con muy poco acoplamiento entre ellas, lo que incita a su reutilización en distintos proyectos. Esta modularidad también permite que podamos tener un estado/comportamiento que sea en sí mismo un grupo de estados/comportamientos.\\
 Esta herramienta hace hincapié en no ralentizar significativamente el rendimiento del juego, gracias a su optimización y la gestión de memoria la cual a veces es compartida entre estados/comportamientos para ahorrar recursos.\\
@@ -123,11 +128,11 @@ Esta herramienta hace hincapié en no ralentizar significativamente el rendimien
 \subsection{PlayMaker}
 PlayMaker\footnote{\url{https://hutonggames.com/}} es un editor visual de FSM diseñado especialmente para artistas y diseñadores, ya que permite desarrollar IA sin necesidad de escribir código.
 
-Su interfaz es altamente visual e intuitiva. Al crear una FSM, se genera automáticamente un estado inicial llamado \textit{START},como podemos ver en la Figura \ref{fig:PlayMaker_Figure}, seguido de un estado predeterminado llamado \textit{State 1}, al cual se transiciona al ejecutar \textit{Unity}. A partir de ahí, el usuario puede agregar más estados y definir eventos que permiten cambiar entre ellos según ciertas condiciones.
+Su interfaz es altamente visual e intuitiva. Al crear una FSM, se genera automáticamente un estado inicial llamado \textit{START}, como podemos ver en la Figura \ref{fig:PlayMaker_Figure}, seguido de un estado predeterminado llamado \textit{State 1}, al cual se transiciona al ejecutar \textit{Unity}. A partir de ahí, el usuario puede agregar más estados y definir eventos que permiten cambiar entre ellos según ciertas condiciones.
 
 Una de sus principales ventajas es la facilidad con la que se pueden modificar los valores de los componentes de \textit{Unity}. Basta con arrastrar un componente a la pestaña \textit{State} para ajustar sus propiedades dentro de un estado determinado. Además, PlayMaker proporciona una amplia colección de acciones predefinidas, como la detección de entrada de teclas, temporizadores y movimientos entre otros. Estas acciones pueden activar eventos que actúan como transiciones entre estados, facilitando la creación de mecánicas de juego complejas sin necesidad de programación.
 
-Gracias a su flexibilidad y facilidad de uso, PlayMaker es ideal para diseñar IAs, lógica de juego, animaciones, interacción con interfaces de usuario y prototipos rápidos, convirtiéndolo en una herramienta poderosa tanto para principiantes como para desarrolladores experimentados que buscan agilizar su flujo de trabajo. Otro punto fuerte de PlayMaker es que permite que la herramienta sea escalable con scripts propios.
+Gracias a su flexibilidad y facilidad de uso, PlayMaker es ideal para diseñar IA, lógica de juego, animaciones, interacción con interfaces de usuario y prototipos rápidos, convirtiéndolo en una herramienta poderosa tanto para principiantes como para desarrolladores experimentados que buscan agilizar su flujo de trabajo. Otro punto fuerte de PlayMaker es que permite que la herramienta sea escalable con scripts propios.
 
 PlayMaker está disponible en la \textit{asset store} de \textit{Unity}, aunque su precio hace que desarrolladores con pocos recursos tengan que descartar esta opción, no deja de ser una herramienta usada ampliamente por la comunidad de desarrolladores, habiendo sido utilizada en juegos como el aclamado por la crítica \textit{Hollow Night}\footnote{\url{https://hollowknight.fandom.com/wiki/Hollow_Knight_Wiki}}, \textit{Firewatch}\footnote{\url{https://www.firewatchgame.com/}} la aventura narrativa del estudio norteamericano Campo Santo o el juego de plataforma de los creadores de \textit{Limbo}, \textit{INSIDE}\footnote{\url{https://inside.fandom.com/wiki/Inside_Wiki}}.\\
 
@@ -138,14 +143,14 @@ PlayMaker está disponible en la \textit{asset store} de \textit{Unity}, aunque 
 	\label{fig:PlayMaker_Figure}
 \end{figure}
 \subsection{Decisión}
-Tras el análisis de loas herramientas con capacidad para integrar comportamientos de inteligencia artificial, surgieron opciones relevantes que nos permiten la integración con Unity. Si bien esas herramientas son completamente válidas, se ha optado por la creación de una herramienta propia, partiendo desde cero. Esta decisión se fundamenta en la necesidad de personalización y control exhaustivo. Superando así las posibles limitaciones económicas de la investigación y las pisibles faltas de adecuación total con otras herramientas.
+Tras el análisis de las herramientas con capacidad para integrar comportamientos de inteligencia artificial, surgieron opciones relevantes que nos permiten la integración con Unity. Si bien esas herramientas son completamente válidas, se ha optado por la creación de una herramienta propia, partiendo desde cero. Esta decisión se fundamenta en la necesidad de personalización y control exhaustivo. Superando así las posibles limitaciones económicas de la investigación y las posibles faltas de adecuación total con otras herramientas.
 \section{Motores de videojuegos}
 
 La siguiente sección consistirá en el análisis de distintos motores de videojuegos. El objetivo  de este análisis es proporcionar una comprensión sobre cuales son las fortalezas y debilidades de cada uno de ellos. Todos los motores escogidos tienen gran renombre en la industria ofreciendo gran variedad y distintas filosofías de diseño.
 \subsection{Unity}
-\textit{Unity}\footnote{\url{https://unity.com}} es un motor de videojuegos desarrollado por \textit{Unity Technologies} que se ha convertido en una de las herramientas más utilizadas en la industria del desarrollo de videojuegos. Su versatilidad y facilidad de uso han permitido la creación de títulos de gran éxito como \textit{Hollow Knight}\footnote{\url{https://www.hollowknight.com}}, \textit{Cuphead}\footnote{\url{https://cupheadgame.com}} y \textit{Genshin Impact}\footnote{\url{https://genshin.hoyoverse.com/es}}. La versión más actual del motor, \textit{Unity 2023}, incorpora mejoras en su sistema de renderizado, herramientas avanzadas de optimización y un motor de físicas más eficiente.\\
+\textit{Unity}\footnote{\url{https://unity.com}} es un motor de videojuegos desarrollado por \textit{Unity Technologies} que se ha convertido en una de las herramientas más utilizadas en la industria del desarrollo de videojuegos. Su versatilidad y facilidad de uso han permitido la creación de títulos de gran éxito como \textit{Hollow Knight}\footnote{\url{https://www.hollowknight.com}}, \textit{Cuphead}\footnote{\url{https://cupheadgame.com}} y \textit{Genshin Impact}\footnote{\url{https://genshin.hoyoverse.com/es}}. La versión más actual del motor, \textit{Unity 6.0}, incorpora mejoras en su sistema de renderizado, herramientas avanzadas de optimización y un motor de físicas más eficiente.\\
 
-Uno de los aspectos más destacados de \textit{Unity} es su capacidad para desarrollar videojuegos tanto en 2D como en 3D, lo que lo convierte en una opción ideal para una amplia variedad de proyectos. El motor ofrece dos principales opciones para la programación: el lenguaje \textit{C\#}, utilizado para la creación de scripts avanzados, y el sistema visual \textit{Bolt}, que permite desarrollar mecánicas sin necesidad de escribir código.\\
+Uno de los aspectos más destacados de \textit{Unity} es su capacidad para desarrollar videojuegos tanto en 2D como en 3D, lo que lo convierte en una opción ideal para una amplia variedad de proyectos. El motor ofrece dos principales opciones para la programación: el lenguaje \textit{C\#}, utilizado para la creación de scripts avanzados, y el sistema visual \textit{Bolt}, que permite desarrollar lógica de juego sin necesidad de escribir código.\\
 
 El sistema de scripting en \textit{Unity} está basado en \textit{C\#} y funciona a través del uso de \textit{MonoBehaviour}, una clase base que permite definir el comportamiento de los objetos del juego. Los scripts se adjuntan a los objetos dentro del editor (Figura \ref{fig:Unity_Inspector})y pueden controlar aspectos como la física, la inteligencia artificial y las interacciones del jugador.\\
 
@@ -192,7 +197,7 @@ Godot\footnote{\url{https://godotengine.org/}}, desarrollado por Juan Linietsky 
 
 A diferencia de otros motores como Unreal Engine o Unity, Godot permite el desarrollo de videojuegos con una interfaz intuitiva, pero también brinda herramientas más accesibles para aquellos que no desean escribir código. Su sistema de GDScript, un lenguaje propio diseñado específicamente para ser fácil de aprender y usar, facilita la creación de juegos sin necesidad de un conocimiento profundo de programación. GDScript es similar a Python (comparten sintaxis y tipado dinámico), lo que lo hace accesible y amigable para desarrolladores noveles.
 
-Para aquellos que prefieren una experiencia más visual y menos enfocada en la programación, Godot incluye un sistema de "VisualScript" (Figura \ref{fig:Godot_VisualScript_Figure}), un lenguaje visual basado en nodos que permite desarrollar mecánicas sin escribir código. Similar a los sistemas de programación visual en otros motores como Unreal Engine. Este sistema ha sido eliminado del núcleo de Godot a partir de la versión 4.0 del motor aunque en lanzamientos futuros VisualScript será re-implementado como una extensión\footnote{\url{https://docs.godotengine.org/es/3.5/tutorials/scripting/visual_script/index.html}}.
+Para aquellos que prefieren una experiencia más visual y menos enfocada en la programación, Godot incluye un sistema llamado \textit{VisualScript} (Figura \ref{fig:Godot_VisualScript_Figure}), un lenguaje visual basado en nodos que permite desarrollar mecánicas sin escribir código. Similar a los sistemas de programación visual en otros motores como Unreal Engine. Este sistema ha sido eliminado del núcleo de Godot a partir de la versión 4.0 del motor aunque en lanzamientos futuros VisualScript será re-implementado como una extensión\footnote{\url{https://docs.godotengine.org/es/3.5/tutorials/scripting/visual_script/index.html}}.
 
 \begin{figure}[t]
 	\centering

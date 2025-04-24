@@ -29,7 +29,7 @@ Las transiciones permiten cambiar de un estado a otro y son activadas por sensor
 	\caption{Enemigo General }
 	\label{fig:EnemigoGeneral}
 \end{figure}
-Estos conceptos (\hyperref[subsec:estado]{estados}, \hyperref[subsec:acciones]{acciones},\hyperref[subsec:sensores y emisores]{sensores y emisores}) se desarrollan con mayor detalle en los apartados siguientes.
+Estos conceptos (\hyperref[subsec:estado]{estados}, \hyperref[subsec:acciones]{acciones}, \hyperref[subsec:sensores y emisores]{sensores y emisores}) se desarrollan con mayor detalle en los apartados siguientes.
 
 \subsection{Estado}
 \label{subsec:estado}
@@ -47,12 +47,12 @@ Implementar un spawner requiere establecer ciertas reglas de generación de enem
 Podemos definir el término movimiento como el desplazamiento o cambio de posición de un enemigo dentro del juego. Sin embargo, el concepto de movimiento también puede aplicarse en el caso de enemigos que permanecen en una posición fija, haciendo referencia a la ausencia de éste. Los movimientos son fundamentales para definir el comportamiento de los personajes, ya que permiten la interacción con el jugador y el entorno.\\
 A continuación se muestran todos los movimientos implementados, junto con una breve descripción.
 \begin{itemize}
-  \item \textbf{Horizontal Actuator}: Deslaza el objeto horizontalmente, hacia la izquierda o derecha.
+  \item \textbf{Horizontal Actuator}: Desplaza el objeto horizontalmente, hacia la izquierda o derecha.
     \item \textbf{Vertical Actuator}: Desplaza el objeto verticalmente, hacia arriba o abajo.
-    \item \textbf{Directional Actuator}: Mueve el objeto en una dirección definida por un ángulo o hacia el jugador.
+    \item \textbf{Directional Actuator}: Mueve el objeto en una dirección definida por un ángulo.
     \item \textbf{Circular Actuator}: Hace que el objeto siga un movimiento circular alrededor de un punto.
-    \item \textbf{Move to a Point Actuator}: Dirige el objeto hacia puntos aleatorios dentro de un área o puntos predefinidos.
-    \item \textbf{Move to an Object Actuator}: Desplaza el objeto hacia un punto en movimiento.
+    \item \textbf{Move To A Point Actuator}: Dirige el objeto hacia puntos aleatorios dentro de un área o puntos predefinidos.
+    \item \textbf{Move To An Object Actuator}: Desplaza el objeto hacia una entidad que puede estar en movimiento.
     \item \textbf{Spline Follower Actuator}: Permite al objeto seguir una trayectoria definida por un spline.
 \end{itemize}
 \subsubsection{Compatibilidad}
@@ -86,16 +86,15 @@ Para clarificar estas interdependencias y asegurar la coherencia en la configura
 \label{subsec:sensores y emisores}
 Los términos sensores y emisores definen los mecanismos mediante los cuales los personajes interactúan con su entorno y entre sí.
 Podemos definir el término sensor como el elemento necesario para medir variables exteriores y enviar la información al enemigo.\\
-Definimos Emisores como anónimo de sensor, es decir, es aquel elemento que envía información del enemigo al exterior.
+Definimos emisor como anónimo de sensor, es decir, es aquel elemento que envía información del enemigo al exterior.
+A continuación se enumerarán los diferentes sensores y emisores disponibles en la herramienta.
 \begin{itemize}
     \item \textbf{Area Sensor}: Detecta si un objeto entra o sale en una zona de detección.
-    \item \textbf{Collision Sensor}: Detecta colisiones físicas con objetos de capas específicas.
+    \item \textbf{Collision Sensor}: Detecta colisiones físicas con otros objetos.
     \item \textbf{Distance Sensor}: Detecta si un objeto está dentro o fuera de una distancia específica.
     \item \textbf{Time Sensor}: Detecta cuando ha transcurrido un tiempo determinado.
-    \item \textbf{Damage Sensor}: Detecta si el objeto ha recibido daño de cualquier fuente.
-    \item \textbf{Damage Emitter (Instant)}: Aplica daño una sola vez al contacto con otro objeto.
-    \item \textbf{Damage Emitter (Permanence)}: Aplica daño mientras se permanece en contacto con el objeto.
-    \item \textbf{Damage Emitter (Residual)}: Aplica daño inicial y luego daño adicional durante un tiempo tras el contacto.
+    \item \textbf{Damage Sensor}: Detecta si el objeto ha recibido daño.
+    \item \textbf{Damage Emitter}: Aplica daño a entidades con Damage Sensor.
 \end{itemize}
 \subsection{Daño}
 Aunque ya ha aparecido el concepto de daño en los sensores y emisores creados, es importante definir con precisión su significado así como las diversas formas de daño existen. \\
@@ -113,7 +112,7 @@ Aunque en teoría distinguimos esos tres tipos, a la hora de implementar son cos
 Además, se puede distinguir entre tres tipos de daños:
 \begin{itemize}
     \item \textbf{Instantáneo:} Aplica daño una única vez el daño al tener contacto.
-    \item \textbf{De Permanencia:} Inflige daño continuo mientras haya contacto, definiendo la cantidad y la frecuencia.
-    \item \textbf{Residual:} Aplica daño inicial y luego daño periódico tras el contacto, definiendo cantidades, frecuencia y número de aplicaciones.
+    \item \textbf{De Permanencia:} Inflige daño continuo mientras haya contacto, definiendo la cantidad y la frecuencia de aplicación de daño.
+    \item \textbf{Residual:} Aplica daño inicial y luego daño periódico tras el contacto, definiendo cantidades, frecuencia de aplicación y número de aplicaciones.
 \end{itemize}
 

@@ -14,20 +14,20 @@ Unity cuenta con una interfaz de usuario muy gráfica la cual resulta muy intuit
 
 Otro elemento muy importante de Unity es el sistema \textit{drag and drop} el cual nos permite construir las escenas de juego de manera muy sencilla, moviendo los objetos en la escena haciendo click y arrastrándolos y también permite asignar scripts a las entidades de juego de la misma manera. Con respecto a la curva de aprendizaje de Unity esta no es muy pronunciada ya que desde Unity como empresa se toman muy en serio el tener una documentación clara y accesible, así como habilitar foros y tutoriales para que sea la propia comunidad de usuarios la que se ayuda a sí misma.\\
 
-El motivo por el que se escoge Unity sobre los demás motores de videojuegos es esa accesibilidad que ha sido mencionada anteriormente que hace que resulte sencillo de utilizar por cualquier persona. Otro motivo de peso por el que hemos considerado Unity como nuestra opción principal de motor de videojuegos es la cantidad de usuarios que lo usan día a día lo que lo convierte en una muy buena plataforma para poder poner a prueba nuestra herramienta a través de pruebas de usuario para su posterior uso para el gran público. Esa popularidad da ciertas garantías de que la herramienta será usada y servirá para confeccionar un mínimo de proyectos.
-El sistema \textit{drag and drop} facilita mucho el uso de nuestra herramienta y la comprensión de la misma.
+El motivo por el que se escoge Unity sobre los demás motores de videojuegos es esa accesibilidad que ha sido mencionada anteriormente que hace que resulte sencillo de utilizar por cualquier persona. Otro motivo de peso por el que hemos considerado Unity como nuestra opción principal de motor de videojuegos es la cantidad de usuarios que lo usan día a día lo que lo convierte en una muy buena plataforma para poder poner a prueba nuestra herramienta a través de pruebas de usuario para su posterior uso para el gran público. Esa popularidad da ciertas garantías de que la herramienta será usada y servirá para confeccionar un mínimo de proyectos.\\
+El sistema \textit{drag and drop} facilita mucho el uso de nuestra herramienta y la comprensión de la misma.\\
 Se hará uso de otros elementos de Unity para llevar a cabo esta herramienta como el motor de físicas 2D o las herramientas que tiene el motor para ayudar al usuario a debuggear como puede ser Gizmos.
 Unity funciona mediante una arquitectura por componentes, lo que es muy útil para que el programa sea modular, que pueda ser dividido en piezas más pequeñas y que estas piezas sean independientes.\\
 \comp{Faltan fotos en este apartado.}
 
 A continuación se va a hacer una descripción específica de cada uno de los apartados implementados.
-\section {FSM}
+\section {Máquina de Estados Finita}
 
-El comportamiento de la entidad estará encapsulado en una FSM, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio. Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.\\
+El comportamiento de la entidad estará encapsulado en una Máquina de Estados Finita, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio. Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (State) \textbf{Initial State}: Estado inicial de la FSM.
+	\item (State) \textbf{Initial State}: Estado inicial de la Máquina de Estados Finita.
 \end{itemize}
 
 \subsection{Transition}
@@ -62,6 +62,7 @@ Esta clase abstracta contiene métodos para crear, destruir y actualizar cada ac
 
 \subsection{MovementActuator}
 La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento. \\
+
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (bool) \textbf{Is Accelerated}: bool que indica si el movimiento que se va a realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true).
@@ -70,6 +71,7 @@ La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para 
 
 \subsubsection{HorizontalActuator}
 \textit{Horizontal actuator} es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
+
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (LayerMask) \textbf{Layers To Collide}: Máscara de capas que indica cuáles son las que utilizamos para colisionar con el objeto.
@@ -79,11 +81,12 @@ La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para 
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
 	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, si está a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
-	\item (bool) \textbf{Follow Player}: si es \textit{true}, la dirección del movimiento se ajusta automáticamente para acercarse al jugador.
+	\item (bool) \textbf{Follow Player}: Determina si la dirección del movimiento se ajusta automáticamente para acercarse al jugador.
 \end{itemize}
 
 \subsubsection{VerticalActuator}
 \textit{Vertical actuator} es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto verticalmente, ya sea arriba o abajo, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
+
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (LayerMask) \textbf{Layers To Collide}: Máscara de capas que indica cuáles son las que utilizamos para colisionar con el objeto.
@@ -93,11 +96,12 @@ La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para 
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
 	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, si está a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
-	\item (bool) \textbf{Follow Player}: si es \textit{true}, la dirección del movimiento se ajusta automáticamente para acercarse al jugador.
+	\item (bool) \textbf{Follow Player}: Determina si la dirección del movimiento se ajusta automáticamente para acercarse al jugador.
 \end{itemize}
 
 \subsubsection{DirectionalActuator}
 La clase \textit{Directional Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento en función de un ángulo y una velocidad.\\
+
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (LayerMask) \textbf{Layers To Collide}: Capas con las que puede colisionar el objeto y activar reacciones.
@@ -107,11 +111,12 @@ La clase \textit{Directional Actuator} que hereda de \textit{Movement Actuator} 
 	\item (float) \textbf{Angle}: Ángulo de dirección del movimiento, en grados.
 	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, si está a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
 	\item (enum) \textbf{On Collision Reaction}: Reacción que va a tener el objeto al colisionar. Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
-	\item (bool) \textbf{Aim Player}: Si es \textit{true}, el objeto calculará automáticamente el ángulo inicial para moverse en dirección al jugador.
+	\item (bool) \textbf{Aim Player}: Determina si el objeto calculará automáticamente el ángulo inicial para moverse en dirección al jugador.
 \end{itemize}
 
 \subsubsection{CircularActuator}
 La clase \textit{Circular Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento circular alrededor de un punto.\\
+
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (float) \textbf{Angular Speed}: Velocidad de giro en grados por segundo.
@@ -119,13 +124,14 @@ La clase \textit{Circular Actuator} que hereda de \textit{Movement Actuator} se 
 	\item (float) \textbf{Max Angle}: Ángulo máximo de giro. Si el ángulo es \textit{360º} entonces describirá una circunferencia completa, si no, hará un movimiento en forma de péndulo con los grados indicados.
 	\item (float) \textbf{Angular Acceleration}: Aceleración angular.
 	\item (float) \textbf{Goal Angular Speed}: Velocidad angular que se quiere alcanzar si el objeto es acelerado.
-	\item (bool) \textbf{Can Rotate}: si es \textit{true}, el objeto rota sobre sí mismo siguiendo la trayectoria.
+	\item (bool) \textbf{Can Rotate}: Determina si el objeto rota sobre sí mismo siguiendo la trayectoria.
 	\item (float)\textbf{ Interpolation Time}: Tiempo en segundos que tarda desde la velocidad inicial hasta la velocidad final, \textit{Goal Speed}.
-	\item (bool) \textbf{Point Player}: si es \textit{true}, el objeto ajusta su trayectoria para orientarse hacia el jugador.
+	\item (bool) \textbf{Point Player}: Determina si el objeto ajusta su trayectoria para orientarse hacia el jugador.
 \end{itemize}
 
 \subsubsection{SplineActuator}
 La clase \textit{Spline Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento mediante curvas Splines de Unity. El Actuador sigue la curva pudiendo girar el objeto a su vez.\\
+
 \textbf{Valores de configuración}
 \begin{itemize}
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
@@ -134,42 +140,53 @@ La clase \textit{Spline Actuator} que hereda de \textit{Movement Actuator} se us
 	\item (SplineContainer) \textbf{Spline Container}: Spline que define la trayectoria que seguirá el objeto.
 	\item (enum) \textbf{Teleport To Closest Point}: Define cómo se ajusta el objeto a la spline al iniciarse el movimiento. Puede tener dos valores:
 	\begin{itemize}
-		\item \textbf{Enemy}: el objeto se teletransporta a la spline.
-		\item \textbf{Spline}: la spline se desplaza para alinearse con la posición actual del objeto.
+		\item \textbf{Enemy}: El objeto se teletransporta a la spline.
+		\item \textbf{Spline}: La spline se desplaza para alinearse con la posición actual del objeto.
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{MoveToAPointActuator}
-La clase \textit{Move to a Point Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios dentro de un área.\\
-\textbf{Valores de configuración}
+La clase \textit{Move To A Point Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios dentro de un área.\\
+Dado que la clase tiene dos maneras de funcionar y dos configuraciones distintas, primero se abordarán los valores de configuración comunes entre ambas y luego los valores específicos de cada configuración.\\
+
+\textbf{Valores de configuración comunes}
 \begin{itemize} 
 	\item (UsageWay) \textbf{Usage Way}: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona (\textit{RandomArea}).
-	\item (List<WaypointData>) \textbf{Waypoints Data}: Lista de puntos que el objeto debe seguir. Cada punto incluye el tiempo que se tarda en llegar, si se desea aceleración, si se debe detener al llegar, duración de la parada y función de aceleración si es necesaria. 	
+\end{itemize}
+
+\textbf{Valores de configuración para RandomArea}
+\begin{itemize} 	
 	\item (Collider2D) \textbf{Random Area}: Zona dentro de la cual se moverá el objeto si está configurado como \textit{RandomArea}. 
-	\item (bool)\textbf{ Is a Cicle}: si es true, al finalizar los puntos volverá al primero y el movimiento se repetirá. 
-	\item (bool)\textbf{ All Waypoints Have The Same Data}: si es true, todos los puntos usarán la misma configuración. 
+	\item (float) \textbf{Time Between Random Points}: Tiempo necesario, en segundos, para ir de un punto aleatorio a otro.
+\end{itemize}
+
+\textbf{Valores de configuración para Waypoint}
+\begin{itemize} 	
+	\item (bool) \textbf{Is A Cicle}: Determina si al finalizar los puntos volverá al primero y el movimiento se repetirá.
+	\item (bool) \textbf{All Waypoints Have The Same Data}: Determina si todos los puntos usarán la misma configuración.
+	\item (List<WaypointData>) \textbf{Waypoints Data}: Lista de puntos que el objeto debe seguir. Cada punto incluye la posición a la que se debe llegar, el tiempo estimado para alcanzarla, si se requiere aceleración, si debe detenerse al llegar, y en caso afirmativo, la duración de la parada. Además, incluiye una función de aceleración que describe cómo varía la posición del objeto con respecto al tiempo, en caso de tratarse de un movimiento acelerado.
 \end{itemize}
 
 \subsubsection{MoveToAnObjectActuator}
-La clase \textit{Move to an Object Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en dirección a un punto actualizable, esto implica que si el punto se mueve, el objeto actualizará la trayectoria a la nueva posición. \\
+La clase \textit{Move To An Object Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en dirección a un punto actualizable, esto implica que si el punto se mueve, el objeto actualizará la trayectoria a la nueva posición.\\
+
 \textbf{Valores de configuración}
 \begin{itemize} 
-	\item (UsageWay)\textbf{ Usage Way}: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona (\textit{RandomArea}).
-	\item (List<WaypointData>)\textbf{ Waypoints Data}: Lista de puntos que el objeto debe seguir. Cada punto incluye el tiempo que se tarda en llegar, si se desea aceleración, si se debe detener al llegar, duración de la parada y función de aceleración si es necesaria. 	
-	\item (Collider2D) \textbf{Random Area}: Zona dentro de la cual se moverá el objeto si está configurado como \textit{RandomArea}. 
-	\item (bool) \textbf{Is a Cicle}: si es true, al finalizar los puntos volverá al primero y el movimiento se repetirá. 
-	\item (bool) \textbf{All Waypoints Have The Same Data}: si es true, todos los puntos usarán la misma configuración. 
+	\item (Transform) \textbf{Waypoint Transform}: Posición destino del movimiento.
+	\item (float) \textbf{Time To Reach}: Tiempo necesario, en segundos, para llegar a la posición destino.
+	\item (bool) \textbf{Is Accelerated}: Determina si el movimiento será acelerado o no.
+	\item (EasingFunction.Ease) \textbf{Easing Function}: En caso de ser acelerado, función que determina como varía la posición con respecto al tiempo.
 \end{itemize}
 
 \subsection{SpawnerActuator}
-La clase \textit{SpawnerActuator} hereda de \textit{Actuator}. Este actuador se usa para poder generar nuevos enemigos, pudiendo generar infinitos enemigos o un número definido de ellos cada X tiempo en un lugar predefinido.
+La clase \textit{SpawnerActuator} hereda de \textit{Actuator}. Este actuador se usa para poder generar nuevos enemigos, pudiendo generar infinitos enemigos o un número definido de ellos cada X tiempo en un lugar predefinido.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
     \item (class) \textbf{Spawn Info}: Clase auxiliar serializable que almacena un prefab (\texttt{GameObject}) a instanciar y un punto de aparición (\texttt{Transform}) donde se colocará dicho objeto.
-    \item (float) \textbf{Spawn Interval}: Intervalo de tiempo en segundos que tarda el objeto en volver a generar otro enemigo. 
-    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigos indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por \textit{spawnInterval} y si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
-    \item (int) \textbf{Number of Times To Spawn}: Número total de veces que se permitirá hacer spawn, si no es infinito.
+    \item (float) \textbf{Spawn Interval}: Intervalo de tiempo en segundos que tarda el objeto en volver a generar. 
+    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigos indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por \textit{Spawn Interval} y si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
+    \item (int) \textbf{Number Of Times To Spawn}: Número total de veces que se permitirá hacer spawn, si no es infinito.
     \item (List<SpawnInfo>) \textbf{Spawn List}: Lista de elementos de tipo \texttt{Spawn Info}. Cada elemento contiene la información necesaria para instanciar un enemigo. Esta lista está diseñada para poder crear distintos tipos de enemigos o en varios sitios a la vez, dando así más flexibilidad.
 \end{itemize}
 
@@ -351,7 +368,7 @@ El daño residual es aquel que produce una cantidad de daño instantáneo y, tra
 	\begin{itemize}
 	        \item (bool) \textbf{Destroy After Doing Damage}: Booleano que determina si el objeto es destruido al reportar el daño instantáneo.
 	        \item (float) \textbf{Instant Damage Amount}: Cantidad de daño administrada cuando se produce el contacto.
-	        \item (float)\textbf{ Residual Damage Amount}: Cantidad de daño administrada por cada aplicación de daño residual.
+	        \item (float) \textbf{Residual Damage Amount}: Cantidad de daño administrada por cada aplicación de daño residual.
 	        \item (float) \textbf{Damage Cooldown}: Tiempo entre aplicaciones de daño residual, medido en segundos.
 	        \item (int) \textbf{Number Of Applications}: Número de veces que se aplicará el daño residual.
 	\end{itemize}
@@ -398,9 +415,9 @@ Esta clase permite modificar ciertos valores como la velocidad de movimiento, la
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (float)  \textbf{Speed}: Velocidad constante a la que se moverá el jugador.
-	\item (float)  \textbf{Jump Force}: Fuerza aplicada al saltar
-	\item (float)  \textbf{Slide Speed}: Velocidad aplicada en el eje Y cuando el jugador está en el aire y colisiona lateralmente con una superficie.
+	\item (float) \textbf{Speed}: Velocidad constante a la que se moverá el jugador.
+	\item (float) \textbf{Jump Force}: Fuerza aplicada al saltar
+	\item (float) \textbf{Slide Speed}: Velocidad aplicada en el eje Y cuando el jugador está en el aire y colisiona lateralmente con una superficie.
 \end{itemize}
 
 \subsubsection{PlayerCollisionDetection}
@@ -420,8 +437,8 @@ Este script se encarga de detectar las colisiones del jugador. Para ello, se aju
 \begin{itemize}
 	\item (bool) \textbf{ Debug Boxes}: En caso de que esta variable sea true, las cajas definidas por los campos que serán presentados a continuación serán representadas en pantalla con color rojo.
 	\item (LayerMask)  \textbf{Detection Layers}: Capas que serán tomadas en cuenta para detectar si el jugador está en el suelo o en contacto con una pared cuando está en el aire. En este caso se querrá especificar la capa que albergue a los objetos estáticos que conforman el mundo, por ejemplo \textit{World}.
-	\item (Vector2)  \textbf{Bottom/Right/Left Size}: Tamaño de las cajas.
-	\item (Vector2)  \textbf{Bottom/Right/Left Offsets}: Valores usados para reposicionar las cajas para que estén en el lugar considerado por el usuario, idealmente en los bordes del objeto.
+	\item (Vector2) \textbf{Bottom/Right/Left Size}: Tamaño de las cajas.
+	\item (Vector2) \textbf{Bottom/Right/Left Offsets}: Valores usados para reposicionar las cajas para que estén en el lugar considerado por el usuario, idealmente en los bordes del objeto.
 \end{itemize}
 
 \subsubsection{PlayerBetterJumping}
@@ -432,8 +449,8 @@ Para lograrlo, el script ajusta dos multiplicadores: uno que incrementa la grave
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (float)  \textbf{Fall Multiplier}: Multiplicador que aumenta la gravedad cuando el personaje está cayendo, hace que el personaje caiga más rápido, dándole más peso y realismo al salto.
-	\item (float)  \textbf{Low Jump Multiplier}: Multiplicador que aumenta la gravedad cuando el jugador suelta el botón de salto antes de llegar al punto más alto del salto, haciendo que se puedan hacer saltos cortos, dando más control del movimiento al jugador.
+	\item (float) \textbf{Fall Multiplier}: Multiplicador que aumenta la gravedad cuando el personaje está cayendo, hace que el personaje caiga más rápido, dándole más peso y realismo al salto.
+	\item (float) \textbf{Low Jump Multiplier}: Multiplicador que aumenta la gravedad cuando el jugador suelta el botón de salto antes de llegar al punto más alto del salto, haciendo que se puedan hacer saltos cortos, dando más control del movimiento al jugador.
 \end{itemize}
 
 \subsection{Life}
@@ -446,11 +463,11 @@ Este componente está estrechamente ligado al \textit{DamageSensor}, el cual ser
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (enum)  \textbf{Entity Type}: Enumerado usado para diferenciar entre jugador y enemigos.
-	\item (float)  \textbf{Initial Life}: Cantidad de vida con la que inicia la entidad.
-	\item (float)  \textbf{Max Life}: Cantidad de vida máxima a la que puede llegar la entidad.
-	\item (string)  \textbf{Text Name}: En caso de ser el jugador, se pedirá un texto que precederá a los puntos de vida del jugador.
-	\item (TextMeshProUGUI)  \textbf{Life Text}: Objeto del Canvas usado para representar los puntos de vida actuales del jugador.
+	\item (enum) \textbf{Entity Type}: Enumerado usado para diferenciar entre jugador y enemigos.
+	\item (float) \textbf{Initial Life}: Cantidad de vida con la que inicia la entidad.
+	\item (float) \textbf{Max Life}: Cantidad de vida máxima a la que puede llegar la entidad.
+	\item (string) \textbf{Text Name}: En caso de ser el jugador, se pedirá un texto que precederá a los puntos de vida del jugador.
+	\item (TextMeshProUGUI) \textbf{Life Text}: Objeto del Canvas usado para representar los puntos de vida actuales del jugador.
 \end{itemize}
 
 \subsection{PlayerDistanceAttack}
@@ -461,6 +478,6 @@ Para evitar que el jugador pueda disparar sin restricción, se ha introducido un
 
 \textbf{Valores de configuración}
 \begin{itemize}
-	\item (GameObject)  \textbf{Bullet Prefab}: Objeto que se instancia en la posición del jugador al hacer clic.
-	\item (float)  \textbf{Shooting Cooldown}: Tiempo necesario (en segundos) antes de poder disparar nuevamente.
+	\item (GameObject) \textbf{Bullet Prefab}: Objeto que se instancia en la posición del jugador al hacer clic.
+	\item (float) \textbf{Shooting Cooldown}: Tiempo necesario (en segundos) antes de poder disparar nuevamente.
 \end{itemize}
