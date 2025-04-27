@@ -333,7 +333,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &59655631
@@ -348,8 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &59655632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,7 +2082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canFlipX: 1
   _canFlipY: 1
-  _canRotate: 1
 --- !u!95 &356613011
 Animator:
   serializedVersion: 5
@@ -2143,8 +2141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &356613014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,7 +2158,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 5
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &356613016
@@ -2197,10 +2194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 356613016}
-  _sensorTransitions:
-  - sensor: {fileID: 356613025}
-    targetState: {fileID: 356613020}
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &356613018
 MonoBehaviour:
@@ -2214,6 +2209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 3
   _distanceType: 1
   _axis: 1
   _partOfAxis: 0
@@ -2221,7 +2217,6 @@ MonoBehaviour:
   _target: {fileID: 1701558568}
   _detectionDistance: 5.09
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 3
   _detectionCondition: 0
 --- !u!114 &356613019
 MonoBehaviour:
@@ -2257,10 +2252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 356613012}
-  _sensorTransitions:
-  - sensor: {fileID: 356613018}
-    targetState: {fileID: 356613017}
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 1
 --- !u!114 &356613021
 MonoBehaviour:
@@ -2411,10 +2404,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 0
   _layersToCollide:
     serializedVersion: 2
     m_Bits: 128
-  _startDetectingTime: 0
 --- !u!1 &427668947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,7 +2787,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &467057761
@@ -2809,8 +2801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &467057762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2977,8 +2969,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 666990401}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &666990404
 MonoBehaviour:
@@ -3391,17 +3383,6 @@ MonoBehaviour:
   _direction: -1
   _onCollisionReaction: 1
   _followPlayer: 0
---- !u!114 &771697785 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2420859877675198300, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-  m_PrefabInstance: {fileID: 771697779}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771697780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &771697790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8066337333336882234, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
@@ -3422,7 +3403,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &771697792
@@ -3437,8 +3417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &771697793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3451,6 +3431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 1
   _distanceType: 1
   _axis: 1
   _partOfAxis: 0
@@ -3458,7 +3439,6 @@ MonoBehaviour:
   _target: {fileID: 1701558568}
   _detectionDistance: 11.63
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 1
   _detectionCondition: 0
 --- !u!114 &771697794
 MonoBehaviour:
@@ -3473,10 +3453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList: []
-  _sensorTransitions:
-  - sensor: {fileID: 771697793}
-    targetState: {fileID: 771697785}
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!1 &777182682
 GameObject:
@@ -3824,8 +3802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 942051726}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &942051729
 MonoBehaviour:
@@ -4192,8 +4170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1042567556}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1042567559
 MonoBehaviour:
@@ -4473,7 +4451,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 5
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1115047482
@@ -4488,8 +4465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &1115047483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4542,8 +4519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1115047483}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1115047485
 MonoBehaviour:
@@ -4911,17 +4888,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
   m_PrefabInstance: {fileID: 1117899148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1117899151 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2420859877675198300, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-  m_PrefabInstance: {fileID: 1117899148}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117899150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1117899152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4934,6 +4900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 1
   _distanceType: 1
   _axis: 1
   _partOfAxis: 0
@@ -4941,7 +4908,6 @@ MonoBehaviour:
   _target: {fileID: 1701558568}
   _detectionDistance: 15.5
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 1
   _detectionCondition: 0
 --- !u!114 &1117899153
 MonoBehaviour:
@@ -4956,10 +4922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList: []
-  _sensorTransitions:
-  - sensor: {fileID: 1117899152}
-    targetState: {fileID: 1117899151}
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1117899154
 MonoBehaviour:
@@ -4976,7 +4940,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1117899155
@@ -4991,8 +4954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &1117899156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5510,8 +5473,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1191343835}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1191343838
 MonoBehaviour:
@@ -5678,8 +5641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1257659864}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 1
 --- !u!114 &1257659867
 MonoBehaviour:
@@ -6174,7 +6137,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1421668292
@@ -6189,8 +6151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &1421668293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6205,10 +6167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1421668294}
-  _sensorTransitions:
-  - sensor: {fileID: 1421668303}
-    targetState: {fileID: 1421668290}
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1421668294
 MonoBehaviour:
@@ -6240,6 +6200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 1
   _distanceType: 1
   _axis: 1
   _partOfAxis: 0
@@ -6247,7 +6208,6 @@ MonoBehaviour:
   _target: {fileID: 1701558568}
   _detectionDistance: 9.03
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 1
   _detectionCondition: 0
 --- !u!114 &1421668303
 MonoBehaviour:
@@ -6261,6 +6221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 0
   _distanceType: 1
   _axis: 1
   _partOfAxis: 0
@@ -6268,7 +6229,6 @@ MonoBehaviour:
   _target: {fileID: 1701558568}
   _detectionDistance: 9.06
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 0
   _detectionCondition: 1
 --- !u!1001 &1429716944
 PrefabInstance:
@@ -6480,7 +6440,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1429716949
@@ -6495,8 +6454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &1429716950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6747,8 +6706,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1489513371}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1489513374
 MonoBehaviour:
@@ -7275,8 +7234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1557206086}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1557206089
 MonoBehaviour:
@@ -7691,17 +7650,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7765543243100013881, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
   m_PrefabInstance: {fileID: 1696577117}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1696577120 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2420859877675198300, guid: 65858c92e8e1f254fb39e55cd906862d, type: 3}
-  m_PrefabInstance: {fileID: 1696577117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696577119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3924365c713da6458037a0c2abbcee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1696577121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7714,6 +7662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 1
   _distanceType: 1
   _axis: 1
   _partOfAxis: 0
@@ -7721,7 +7670,6 @@ MonoBehaviour:
   _target: {fileID: 1701558568}
   _detectionDistance: 8.3
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 1
   _detectionCondition: 0
 --- !u!114 &1696577122
 MonoBehaviour:
@@ -7736,10 +7684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actuatorList: []
-  _sensorTransitions:
-  - sensor: {fileID: 1696577121}
-    targetState: {fileID: 1696577120}
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1696577123
 MonoBehaviour:
@@ -7756,7 +7702,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 1
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1696577124
@@ -7771,8 +7716,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 1
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &1696577125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7842,7 +7787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1703530015
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7924,8 +7869,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1703530023}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1703530018
 MonoBehaviour:
@@ -8132,8 +8077,6 @@ MonoBehaviour:
   _spawnList:
   - _prefabToSpawn: {fileID: 6312299861578909251, guid: b9e9ade329657a84ca75e8d4658b8aa9, type: 3}
     _spawnPoint: {fileID: 0}
-  - _prefabToSpawn: {fileID: 0}
-    _spawnPoint: {fileID: 0}
 --- !u!114 &1703530027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8166,8 +8109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896cb44d0fc96f941a9c0b208cdc3b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionTime: 5
   _startDetectingTime: 0
+  _detectionTime: 5
 --- !u!114 &1703530029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8180,8 +8123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0779e1946991fe6418d8a2bd6a968696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeFromStart: 0
   _startDetectingTime: 0
+  _activeFromStart: 1
 --- !u!114 &1703530030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8194,6 +8137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3f64b0b7f0f7b45b0e6a7d24b8ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 0
   _distanceType: 0
   _axis: 1
   _partOfAxis: 0
@@ -8201,7 +8145,6 @@ MonoBehaviour:
   _target: {fileID: 0}
   _detectionDistance: 0
   _areaTrigger: {fileID: 0}
-  _startDetectingTime: 0
   _detectionCondition: 0
 --- !u!114 &1703530031
 MonoBehaviour:
@@ -8215,10 +8158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46206c9de2528d4081e075035af3bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startDetectingTime: 0
   _layersToCollide:
     serializedVersion: 2
     m_Bits: 4294967295
-  _startDetectingTime: 0
 --- !u!114 &1703530032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8231,8 +8174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab806f3ad9fa6ed4ea9fa73e7c92a96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
   _startDetectingTime: 0
+  _target: {fileID: 0}
+  _detectionCondition: 0
 --- !u!70 &1703530033
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8283,7 +8227,6 @@ MonoBehaviour:
   _entityType: 0
   _initialLife: 5
   _maxLife: 5
-  _minLife: 5
   _lifeText: {fileID: 0}
   _textName: 
 --- !u!114 &1703530035
@@ -8298,8 +8241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad27ad414b59f094eb7c62901c3e52b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAccelerated: 0
+  _easingFunction: 0
+  _speed: 0
+  _goalSpeed: 0
+  _interpolationTime: 0
   _splineContainer: {fileID: 230325572}
-  _speed: -8.54
   _teleportToClosestPoint: 1
 --- !u!1 &1718144497
 GameObject:

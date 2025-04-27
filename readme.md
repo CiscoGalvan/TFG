@@ -231,43 +231,66 @@ Los sensores permiten detectar información del entorno y activar transiciones. 
 
 - **Area Sensor:**  
   ![AreaSensor](./Manual/AreaSensor.png)  
-  El sensor de área detecta cuando un objeto específico (Target) entra dentro de su zona de detección.<br>
-  Este sensor hace que el Collider asociado al objeto pase a ser un _Trigger_. 
+  El sensor de área detecta cuando un objeto específico entra dentro de su zona de detección.<br>  Este sensor hace que el Collider asociado al objeto pase a ser un _Trigger_. 
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Target:_ objeto que se quiere detectar.
+  - _Detection Condition:_ Indica si quiere dectectar al salir o al entrar del área.
+ 
 
 - **Collision Sensor:**  
   ![CollisionSensor](./Manual/CollisionSensor.png)  
   Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del _Area Sensor_, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.<br>
   Se debe especificar qué _capas_ activan el sensor. 
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Layers to Collide:_ Mascara de capas donde se debe indicar con que capas queremos chocar.
 
 - **Distance Sensor:**  
 ![DistanceSensor](./Manual/DistanceSensor.png)  
   Detecta cuando un objeto específico (Target) está a una _determinada distancia del enemigo_.<br> 
-  Se requiere una _condición de detección_ siendo estas:
-  -  Estar dentro de la distancia de detección.
-  -  Estar fuera de ella.<br>
+   - _Distance type:_ tipo de distancia que se quiere comprobar. 
+      - Magnitud: 360 grados de detección.
+      - Single Axix: un único eje. 
+   - _Detection Condition:_ Indica si quiere dectectar al salir o al entrar del área.
+  - _Target:_ objeto que se quiere detectar.
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Detection Distance:_ distancia de detección.
   
-  Es necesario especificar el _tiempo que está inactivo al inicio_ (Start Detecting Time), si este es 0 el sensor inicia activado.<br>
+
 
 - **Time Sensor:**    
 ![TimeSensor](./Manual/TimeSensor.png)  
- Detecta cuando pasa un _tiempo_ específico.
-
+ Detecta cuando pasa un tiempo específico.
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Detection Time:_ tiempo de detección.
 - **Damage Sensor:**  
 ![DamageSensor](./Manual/DamageSensor.png)  
   Detecta cuando una entidad _recibe daño_.
   Este sensor es utilizado a la hora de gestionar la _vida_ tanto de los enemigos como del propio jugador.<br> Para que se pueda recibir daño se debe tener _Active From Start_ a true. 
 
-- **Damage Emitter:**  
+- **Damage Emitter**:  
   Es el encargado de _hacer daño_, en él tienes que especificar el tipo de daño, cada tipo de daño tiene sus propios parámetros:
-  - Instant:  
-  ![DamagEmitter](./Manual/DamageEmitter.png)  
-  El daño instantáneo es aquel que te afecta una única vez al entrar en contacto contigo. Como parámetros, podremos especificar si queremos que se _elimine el objeto después de hacer daño_, si queremos que _directamente mate a la entidad con la que colisiona_. En caso de no querer que elimine directamente el objetivo, indicaremos el _daño que queremos hacerle_.
-  - Permanence:  
- ![DamagEmitter](./Manual/DamageEmitterP.png)  
- El daño por permanencia es el que te afecta mientras que estés dentro del objeto. Como parámetros, podremos especificar la _cantidad de daño_ que hacemos y _cada cuanto_ lo hacemos.
-  - Residual:  
- ![DamagEmitter](./Manual/DamageEmitterR.png)  
- Por último tenemos el daño residual. Este es el que te va afectando incluso cuando ya no estás en contacto. Como parámetros, podremos especificar si queremos que se _destruya el objeto después del primer contacto_, la _cantidad de daño al primer golpe_ (que generalmente suele ser más grande), _cantidad de daño por aplicación_, _cada cuanto_ y _cuantas_ aplicaciones de daño residual se hacen.
+
+  - **Instant:**  
+  ![DamageEmitter](./Manual/DamageEmitter.png)  
+  Daño instantáneo que afecta una única vez al entrar en contacto.  
+    - _Destroy After Doing Damage:_ permite indicar si queremos que el objeto desaparezca tras hacer daño.  
+    - _Instant Kill:_ permite indicar si queremos que mate directamente a la entidad con la que colisiona.  
+    - _Damage Amount:_ en caso de no querer eliminar ni matar, se indica el daño que queremos aplicar.
+
+  - **Permanence:**  
+  ![DamageEmitterP](./Manual/DamageEmitterP.png)  
+  El daño por permanencia afecta mientras estés dentro del objeto.  
+    - _Damage Amount:_ cantidad de vida que se resta cada vez.  
+    - _Damage Cooldown:_ intervalo de tiempo entre cada aplicación de daño.
+
+  - **Residual:**  
+  ![DamageEmitterR](./Manual/DamageEmitterR.png)  
+  El daño residual sigue afectando incluso cuando ya no estás en contacto.  
+    - _Destroy After Doing Damage:_ permite indicar si el objeto debe eliminarse después del primer golpe.  
+    - _Instant Damage Amount:_ daño inicial que se aplica al primer contacto.  
+    - _Residual Damage Amount:_ daño aplicado en cada repetición residual.  
+    - _Damage Cooldown:_ intervalo de tiempo entre cada aplicación de daño residual.  
+    - _Number Of Applications:_ número total de veces que se aplica el daño residual.
 
 
 ### Estado
@@ -282,7 +305,7 @@ Un estado es un comportamiento concreto que puede tener un enemigo en un cierto 
 ### Máquina de Estados Finita (FSM)
   ![FSM](./Manual/FSM.png)  
   La FSM es la encargada de llamar y gestionar todos los estados de un enemigo.  
-  Es necesario especificarle cuál va a ser el _estado inicial_ del enemigo.
+   - _Initial State:_ estado inicial del enemigo.
 
 ### Animator Manager
 Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadir tambien un animator de Unity.  
