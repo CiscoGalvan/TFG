@@ -5,7 +5,7 @@ public class HorizontalActuator : MovementActuator
 {
     [SerializeField, HideInInspector] private LayerMask _layersToCollide = ~0;
 
-    // Enumeraciones
+    // Enumerations
     private enum Direction { Left = -1, Right = 1 }
     public enum OnCollisionReaction { None = 0, Bounce = 1, Destroy = 2 }
 
@@ -24,7 +24,6 @@ public class HorizontalActuator : MovementActuator
     private AnimatorManager _animatorManager;
     private GameObject _playerReference;
 
-
     public override void StartActuator()
     {
         InitializeComponents();
@@ -36,10 +35,12 @@ public class HorizontalActuator : MovementActuator
     {
         if (!_throw) ApplyForce();
     }
+
     public override void DestroyActuator()
     {
-
+        // Handle cleanup logic when the actuator is destroyed
     }
+
     private void ApplyForce()
     {
         _time += Time.deltaTime;
@@ -67,7 +68,7 @@ public class HorizontalActuator : MovementActuator
     private void UpdateDirectionBasedOnPlayer()
     {
         if (!_followPlayer) return;
-        if(_playerReference == null)
+        if (_playerReference == null)
         {
             Debug.LogWarning("Player reference was null, the actuator may not be precise");
             return;
@@ -98,14 +99,10 @@ public class HorizontalActuator : MovementActuator
             {
                 Vector3 direction = _playerReference.transform.position - transform.position;
                 _direction = direction.x > 0 ? Direction.Right : Direction.Left;
-
             }
         }
     }
 
-
-
-   
     private void UpdateAnimation()
     {
         if (_animatorManager == null || !_animatorManager.enabled) return;
@@ -126,6 +123,7 @@ public class HorizontalActuator : MovementActuator
             HandleCollisionReaction(normal);
         }
     }
+
     private void HandleCollisionReaction(Vector2 normal)
     {
         if (_onCollisionReaction == OnCollisionReaction.Bounce)
@@ -175,5 +173,3 @@ public class HorizontalActuator : MovementActuator
 
     #endregion
 }
-
-

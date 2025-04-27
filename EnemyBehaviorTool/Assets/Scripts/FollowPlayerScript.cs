@@ -4,32 +4,41 @@ using UnityEngine;
 
 public class FollowPlayerScript : MonoBehaviour
 {
-	public Transform target; // Referencia al jugador
-	public float smoothSpeed = 0.125f; // Velocidad de suavizado
-	public float xOffset = 2f; // Desplazamiento en X
-	private float lastXPosition; // Última posición X de la cámara
+    public Transform target; // Reference to the player
+    public float smoothSpeed = 0.125f; // Smoothing speed
+    public float xOffset = 2f; // Offset in X direction
+    private float lastXPosition; // Last X position of the camera
 
-	void Start()
-	{
-		lastXPosition = transform.position.x;
-	}
+    void Start()
+    {
+        // Initialize the last X position with the current position of the camera
+        lastXPosition = transform.position.x;
+    }
 
-	void LateUpdate()
-	{
-		if (target == null)
-		{
-			Debug.LogWarning("No se ha asignado un objetivo a la cámara");
-			return;
-		}
+    void LateUpdate()
+    {
+        // Check if the target is assigned
+        if (target == null)
+        {
+            Debug.LogWarning("No target assigned to the camera");
+            return;
+        }
 
-		// Determinar la nueva posición en X solo si el jugador avanza
-		float targetX = target.position.x + xOffset;
-		if (targetX > lastXPosition) // Solo avanza si el jugador se mueve hacia adelante
-		{
-			Vector3 desiredPosition = new Vector3(targetX, transform.position.y, transform.position.z);
-			Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-			transform.position = smoothedPosition;
-			lastXPosition = transform.position.x;
-		}
-	}
+        // Determine the new X position only if the player moves forward
+        float targetX = target.position.x + xOffset;
+        if (targetX > lastXPosition) // Update position only if the player moves forward
+        {
+            // Calculate the desired position with the offset
+            Vector3 desiredPosition = new Vector3(targetX, transform.position.y, transform.position.z);
+
+            // Smoothly interpolate from the current position to the desired position
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+
+            // Apply the smoothed position to the camera
+            transform.position = smoothedPosition;
+
+            // Update the last X position
+            lastXPosition = transform.position.x;
+        }
+    }
 }

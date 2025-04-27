@@ -5,94 +5,106 @@ using UnityEngine.UIElements;
 
 public abstract class Sensor : MonoBehaviour
 {
-	// Action event
-	private Action<Sensor> _onEventDetectedInternal;
+    // Internal event for actions when the sensor detects an event
+    private Action<Sensor> _onEventDetectedInternal;
 
-	protected bool _debugSensor;
-	// Subscriber counter
-	private int _subscriberCount = 0;
+    // Debugging flag to display sensor-related information
+    protected bool _debugSensor;
 
-	protected bool _sensorActive;
+    // Counter to track the number of subscribers to the event
+    private int _subscriberCount = 0;
 
-	[SerializeField, Min(0)]
-	[Tooltip("Initial time the sensor will need to be active")]
-	protected float _startDetectingTime = 0f;
-	protected Timer _timer;
-	protected bool _timerFinished = false;
+    // Indicates whether the sensor is currently active
+    protected bool _sensorActive;
 
-	// Override the add and remove properties of the event
-	public event Action<Sensor> onEventDetected
-	{
-		add
-		{	
-			_onEventDetectedInternal += value;
-			_subscriberCount++;
-		}
-		remove
-		{
-			_onEventDetectedInternal -= value;
+    [SerializeField, Min(0)]
+    [Tooltip("Initial time the sensor will need to be active")]
+    protected float _startDetectingTime = 0f; // Initial delay before the sensor starts detecting
+    protected Timer _timer; // Timer to manage the delay
+    protected bool _timerFinished = false; // Tracks whether the timer has completed
+
+    // Event to notify when the sensor detects something, with custom add/remove logic
+    public event Action<Sensor> onEventDetected
+    {
+        add
+        {
+            // Add a subscriber and increment the counter
+            _onEventDetectedInternal += value;
+            _subscriberCount++;
+        }
+        remove
+        {
+            // Remove a subscriber and decrement the counter
+            _onEventDetectedInternal -= value;
             if (_subscriberCount <= 0)
             {
                 Debug.LogError("Attempted to remove a subscriber when there are none.");
                 return;
             }
-            _subscriberCount--; 
-			
-		}
-	}
+            _subscriberCount--;
+        }
+    }
 
-    // Method to trigger the event
+    // Method to trigger the event when the sensor detects something
     public void EventDetected()
-	{
-		_onEventDetectedInternal?.Invoke(this);
-	}
+    {
+        // Invoke the event if there are any subscribers
+        _onEventDetectedInternal?.Invoke(this);
+    }
 
-	public virtual void StartSensor()
-	{
-		_sensorActive = true;
-		_timer = new Timer(_startDetectingTime);
+    // Starts the sensor and initializes the timer if necessary
+    public virtual void StartSensor()
+    {
+        _sensorActive = true; // Activate the sensor
+        _timer = new Timer(_startDetectingTime); // Create a timer with the specified delay
 
-		if (_startDetectingTime > 0)
-		{
-			_timer.Start();
-			_timerFinished = false;
-		}
-		else
-		{
-			_timerFinished = true;
-		}
-	}
-	public virtual void UpdateSensor()
-	{
-		if (!_sensorActive) return;
-		if (!_timerFinished)
-		{
-			_timer.Update(Time.deltaTime);
-			if (_timer.GetTimeRemaining() <= 0)
-			{
-				_timerFinished = true;
-			}
-			else
-			{
-				return;
-			}
-		}
-	}
-	public virtual void StopSensor() 
-	{
-		_sensorActive = false;
-	}
+        if (_startDetectingTime > 0)
+        {
+            _timer.Start(); // Start the timer
+            _timerFinished = false; // Timer is not yet finished
+        }
+        else
+        {
+            _timerFinished = true; // No delay, timer is considered finished
+        }
+    }
 
-	public void SetDebug(bool debug)
-	{
-		_debugSensor = debug;
-	}
+    // Updates the sensor logic, typically called every frame
+    public virtual void UpdateSensor()
+    {
+        // If the sensor is not active, skip the update
+        if (!_sensorActive) return;
 
-	
-	private void Update()
-	{
-		UpdateSensor();
-	}
+        // Handle the timer logic if it hasn't finished yet
+        if (!_timerFinished)
+        {
+            _timer.Update(Time.deltaTime); // Update the timer with the elapsed time
+            if (_timer.GetTimeRemaining() <= 0)
+            {
+                _timerFinished = true; // Mark the timer as finished
+            }
+            else
+            {
+                return; // Exit early if the timer is still running
+            }
+        }
+    }
 
+    // Stops the sensor from being active
+    public virtual void StopSensor()
+    {
+        _sensorActive = false; // Deactivate the sensor
+    }
 
+    // Enables or disables debug mode
+    public void SetDebug(bool debug)
+    {
+        _debugSensor = debug; // Set the debug flag
+    }
+
+    // Unity's Update method, calls the sensor's update logic
+    private void Update()
+    {
+        UpdateSensor(); // Delegate to the sensor's update logic
+    }
 }

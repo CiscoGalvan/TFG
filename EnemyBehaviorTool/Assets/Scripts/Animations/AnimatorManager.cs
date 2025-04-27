@@ -1,94 +1,119 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+// Ensures that this component requires an Animator component
 [RequireComponent(typeof(Animator))]
 public class AnimatorManager : MonoBehaviour
 {
-    private Animator _animator;
+    private Animator _animator; // Reference to the Animator component
 
     [Tooltip("If true, allows the sprite to be flipped horizontally")]
     [SerializeField]
-    private bool _canFlipX = true;
+    private bool _canFlipX = true; // Determines if the sprite can flip horizontally
 
     [Tooltip("If true, allows the sprite to be flipped vertically")]
     [SerializeField]
-    private bool _canFlipY = true;
-    SpriteRenderer _spriteRenderer;
-    private Rigidbody2D _rb;
+    private bool _canFlipY = true; // Determines if the sprite can flip vertically
+
+    private SpriteRenderer _spriteRenderer; // Reference to the SpriteRenderer component
+    private Rigidbody2D _rb; // Reference to the Rigidbody2D component
 
     private void Start()
     {
+        // Initialize references to required components
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+
+        // Log an error if the Animator component is not attached
         if (_animator == null)
         {
             Debug.LogError("NO ANIMATOR IS ATTACHED");
             return;
         }
-
     }
+
     private void Update()
     {
-        if(_rb != null)
+        // Update Animator parameters with the Rigidbody2D's velocity
+        if (_rb != null)
         {
             Vector2 velocity = _rb.velocity;
-            _animator.SetFloat("XSpeed", velocity.x);
-            _animator.SetFloat("YSpeed", velocity.y);
+            _animator.SetFloat("XSpeed", velocity.x); // Set X-axis speed
+            _animator.SetFloat("YSpeed", velocity.y); // Set Y-axis speed
         }
-      
     }
+
+    // Flips the sprite horizontally to face left
     private void RotateSpriteXLeft()
     {
-        if (!_canFlipX) return;
+        if (!_canFlipX) return; // Exit if horizontal flipping is disabled
         if (_spriteRenderer != null)
         {
             _spriteRenderer.flipX = true;
         }
     }
+
+    // Flips the sprite horizontally to face right
     private void RotateSpriteXRight()
     {
-        if (!_canFlipX) return;
+        if (!_canFlipX) return; // Exit if horizontal flipping is disabled
         if (_spriteRenderer != null)
         {
             _spriteRenderer.flipX = false;
         }
     }
 
+    // Toggles the sprite's vertical flipping
     public void RotateSpriteY()
     {
-        if (!_canFlipY) return;
+        if (!_canFlipY) return; // Exit if vertical flipping is disabled
         if (_spriteRenderer != null)
         {
-            _spriteRenderer.flipY = !_spriteRenderer.flipY;
+            _spriteRenderer.flipY = !_spriteRenderer.flipY; // Toggle the flipY property
         }
     }
 
+    // Handles the destruction process of the object
     public void Destroy()
     {
         if (_animator == null || !_animator.enabled) return;
+
+        // Trigger the "Die" animation
         _animator.SetTrigger("Die");
+
+        // Start a coroutine to destroy the object after the animation
         StartCoroutine(DestroyAfterAnimation());
-        this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+        // Stop Rigidbody2D movement
+        if (_rb != null)
+        {
+            _rb.velocity = Vector3.zero;
+        }
     }
+
+    // Coroutine to destroy the object after the "Die" animation finishes
     private IEnumerator DestroyAfterAnimation()
     {
-        // Wait for the "Die" animation to finish
-        float animationLength = _animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(animationLength);
-        // Destroy the object after the animation completes
-        Destroy(gameObject);
+        float animationLength = _animator.GetCurrentAnimatorStateInfo(0).length; // Get animation length
+        yield return new WaitForSeconds(animationLength); // Wait for the animation to complete
+
+        Destroy(gameObject); // Destroy the object
     }
+
+    // Triggers the "Damage" animation
     public void Damage()
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetTrigger("Damage");
     }
 
+    // Changes the state in the animator and resets all directional booleans
     public void ChangeState()
     {
         if (_animator == null || !_animator.enabled) return;
@@ -100,12 +125,14 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Follow", false);
     }
 
+    // Triggers the "Spawn" animation
     public void SpawnEvent()
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetTrigger("Spawn");
     }
 
+    // Sets the animator's direction to left
     private void LeftDirection()
     {
         if (_animator == null || !_animator.enabled) return;
@@ -113,6 +140,7 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Right", false);
     }
 
+    // Sets the animator's direction to right
     private void RightDirection()
     {
         if (_animator == null || !_animator.enabled) return;
@@ -120,6 +148,7 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Right", true);
     }
 
+    // Sets the animator's direction to down
     public void DownDirection()
     {
         if (_animator == null || !_animator.enabled) return;
@@ -127,6 +156,7 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Down", true);
     }
 
+    // Sets the animator's direction to up
     public void UpDirection()
     {
         if (_animator == null || !_animator.enabled) return;
@@ -134,32 +164,35 @@ public class AnimatorManager : MonoBehaviour
         _animator.SetBool("Up", true);
     }
 
+    // Changes the animator state and flips the sprite to the left
     public void XLeftChangeAndFlip()
     {
         if (_animator == null || !_animator.enabled) return;
-       
-       RotateSpriteXLeft();
-       LeftDirection();
+
+        RotateSpriteXLeft();
+        LeftDirection();
     }
 
+    // Changes the animator state and flips the sprite to the right
     public void XRightChangeAndFlip()
     {
         if (_animator == null || !_animator.enabled) return;
+
         RotateSpriteXRight();
         RightDirection();
     }
-    
 
+    // Updates the animator's rotation speed
     public void ChangeSpeedRotation(float speed)
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetFloat("RotationSpeed", speed);
     }
 
+    // Enables the "Follow" behavior in the animator
     public void Follow()
     {
         if (_animator == null || !_animator.enabled) return;
         _animator.SetBool("Follow", true);
     }
-
 }

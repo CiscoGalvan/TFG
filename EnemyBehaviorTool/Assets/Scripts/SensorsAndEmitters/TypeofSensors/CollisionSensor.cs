@@ -10,29 +10,31 @@ public class CollisionSensor : Sensor
 {
     [Tooltip("Layers that, in case of collision, will activate the sensor.")]
     [SerializeField]
-    private LayerMask _layersToCollide =~0;
+    private LayerMask _layersToCollide = ~0; // Defines the layers that will trigger the sensor on collision
 
-	
-	// Handles the collision event when the object enters a collision
-	private void OnCollisionEnter2D(Collision2D collision)
+    // Handles the collision event when the object enters a collision
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-		// Only process the collision if the sensor is active
-		if (!_sensorActive || !_timerFinished) return;
-		
-		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) != 0)
+        // Only process the collision if the sensor is active and the timer has finished
+        if (!_sensorActive || !_timerFinished) return;
+
+        // Check if the collided object's layer matches the specified layers
+        if ((_layersToCollide.value & (1 << collision.gameObject.layer)) != 0)
         {
             EventDetected(); // Call the event handler method
         }
     }
 
-	private void OnCollisionStay2D(Collision2D collision)
-	{
-		// Only process the collision if the sensor is active
-		if (!_sensorActive || !_timerFinished) return;
+    // Handles the collision event when the object stays in collision
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Only process the collision if the sensor is active and the timer has finished
+        if (!_sensorActive || !_timerFinished) return;
 
-		if ((_layersToCollide.value & (1 << collision.gameObject.layer)) != 0)
-		{
-			EventDetected(); // Call the event handler method
-		}
-	}
+        // Check if the collided object's layer matches the specified layers
+        if ((_layersToCollide.value & (1 << collision.gameObject.layer)) != 0)
+        {
+            EventDetected(); // Call the event handler method
+        }
+    }
 }

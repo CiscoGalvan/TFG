@@ -7,11 +7,11 @@ public class SoundSensor : Sensor
 {
     public override void StartSensor()
     {
-      
+        throw new System.NotImplementedException();
     }
 
 	public override void StopSensor()
 	{
-		
-	}
+        throw new System.NotImplementedException();
+    }
 }
