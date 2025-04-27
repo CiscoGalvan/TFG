@@ -111,10 +111,10 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - _Left:_ El objeto se moverá hacia la izquierda.
     - _Right:_ El objeto se moverá hacia la derecha.
   - _Is Accelerated_  
-    - _Falso:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+    - _False:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
       - _Throw:_ Se aplicará una única vez la fuerza, simulando un lanzamiento
       - _Speed:_ Establece la velocidad a la que se moverá el objeto    
-    - _Verdadero:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
+    - _True:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
       - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
       - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
       - _Easing Function:_ Define cómo se comporta la aceleración
@@ -133,10 +133,10 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - _Up:_ El objeto se moverá hacia arriba.
     - _Down:_ El objeto se moverá hacia abajo.
   - _Is Accelerated_  
-    - _Falso:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+    - _False:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
       - _Throw:_ Se aplicará una única vez la fuerza, simulando un lanzamiento
       - _Speed:_ Establece la velocidad a la que se moverá el objeto    
-    - _Verdadero:_ Si el movimiento es acelerado, la velocidad irá aumentando:
+    - _True:_ Si el movimiento es acelerado, la velocidad irá aumentando:
       - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
       - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
       - _Easing Function:_ Define cómo se comporta la aceleración
@@ -153,11 +153,11 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - _Angle:_  Ángulo con el que va a moverse el objeto
     - _Aim Player:_ Indica si el objeto va a seguir la dirección del jugador (con esta opción el ángulo no aparece porque se le da valor en función de tu posición y la del objetivo)
     - _Is Accelerated_  
-      - _Falso:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+      - _False:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
         - _Throw:_ Se aplicará una única vez la fuerza, simulando un lanzamiento
         - _Speed:_ Establece la velocidad a la que se moverá el objeto    
         
-      - _Verdadero:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
+      - _True:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
         - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
         - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
         - _Easing Function:_ Define cómo se comporta la aceleración
@@ -175,12 +175,12 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
 
   - _Can Rotate_  
     Determina si el objeto puede rotar sobre su propio eje además de moverse en círculo.  
-    - _Falso:_ El objeto solo se moverá en la trayectoria circular sin girar sobre sí mismo.  
-    - _Verdadero:_ El objeto girará sobre su propio eje mientras se mueve.  
+    - _False:_ El objeto solo se moverá en la trayectoria circular sin girar sobre sí mismo.  
+    - _True:_ El objeto girará sobre su propio eje mientras se mueve.  
 
   - _Is Accelerated_
-    - _Falso:_ Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro _Speed_.  
-    - _Verdadero:_ Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
+    - _False:_ Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro _Speed_.  
+    - _True:_ Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
       - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto.  
       - _Interpolation Time:_ Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.  
       - _Easing Function:_ Define cómo se comporta la aceleración. 
@@ -211,8 +211,8 @@ Random area coge puntos aleatorios dentro de un área.
   - _Waypoint Transformm:_ Transform del objeto al que se quiere perseguir.
   - _Time to Reach:_ Tiempo que tarda en llegar al objetivo
   - _Is Accelerated:_
-    - _Falso:_ Si no es acelerado, la posición cambiará de manera constante.  
-    - _Verdadero:_ Si es acelerado, la posición se definirá mediante la función de easing  
+    - _False:_ Si no es acelerado, la posición cambiará de manera constante.  
+    - _True:_ Si es acelerado, la posición se definirá mediante la función de easing  
     ![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuatorA.png)  
 - **Spline Follower Actuator**:  
 ![SpllineFollowerActuator](./Manual/Spline.png)  
@@ -220,8 +220,8 @@ Random area coge puntos aleatorios dentro de un área.
   - _Spline Container:_ Transform del objeto al que se quiere perseguir.
   - _Speed:_ Tiempo que tarda en llegar al objetivo
   - _Is Accelerated_
-    - _Falso:_ Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro _Speed_.  
-    - _Verdadero:_ Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
+    - _False:_ Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro _Speed_.  
+    - _True:_ Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
       - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto.  
       - _Interpolation Time:_ Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.  
       - _Easing Function:_ Define cómo se comporta la aceleración. 
@@ -231,7 +231,7 @@ Los sensores permiten detectar información del entorno y activar transiciones. 
 
 - **Area Sensor:**  
   ![AreaSensor](./Manual/AreaSensor.png)  
-  El sensor de área detecta cuando un objeto específico entra dentro de su zona de detección.<br>  Este sensor hace que el Collider asociado al objeto pase a ser un _Trigger_. 
+  El sensor de área detecta cuando un objeto específico entra dentro de su zona de detección.<br> 
   - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
   - _Target:_ objeto que se quiere detectar.
   - _Detection Condition:_ Indica si quiere dectectar al salir o al entrar del área.
@@ -304,8 +304,10 @@ Un estado es un comportamiento concreto que puede tener un enemigo en un cierto 
 
 ### Máquina de Estados Finita (FSM)
   ![FSM](./Manual/FSM.png)  
-  La FSM es la encargada de llamar y gestionar todos los estados de un enemigo.  
+  La FSM organiza el comportamiento de un enemigo en **estados** (Idle, Patrol, Attack, etc.). Esta es la encargada de llamar y gestionar todos los estados de un enemigo.  
    - _Initial State:_ estado inicial del enemigo.
+
+**Ejemplo:** Un "Guardia" puede tener estados como Patrol, Chase y Attack. Si el jugador entra en su campo de visión, transiciona de Patrol a Chase. Si lo alcanza, a Attack. Si lo pierde de vista, vuelve a Patrol.
 
 ### Animator Manager
 Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadir tambien un animator de Unity.  
