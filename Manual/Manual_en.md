@@ -1,322 +1,555 @@
-# ***User Manual for 2D Video Game Enemy Behavior Framework***
-[🇪🇸 Leer en Español](../readme.md)<br>
-***Welcome to the user manual.***<br>
-**Creators:** Cristina Mora Velasco and Francisco Miguel Galván Muñoz<br>
-**Date:** March 2025
+# ***Manual de Uso para Framework de comportamientos de enemigos para videojuegos 2D***
+[🇬🇧 Read in English](../readme.md)  
+***Bienvenido al manual de uso.***  
+**Creadores:** Cristina Mora Velasco y Francisco Miguel Galván Muñoz  
+**Fecha:** Marzo de 2025
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Objective](#objective)
-- [Functionality](#functionality)
-- [Target Audience](#target-audience)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Package Contents](#package-contents)
-- [Detailed Components](#framework-components)
-  - [Finite State Machine (FSM)](#finite-state-machine-fsm)
-  - [State](#state)
-  - [Sensors](#sensors)
-  - [Actuators](#actuators)
+## Índice
+- [Introducción](#introducción)
+- [Objetivo de la herramienta](#objetivo-de-la-herramienta)
+- [Objetivo del manual](#objetivo)
+- [Funcionalidad](#funcionalidad)
+- [Público Objetivo](#público-objetivo)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Contenido del Paquete](#contenido-del-paquete)
+- [Componentes Detallados](#componentes-del-framework)
+  - [Máquina de Estados Finita (FSM)](#máquina-de-estados-finita-fsm)
+  - [Estado (State)](#estado-state)
+  - [Sensores](#sensores)
+  - [Actuadores](#actuadores)
   - [Animator Manager](#animator-manager)
-- [Practical Examples](#practical-examples)
-  - [Basic Example](#basic-example)
-  - [Intermediate Example](#intermediate-example)
-  - [Advanced Example](#advanced-example)
-- [Troubleshooting](#troubleshooting)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [Glossary](#glossary)
-- [Contact and Support](#contact-and-support)
+- [Ejemplos Prácticos](#ejemplos-de-uso)
+  - [Ejemplo básico](#ejemplo-básico)
+  - [Ejemplo intermedio](#ejemplo-intermedio)
+  - [Ejemplo avanzado](#ejemplo-avanzado)
+- [Solución de Problemas](#solución-de-problemas)
+- [Preguntas Frecuentes](#preguntas-frecuentes)
+- [Glosario](#glosario)
+- [Contacto y Soporte](#contacto-y-soporte)
 
-## Introduction
-This document provides `detailed instructions on how to use the enemy behavior tool for 2D video games`.
-This manual is divided into several sections covering all necessary aspects for the installation and use of the tool. Initially, the user will be guided through the installation process from a GitHub repository. Next, the architecture of the tool will be detailed, explaining the key components and the concept of Finite State Machines. Subsequently, a step-by-step workflow for creating new enemies will be presented, including the configuration of states, transitions, sensors, and actuators. Finally, tips and best practices for effective enemy design will be offered, as well as information on how to obtain technical support.
+## Introducción
+Este documento proporciona _instrucciones detalladas sobre cómo utilizar la herramienta de comportamiento de enemigos para videojuegos 2D_.  
+Este manual se divide en varias secciones que cubren todos los aspectos necesarios para la instalación y el uso de la herramienta. Inicialmente, se guiará al usuario a través del proceso de instalación desde un repositorio de GitHub. A continuación, se detallará la arquitectura de la herramienta, explicando los componentes clave y el concepto de las Máquinas de Estados Finitas. Posteriormente, se presentará un flujo de trabajo paso a paso para la creación de nuevos enemigos, incluyendo la configuración de estados, transiciones, sensores y actuadores. Finalmente, se ofrecerán consejos y mejores prácticas para el diseño de enemigos efectivos, así como información sobre cómo obtener soporte técnico.
 
-## Objective
-This manual aims to provide a clear and detailed guide so that users can install, configure, and use the tool more easily.
-`The tool has been designed to simplify and optimize the process of creating functional 2D enemies within the Unity environment`. Using an architecture based on Finite State Machines (FSM), allows designers to define enemy behavior visually and intuitively, through the addition of custom states and transitions.
+## Objetivo de la herramienta
+Con el paso del tiempo, los juegos han evolucionado haciendose cada vez más complejos. Los enemigos que son el principal obstáculo del jugador, tienen que seguir siendo lo suficientemente desafiantes para captar la atención del jugador pero no sentirse abrumado. Esto incrementa el tiempo y complejidad de creación. Para facilitar esta tarea, **Enemy framework 2D** tiene como objetivo la creación de enemigos completamente funcionales partiendo de elementos sencillos llamados actuadores y controlados por una máquina de estados. Además, para poder tener información del exterior se necesitarán Sensores, que funcionarán como transición entre los diferentes estados.
+## Objetivo del manual
+Este manual tiene como objetivo proporcionar una guía clara y detallada para que los usuarios puedan instalar, configurar y utilizar la herramienta con mayor facilidad.  
+_La herramienta ha sido diseñada para simplificar y mejorar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity_. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los diseñadores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
 
-## Functionality
-- Creation and management of enemy behaviors in 2D.
-- Implementation of state machines to define enemy AI.
+## Funcionalidad
+- Creación y gestión de comportamientos de enemigos en 2D.
+- Implementación de máquinas de estados para definir la IA de los enemigos.
 
-## Target Audience
-Both the tool and the manual have been `created for designers or individuals without advanced programming knowledge`.
-While `basic knowledge of Unity` and fundamental game development concepts is recommended, this manual has been prepared with the intention of being comprehensive enough for users with varying levels of experience to use the tool effectively.
+## Público objetivo
+Tanto la herramienta como el manual han sido _creados para diseñadores o personas sin conocimientos avanzados en programación_.  
+Si bien _se recomienda tener un conocimiento básico de Unity_ y de los conceptos fundamentales del desarrollo de juegos, este manual se ha elaborado con la intención de ser lo suficientemente completo como para que usuarios con distintos niveles de experiencia puedan utilizar la herramienta de manera efectiva.
 
-## Requirements
-Before starting, make sure you meet the following requirements:
-- A version of Unity equal to or greater than `2022.3.18 (LTS)`.
+## Requisitos
+Antes de comenzar, asegúrate de cumplir con los siguientes requisitos:
+- Disponer de una versión igual o superior a _2022.3.18 (LTS)_ de Unity.
 
-## Installation
-Step-by-step installation:
-1. **Download the Tool from GitHub:**
-   - The tool is distributed as a Unity package via a GitHub URL. To obtain the tool, go to the [Link](https://github.com/CiscoGalvan/TFG/blob/main/Package/FrameworkEnemies2D.unitypackage).
-   - Once in the repository, press `Control + Shift + S` keys or click on `More File Actions` (three dots button) and select `Download`.
-2. **Open Unity and load your project or create a new 2D project.**
-3. **In Unity, go to `Assets > Import Package > Custom Package`.**
-4. **Select the downloaded file (`.unitypackage`).**
-5. **Press `Import` and make sure to check all the necessary options.**
-6. **Once imported, verify that the tool's assets appear in the Unity `Project` window.**
+## Instalación
+Paso a paso para la instalación:  
+1. Descarga de la Herramienta desde GitHub:
+   - La herramienta se distribuye como un paquete de Unity a través de una URL de GitHub. Para obtener la herramienta, accede al [Link](https://github.com/CiscoGalvan/TFG/blob/main/Package/FrameworkEnemies2D.unitypackage).
+   - Una vez en el repositorio, presiona las teclas _Control + Shift + S_ o haz clic en _More File Actions_ (botón de los tres puntos) y selecciona _Descargar_.
+2. Abre Unity y carga tu proyecto o crea un nuevo proyecto 2D.
+3. En Unity, ve a _Assets > Import Package > Custom Package_.
+4. Selecciona el archivo descargado (_.unitypackage_).
+5. Presiona _Importar_ y asegúrate de marcar todas las opciones necesarias.
+6. Una vez importado, verifica que los activos de la herramienta aparecen en la ventana _Project_ de Unity.
 
-## Package Contents
-### 📂 `Scripts`
-- Contains the necessary scripts for the framework to function.
-- Includes logic for state management, enemy behaviors, and collision detection.
-- Organized into subfolders according to their functionality (`FSM`, `Actuators`, `SensorsAndEmitters`, `Editors`, `PlayerBehaviour`, `Basic Components`, `Animation`).
+## Contenido del Paquete
+### 📂 _Scripts_
+- Contiene los scripts necesarios para el funcionamiento del framework.
+- Incluye lógica de gestión de estados, comportamientos de enemigos y detección de colisiones.
+- Organizados en subcarpetas según su funcionalidad (_FSM_, _Actuators_, _SensorsAndEmitters_, _Editors_, _PlayerBehaviour_, _Basic Components_, _Editors_, _Animation_).
 
-### 🎮 `Scenes`
-- Contains example scenes with functional enemies.
-- Each scene shows different configurations.
+### 🎮 _Scenes_
+- Contiene escenas de ejemplo con enemigos funcionales.
+- Cada escena muestra configuraciones distintas.
 
-### 🏗️ `Prefabs`
-- Includes pre-configured enemy prefabs ready for use.
+### 🏗️ _Prefabs_
+- Incluye prefabs de enemigos preconfigurados listos para su uso.
 
-### 🎞️ `Animations`
-- Contains enemy animation clips.
-- Includes animations such as `Idle`, `Walk`, `Attack`, and `Death`.
-- Compatible with Unity's `Animator` system.
+### 🎞️ _Animations_
+- Contiene clips de animación de enemigos.
+- Incluye animaciones como _Idle_, _Walk_, _Attack_ y _Death_.
+- Controller de ejemplo para controlar las animaciones.
+- Compatible con el sistema de _Animator_ de Unity.
 
-## Framework Components
-### Finite State Machine (FSM)<br>
-  ![FSM](./FSM.png)<br>
-  The FSM is responsible for calling and managing all the states of an enemy.
-  It is necessary to specify the `initial state` of the enemy.
+## Componentes del Framework
+### Actuadores
+Los actuadores son componentes que permiten a los enemigos realizar acciones. Estas acciones son las que definen el movimiento o creación de otros enemigos.
+Disponemos de 7 tipos de actuadores:
 
-### State<br>
-  ![State](./State.png)<br>
-  Within each state, we must specify which action/actions we will perform in the `Actuator List`.
-  To have `Transitions` from one state to another, the sensor responsible for detecting that change and the state to which we want to transition must be specified.
-  If we want damage to be dealt in the state, we must specify which `DamageEmitter` will be active.
-  Finally, if we want to `see information about the movement to be performed via Gizmos`, we must activate `Debug State`.
+- **Spawner Actuator**:   
+![SpawnerActuator](./SpawnerActuator.png)  
+  Permite generar (spawnear) nuevos enemigos.  
+  - _Infinite Enemies:_ si se quiere crear infinitos enemigos, en caso contrario se debe especificar la cantidad de veces que vamos a spawnear la lista.
+  - _Spawn Interval:_ cada cuanto tiempo se crean.
+  - _Prefab to Spawn:_ objeto que queremos crear.
+  - _Spawn Point:_ posición donde queremos que se cree el objeto.
 
-### Sensors
-Sensors allow detecting information from the environment and triggering transitions. We have five sensors available:
-
-- **Area Sensor:**<br>
-  ![AreaSensor](./AreaSensor.png)<br>
-  The area sensor detects when a specific object (Target) enters its detection zone.<br>
-  This sensor causes the Collider associated with the object to become a `Trigger`.
-
-- **Collision Sensor:**
-  ![CollisionSensor](./CollisionSensor.png)
-  Detects when the enemy physically collides with another object. Unlike the `Area Sensor`, this requires a real collision rather than just detecting presence within an area.<br>
-  You must specify which `layers` activate the sensor.
-
-- **Distance Sensor:**
-![DistanceSensor](./DistanceSensor.png)
-  Detects when a specific object (Target) is at a `certain distance from the enemy`.<br>
-  A `detection condition` is required, which can be:
-  - Being within the detection distance.
-  - Being outside of it.<br>
-
-  It is necessary to specify the `time it is inactive at the start` (Start Detecting Time); if this is 0, the sensor starts activated.<br>
-
-- **Time Sensor:**<br>
-![TimeSensor](./TimeSensor.png)<br>
- Detects when a specific `time` passes.
-
-- **Damage Sensor:**<br>
-![DamageSensor](./DamageSensor.png)<br>
- Detects when an entity `receives damage`.
- This sensor is used to manage the `life` of both enemies and the player.<br> For damage to be received, `Active From Start` must be set to true.
-
-- **Damage Emitter:**
-  It is responsible for `dealing damage`; you have to specify the type of damage, and each damage type has its own parameters:
-  - Instant:
-    ![DamagEmitter](./DamageEmitter.png)
-    Instant damage is that which affects you only once upon contact. As parameters, we can specify if we want to `destroy the object after dealing damage`, if we want it to `directly kill the entity it collides with`. If we do not want it to directly eliminate the target, we will indicate the `damage we want to inflict`.
-  - Persistent:
-    ![DamagEmitter](./DamageEmitterP.png)
-    Persistent damage is that which affects you while you are inside the object. As parameters, we can specify the `amount of damage` we inflict and `how often` we inflict it.
-  - Residual:
-    ![DamagEmitter](./DamageEmitterR.png)
-    Finally, we have residual damage. This is what affects you even when you are no longer in contact. As parameters, we can specify if we want to `destroy the object after the first contact`, the `amount of damage on the first hit` (which is usually larger), the `amount of damage per application`, `how often`, and `how many` applications of residual damage are applied.
----
-
-### Actuators
-Actuators allow performing actions during enemy states. We have 7 types of actuators available:
-
-- **Spawner Actuator**:
-![SpawnerActuator](./SpawnerActuator.png)
-  Allows generating (spawning) new enemies.
-  - `Infinite Enemies:` if you want to create infinite enemies; otherwise, you must specify the number of times we will spawn the list.
-  - `Spawn Interval:` how often they are created.
-  - `Prefab to Spawn:` object we want to create.
-  - `Spawn Point:` position where we want the object to be created.
-
-  Being a list, we can spawn more than one object at a time.
+  Al ser una lista, podemos spawnear más de un objeto a la vez.
 
 
-- **Horizontal Actuator**:
-![HorizontalActuator](./HorizontalActuator.png)
+- **Horizontal Actuator**:  
+![HorizontalActuator](./HorizontalActuator.png)  
+Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamiento tras una colisión. Tiene distintas configuraciones.
 
-This actuator allows moving an object horizontally, either to the left or right, with different speed configurations and behavior after a collision. It has different configurations.
+  - _Reaction After Collision_  
+  Define qué sucede cuando el objeto choca contra otro:
+    - _None:_ No hay ninguna reacción al colisionar.
+    - _Bounce:_ El objeto cambia de dirección y sigue moviéndose en sentido contrario.
+    - _Destroy:_ El objeto desaparece al colisionar.
+  - _Direction _  
+  Determina hacia dónde se mueve el objeto:
+    - _Left:_ El objeto se moverá hacia la izquierda.
+    - _Right:_ El objeto se moverá hacia la derecha.
+  - _Is Accelerated_  
+    - _False:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+      - _Throw:_ Se aplicará una única vez la fuerza, simulando un lanzamiento
+      - _Speed:_ Establece la velocidad a la que se moverá el objeto    
+    - _True:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
+      - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
+      - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+      - _Easing Function:_ Define cómo se comporta la aceleración
 
-  - `Reaction After Collision`
-  Defines what happens when the object collides with another:
-    - `None:` No reaction upon collision.
-    - `Bounce:` The object changes direction and continues moving in the opposite direction.
-    - `Destroy:` The object disappears upon collision.
-  - `Direction`
-  Determines where the object moves:
-    - `Left:` The object will move to the left.
-    - `Right:` The object will move to the right.
-  - `Is Accelerated`
-    - `False:` If not accelerated, the enemy will move with a constant linear speed. You can configure:
-      - `Throw:` The force will be applied only once, simulating a launch.
-      - `Speed:` Sets the speed at which the object will move.
-    - `True:` If the movement is accelerated, the speed will increase:
-      - `Goal Speed:` This is the maximum speed the object will reach after accelerating.
-      - `Interpolation Time:` This is the time it takes for the object to go from speed 0 to its target speed.
-      - `Easing Function:` Defines how the acceleration behaves.
+- **Vertical Actuator**:  
+ ![VerticalActuator](./VerticalActuator.png)  
+  Este actuador permite mover un objeto vertical, ya sea hacia arriba o hacia abajo, con diferentes configuraciones de velocidad y comportamiento tras una colisión.
 
-- **Vertical Actuator**:
-
-  ![VerticalActuator](./VerticalActuator.png)
-
-  This actuator allows moving an object vertically, either up or down, with different speed configurations and behavior after a collision. It has different configurations.
-
-  - `Reaction After Collision`
-  Defines what happens when the object collides with another:
-    - `None:` No reaction upon collision.
-    - `Bounce:` The object changes direction and continues moving in the opposite direction.
-    - `Destroy:` The object disappears upon collision.
-  - `Direction`
-  Determines where the object moves:
-    - `Up:` The object will move upwards.
-    - `Down:` The object will move downwards.
-  - `Is Accelerated`
-    - `False:` If not accelerated, the enemy will move with a constant linear speed. You can configure:
-      - `Throw:` The force will be applied only once, simulating a launch.
-      - `Speed:` Sets the speed at which the object will move.
-    - `True:` If the movement is accelerated, the speed will increase:
-      - `Goal Speed:` This is the maximum speed the object will reach after accelerating.
-      - `Interpolation Time:` This is the time it takes for the object to go from speed 0 to its target speed.
-      - `Easing Function:` Defines how the acceleration behaves.
+  - _Reaction After Collision_  
+  Define qué sucede cuando el objeto choca contra otro:
+    - _None:_ No hay ninguna reacción al colisionar
+    - _Bounce:_ El objeto cambia de dirección y sigue moviéndose en sentido contrario.
+    - _Destroy:_ El objeto desaparece al colisionar.
+  - _Direction _  
+  Determina hacia dónde se mueve el objeto:
+    - _Up:_ El objeto se moverá hacia arriba.
+    - _Down:_ El objeto se moverá hacia abajo.
+  - _Is Accelerated_  
+    - _False:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+      - _Throw:_ Se aplicará una única vez la fuerza, simulando un lanzamiento
+      - _Speed:_ Establece la velocidad a la que se moverá el objeto    
+    - _True:_ Si el movimiento es acelerado, la velocidad irá aumentando:
+      - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
+      - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+      - _Easing Function:_ Define cómo se comporta la aceleración
 
 
-- **Directional Actuator**:
-![DirectionalActuator](./DirectionalActuator.png)<br>
-  Makes the enemy move in a specific direction described by an angle.
-    - `Reaction After Collision`
-  Defines what happens when the object collides with another:
-      - `None:` No reaction upon collision.
-      - `Bounce:` The object changes direction and simulates a bounce.
-      - `Destroy:` The object disappears upon collision.
-    - `Angle:` Angle at which the object will move.
-    - `Aim Player:` Indicates whether the object will follow the player's direction (with this option, the angle does not appear because its value is determined by your position and the target's position).
-    - `Is Accelerated`
-      - `False:` If not accelerated, the enemy will move with a constant linear speed. You can configure:
-        - `Throw:` The force will be applied only once, simulating a launch.
-        - `Speed:` Sets the speed at which the object will move.
+- **Directional Actuator**:  
+![DirectionalActuator](./DirectionalActuator.png)  
+  Hace que el enemigo se mueva en una dirección específica descrita por un ángulo.
+   - _Reaction After Collision_  
+  Define qué sucede cuando el objeto choca contra otro:
+      - _None:_ No hay ninguna reacción al colisionar
+      - _Bounce:_ El objeto cambia de dirección y simula un rebote.
+      - _Destroy:_ El objeto desaparece al colisionar. 
+    - _Angle:_  Ángulo con el que va a moverse el objeto
+    - _Aim Player:_ Indica si el objeto va a seguir la dirección del jugador (con esta opción el ángulo no aparece porque se le da valor en función de tu posición y la del objetivo)
+    - _Is Accelerated_  
+      - _False:_ Si no es acelerado, el enemigo se moverá con una velocidad lineal constante. Se podrá configurar:  
+        - _Throw:_ Se aplicará una única vez la fuerza, simulando un lanzamiento
+        - _Speed:_ Establece la velocidad a la que se moverá el objeto    
+        
+      - _True:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
+        - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
+        - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+        - _Easing Function:_ Define cómo se comporta la aceleración
 
-      - `True:` If the movement is accelerated, the speed will increase:
-        - `Goal Speed:` This is the maximum speed the object will reach after accelerating.
-        - `Interpolation Time:` This is the time it takes for the object to go from speed 0 to its target speed.
-        - `Easing Function:` Defines how the acceleration behaves.
+- **Circular Actuator**:  
+![CircularrActuator](./CircularActuator.png)  
+ Permite movimientos circulares en torno a un punto de rotación determinado.
+  - _Rotation Point Position_  
+    Define el punto central sobre el cual se realiza la rotación.  
+    - _None:_ Si no se asigna, el objeto girará en torno a su propio centro.  
+    - _Transform:_ Si se asigna un objeto, la rotación se realizará alrededor de ese punto.  
 
-- **Circular Actuator**:<br>
-![CircularrActuator](./CircularActuator.png)<br>
- Allows circular movements around a specific rotation point.
-  - `Rotation Point Position`
-    Defines the central point around which the rotation occurs.
-    - `None:` If not assigned, the object will rotate around its own center.
-    - `Transform:` If an object is assigned, the rotation will occur around that point.
+  - _Max Angle_  
+    Ángulo máximo que puede alcanzar el movimiento circular (360 indica un círculo completo, el resto de ángulos se comporta como un péndulo).  
 
-  - `Max Angle`
-    Maximum angle that the circular movement can reach (360 indicates a full circle; other angles behave like a pendulum).
+  - _Can Rotate_  
+    Determina si el objeto puede rotar sobre su propio eje además de moverse en círculo.  
+    - _False:_ El objeto solo se moverá en la trayectoria circular sin girar sobre sí mismo.  
+    - _True:_ El objeto girará sobre su propio eje mientras se mueve.  
 
-  - `Can Rotate`
-    Determines if the object can rotate on its own axis in addition to moving in a circle.
-    - `False:` The object will only move in the circular path without rotating itself.
-    - `True:` The object will rotate on its own axis while moving.
+  - _Is Accelerated_
+    - _False:_ Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro _Speed_.  
+    - _True:_ Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
+      - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto.  
+      - _Interpolation Time:_ Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.  
+      - _Easing Function:_ Define cómo se comporta la aceleración. 
 
-  - `Is Accelerated`
-    - `False:` If not accelerated, the object will move at a constant speed defined by the `Speed` parameter.
-    - `True:` If accelerated, the speed will increase progressively according to the following parameters:
-      - `Goal Speed:` This is the maximum speed the object will reach.
-      - `Interpolation Time:` This is the time it takes for the object to go from speed 0 to its target speed.
-      - `Easing Function:` Defines how the acceleration behaves.
+- **Move to a Point Actuator**:  
+Hace que el enemigo se mueva hacia un punto fijo específico del escenario. Hay dos configuraciones dependiendo del _Use Way_
+  - _Random Area_  
+![MoveToAPointActuator](./MoveToAPointActuatorA.png)   
+Random area coge puntos aleatorios dentro de un área.
+    - _Random Area:_ Collider que servirá para la referencia del área
+     - _Time Between Random Points:_ Cada cuánto cambia el punto a otro distinto
+  - _Waypoint_: Indica que queremos seguir un camino predeterminado de puntos
+    - _Is A Cicle:_ Indica si queremos que al llegar al final de los waypoints, se vuelva a iniciar la lista.
+    - _Same Waypoints Behaviour:_ Indica si queremos que el comportamiento sea el mismo para todos los waypoints.
+      -  Si es así, se creará un panel único de especificiación de puntos:  
+![MoveToAPointActuator](./MoveToAPointActuatorS.png)  
+          - _Time Between Waypoints:_ tiempo que se tarda entre un punto y otro 
+          - _Are Accelerated:_ si el movimiento es acelerado o no. En caso de serlo, aparecerá una easing function que indicará con qué aceleración se mueve. 
+          - _Should Stop:_ indica si debe o no parar al llegar a un punto. Si se debe parar, hay que  indicar cuanto tiempo.  
+      - Si no es así, aparecerán los mismos datos por cada waypoint.  
+    ![MoveToAPointActuator](./MoveToAPointActuator.png)  
 
-- **Move to a Point Actuator**:
-Makes the enemy move towards a specific fixed point in the scene. There are two configurations depending on `Use Way`:
-  - `Random Area`
-![MoveToAPointActuator](./MoveToAPointActuatorA.png)
-Random area picks random points within an area.
-    - `Random Area:` Collider that will serve as the area reference.
-    - `Time Between Random Points:` How often the point changes to a different one.
-  - `Waypoint`: Indicates that we want to follow a predetermined path of points.
-    - `Is A Circle:` Indicates whether we want the list to restart when the end of the waypoints is reached.
-    - `Same Waypoints Behaviour:` Indicates whether we want the behavior to be the same for all waypoints.
-      - If so, a single point specification panel will be created:
-![MoveToAPointActuator](./MoveToAPointActuatorS.png)
-        - `Time Between Waypoints:` Time taken between one point and another.
-        - `Are Accelerated:` Whether the movement is accelerated or not. If so, an easing function will appear indicating the acceleration.
-        - `Should Stop:` Indicates whether to stop upon reaching a point. If it should stop, the duration must be indicated.
-      - If not, the same data will appear for each waypoint.
-    ![MoveToAPointActuator](./Manual/MoveToAPointActuator.png)
+  
+
+- **Move to an Object Actuator**:  
+![MoveToAnObjectActuator](./MoveToAnObjectActuator.png)  
+  Hace que el enemigo se desplace automáticamente hacia un objeto determinado, si el objeto se mueve, el enemigo cambiará su dirección para ir hacia el objeto
+  - _Waypoint Transformm:_ Transform del objeto al que se quiere perseguir.
+  - _Time to Reach:_ Tiempo que tarda en llegar al objetivo
+  - _Is Accelerated:_
+    - _False:_ Si no es acelerado, la posición cambiará de manera constante.  
+    - _True:_ Si es acelerado, la posición se definirá mediante la función de easing  
+    ![MoveToAnObjectActuator](./MoveToAnObjectActuatorA.png)  
+- **Spline Follower Actuator**:  
+![SpllineFollowerActuator](./Spline.png)  
+  Hace que el enemigo se desplace  y rote automáticamente siguiendo una ruta definida por un spline.
+  - _Spline Container:_ Transform del objeto al que se quiere perseguir.
+  - _Speed:_ Tiempo que tarda en llegar al objetivo
+  - _Is Accelerated_
+    - _False:_ Si no es acelerado, el objeto se moverá con velocidad constante definida por el parámetro _Speed_.  
+    - _True:_ Si es acelerado, la velocidad aumentará progresivamente según los siguientes parámetros:  
+      - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto.  
+      - _Interpolation Time:_ Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.  
+      - _Easing Function:_ Define cómo se comporta la aceleración. 
+
+### Sensores
+Los sensores permiten detectar información del entorno y activar transiciones.
+ Disponemos de cinco sensores:
+
+- **Area Sensor:**  
+  ![AreaSensor](./AreaSensor.png)  
+  El sensor de área detecta cuando un objeto específico entra dentro de su zona de detección.<br> 
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Target:_ objeto que se quiere detectar.
+  - _Detection Condition:_ Indica si quiere dectectar al salir o al entrar del área.
+ 
+
+- **Collision Sensor:**  
+  ![CollisionSensor](./CollisionSensor.png)  
+  Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del _Area Sensor_, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.<br>
+  Se debe especificar qué _capas físicas_ activan el sensor. 
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Layers to Collide:_ Mascara de capas físicas donde se debe indicar con que queremos chocar.
+
+- **Distance Sensor:**  
+![DistanceSensor](./DistanceSensor.png)  
+  Detecta cuando un objeto específico (Target) está a una _determinada distancia del enemigo_.<br> 
+   - _Distance type:_ tipo de distancia que se quiere comprobar. 
+      - Magnitud: 360 grados de detección.
+      - Single Axix: un único eje. 
+   - _Detection Condition:_ Indica si quiere dectectar al salir o al entrar del área.
+  - _Target:_ objeto que se quiere detectar.
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Detection Distance:_ distancia de detección.
+  
 
 
+- **Time Sensor:**    
+![TimeSensor](./TimeSensor.png)  
+ Detecta cuando pasa un tiempo específico.
+  - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
+  - _Detection Time:_ tiempo de detección.
+- **Damage Sensor:**  
+![DamageSensor](./DamageSensor.png)  
+  Detecta cuando una entidad _recibe daño_.
+  Este sensor es utilizado a la hora de gestionar la _vida_ tanto de los enemigos como del propio jugador.<br> Para que se pueda recibir daño se debe tener _Active From Start_ a true. 
 
-- **Move to an Object Actuator**:
-![MoveToAnObjectActuator](./MoveToAnObjectActuator.png)
-  Makes the enemy automatically move towards a specific object; if the object moves, the enemy will change its direction to go towards the object.
-  - `Waypoint Transform:` Transform of the object to be pursued.
-  - `Time to Reach:` Time it takes to reach the target.
-  - `Is Accelerated:`
-    - `False:` If not accelerated, the position will change constantly.
-    - `True:` If accelerated, the position will be defined by the easing function.
-    ![MoveToAnObjectActuator](./MoveToAnObjectActuatorA.png)
+- **Damage Emitter**:  
+  Es el encargado de _hacer daño_, en él tienes que especificar el tipo de daño, cada tipo de daño tiene sus propios parámetros:
+
+  - **Instant:**  
+  ![DamageEmitter](./DamageEmitter.png)  
+  Daño instantáneo que afecta una única vez al entrar en contacto.  
+    - _Destroy After Doing Damage:_ permite indicar si queremos que el objeto desaparezca tras hacer daño.  
+    - _Instant Kill:_ permite indicar si queremos que mate directamente a la entidad con la que colisiona.  
+    - _Damage Amount:_ en caso de no querer eliminar ni matar, se indica el daño que queremos aplicar.
+
+  - **Permanence:**  
+  ![DamageEmitterP](./DamageEmitterP.png)  
+  El daño por permanencia afecta mientras estés dentro del objeto.  
+    - _Damage Amount:_ cantidad de vida que se resta cada vez.  
+    - _Damage Cooldown:_ intervalo de tiempo entre cada aplicación de daño.
+
+  - **Residual:**  
+  ![DamageEmitterR](./DamageEmitterR.png)  
+  El daño residual sigue afectando incluso cuando ya no estás en contacto.  
+    - _Destroy After Doing Damage:_ permite indicar si el objeto debe eliminarse después del primer golpe.  
+    - _Instant Damage Amount:_ daño inicial que se aplica al primer contacto.  
+    - _Residual Damage Amount:_ daño aplicado en cada repetición residual.  
+    - _Damage Cooldown:_ intervalo de tiempo entre cada aplicación de daño residual.  
+    - _Number Of Applications:_ número total de veces que se aplica el daño residual.
 
 
+### Estado
+Un estado es un comportamiento concreto que puede tener un enemigo en un cierto tiempo. Los estados se encargan de almacenar las acciones.  
+  ![State](./State.png)  
+  Hace que el enemigo se desplace  y rote automáticamente siguiendo una ruta definida por un spline.
+  - _Actuator List:_ Acción/acciones vamos a realizar
+  - Transiton List:_  Para poder tener _Transiciones_ de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.
+  - _Damaged Emitters:_ En caso de que queramos que en el estado se realice daño, se deberá especificar qué _DamageEmitter_ se encontrará activo.  
+  - _Debug State:_ Si deseamos _depurar_ información sobre el movimiento que se va a realizar.
+
+### Máquina de Estados Finita (FSM)
+  ![FSM](./FSM.png)  
+  La FSM organiza el comportamiento de un enemigo en **estados** (Idle, Patrol, Attack, etc.). Esta es la encargada de llamar y gestionar todos los estados de un enemigo.  
+   - _Initial State:_ estado inicial del enemigo.
+
+**Ejemplo:** Un "Guardia" puede tener estados como Patrol, Chase y Attack. Si el jugador entra en su campo de visión, transiciona de Patrol a Chase. Si lo alcanza, a Attack. Si lo pierde de vista, vuelve a Patrol.
 
 ### Animator Manager
-It is responsible for managing enemy animations based on their states and actions. If you want to add an animation, you also need to add a Unity animator.
-It is important that all Sprites to be used `face to the right`.
+Se encarga de gestionar las animaciones de los enemigos en función de sus estados y acciones. Si se quiere añadir una animación, es necesario añadir tambien un animator de Unity.  
+Es importante que todos los Sprites que se quieran utilizar _se orienten hacia la derecha_.
 ### Life
-Manages the life of objects.
- ![Life](./Life.png)
- - `Initial Life:` Initial health.
- - `Entity type:` Type of entity (player or enemy).
-## Practical Examples
-All examples are based on the following setup:
- 1. Creation of a new scene.
- 2. Drag the *Scene* prefab into the *Assets/Prefabs* folder.
- 3. Add a new layer with the desired name for the scenario, for example, *World*.
- 4. Drag the *Player* prefab into the *Assets/Prefabs* folder.
- 3. Add a new layer with the desired name for the Player, for example, *Player*.
+Gestiona la vida de los objetos.  
+ ![Life](./Life.png)  
+ - _Initial Life:_ vida inicial.
+ - _Entity type:_ tipo de entidad (player o enemy)
 
-### First Example: SPIKES
-### Second Example: CRAWLER
-### Third Example: FLYVENGER
-### Fourth Example: TikTik (splines)
-### Fifth Example: Turret + bullets
+## Ejemplos de Uso
+TODOS los ejemplos parten de la Scene Template: Base Scene. 
+Para crear una nueva escena hacer Doble clik sobre Base Scene en Assets/Scene o Desplegar el menú de File, new Scene y seleccionar Base Scene.
+La escena cuenta con un jugador y un mundo listos para funcionar.
 
-## Troubleshooting
-| Problem                        | Solution                                          |
-|--------------------------------|---------------------------------------------------|
-| The package starts with errors in the console | Verify the project's installation and dependencies. |
-|                                |                                                   |
-|                                |                                                   |
+AVISO: En los ejemplos, cuando se dice borrar todos los estados del animator, se refiere a los que no son propios de Unity, es decir, los que aparecen en color Gris. Los estados propios de Unity seguirán aapareciendo aunque se intenten borrar.
+### Primer Ejemplo: PINCHOS
+Uno de los enemigos más comunes son los pinchos, que no se mueven pero sí que dañan al jugador. Vamos a crearlos. 
+Para el ejemplo usaré la imagen de la piedra:  
+![Rock](./Rock.png) 
+ 1. Crea un objeto partiendo del sprite de la piedra que se encuentra en Assets/Animations/Sprites.
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo.
+ 3. Añadir un componente de tipo box collider 2D.
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio.
+     - Que sea de tipo Persistente.
+     - Que haga 1 de daño cada 2 segundos.  
 
-## Frequently Asked Questions
-Section to answer common questions about using the software. TO BE FILLED IN AFTER USER TESTING
+Con eso ya tendremos un enemigo que nos hará daño al entrar en contacto con él.  
 
-## Glossary
-List of technical terms and their definitions to facilitate understanding of the manual:
-- ***Finite State Machines (FSM):*** A Finite State Machine is a computational model used to design algorithms that describe the behavior of a system through a limited number of possible states and the transitions between those states. In the context of video game artificial intelligence, each state represents a specific behavior. Transitions between these states are triggered by specific conditions, often generated by the enemy's interaction with its environment.
-- ***State:*** In a state machine, a state represents a situation in which an enemy can be at a given moment. It defines the enemy's actions while in that state. For example, an enemy can be in the `Idle`, `Patrol`, `Attack`, etc., state.
+  6. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  7. Configuramos el Animator Manager  
+      - Queremos que no haga flip ni en x ni en y  
 
-- ***Serialized:*** Allows modifying values without needing to change the code, by editing them from the Unity editor.
+  8. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
+  9. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  10. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleRock que se encuentra en Assets/Animations/Anim
+  11. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
-- ***Transform:*** It is a Unity component that stores and manages the position, rotation, and scale of an object in the scene. It is fundamental for manipulating any object within the game world, as it allows moving, rotating, and scaling it.
+Ya tendríamos un enemigo funcional con animación.
+### Segundo Ejemplo: DEAMBULADOR
+Otro enemigo muy común son deambuladores, también conocidos como: goomba, reptacillo, o con otro nombre en muchos juegos.   
+Para el ejemplo usaré la imagen del oso:  
+![Oso](./Oso.png) 
+ 1. Crea un objeto partiendo del sprite del oso que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación en constraints)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente de movimiento Horizonal Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Configuramos el Movimiento horizontal:
+    - Queremos que no sea acelerado
+    - Que al colisionar rebote con las capas físicas Mundo y Jugador
+    - Que no siga al jugador
+    - Que la dirección sea hacia la derecha
+    - Que no sea un lanzamiento
+    - Que tenga velocidad continua de 7
+10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
+Ahora vamos a añadir animaciones: 
 
-- ***Serialized:*** In simple terms, it means that an object's information can be saved and retrieved later without losing its data. In Unity, this is used to remember configurations or save game progress.
+  10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  11. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje y pero que sí lo haga en el x
 
-## Contact and Support
+  12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y movimiento horizontal, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idlebear que se encuentra en Assets/Animations/Anim
+  14. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar walkbear que se encuentra en Assets/Animations/Anim
+  
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
-It is recommended to review example scenes and additional documentation from the developers.
-For additional technical support or to provide feedback on the tool, you can contact the developers directly through the following means: [soporte@ejemplo.com](mailto:soporte@ejemplo.com).
+### Tercer Ejemplo: Torreta + balas 
+Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear primero las balas y luego el enemigo.   
+Para el ejemplo usaré la imagen de la bala:  
+![Bullet](./Bullet.png) 
+ 1. Crea un objeto partiendo del sprite de la bala que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D 
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que se destruya despuhes de hacer daño
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente Directional Actuator y lo añadimos a la lista de actuadores del Estado
+ 9. Configuramos el Movimiento horizontal:
+    - Queremos que colisione con las capas físicas Mundo y Jugador
+    - Que al colisionar se destruya
+    - Que no sea acelerado
+    - Que siga al jugador
+    - Que no sea un lanzamiento
+    - Que tenga velocidad continua de 10
+10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
+Ahora vamos a Crear la Torreta: 
+Para el ejemplo usaré la imagen de la planta:  
+![Planta](./Planta.png) 
+ 1. Crea un objeto partiendo del sprite de la planta que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que haga 1 de daño 
+ 6. Vamos a añadir la creación de otros enemigos (spawner), eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente de Spawner Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Configuramos el Spawner Actuator:
+    - Queremos que cree infinitos enemigos
+    - Que sea cada 2 segundos
+    - Que cree un único enemigo a la vez
+10. Añadimos el  prefab de la bala a la lista del spawner: spawn list, en Prefab to Spawn.
+11. Creamos un nuevo objeto vacío donde queramos que se cree el nuevo enemigo y se lo asignamos a la lista del spawner: spawn list, en  Spawn Point.
+Ahora vamos a añadir animaciones: 
+
+  12. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  13. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje y ni en el eje x
+
+  14. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  15. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y spawn, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
+  16. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idleplant que se encuentra en Assets/Animations/Anim
+  17. Hacemos Click sobre el estado Spawn y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar SpawnPlant que se encuentra en Assets/Animations/Anim
+  
+  18. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+
+
+### Cuarto Ejemplo: TikTik (splines)
+Vamos a crecrear un enemigo del HollowKnigth el TikTIk, este va recorriendo una plataforma bordeándola.  
+Para el ejemplo usaré la imagen de la zarigüeya:  
+![Oso](./Zariguella.png) 
+Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints), así como, añadirlo ala capa Mundo.
+Empecemos con el enemigo:
+ 1. Crea un objeto partiendo del sprite de la zarigüeya que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D 
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que haga 1 de daño 
+ 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos el componente de Spline Follower Actuator y lo añadimos a la lista de actuadores del estado
+ 9. Creamos un Spline con forma cuadrada y lo giramos 90 grados en el eje de las X
+ 9. Configuramos el Spline Follower Actuator:
+    - Añadimos el spline recien creado como referencia
+    - Asignamos la velocidad a la que queremos que vaya
+    - Queremos que se teletransporte el enemigo a la curba y no al contrario.
+10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
+Ahora vamos a añadir animaciones: 
+
+  10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  11. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje Y ni en el eje X
+
+  12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle borramos el resto (selecionamos con el ratón y pulsar suprimir).
+  14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Opossumwolk que se encuentra en Assets/Animations/Anim
+  
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+
+### Quinto Ejemplo: Estalactitas
+Por último vamos a crecrear un enemigo común. Las estalactitas.
+Para el ejemplo usaré la imagen del pájaro:  
+![FatBird](./FatBird.png) 
+ 1. Crea un objeto partiendo del sprite de FatBird que se encuentra en Assets/Animations/Sprites
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar la rotación en constrainsts)
+ 4. Añadir un componente de tipo Damage Emitter.
+ 5. Indicar cómo queremos que haga daño el enemigo:  
+     - Queremos que haga daño desde el inicio
+     - Que sea de tipo Instant
+     - Que mate directamente al jugador
+ 6. Vamos a añadir acciones, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
+ 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
+ 8. Añadimos un elemento a la lista de Sensor Transitions. Lo rellenemos creando y asignando un nuevo estado alestado de transición
+ 9. Para el sensor que activará la transición, vamos a crear un objeto 2d que contenga:
+   - Box Collider 2D
+   - Area sensor, que tenga tiempo de inicio 0 y como target el jugador.
+ 10. Para el segundo estado añadiremos un actuador a la Lista de Actuadores de tipo Vertical Actuator.
+ 11. Configuramos el Vertical Actuator:
+    - Queremos que se elimine al colisionar
+    - Que colisione con las capas físicas Mundo y Jugador
+    - Que no siga al jugador
+    - Que no sea ni acelerado ni sea un lanzamiento
+    - Que tenga una  velocidad de 13
+12. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado dos
+
+Ahora vamos a añadir animaciones: 
+
+  13. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
+  14. Configuramos el Animator Manager  
+      - Queremos que no haga flip en el eje Y ni en el eje X
+
+  15. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+  16. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, vertical movement y die borramos el resto(selecionamos con el ratón y pulsar suprimir).
+  17. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleFatBird que se encuentra en Assets/Animations/Sprites
+  18. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar GraundFatBird que se encuentra en Assets/Animations/Sprites
+  19. Hacemos DOBLE Click sobre el estado Vertical Movement, borramos el estado UP y en Down arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar FallFatBird que se encuentra en Assets/Animations/Sprites
+  
+  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+
+## Solución de Problemas
+| Problema                  | Solución                          |
+|---------------------------|----------------------------------|
+| El paquete inicia con errores en consola   | Verifica la instalación y dependencias del proyecto. |
+| | |
+| | |
+
+## Preguntas Frecuentes
+Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUANDO HAGAMOS PRUEBAS DE USUARIOS
+
+## Glosario
+Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual:
+- ***Arquitectura:*** En este caso, la arquitectura de una herramienta se refiere a como está estructurada, que elementos usa o como está organizada.
+- ***Flujo de Trabajo:*** Es el orden o pasos que hay que completar en una tarea
+- ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados. En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicas, a menudo generadas por la interacción del enemigo con su entorno.
+
+- ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado _Idle_, _Patrol_, _Attack_, etc.
+
+- ***Serializado:*** Permite modificar valores sin necesidad de cambiar el código, editándolos desde el editor de Unity.
+- ***Transform:*** Es un componente de Unity que almacena y gestiona la posición, rotación y escala de un objeto en la escena. Es fundamental para manipular cualquier objeto dentro del mundo del juego, ya que permite moverlo, rotarlo y escalarlo.
+
+
+- ***Flip:*** voltear la imagen. 
+
+
+
+## Contacto y Soporte
+
+Se recomienda revisar escenas de ejemplo y documentación adicional de los desarrolladores.
+Para obtener soporte técnico adicional o para proporcionar comentarios sobre la herramienta, puede contactar directamente a los desarrolladores a través de los siguientes medios: [soporte@ejemplo.com](mailto:soporte@ejemplo.com).
+
 
 ---
-© 2025 Cristina Mora Velasco and Francisco Miguel Galván Muñoz. All rights reserved.
+© 2025 Cristina Mora Velasco y Francisco Miguel Galván Muñoz. Todos los derechos reservados.
