@@ -181,9 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 916467186555705770}
-  _sensorTransitions: []
-  _damageEmittersInState:
-  - {fileID: 2284073555286176473}
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &916467186555705770
 MonoBehaviour:
@@ -202,13 +201,13 @@ MonoBehaviour:
   _layersToCollide:
     serializedVersion: 2
     m_Bits: 136
-  _speed: 0
+  _speed: 10
   _goalSpeed: 15
   _interpolationTime: 1
   _throw: 0
   _direction: -1
   _onCollisionReaction: 2
-  _followPlayer: 1
+  _followPlayer: 0
 --- !u!114 &2284073555286176473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,12 +221,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageType: 0
-  _instaKill: 1
-  _amountOfDamage: 0
+  _instaKill: 0
+  _amountOfDamage: 1
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _destroyAfterDoingDamage: 0
+  _destroyAfterDoingDamage: 1
   _activeFromStart: 1
 --- !u!114 &2845174822851550775
 MonoBehaviour:
@@ -253,7 +252,7 @@ Animator:
   m_GameObject: {fileID: 6312299861578909251}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9136fd134d8cad841be2d74a94d73812, type: 2}
+  m_Controller: {fileID: 9100000, guid: d63a110fdfaba5446ac78786ecbee3e9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -222,11 +222,11 @@ public class MoveToAPointActuator : MovementActuator
         // Animate based on movement direction
         if (newPosition.x < _previousPosition.x)
         {
-            _animatorManager.XLeftChangeAndFlip();
+            _animatorManager?.XLeftChangeAndFlip();
         }
         else if (newPosition.x > _previousPosition.x)
         {
-            _animatorManager.XRightChangeAndFlip();
+            _animatorManager?.XRightChangeAndFlip();
         }
 
         _previousPosition = newPosition;

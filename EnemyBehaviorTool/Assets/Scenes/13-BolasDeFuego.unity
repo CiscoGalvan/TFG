@@ -569,9 +569,8 @@ MonoBehaviour:
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
-  _damageEmitterCollider: {fileID: 0}
   _destroyAfterDoingDamage: 0
-  _activeFromStart: 0
+  _activeFromStart: 1
 --- !u!1 &540529473
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnInterval: 2
   _infiniteEnemies: 1
-  _numOfEnemiesToSpawn: 0
+  _numofTimesToSpawn: 0
   _spawnList:
   - _prefabToSpawn: {fileID: 6312299861578909251, guid: b9e9ade329657a84ca75e8d4658b8aa9, type: 3}
     _spawnPoint: {fileID: 2104074709}
@@ -828,8 +827,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actuatorList:
   - {fileID: 1012068507}
-  _sensorTransitions: []
-  _damageEmittersInState: []
+  _transitionList: []
+  _damageEmitterList: []
   _debugState: 0
 --- !u!114 &1012068510
 MonoBehaviour:

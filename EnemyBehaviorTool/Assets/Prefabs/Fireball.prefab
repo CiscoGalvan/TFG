@@ -180,7 +180,8 @@ MonoBehaviour:
   actuatorList:
   - {fileID: 6112096039114555898}
   _transitionList: []
-  _damageEmitterList: []
+  _damageEmitterList:
+  - {fileID: 2284073555286176473}
   _debugState: 0
 --- !u!114 &2284073555286176473
 MonoBehaviour:
@@ -195,13 +196,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageType: 0
-  _instaKill: 1
-  _amountOfDamage: 0
+  _instaKill: 0
+  _amountOfDamage: 1
   _damageCooldown: 1
   _numOfDamageApplication: 2
   _residualDamageAmount: 0
   _destroyAfterDoingDamage: 0
-  _activeFromStart: 0
+  _activeFromStart: 1
 --- !u!114 &6112096039114555898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ MonoBehaviour:
   _easingFunction: 0
   _layersToCollide:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 255
   _speed: 30
   _throw: 1
   _goalSpeed: 0
