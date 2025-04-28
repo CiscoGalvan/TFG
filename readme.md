@@ -37,7 +37,7 @@ Este manual se divide en varias secciones que cubren todos los aspectos necesari
 Con el paso del tiempo, los juegos han evolucionado haciendose cada vez más complejos. Los enemigos que son el principal obstáculo del jugador, tienen que seguir siendo lo suficientemente desafiantes para captar la atención del jugador pero no sentirse abrumado. Esto incrementa el tiempo y complejidad de creación. Para facilitar esta tarea, **Enemy framework 2D** tiene como objetivo la creación de enemigos completamente funcionales partiendo de elementos sencillos llamados actuadores y controlados por una máquina de estados. Además, para poder tener información del exterior se necesitarán Sensores, que funcionarán como transición entre los diferentes estados.
 ## Objetivo del manual
 Este manual tiene como objetivo proporcionar una guía clara y detallada para que los usuarios puedan instalar, configurar y utilizar la herramienta con mayor facilidad.  
-_La herramienta ha sido diseñada para simplificar y optimizar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity_. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los diseñadores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
+_La herramienta ha sido diseñada para simplificar y mejorar el proceso de creación de enemigos 2D funcionales dentro del entorno de Unity_. Utilizando una arquitectura basada en Máquinas de Estado Finito (FSM), permite a los diseñadores definir el comportamiento de los enemigos de manera visual e intuitiva, a través de la adición de estados y transiciones personalizadas.
 
 ## Funcionalidad
 - Creación y gestión de comportamientos de enemigos en 2D.
@@ -227,7 +227,8 @@ Random area coge puntos aleatorios dentro de un área.
       - _Easing Function:_ Define cómo se comporta la aceleración. 
 
 ### Sensores
-Los sensores permiten detectar información del entorno y activar transiciones. Disponemos de cinco sensores:
+Los sensores permiten detectar información del entorno y activar transiciones.
+ Disponemos de cinco sensores:
 
 - **Area Sensor:**  
   ![AreaSensor](./Manual/AreaSensor.png)  
@@ -240,9 +241,9 @@ Los sensores permiten detectar información del entorno y activar transiciones. 
 - **Collision Sensor:**  
   ![CollisionSensor](./Manual/CollisionSensor.png)  
   Detecta cuando el enemigo choca físicamente con otro objeto. A diferencia del _Area Sensor_, este requiere una colisión real en lugar de solo detectar la presencia dentro de un área.<br>
-  Se debe especificar qué _capas_ activan el sensor. 
+  Se debe especificar qué _capas físicas_ activan el sensor. 
   - _Start Detecting Time:_ tiempo de delay hasta que empiece la detección.
-  - _Layers to Collide:_ Mascara de capas donde se debe indicar con que capas queremos chocar.
+  - _Layers to Collide:_ Mascara de capas físicas donde se debe indicar con que queremos chocar.
 
 - **Distance Sensor:**  
 ![DistanceSensor](./Manual/DistanceSensor.png)  
@@ -322,9 +323,9 @@ Gestiona la vida de los objetos.
 TODOS los ejemplos parten de la siguiente base:
   1. Creación de una escena nueva
   2. Arrastrar el prefab *Scene* en la carpeta *Assets/Prefabs*
-  3. Añadir una nueva capa con el nombre que se quiera para el escenario, por ejemplo *Mundo* 
+  3. Añadir una nueva capa física con el nombre que se quiera para el escenario, por ejemplo *Mundo* 
   4. Arrastrar el prefab *Player* en la carpeta *Assets/Prefabs*
-  5. Añadir una nueva capa con el nombre que se quiera para el Player, por ejemplo *Jugador*
+  5. Añadir una nueva capa física con el nombre que se quiera para el Player, por ejemplo *Jugador*
   6. Añadir un componente de tipo rigidbody almundo y congelar la rotación y posición
   7. Crear un text mex pro que indicará la vida del player y asignarselo en el componente Life   
 
@@ -335,7 +336,7 @@ Uno de los enemigos más comunes son los pinchos, que no se mueven pero sí que 
 Para el ejemplo usaré la imagen de la piedra:  
 ![Rock](./Manual/Rock.png) 
  1. Crea un objeto partiendo del sprite de la piedra que se encuentra en Assets/Animations/Sprites.
- 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo.
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo.
  3. Añadir un componente de tipo box collider 2D.
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -360,7 +361,7 @@ Otro enemigo muy común son deambuladores, también conocidos como: goomba, rept
 Para el ejemplo usaré la imagen del oso:  
 ![Oso](./Manual/Oso.png) 
  1. Crea un objeto partiendo del sprite del oso que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
  3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación en constraints)
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -372,7 +373,7 @@ Para el ejemplo usaré la imagen del oso:
  8. Añadimos el componente de movimiento Horizonal Actuator y lo añadimos a la lista de actuadores del estado
  9. Configuramos el Movimiento horizontal:
     - Queremos que no sea acelerado
-    - Que al colisionar rebote con las capas Mundo y Jugador
+    - Que al colisionar rebote con las capas físicas Mundo y Jugador
     - Que no siga al jugador
     - Que la dirección sea hacia la derecha
     - Que no sea un lanzamiento
@@ -396,7 +397,7 @@ Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear 
 Para el ejemplo usaré la imagen de la bala:  
 ![Bullet](./Manual/Bullet.png) 
  1. Crea un objeto partiendo del sprite de la bala que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
  3. Añadir un componente de tipo box collider 2D y un rigidbody 2D 
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -408,7 +409,7 @@ Para el ejemplo usaré la imagen de la bala:
  7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
  8. Añadimos el componente Directional Actuator y lo añadimos a la lista de actuadores del Estado
  9. Configuramos el Movimiento horizontal:
-    - Queremos que colisione con las capas Mundo y Jugador
+    - Queremos que colisione con las capas físicas Mundo y Jugador
     - Que al colisionar se destruya
     - Que no sea acelerado
     - Que siga al jugador
@@ -419,7 +420,7 @@ Ahora vamos a Crear la Torreta:
 Para el ejemplo usaré la imagen de la planta:  
 ![Planta](./Manual/Planta.png) 
  1. Crea un objeto partiendo del sprite de la planta que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
  3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints)
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -456,7 +457,7 @@ Para el ejemplo usaré la imagen de la zarigüeya:
 Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints), así como, añadirlo ala capa Mundo.
 Empecemos con el enemigo:
  1. Crea un objeto partiendo del sprite de la zarigüeya que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
  3. Añadir un componente de tipo box collider 2D y un rigidbody 2D 
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -489,7 +490,7 @@ Por último vamos a crecrear un enemigo común. Las estalactitas.
 Para el ejemplo usaré la imagen del pájaro:  
 ![FatBird](./Manual/FatBird.png) 
  1. Crea un objeto partiendo del sprite de FatBird que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa para el enemigo (si no está creada ya), por ejemplo Enemigo
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
  3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar la rotación en constrainsts)
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -505,7 +506,7 @@ Para el ejemplo usaré la imagen del pájaro:
  10. Para el segundo estado añadiremos un actuador a la Lista de Actuadores de tipo Vertical Actuator.
  11. Configuramos el Vertical Actuator:
     - Queremos que se elimine al colisionar
-    - Que colisione con las capas Mundo y Jugador
+    - Que colisione con las capas físicas Mundo y Jugador
     - Que no siga al jugador
     - Que no sea ni acelerado ni sea un lanzamiento
     - Que tenga una  velocidad de 13
@@ -537,6 +538,8 @@ Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUAN
 
 ## Glosario
 Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual:
+- ***Arquitectura:*** En este caso, la arquitectura de una herramienta se refiere a como está estructurada, que elementos usa o como está organizada.
+- ***Flujo de Trabajo:*** Es el orden o pasos que hay que completar en una tarea
 - ***Máquinas de estado finitas (FSM):*** Una Máquina de Estados Finita es un modelo computacional utilizado para diseñar algoritmos que describen el comportamiento de un sistema a través de un número limitado de estados posibles y las transiciones entre esos estados. En el contexto de la inteligencia artificial de los videojuegos, cada estado representa un comportamiento específico. Las transiciones entre estos estados se activan mediante condiciones específicas, a menudo generadas por la interacción del enemigo con su entorno.
 
 - ***Estado:*** En una máquina de estados, un estado representa una situación en la que un enemigo puede encontrarse en un momento dado. Define las acciones del enemigo mientras se mantiene en dicho estado. Por ejemplo, un enemigo puede estar en estado _Idle_, _Patrol_, _Attack_, etc.
