@@ -332,25 +332,12 @@ https://assetstore.unity.com/packages/2d/characters/sunny-land-103349
 Uno de los enemigos más comunes son los pinchos, que no se mueven pero sí que dañan al jugador. Vamos a crearlos. 
 Para el ejemplo usaré la imagen de los pinchos:  
 ![Pinchos](./Pinchos.png) 
- 1. Crea un objeto partiendo del sprite de los pinchos que se encuentra en Assets/Animations/Sprites.
- 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemy.
- 3. Añadir un componente de tipo box collider 2D.
- 4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar cómo queremos que haga daño el enemigo:  
-     - Queremos que haga daño desde el inicio.
-     - Que sea de tipo Persistente.
-     - Que haga 1 de daño cada 2 segundos.  
+ 1. Crea un objeto llamado pinchos partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs.
+ 2. Añadir una capa física (si no está creada ya), que por ejemplo se llame Enemy, y cambiarla en el objeto Pinchos que acabamos de crear.
+ 3. Cambia el spriteRender a la imagen de pinchos (si no coincidiese ya) y ajusta el collider a su tamaño.
+ 4. Congela la posición en x y en y, para que los pinchos se mantengan fijos.
+ 5. Elimina el AnimatorManager y Animator, en este caso no son necesarios porqie el objeto  no tiene animación.
 
-Con eso ya tendremos un enemigo que nos hará daño al entrar en contacto con él.  
-
-  6. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
-  7. Configuramos el Animator Manager  
-      - Queremos que no haga flip ni en x ni en y  
-
-  8. Duplicamos el controller animation que viene creado como ejemolo en Assets/Animations
-  9. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
-  10. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleRock que se encuentra en Assets/Animations/Anim
-  11. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
 Ya tendríamos un enemigo funcional con animación.
 ### Segundo Ejemplo: DEAMBULADOR
