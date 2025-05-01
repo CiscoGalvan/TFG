@@ -19,19 +19,22 @@ public class PlayerMovement : MonoBehaviour
 
 	private bool wallSlide;
 
-	
-	private bool groundTouch;
 
-	// Start is called before the first frame update
-	void Start()
+	private bool groundTouch;
+	Animator anim;
+	SpriteRenderer spriteRenderer;
+    // Start is called before the first frame update
+    void Start()
 	{
 		coll = GetComponent<PlayerCollisionDetection>();
 		rb = GetComponent<Rigidbody2D>();
-		
-	}
+        anim = this.GetComponent<Animator>();
+		spriteRenderer = this.GetComponent<SpriteRenderer>();	
 
-	// Update is called once per frame
-	void Update()
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		float x = Input.GetAxis("Horizontal");
 		float y = Input.GetAxis("Vertical");
@@ -80,8 +83,54 @@ public class PlayerMovement : MonoBehaviour
 			groundTouch = false;
 		}
 
+		if (anim != null && anim.enabled)
+		{
+			if (rb.velocity.y > 0.2f && !anim.GetBool("Jump") && !groundTouch)
+			{
+				anim.SetBool("Jump", true);
+				anim.SetBool("Fall", false);
+				anim.SetBool("Run", false);
+				anim.SetBool("Idle", false);
+			}
+			else if (rb.velocity.y < -0.2f && !anim.GetBool("Fall") && !groundTouch)
+			{
+				anim.SetBool("Jump", false);
+				anim.SetBool("Fall", true);
+				anim.SetBool("Run", false);
+				anim.SetBool("Idle", false);
+			}
+			else if (rb.velocity.x != 0 && !anim.GetBool("Run") && groundTouch)
+			{
+
+				anim.SetBool("Run", true);
+				anim.SetBool("Jump", false);
+				anim.SetBool("Fall", false);
+				anim.SetBool("Idle", false);
+			}
+			else if (!anim.GetBool("Idle") && groundTouch)
+			{
+				anim.SetBool("Jump", false);
+				anim.SetBool("Fall", false);
+				anim.SetBool("Run", false);
+				anim.SetBool("Idle", true);
+			}
+
+			if (spriteRenderer != null)
+			{
+                if (dir.x > 0)
+				{
+					spriteRenderer.flipX = false;
+				}
+				else if(dir.x < 0)
+				{
+                    spriteRenderer.flipX = true;
+                }
+
+            }
+		}
+
 		if (wallSlide)
-			return;
+		return;
 	}
 
 	private void WallSlide()
@@ -101,11 +150,13 @@ public class PlayerMovement : MonoBehaviour
 	private void Walk(Vector2 dir)
 	{
 		rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
-	}
+       
+    }
 
 	private void Jump(Vector2 dir, bool wall)
 	{
 		rb.velocity = new Vector2(rb.velocity.x, 0);
 		rb.velocity += dir * jumpForce;
-	}
+       
+    }
 }

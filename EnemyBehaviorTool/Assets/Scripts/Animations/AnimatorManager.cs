@@ -22,7 +22,7 @@ public class AnimatorManager : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer; // Reference to the SpriteRenderer component
     private Rigidbody2D _rb; // Reference to the Rigidbody2D component
-
+    private bool die = false;
     private void Start()
     {
         // Initialize references to required components
@@ -83,27 +83,34 @@ public class AnimatorManager : MonoBehaviour
     public void Destroy()
     {
         if (_animator == null || !_animator.enabled) return;
-
+        if(die)return;
         // Trigger the "Die" animation
         _animator.SetTrigger("Die");
-
-        // Start a coroutine to destroy the object after the animation
-        StartCoroutine(DestroyAfterAnimation());
-
         // Stop Rigidbody2D movement
         if (_rb != null)
         {
             _rb.velocity = Vector3.zero;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+        die = true;
+        // Start a coroutine to destroy the object after the animation
+        StartCoroutine(DestroyAfterAnimation());
+
+        
     }
 
     // Coroutine to destroy the object after the "Die" animation finishes
     private IEnumerator DestroyAfterAnimation()
     {
-        float animationLength = _animator.GetCurrentAnimatorStateInfo(0).length; // Get animation length
-        yield return new WaitForSeconds(animationLength); // Wait for the animation to complete
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
 
-        Destroy(gameObject); // Destroy the object
+        // Esperar hasta que el estado actual sea "Die"
+        while (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+            yield return null;
+
+        float duration = _animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(duration- 0.1f);
+        Destroy(gameObject);
     }
 
     // Triggers the "Damage" animation

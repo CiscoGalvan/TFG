@@ -29,7 +29,7 @@
 - [Contact and Support](#contact-and-support)
 
 ## Introduction
-This document provides _detailed instructions on how to use the enemy behavior tool for 2D video games_.
+This document provides _detailed instructions on how to use the enemy behavior tool for 2D video games_.  
 This manual is divided into several sections covering all necessary aspects for the installation and use of the tool. Initially, the user will be guided through the installation process from a GitHub repository. Next, the architecture of the tool will be detailed, explaining the key components and the concept of Finite State Machines. Subsequently, a step-by-step workflow for creating new enemies will be presented, including the configuration of states, transitions, sensors, and actuators. Finally, tips and best practices for effective enemy design will be offered, as well as information on how to obtain technical support.
 
 ## Objective of the Tool
@@ -44,7 +44,7 @@ _The tool has been designed to simplify and improve the process of creating func
 - Implementation of state machines to define enemy AI.
 
 ## Target Audience
-Both the tool and the manual have been _created for designers or individuals without advanced programming knowledge_.
+Both the tool and the manual have been _created for designers or individuals without advanced programming knowledge_.   
 While _basic knowledge of Unity_ and fundamental game development concepts is recommended, this manual has been prepared with the intention of being comprehensive enough for users with different levels of experience to use the tool effectively.
 
 ## Requirements
@@ -87,7 +87,7 @@ Actuators are components that allow enemies to perform actions. These actions de
 We have 7 types of actuators:
 
 - **Spawner Actuator**:
-![SpawnerActuator](./Manual/SpawnerActuator.png)
+![SpawnerActuator](./Manual/SpawnerActuator.png)  
   Allows generating (spawning) new enemies.
   - _Infinite Enemies:_ if you want to create infinite enemies, otherwise you must specify the number of times you want to spawn the list.
   - _Spawn Interval:_ how often enemies are created.
@@ -98,7 +98,7 @@ We have 7 types of actuators:
 
 
 - **Horizontal Actuator**:
-![HorizontalActuator](./Manual/HorizontalActuator.png)
+![HorizontalActuator](./Manual/HorizontalActuator.png)  
 This actuator allows moving an object horizontally, either to the left or to the right, with different speed and behavior configurations after a collision. It has different configurations.
 
   - _Reaction After Collision_
@@ -119,8 +119,8 @@ This actuator allows moving an object horizontally, either to the left or to the
       - _Interpolation Time:_ This is the time it takes for the object to go from speed 0 to its target speed.
       - _Easing Function:_ Defines how the acceleration behaves.
 
-- **Vertical Actuator**:
- ![VerticalActuator](./Manual/VerticalActuator.png)
+- **Vertical Actuator**:  
+ ![VerticalActuator](./Manual/VerticalActuator.png)  
  This actuator allows moving an object vertically, either up or down, with different speed and behavior configurations after a collision.
 
   - _Reaction After Collision_
@@ -143,7 +143,7 @@ This actuator allows moving an object horizontally, either to the left or to the
 
 
 - **Directional Actuator**:
-![DirectionalActuator](./Manual/DirectionalActuator.png)
+![DirectionalActuator](./Manual/DirectionalActuator.png)  
   Makes the enemy move in a specific direction described by an angle.
     - _Reaction After Collision_
   Defines what happens when the object collides with another:
@@ -162,8 +162,8 @@ This actuator allows moving an object horizontally, either to the left or to the
         - _Interpolation Time:_ This is the time it takes for the object to go from speed 0 to its target speed.
         - _Easing Function:_ Defines how the acceleration behaves.
 
-- **Circular Actuator**:
-![CircularrActuator](./Manual/CircularActuator.png)
+- **Circular Actuator**:  
+![CircularrActuator](./Manual/CircularActuator.png)  
  Permits circular movements around a specific rotation point.
   - _Rotation Point Position_
     Defines the central point around which the rotation occurs.
@@ -204,8 +204,8 @@ Random area picks random points within an area.
     ![MoveToAPointActuator](./Manual/MoveToAPointActuator.png)
 
 
-- **Move to an Object Actuator**:
-![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuator.png)
+- **Move to an Object Actuator**:  
+![MoveToAnObjectActuator](./Manual/MoveToAnObjectActuator.png)  
   Makes the enemy automatically move towards a specific object. If the object moves, the enemy will change its direction to go towards the object.
   - _Waypoint Transform:_ Transform of the object to be chased.
   - _Time to Reach:_ Time it takes to reach the target.
@@ -229,23 +229,23 @@ Random area picks random points within an area.
 Sensors allow detecting information from the environment and triggering transitions.
 We have five sensors:
 
-- **Area Sensor:**
- ![AreaSensor](./Manual/AreaSensor.png)
+- **Area Sensor:**  
+ ![AreaSensor](./Manual/AreaSensor.png)  
  The area sensor detects when a specific object enters its detection zone.<br>
   - _Start Detecting Time:_ delay time until detection starts.
   - _Target:_ object to be detected.
   - _Detection Condition:_ Indicates whether to detect when leaving or entering the area.
 
 
-- **Collision Sensor:**
- ![CollisionSensor](./Manual/CollisionSensor.png)
+- **Collision Sensor:**  
+ ![CollisionSensor](./Manual/CollisionSensor.png)  
  Detects when the enemy physically collides with another object. Unlike the _Area Sensor_, this requires an actual collision rather than just detecting presence within an area.<br>
   You must specify which _physics layers_ activate the sensor.
   - _Start Detecting Time:_ delay time until detection starts.
   - _Layers to Collide:_ Physics layer mask indicating what we want to collide with.
 
-- **Distance Sensor:**
-![DistanceSensor](./Manual/DistanceSensor.png)
+- **Distance Sensor:**  
+![DistanceSensor](./Manual/DistanceSensor.png)  
  Detects when a specific object (_Target_) is at a _certain distance from the enemy_.<br>
    - _Distance type:_ type of distance to check.
      - Magnitude: 360 degrees of detection.
@@ -256,13 +256,13 @@ We have five sensors:
   - _Detection Distance:_ detection distance.
 
 
-- **Time Sensor:**
- ![TimeSensor](./Manual/TimeSensor.png)
+- **Time Sensor:**  
+ ![TimeSensor](./Manual/TimeSensor.png)  
  Detects when a specific time elapses.
   - _Start Detecting Time:_ delay time until detection starts.
   - _Detection Time:_ detection time.
 - **Damage Sensor:**
-![DamageSensor](./Manual/DamageSensor.png)
+![DamageSensor](./Manual/DamageSensor.png)  
  Detects when an entity _receives damage_.
  This sensor is used to manage the _life_ of both enemies and the player.<br> For damage to be received, _Active From Start_ must be set to true.
 
@@ -355,7 +355,7 @@ With that, we will already have an enemy that will damage us upon contact.
 Now we would have a functional enemy with animation.
 ### Second Example: WANDERER
 Another very common enemy is a wanderer, also known as: goomba, little reptile, or by another name in many games.
-For the example, I will use the bear image:
+For the example, I will use the bear image:  
 ![Oso](./Manual/Oso.png)
 1.  Create an object starting from the bear sprite located in Assets/Animations/Sprites.
 2.  Add a physics layer for the enemy (if not already created), for example, Enemy.
@@ -395,7 +395,7 @@ Now let's add animations:
 16. Add the controller you duplicated to the Animator that was created when you added the AnimatorManager.
 ### Third Example: Turret + Bullets
 Let's continue creating an enemy that shoots bullets. To do this, we will first create the bullets and then the enemy.
-For the bullet example, I will use the bullet image:
+For the bullet example, I will use the bullet image:  
 ![Bullet](./Manual/Bullet.png)
 1.  Create an object starting from the bullet sprite located in Assets/Animations/Sprites.
 2.  Add a physics layer for the enemy (if not already created), for example, Enemy.
@@ -419,8 +419,8 @@ For the bullet example, I will use the bullet image:
 10. Add the already created DamageEmitter component to the list of DamageEmitters of the current State.
 
 Now let's create the Turret:
-For the turret example, I will use the plant image:
-![Planta](./Manual/Planta.png)
+For the turret example, I will use the plant image:  
+![Planta](./Manual/Planta.png)  
 1.  Create an object starting from the plant sprite located in Assets/Animations/Sprites.
 2.  Add a physics layer for the enemy (if not already created), for example, Enemy.
 3.  Add a Box Collider 2D and a Rigidbody 2D component (freeze rotation and position in constraints).
@@ -458,8 +458,8 @@ Now let's add animations:
 
 ### Fourth Example: TikTik (splines)
 Let's create a Hollow Knight enemy, the TikTik, which moves along the edge of a platform.
-For the example, I will use the opossum image:
-![Oso](./Manual/Zariguella.png)
+For the example, I will use the opossum image:  
+![Oso](./Manual/Zariguella.png)  
 Before starting with the enemy creation, we will add a square 2D object that will serve as a platform. We must add a Box Collider 2D and a Rigidbody 2D component (freeze rotation and position in constraints), as well as add it to the World layer.
 
 Let's start with the enemy:
@@ -499,7 +499,7 @@ Now let's add animations:
 
 ### Fifth Example: Stalactites
 Finally, let's create a common enemy: stalactites.
-For the example, I will use the bird image:
+For the example, I will use the bird image:  
 ![FatBird](./Manual/FatBird.png)
 1.  Create an object starting from the FatBird sprite located in Assets/Animations/Sprites.
 2.  Add a physics layer for the enemy (if not already created), for example, Enemy.

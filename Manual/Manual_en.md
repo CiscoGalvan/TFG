@@ -62,19 +62,19 @@ Paso a paso para la instalación:
 6. Una vez importado, verifica que los activos de la herramienta aparecen en la ventana _Project_ de Unity.
 
 ## Contenido del Paquete
-### 📂 _Scripts_
+###  _Scripts_
 - Contiene los scripts necesarios para el funcionamiento del framework.
 - Incluye lógica de gestión de estados, comportamientos de enemigos y detección de colisiones.
 - Organizados en subcarpetas según su funcionalidad (_FSM_, _Actuators_, _SensorsAndEmitters_, _Editors_, _PlayerBehaviour_, _Basic Components_, _Editors_, _Animation_).
 
-### 🎮 _Scenes_
+###  _Scenes_
 - Contiene escenas de ejemplo con enemigos funcionales.
 - Cada escena muestra configuraciones distintas.
 
-### 🏗️ _Prefabs_
+###  _Prefabs_
 - Incluye prefabs de enemigos preconfigurados listos para su uso.
 
-### 🎞️ _Animations_
+###  _Animations_
 - Contiene clips de animación de enemigos.
 - Incluye animaciones como _Idle_, _Walk_, _Attack_ y _Death_.
 - Controller de ejemplo para controlar las animaciones.
@@ -105,7 +105,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - _None:_ No hay ninguna reacción al colisionar.
     - _Bounce:_ El objeto cambia de dirección y sigue moviéndose en sentido contrario.
     - _Destroy:_ El objeto desaparece al colisionar.
-  - _Direction _  
+  - _Direction_  
   Determina hacia dónde se mueve el objeto:
     - _Left:_ El objeto se moverá hacia la izquierda.
     - _Right:_ El objeto se moverá hacia la derecha.
@@ -127,7 +127,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
     - _None:_ No hay ninguna reacción al colisionar
     - _Bounce:_ El objeto cambia de dirección y sigue moviéndose en sentido contrario.
     - _Destroy:_ El objeto desaparece al colisionar.
-  - _Direction _  
+  - _Direction_  
   Determina hacia dónde se mueve el objeto:
     - _Up:_ El objeto se moverá hacia arriba.
     - _Down:_ El objeto se moverá hacia abajo.
@@ -137,7 +137,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
       - _Speed:_ Establece la velocidad a la que se moverá el objeto    
     - _True:_ Si el movimiento es acelerado, la velocidad irá aumentando:
       - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
-      - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+      - _Interpolation Time:_ Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
       - _Easing Function:_ Define cómo se comporta la aceleración
 
 
@@ -158,7 +158,7 @@ Este actuador permite mover un objeto horizontalmente, ya sea a la izquierda o a
         
       - _True:_ Si el movimiento si es acelerado, la velocidad irá aumentando:
         - _Goal Speed:_ Es la velocidad máxima que alcanzará el objeto después de acelerar.
-        - _Interpolation Time:_Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
+        - _Interpolation Time:_ Es el tiempo que tarda el objeto en pasar de velocidad 0 a su velocidad objetivo.
         - _Easing Function:_ Define cómo se comporta la aceleración
 
 - **Circular Actuator**:  
@@ -298,7 +298,7 @@ Un estado es un comportamiento concreto que puede tener un enemigo en un cierto 
   ![State](./State.png)  
   Hace que el enemigo se desplace  y rote automáticamente siguiendo una ruta definida por un spline.
   - _Actuator List:_ Acción/acciones vamos a realizar
-  - Transiton List:_  Para poder tener _Transiciones_ de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.
+  - _Transiton List:_  Para poder tener _Transiciones_ de un estado a otro, se debe especificar el sensor que estará encargado de detectar ese cambio y el estado al que se desea pasar.
   - _Damaged Emitters:_ En caso de que queramos que en el estado se realice daño, se deberá especificar qué _DamageEmitter_ se encontrará activo.  
   - _Debug State:_ Si deseamos _depurar_ información sobre el movimiento que se va a realizar.
 
@@ -446,7 +446,7 @@ Ahora vamos a añadir animaciones:
 ### Cuarto Ejemplo: TikTik (splines)
 Vamos a crecrear un enemigo del HollowKnigth el TikTIk, este va recorriendo una plataforma bordeándola.  
 Para el ejemplo usaré la imagen de la zarigüeya:  
-![Oso](./Zariguella.png) 
+![Oso](./Zariguella.png)   
 Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints), así como, añadirlo ala capa Mundo.
 Empecemos con el enemigo:
  1. Crea un objeto partiendo del sprite de la zarigüeya que se encuentra en Assets/Animations/Sprites
@@ -497,12 +497,12 @@ Para el ejemplo usaré la imagen del pájaro:
    - Box Collider 2D
    - Area sensor, que tenga tiempo de inicio 0 y como target el jugador.
  10. Para el segundo estado añadiremos un actuador a la Lista de Actuadores de tipo Vertical Actuator.
- 11. Configuramos el Vertical Actuator:
-    - Queremos que se elimine al colisionar
-    - Que colisione con las capas físicas Mundo y Jugador
-    - Que no siga al jugador
-    - Que no sea ni acelerado ni sea un lanzamiento
-    - Que tenga una  velocidad de 13
+ 11. Configuramos el Vertical Actuator:  
+    - Queremos que se elimine al colisionar  
+    - Que colisione con las capas físicas Mundo y Jugador  
+    - Que no siga al jugador  
+    - Que no sea ni acelerado ni sea un lanzamiento  
+    - Que tenga una  velocidad de 13  
 12. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado dos
 
 Ahora vamos a añadir animaciones: 
@@ -517,7 +517,7 @@ Ahora vamos a añadir animaciones:
   18. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar GraundFatBird que se encuentra en Assets/Animations/Sprites
   19. Hacemos DOBLE Click sobre el estado Vertical Movement, borramos el estado UP y en Down arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar FallFatBird que se encuentra en Assets/Animations/Sprites
   
-  15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+  20. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
 
 ## Solución de Problemas
 | Problema                  | Solución                          |
@@ -527,7 +527,7 @@ Ahora vamos a añadir animaciones:
 | | |
 
 ## Preguntas Frecuentes
-Sección para responder dudas comunes sobre el uso del software. A RELLENAR CUANDO HAGAMOS PRUEBAS DE USUARIOS
+Sección para responder dudas comunes sobre el uso del software. 
 
 ## Glosario
 Lista de términos técnicos y sus definiciones para facilitar la comprensión del manual:
@@ -539,8 +539,6 @@ Lista de términos técnicos y sus definiciones para facilitar la comprensión d
 
 - ***Serializado:*** Permite modificar valores sin necesidad de cambiar el código, editándolos desde el editor de Unity.
 - ***Transform:*** Es un componente de Unity que almacena y gestiona la posición, rotación y escala de un objeto en la escena. Es fundamental para manipular cualquier objeto dentro del mundo del juego, ya que permite moverlo, rotarlo y escalarlo.
-
-
 - ***Flip:*** voltear la imagen. 
 
 
@@ -548,7 +546,7 @@ Lista de términos técnicos y sus definiciones para facilitar la comprensión d
 ## Contacto y Soporte
 
 Se recomienda revisar escenas de ejemplo y documentación adicional de los desarrolladores.
-Para obtener soporte técnico adicional o para proporcionar comentarios sobre la herramienta, puede contactar directamente a los desarrolladores a través de los siguientes medios: [soporte@ejemplo.com](mailto:soporte@ejemplo.com).
+Para obtener soporte técnico adicional o para proporcionar comentarios sobre la herramienta, puede contactar directamente a los desarrolladores a través de los siguientes medios:[crmora03@ucm.es](mailto:crmora03@ucm.es).
 
 
 ---

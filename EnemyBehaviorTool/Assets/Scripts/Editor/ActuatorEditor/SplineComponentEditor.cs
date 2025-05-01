@@ -68,7 +68,7 @@ public class SplineFollowetEditor : ActuatorEditor
             }
             else
             {
-                _speed.floatValue = Mathf.Max(0, _speed.floatValue);
+                _speed.floatValue =  _speed.floatValue;
                 EditorGUILayout.PropertyField(_speed, _constantSpeedLabel);
             }
 
