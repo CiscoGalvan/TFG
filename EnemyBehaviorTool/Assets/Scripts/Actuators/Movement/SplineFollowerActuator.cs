@@ -104,7 +104,6 @@ public class SplineFollowerActuator : MovementActuator
 
             // Calculate direction and rotate accordingly
             Vector3 direction = (nextPosition - currentPosition);
-            Vector3 directionNormalized = direction.normalized;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             _rb.MoveRotation(angle);

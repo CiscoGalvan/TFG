@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 1409662730}
   - component: {fileID: 1409662729}
   - component: {fileID: 1409662728}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 1560705132}
   - component: {fileID: 1560705131}
   - component: {fileID: 1560705130}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Ground (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1447,6 +1447,18 @@ PrefabInstance:
     - target: {fileID: 8109970365598016054, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616872372246040628, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
+      propertyPath: m_Size.x
+      value: 0.25612766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616872372246040628, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0014411733
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616872372246040628, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.014411181
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

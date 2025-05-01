@@ -1,43 +1,7 @@
 fileFormatVersion: 2
-guid: 6991e54fe8bb5724bafb4aba16583d49
+guid: 6989f0c02916bab419d23292d0167a9e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 3474578761864754926
-    second: Run (36x30)_0
-  - first:
-      213: -7861724204117881798
-    second: Run (36x30)_1
-  - first:
-      213: 2119680168770453554
-    second: Run (36x30)_2
-  - first:
-      213: 5541496122314044350
-    second: Run (36x30)_3
-  - first:
-      213: 3041231964648980877
-    second: Run (36x30)_4
-  - first:
-      213: 3543320282646675927
-    second: Run (36x30)_5
-  - first:
-      213: -2166700348111286119
-    second: Run (36x30)_6
-  - first:
-      213: 803746274884267316
-    second: Run (36x30)_7
-  - first:
-      213: -7843640178425004176
-    second: Run (36x30)_8
-  - first:
-      213: 825235917888009318
-    second: Run (36x30)_9
-  - first:
-      213: -2858323395674415253
-    second: Run (36x30)_10
-  - first:
-      213: -6682066749158643149
-    second: Run (36x30)_11
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -70,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -99,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,7 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -134,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -146,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run (36x30)_0
+      name: Idle (36x30)_Flipped_0
       rect:
         serializedVersion: 2
         x: 0
@@ -160,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a07bd846d8585aa4f847cb145bf9d9f9
-      internalID: 3474578761864754926
+      spriteID: 5ae3745bbf8dc3e4a9e2e3eb0aa4eccc
+      internalID: 2101400456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_1
+      name: Idle (36x30)_Flipped_1
       rect:
         serializedVersion: 2
         x: 36
@@ -181,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db3605e831b647d44a4d843777949ac1
-      internalID: -7861724204117881798
+      spriteID: 6fa6efd151078da40aae9f1650af64d6
+      internalID: 566365830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_2
+      name: Idle (36x30)_Flipped_2
       rect:
         serializedVersion: 2
         x: 72
@@ -202,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f8e187e13b83f545a2dc004b09e9bdc
-      internalID: 2119680168770453554
+      spriteID: 84c7410fa208ead4b979513d1197be16
+      internalID: 1919135132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_3
+      name: Idle (36x30)_Flipped_3
       rect:
         serializedVersion: 2
         x: 108
@@ -223,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3392b762675df247be105e39b2dd6c3
-      internalID: 5541496122314044350
+      spriteID: 01c989e373b7a82478e92961113821a4
+      internalID: -175424099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_4
+      name: Idle (36x30)_Flipped_4
       rect:
         serializedVersion: 2
         x: 144
@@ -244,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 363762e1ba326b44e82465e961020dc5
-      internalID: 3041231964648980877
+      spriteID: 1c7749b86a4320a46a305678af77af0a
+      internalID: 857575247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_5
+      name: Idle (36x30)_Flipped_5
       rect:
         serializedVersion: 2
         x: 180
@@ -265,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b8a4f3d095bc774aa80def180733828
-      internalID: 3543320282646675927
+      spriteID: 1cbc1d55e9ccc9b4b9b1ae8216685c26
+      internalID: -1422715171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_6
+      name: Idle (36x30)_Flipped_6
       rect:
         serializedVersion: 2
         x: 216
@@ -286,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d85ecbd334dd644a97a21c606fe23b8
-      internalID: -2166700348111286119
+      spriteID: 2236ae66cc04280419c3299e0e7368fb
+      internalID: -90810685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_7
+      name: Idle (36x30)_Flipped_7
       rect:
         serializedVersion: 2
         x: 252
@@ -307,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24e540c0d3a0be842999f16e8453c677
-      internalID: 803746274884267316
+      spriteID: eea9c7bab68e1fc48a142551321ee42b
+      internalID: 2122173726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (36x30)_8
+      name: Idle (36x30)_Flipped_8
       rect:
         serializedVersion: 2
         x: 288
@@ -328,71 +292,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da8c20ff39cef2b46b838b519dd448af
-      internalID: -7843640178425004176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run (36x30)_9
-      rect:
-        serializedVersion: 2
-        x: 324
-        y: 0
-        width: 36
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03a50d1056bab6040b7215362604752f
-      internalID: 825235917888009318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run (36x30)_10
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 0
-        width: 36
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 929bb8bdaf17ed44289a5b97d1a29e40
-      internalID: -2858323395674415253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run (36x30)_11
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 0
-        width: 36
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4951b3ce08868604ca118b96b5cf38e0
-      internalID: -6682066749158643149
+      spriteID: 31758209a02700b4eb9d157fa1335858
+      internalID: 1239151265
       vertices: []
       indices: 
       edges: []
@@ -408,18 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Run (36x30)_0: 3474578761864754926
-      Run (36x30)_1: -7861724204117881798
-      Run (36x30)_10: -2858323395674415253
-      Run (36x30)_11: -6682066749158643149
-      Run (36x30)_2: 2119680168770453554
-      Run (36x30)_3: 5541496122314044350
-      Run (36x30)_4: 3041231964648980877
-      Run (36x30)_5: 3543320282646675927
-      Run (36x30)_6: -2166700348111286119
-      Run (36x30)_7: 803746274884267316
-      Run (36x30)_8: -7843640178425004176
-      Run (36x30)_9: 825235917888009318
+      Idle (36x30)_Flipped_0: 2101400456
+      Idle (36x30)_Flipped_1: 566365830
+      Idle (36x30)_Flipped_2: 1919135132
+      Idle (36x30)_Flipped_3: -175424099
+      Idle (36x30)_Flipped_4: 857575247
+      Idle (36x30)_Flipped_5: -1422715171
+      Idle (36x30)_Flipped_6: -90810685
+      Idle (36x30)_Flipped_7: 2122173726
+      Idle (36x30)_Flipped_8: 1239151265
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

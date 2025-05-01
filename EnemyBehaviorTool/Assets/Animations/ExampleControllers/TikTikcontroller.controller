@@ -69,7 +69,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e4c163fc6a44f1443ab07ca694ca102f, type: 2}
+  m_Motion: {fileID: 7400000, guid: 01006b1a04c98ef4eaa755bfb337798a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -198,7 +198,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4089a5199b849be45b3efe3219615cf7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0a5c630a29a049249914b59939fd0e22, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -240,7 +240,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TikTikcontroller
+  m_Name: TikTikController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Left

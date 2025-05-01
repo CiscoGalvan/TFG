@@ -1,46 +1,7 @@
 fileFormatVersion: 2
-guid: f729d6acae7cd754a864abda75a4bbd7
+guid: 4cf111df83f885848ae7fdada0389c9c
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -23792059411196189
-    second: Idle (32x34)_0
-  - first:
-      213: 6308655999745459359
-    second: Idle (32x34)_1
-  - first:
-      213: -5478059927249357270
-    second: Idle (32x34)_2
-  - first:
-      213: 579440924765397620
-    second: Idle (32x34)_3
-  - first:
-      213: 3112724588794845121
-    second: Idle (32x34)_4
-  - first:
-      213: 8727117844604934454
-    second: Idle (32x34)_5
-  - first:
-      213: -6050452291428926479
-    second: Idle (32x34)_6
-  - first:
-      213: 8376950309795017778
-    second: Idle (32x34)_7
-  - first:
-      213: 8061865485705272136
-    second: Idle (32x34)_8
-  - first:
-      213: 3757208984079575178
-    second: Idle (32x34)_9
-  - first:
-      213: 5329246166822893987
-    second: Idle (32x34)_10
-  - first:
-      213: -2759837194795706094
-    second: Idle (32x34)_11
-  - first:
-      213: 3336215549504360742
-    second: Idle (32x34)_12
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -73,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -102,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,7 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle (32x34)_0
+      name: Idle (32x34)_Flipped_0
       rect:
         serializedVersion: 2
         x: 0
@@ -163,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ed2d767d97ad154682b011237793d15
-      internalID: -23792059411196189
+      spriteID: 7835959c5d5b0b74e9327be63f0c790f
+      internalID: -759192965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_1
+      name: Idle (32x34)_Flipped_1
       rect:
         serializedVersion: 2
         x: 32
@@ -184,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8efc41f99409742449725b369a16c0c0
-      internalID: 6308655999745459359
+      spriteID: 76c6aabbf214889408526f2e49bccd79
+      internalID: -1156318304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_2
+      name: Idle (32x34)_Flipped_2
       rect:
         serializedVersion: 2
         x: 64
@@ -205,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf8823af75c740e4eb6e668cbc385d63
-      internalID: -5478059927249357270
+      spriteID: 0ec6bb25d2ca1d94c816fb61f9432833
+      internalID: -1440712002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_3
+      name: Idle (32x34)_Flipped_3
       rect:
         serializedVersion: 2
         x: 96
@@ -226,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa3b76d0993ffb542ac3e7e31cd672ec
-      internalID: 579440924765397620
+      spriteID: dd92688c29c59424583502fe4e842583
+      internalID: -496021562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_4
+      name: Idle (32x34)_Flipped_4
       rect:
         serializedVersion: 2
         x: 128
@@ -247,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 403d2161c6d507a4a864bac8f62efaa4
-      internalID: 3112724588794845121
+      spriteID: 8e6e836656aeb2e4f8f204b10fb8106e
+      internalID: -877147906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_5
+      name: Idle (32x34)_Flipped_5
       rect:
         serializedVersion: 2
         x: 160
@@ -268,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c787c3f85c6f2374d95b01b052a42a8f
-      internalID: 8727117844604934454
+      spriteID: 1e22ad694d73e0c4088581ccaaf623dc
+      internalID: 955216779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_6
+      name: Idle (32x34)_Flipped_6
       rect:
         serializedVersion: 2
         x: 192
@@ -289,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1baf817899b63b14d88453324e085ac6
-      internalID: -6050452291428926479
+      spriteID: ddb11d1ed646c9f4fb6b399f530e4e8c
+      internalID: 1786418570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_7
+      name: Idle (32x34)_Flipped_7
       rect:
         serializedVersion: 2
         x: 224
@@ -310,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0fd501a12cca3048a47b23c630caf5e
-      internalID: 8376950309795017778
+      spriteID: f1feb3d06bcb60b4fb62a1d04b0845ac
+      internalID: 1494500722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_8
+      name: Idle (32x34)_Flipped_8
       rect:
         serializedVersion: 2
         x: 256
@@ -331,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb7c2451c1239a84a80ab46f9ac6c6c2
-      internalID: 8061865485705272136
+      spriteID: 999e450e2c2b5064c9ef17275518d03c
+      internalID: 1406150350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_9
+      name: Idle (32x34)_Flipped_9
       rect:
         serializedVersion: 2
         x: 288
@@ -352,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0da1c9819300b2547aa5d2ca554b42c6
-      internalID: 3757208984079575178
+      spriteID: faa9c5a877445014d946586a9435b7af
+      internalID: -1850191348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_10
+      name: Idle (32x34)_Flipped_10
       rect:
         serializedVersion: 2
         x: 320
@@ -373,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e669cb9f8de541045941bb002d655d6d
-      internalID: 5329246166822893987
+      spriteID: 6b69f97108493e343b71a427163d2200
+      internalID: -1069726992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_11
+      name: Idle (32x34)_Flipped_11
       rect:
         serializedVersion: 2
         x: 352
@@ -394,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4500afef225d4f419dd375379890081
-      internalID: -2759837194795706094
+      spriteID: b313d6a92f1184e42a85af3a819a0042
+      internalID: 509826327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x34)_12
+      name: Idle (32x34)_Flipped_12
       rect:
         serializedVersion: 2
         x: 384
@@ -415,8 +376,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 626dcc1c50bcc82438d61d43b0cdbc4b
-      internalID: 3336215549504360742
+      spriteID: 2a2fb02643356244298001e909ed6a61
+      internalID: 461924420
       vertices: []
       indices: 
       edges: []
@@ -432,19 +393,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle (32x34)_0: -23792059411196189
-      Idle (32x34)_1: 6308655999745459359
-      Idle (32x34)_10: 5329246166822893987
-      Idle (32x34)_11: -2759837194795706094
-      Idle (32x34)_12: 3336215549504360742
-      Idle (32x34)_2: -5478059927249357270
-      Idle (32x34)_3: 579440924765397620
-      Idle (32x34)_4: 3112724588794845121
-      Idle (32x34)_5: 8727117844604934454
-      Idle (32x34)_6: -6050452291428926479
-      Idle (32x34)_7: 8376950309795017778
-      Idle (32x34)_8: 8061865485705272136
-      Idle (32x34)_9: 3757208984079575178
+      Idle (32x34)_Flipped_0: -759192965
+      Idle (32x34)_Flipped_1: -1156318304
+      Idle (32x34)_Flipped_10: -1069726992
+      Idle (32x34)_Flipped_11: 509826327
+      Idle (32x34)_Flipped_12: 461924420
+      Idle (32x34)_Flipped_2: -1440712002
+      Idle (32x34)_Flipped_3: -496021562
+      Idle (32x34)_Flipped_4: -877147906
+      Idle (32x34)_Flipped_5: 955216779
+      Idle (32x34)_Flipped_6: 1786418570
+      Idle (32x34)_Flipped_7: 1494500722
+      Idle (32x34)_Flipped_8: 1406150350
+      Idle (32x34)_Flipped_9: -1850191348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

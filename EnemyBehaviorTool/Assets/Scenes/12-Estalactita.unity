@@ -722,7 +722,7 @@ MonoBehaviour:
   _layersToCollide:
     serializedVersion: 2
     m_Bits: 136
-  _speed: 2
+  _speed: 10
   _throw: 0
   _goalSpeed: 0
   _interpolationTime: 0

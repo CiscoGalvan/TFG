@@ -7,7 +7,7 @@ public class SplineFollowetEditor : ActuatorEditor
    
     private bool _showMovementInfo = true;
     private static readonly GUIContent _splineContainerLabel = new GUIContent("Spline Container", "The reference to the spline that will follow");
-    private static readonly GUIContent _teleportToClosestPointLabel = new GUIContent("Teleport to Colosest Point", "if Enemy: the enemy will move to the spline. If Spline: the spline will move to de Enemy");
+    private static readonly GUIContent _teleportToClosestPointLabel = new GUIContent("Teleport to Closest Point", "if Enemy: the enemy will move to the spline. If Spline: the spline will move to de Enemy");
     #region Accelerated movement
     private static readonly GUIContent _goalSpeedLabel = new GUIContent("Goal Speed", "Speed the object will reach");
 	private static readonly GUIContent _interpolationTimeLabel = new GUIContent("Interpolation Time", "Time it takes to reach Goal Speed");
