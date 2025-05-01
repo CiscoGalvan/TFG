@@ -58,14 +58,10 @@ public class SpawnerActuator : Actuator
     {
         // No specific cleanup required currently
     }
-    // Handles the actual spawning of enemies
-    void SpawnEvent()
+
+
+    public void Spawn()
     {
-        // Check if we can spawn more enemies (infinite or within limit)
-        if (!_infiniteEnemies && _numofTimeSpawned >= _numofTimesToSpawn) return;
-
-        _numofTimeSpawned++;
-
         // Spawn each prefab at its corresponding spawn point
         foreach (var spawnInfo in _spawnList)
         {
@@ -78,13 +74,28 @@ public class SpawnerActuator : Actuator
                 Debug.LogWarning("Try to spawn object but there is no prefab or point to spawn");
             }
         }
-
-        // Trigger spawn animation/event if available
-        _animatorManager?.SpawnEvent();
-        
     }
+    // Handles the actual spawning of enemies
+    private void SpawnEvent()
+    {
+        // Check if we can spawn more enemies (infinite or within limit)
+        if (!_infiniteEnemies && _numofTimeSpawned >= _numofTimesToSpawn) return;
+
+        _numofTimeSpawned++;
+
+        if (_animatorManager == null || !_animatorManager.isActiveAndEnabled)
+        {
+            Spawn();
+        }
+        else
+        {
+            // Trigger spawn animation/event if available
+            _animatorManager.SpawnEvent();
+        }
 
 
+
+    }
     #region Setters and getters
 
     public bool GetInfiniteEnemies() => _infiniteEnemies;

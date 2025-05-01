@@ -25,6 +25,7 @@ public class SpawnerComponentEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        EditorGUILayout.HelpBox("If you are using an AnimatorManager, you must specify when objects should spawn using Animation Events.  Call Spawn().", MessageType.Warning);
 
         EditorGUILayout.PropertyField(infiniteEnemiesProp, infiniteEnemiesLabel);
         if (!infiniteEnemiesProp.boolValue)

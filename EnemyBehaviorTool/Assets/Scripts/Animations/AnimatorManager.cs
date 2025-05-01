@@ -19,7 +19,6 @@ public class AnimatorManager : MonoBehaviour
     [Tooltip("If true, allows the sprite to be flipped vertically")]
     [SerializeField]
     private bool _canFlipY = true; // Determines if the sprite can flip vertically
-
     private SpriteRenderer _spriteRenderer; // Reference to the SpriteRenderer component
     private Rigidbody2D _rb; // Reference to the Rigidbody2D component
     private bool die = false;

@@ -5,8 +5,8 @@ using UnityEngine;
 public class AnimatorManagerEditor : Editor
 {
     public override void OnInspectorGUI()
-    {  
-        EditorGUILayout.HelpBox("Todos los sprites deben estar orientados hacia la derecha.", MessageType.Info);
+    {
+        EditorGUILayout.HelpBox("All sprites must be facing right.", MessageType.Info);
         DrawDefaultInspector();
     }
 }
