@@ -29,13 +29,13 @@ def flip_sprite_sheet_preserve_order(image_path, frame_width, frame_height):
     base, ext = os.path.splitext(image_path)
     flipped_path = f"{base}_Flipped{ext}"
 
-    # Guardar la nueva hoja de sprites
-    flipped_sheet.save(flipped_path)
+    # Guardar la nueva hoja de sprites sin compresión y sin optimización
+    flipped_sheet.save(flipped_path, format="PNG", compress_level=0)
     print(f"Imagen volteada (frames conservados) guardada en: {flipped_path}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Uso: python flip_sprite.py <ruta_al_sprite_sheet>")
     else:
-        # Tamaño del frame en tu imagen original: 34x44
-        flip_sprite_sheet_preserve_order(sys.argv[1], frame_width=32, frame_height=44)
+        # Tamaño del frame en tu imagen original: 32x44
+        flip_sprite_sheet_preserve_order(sys.argv[1], frame_width=44, frame_height=26)
