@@ -319,17 +319,21 @@ Gestiona la vida de los objetos.
  - _Entity type:_ tipo de entidad (player o enemy)
 
 ## Ejemplos de Uso
-TODOS los ejemplos parten de la Scene Template: Base Scene. 
-Para crear una nueva escena hacer Doble clik sobre Base Scene en Assets/Scene o Desplegar el menú de File, new Scene y seleccionar Base Scene.
+TODOS los ejemplos parten de la Scene Template: **Base Scene**.  
+Para crear una nueva escena hacer desplegar el menú de File, new Scene y seleccionar Base Scene.
 La escena cuenta con un jugador y un mundo listos para funcionar.
 
-AVISO: En los ejemplos, cuando se dice borrar todos los estados del animator, se refiere a los que no son propios de Unity, es decir, los que aparecen en color Gris. Los estados propios de Unity seguirán aapareciendo aunque se intenten borrar.
+**AVISO**: En los ejemplos, cuando se dice borrar todos los estados del animator, se refiere a los que no son propios de Unity, es decir, los que aparecen en color Gris. Los estados propios de Unity seguirán aapareciendo aunque se intenten borrar.
+**Aviso sobre el Arte:** El material gráfico utilizado principalmente en este framework ha sido obtenido del Asset Store de Unity y pertenece al creador Pixel Frog, cuya página de itch.io es: [https://pixelfrog-assets.itch.io/](https://pixelfrog-assets.itch.io/)  
+El águila y efectos de items que son de:
+https://assetstore.unity.com/packages/2d/characters/sunny-land-103349
+
 ### Primer Ejemplo: PINCHOS
 Uno de los enemigos más comunes son los pinchos, que no se mueven pero sí que dañan al jugador. Vamos a crearlos. 
-Para el ejemplo usaré la imagen de la piedra:  
-![Rock](./Rock.png) 
- 1. Crea un objeto partiendo del sprite de la piedra que se encuentra en Assets/Animations/Sprites.
- 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo.
+Para el ejemplo usaré la imagen de los pinchos:  
+![Pinchos](./Pinchos.png) 
+ 1. Crea un objeto partiendo del sprite de los pinchos que se encuentra en Assets/Animations/Sprites.
+ 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemy.
  3. Añadir un componente de tipo box collider 2D.
  4. Añadir un componente de tipo Damage Emitter.
  5. Indicar cómo queremos que haga daño el enemigo:  
@@ -547,7 +551,6 @@ Lista de términos técnicos y sus definiciones para facilitar la comprensión d
 
 Se recomienda revisar escenas de ejemplo y documentación adicional de los desarrolladores.
 Para obtener soporte técnico adicional o para proporcionar comentarios sobre la herramienta, puede contactar directamente a los desarrolladores a través de los siguientes medios:[crmora03@ucm.es](mailto:crmora03@ucm.es).
-
 
 ---
 © 2025 Cristina Mora Velasco y Francisco Miguel Galván Muñoz. Todos los derechos reservados.

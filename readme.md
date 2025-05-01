@@ -318,8 +318,8 @@ Manages the life of objects.
   - *Entity type:* type of entity (player or enemy).
 
 ## Practical Examples
-ALL examples start from the Scene Template: Base Scene.
-To create a new scene, double-click on Base Scene in Assets/Scene or open the File menu, select New Scene, and choose Base Scene.
+ALL examples start from the Scene Template: Base Scene.  
+To create a new scene, open the File menu, select New Scene, and choose Base Scene.
 The scene includes a player and a world ready to function.
 
 WARNING: In the examples, when it says to delete all animator states, it refers to those that are not native to Unity, i.e., those that appear in gray. Unity's own states will continue to appear even if you try to delete them.
@@ -327,7 +327,7 @@ WARNING: In the examples, when it says to delete all animator states, it refers 
 ### First Example: SPIKES
 One of the most common enemies are spikes, which do not move but do damage to the player. Let's create them.
 For the example, I will use the stone image:  
-![Rock](./Manual/Rock.png)
+![Spikes](./Manual/Pinchos.png)
 1.  Create an object starting from the stone sprite located in Assets/Animations/Sprites.
 2.  Add a physics layer for the enemy (if not already created), for example, Enemy.
 3.  Add a Box Collider 2D component.
