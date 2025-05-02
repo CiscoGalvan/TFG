@@ -357,186 +357,195 @@ Para el ejemplo usaremos la imagen de los pinchos:
 
 ![Pinchos](./Pinchos.png)
 
- 1. Crea un objeto llamado pinchos partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs.
- 2. Cambia el spriteRender a la imagen de pinchos (si no coincidiese ya) que se encuenta en assets/Animations/Sprites/Spikes y ajusta el collider a la imagen.
- 3. Congela la posición en x y en y, para que los pinchos se mantengan fijos.
- 4. Elimina el AnimatorManager y Animator, en este caso no son necesarios porque el objeto no tiene animación.
+ 1. Crea un objeto llamado pinchos partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs
+ 2. Cambia el spriteRender a la imagen de pinchos (si no coincidiese ya) que se encuenta en assets/Animations/Sprites/Spikes y ajusta el collider a la imagen
+ 3. Congela la posición en x y en y que se encuentra en constraints del RigidBody 2D, para que los pinchos se mantengan fijos
+ 4. Elimina el AnimatorManager y Animator, en este caso no son necesarios porque el objeto no tiene animación
 
 ### Segundo Ejemplo: DEAMBULADOR
 
 Otro enemigo muy común son deambuladores, también conocidos como: goomba, reptacillo, o con otro nombre en muchos juegos.
 Para el ejemplo usaremos la imagen del conejo:  
+
 ![Bunny](./Bunny.png)
 
- 1. Crea un objeto llamado deambulador partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs.
- 2. Cambia el spriteRender a la imagen de Bunny que se encuenta en Assets/Animations/Sprites/Bunny y ajusta el collider a la imagen.
+ 1. Crea un objeto llamado deambulador partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs
+ 2. Cambia el spriteRender a cualquier imagen de Bunny que se encuentam en Assets/Animations/Sprites/Bunny y ajusta el collider a la imagen
  3. Congela la rotación en constraints del RigidBody 2D.
  4. Configuramos el Damage Emiter:  
-     - Queremos que haga daño desde el inicio
-     - Que sea de tipo Instant
-     - Que haga 1 de daño
- 5. Añadimos un componente de movimiento Horizonal Actuator y lo añadimos a la lista de actuadores del State
+     - Active From Start: True
+     - Damage Type: Instant
+     - Destroy After Doing Damage: False
+     - Insta Kill: False
+     - Damage Amount: 1
+ 5. Añadimos un componente de movimiento Horizonal Actuator y lo añadimos a Actuator List del State
  6. Configuramos el Horizonal Actuator:
-    - Queremos que no sea acelerado
-    - Que al colisionar rebote con las capas físicas Mundo y Jugador
-    - Que no siga al jugador
-    - Que la dirección sea hacia la derecha  
-    - Que no sea un lanzamiento
-    - Que tenga velocidad continua de 7  
+    - Reaction Afer Collision: Bounce
+    - Layers to Collide: World, Player
+    - Follow Player: False
+    - Direction: Left
+    - Is Acelerated: False
+    - Throw: False
+    - Speed: 7  
+ 7. Configuramos el Animator Manager  
+      - Can Flip X:True
+      - Can Flip Y: False
 
-Ahora vamos a añadir animaciones:
- 
-  7. Configuramos el Animator Manager  
-      - Queremos que no haga flip en el eje y pero que sí lo haga en el x
-
-  8. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
-  9. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle. movimiento horizontal, Damage y Die, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
-  10. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idle que se encuentra en Assets/Animations/Sprites/Bunny
-  11. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Run que se encuentra en Assets/Animations/Sprites/Bunny
-  12. Hacemos Click sobre el estado Damage y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Hit que se encuentra en Assets/Animations/Sprites/Bunny
-  13. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Hit que se encuentra en Assets/Animations/Sprites/Bunny
-  14. Añadimos el controlador que hemos duplicado al Animator del enemigo deambulador.
+ 8. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+ 9. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga las animaciones: movimiento horizontal, Damage y Die, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir)
+ 10. Hacemos Click sobre el estado Horizontalovement y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Run que se encuentra en Assets/Animations/Sprites/Bunny
+ 11. Hacemos Click sobre el estado Damage y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Hit que se encuentra en Assets/Animations/Sprites/Bunny
+ 12. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Hit que se encuentra en Assets/Animations/Sprites/Bunny
+ 13. Añadimos el controlador que hemos duplicado al Animator del enemigo deambulador
 
 ### Tercer Ejemplo: Torreta + balas
 
-Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear primero las balas y luego el enemigo.
-Para el ejemplo usaré la imagen de la bala:  
+Vamos a continuar creando un enemigo que dispare balas, para ello vamos a crear primero las balas y luego el enemigo.  
+Para el ejemplo usaremos la imagen de la bala:  
+
 ![Bullet](./Bullet.png)
 
- 1. Crea un objeto partiendo del sprite de la bala que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
- 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D
- 4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar cómo queremos que haga daño el enemigo:  
-     - Queremos que haga daño desde el inicio
-     - Que sea de tipo Instant
-     - Que se destruya despuhes de hacer daño
-     - Que haga 1 de daño
- 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
- 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
- 8. Añadimos el componente Directional Actuator y lo añadimos a la lista de actuadores del Estado
- 9. Configuramos el Movimiento horizontal:
-    - Queremos que colisione con las capas físicas Mundo y Jugador
-    - Que al colisionar se destruya
-    - Que no sea acelerado
-    - Que siga al jugador
-    - Que no sea un lanzamiento
-    - Que tenga velocidad continua de 10
-10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
+ 1. Crea un prefab llamado bullet partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs.
+ 2. Cambia el spriteRender al de la bala que se encuentam en Assets/Animations/Sprites/Trunk y ajusta el collider a la imagen.
+ 3. Congela la rotación en constraints del RigidBody 2D.
+ 4. Configuramos el Damage Emiter:  
+     - Active From Start: True
+     - Damage Type: Instant
+     - Destroy After Doing Damage: True
+     - Insta Kill: False
+     - Damage Amount: 1
+ 5. Añadimos un componente de movimiento Horizontal Movement y lo añadimos a Actuator List del State
+ 6. Configuramos el Movimiento horizontal:
+    - Reaction Afer Collision: Destroy
+    - Layers to Collide: World, Player
+    - Follow Player: False
+    - Direction: Left
+    - Is Acelerated: False
+    - Throw: False
+    - Speed: 10  
+ 7. Elimina el AnimatorManager y Animator, en este caso no son necesarios porque el objeto no tiene animación
 Ahora vamos a Crear la Torreta:
-Para el ejemplo usaré la imagen de la planta:  
+Para el ejemplo usaremos la imagen del tronco:
+
 ![Planta](./Planta.png)
- 1. Crea un objeto partiendo del sprite de la planta que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
- 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints)
- 4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar cómo queremos que haga daño el enemigo:  
-     - Queremos que haga daño desde el inicio
-     - Que sea de tipo Instant
-     - Que haga 1 de daño
- 6. Vamos a añadir la creación de otros enemigos (spawner), eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
- 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
- 8. Añadimos el componente de Spawner Actuator y lo añadimos a la lista de actuadores del estado
- 9. Configuramos el Spawner Actuator:
-    - Queremos que cree infinitos enemigos
-    - Que sea cada 2 segundos
-    - Que cree un único enemigo a la vez
-10. Añadimos el  prefab de la bala a la lista del spawner: spawn list, en Prefab to Spawn.
-11. Creamos un nuevo objeto vacío donde queramos que se cree el nuevo enemigo y se lo asignamos a la lista del spawner: spawn list, en  Spawn Point.
-Ahora vamos a añadir animaciones:
 
-12. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
-13. Configuramos el Animator Manager  
-      - Queremos que no haga flip en el eje y ni en el eje x
+ 1. Crea un objeto llamado Torreta partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs.
+ 2. Cambia el spriteRender al del tronco que se encuentam en Assets/Animations/Sprites/Trunk y ajusta el collider a la imagen.
+ 3. Congela la rotación y posicion en X e Y en constraints del RigidBody 2D
+ 4. Elimina el componente Damage Emitter y borralo de la lista Damage Emitter List del State
+ 5. Añadimos un componente de movimiento Spawner Actuator y lo añadimos a Actuator List del State
+ 6. Configuramos el Spawner Actuator:
+    - Infinie Enemies: True
+    - Spawn Interval: 1
+    - Spawn List: un elemento
+      - Prefab to Spawn: Añadir el prefab de la bala que se ha creado antes
+      - Spawn point: Crear un objeto vacío y añadir la referencia
+ 7. Ajustamos el objeto vacío a la boca del tronco, de ahi saldran las balas
+ 8. Es importante recordar que hemos configurado las balas para que se muevan hacia la izquierda, esto hace que el tronco tenga que estar a la derecha de la escena
 
-14. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
-15. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y spawn, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir).
-16. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idleplant que se encuentra en Assets/Animations/Anim
-17. Hacemos Click sobre el estado Spawn y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar SpawnPlant que se encuentra en Assets/Animations/Anim
-  
-18. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+Ahora vamos a ajustar las animaciones:
+
+ 9. Configuramos el Animator Manager  
+      - Can Flip X: False
+      - Can Flip Y: False
+ 10. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+ 11. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle y spawn, borraremos el resto de estados (selecionamos con el ratón y pulsar suprimir)
+ 12. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Idle que se encuentra en Assets/Animations/Sprites/Trunk
+ 13. Hacemos Click sobre el estado Spawn y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Atack que se encuentra en Assets/Animations/Sprites/Trunk
+ 14. Comprobar que el Animation Clip Atack tiene un evento en el segundo 0:07 que llama al Spawn. Esto hará que se cree la bala en el momento justo de la animación
+ ![SpawnInfo](./Spawn.png)
+ 15. Añadimos el controlador que hemos duplicado al Animator del enemigo Torreta
 
 ### Cuarto Ejemplo: TikTik (splines)
 
 Vamos a crecrear un enemigo del HollowKnigth el TikTIk, este va recorriendo una plataforma bordeándola.  
-Para el ejemplo usaré la imagen de la zarigüeya:  
-![Oso](./Zariguella.png)
-Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D y un rigidbody 2D (congelar rotación y posición en constraints), así como, añadirlo ala capa Mundo.
+Para el ejemplo usaremos la imagen del pollo:
+
+![Chicken](./chicken.png)  
+
+Antes de empezar con la creación del enemigo, añadiremos un objeto en 2d cuadrado que nos servirá como plataforma. Debemos añadirle un componente de tipo box collider 2D, así como, añadirlo a la capa World. Si se quiereponer del mismo color que los bordes delmapa, añadirle el material que se encientra en Assets/Materials, color Brown
+
 Empecemos con el enemigo:
 
- 1. Crea un objeto partiendo del sprite de la zarigüeya que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
- 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D
- 4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar cómo queremos que haga daño el enemigo:  
-     - Queremos que haga daño desde el inicio
-     - Que sea de tipo Instant
-     - Que haga 1 de daño
- 6. Vamos a añadir movimiento, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
- 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
- 8. Añadimos el componente de Spline Follower Actuator y lo añadimos a la lista de actuadores del estado
- 9. Creamos un Spline con forma cuadrada y lo giramos 90 grados en el eje de las X
- 9. Configuramos el Spline Follower Actuator:
-    - Añadimos el spline recien creado como referencia
-    - Asignamos la velocidad a la que queremos que vaya
-    - Queremos que se teletransporte el enemigo a la curba y no al contrario.
-10. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado actual
-Ahora vamos a añadir animaciones:
+ 1. Crea un objeto llamado Chicken partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs
+ 2. Cambia el spriteRender al del pollo que se encuentam en Assets/Animations/Sprites/Chicken y ajusta el collider a la imagen
+ 3. Configuramos el Damage Emiter:  
+     - Active From Start: True
+     - Damage Type: Instant
+     - Destroy After Doing Damage: True
+     - Insta Kill: False
+     - Damage Amount: 1
+ 4. Añadimos un componente de Spline Follower Actuator y lo añadimos a Actuator List del State
+ 5. Creamos un Spline con forma cuadrada y lo giramos 90 grados en el eje de las X
+ 6. Cambiamos el Spline a escala negativa en el eje X
+ 7. Configuramos el Spline Follower Actuator:
+    - Spline Container: Añadimos el spline recien creado como referencia
+    - Teleport to Closest Point: Enemy
+    - Is Acelerated: False
+    - Speed: 1
 
-10. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
-11. Configuramos el Animator Manager  
-      - Queremos que no haga flip en el eje Y ni en el eje X
+Ahora vamos a ajustar las animaciones:
 
-12. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
-13. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle borramos el resto (selecionamos con el ratón y pulsar suprimir).
-14. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Opossumwolk que se encuentra en Assets/Animations/Anim
-  
-15. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+ 8. Configuramos el Animator Manager  
+      - Can Flip X: False
+      - Can Flip Y: False
+ 9. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
+ 10. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga las animaciones de Idle, Damage y Die borramos el resto (selecionamos con el ratón y pulsar suprimir)
+ 11. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Run que se encuentra en Assets/Animations/Sprites/Chicken
+ 12. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Hit que se encuentra en Assets/Animations/Sprites/Chicken
+ 13. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar Hit que se encuentra en Assets/Animations/Sprites/Chicken
+ 14. Añadimos el controlador que hemos duplicado al Animator del enemigo Chicken
 
-### Quinto Ejemplo: Estalactitas
+### Quinto Ejemplo: Trampa del techo
 
-Por último vamos a crecrear un enemigo común. Las estalactitas.
-Para el ejemplo usaré la imagen del pájaro:  
+Por último vamos a crecrear un enemigo común. Las trampas que caen del techo.
+Para el ejemplo usaremos la imagen del pájaro:
+
 ![FatBird](./FatBird.png)
 
- 1. Crea un objeto partiendo del sprite de FatBird que se encuentra en Assets/Animations/Sprites
- 2. Añadir una capa física para el enemigo (si no está creada ya), por ejemplo Enemigo
- 3. Añadir un componente de tipo box collider 2D y un rigidbody 2D (congelar la rotación en constrainsts)
- 4. Añadir un componente de tipo Damage Emitter.
- 5. Indicar cómo queremos que haga daño el enemigo:  
-     - Queremos que haga daño desde el inicio
-     - Que sea de tipo Instant
-     - Que mate directamente al jugador
- 6. Vamos a añadir acciones, eso se controla desde una máquina de estados, por lo tanto añadimos un componente de tipo FSM
- 7. Añadimos un componente State y se lo asignamos a la FSM en el initial State.
- 8. Añadimos un elemento a la lista de Sensor Transitions. Lo rellenemos creando y asignando un nuevo estado alestado de transición
- 9. Para el sensor que activará la transición, vamos a crear un objeto 2d que contenga:
-
-- Box Collider 2D
-- Area sensor, que tenga tiempo de inicio 0 y como target el jugador.
-
- 10. Para el segundo estado añadiremos un actuador a la Lista de Actuadores de tipo Vertical Actuator.
+ 1. Crea un objeto llamado FatrBird partiendo del prefab BaseEnemy que se encuentra en Assets/Prefabs
+ 2. Cambia el spriteRender al del pollo que se encuentam en Assets/Animations/Sprites/FatBird y ajusta el collider a la imagen
+ 3. Configuramos el Damage Emiter:  
+     - Active From Start: True
+     - Damage Type: Instant
+     - Destroy After Doing Damage: True
+     - Insta Kill: True
+ 4. Congela la rotación en constraints del RigidBody 2D.
+ 5. Añadimos un elemento a Transition List del componente State que viene por defecto en el BaseEnemy
+ 6. Crear un nuevo componente State y asignarlo como Target State  del elemento creado en el punto 5
+ 7. Para el sensor que activará la transición, vamos a crear un objeto 2d vacío que contenga:
+    - Box Collider 2D: ajustar el collider a el área donde queremos que detecte que entra el jugador
+    - Area sensor, configurada como:
+      - Start Detecting Time: 0
+      - Target: Player (referencia al jugador)
+      - Detection Condition: Inside Magnitude (queremos que detecte cuando entra en ese área)
+ 8. Asignar a Sensor de Transition List creada en el punto 5 el area sensor que acabamos de configurar
+ 9. Añadimos en el segundo State (el que no tiene transición y hemos creado nosotros) un elemento en Actuator List  
+ 10. Creamos un Vertical Actuator y se lo asignamos
  11. Configuramos el Vertical Actuator:  
-    - Queremos que se elimine al colisionar  
-    - Que colisione con las capas físicas Mundo y Jugador  
-    - Que no siga al jugador  
-    - Que no sea ni acelerado ni sea un lanzamiento  
-    - Que tenga una  velocidad de 13  
- 12. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del Estado dos
+    - Reaction Afer Collision: Destroy  
+    - Layers to Collide: World, Player  
+    - Follow Player: False  
+    - Direction: Down  
+    - Is Acelerated: False  
+    - Throw: False  
+    - Speed: 10  
 
-Ahora vamos a añadir animaciones:
+ 12. Añadimos el  componente DamageEmiter ya creado a la lista de DamageEmiters del segundo State
 
-  13. Añadir un componente de tipo AnimationManager, veremos que al hacerlo se nos crea también un componente Animator de Unity.  
-  14. Configuramos el Animator Manager  
-      - Queremos que no haga flip en el eje Y ni en el eje X
+Ahora vamos a ajustar las animaciones:
 
+ 13. Configuramos el Animator Manager  
+      - Can Flip X: False
+      - Can Flip Y: False
   15. Duplicamos el controller animation que viene creado como ejemplo en Assets/Animations
-  16. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, vertical movement y die borramos el resto(selecionamos con el ratón y pulsar suprimir).
-  17. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleFatBird que se encuentra en Assets/Animations/Sprites
-  18. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar GraundFatBird que se encuentra en Assets/Animations/Sprites
-  19. Hacemos DOBLE Click sobre el estado Vertical Movement, borramos el estado UP y en Down arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar FallFatBird que se encuentra en Assets/Animations/Sprites
+  16. Entramos en el Editor de Animator de Unity (haciendo doble click sobre el controller que acabamos de crear), donde veremos muchos estados posibles, como solo queremos que haga la animación de Idle, Vertical Movement, Damge y Die borramos el resto(selecionamos con el ratón y pulsar suprimir).
+  17. Dentro de Vertical Movement, solo queremos Down, por lo que podemos borrar Up.
+  18. Hacemos Click sobre el estado Idle y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar IdleFatBird que se encuentra en Assets/Animations/Sprites/FatBird
+  19. Hacemos Click sobre el estado Die y arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar GraundFatBird que se encuentra en Assets/Animations/Sprites/FatBird
+  20. Hacemos DOBLE Click sobre el estado Vertical Movement, en Down arrastramos la animación que queremos hacer hasta Motion, en este caso vamos a usar FallFatBird que se encuentra en Assets/Animations/Sprites
   
-  20. Añadimos el controlador que hemos duplicado al Animator que se nos creó al añadir el AnimatorManager.
+  21. Añadimos el controlador que hemos duplicado al Animator del enemigo FatBird
 
 ## Solución de Problemas
 
