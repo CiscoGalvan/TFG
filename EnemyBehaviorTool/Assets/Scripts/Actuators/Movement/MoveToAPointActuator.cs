@@ -61,7 +61,7 @@ public class MoveToAPointActuator : MovementActuator
     private int _currentWaypointIndex;
 
     [SerializeField, Tooltip("If true, the waypoint path will loop: after reaching the last waypoint, it will return to the first one")]
-    private bool _isACicle = false;                         // Should the path loop
+    private bool _loop = false;                         // Should the path loop
     [SerializeField, HideInInspector]
     private bool _allWaypointsHaveTheSameData = false;      // Do all waypoints share settings
     [SerializeField, HideInInspector]
@@ -128,7 +128,7 @@ public class MoveToAPointActuator : MovementActuator
     // Called every frame if is in the actual State
     public override void UpdateActuator()
     {
-        if (!_moving && _isACicle)
+        if (!_moving && _loop)
         {
             _moving = true;
             _currentWaypointIndex = 0;
@@ -253,7 +253,7 @@ public class MoveToAPointActuator : MovementActuator
         }
         else if (_currentWaypointIndex >= _waypointsData.Count)
         {
-            if (_isACicle)
+            if (_loop)
             {
                 _currentWaypointIndex = 0;
             }

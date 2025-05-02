@@ -1,0 +1,3 @@
+[submodule "EnemyBehaviourFramework-2D"]
+	path = EnemyBehaviourFramework-2D
+	url = https://github.com/CristinaMora/EnemyBehaviourFramework-2D.git

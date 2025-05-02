@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 {
 	private SerializedProperty _waypointsData;
-	private SerializedProperty _isACicle;
+	private SerializedProperty _isALoop;
 	private SerializedProperty _usageWay;
 	private SerializedProperty _randomArea;
 	private SerializedProperty _timeBetweenRandomPoints;
@@ -41,7 +41,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 	private static readonly GUIContent _waypointTransformLabel = new GUIContent("Waypoint Transform", "Reference to the waypoint transform.");
 	private static readonly GUIContent _isAcceleratedLabel = new GUIContent("Is Accelerated", "Is the movement towards the waypoint accelerated?");
 	private static readonly GUIContent _sizeLabel = new GUIContent("Size", "Number of waypoints");
-	private static readonly GUIContent _isACicleLabel = new GUIContent("Is A Cicle", "If true, the waypoint path will loop: after reaching the last waypoint, it will return to the first one");
+	private static readonly GUIContent _isALoopLabel = new GUIContent("Loop", "If true, the waypoint path will loop: after reaching the last waypoint, it will return to the first one");
 
 
 
@@ -49,7 +49,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 	private void OnEnable()
 	{
 		_waypointsData = serializedObject.FindProperty("_waypointsData");
-		_isACicle = serializedObject.FindProperty("_isACicle");
+		_isALoop = serializedObject.FindProperty("_loop");
 		_usageWay = serializedObject.FindProperty("_usageWay");
 		_randomArea = serializedObject.FindProperty("_randomArea");
 		_timeBetweenRandomPoints = serializedObject.FindProperty("_timeBetweenRandomPoints");
@@ -76,7 +76,7 @@ public class MoveToAPoint_ActuatorEditor : ActuatorEditor
 		}
 		else
 		{
-			EditorGUILayout.PropertyField(_isACicle, _isACicleLabel);
+			EditorGUILayout.PropertyField(_isALoop, _isALoopLabel);
 			EditorGUILayout.PropertyField(_allWaypointsHaveTheSameData, _allTheSameDataLabel);
 			EditorGUI.indentLevel++;
 			if (_allWaypointsHaveTheSameData.boolValue)
