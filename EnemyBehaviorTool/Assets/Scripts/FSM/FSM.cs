@@ -91,7 +91,8 @@ public class FSM : MonoBehaviour
             var damageEmitters = initialState.GetDamageEmitters();
             foreach (var damageEmitter in damageEmitters)
             {
-                damageEmitter.SetActiveFromStart(true);
+                if(damageEmitter)
+                    damageEmitter.SetActiveFromStart(true);
             }
         }
     }

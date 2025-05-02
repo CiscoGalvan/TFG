@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
+  m_LocalScale: {x: 4.58698, y: 4.58698, z: 4.58698}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -69,12 +69,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.04
 --- !u!212 &3814834604691624288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -116,15 +116,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd59bf2e866ed4529ae645637eb9c11d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d700391178f61c3488cd257e7e7a81bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.15, y: 0.13}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6405463156459697231
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6312299861578909251}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -153,7 +153,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6842284584051503067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ Animator:
   m_GameObject: {fileID: 6312299861578909251}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9136fd134d8cad841be2d74a94d73812, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7a9f9f9208c82dd42aeee75b5c441e0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -255,11 +255,11 @@ MonoBehaviour:
   _easingFunction: 0
   _layersToCollide:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 128
   _speed: 10
   _goalSpeed: 0
   _interpolationTime: 0
   _angle: 165.4
   _throw: 0
-  _onCollisionReaction: 0
+  _onCollisionReaction: 2
   _aimPlayer: 1

@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startDetectingTime: 3
-  _distanceType: 1
+  _distanceType: 0
   _axis: 1
   _partOfAxis: 0
   _detectionSide: 0
@@ -985,6 +985,18 @@ PrefabInstance:
       propertyPath: _lifeText
       value: 
       objectReference: {fileID: 1161187926}
+    - target: {fileID: 6297526818667484845, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
+      propertyPath: bottomSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297526818667484845, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
+      propertyPath: leftOffset.x
+      value: -0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297526818667484845, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
+      propertyPath: rightOffset.x
+      value: 0.44
+      objectReference: {fileID: 0}
     - target: {fileID: 8109970365598016054, guid: fde7b8d7e4294ff43a04e4294aff1bf9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.7831984

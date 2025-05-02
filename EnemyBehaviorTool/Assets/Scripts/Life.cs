@@ -35,15 +35,6 @@ public class Life : MonoBehaviour
     private float _damageCooldown = 0; // Damage cooldown value
     private int _numOfDamage; // Number of residual damage applications
 
-    private void Awake()
-    {
-        // Validate that the lifeText is assigned
-        if (_lifeText == null && _entityType == EntityType.Player)
-        {
-            Debug.LogWarning($"The TextMeshProUGUI reference in {gameObject.name} is not assigned. Please assign it in the inspector.", this);
-            enabled = false; // Disable the script if not configured properly
-        }
-    }
 
     private void Start()
     {

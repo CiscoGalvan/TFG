@@ -46,6 +46,7 @@ public class PlayerCollisionDetection : MonoBehaviour
 
         // Check for collisions with the left wall
         onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + leftOffset, leftSize, 0f, _detectionLayers);
+
     }
 
     // Draw debug boxes in the scene view

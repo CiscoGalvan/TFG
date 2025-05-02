@@ -38,8 +38,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		float x = Input.GetAxis("Horizontal");
 		float y = Input.GetAxis("Vertical");
-		float xRaw = Input.GetAxisRaw("Horizontal");
-		float yRaw = Input.GetAxisRaw("Vertical");
 		Vector2 dir = new Vector2(x, y);
 
 		Walk(dir);
@@ -57,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (coll.GetPlayerOnWall() && !coll.GetPlayerOnGround())
 		{
-			if (x != 0)
+			if (x != 0 && this.rb.velocity.y <= 0)
 			{
 				wallSlide = true;
 				WallSlide();
@@ -135,8 +133,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void WallSlide()
 	{
-	
-
 		bool pushingWall = false;
 		if ((rb.velocity.x > 0 && coll.GetPlayerOnRightWall()) || (rb.velocity.x < 0 && coll.GetPlayerOnLeftWall()))
 		{
