@@ -1,0 +1,31 @@
+# Archivos auxiliares de LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.lof
+*.lot
+*.fls
+*.out
+*.toc
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Archivos de backup
+*~
+*.bak
+*.sav
+
+# Archivos generados por editores
+*.swp
+*.swo
+*.acn
+*.glo
+*.gls
+*.ist
+*.acr
