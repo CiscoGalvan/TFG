@@ -2,13 +2,36 @@
 \label{cap:contribucionesPersonales}
 \addcontentsline{toc}{chapter}{Contribuciones Personales}
 
-En caso de trabajos no unipersonales, cada participante indicará en la memoria su contribución al proyecto con una extensión de al menos dos páginas por cada uno de los participantes.
+\section*{Contribuciones de Francisco Miguel Galván Muñoz}
+\subsection*{Antecedentes}
+Antes de comenzar este proyecto, ya tenía una base sólida sobre Máquinas de Estados gracias a asignaturas como \textit{Fundamentos de Computadores} e \textit{Inteligencia Artificial}, donde implementamos por primera vez una en Unity. En esa práctica, la arquitectura propuesta resultó poco escalable y compleja, especialmente para modelar comportamientos básicos como patrullar, perseguir o atacar, lo que motivó mi interés por buscar soluciones más eficientes.\\
 
-En caso de trabajo unipersonal, elimina esta página en el fichero \texttt{TFGTeXiS.tex} (comenta o borra la línea \verb|\include{Capitulos/ContribucionesPersonales}|).
+Aunque siempre me había interesado el diseño de enemigos, no lo había explorado teóricamente hasta este proyecto. Durante su desarrollo, investigamos patrones comunes en enemigos de videojuegos 2D, lo que nos permitió identificar comportamientos reutilizables y orientar nuestra herramienta hacia una arquitectura modular y accesible para desarrolladores.\\
+ 
+\subsection*{Aportación}
+\subsubsection*{Investigación}
+Cuando comenzamos con la etapa de investigación, a mediados de septiembre, tanto Cristina como yo seleccionamos varios videojuegos con el objetivo de analizar el comportamiento de sus enemigos más representativos. En mi caso, elegí \textit{Blasphemous} y adopté una dinámica basada en la observación directa: mientras jugaba, capturaba imágenes cada vez que aparecía un enemigo nuevo y realizaba un análisis detallado de su comportamiento. Esta dinámica la mantuve durante las primeras tres horas de juego, lo cual me permitió identificar paralelismos entre distintos tipos de enemigos, especialmente en lo referente a la forma en que se activaban las transiciones entre estados y cómo variaban sus comportamientos en función del estado en el que se encontraban.\\
 
-\section*{Estudiante 1}
-Al menos dos páginas con las contribuciones del estudiante 1.
+Paralelamente a esta labor práctica, llevé a cabo una investigación teórica consultando artículos académicos (\textit{papers}) y conferencias de la GDC (Game Developers Conference), con el fin de comprender cómo se aborda el diseño de enemigos a nivel profesional. Esta información fue de gran utilidad para dar forma a los fundamentos de nuestra herramienta.\\
 
-\section*{Estudiante 2}
-Al menos dos páginas con las contribuciones del estudiante 2. En caso de que haya más estudiantes, copia y pega una de estas secciones.
+Una vez finalizada la fase de recopilación de información por ambas partes, celebramos varias reuniones para poner en común los hallazgos, identificar similitudes entre nuestros análisis y definir una base conceptual común. Gracias a este trabajo colaborativo, pudimos orientar adecuadamente la arquitectura de la herramienta, y comenzamos con el diseño e implementación de los primeros sensores y actuadores que formarían parte del sistema.\\
+
+\subsubsection*{Confección de la herramienta}
+
+Durante las primeras fases del desarrollo de la herramienta, decidimos trabajar conjuntamente para establecer una estructura base que fuera modular y con una lógica coherente. A partir de ahí, me encargué del desarrollo del sistema de gestión de daño, así como de varios actuadores, como el \textit{Move To A Point Actuator} y el \textit{Directional Actuator}. \\
+
+También me responsabilicé de implementar la lógica necesaria para asegurar que los parámetros requeridos por cada componente de la herramienta fueran los adecuados en cada caso. Esta lógica se encuentra contenida en un \textit{script} editor asociado a cada componente, lo que permite una configuración dinámica y contextual según el tipo de actuador o sensor seleccionado.\\
+
+\subsubsection*{Parte de la memoria}
+
+En cuanto a la redacción de la memoria, me encargué del resumen inicial del documento y del capítulo correspondiente al estado de la cuestión. Dentro del apartado de implementación, redacté todos los subapartados excepto el 4.3 y el 4.5. Asimismo, en la sección de evaluación con usuarios, fui responsable de describir el rol del investigador, la metodología de observación y el proceso de puesta en común de los resultados obtenidos.\\
+
+\subsubsection*{Manual}
+Mi participación en la elaboración del manual se centró en la corrección de errores, la traducción del contenido del español al inglés y la integración del glosario, asegurando que se explicaran adecuadamente los términos clave utilizados en la herramienta.\\
+
+\section*{Contribuciones de Cristina Mora Velasco}
+\subsubsection*{Investigación}
+\subsubsection*{Confección de la herramienta}
+\subsubsection*{Parte de la memoria}
+\subsubsection*{Manual}
 

@@ -70,7 +70,7 @@ La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para 
 \end{itemize}
 
 \subsubsection{HorizontalActuator}
-\textit{Horizontal actuator} es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
+\textit{Horizontal Actuator} es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
@@ -402,12 +402,12 @@ Finalmente, al invocar eventos de aparición, se activa el trigger \textit{Spawn
 
 Para facilitar la gestión de los estados y de los parámetros del Animator, se ha creado el controlador \textit{Controller}, que pretende servir de base para la gestión de las animaciones.
 
-\subsection{Movimiento del jugador}
+\section{Movimiento del jugador}
 
 Como ayuda a la implementación, se han creado una serie de scripts auxiliares que dan funcionalidades básicas a todos los juegos y que, por tanto, eran esenciales para una implementación lógica. Esta sección y las siguientes estarán enfocadas en la explicación de estos elementos.\\
 A la hora de implementar el movimiento del jugador usamos de base la implementación usada por el canal de YouTube \textit{Mix and Jam} en su interpretación del videojuego \textit{Celeste}\footnote{\url{https://www.youtube.com/watch?v=STyY26a_dPY}}.
 
-\subsubsection{PlayerMovement}
+\subsection{PlayerMovement}
 
 La clase \textit{PlayerMovement} actúa como el controlador del jugador. Su función principal es gestionar la entrada del usuario y, en consecuencia, mover al personaje. Además, si el jugador se encuentra en el suelo y se presiona la tecla de salto, la clase se encarga de ejecutar el salto.
 Asimismo, maneja una situación particular en la que el jugador queda suspendido en el aire mientras se mueve hacia una pared. Si este caso no se contempla, la fuerza ejercida en el eje X puede anular la del eje Y, haciendo que el personaje quede inmóvil en una posición poco natural. Para evitar este comportamiento, si el jugador está en el aire y colisiona lateralmente con una superficie, se le fuerza a deslizarse a lo largo de esta con una velocidad constante.
@@ -420,7 +420,7 @@ Esta clase permite modificar ciertos valores como la velocidad de movimiento, la
 	\item (float) \textbf{Slide Speed}: Velocidad aplicada en el eje Y cuando el jugador está en el aire y colisiona lateralmente con una superficie.
 \end{itemize}
 
-\subsubsection{PlayerCollisionDetection}
+\subsection{PlayerCollisionDetection}
 
 Este script se encarga de detectar las colisiones del jugador. Para ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo. Las cajas no detectan realmente colisiones, sino que comprueban si estas se superponen con alguna entidad de las capas especificadas con el método \texttt{Physics2D.OverlapBox()}.\\
 
@@ -441,7 +441,7 @@ Este script se encarga de detectar las colisiones del jugador. Para ello, se aju
 	\item (Vector2) \textbf{Bottom/Right/Left Offsets}: Valores usados para reposicionar las cajas para que estén en el lugar considerado por el usuario, idealmente en los bordes del objeto.
 \end{itemize}
 
-\subsubsection{PlayerBetterJumping}
+\subsection{PlayerBetterJumping}
 
 Para que el salto se ajuste más al estándar de los juegos de plataformas 2D, este script mejora la sensación de salto para que el personaje caiga más rápido, evitando una sensación de flotación. Además, permite realizar saltos más pequeños si el jugador suelta el botón antes.\\
 
