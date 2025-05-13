@@ -1,123 +1,104 @@
 \setcounter{secnumdepth}{3} %para tener una profundidad más en las enumeraciones
 \chapter{Implementaci\'on}
 \label{cap:implementacion}
-En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en detalles de como funcionaba esta por debajo, una visión general de lo que se iba a ofrecer, como la organización de los componentes, los tipos de daño o los diferentes tipos de actuadores. En este capítulo se va a tratar en profundidad la implementación de estos componentes, hablando de cómo funcionan, cómo se pueden personalizar y como los distintos componentes interactúan entre ellos.
+En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en detalles de como funcionaba esta por debajo, una visión general de lo que se iba a ofrecer, como la organización de los componentes, los tipos de daño o los diferentes tipos de actuadores. En este capítulo se va a tratar en profundidad la implementación de estos componentes, hablando de cómo funcionan, cómo se pueden personalizar y como los distintos componentes interactúan entre ellos.\\
+
+La implementación de la herramienta puede ser encontrada en el siguiente \href{https://github.com/CiscoGalvan/TFG}{\underline{enlace}}.
 
 
 \section{Tecnología utilizada}
-Este proyecto ha sido desarrollado íntegramente en Unity, mencionado en el Capítulo 2 de este trabajo.\\
-Para la construcción de esta herramienta, se seleccionó la versión 2022.3.18f1(LTS) de Unity. Por consiguiente, no podemos garantizar su correcto funcionamiento en versiones previas. No obstante, la previsión de la herramienta es ofrecer el correcto funcionamiento en versiones posteriores, salvo modificaciones significativas en la API fundamental de Unity.\\
-Unity es una herramienta muy versátil, la cual se adapta muy bien a un gran rango de aplicaciones diferentes entre sí, desde entornos simples en dos dimensiones hasta entornos mucho más complejos en tres dimensiones, incluso en realidad virtual o realidad aumentada.
-Unity surge de la idea de acercar el desarrollo de videojuegos a segmentos de la población que se podrían ver abrumados por la necesidad de entender de programación para realizar sus proyectos ya sean estos profesionales o amateurs. Este motor de videojuegos ofrece soporte para varios lenguajes de programación a través de su sistema de \textit{plugins}, de manera nativa Unity nos ofrece los lenguajes C\# y Javascript como principales lenguajes de programación de \textit{scripts}.\\
-
-Unity cuenta con una interfaz de usuario muy gráfica la cual resulta muy intuitiva dentro de su complejidad. También es importante mencionar la personalización de su interfaz otorgando al usuario la capacidad de distribuir en pantalla las distintas ventanas que componen la interfaz de usuario de la manera más cómoda posible.\\
-
-Otro elemento muy importante de Unity es el sistema \textit{drag and drop} el cual nos permite construir las escenas de juego de manera muy sencilla, moviendo los objetos en la escena haciendo click y arrastrándolos y también permite asignar scripts a las entidades de juego de la misma manera. Con respecto a la curva de aprendizaje de Unity esta no es muy pronunciada ya que desde Unity como empresa se toman muy en serio el tener una documentación clara y accesible, así como habilitar foros y tutoriales para que sea la propia comunidad de usuarios la que se ayuda a sí misma.\\
+Este proyecto ha sido desarrollado íntegramente en Unity, mencionado en el Capítulo 2 de este trabajo, concretamente la versión 2022.3.18f1(LTS) del motor. Por consiguiente, no podemos garantizar su correcto funcionamiento en versiones previas. No obstante, la previsión de la herramienta es ofrecer el correcto funcionamiento en versiones posteriores, salvo modificaciones significativas en la API fundamental de Unity.\\
 
 El motivo por el que se escoge Unity sobre los demás motores de videojuegos es esa accesibilidad que ha sido mencionada anteriormente que hace que resulte sencillo de utilizar por cualquier persona. Otro motivo de peso por el que hemos considerado Unity como nuestra opción principal de motor de videojuegos es la cantidad de usuarios que lo usan día a día lo que lo convierte en una muy buena plataforma para poder poner a prueba nuestra herramienta a través de pruebas de usuario para su posterior uso para el gran público. Esa popularidad da ciertas garantías de que la herramienta será usada y servirá para confeccionar un mínimo de proyectos.\\
 El sistema \textit{drag and drop} facilita mucho el uso de nuestra herramienta y la comprensión de la misma.\\
+
 Se hará uso de otros elementos de Unity para llevar a cabo esta herramienta como el motor de físicas 2D o las herramientas que tiene el motor para ayudar al usuario a debuggear como puede ser Gizmos.
 Unity funciona mediante una arquitectura por componentes, lo que es muy útil para que el programa sea modular, que pueda ser dividido en piezas más pequeñas y que estas piezas sean independientes.\\
 \comp{Faltan fotos en este apartado.}
 
+La herramienta desarrollada en este proyecto tiene como objetivo facilitar la creación y configuración de enemigos en un entorno 2D dentro de Unity. Está diseñada como un plugin modular que permite a diseñadores y desarrolladores configurar enemigos sin necesidad de escribir código, mediante un sistema visual e intuitivo basado en prefabs y componentes reutilizables.\\
+
+En el núcleo de esta arquitectura se encuentra un sistema basado en una Máquina de Estados Finita (FSM). Cada enemigo se define mediante una FSM que gestiona su comportamiento, transiciones entre estados y reacciones ante el entorno. Los estados están compuestos por actuadores (actuators), que ejecutan acciones (como movimiento, ataque o generación de enemigos), y sensores, que detectan condiciones o eventos del entorno y disparan transiciones entre estados.\\
+
+Los elementos que conforman esta arquitectura se organizan en varios niveles:
+\begin{itemize}
+	\item Estados: Definen el comportamiento que el enemigo adopta en un momento determinado.
+	\item Sensores: Detectan eventos del entorno, como la presencia del jugador o colisiones.
+	\item Actuadores: Ejecutan acciones concretas, como moverse, disparar o generar nuevos enemigos.
+	\item Emisores de daño: Permiten que los enemigos inflijan daño a otras entidades.
+\end{itemize}
+
+La herramienta incluye también una serie de prefabs preconfigurados que facilitan el uso del sistema y permiten una rápida iteración por parte del diseñador. Estos prefabs agrupan configuraciones comunes de enemigos con distintos comportamientos, reduciendo el tiempo de prototipado y aumentando la reutilización del código.\\
+
+En resumen, lo que se ha creado es una herramienta extensible compuesta por scripts modulares, basada en la arquitectura de componentes de Unity, que permite crear comportamientos complejos mediante una configuración visual, facilitando así su adopción por parte de usuarios con conocimientos limitados de programación.\\
+
 A continuación se va a hacer una descripción específica de cada uno de los apartados implementados.
-\section {Máquina de Estados Finita}
 
-El comportamiento de la entidad estará encapsulado en una Máquina de Estados Finita, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio. Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.\\
-
-\textbf{Valores de configuración}
-\begin{itemize}
-	\item (State) \textbf{Initial State}: Estado inicial de la Máquina de Estados Finita.
-\end{itemize}
-
-\subsection{Transition}
-Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.\\
-
-Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
-
-\textbf{Valores de configuración}
-\begin{itemize}
-	\item (Sensor) \textbf{Sensor}: Sensor encargado de detectar el evento que hará que el cambio de estado se dé.
-	\item (State) \textbf{Target State}: Estado de destino de la transición.
-\end{itemize}
-
-\subsection{State}
-
-La clase \textit{State} representa un estado de comportamiento de un enemigo. Para ello gestiona dos elementos fundamentales: \textit{Actuators} y \textit{Sensors}.\\
-
-\textbf{Valores de configuración}
-\begin{itemize}
-	\item (List<Actuator>) \textbf{Actuator List}: Lista de Actuatores que son actualizados en cada bucle y representan acciones, se abordarán a continuación.
-	\item (List<SensorStatePair>) \textbf{Transition List}: Lista de Transiciones que pueden ser activadas, lo que supone un cambio de estado al estado objetivo.
-	\item (List<DamageEmitter>) \textbf{Damage Emitter in State}: Lista de DamageEmitter activos en el estado y que son los encargados de reportar daño.
-	\item (bool) \textbf{Debug State}: Booleano utilizado para indicar si se quiere que los Actuators en \textit{Actuator List} y Sensores en \textit{Transition List} muestren información a través del Gizmos.
-\end{itemize}
-Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todas las transiciones a los que estuvieran vinculados.\\
 
 \section{Actuator}
 
-Como se ha mencionado anteriormente, un actuator es el script encargado de ejecutar una acción, por lo que para cada tipo de acción existirá un actuator que la represente.
-La clase \textit{Actuator} representa la clase base de la que heredarán todos los tipos de actuadores.
+Un actuator es el componente encargado de ejecutar una acción, por lo que para cada tipo de acción existirá un actuator que la represente.
+La clase \texttt{Actuator} representa la clase base de la que heredarán todos los tipos de actuadores.
 Esta clase abstracta contiene métodos para crear, destruir y actualizar cada actuador, así como un booleano que indica si el Actuador tiene la depuración activa o no.\\
 
 \subsection{MovementActuator}
-La clase \textit{Movement Actuator} que hereda de \textit{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento. \\
+La clase \texttt{Movement Actuator} que hereda de \texttt{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento. \\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
-	\item (bool) \textbf{Is Accelerated}: bool que indica si el movimiento que se va a realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true).
-	\item (EasingFunction.Ease) \textbf{Easing Function}: Función que define el movimiento.
+	\item (bool) \textbf{Is Accelerated}: Indica si el movimiento que se va a realizar tiene una velocidad constante (valor a false), o que por el contrario, la velocidad va a ir variando (valor a true).
+	\item (EasingFunction.Ease) \textbf{Easing Function}: Función que define cómo varía el movimiento en el tiempo. Este parámetro solo se requiere si el movimiento es acelerado.
 \end{itemize}
 
 \subsubsection{HorizontalActuator}
-\textit{Horizontal Actuator} es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
+\texttt{Horizontal Actuator} es un actuador que hereda de \texttt{Movement Actuator} y permite mover un objeto horizontalmente, ya sea a la izquierda o a la derecha, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
-	\item (LayerMask) \textbf{Layers To Collide}: Máscara de capas que indica cuáles son las que utilizamos para colisionar con el objeto.
-	\item (enum) \textbf{Direction}: Dirección inicial del movimiento. Puede ser \textit{Left} o \textit{Right}.
 	\item (enum) \textbf{On Collision Reaction}: Reacción que va a tener el objeto al colisionar. Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
+	\item (LayerMask) \textbf{Layers To Collide}: En caso de querer algún tipo de reacción, especificar que máscara de capas que indica cuáles son las que utilizamos para colisionar con el objeto.
+	\item (enum) \textbf{Direction}: Dirección inicial del movimiento. Puede ser \textit{Left} o \textit{Right}.
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
-	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
+	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si éste es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, si está a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
+	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
 	\item (bool) \textbf{Follow Player}: Determina si la dirección del movimiento se ajusta automáticamente para acercarse al jugador.
 \end{itemize}
 
 \subsubsection{VerticalActuator}
-\textit{Vertical actuator} es un actuador que hereda de \textit{Movement Actuator} y permite mover un objeto verticalmente, ya sea arriba o abajo, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
+\texttt{Vertical Actuator} permite mover un objeto verticalmente, ya sea arriba o abajo, con diferentes configuraciones de velocidad y comportamientos tras una colisión.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
+	\item (enum) \textbf{On Collision Reaction}: Reacción que va a tener el objeto al colisionar. Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
 	\item (LayerMask) \textbf{Layers To Collide}: Máscara de capas que indica cuáles son las que utilizamos para colisionar con el objeto.
 	\item (enum) \textbf{Direction}: Dirección inicial del movimiento. Puede ser \textit{Up} o \textit{Down}.
-	\item (enum) \textbf{On Collision Reaction}: Reacción que va a tener el objeto al colisionar. Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
-	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
+	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si éste es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, si está a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
+	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
 	\item (bool) \textbf{Follow Player}: Determina si la dirección del movimiento se ajusta automáticamente para acercarse al jugador.
 \end{itemize}
 
 \subsubsection{DirectionalActuator}
-La clase \textit{Directional Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento en función de un ángulo y una velocidad.\\
+La clase \texttt{Directional Actuator} se usa para describir un movimiento en función de un ángulo y una velocidad.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (LayerMask) \textbf{Layers To Collide}: Capas con las que puede colisionar el objeto y activar reacciones.
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (float) \textbf{Angle}: Ángulo de dirección del movimiento, en grados.
+	\item (float) \textbf{Angle}: Ángulo de dirección del movimiento, en grados, siéndo 0º un movimiento hacía la derecha. Los grados se suman en sentido antihorario.
 	\item (bool) \textbf{Throw}: Indica si el movimiento es un lanzamiento, es decir, si está a true, se lanzará inicialmente con una velocidad inicial y, en caso contrario, se aplicará constantemente una fuerza.
 	\item (enum) \textbf{On Collision Reaction}: Reacción que va a tener el objeto al colisionar. Puede ser \textit{None} (sin reacción), \textit{Bounce} (rebota cambiando la dirección), o \textit{Destroy} (se destruye al colisionar).
 	\item (bool) \textbf{Aim Player}: Determina si el objeto calculará automáticamente el ángulo inicial para moverse en dirección al jugador.
 \end{itemize}
 
 \subsubsection{CircularActuator}
-La clase \textit{Circular Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento circular alrededor de un punto.\\
+La clase \texttt{Circular Actuator} se usa para describir un movimiento circular alrededor de un punto.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (float) \textbf{Angular Speed}: Velocidad de giro en grados por segundo.
 	\item (Transform) \textbf{Rotation Point Position}: Punto central de la circunferencia que describe el objeto.
@@ -130,64 +111,76 @@ La clase \textit{Circular Actuator} que hereda de \textit{Movement Actuator} se 
 \end{itemize}
 
 \subsubsection{SplineActuator}
-La clase \textit{Spline Actuator} que hereda de \textit{Movement Actuator} se usa para describir un movimiento mediante curvas Splines de Unity. El Actuador sigue la curva pudiendo girar el objeto a su vez.\\
+La clase \texttt{Spline Actuator} se usa para describir un movimiento mediante curvas Splines de Unity. El Actuador sigue la curva pudiendo girar el objeto a su vez.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (SplineContainer) \textbf{Spline Container}: Spline que define la trayectoria que seguirá el objeto.
+	\item (SplineContainer) \textbf{Spline Container}: Objeto que define una trayectoria mediante una curva spline, la cual será seguida por el objeto durante su movimiento. Este componente permite establecer una serie de puntos de control (control points) conectados por curvas suaves, generando así un recorrido continuo. Cada punto puede tener handles (manejadores) para controlar la tangente de entrada y salida, permitiendo ajustar la forma de la curva con precisión.\\
+Unity proporciona herramientas visuales para editar la forma de la curva directamente en el editor, y el componente \texttt{SplineContainer} permite acceder a su representación en tiempo real, interpolar posiciones a lo largo del recorrido, o determinar la orientación del objeto mientras lo recorre.
 	\item (enum) \textbf{Teleport To Closest Point}: Define cómo se ajusta el objeto a la spline al iniciarse el movimiento. Puede tener dos valores:
 	\begin{itemize}
-		\item \textbf{Enemy}: El objeto se teletransporta a la spline.
-		\item \textbf{Spline}: La spline se desplaza para alinearse con la posición actual del objeto.
+		\item \textbf{Move Enemy To Spline}: El enemigo se teletransporta a la spline.
+		\item \textbf{Move Spline To Enemy}: La spline se desplaza para alinearse con la posición actual del objeto.
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{MoveToAPointActuator}
-La clase \textit{Move To A Point Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios dentro de un área.\\
+La clase \texttt{Move To A Point Actuator} se usa para mover el objeto en dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios dentro de un área.\\
 Dado que la clase tiene dos maneras de funcionar y dos configuraciones distintas, primero se abordarán los valores de configuración comunes entre ambas y luego los valores específicos de cada configuración.\\
 
-\textbf{Valores de configuración comunes}
+\textbf{Parámetros de configuración comunes}
 \begin{itemize} 
-	\item (UsageWay) \textbf{Usage Way}: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona (\textit{RandomArea}).
+	\item (enum) \textbf{Mode}: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona (\textit{RandomArea}).
 \end{itemize}
 
-\textbf{Valores de configuración para RandomArea}
+\textbf{Parámetros de configuración para Waypoint}
+\begin{itemize} 	
+	\item (bool) \textbf{Loop}: Determina si al finalizar los puntos volverá al primero y el movimiento se repetirá.
+	\item (bool) \textbf{All Waypoints Have The Same Data}: Determina si todos los puntos usarán la misma configuración.
+	\item (List<WaypointData>) \textbf{Waypoints Data}: Lista de puntos que el objeto debe seguir. En este caso el struct \texttt{WaypointData} está compuesto por:
+	\begin{itemize} 	
+		\item (Transform) \textbf{Waypoint Transform}: Posición a la que se debe de llegar.
+		\item (float) \textbf{Time To Reach}: Tiempo estimado para alcanzar la posición deseada.
+		\item (bool) \textbf{Is Accelerated}: Si se requiere aceleración.
+		\item (EasingFunction.Ease) \textbf{Easing Function}: Función de aceleración que describe como varía la posición del objeto con respecto al tiempo, en caso de tratarse de un movimiento acelerado.
+		\item (bool) \textbf{Should Stop}: Indica si debe detenerse al llegar.
+		\item (float) \textbf{Stop Duration}: Tiempo que debe durar la parada en caso de existir.
+	\end{itemize}
+\end{itemize}
+
+\textbf{Parámetros de configuración para RandomArea}
 \begin{itemize} 	
 	\item (Collider2D) \textbf{Random Area}: Zona dentro de la cual se moverá el objeto si está configurado como \textit{RandomArea}. 
 	\item (float) \textbf{Time Between Random Points}: Tiempo necesario, en segundos, para ir de un punto aleatorio a otro.
 \end{itemize}
 
-\textbf{Valores de configuración para Waypoint}
-\begin{itemize} 	
-	\item (bool) \textbf{Is A Cicle}: Determina si al finalizar los puntos volverá al primero y el movimiento se repetirá.
-	\item (bool) \textbf{All Waypoints Have The Same Data}: Determina si todos los puntos usarán la misma configuración.
-	\item (List<WaypointData>) \textbf{Waypoints Data}: Lista de puntos que el objeto debe seguir. Cada punto incluye la posición a la que se debe llegar, el tiempo estimado para alcanzarla, si se requiere aceleración, si debe detenerse al llegar, y en caso afirmativo, la duración de la parada. Además, incluiye una función de aceleración que describe cómo varía la posición del objeto con respecto al tiempo, en caso de tratarse de un movimiento acelerado.
-\end{itemize}
 
 \subsubsection{MoveToAnObjectActuator}
-La clase \textit{Move To An Object Actuator} que hereda de \textit{Movement Actuator} se usa para mover el objeto en dirección a un punto actualizable, esto implica que si el punto se mueve, el objeto actualizará la trayectoria a la nueva posición.\\
+La clase \texttt{Move To An Object Actuator} se usa para mover el objeto en dirección a un punto actualizable, esto implica que si el punto se mueve, el objeto actualizará la trayectoria a la nueva posición.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize} 
-	\item (Transform) \textbf{Waypoint Transform}: Posición destino del movimiento.
+	\item (Transform) \textbf{Object Transform}: Posición del objeto destino. No se necesita la referencia al objeto en sí, ya que lo único que se va a utilizar de éste es su posición.
 	\item (float) \textbf{Time To Reach}: Tiempo necesario, en segundos, para llegar a la posición destino.
-	\item (bool) \textbf{Is Accelerated}: Determina si el movimiento será acelerado o no.
-	\item (EasingFunction.Ease) \textbf{Easing Function}: En caso de ser acelerado, función que determina como varía la posición con respecto al tiempo.
 \end{itemize}
 
 \subsection{SpawnerActuator}
-La clase \textit{SpawnerActuator} hereda de \textit{Actuator}. Este actuador se usa para poder generar nuevos enemigos, pudiendo generar infinitos enemigos o un número definido de ellos cada X tiempo en un lugar predefinido.\\
+La clase \texttt{SpawnerActuator} se usa para poder generar nuevos enemigos, pudiendo generar infinitos enemigos o un número definido de ellos cada X tiempo en un lugar predefinido.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
-    \item (class) \textbf{Spawn Info}: Clase auxiliar serializable que almacena un prefab (\texttt{GameObject}) a instanciar y un punto de aparición (\texttt{Transform}) donde se colocará dicho objeto.
     \item (float) \textbf{Spawn Interval}: Intervalo de tiempo en segundos que tarda el objeto en volver a generar. 
-    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigos indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por \textit{Spawn Interval} y si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
+    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigos indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por \textit{Spawn Interval}. Si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
     \item (int) \textbf{Number Of Times To Spawn}: Número total de veces que se permitirá hacer spawn, si no es infinito.
-    \item (List<SpawnInfo>) \textbf{Spawn List}: Lista de elementos de tipo \texttt{Spawn Info}. Cada elemento contiene la información necesaria para instanciar un enemigo. Esta lista está diseñada para poder crear distintos tipos de enemigos o en varios sitios a la vez, dando así más flexibilidad.
+    \item (List<SpawnInfo>) \textbf{Spawn Points}: Lista de elementos de tipo \texttt{Spawn Info}, compuesta por:
+    \begin{itemize} 
+	\item (GameObject) \textbf{Prefab To Spawn}: Objeto a instanciar.
+	\item (Transform) \textbf{Spawn Point}: Punto de aparición del objeto.
+    \end{itemize}
+    Esta lista está diseñada para poder crear distintos tipos de enemigos o en varios sitios a la vez, dando así más flexibilidad.
 \end{itemize}
 
 
@@ -197,64 +190,60 @@ Para que exista una comunicación entre la entidad y su entorno, esta necesita p
 
 \subsection{Sensor}
 
-La clase \textit{Sensor} es de la que heredarán los sensores utilizados en la herramienta. Esta clase contiene variables como el evento que almacena las funciones que se deberán llamar en caso de que el sensor sea activado, como puede ser la función que activará la transición posteriormente.\\
+La clase \texttt{Sensor} actúa como clase base para todos los sensores de la herramienta. Implementa una arquitectura basada en el patrón observador (observer), en la que cualquier componente interesado puede registrarse para ser notificado cuando el sensor se active.
 
-Cualquier clase que herede de \textit{Sensor} tendrá la posibilidad de modificar tres funciones relativas a la lógica del sensor:
+Cada sensor contiene una variable de tipo \texttt{Action<Sensor>} que alberga una lista de funciones (callbacks) a ejecutar cuando se detecta una condición específica. Estas funciones pueden ser proporcionadas por otros componentes, como por ejemplo una transición que deba activarse tras la detección.
+
+Para garantizar una interfaz unificada, las funciones que se registren como oyentes deben aceptar un único parámetro de tipo \texttt{Sensor}. Esto permite que, al activarse el sensor, se le pueda pasar una referencia a sí mismo, facilitando que el componente suscrito acceda a su información contextual si lo necesita.
+
+Este enfoque permite una arquitectura desacoplada y extensible, donde los sensores no necesitan conocer directamente qué componentes responderán a su activación, simplemente notifican a todos los suscriptores registrados.
+
+Además, la implementación del sistema de eventos incluye un contador de suscriptores, que permite llevar un control sobre cuántos componentes están actualmente registrados. Esta medida ayuda a evitar errores en tiempo de ejecución relacionados con notificaciones no deseadas o fugas de memoria.
+
+Cualquier clase que herede de \texttt{Sensor} tendrá la posibilidad de modificar tres funciones relativas a la lógica del sensor:
 
 \begin{itemize}
 	\item \texttt{StartSensor}: Función que se encarga de activar el sensor para que se pueda comenzar a captar información y, en caso de querer un tiempo de espera al inicio de la activación, se crea el \textit{timer} correspondiente.
 	\item \texttt{UpdateSensor}: Función llamada en cada bucle y encargada de actualizar el tiempo que queda por esperar en caso de que el \textit{timer} no haya acabado.
 	\item \texttt{StopSensor}: Función que desactiva el sensor.
 \end{itemize}
-Estas funciones son las encargadas de gestionar las variables de control.
+Estas funciones gestionan el estado interno del sensor. Una de las variables indica si el sensor se encuentra activo o inactivo, mientras que otra se utiliza para facilitar la depuración, mostrando información útil sobre su estado actual.\\
 
-En caso de que se quiera agregar lógica extra a alguna de estas funciones para un sensor en específico, se puede sobrescribir estos métodos en la clase del sensor correspondiente con la condición de que es indispensable que se llame al método de la clase base.
-\comp{¿Foto del código?}
-
-También se incluye un modo debug opcional, activable mediante el método \texttt{SetDebug(bool)}, método que será llamado desde State y tomará el valor de la variable \textit{Debug State} del propio estado.\\
-
-La funcionalidad de los sensores se ha implementado de manera que si se quiere suscribir desde un componente a un evento de cualquier sensor se podrá hacer, siempre y cuando la función que será llamada en caso de activarse el sensor reciba un objeto de tipo \textit{Sensor}.\\
-
-La implementación del evento incluye un contador de suscriptores que permite llevar un control interno sobre cuántos componentes están actualmente registrados para recibir notificaciones del sensor. Esta es una práctica útil para evitar errores en tiempo de ejecución.\\
-
-Es importante tener en cuenta que toda suscripción a un sensor debe ir acompañada, en algún momento, de su correspondiente desuscripción. Un caso típico es realizar esta desuscripción cuando la entidad es destruida, utilizando el método \texttt{OnDestroy}.\\
-
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
-	\item (float) \textbf{Start Detecting Time}: Tiempo que necesitará el sensor para activarse al entrar en el estado que lo alberga.
+	\item (float) \textbf{Start Detecting Time}: Tiempo que necesitará el sensor para encenderse al entrar en el estado que lo alberga. Si el sensor no está encendido se considera que está apagado y su funcionalidad quedará suspendida hasta que esté encendido.
 \end{itemize}
 
 A continuación se enumerarán y explicarán los tipos de sensores incluidos en la herramienta.\\
 
 \subsubsection{AreaSensor}
 
-\textit{AreaSensor} representa un tipo de sensor espacial que detecta la presencia de un objeto objetivo dentro de una zona delimitada. Está pensado para funcionar con zonas de activación, por lo que requiere que el objeto que lo contiene tenga un componente \textit{Collider2D}. Esta condición se asegura mediante el atributo \texttt{[RequireComponent(typeof(Collider2D))]}, que obliga a Unity a añadir automáticamente ese componente si no está presente.\\
+\texttt{AreaSensor} representa un tipo de sensor espacial que detecta la presencia de un objeto objetivo dentro de una zona delimitada. Está pensado para funcionar con zonas de activación, por lo que requiere que el objeto que lo contiene tenga un componente \texttt{Collider2D}.\\
 
-La detección se realiza mediante los métodos \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D} provistos por \textit{Unity}. El primero detecta la entrada del objetivo en la zona, mientras que el segundo permite capturar situaciones en las que el objetivo ya se encuentra dentro del área al momento de activarse el sensor. Esto evita perder eventos relevantes si la detección no estaba habilitada previamente.\\
+La detección se realiza mediante los métodos \texttt{OnTriggerEnter/Stay/Exit2D} provistos por \textit{Unity}. 
+El primero detecta la entrada del objetivo en la zona, mientras que el segundo permite capturar situaciones en las que el objetivo ya se encuentra dentro del área al momento de encenderse el sensor. Esto evita perder eventos relevantes si la detección no estaba habilitada previamente.\\
 
-Al usarse métodos como \texttt{OnTriggerEnter2D} y \texttt{OnTriggerStay2D} se activará automáticamente la flag que convierte un \textit{Collider2D} en un trigger.\\
-
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (GameObject) \textbf{Target}: Objeto que se quiere detectar dentro de la zona delimitada por el Collider2D.
 \end{itemize}
 
 \subsubsection{CollisionSensor}
+\textit{CollisionSensor} es el sensor encargado de detectar colisiones entre el objeto que lo contiene y un conjunto específico de objetos definidos mediante una \textit{LayerMask} de Unity.\\
 
-\textit{CollisionSensor} es el sensor encargado de detectar la colisión de un objeto con un grupo determinado de objetos.\\
+Al igual que el \textit{AreaSensor}, este sensor requiere obligatoriamente la presencia de un componente \texttt{Collider2D} en el objeto. Para garantizarlo, se utiliza la anotación correspondiente en Unity que fuerza su inclusión automáticamente.\\
 
-Al igual que en \textit{AreaSensor}, se necesitará un \textit{Collider2D} para detectar colisiones y se obligará a Unity a añadirlo de la misma manera.\\
+La detección de colisiones se realiza mediante los métodos \texttt{OnCollisionEnter2D} y \texttt{OnCollisionStay2D}. Este último es necesario para cubrir casos en los que la colisión ya se está produciendo cuando el sensor se enciende: si se utilizara únicamente \texttt{OnCollisionEnter2D}, dichas situaciones no serían detectadas. Para que la colisión sea válida, es importante que ninguno de los dos objetos involucrados debe ser trigger.
 
-Para acotar con qué objetos se activa el sensor y con cuáles no, se utilizarán las \textit{LayerMask} de \textit{Unity} y se detectarán las colisiones con \texttt{OnCollisionEnter2D} y \texttt{OnCollisionStay2D}, por lo que, para reportar una colisión, ninguno de los dos objetos debe ser trigger.\\
 
-\textbf{Valores de configuración}
+\textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (LayerMask) \textbf{Layers To Collide}: Máscara de capas físicas que, en caso de colisión, activarán el sensor.
 \end{itemize}
 
 \subsubsection{DamageSensor}
 
-\textit{DamageSensor} es un tipo de sensor que detecta las colisiones y entradas en el área de un objeto que emite daño. Este sensor está diseñado para funcionar tanto con colisiones como con triggers. Requiere que el objeto al que se le asigne tenga un componente \textit{Collider2D}, lo cual se asegura automáticamente gracias al atributo \texttt{[RequireComponent(typeof(Collider2D))]}.\\
+\textit{DamageSensor} es un tipo de sensor que detecta las colisiones y entradas en el área de un objeto que emite daño. Este sensor está diseñado para funcionar tanto con colisiones como con triggers. Requiere que el objeto al que se le asigne tenga un componente \textit{Collider2D}.\\
 
 La funcionalidad de este sensor es doble. Además de activar transiciones, se utiliza para gestionar la lógica del componente \textit{Life}. En caso de colisión, y bajo ciertas condiciones, como colisionar con un objeto que tenga el componente \textit{DamageEmitter}, el sensor se activa. Luego, desde el componente \textit{Life}, se gestiona qué hacer en función de las características del \textit{DamageEmitter}.\\
 
@@ -269,7 +258,7 @@ El sensor detecta las entradas y salidas de objetos mediante los métodos \textt
 
 \subsubsection{DistanceSensor}
 
-\textit{DistanceSensor} es el sensor utilizado para medir la distancia entre dos puntos. La distancia se medirá tomando de referencia los \textit{Transform} de sendos objetos, uno de ellos el que posee este script y el otro el objetivo de la medición.\\
+\texttt{DistanceSensor} es el sensor utilizado para medir la distancia entre dos puntos. La distancia se medirá tomando de referencia las posiciones de sendos objetos, uno de ellos el que posee este componente y el otro el objetivo de la medición.\\
 
 El funcionamiento del sensor dependerá del valor asignado a la variable \textit{Distance Type}, la cual es de un tipo enumerado \textit{TypeOfDistance} que especifica la manera en que se calculará la distancia. Según el valor de esta variable, se requerirán distintos parámetros o configuraciones, aunque varios valores de configuración seguirán siendo necesarios independientemente de \textit{Distance Type}.\\
 
@@ -280,7 +269,7 @@ El funcionamiento del sensor dependerá del valor asignado a la variable \textit
 	\item (GameObject)\textbf{ Target}: Entidad con la que se mide la distancia.
 \end{itemize}
 
-A continuación se especificarán los valores que puede tomar el enumerado \textit{TypeOfDistance} y las variables específicas necesarias en cada caso.\\
+A continuación se especificarán los valores que puede tomar el enumerado \textit{TypeOfDistance}, sus usos y las variables específicas necesarias en cada caso.\\
 
 \textbf{Valores de \textit{TypeOfDistance}}
 
@@ -309,15 +298,14 @@ Con el tipo de medida \textit{Single Axis} se mide la distancia entre ambos obje
 	\begin{itemize}
 	        \item (float) \textbf{Detection Distance}: Distancia necesaria para que el sensor se active.
 	        \item (enum) \textbf{Axis}: Da opciones para escoger cuál de los dos ejes se va a medir, si X o Y.
-	        \item (enum) \textbf{Detection Sides}: Permite elegir si se quiere medir la distancia a ambos lados del eje o solo por uno de ellos.
-	        \item (enum) Part: En caso de que se haya determinado que solo se quiere medir la distancia en uno de los dos lados del eje elegido, se deberá especificar cuál de los dos es. Por ejemplo, si queremos medir la distancia en el eje X, nos permite medir cuando el objetivo entra en el rango determinado por \textit{Detection Distance} por la izquierda o por la derecha.
+	        \item (enum) \textbf{Detection Sides}: Permite elegir si se quiere medir la distancia a ambos lados del eje, en el lado positivo o en el lado negativo.
 	 \end{itemize}
 \end{itemize}
 
 \subsubsection{TimeSensor}
 
 Sensor encargado de activarse cuando pasa un tiempo determinado desde su activación.\\
-En caso de ajustar que el sensor necesitará un tiempo de activación, primero se procederá a medir tal tiempo y, cuando este llegue a su fin, se medirá el tiempo de activación propio del sensor.\\
+En caso de ajustar que el sensor necesitará un tiempo para encenderse, primero se procederá a medir tal tiempo y, cuando este llegue a su fin, se medirá el tiempo de activación propio del sensor.\\
 
 \textbf{Valores de configuración}
 	\begin{itemize}
@@ -327,7 +315,7 @@ En caso de ajustar que el sensor necesitará un tiempo de activación, primero s
 \subsection{DamageEmitter}
 
 Para que una entidad pueda emitir daño, debe tener adjunto el componente \textit{DamageEmitter}.\\
-Este componente no implementa funcionalidad adicional en su propio script, sino que actúa como una señal para el \textit{DamageSensor}. La detección de daño por parte del sensor depende de que el objeto con el que colisiona tenga este componente adjunto.\\
+Este componente no implementa funcionalidad adicional en su propio componente, sino que actúa como una señal para el \textit{DamageSensor}. La detección de daño por parte del sensor depende de que el objeto con el que colisiona tenga este componente adjunto.\\
 
 La manera en la que \textit{DamageEmitter} reporta daño dependerá de un tipo enumerado llamado \textit{DamageType}.\\
 Como valores de configuración comunes para todas las configuraciones disponibles encontramos:\\
@@ -374,6 +362,38 @@ El daño residual es aquel que produce una cantidad de daño instantáneo y, tra
 	\end{itemize}
 \end{itemize}
 
+\section {Máquina de Estados Finita}
+
+El comportamiento de la entidad estará encapsulado en una Máquina de Estados Finita, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio. Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.\\
+
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (\texttt{State}) \textbf{Initial State}: Estado inicial de la Máquina de Estados Finita.
+\end{itemize}
+
+\subsection{Transition}
+Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.\\
+
+Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
+
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (\texttt{Sensor}) \textbf{Sensor}: Sensor encargado de detectar el evento que hará que el cambio de estado se dé.
+	\item (\texttt{State}) \textbf{Target State}: Estado de destino de la transición.
+\end{itemize}
+
+\subsection{State}
+
+La clase \texttt{State} representa un estado de comportamiento de un enemigo. Para ello gestiona dos elementos fundamentales: \texttt{Actuators} y \texttt{Sensors}.\\
+
+\textbf{Valores de configuración}
+\begin{itemize}
+	\item (List<\texttt{Actuator}>) \textbf{Actuator List}: Lista de Actuators que son actualizados en cada bucle y representan acciones.
+	\item (List<\texttt{Transition}>) \textbf{Transition List}: Lista de Tansitions que pueden ser activadas.
+	\item (List<\texttt{DamageEmitter}>) \textbf{Damage Emitter in State}: Lista de DamageEmitter activos en el estado
+	\item (bool) \textbf{Debug State}: Booleano utilizado para indicar si se quiere que los Actuators en \textit{Actuator List} y Sensores en \textit{Transition List} muestren información a través del Gizmos.
+\end{itemize}
+Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todas las transiciones a los que estuvieran vinculados.\\
 
 \section{Animations}
 La clase \textit{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo, en función del movimiento, es decir, de los actuadores que estén activos.\\
@@ -385,7 +405,7 @@ La clase \textit{AnimatorManager} se encarga de gestionar las animaciones de cad
 	\item (SpriteRender) \textbf{Sprite Render}: Referencia al Sprite Render del propio objeto.
 \end{itemize}
 
-Durante la ejecución, se actualizan continuamente los parámetros \textit{XSpeed},  \textit{YSpeed}  y  \textit{RotationSpeed}  del animator a partir de la velocidad del \textit{Rigidbody2D}, lo que permite que las animaciones reflejen con precisión el movimiento real del objeto. Además, si el enemigo cambia de dirección, los sprites rotarán siempre que se hayan activado los booleanos previamente mencionados.
+Durante la ejecución del juego, se monitoriza constantemente la velocidad del objeto mediante su componente \texttt{Rigidbody2D}. Esta información se utiliza para actualizar tres parámetros del \texttt{Animator}: \textit{XSpeed}, \textit{YSpeed} y \textit{RotationSpeed}. Estos parámetros permiten que el sistema de animaciones adapte en tiempo real la apariencia del personaje según su movimiento: por ejemplo, una animación de correr hacia la derecha cuando la velocidad en el eje X es positiva. Además, si el enemigo cambia de dirección (por ejemplo, pasa de moverse a la izquierda a hacerlo a la derecha), su sprite puede rotarse automáticamente para mantener la coherencia visual. Este comportamiento solo se aplica si se han activado previamente unos booleanos de configuración que permiten dicha rotación.
 
 Cuando el enemigo recibe daño o muere, se activan los triggers \textit{Damage} y \textit{Die} respectivamente, lo que lanza las animaciones correspondientes. En el caso de la muerte, el objeto se destruye automáticamente una vez finaliza la animación. 
 
@@ -402,7 +422,7 @@ Finalmente, al invocar eventos de aparición, se activa el trigger \textit{Spawn
 
 Para facilitar la gestión de los estados y de los parámetros del Animator, se ha creado el controlador \textit{Controller}, que pretende servir de base para la gestión de las animaciones.
 
-\section{Movimiento del jugador}
+\section{Jugador}
 
 Como ayuda a la implementación, se han creado una serie de scripts auxiliares que dan funcionalidades básicas a todos los juegos y que, por tanto, eran esenciales para una implementación lógica. Esta sección y las siguientes estarán enfocadas en la explicación de estos elementos.\\
 A la hora de implementar el movimiento del jugador usamos de base la implementación usada por el canal de YouTube \textit{Mix and Jam} en su interpretación del videojuego \textit{Celeste}\footnote{\url{https://www.youtube.com/watch?v=STyY26a_dPY}}.
@@ -441,11 +461,11 @@ Este script se encarga de detectar las colisiones del jugador. Para ello, se aju
 	\item (Vector2) \textbf{Bottom/Right/Left Offsets}: Valores usados para reposicionar las cajas para que estén en el lugar considerado por el usuario, idealmente en los bordes del objeto.
 \end{itemize}
 
-\subsection{PlayerBetterJumping}
+\subsection{PlayerJump}
 
 Para que el salto se ajuste más al estándar de los juegos de plataformas 2D, este script mejora la sensación de salto para que el personaje caiga más rápido, evitando una sensación de flotación. Además, permite realizar saltos más pequeños si el jugador suelta el botón antes.\\
 
-Para lograrlo, el script ajusta dos multiplicadores: uno que incrementa la gravedad cuando el jugador está cayendo y otro que reduce la altura del salto cuando este es interrumpido antes de tiempo.\\
+Para lograrlo, el componente ajusta dos multiplicadores: uno que incrementa la gravedad cuando el jugador está cayendo y otro que reduce la altura del salto cuando este es interrumpido antes de tiempo.\\
 
 \textbf{Valores de configuración}
 \begin{itemize}
@@ -472,7 +492,7 @@ Este componente está estrechamente ligado al \textit{DamageSensor}, el cual ser
 
 \subsection{PlayerDistanceAttack}
 
-Componente encargado de representar un posible ataque a distancia del jugador. El ataque se activará con el clic izquierdo del ratón, lo que instanciará el prefab \textit{Bullet Prefab} en la posición del jugador (será importante que el objeto instanciado no pueda colisionar con el jugador), el cual deberá albergar el comportamiento de una bala. La dirección que tomará la bala será aquella en la que se encuentre el cursor del ratón en el momento del clic.\\
+Componente encargado de representar un posible ataque a distancia del jugador. El ataque se activará con el clic izquierdo del ratón, lo que instanciará el prefab \textit{Bullet Prefab} en la posición del jugador (será importante que el objeto instanciado no pueda colisionar con el jugador, por lo que se proporciona con la herramienta un prefab llamado \textit{PlayerBullet} que ya cumple con esta característica), el cual deberá albergar el comportamiento de una bala. La dirección que tomará la bala será aquella en la que se encuentre el cursor del ratón en el momento del clic.\\
 
 Para evitar que el jugador pueda disparar sin restricción, se ha introducido un tiempo de espera entre disparos.\\
 
