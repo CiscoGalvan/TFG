@@ -1,6 +1,93 @@
 \chapter*{Contribuciones Personales}
 \label{cap:contribucionesPersonales}
 \addcontentsline{toc}{chapter}{Contribuciones Personales}
+En esta sección se describen las aportaciones individuales de cada autor al desarrollo de la herramienta y la elaboración de la memoria. Aunque en la mayoría de los casos ambos autores han participado en conjunto, provocando que una misma tarea esté en ambos autores a la misma vez.
+
+\section*{Contribuciones de Cristina Mora Velasco}
+\subsection*{Antecedentes}
+En el verano anterior al inicio del proyecto, comencé una investigación exhaustiva enfocada en cómo desarrollar herramientas efectivas, poniendo especial atención en facilitar las tareas de los diseñadores. El objetivo principal era hacer que las funcionalidades fueran lo más intuitivas y visuales posibles, reduciendo al máximo la necesidad de memorizar procedimientos complejos o comandos específicos. Esto es debido a que aunque pueda parecer algo sumamente sencillo, usan muchas herramientas distintas y tienen que tener grandes cantidades de informacion en la cabeza, haciendo que sea tedioso el tener que recordar funcionalidades que pueden ser reconocidas de manera más rapida y sencilla de manera visual. 
+Adicionalmente, contaba ya con conocimientos previos sobre el funcionamiento y aplicación de las máquinas de estados. Este tema introducido por primera vez en la asignatura Fundamentos de Computadores y reforzado de forma práctica a lo largo de toda la carrera. 
+\subsection*{Aportaciones}
+\subsubsection*{Investigación}
+La investigación empezó en septiembre, tratando de recabar información relevante. Para eso primero realicé un análisis en profundidad de los distintos tipos de enemigos que existen en el Hollow Knigth separando entre enemigos base y jefes finales. Centrándome en los primeros ya que son los que aparecen con más frecuencia. Analice su comportamiento creando descripciones y máquinas de estado sobre su comportamiento.   permitió identificar patrones de comportamientos similares entre diferentes enemigos a nivel visual, donde en realidad la implementación es la misma. Esto se puede ver mucho mejor en el juego bzzzt que también analicé donde un mismo comportamiento se puede ver hasta en cinco enemigos diferentes. Todo este análisis permitió no solo encontrar elementos comunes como ya he mencionado, sino también encontrar los comportamientos más repetidos.
+Todo esto hizo que tuviera una estructura clara en la cabeza que permitiese ser escalada de forma sencilla y que tuviera todos los comportamientos identificados.\\
+En paralelo a este trabajo realicé la lectura de diferentes trabajos realizados como Generador de comportamientos de enemigos para videojuegos 2D de Daniel Quintero o Herramientas De Diseño Basado En Bocetos Del Comportamiento En Videojuegos de Jorge Antonio Magallanes Borbor. Además de los artículos de investigación también use conocimientos de conferencias de la GDC que permitió tener un conocimiento general sobre el  entorno de la herramienta, saber que estaba ya hecho y de qué forma, pudiendo analizarlos encontrando puntos débiles, fortalezas e información relevante para nuestra estructura.
+
+\subsubsection*{Confección de la herramienta}
+\begin{itemize}
+  \item \textbf{Movimiento Vertical:} Desarrollo del movimiento vertical, con movimiento constante y acelerado, incluyendo colisiones, velocidad, lanzamiento...
+  \item \textbf{Movimiento Horizontal:} Desarrollo del movimiento horizontal, con movimiento constante y acelerado, incluyendo colisiones, velocidad, lanzamiento...
+  \item \textbf{Movimiento circular:}  Desarrollo del movimiento circular y solución de problemas relacionados con el cálculo de posiciones alrededor de un punto de rotación.
+  \item \textbf{Movimiento por splines:} Desarrollo del movimiento por splines creando una integración del sistema de splines de Unity para permitir enemigos que sigan trayectorias curvas predefinidas.
+  \item \textbf{Actuador Spawner:} Desarrollo del componente encargado de generar enemigos u objetos, incluyendo control por intervalos, posición y número de repeticiones.
+  \item \textbf{Simplificaciones en Move to a Point:} Revisé el componente de movimiento hacia puntos fijos para mejorar su configuración y permitir comportamientos uniformes o personalizados por waypoint.
+  \item \textbf{Collision Sensor:}  Desarrollo del sensor encargado de las colisiones.
+
+  \item \textbf{Sensor base:} Implementación de la lógica base del Sensor. Programación del sensor de tiempo y su clase base, permitiendo activar transiciones tras un periodo específico.
+  \item \textbf{Sensor de distancia:} Implementación del sensor que detecta la proximidad a un objetivo.
+ \item \textbf{Sensores de daño:} Creación de distintos comportamientos que producían daño. Más adelante fueron unificados en uno solo simplificando su uso e integración.
+ \item \textbf{Sensor de Tiempo:} Implementación del sensor, que envía un mensaje tras un tiempo especificado.
+ \item \textbf{Temporizador:} Creación de la clase base Timer que se utiliza para el SpawnerEnemy y para el Sensor de Tiempo.
+  \item \textbf{Movimiento inicial del jugador:} Desarrollo de una versión básica del sistema de control del jugador, que más adelante fue mejorado e implementado por mi compañero.
+\item \textbf{Gestión de animaciones:} Implementación del sistema \texttt{Animator Manager} para conectar los estados de la FSM con las animaciones del enemigo, incluyendo control de dirección (flip) y vinculación con controladores.
+\item \textbf{Controladores de animaciones:} Creación de una máquina de estados base con todos los estados más comunes que se dan en los enemigos y que para usarla solo hace falta cambiar los clips de esta.
+  \item \textbf{Sistema de vida:} Implementación del componente \texttt{Life}, que gestiona la salud tanto del jugador como de los enemigos, enlazado a sensores de daño.
+  \item \textbf{Dibujado de elementos:} Desarrollo de elementos visuales auxiliares dentro de los componentes para facilitar la visualización de trayectorias, áreas de detección y puntos de aparición.
+  \item \textbf{Editores personalizados:} Programación de editores en Unity para la configuración intuitiva de componentes.
+  \item \textbf{FSM y State base:} Implementación de la lógica base de las máquinas de estados y de los estados individuales.
+  \item \textbf{Limitación en la lista de actuadores y creación de transiciones:} Desarrollo de una validación para evitar que un mismo tipo de actuador se añada más de una vez a un mismo estado, evitando errores de ejecución. Además de la implementación de la lista de transiciones.
+  \item \textbf{Subscripción a eventos:} Diseño de un sistema de eventos que permite que un sensor mande información.
+  \item \textbf{Creación de escenas de enemigos:} Elaboración de escenas de ejemplo que muestran enemigos funcionales usando las distintas combinaciones de sensores, actuadores y estados.
+  \item \textbf{Comentarios explicativos:} Añadí comentarios extensivos en el código y en las escenas para facilitar la comprensión del comportamiento de cada enemigo.
+  \item \textbf{Tooltips personalizados:} Implementación de descripciones emergentes (tooltips), facilitando el uso de la herramienta sin necesidad de consultar el manual constantemente.
+ \item \textbf{Creación del proyecto:} Configuración inicial del proyecto en Unity y sistema de carpetas.
+ \item \textbf{Exportación de la herramienta:} Preparación de la herramienta como un paquete Unity exportable, con estructura organizada y funcionalidad probada. Aunque esto lo inicie yo, mi compañero hizo la versión final.
+  \item \textbf{Importación de assets:} Integración de los assets visuales del proyecto y adecuación de sus propiedades para su uso en el framework.
+  \item \textbf{Revisión general del código:} Revisión exhaustiva de todo el código fuente para garantizar la limpieza y consistencia.
+\end{itemize}
+
+\subsubsection*{Parte de la memoria}
+
+organización en orden de aparición en la memoria:
+\begin{itemize}
+  \item \textbf{Corrección del resumen y de los agradecimientos:} Revisión completa del resumen y agradecimientos.
+  \item \textbf{Abstract:} Redacción de el resumen introductorio en inglés y las \textit{keywords}.
+  \item \textbf{Introducción:} Redacción completa de los apartados de motivación, objetivos y plan de trabajo, donde se justifica la necesidad de la herramienta y se establece una organización de trabajo.
+  \item \textbf{Organización del estado de la cuestión:} Elección de técnicas, herramientas y motores que se iban a explicar, explicadas por mi compañero.
+  \item \textbf{Corrección general del estado de la cuestión:} Revisión de los contenidos.
+  \item \textbf{Descripción del trabajo:} Explicación detallada de las decisiones de diseño e implementación, reflejando tanto los aspectos técnicos como la justificación de decisiones.
+  \item \textbf{Implementación:} Redacción de los actuadores y Animations, es decir el 4.3 y el 4.5
+  \item \textbf{Evaluación con usuarios:} Redacción de la sección dedicada a la evaluación, que incluye:
+  \begin{itemize}
+    \item Introducción.
+    \item Objetivos y preguntas de investigación.
+    \item Audiencia objetivo.
+    \item Duración y Entrono de Realización.
+    \item Descripción de Tareas de probador.
+    \item Instrucciones iniciales.
+    \item Cuestionario SUS.
+  \end{itemize}
+
+  \item \textbf{Corrección general de la memoria:} Lectura final completa del documento, detectando errores  y posibles mejoras en redacción.
+
+\end{itemize}
+
+\subsubsection*{Manual}
+Me encargué íntegramente de la redacción y organización del manual de usuario del framework, tanto en su versión en español como en inglés. Teniendo en mente siempre que tenia que ser accesible para los diseñadores y por tanto no tener ningún tecnicismo en él. El manual pretende ser una parte fundamental de la herramienta que permita comprender a cualquier usuario el funcionamiento de la herramienta y conocer todos sus componentes. \\
+La estructura general del manual fue diseñada con el objetivo de guiar al usuario desde la comprensión conceptual de la herramienta hasta su aplicación práctica. Está organizado en los siguientes bloques principales:
+ \begin{itemize}
+    \item Introducción breve: Contexto de la herramienta, conocimientos que se asumen y estructura del documento.
+    \item Funcionalidad de la herramienta y del manual:  Objetivo de la herramienta y del manual.
+    \item Publico objetivo: A quién va dirigida la herramienta.
+    \item Requisitos e instalación: Descripción por pasos para la instalación. Así como la especificación de recursos necesarios  para esta.
+    \item Contenido del paquete: Organización de los archivos que se imprtan, epxlicando la utilidad de cada carpeta.
+    \item Componentes Detallados: Es el bloque más extenso del manual y el más técnico. Aquí documenté de forma minuciosa todos los elementos del framework. Dividido en secciones: Actuadores, Sensores, Maquinas de estado, animaciones y Vida.
+    \item Ejemplos prácticos: Diseñé y documenté cinco ejemplos representativos que abarcan desde enemigos muy simples (como pinchos) hasta comportamientos más complejos.
+    \item Preguntas frecuentes y solución a posibles errores: tabla de errores comunes detectados durante el testeo y sus posibles soluciones.
+    \item Glosario: Redacté un glosario técnico con definiciones breves y claras de todos los conceptos importantes para facilitar la comprensión a personas no expertas en programación o desarrollo de videojuegos.
+    \item Soporte: Incluí la información de contacto para que los usuarios pudieran resolver dudas o proponer mejoras.
+  \end{itemize}
+
 
 \section*{Contribuciones de Francisco Miguel Galván Muñoz}
 \subsection*{Antecedentes}
@@ -29,9 +116,4 @@ En cuanto a la redacción de la memoria, me encargué del resumen inicial del do
 \subsubsection*{Manual}
 Mi participación en la elaboración del manual se centró en la corrección de errores, la traducción del contenido del español al inglés y la integración del glosario, asegurando que se explicaran adecuadamente los términos clave utilizados en la herramienta.\\
 
-\section*{Contribuciones de Cristina Mora Velasco}
-\subsubsection*{Investigación}
-\subsubsection*{Confección de la herramienta}
-\subsubsection*{Parte de la memoria}
-\subsubsection*{Manual}
 
