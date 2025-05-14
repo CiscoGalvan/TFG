@@ -30,6 +30,8 @@ Dentro de la carpeta *EnemyBehaviourFramework-2D*, encontrarás el archivo *read
 
 Se ha llevado a cabo una fase de evaluación con usuarios para comprobar la facilidad de uso de la herramienta, recogiendo feedback para futuras mejoras. Los detalles están recogidos en la memoria (`TFGTeXiS-UTF8/`).
 
+Para los usuarios que vayan a realizar las pruebas pertinentes, a continuación les proporcionamos el [enlace](#https://docs.google.com/forms/d/e/1FAIpQLSf8PoIgNjA8txm0fkzrJ5Hyyg_QtLrCoOKa4X4AMLo8HZobgA/viewform?usp=header) al cuestionario
+
 ## Licencia
 
 Este proyecto se ha desarrollado con fines académicos. Para otros usos, consultar a los autores.
