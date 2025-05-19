@@ -12,10 +12,13 @@ Los enemigos son entidades programadas para enfrentarse al jugador y crear desaf
 \subsection{Análisis de enemigos en videojuegos}
 El análisis de diversos documentos muestra que la mejor forma de hacer que un enemigo destaque y de un gran potencial al juego es que tenga unos comportamientos únicos. Estos comportamientos han ido evolucionando con el tiempo volviéndose cada vez más sofisticados. Cada enemigo se define mediante una forma única de un conjunto de componentes bien seleccionados que permiten identificarlo y recordarlo.
 Con dicha sofisticación, ha aumentado la complejidad del trabajo en el diseño. Para solucionarlo hemos propuesto una herramienta con la composición indicada a continuación.
+\subsection{Identificación de comportamientos comunes}
+
 
 \section{Composición}
-En este trabajo, se ha decidido entender como enemigo a cualquier entidad que pueda repercutir de forma negativa en el jugador, esto significa que no se limita el concepto de enemigo a figuras típicas, como monstruos o soldados hostiles, sino que se amplía su definición a toda entidad que suponga un riesgo, dificultad o amenaza para el progreso o el bienestar del jugador dentro del juego, como pueden ser pinchos, lava o gotas de ácido.
-Además separamos cada enemigo por comportamientos diferentes, implicando que elementos que clásicamente aparecen en conjunto, como la tubería y la gota de ácido o la bala y el pistolero, serán considerados como dos enemigos distintos.\\
+En este trabajo, se ha decidido entender como enemigo a cualquier entidad que pueda repercutir de forma negativa en el jugador, esto significa que no se limita el concepto de enemigo a figuras típicas, como monstruos o soldados hostiles, sino que se amplía su definición a toda entidad que suponga un riesgo, dificultad o amenaza para el progreso o el bienestar del jugador dentro del juego, como pueden ser pinchos o  lava.
+Además separamos cada elemento en función de su comportamiento, implicando que elementos que clásicamente se consideran un único enemigo por aparecer juntos, como la tubería y la gota de ácido o la bala y el pistolero, se tratan aquí como entidades diferentes. Esta decisión se basa en que, desde el punto de vista de la lógica de comportamiento, actúan como elementos autónomos y con reglas distintas.\\
+
 
 \subsection{Máquina de estados finita}
 
@@ -36,24 +39,21 @@ Estos conceptos (\hyperref[subsec:estado]{estados}, \hyperref[subsec:acciones]{a
 
 Dentro del marco de la Máquina de Estados Finita (FSM), un estado se define como un conjunto específico de acciones y la potencial activación de mecanismos de percepción (sensores) y de emisión de señales (emisores). Esta conjunción de elementos define de manera integral la conducta observable del enemigo en un momento dado. Las acciones que un estado puede englobar comprenden uno o varios tipos de movimiento que resulten compatibles entre sí, permitiendo una ejecución coordinada de desplazamientos. Adicionalmente, un estado puede tener la capacidad de generar nuevas entidades enemigas a través de un mecanismo de instanciación (spawner), enriqueciendo la dinámica y la complejidad del entorno de juego.
 
-\subsection{Actuadores (Acciones)}
+\subsection{Actuadores}
 \label{subsec:acciones}
-Hace referencia a un conjunto de movimientos y habilidades que definen lo que un enemigo puede hacer en el videojuego. Esto incluye distintos tipos de desplazamientos y la capacidad de crear otros enemigos de forma independiente mediante spawners. Estas habilidades no siempre son compatibles entre sí, teniendo una tabla en la que se indicaran las relaciones entre ellas. Además no es necesario utilizar siempre todas las acciones de forma que a veces un enemigo podrá realizar un tipo de movimiento o usar un spawner de manera exclusiva, mientras que en otras podrá combinar varias habilidades según su diseño y complejidad. Esto permite adaptar las capacidades de los enemigos para diferentes situaciones en el juego.
-\subsubsection{Spawner}
-Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder crear nuevas unidades que actúan de forma autónoma dentro del juego.\\
-Los spawners presentan características únicas dentro del sistema de enemigos, ya que su objetivo no es solo enfrentarse al jugador, sino también aumentar el número de amenazas de manera continua o en función de ciertas condiciones.
-Implementar un spawner requiere establecer ciertas reglas de generación de enemigos, tales como la frecuencia de aparición, el número máximo de enemigos generados o si las unidades generadas son temporales o persistentes.
+Hace referencia a un conjunto de movimientos y habilidades que definen lo que un enemigo puede hacer en el videojuego. Esto incluye distintos tipos de desplazamientos y la capacidad de crear otros enemigos de forma independiente (spawners). Estas habilidades no siempre son compatibles entre sí, teniendo una tabla en la que se indicaran las relaciones entre ellas. Además no es necesario utilizar siempre todas las acciones de forma que a veces un enemigo podrá realizar un tipo de movimiento o usar un spawner de manera exclusiva, mientras que en otras podrá combinar varias habilidades según su diseño y complejidad. Esto permite adaptar las capacidades de los enemigos para diferentes situaciones en el juego.
+
 \subsubsection{Movimiento}
 Podemos definir el término movimiento como el desplazamiento o cambio de posición de un enemigo dentro del juego. Sin embargo, el concepto de movimiento también puede aplicarse en el caso de enemigos que permanecen en una posición fija, haciendo referencia a la ausencia de éste. Los movimientos son fundamentales para definir el comportamiento de los personajes, ya que permiten la interacción con el jugador y el entorno.\\
 A continuación se muestran todos los movimientos implementados, junto con una breve descripción.
 \begin{itemize}
-  \item \textbf{Horizontal Actuator}: Desplaza el objeto horizontalmente, hacia la izquierda o derecha.
-    \item \textbf{Vertical Actuator}: Desplaza el objeto verticalmente, hacia arriba o abajo.
-    \item \textbf{Directional Actuator}: Mueve el objeto en una dirección definida por un ángulo.
-    \item \textbf{Circular Actuator}: Hace que el objeto siga un movimiento circular alrededor de un punto.
-    \item \textbf{Move To A Point Actuator}: Dirige el objeto hacia puntos aleatorios dentro de un área o puntos predefinidos.
-    \item \textbf{Move To An Object Actuator}: Desplaza el objeto hacia una entidad que puede estar en movimiento.
-    \item \textbf{Spline Follower Actuator}: Permite al objeto seguir una trayectoria definida por un spline.
+  \item \textbf{Horizontal}: Desplaza el enemigo horizontalmente, hacia la izquierda o derecha.
+    \item \textbf{Vertical}: Desplaza el enemigo verticalmente, hacia arriba o abajo.
+    \item \textbf{Directional}: Mueve el enemigo en una dirección definida por un ángulo.
+    \item \textbf{Circular}: Hace que el enemigo siga un movimiento circular alrededor de un punto. Describiendo una circunferencia cerrada si el ángulo es igual a 360 y, en caso de ser menor, actuando como péndulo.
+    \item \textbf{Move To A Point}: Dirige el enemigo hacia puntos aleatorios dentro de un área o puntos predefinidos.
+    \item \textbf{Move To An Object}: Desplaza el enemigo hacia una entidad que puede estar en movimiento.
+    \item \textbf{Spline Follower}: Permite al enemigo seguir una trayectoria definida por un spline.
 \end{itemize}
 \subsubsection{Compatibilidad}
 La versatilidad de la herramienta se potencia al permitir la combinación de diversos actuadores simultáneamente. En este sentido, un enemigo podría perfectamente desplazarse horizontalmente mientras activa un spawner para generar secuaces. Esta sinergia entre actuadores (movimientos y spawners) enriquece la complejidad del comportamiento y abre un abanico de posibilidades creativas para los diseñadores.\\
@@ -80,7 +80,10 @@ Para clarificar estas interdependencias y asegurar la coherencia en la configura
     \caption{Matriz de compatibilidad de movimientos}
     \label{tab:compatibilidad}
 \end{table}
-
+\subsubsection{Spawner}
+Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder crear nuevas unidades que actúan de forma autónoma dentro del juego.\\
+Los spawners presentan características únicas dentro del sistema de enemigos, ya que su objetivo no es solo enfrentarse al jugador, sino también aumentar el número de amenazas de manera continua o en función de ciertas condiciones.
+Implementar un spawner requiere establecer ciertas reglas de generación de enemigos, tales como la frecuencia de aparición, el número máximo de enemigos generados o si las unidades generadas son temporales o persistentes.
 
 \subsection{Sensores y Emisores}
 \label{subsec:sensores y emisores}
@@ -101,7 +104,7 @@ Aunque ya ha aparecido el concepto de daño en los sensores y emisores creados, 
 Es relevante mencionar que al hablar de daño, el concepto de enemigo pierde relevancia y se aborda más con respecto a las representaciones físicas de volúmenes de colisión.\\
 Se define daño como la consecuencia negativa que recibe una entidad con respecto a su vida. Esto se produce como la consecuencia de que un volumen de colisión que emite daño colisione contra otro volumen de colisión que recibe daño.\\
 Existen diferentes tipos de daño y parámetros específicos que determinan cómo los volúmenes de colisión reciben, emiten y procesan daño.
-La primera consideración que hay que tener en cuenta es que el daño no es bidireccional, lo que implica que un volumen que recibe daño no tiene porqué emitir daño. Para reflejar esta diferenciación, se pueden distinguir tres tipos de cajas:
+La primera consideración que hay que tener en cuenta es que el daño no es bidireccional, lo que implica que un volumen que recibe daño no tiene por qué emitir daño. Para reflejar esta diferenciación, se pueden distinguir tres tipos de cajas:
 \begin{itemize}
 	 \item \textbf{Caja de Colisión Recibir Daño:} Áreas en las que el enemigo es vulnerable.
 	 \item \textbf{Caja de Colisión Emitir Daño:} Áreas desde las que el enemigo inflige daño.
