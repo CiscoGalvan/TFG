@@ -10,7 +10,7 @@ En los últimos años han surgido herramientas destinadas a simplificar signific
 \section{Objetivos}
 Este trabajo tiene como objetivo principal el diseño y desarrollo de una herramienta para el motor de videojuegos \textit{Unity} que simplifique y agilice el proceso de creación de enemigos en juegos plataformas 2D y separe los roles de programación y diseño completamente, permitiendo que no sea necesario el conocimiento en programación para un puesto de diseñador.
 La herramienta contará con un catalogo de comportamientos fácil de manejar para cualquier persona independientemente de sus conocimientos de programación, así como de un manual de usuario, que explicará de forma clara cada componente de la herramienta, la instalación y ejemplos de uso. \\
-Para llevar a cabo el desarrollo de nuestra herramienta, nos documentaremos con herramientas similares y analizaremos el comportamiento de los enemigos en este tipo de juegos, tomando como referencia títulos de renombre que serán presentados posteriormente.
+Para llevar a cabo el desarrollo de nuestra herramienta, hemos organizado un plan de trabajo que permite alcanzar todos los objetivos de forma óptima, pasando desde el estudio del entorno, hasta la evaluación con usuarios y su análisis.
 
 
 \section{Plan de trabajo}
@@ -18,29 +18,34 @@ Para llevar a cabo este trabajo, se ha seguido la metodología ágil Scrum. Esta
 El trabajo se dividirá en cuatro bloques: investigación y planificación, desarrollo de la memoria, desarrollo de la herramienta y pruebas con usuarios.
 Cada bloque a su vez se dividirá en subsecciones explicadas a continuación.
 \begin{itemize}
-    \item  Investigación y planificación:
+   \item  Investigación y planificación:
 	\begin{itemize}
 	    \item  Estudio del problema: En esta primera fase se realizará un estudio del estado del arte, centrado en el papel de los enemigos en los videojuegos, su importancia en la jugabilidad y las diferentes técnicas utilizadas para su diseño y comportamiento.
 	    \item Selección y estudio de herramientas: Esta fase implicará un análisis comparativo de distintas técnicas y motores de videojuegos evaluando sus ventajas y desventajas, así como un estudio de su funcionamiento y  arquitecturas.
-	    \item Diseño de la herramienta: En esta etapa, se definirá la arquitectura de la herramienta propuesta, describiendo las técnicas empleadas, esquemas de funcionamiento y organización de elementos principales.
+	    \item Estudio de comportamientos de enemigos: Este estudio nos permitirá tener una base solida para el diseño de la herramienta por medio de la identificación de similitudes en los comportamientos de distintos enemigos. 
 	\end{itemize}
-  \item Desarrollo de la memoria: 
+   \item Desarrollo de la herramienta: 
+	\begin{itemize}
+	    \item Diseño: En esta etapa, se definirá la arquitectura de la herramienta propuesta, describiendo las técnicas empleadas, esquemas de funcionamiento y organización de elementos principales.
+	    \item  Implementación de funcionalidades principales: En esta etapa se implementarán las funcionalidades principales de los movimientos básicos incluyendo la integración con sensores y actuadores permitiendo la interacción entre ellos.
+	    \item Implementación de ayuda visual: Se desarrollarán ayudas visuales destinadas a servir como referencias para los diseñadores, incluyendo elementos gráficos que faciliten la comprensión de los comportamientos. 
+	    \item Pruebas y depuración: Se llevará a cabo un proceso iterativo de pruebas que aseguren la funcionalidad de la herramienta, corrigiendo los errores detectados durante su implementación.
+	\end{itemize}
+   \item Pruebas con usuarios:
+	\begin{itemize}
+	    \item Se harán pruebas con usuarios que no hayan probado la herramienta antes, siguiendo un plan de pruebas especificado en el apartado \hyperref[cap:evaluacionConUsuarios]{evaluación con usuarios}. Las pruebas estarán centradas en detectar posibles errores en las funcionalidades principales, validar la funcionalidad y evaluar la usabilidad y claridad.
+	\end{itemize}
+   \item Desarrollo de la memoria: 
 	\begin{itemize}
 	    \item  Redacción inicial: Es esta fase del trabajo se procederá a la redacción inicial de los contenidos cubriendo todos los puntos especificados en el índice.
 	    \item Revisión y corrección: Una vez completada la redacción inicial, se realizarán las correcciones necesarias tras revisar exhaustivamente el documento.
 	    \item Conclusiones y trabajo futuro: Tras finalizar los desarrollos y las pruebas de usuario, se redactarán las conclusiones obtenidas en base a los resultados y se detallarán los posibles pasos a seguir en un futuro.
 	\end{itemize}
-    \item Desarrollo de la herramienta: 
-	\begin{itemize}
-	    \item  Implementación de funcionalidades principales: En esta etapa se implementarán las funcionalidades principales de los movimientos básicos incluyendo la integración con sensores y actuadores permitiendo la interacción entre ellos.
-	    \item Implementación de ayuda visual: Se desarrollarán ayudas visuales destinadas a servir como referencias para los diseñadores, incluyendo elementos gráficos que faciliten la comprensión de los comportamientos. 
-	    \item Pruebas y depuración: Se llevará a cabo un proceso iterativo de pruebas que aseguren la funcionalidad de la herramienta, corrigiendo los errores detectados durante su implementación.
-	\end{itemize}
-    \item Pruebas con usuarios:
-	\begin{itemize}
-	    \item Primera fase de pruebas: Se harán pruebas con usuarios que no hayan probado la herramienta antes, siguiendo un plan de pruebas especificado en el apartado \hyperref[cap:evaluacionConUsuarios]{evaluación con usuarios}. Las pruebas estarán centradas en: detectar posibles errores en las funcionalidades principales, validar la funcionalidad y evaluar la usabilidad y claridad.
-	    \item Segunda fase de pruebas: Tras implementar mejoras recibidas de la retroalimentación de la primera prueba, se llevará a cabo una segunda prueba de verificación.
-	    \item Corrección y resultados: Tras analizar los resultados de cada fase de prueba, se documentarán los errores y dificultades encontrados. Tras esto se procederá a implementar las correcciones necesarias para mejorar los resultados. 
-	\end{itemize}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=12cm]{Imagenes/GanttChart}
+	\caption{Diagrama de planificación del desarrollo de la herramienta Enemy Behaviour 2D}
+	\label{fig:GanttEnemyBehaviour2D}
+\end{figure}
 
 \end{itemize}

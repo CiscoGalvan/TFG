@@ -6,16 +6,21 @@ Se mencionarán además herramientas para conseguir los fines descritos anterior
 
 
 \section{Introducción a la Inteligencia Artificial en videojuegos}
-La Inteligencia Artificial (IA) es la capacidad que tiene un sistema o software de realizar tareas diferentes entre sí de manera autónoma aplicando reglas, algoritmos o patrones de aprendizaje automático, simulando así comportamientos propios de la inteligencia humana.
-El potencial de la IA hoy día y por lo que está generando tanto furor es su capacidad de autonomía, ya que no solo ejecuta direcciones preestablecidas, sino que puede tomar decisiones en función de un contexto.\\
-En el ámbito de los videojuegos, la IA se ha hecho paso a base de demostrar su gran capacidad de adaptación a contextos diversos como la adaptación a las acciones del jugador del Alien en \textit{Alien Isolation}\footnote{\url{https://www.gamedeveloper.com/design/the-perfect-organism-the-ai-of-alien-isolation}} , la manera en la que puede generar contenido procedural para juegos roguelike como \textit{Hades}\footnote{\url{https://hades.fandom.com/es/wiki/Hades_(juego)}} o, por último, entrenar una IA para que se acerque lo máximo posible al comportamiento de un humano usando redes neuronales como en la serie \textit{Forza Motosport}\footnote{\url{https://forza.fandom.com/wiki/Forza_Wiki}}.\\
+
+La Inteligencia Artificial (IA) en videojuegos se refiere a los algoritmos de toma de decisiones que controlan el comportamiento de los personajes dentro del juego, según lo define Bakkes en su tesis doctoral \cite{Bakkes2010}.\\
+
+La IA desempeña un papel crucial, especialmente en entornos 2D donde la utilidad en los enemigos es lo que determina en mayor medida el nivel de dificultad y la jugabilidad del videjuego. Desde los inicios donde se  presentaban enemigos con comportamientos simples facilmente memorizable por los usuarios hasta la actualidad más compleja que logra enemigos “más humanos” y mejora la inmersión. El potencial de la IA y la razón por la que suscita tanto interés, radica en su capacidad de actuar de forma autónoma: no se limita a seguir instrucciones predefinidas, sino que es capaz de tomar decisiones adaptativas en función del contexto.\\
+
+Por ejemplo, la IA puede adaptarse dinámicamente a las decisiones del jugador, como ocurre con el enemigo principal en  \cite{Hope2014}, donde el comportamiento del Alien se ajusta de forma impredecible para mantener la tensión. También puede utilizarse para generar contenido procedural, como en juegos roguelike tipo \textit{Hades}\footnote{\url{https://hades.fandom.com/es/wiki/Hades_(juego)}}, o para entrenar agentes mediante redes neuronales profundas que imitan el estilo de conducción de jugadores humanos, como sucede en la saga \textit{Forza Motorsport}\footnote{\url{https://forza.fandom.com/wiki/Forza_Wiki}}.\\
+
+En definitiva, el uso de la IA en videojuegos responde a una necesidad técnica y creativa: la de crear experiencias de juego más inmersivas, adaptativas, eficientes y realistas. Tal como se expone en \cite{YannakakisTogelius2018}, la IA no solo permite que el juego ``juegue bien'', sino que también posibilita que lo haga de forma convincente y útil para diseñadores y jugadores por igual.
 
 
-\section{Técnicas de modelado}
+\section{Técnicas de toma de decisiones en NPC`s}
 Existen muchas técnicas que se pueden abordar a la hora de modelar una IA. Para decidir cuál se ajusta mejor a un problema en concreto, es importante saber ciertos factores, como por ejemplo la complejidad esperada del comportamiento, la adaptabilidad y flexibilidad de la técnica, si queremos invertir mucho tiempo en implementar estas técnicas o queremos algo rápido de hacer y funcional o los recursos que consumen. \\
 A continuación, se presentan técnicas utilizadas en videojuegos para modelar IA, las cuales hemos seleccionado porque comparten una estructura similar a la que planteamos inicialmente. Entre ellas, las maquinas finitas de estados se ajustan especialmente a nuestro enfoque y serán las que utilizaremos en nuestro desarrollo.
 \subsection{Maquinas de estado finitas}
-Las máquinas de estado finitas (FSM), son un modelo computacional que solo permite estar en uno de un número finito de estados en un momento dado. Está definida por un conjunto de reglas que describen las transiciones que se pueden realizar para pasar de un estado a otro. \\
+Las máquinas de estado finitas (FSM) son un modelo computacional que solo permite estar en uno de un número finito de estados en un momento dado. Está definida por un conjunto de reglas que describen las transiciones que se pueden realizar para pasar de un estado a otro. \\
 
 Una FSM se representa como un grafo, siendo este una representación abstracta de un conjunto de objetos, eventos, acciones o propiedades conectados entre sí, siendo estos elementos nodos (estados) que realizan acciones y comprueban la posibilidad de que haya que cambiar de nodo. 
 
