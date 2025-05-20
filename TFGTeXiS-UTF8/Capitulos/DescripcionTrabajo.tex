@@ -172,34 +172,108 @@ Las transiciones permiten cambiar de un estado a otro y son activadas por sensor
 Estos conceptos (\hyperref[subsec:estado]{estados}, \hyperref[subsec:acciones]{acciones}, \hyperref[subsec:sensores y emisores]{sensores y emisores}) se desarrollan con mayor detalle en los apartados siguientes.
 
 \section{Ejemplos de uso}
-Con esta separación de actuadores, sensores y daño la creación de enemigos se vuelve mucho más sencilla. A continuación se presentan unos ejemplos construidos mediante la combinación de los componentes de la herramienta sin la necesidad de escribir código.
+Con esta separación de actuadores, sensores y daño la creación de enemigos se vuelve mucho más sencilla. A continuación se presentan unos ejemplos construidos mediante la combinación de los componentes de la herramienta sin la necesidad de escribir código, estos ejemplos están incluidos en la propia herramienta.\\
 
-\subsection{Enemigo patrullero}
-Descripción:  El enemigo se desplaza de izquierda a derecha hasta colisionar, momento en el que invierte su dirección. Este patrón básico es común en enemigos de bajo nivel o como obstáculos simples. \\
-Movimiento: Horizontal
 
-\subsection{ Perseguidor aéreo con movimiento circular}
-Descripción: Enemigo volador que se mueve describiendo un círculo alrededor de un punto mientras detecta la presencia del jugador. Puede emplearse como obstáculo en salas cerradas, generando presión por su presencia continua.\\
-Movimiento: Circular
+Se mencionarán algunos componentes que aún no han sido introducidos, estos serán explicados en el Capítulo \ref{cap:implementacion}.\\
 
-\subsection{Tubería de ácido}
-Descripción: El enemigo permanece en una posición estática, pero representa una amenaza al disparar constantemente, obligando al jugador a esquivarlo o destruirlo antes de pasar.\\
-Spawner: Genera gotas cada 2 segundos, por ejemplo.
 
-\subsection{ Gota de ácido}
-Descripción: Entidad que aparece desde una posición fija y se desplaza hacia abajo (simulando caída).
+Todos los enemigos mencionados incluyen los siguientes componentes:
 
-Movimiento: Vertical
+\begin{itemize}
+\item Un \texttt{Animator Controller} propio, configurado de manera que las animaciones se correspondan con la lógica de comportamiento de cada enemigo.
+\item Un componente de tipo \texttt{FSM} (Finite State Machine).
+\item Al menos un componente de tipo \texttt{State}. Siempre que se mencione que un enemigo incorpora un \texttt{Actuator}, \texttt{Sensor} o \texttt{DamageEmitter}, estos estarán referenciados dentro de una clase \texttt{State} específica. En caso de no especificarse ninguna, se asumirá que el enemigo dispone de un único estado.
+\end{itemize}
 
-\subsection{Enemigo con trayectoria}
-Descripción: Enemigo que sigue una trayectoria ignorando al jugador. Por ejemplo andando alrededor de una plataforma\\
-Movimiento: Spline Follower
+\subsection{Bouncing Bunny}
 
-\subsection{Cazador con persecución directa}
-Descripción: Enemigo que detecta al jugador y se lanza directamente hacia él.
-Dos estados:\\
-Estado 1: 
-Sensor: Distancia\\
-Estado2:
-Movimiento: Move To An Object 
+En la Figura \ref{fig:BouncingBunny} se puede ver un enemigo sencillo utilizado habitualmente al comienzo de los juegos de plataformas en dos dimensiones. El enemigo se desplaza de izquierda a derecha describiendo un movimiento horizontal, hasta colisionar con una pared, momento en el cual cambia de dirección.\\
+
+Para construir este comportamiento, configuramos un único estado el cual tiene un \texttt{Horizontal Actuator} configurado para que rebote en caso de colisionar con las paredes y con una velocidad constante y un \texttt{Damage Emitter} configurado para realizar daño instantáneo, concretamente una única unidad.\\
+
+También necesitaremos añadir un componente \texttt{Life} configurado para que el enemigo tenga un punto de vida.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=5cm]{Imagenes/BouncingBunny.png}
+	\caption{Escena de ejemplo donde observamos al enemigo en cuestión momentos antes de alcanzar la pared.}
+	\label{fig:BouncingBunny}
+\end{figure}
+
+\subsection{Spinning Rocks}
+
+Con respecto al enemigo mostrado en la Figura~\ref{fig:SpinningRocks}, este realiza un movimiento circular alrededor de un punto central. Aunque en apariencia pueda parecer una única entidad, en realidad cada bola actúa como un enemigo independiente que ejecuta su propio movimiento circular.\\
+
+Este tipo de enemigo no puede ser detenido ni eliminado en ningún momento, por lo que no tendrá componente relacionado con la vida, lo que incrementa significativamente su nivel de peligrosidad. Su presencia constante y la imposibilidad de neutralizarlo lo convierten en una amenaza persistente dentro del escenario de juego.\\
+
+Para construirlo necesitaremos crear tres objetos con los sprites mostrados en la figura con un \texttt{Circular Actuator} con los parámetros necesarios para que produzca un giro completo de \textit{360º}. También necesitará un \texttt{Damage Emitter} configurado para realizar daño instantáneo, concretamente una única unidad.\\
+
+Cada objeto necesitará asignar un punto sobre el que rotar, por lo que se necesitará crear otro objeto que sirva como centro de la rotación.\\
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=5cm]{Imagenes/SpinningRocks.png}
+	\caption{Escena de ejemplo donde se aprecian dos enemigos realizando un movimiento circular cada uno en un sentido diferente}
+	\label{fig:SpinningRocks}
+\end{figure}
+
+\subsection{Trunk Torret}
+
+Con respecto al enemigo mostrado en la Figura~\ref{fig:TrunkTurret}, este permanece completamente estático durante toda su existencia en el escenario. A pesar de su falta de movilidad, representa una amenaza constante al disparar proyectiles de manera periódica cada dos segundos, lo que obliga al jugador a mantenerse en movimiento para esquivarlos.\\
+
+Este enemigo es completamente invulnerable  a cualquier tipo de ataque y tampoco hace daño directamente, por lo que no cuenta con componentes asociados a vida o daño, tanto recibido como realizado. Esta característica aumenta su peligrosidad, ya que su presencia no puede ser eliminada y el jugador debe enfrentarse a él únicamente mediante la evasión.\\
+
+Para implementarlo, se le asignará un componente de tipo \texttt{Spawner Actuator}, configurado para emitir un proyectil cada dos segundos que aparece desde un punto de su boca.
+\subsubsection{Bullet}
+
+El proyectil generado por la \textit{Trunk Turret} se desplaza horizontalmente hacia la izquierda con un movimiento lineal. Al entrar en contacto con el jugador, produce daño instantáneo. En caso de colisionar con el entorno o con el propio jugador, el proyectil se destruirá automáticamente.\\
+
+Para construir este comportamiento, se utilizará un objeto , al que se le asignará un \texttt{Horizontal Actuator} configurado para el movimiento en dirección izquierda y que reaccione al contacto destruyéndose, así como un \texttt{Damage Emitter} capaz de infligir una unidad de daño al contacto. 
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=5cm]{Imagenes/TrunkTorret.png}
+	\caption{Escena de ejemplo donde se aprecia una \textit{TrunkTorret} disparando.}
+	\label{fig:TrunkTurret}
+\end{figure}
+\subsection{Spline Chicken}
+
+Con respecto al enemigo mostrado en la Figura~\ref{fig:SplineChicken}, esta gallina realiza un movimiento continuo siguiendo una trayectoria curva predefinida (spline) que rodea una plataforma. Este desplazamiento suave y cerrado permite que patrulle una zona concreta, dificultando el paso del jugador y añadiendo presión durante momentos clave del recorrido.\\
+
+Aunque su apariencia pueda resultar cómica o inofensiva, este enemigo representa una amenaza real, ya que inflige daño al contacto. Además, no puede ser eliminado ni detenido, lo que lo convierte en un obstáculo constante que obliga al jugador a calcular cuidadosamente el momento en el que atravesar su recorrido.\\
+
+Para su implementación, se instanciará un objeto con el sprite correspondiente, al que se le añadirá un componente de tipo \texttt{Spline Follower}, configurado para recorrer una trayectoria cerrada en bucle. Además, se incluirá un \texttt{Damage Emitter} que provocará la eliminación instantánea del jugador.\\
+
+Tendrá un componente \texttt{Life} con cinco puntos de salud.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=5cm]{Imagenes/Gallina_Spline.png}
+	\caption{Escena de ejemplo donde se aprecia una \textit{Spline Chicken} siguiendo su trayectoria.}
+	\label{fig:SplineChicken}
+\end{figure}
+
+\subsection{Skywatch Eagle}
+
+Con respecto al enemigo mostrado en la Figura~\ref{fig:SkywatchEagle}, esta águila deambula libremente por una zona delimitada del escenario, describiendo un patrón de patrullaje aéreo. Su comportamiento cambia de forma agresiva en cuanto detecta la presencia del jugador dentro de su campo de visión, momento en el cual se lanza en picado a gran velocidad con la intención de impactarlo.\\
+
+Este enemigo combina movilidad impredecible y comportamiento reactivo, lo que lo convierte en una amenaza considerable. Su capacidad para alterar su trayectoria bruscamente en función de la posición del jugador obliga a mantenerse en constante movimiento y a anticipar su patrón de ataque.\\
+
+Para construir este comportamiento, se utilizarán un componentes de tipo \texttt{State} extra:
+
+\begin{itemize}
+\item Uno de ellos será el comportamiento de patrulla, estado en el que el enemigo se desplaza aleatoriamente por una zona aérea mediante un \texttt{Move To A Point Actuator} configurado para moverse a través de puntos generados aleatoriamente en la zona gris de la  Figura~\ref{fig:SkywatchEagle}. En este estado también se encuentra la transición al estado de ataque, a través de un \texttt{Distance Sensor} que mide la distancia entre ambos. \\
+\item En este estado, el águila se mueve rápidamente hacia la posición del jugador usando un \texttt{Move To Object Actuator}. Cuando el daño es realizado, vuelve a su estado inicial a través de un \texttt{Collision Sensor} configurado para activarse al contacto con el jugador.
+\end{itemize}
+
+Adicionalmente, contará con un \texttt{Damage Emitter} que inflige una unidad de daño si colisiona con el jugador durante el picado y exclusivamente durante el picado.
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=5cm]{Imagenes/AguilaCayendo.png}
+	\caption{Escena de ejemplo donde se aprecia a la \textit{Skywatch Eagle} atacando al jugador.}
+	\label{fig:SkywatchEagle}
+\end{figure}
+
 
