@@ -545,5 +545,26 @@ Para evitar que el jugador pueda disparar sin restricción, se ha introducido un
 \end{itemize}
 
 \section {Distribución del Framework}
-\section {Conclusiones}
+
+El Framework será distribuido a través de un archivo \textit{.unitypackage} descargable desde el repositorio de la herramienta.\\
+
+TUna vez descargado, el usuario podrá acceder a todo el contenido distribuido, que se detalla a continuación:\\
+\begin{itemize}
+\item \textbf{Animations:} Carpeta donde se encuentran tanto los \textit{sprites} usados como los \texttt{AnimatorController} creados para los enemigos de ejemplo.
+\item \textbf{Materials:} En este directorio se encuentran materiales usados en la herramienta y el \texttt{Physic Material 2D} usado en algunos enemigos para mejorar su interacción con el jugador.
+\item \textbf{Prefabs:} En la carpeta de \textit{Prefabs} se encuentran todos los \textit{prefabs} utilizados en la herramienta. También se encuentra el prefab \textit{BaseEnemy} el cual es usado en el manual que será mencionado luego.
+\item \textbf{Scenes:} Al abrir la carpeta el usuario verá otra llamada \textit{EnemySamples} donde se encuentran todas las escenas con enemigos de ejemplo. También encontrará \textit{BaseScene} que se trata de la plantilla de escena usada en los ejemplos. Por último encontramos la escena \textit{ExampleLevel} la cual es un nivel de prueba en el que se encuentran varios enemigos en el mismo nivel.
+\item \textbf{Scripts:} Por último encontramos la carpeta \textit{Scripts} en la cual encontramos:
+	\begin{itemize}
+	\item \textbf{Actuators:} Directorio en el cual se pueden encontrar todos los componentes relacionados con los \texttt{Actuators}.
+	\item \textbf{Animations:} Aquí se encuentra el componente \texttt{AnimatorManager}.
+	\item \textbf{Editor:} En esta carpeta están todos los componentes relacionados con los editores, todos ellos heredan de la clase de \textit{Unity} llamada \texttt{Editor}.
+	\item \textbf{FSM:} Carpeta en la que se encuentran los componentes \texttt{State} y \texttt{FSM}.
+	\item \textbf{Player Behaviour:} Lugar donde se encuentran todos los componente que tienen que ver con el funcionamiento del jugador.
+	\item \textbf{SensorsAndEmitter}: Carpeta en la que están todos los componentes que heredan de \texttt{Sensor} (incluyéndolo) y \texttt{DamageEmitter}.
+	\item \textbf{Otros componentes:} También se pueden encontrar los componentes: \texttt{EasingFunctions}, \texttt{Life} y \texttt{Timer}.
+	\end{itemize}
+\end{itemize}
+
+Junto con el Framework, se incluye un \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c}{\underline{manual de uso}} que contiene imágenes adicionales y está orientado a diseñadores de videojuegos. También se proporcionan una serie de tutoriales para reproducir algunos de los enemigos incluidos en el Framework.
 
