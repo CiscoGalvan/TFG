@@ -9,7 +9,7 @@ En el verano anterior al inicio del proyecto, comencé una investigación exhaus
 Adicionalmente, contaba ya con conocimientos previos sobre el funcionamiento y aplicación de las máquinas de estados. Este tema introducido por primera vez en la asignatura Fundamentos de Computadores y reforzado de forma práctica a lo largo de toda la carrera. 
 \subsection*{Aportaciones}
 \subsubsection*{Investigación}
-La investigación empezó en septiembre, tratando de recabar información relevante. Para eso primero realicé un análisis en profundidad de los distintos tipos de enemigos que existen en el Hollow Knigth separando entre enemigos base y jefes finales. Centrándome en los primeros ya que son los que aparecen con más frecuencia. Analice su comportamiento creando descripciones y máquinas de estado sobre su comportamiento.   permitió identificar patrones de comportamientos similares entre diferentes enemigos a nivel visual, donde en realidad la implementación es la misma. Esto se puede ver mucho mejor en el juego bzzzt que también analicé donde un mismo comportamiento se puede ver hasta en cinco enemigos diferentes. Todo este análisis permitió no solo encontrar elementos comunes como ya he mencionado, sino también encontrar los comportamientos más repetidos.
+La investigación empezó en septiembre, tratando de recabar información relevante. Para eso primero realicé un análisis en profundidad de los distintos tipos de enemigos que existen en el Hollow Knight separando entre enemigos base y jefes finales. Centrándome en los primeros ya que son los que aparecen con más frecuencia. Analice su comportamiento creando descripciones y máquinas de estado sobre su comportamiento.   permitió identificar patrones de comportamientos similares entre diferentes enemigos a nivel visual, donde en realidad la implementación es la misma. Esto se puede ver mucho mejor en el juego bzzzt que también analicé donde un mismo comportamiento se puede ver hasta en cinco enemigos diferentes. Todo este análisis permitió no solo encontrar elementos comunes como ya he mencionado, sino también encontrar los comportamientos más repetidos.
 Todo esto hizo que tuviera una estructura clara en la cabeza que permitiese ser escalada de forma sencilla y que tuviera todos los comportamientos identificados.\\
 En paralelo a este trabajo realicé la lectura de diferentes trabajos realizados como Generador de comportamientos de enemigos para videojuegos 2D de Daniel Quintero o Herramientas De Diseño Basado En Bocetos Del Comportamiento En Videojuegos de Jorge Antonio Magallanes Borbor. Además de los artículos de investigación también use conocimientos de conferencias de la GDC que permitió tener un conocimiento general sobre el  entorno de la herramienta, saber que estaba ya hecho y de qué forma, pudiendo analizarlos encontrando puntos débiles, fortalezas e información relevante para nuestra estructura.
 
@@ -99,21 +99,61 @@ Aunque siempre me había interesado el diseño de enemigos, no lo había explora
 \subsubsection*{Investigación}
 Cuando comenzamos con la etapa de investigación, a mediados de septiembre, tanto Cristina como yo seleccionamos varios videojuegos con el objetivo de analizar el comportamiento de sus enemigos más representativos. En mi caso, elegí \textit{Blasphemous} y adopté una dinámica basada en la observación directa: mientras jugaba, capturaba imágenes cada vez que aparecía un enemigo nuevo y realizaba un análisis detallado de su comportamiento. Esta dinámica la mantuve durante las primeras tres horas de juego, lo cual me permitió identificar paralelismos entre distintos tipos de enemigos, especialmente en lo referente a la forma en que se activaban las transiciones entre estados y cómo variaban sus comportamientos en función del estado en el que se encontraban.\\
 
-Paralelamente a esta labor práctica, llevé a cabo una investigación teórica consultando artículos académicos (\textit{papers}) y conferencias de la GDC (Game Developers Conference), con el fin de comprender cómo se aborda el diseño de enemigos a nivel profesional. Esta información fue de gran utilidad para dar forma a los fundamentos de nuestra herramienta.\\
+Paralelamente a esta labor práctica, llevé a cabo una investigación teórica consultando artículos académicos (\textit{papers}) y conferencias de la GDC (Game Developers Conference), como la de \cite{PlantsVsZombies}, con el fin de comprender cómo se aborda el diseño de enemigos a nivel profesional. Esta información fue de gran utilidad para dar forma a los fundamentos de nuestra herramienta.\\
 
 Una vez finalizada la fase de recopilación de información por ambas partes, celebramos varias reuniones para poner en común los hallazgos, identificar similitudes entre nuestros análisis y definir una base conceptual común. Gracias a este trabajo colaborativo, pudimos orientar adecuadamente la arquitectura de la herramienta, y comenzamos con el diseño e implementación de los primeros sensores y actuadores que formarían parte del sistema.\\
 
 \subsubsection*{Confección de la herramienta}
+\begin{itemize}
+	\item \textbf{Actuator:} Diseño e implementación de clase padre \texttt{Actuator} y relación con sus clases hijas.
+	\item \textbf{MovementActuator:} Desarrollo de nuevo nivel de abstracción de \texttt{Actuator} para todas las clases que representen movimientos (se excluye la clase encargada de crear enemigos). Integración de \textit{Easing Functions} en todos los movimientos excepto el movimiento basado en splines.
+	\item \textbf{VerticalActuator:} Implementación del desplazamiento vertical con movimiento constante, resolución de errores en la aceleración. Se incluye el manejo de colisiones, control de velocidad y comportamiento de lanzamiento.
+	\item \textbf{HorizontalActuator:} Implementación del desplazamiento horizontal con movimiento constante, solución a problemas relacionados con la aceleración. También se contemplan las colisiones, la velocidad y el comportamiento de lanzamiento.
+	\item \textbf{CircularActuator:} Implementación del movimiento circular, incluyendo su variante en modo péndulo, con soporte para aceleración mediante \textit{Easing Functions} y visualización de trayectoria para depuración.
+  	\item \textbf{SpawnerActuator:} Correción de errores y mantenimiento de la clase.
+ 	\item \textbf{MoveToAPointActuator:} Realización de la implementación íntegra del componente.
+	\item \textbf{MoveToAnObjectActuator:} Realización de la implementación íntegra del componente.
+	\item \textbf{DirectionalActuator:} Implementación de la clase surgida de la necesidad de crear proyectiles que fueran hacia el jugador al instanciarse.
+	\item \textbf{Sensor:} Implementación de la lógica base de la clase padre \texttt{Sensor}, que sirve como estructura común para los distintos tipos de sensores.
+  	\item \textbf{CollisionSensor:} Desarrollo del sensor encargado de detectar colisiones. Se resolvió un bug que impedía detectar colisiones persistentes si el sensor se activaba tras el impacto.
+	\item \textbf{DistanceSensor:} Implementación del sensor de distancia, incluyendo visualización para depuración y capacidad para identificar si un objeto se encuentra dentro o fuera del rango especificado.
+	\item \textbf{DamageSensor:} Desarrollo inicial y posterior refactorización de toda la lógica del daño, ya que originalmente se utilizaba el sensor tanto para recibir como para emitir daño, lo cual motivó su separación en componentes específicos.
+	\item \textbf{DamageEmitter:} Creación de la clase encargada de gestionar la emisión de daño. Esta clase contiene toda la información relevante que se consulta cuando un objeto que inflige daño interactúa con otro que puede recibirlo.
+	\item \textbf{Life:} Creación del sistema de vida que gestiona la salud de todas las entidades de la herramienta usando un \texttt{DamageSensor}.
+	\item \textbf{TimeSensor:} Solución de error donde se utilizaba una única instancia de \texttt{Timer} para dos tiempos diferentes.
+	\item \textbf{PlayerMovement:} Modificación de la clase proporcionada por \textit{Mix And Jam} eliminando lógica que no nos interesaba.
+	\item \textbf{PlayerDistanceAttack:} Creación de componente para ataque a distancia del jugador.
+	\item \textbf{PlayerCollisionDetection:} Modificación de la clase proporcionada por \textit{Mix And Jam} añadiendo la opción de visualizar las cajas de colisión que detectan los eventos de posibilidad de salto (caja inferior) o de deslizamiento por las paredes (cajas laterales).
+	\item \textbf{Solución de errores de animaciones:} Surgió un error donde al eliminar un estado o transición del \texttt{Animator Controller} del que derivan todos los demás, \textit{Unity} no hacía la limpieza de éstos bien dejando basura. Para ello había que borrar manualmente esos bloques de código sobrantes.
+	\item \textbf{Editores personalizados:} Implementación de la lógica necesaria para que la información requerida en el inspecto de \textit{Unity} fuera acorde a los valores que se tengan en todo momento.
+	\item \textbf{FSM}: Creación de la clase que representa la Máquina de Estados y lógica necesaria.
+	\item \textbf{State}: Lógica de la clase excepto transiciones entre estados.
+	\item \textbf{Creación de escenas enemigos:} Creación y ajuste de escenas de enemigos de prueba para que fueran lo más cercanos a lo que se ve en un videojuego comercial posible. También realicé un pequeño nivel de prueba donde se combinaban una serie de enemigos.
+	\item \textbf{Documentación del código:} Documentación del código para su posible corrección y para que su mantenimiento sea más sencillo.
+	\item \textbf{Tooltips personalizados:} Confección de \textit{tooltips} para que el uso de la herramienta fuera más sencillo.
+	\item \textbf{Exportación de la herramienta:} Preparación para que la herramienta pueda ser importada desde un repositorio de \textit{GitHub}.
+  	\item \textbf{Revisión general del código:} Revisión exhaustiva de todo el código fuente para garantizar la limpieza y consistencia.
+\end{itemize}
+\subsubsection*{Implicación en la memoria}
+En cuanto a la redacción de la memoria, estuve involucrado activamente en todo el proceso de elaboración. A continuación, detallo mi participación en cada uno de los capítulos:
 
-Durante las primeras fases del desarrollo de la herramienta, decidimos trabajar conjuntamente para establecer una estructura base que fuera modular y con una lógica coherente. A partir de ahí, me encargué del desarrollo del sistema de gestión de daño, así como de varios actuadores, como el \textit{Move To A Point Actuator} y el \textit{Directional Actuator}. \\
-
-También me responsabilicé de implementar la lógica necesaria para asegurar que los parámetros requeridos por cada componente de la herramienta fueran los adecuados en cada caso. Esta lógica se encuentra contenida en un \textit{script} editor asociado a cada componente, lo que permite una configuración dinámica y contextual según el tipo de actuador o sensor seleccionado.\\
-
-\subsubsection*{Parte de la memoria}
-
-En cuanto a la redacción de la memoria, me encargué del resumen inicial del documento y del capítulo correspondiente al estado de la cuestión. Dentro del apartado de implementación, redacté todos los subapartados excepto el 4.3 y el 4.5. Asimismo, en la sección de evaluación con usuarios, fui responsable de describir el rol del investigador, la metodología de observación y el proceso de puesta en común de los resultados obtenidos.\\
-
+\begin{itemize}
+ 	\item \textbf{Resumen:} Redacción completa del resumen en ambos idiomas, así como de los agradecimientos.
+ 	\item \textbf{Introducción:} Revisión general de todos los apartados del capítulo.
+ 	\item \textbf{Estado de la Cuestión:} Redacción completa del capítulo.
+ 	\item \textbf{Diseño del Framework:} Redacción inicial parcial del capítulo durante la fase de investigación, con posterior revisión de las modificaciones realizadas por mi compañera. Además, a partir de los comentarios del tutor, redacté varios contenidos adicionales, entre ellos, los ejemplos de uso de la herramienta.
+ 	\item \textbf{Implementación:} Escritura íntegra del capítulo, a excepción de los apartados 4.2 y 4.6, que posteriormente actualicé en base a las observaciones del tutor.
+ 	\item \textbf{Evaluación con Usuarios:} Revisión completa del capítulo y redacción de los apartados 5.2.5 y 5.2.6, excluyendo la sección dedicada al cuestionario SUS.
+ 	\item \textbf{Conclusiones y Trabajo Futuro:} Revisión general del capítulo.
+ 	\item \textbf{Corrección general de la memoria:} Lectura exhaustiva e iterativa del documento para detectar errores y proponer mejoras de redacción.
+\end{itemize}
 \subsubsection*{Manual}
-Mi participación en la elaboración del manual se centró en la corrección de errores, la traducción del contenido del español al inglés y la integración del glosario, asegurando que se explicaran adecuadamente los términos clave utilizados en la herramienta.\\
+Mi participación en la elaboración del manual fue de apoyo al principio y con el tiempo acabé encargándome de:
+\begin{itemize}
+	\item \textbf{Glosario:} Realización del glosario.
+	\item \textbf{Actualización de contenidos:} Cada cambio que se hacía en el Framework debía verse reflejado en el manual, por lo que me encargué de ello.
+	\item \textbf{Revisión general de contenidos:} Revisión de los contenidos del manual y búsqueda de erratas o contenido que pudiera ser explicado de manera más entendible para un diseñador.
+	\item \textbf{Actualización del manual:} Tras las pruebas de usuario, se hicieron una serie de cambios en el manual producto al \textit{feedback} recibido.
+\end{itemize}
 
-
+Todo estas aportaciones se dieron en ambas versiones, español e inglés.
