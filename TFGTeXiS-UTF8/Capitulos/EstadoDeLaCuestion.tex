@@ -17,11 +17,40 @@ En definitiva, el uso de la IA en videojuegos responde a una necesidad técnica 
 
 
 \section{Técnicas de toma de decisiones en NPC`s}
-Existen muchas técnicas que se pueden abordar a la hora de modelar una IA. Para decidir cuál se ajusta mejor a un problema en concreto, es importante saber ciertos factores, como por ejemplo la complejidad esperada del comportamiento, la adaptabilidad y flexibilidad de la técnica, si queremos invertir mucho tiempo en implementar estas técnicas o queremos algo rápido de hacer y funcional o los recursos que consumen. \\
-A continuación, se presentan técnicas utilizadas en videojuegos para modelar IA, las cuales hemos seleccionado porque comparten una estructura similar a la que planteamos inicialmente. Entre ellas, las maquinas finitas de estados se ajustan especialmente a nuestro enfoque y serán las que utilizaremos en nuestro desarrollo.
+
+En el ámbito del desarrollo de inteligencia artificial para videojuegos, una de las tareas más relevantes es la implementación de sistemas de toma de decisiones para personajes no jugables (NPCs). Estas técnicas permiten dotar a los NPCs de comportamientos coherentes, adaptativos y, en algunos casos, realistas, según el contexto del juego.\\
+
+A continuación, se presentan tres técnicas (véase la Tabla~\ref{tab:ComparativaTecnicas_NPCs}) ampliamente utilizadas en esta área:
+\begin{itemize}
+\item Máquinas de estados finitos (FSM): Se basan en un conjunto finito de estados predefinidos, junto con transiciones entre ellos que dependen de condiciones específicas. Son especialmente útiles cuando los comportamientos pueden representarse de forma secuencial o reactiva. Su implementación es sencilla, pero su escalabilidad puede verse limitada en entornos muy complejos. En nuestro proyecto, esta técnica se ajusta de forma natural a la estructura de comportamiento que planteamos, por lo que será la base del sistema de decisión.
+\item Árboles de comportamiento (Behavior Trees): Proporcionan una estructura jerárquica y modular para organizar comportamientos complejos. Cada nodo del árbol representa una acción o una condición, permitiendo la reutilización de comportamientos y facilitando la depuración. Esta técnica es más flexible que las FSM y se utiliza en muchos videojuegos comerciales debido a su claridad estructural y su adaptabilidad.
+\item Planificación orientada a objetivos (Goal-Oriented Action Planning, GOAP): A diferencia de las técnicas anteriores, GOAP no se basa en una estructura fija de estados o árboles, sino que genera planes dinámicamente en función de los objetivos del agente y las acciones disponibles. Esto permite una mayor autonomía y adaptabilidad, aunque a costa de una mayor complejidad computacional. Se emplea en juegos donde los NPCs deben tomar decisiones más abiertas y razonadas, como en entornos con múltiples rutas o soluciones posibles.
+\end{itemize}
+
+Estas técnicas representan diferentes niveles de complejidad y flexibilidad, y la elección entre ellas depende del tipo de comportamiento que se desee implementar, así como de los recursos disponibles. En nuestro caso, hemos optado por utilizar máquinas de estados finitas, por su idoneidad en contextos de decisión estructurada y controlada.
+
+
+
+\begin{table}[htbp]
+\centering
+\caption{Comparativa de técnicas de toma de decisiones para NPCs}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\hline
+\textbf{Técnica} & \textbf{Descripción} & \textbf{Ventajas} & \textbf{Desventajas} \\
+\hline
+\textbf{Máquinas de estados finitas (FSM)} & Sistema basado en estados predefinidos y transiciones condicionadas. Cada estado representa un comportamiento específico del NPC. & Simplicidad, facilidad de implementación, adecuado para comportamientos predecibles. & Escalabilidad limitada, difícil de mantener con muchos estados y transiciones. \\
+\hline
+\textbf{Árboles de comportamiento (Behavior Trees)} & Estructura jerárquica de nodos que representan condiciones y acciones. Permiten modularidad y reutilización de comportamientos. & Modularidad, claridad, fácil depuración y reutilización de nodos. & Mayor complejidad que FSM, curva de aprendizaje más pronunciada. \\
+\hline
+\textbf{GOAP (Goal-Oriented Action Planning)} & Técnica basada en planificación dinámica en función de objetivos y acciones disponibles. Genera planes en tiempo real según el entorno. & Alta autonomía, adaptabilidad y comportamiento más realista. & Complejidad de implementación, mayor coste computacional. \\
+\hline
+\end{tabularx}
+\label{tab:ComparativaTecnicas_NPCs}
+\end{table}
 
 \subsection{Máquinas de estado finitas}
-En su obra, \cite{MillingtonFunge2016} describen las máquinas de estado finitas(FSM) como una de las herramientas más comunes y efectivas para construir IA en videojuegos. Una FSM se compone de un conjunto finito de estados, donde solo uno está activo en un momento dado, y cada estado contiene un comportamiento asociado así como reglas que determinan las transiciones a otros estados en función de eventos o condiciones.\\
+En su obra, \cite{MillingtonFunge2016} describen las máquinas de estado finitas (FSM) como una de las herramientas más comunes y efectivas para construir IA en videojuegos. Una FSM se compone de un conjunto finito de estados, donde solo uno está activo en un momento dado, y cada estado contiene un comportamiento asociado así como reglas que determinan las transiciones a otros estados en función de eventos o condiciones.\\
+
 En el contexto de los videojuegos, las FSM permiten definir con claridad cómo debe comportarse una entidad del juego en distintas situaciones, por ejemplo: caminando, atacando, huyendo o patrullando. La estructura garantiza que solo un estado esté activo a la vez, lo que simplifica la lógica de control y evita conflictos entre comportamientos simultáneos. 
 A menudo, una FSM se representa como un grafo, donde los nodos representan los estados, que realizan las acciones y las aristas las transiciones posibles, activadas por eventos o condiciones del entorno. Esta estructura modular y determinista facilita tanto su diseño como su implementación y depuración.\\
 
@@ -45,8 +74,9 @@ A continuación se enumerarán los fantasmas y sus formas de comportarse.
 Para ilustrar el funcionamiento del juego se usará la Figura \ref{fig:Comportamiento jugador Pac-Man} que representa una posible FSM para el jugador, lo que haría que las decisiones tomadas fueran lo más eficientes posibles en el momento.\\
 
 
-\subsubsection{Máquinas de estado finitas jerárquicas}
-La principal desventaja de las FSM es que son muy inflexibles y estáticas y, aunque se puede atenuar mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones, siguen aunmentando su complegidad progresivamente cuando aumenta su tamaño. Una  forma de poder simplificar esa complegidad es sub-dividiendo tareas complejas en otras más sencillas. Permitiendo agrupar varias máquinas finitas dentro de una otra máquina finita. Las Maquinas de estado jerárquicas (HFSM) tienen la misma representación que las FSM, diferenciandose por la representación anidada de estados dentro de otros estados \cite{JorgeHFSM}.
+\subsubsection{Máquinas de Estado Finitas Jerárquicas}
+
+La principal desventaja de las FSM es que son muy inflexibles y estáticas y, aunque se puede atenuar mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones, siguen aumentando su complejidad progresivamente cuando aumenta su tamaño. Una forma de poder simplificar esa complejidad es dividiendo tareas complejas en otras más sencillas. Permitiendo agrupar varias máquinas finitas dentro de otra máquina finita. Las Máquinas de Estados Finitos Jerárquicas (HFSM, por sus siglas en inglés) comparten la misma representación básica que las FSM tradicionales, pero se distinguen por permitir la anidación de estados dentro de otros estados, lo que introduce una estructura jerárquica en su diseño.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/HFSM.png}
@@ -87,7 +117,7 @@ En este árbol, los nodos se dividen en dos tipos principales:
 \item Nodos de acción (behaviors): Representados con rectángulos (como \textit{FIGHT}, \textit{PATROL}, \textit{YELL\_FOR\_HELP}), son los encargados de ejecutar una acción concreta dentro del mundo del juego. Estas acciones son atómicas y no contienen lógica de decisión propia.
 \end{itemize}
 
-El nodo raíz (\textit{ROOT}) inicia la ejecución del árbol. El flujo de control comienza en este nodo y se propaga hacia abajo evaluando nodos hijos de izquierda a derecha. Cuando un decider es activado, se encarga de decidir cuál de sus hijos (otros deciders o behaviors) debe activarse en ese momento. Si ninguno de los hijos es adecuado, se retorna al nodo anterior, lo que permite reconsiderar otras opciones disponibles. Este enfoque permite que el comportamiento sea flexible y jerárquico.
+El nodo raíz (\textit{ROOT}) inicia la ejecución del árbol. El flujo de control comienza en este nodo y se propaga hacia abajo evaluando nodos hijos de izquierda a derecha. Cuando un decider es activado, se encarga de decidir cuál de sus hijos (otros deciders o behaviors) debe activarse en ese momento. Si ninguno de los hijos es adecuado, se retorna al nodo anterior, lo que permite reconsiderar otras opciones disponibles. Este enfoque permite que el comportamiento sea flexible y jerárquico.\\
 
 Gracias a esta organización, se logra modularidad y escalabilidad: por ejemplo, el decider \textit{IDLE} encapsula comportamientos distintos como \textit{REST} o \textit{PLAY}, y este último a su vez contiene subacciones como \textit{FLIP}, \textit{ROLL} o \textit{DANCE}. Esta jerarquía hace posible reutilizar comportamientos en distintos contextos y facilita el mantenimiento del árbol.
 
@@ -147,26 +177,30 @@ A continuación, se han seleccionado algunas herramientas que ayudan a dicha cre
 
 \subsection{Behavior Bricks}
 
-\textit{Behavior Bricks}\footnote{\url{https://bb.padaonegames.com/doku.php}} es una herramienta disponible para el motor de videojuegos \textit{Unity} centrada en cubrir todas las necesidades de implementación de comportamientos para juegos. Con \textit{Behavior Bricks} el usuario es capaz de modelar de manera visual tanto Máquinas de Estado Finitas como Árboles de comportamiento.\\
+\textit{Behavior Bricks} es una herramienta de scripting visual diseñada para el motor de videojuegos \textit{Unity}, orientada a facilitar la implementación de comportamientos complejos en entornos interactivos. Esta herramienta permite a los usuarios modelar tanto Máquinas de Estados Finitos (FSM, por sus siglas en inglés) como Árboles de Comportamiento (BT), utilizando una interfaz visual intuitiva (véase la Figura~\ref{fig:BH_Figure}).\\	
+
 \begin{figure}[t]
-	\centering
-	\includegraphics[width = 0.7\textwidth]{Imagenes/Behavior_Bricks.jpg}
-	\caption{Ejemplo de uso de Behavior Bricks}
-	\label{fig:BH_Figure}
+\centering
+\includegraphics[width = 0.7\textwidth]{Imagenes/Behavior_Bricks.jpg}
+\caption{Ejemplo de uso de Behavior Bricks}
+\label{fig:BH_Figure}
 \end{figure}
 
-\textit{Behavior Bricks} es una herramienta de scripting visual, por lo que favorece una colaboración entre diseñadores y programadores un aspecto que frecuentemente plantea desafíos.\\
-Otra particularidad de \textit{Behavior Bricks} es su modularidad, ya que permite modificar cada una de las partes con muy poco acoplamiento entre ellas, lo que incita a su reutilización en distintos proyectos. Esta modularidad también permite que podamos tener un estado/comportamiento que sea en sí mismo un grupo de estados/comportamientos.\\
-Esta herramienta hace hincapié en no ralentizar significativamente el rendimiento del juego, gracias a su optimización y la gestión de memoria la cual a veces es compartida entre estados/comportamientos para ahorrar recursos.\\
+Uno de los principales objetivos de \textit{Behavior Bricks} es fomentar la colaboración efectiva entre diseñadores y programadores, superando las barreras que suelen surgir entre estos perfiles durante el desarrollo de videojuegos. Su enfoque visual reduce la necesidad de codificación directa, facilitando la comunicación de ideas y la implementación de comportamientos complejos sin depender exclusivamente de programación textual.\\
 
+Otro aspecto destacado de \textit{Behavior Bricks} es su diseño modular. Cada componente puede ser modificado de forma independiente, lo que promueve la reutilización de elementos en distintos proyectos. Esta modularidad permite, además, que un estado o comportamiento pueda agrupar internamente otros estados o comportamientos, favoreciendo la creación de estructuras jerárquicas y reutilizables.\\
+
+Desde el punto de vista del rendimiento, \textit{Behavior Bricks} ha sido optimizado para minimizar su impacto en la ejecución del juego. Emplea estrategias eficientes de gestión de memoria, incluyendo el uso compartido de datos entre distintos estados o comportamientos cuando es posible, con el fin de ahorrar recursos computacionales.\\
+
+Esta herramienta se basa en un modelo integrador de Máquinas de Estados y Árboles de Comportamiento, lo que proporciona flexibilidad y potencia expresiva al sistema. Este enfoque ha sido presentado en la literatura académica por \cite{BB} en el contexto del Congreso de Software Educativo y de Conocimiento (COSECIVI).
 \subsection{PlayMaker}
-PlayMaker\footnote{\url{https://hutonggames.com/}} es un editor visual de FSM para Unity diseñado especialmente para artistas y diseñadores, ya que permite desarrollar IA sin necesidad de escribir código.
+PlayMaker\footnote{\url{https://hutonggames.com/}} es un editor visual de FSM para Unity diseñado especialmente para artistas y diseñadores, ya que permite desarrollar IA sin necesidad de escribir código.\\
 
-Su interfaz es altamente visual e intuitiva. Al crear una FSM, se genera automáticamente un estado inicial llamado \textit{START}, como podemos ver en la Figura \ref{fig:PlayMaker_Figure}, seguido de un estado predeterminado llamado \textit{State 1}, al cual se transiciona al ejecutar \textit{Unity}. A partir de ahí, el usuario puede agregar más estados y definir eventos que permiten cambiar entre ellos según ciertas condiciones.
+Su interfaz es altamente visual e intuitiva. Al crear una FSM, se genera automáticamente un estado inicial llamado \textit{START}, como podemos ver en la Figura \ref{fig:PlayMaker_Figure}, seguido de un estado predeterminado llamado \textit{State 1}, al cual se transiciona al ejecutar \textit{Unity}. A partir de ahí, el usuario puede agregar más estados y definir eventos que permiten cambiar entre ellos según ciertas condiciones.\\
 
-Una de sus principales ventajas es la facilidad con la que se pueden modificar los valores de los componentes de \textit{Unity}. Basta con arrastrar un componente a la pestaña \textit{State} para ajustar sus propiedades dentro de un estado determinado. Además, PlayMaker proporciona una amplia colección de acciones predefinidas, como la detección de entrada de teclas, temporizadores y movimientos entre otros. Estas acciones pueden activar eventos que actúan como transiciones entre estados, facilitando la creación de mecánicas de juego complejas sin necesidad de programación.
+Una de sus principales ventajas es la facilidad con la que se pueden modificar los valores de los componentes de \textit{Unity}. Basta con arrastrar un componente a la pestaña \textit{State} para ajustar sus propiedades dentro de un estado determinado. Además, PlayMaker proporciona una amplia colección de acciones predefinidas, como la detección de entrada de teclas, temporizadores y movimientos entre otros. Estas acciones pueden activar eventos que actúan como transiciones entre estados, facilitando la creación de mecánicas de juego complejas sin necesidad de programación.\\
 
-Gracias a su flexibilidad y facilidad de uso, PlayMaker es ideal para diseñar IA, lógica de juego, animaciones, interacción con interfaces de usuario y prototipos rápidos, convirtiéndolo en una herramienta poderosa tanto para principiantes como para desarrolladores experimentados que buscan agilizar su flujo de trabajo. Otro punto fuerte de PlayMaker es que permite que la herramienta sea escalable con scripts propios.
+Gracias a su flexibilidad y facilidad de uso, PlayMaker es ideal para diseñar IA, lógica de juego, animaciones, interacción con interfaces de usuario y prototipos rápidos, convirtiéndolo en una herramienta poderosa tanto para principiantes como para desarrolladores experimentados que buscan agilizar su flujo de trabajo. Otro punto fuerte de PlayMaker es que permite que la herramienta sea escalable con scripts propios.\\
 
 PlayMaker está disponible en la \textit{asset store} de \textit{Unity}, aunque su precio hace que desarrolladores con pocos recursos tengan que descartar esta opción, no deja de ser una herramienta usada ampliamente por la comunidad de desarrolladores, habiendo sido utilizada en juegos como el aclamado por la crítica \textit{Hollow Night}\footnote{\url{https://hollowknight.fandom.com/wiki/Hollow_Knight_Wiki}}, \textit{Firewatch}\footnote{\url{https://www.firewatchgame.com/}} la aventura narrativa del estudio norteamericano Campo Santo o el juego de plataforma de los creadores de \textit{Limbo}, \textit{INSIDE}\footnote{\url{https://inside.fandom.com/wiki/Inside_Wiki}}.\\
 
@@ -176,17 +210,16 @@ PlayMaker está disponible en la \textit{asset store} de \textit{Unity}, aunque 
 	\caption{Ejemplo de uso de Play Maker}
 	\label{fig:PlayMaker_Figure}
 \end{figure}
-\subsection{Decisión}
-Tras el análisis de las herramientas con capacidad para integrar comportamientos de inteligencia artificial, surgieron opciones relevantes que nos permiten la integración con Unity. Si bien esas herramientas son completamente válidas, se ha optado por la creación de una herramienta propia, partiendo desde cero. Esta decisión se fundamenta en la necesidad de personalización y control exhaustivo. Superando así las posibles limitaciones económicas de la investigación y las posibles faltas de adecuación total con otras herramientas.
+
 \section{Motores de videojuegos}
 
-La siguiente sección consistirá en el análisis de distintos motores de videojuegos. El objetivo  de este análisis es proporcionar una comprensión sobre cuales son las fortalezas y debilidades de cada uno de ellos, para así, razonar justificadamente cual se ajustamás a las necesidades de estre proyecto. Todos los motores escogidos tienen gran renombre en la industria ofreciendo gran variedad y distintas filosofías de diseño.
+La siguiente sección consistirá en el análisis de distintos motores de videojuegos. El objetivo  de este análisis es proporcionar una comprensión sobre cuales son las fortalezas y debilidades de cada uno de ellos, para así, razonar justificadamente cual se ajustamás a las necesidades de este proyecto. Todos los motores escogidos tienen gran renombre en la industria ofreciendo gran variedad y distintas filosofías de diseño.
 \subsection{Unity}
 \textit{Unity}\footnote{\url{https://unity.com}} es un motor de videojuegos desarrollado por \textit{Unity Technologies} que se ha convertido en una de las herramientas más utilizadas en la industria del desarrollo de videojuegos. Su versatilidad y facilidad de uso han permitido la creación de títulos de gran éxito como \textit{Hollow Knight}\footnote{\url{https://www.hollowknight.com}}, \textit{Cuphead}\footnote{\url{https://cupheadgame.com}} y \textit{Genshin Impact}\footnote{\url{https://genshin.hoyoverse.com/es}}. La versión más actual del motor, \textit{Unity 6.0}, incorpora mejoras en su sistema de renderizado, herramientas avanzadas de optimización y un motor de físicas más eficiente.\\
 
 Uno de los aspectos más destacados de \textit{Unity} es su capacidad para desarrollar videojuegos tanto en 2D como en 3D, lo que lo convierte en una opción ideal para una amplia variedad de proyectos. El motor ofrece dos principales opciones para la programación: el lenguaje \textit{C\#}, utilizado para la creación de scripts avanzados, y el sistema visual \textit{Bolt}, que permite desarrollar lógica de juego sin necesidad de escribir código.\\
 
-El sistema de scripting en \textit{Unity} está basado en \textit{C\#} y funciona a través del uso de \textit{MonoBehaviour}, una clase base que permite definir el comportamiento de los objetos del juego. Los scripts, son usados para implementar componentes. Estos componentes se adjuntan a los objetos (gamebjects) dentro del editor (Figura \ref{fig:Unity_Inspector}) y pueden controlar aspectos como la física, la inteligencia artificial y las interacciones del jugador.\\
+El sistema de scripting en \textit{Unity} está basado en \textit{C\#} y funciona a través del uso de \textit{MonoBehaviour}, una clase base que permite definir el comportamiento de los objetos del juego. Los scripts, son usados para implementar componentes. Estos componentes se adjuntan a los objetos (GameObjects) dentro del editor (Figura \ref{fig:Unity_Inspector}) y pueden controlar aspectos como la física, la inteligencia artificial y las interacciones del jugador.\\
 
 \begin{figure}[t]
 	\centering
@@ -201,15 +234,16 @@ Además de su versatilidad en la programación, \textit{Unity} cuenta con un con
 
 Si se compara con otros motores como \textit{Unreal Engine}, del cual se hablará más adelante, \textit{Unity} destaca por su flexibilidad y menor consumo de recursos. Mientras que \textit{Unreal Engine} es ampliamente reconocido por su calidad gráfica superior, \textit{Unity} ofrece un entorno más ligero y optimizado, lo que lo convierte en una mejor opción para desarrolladores independientes o proyectos móviles. Sin embargo, su sistema visual de nodos es menos avanzado que el de \textit{Unreal}, lo que puede requerir el uso de \textit{C\#} para acceder a funcionalidades más complejas.\\
 
-Un punto negativo de \textit{Unity} con respecto a otros motores es su modelo de licencias y sus cambios recientes en la política de precios, lo que ha generado controversia entre los desarrolladores. A pesar de esto, su comunidad activa, su gran cantidad de recursos educativos y su compatibilidad con una amplia variedad de plataformas lo mantienen como una de las opciones más accesibles y populares para la creación de videojuegos.
+Un punto negativo de \textit{Unity} con respecto a otros motores es su modelo de licencias y sus cambios recientes en la política de precios, lo que ha generado controversia entre los desarrolladores. A pesar de esto, su comunidad activa, su gran cantidad de recursos educativos y su compatibilidad con una amplia variedad de plataformas lo mantienen como una de las opciones más accesibles y populares para la creación de videojuegos.\\
 
 La combinación de herramientas avanzadas y la facilidad de uso hace que cualquier persona pueda desarrollar desde juegos móviles y experiencias en realidad virtual hasta títulos en 3D de gran escala sin necesidad de contar con un equipo grande o conocimientos avanzados de programación.
 
 \subsection{Unreal Engine}
 \textit{Unreal Engine}\footnote{\url{https://www.unrealengine.com/es-ES}}, desarrollado por \textit{Epic Games}\footnote{\url{https://www.epicgames.com/site/es-ES/home}}, es uno de los motores de videojuegos más potentes y utilizados en la industria de los videojuegos en títulos como la saga \textit{Hellblade}\footnote{\url{https://thehellblade.fandom.com/wiki/Hellblade:_Senua\%27s_Sacrifice}} o el éxito mundial \textit{Fornite}\footnote{\url{https://www.fortnite.com/?lang=es-ES}} y la versión más actual es Unreal Engine 5 que cuenta, entre otras cosas, con \textit{Lumen}, un sistema de iluminación global dinámica o la mejora sustancial del sistema de simulación de físicas \textit{Chaos}.\\
-A pesar de que permite la programación en \textit{C++}, también ofrece un sistema visual llamado Blueprints, diseñado para que cualquier persona, sin conocimientos de programación, pueda crear videojuegos completos mediante una interfaz gráfica intuitiva.
 
-El sistema de Blueprints funciona de manera similar a un lenguaje de programación visual basado en nodos. En lugar de escribir código manualmente, el usuario conecta bloques de lógica (Figura \ref{fig:BluePrints_Figure}) para definir comportamientos, interacciones y mecánicas dentro del juego. Esto permite crear desde movimientos de personajes y mecánicas de combate hasta sistemas complejos de inteligencia artificial y físicas sin necesidad de escribir una sola línea de código. Cabe destacar que se pueden crear Blueprints en caso de que sea necesario.
+A pesar de que permite la programación en \textit{C++}, también ofrece un sistema visual llamado Blueprints, diseñado para que cualquier persona, sin conocimientos de programación, pueda crear videojuegos completos mediante una interfaz gráfica intuitiva.\\
+
+El sistema de Blueprints funciona de manera similar a un lenguaje de programación visual basado en nodos. En lugar de escribir código manualmente, el usuario conecta bloques de lógica (Figura \ref{fig:BluePrints_Figure}) para definir comportamientos, interacciones y mecánicas dentro del juego. Esto permite crear desde movimientos de personajes y mecánicas de combate hasta sistemas complejos de inteligencia artificial y físicas sin necesidad de escribir una sola línea de código. Cabe destacar que se pueden crear Blueprints en caso de que sea necesario.\\
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/Blueprints.png}
@@ -217,20 +251,20 @@ El sistema de Blueprints funciona de manera similar a un lenguaje de programaci�
 	\label{fig:BluePrints_Figure}
 \end{figure}
 
-Además, Unreal Engine incluye un conjunto de herramientas preconfiguradas que facilitan el desarrollo, como sistemas de animación, iluminación, renderizado de alta calidad y físicas avanzadas. Gracias a estas características, cualquier usuario puede desarrollar videojuegos en 2D y 3D de manera accesible y rápida, sin necesidad de aprender un lenguaje de programación tradicional.
+Además, Unreal Engine incluye un conjunto de herramientas preconfiguradas que facilitan el desarrollo, como sistemas de animación, iluminación, renderizado de alta calidad y físicas avanzadas. Gracias a estas características, cualquier usuario puede desarrollar videojuegos en 2D y 3D de manera accesible y rápida, sin necesidad de aprender un lenguaje de programación tradicional.\\
 
-Si se compara con otros motores como Unity, Unreal Engine destaca por su calidad gráfica y su sistema visual más robusto. Mientras que en Unity se requiere programación para acceder a ciertas funciones avanzadas, en Unreal es posible construir mecánicas complejas únicamente con Blueprints. Esto lo convierte en una opción ideal para desarrolladores novatos que buscan facilidad de uso sin sacrificar potencia y flexibilidad.
+Si se compara con otros motores como Unity, Unreal Engine destaca por su calidad gráfica y su sistema visual más robusto. Mientras que en Unity se requiere programación para acceder a ciertas funciones avanzadas, en Unreal es posible construir mecánicas complejas únicamente con Blueprints. Esto lo convierte en una opción ideal para desarrolladores novatos que buscan facilidad de uso sin sacrificar potencia y flexibilidad.\\
 
-Un punto negativo de Unreal Engine con respecto a Unity es la necesidad de recursos hardware que tiene para poder usarlo sin ningún tipo de ralentizaciones ni crasheos fortuitos, necesitando equipos muy potentes para que el desarrollo sea ameno o utilizar versiones anteriores de Unreal Engine.
+Un punto negativo de Unreal Engine con respecto a Unity es la necesidad de recursos hardware que tiene para poder usarlo sin ningún tipo de ralentizaciones ni crasheos fortuitos, necesitando equipos muy potentes para que el desarrollo sea ameno o utilizar versiones anteriores de Unreal Engine.\\
 
 Gracias a los Blueprints, cualquier persona puede diseñar enemigos, implementar IA, construir niveles interactivos y desarrollar mecánicas de juego avanzadas sin tocar código. 
 \subsection{Godot}
 
-Godot\footnote{\url{https://godotengine.org/}}, desarrollado por Juan Linietsky y Arenanet, es un motor de videojuegos de código abierto que ha ganado popularidad por su accesibilidad, flexibilidad y sencillez. Ofrece una plataforma poderosa para desarrollar videojuegos tanto en 2D como en 3D, y uno de sus mayores atractivos es que está diseñado para ser fácil de usar sin necesidad de tener conocimientos avanzados de programación.
+Godot\footnote{\url{https://godotengine.org/}}, desarrollado por Juan Linietsky y Arenanet, es un motor de videojuegos de código abierto que ha ganado popularidad por su accesibilidad, flexibilidad y sencillez. Ofrece una plataforma poderosa para desarrollar videojuegos tanto en 2D como en 3D, y uno de sus mayores atractivos es que está diseñado para ser fácil de usar sin necesidad de tener conocimientos avanzados de programación.\
 
-A diferencia de otros motores como Unreal Engine o Unity, Godot permite el desarrollo de videojuegos con una interfaz intuitiva, pero también brinda herramientas más accesibles para aquellos que no desean escribir código. Su sistema de GDScript, un lenguaje propio diseñado específicamente para ser fácil de aprender y usar, facilita la creación de juegos sin necesidad de un conocimiento profundo de programación. GDScript es similar a Python (comparten sintaxis y tipado dinámico), lo que lo hace accesible y amigable para desarrolladores noveles.
+A diferencia de otros motores como Unreal Engine o Unity, Godot permite el desarrollo de videojuegos con una interfaz intuitiva, pero también brinda herramientas más accesibles para aquellos que no desean escribir código. Su sistema de GDScript, un lenguaje propio diseñado específicamente para ser fácil de aprender y usar, facilita la creación de juegos sin necesidad de un conocimiento profundo de programación. GDScript es similar a Python (comparten sintaxis y tipado dinámico), lo que lo hace accesible y amigable para desarrolladores noveles.\\
 
-Para aquellos que prefieren una experiencia más visual y menos enfocada en la programación, Godot incluye un sistema llamado \textit{VisualScript} (Figura \ref{fig:Godot_VisualScript_Figure}), un lenguaje visual basado en nodos que permite desarrollar mecánicas sin escribir código. Similar a los sistemas de programación visual en otros motores como Unreal Engine. Este sistema ha sido eliminado del núcleo de Godot a partir de la versión 4.0 del motor aunque en lanzamientos futuros VisualScript será re-implementado como una extensión\footnote{\url{https://docs.godotengine.org/es/3.5/tutorials/scripting/visual_script/index.html}}.
+Para aquellos que prefieren una experiencia más visual y menos enfocada en la programación, Godot incluye un sistema llamado \textit{VisualScript} (Figura \ref{fig:Godot_VisualScript_Figure}), un lenguaje visual basado en nodos que permite desarrollar mecánicas sin escribir código. Similar a los sistemas de programación visual en otros motores como Unreal Engine. Este sistema ha sido eliminado del núcleo de Godot a partir de la versión 4.0 del motor aunque en lanzamientos futuros VisualScript será re-implementado como una extensión\footnote{\url{https://docs.godotengine.org/es/3.5/tutorials/scripting/visual_script/index.html}}.\\
 
 \begin{figure}[t]
 	\centering
@@ -238,13 +272,13 @@ Para aquellos que prefieren una experiencia más visual y menos enfocada en la p
 	\caption{Sistema VisualScript en Godot}
 	\label{fig:Godot_VisualScript_Figure}
 \end{figure}
-Godot también destaca por ser un motor muy optimizado para el desarrollo de juegos en 2D, proporcionando una serie de herramientas específicas para este tipo de desarrollo, como un sistema de mallas 2D, animaciones, efectos y un conjunto de físicas dedicadas al mundo 2D. De esta manera, los desarrolladores pueden crear juegos con un rendimiento óptimo, incluso para dispositivos de baja gama, y con un flujo de trabajo ágil.
+Godot también destaca por ser un motor muy optimizado para el desarrollo de juegos en 2D, proporcionando una serie de herramientas específicas para este tipo de desarrollo, como un sistema de mallas 2D, animaciones, efectos y un conjunto de físicas dedicadas al mundo 2D. De esta manera, los desarrolladores pueden crear juegos con un rendimiento óptimo, incluso para dispositivos de baja gama, y con un flujo de trabajo ágil.\\
 
-Comparado con otros motores como Unreal Engine o Unity, Godot se distingue por su flexibilidad y ligereza. Al no requierir licencias, lo convierte en una excelente opción para proyectos indie para estudios de pequeño y mediano tamaño. Aunque tradicionalmente ha sido asociado con el desarrollo indie como el roguelite \textit{Brotato}\footnote{\url{https://brotato.wiki.spellsandguns.com/Brotato_Wiki}} su adopcion ha crecido considerablemente siendo usado por titulod de mayor proyeccion como \textit{Marvel Snap}. También es especialmente potente para aquellos interesados en el desarrollo de juegos 2D, ya que ofrece herramientas específicamente diseñadas para este propósito, algo en lo que otros motores como Unity o Unreal Engine no se enfocan tanto.
+Comparado con otros motores como Unreal Engine o Unity, Godot se distingue por su flexibilidad y ligereza. Al no requierir licencias, lo convierte en una excelente opción para proyectos indie para estudios de pequeño y mediano tamaño. Aunque tradicionalmente ha sido asociado con el desarrollo indie como el roguelite \textit{Brotato}\footnote{\url{https://brotato.wiki.spellsandguns.com/Brotato_Wiki}}. Su adopcion ha crecido considerablemente siendo usado por títulos de mayor proyeccion como \textit{Marvel Snap}\footnote{\url{https://www.marvelsnap.com/home}}. También es especialmente potente para aquellos interesados en el desarrollo de juegos 2D, ya que ofrece herramientas específicamente diseñadas para este propósito, algo en lo que otros motores como Unity o Unreal Engine no se enfocan tanto.\\
 
-La combinación de su accesibilidad y herramientas solventes hace que Godot permita a sus desarrolladores sin experiencia en programación crear juegos completos, desde mecánicas simples hasta sistemas complejos, sin necesidad de escribir código avanzado. Esta facilidad de uso, combinada con un motor robusto y libre, hace que Godot sea una opción popular para quienes buscan comenzar en el mundo del desarrollo de videojuegos o aquellos que desean una solución completamente gratuita y personalizable para sus proyectos.
+La combinación de su accesibilidad y herramientas solventes hace que Godot permita a sus desarrolladores sin experiencia en programación crear juegos completos, desde mecánicas simples hasta sistemas complejos, sin necesidad de escribir código avanzado. Esta facilidad de uso, combinada con un motor robusto y libre, hace que Godot sea una opción popular para quienes buscan comenzar en el mundo del desarrollo de videojuegos o aquellos que desean una solución completamente gratuita y personalizable para sus proyectos.\\
 
-Aunque Godot cuenta con grandes ventajas, cabe destacar que tanto Unity como Unreal son motores más establecidos en la industria, ya sea por la cantidad de assets, plugins o expansión de estos. 
+Aunque Godot cuenta con grandes ventajas, cabe destacar que tanto Unity como Unreal son motores más establecidos en la industria, ya sea por la cantidad de assets, plugins o expansión de estos.\\
 
 \subsection{GameMaker}
 \textit{GameMaker}\footnote{\url{https://gamemaker.io/en}} es un motor de videojuegos desarrollado por \textit{YoYo Games} que se especializa en la creación de juegos en 2D, aunque también cuenta con soporte limitado para gráficos en 3D. Su accesibilidad y facilidad de uso lo han convertido en una de las herramientas más populares entre desarrolladores indie, permitiendo la creación de títulos exitosos como \textit{Undertale}\footnote{\url{https://undertale.com}}, \textit{Hotline Miami}\footnote{\url{https://store.steampowered.com/app/219150/Hotline_Miami/}} o \textit{Katana ZERO}\footnote{\url{https://katanazero.com}}.\\
