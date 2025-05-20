@@ -1,7 +1,7 @@
 \chapter{Estado de la Cuestión}
 \label{cap:estadoDeLaCuestion}
 En este capítulo se hará una investigación sobre las técnicas, herramientas y formas de crear inteligencias artificiales para enemigos.
-Para ello vamos a comenzar haciendo un recorrido por elementos generales relacionados con la inteligencia artificial y cómo se usan en videojuegos de plataformas en 2D, ya sea para crear un Non-Player Characters (NPC) o enemigos.
+Para ello vamos a comenzar haciendo un recorrido por elementos generales relacionados con la inteligencia artificial y cómo se usan en videojuegos de plataformas en 2D, ya sea para crear Non-Player Characters (NPC) o enemigos.
 Se mencionarán además herramientas para conseguir los fines descritos anteriormente y se hablará de algunos motores de videojuegos que han inspirado algunos aspectos de nuestra herramienta. \\
 
 
@@ -50,15 +50,40 @@ Una limitación de las FSMs es que son muy inflexibles y estáticas, de manera q
 
 \subsection{Árboles de comportamiento}
 
-Un árbol de comportamiento o Behavior Tree (BT) es una técnica similar a las Máquinas de Estado Finitas ya que contamos con nodos y transiciones y solo uno de esos nodos, en este caso representando un comportamiento en lugar de un estado, puede estar activo al mismo tiempo. En esencia, es un árbol de nodos que se organizan jerárquicamente y que atienden a unas normas que controlan el flujo de cambios de nodo. \\
+Un Árbol de Comportamiento (Behavior Tree o BT) es una técnica utilizada para modelar la toma de decisiones en inteligencia artificial, especialmente en videojuegos. Es conceptualmente similar a una Máquina de Estados Finitos, ya que también organiza el comportamiento en unidades que se activan de forma exclusiva (es decir, solo una parte del árbol está ``activa'' en cada momento). Sin embargo, en lugar de representar estados, los BT están formados por nodos que representan comportamientos, organizados jerárquicamente en forma de árbol. Cada nodo ejecuta una acción o toma una decisión, y el control fluye a través del árbol según unas reglas predefinidas. \\
+
+Los nodos de un BT pueden dividirse en varias categorías, siendo las principales:
+
+\begin{itemize}
+\item Nodos hoja (leaf nodes): Acciones concretas que ejecuta el agente, como moverse a un punto'' o ``atacar al enemigo''.
+\item Nodos compuestos: Agrupan varios nodos hijos y determinan en qué orden deben ejecutarse (por ejemplo, secuencias o selectores).
+\item Nodos de control o decoradores: Modifican el comportamiento de los nodos hijos (por ejemplo, repetir un nodo mientras se cumpla una condición).
+\end{itemize}
 
 La principal ventaja respecto a las Máquinas de Estado Finitas es su modularidad, la capacidad que tiene un sistema de dividir la lógica del comportamiento en piezas independientes y reutilizables, pudiendo agrupar estas piezas en grupos que a su vez funcionan como una pieza. Su facilidad para ser diseñados y probados han hecho que los árboles de comportamiento se conviertan en una opción real para modelar IA en la industria del videojuego, con juegos como \textit{Bioshock} \citep{bioshock} y \textit{Halo 2} \citep{halo2} como referencias en el uso de Árboles de comportamiento.\\
+
 Un ejemplo no tan conocido de uso de Árboles de comportamiento en la industria del videojuego es \textit{Spore} \citep{spore}. \textit{Spore} es un videojuego en el que el jugador va a comenzar creando una célula y va encarnarla durante todo el proceso de su evolución hasta que esta se convierta en un ser mucho más complejo llegando incluso a construir una civilización muy avanzada. La inteligencia artificial de las entidades que nos rodean en este videojuego están fundamentadas en Árboles de comportamiento.\\
 
-La gran diferencia de como usa los Behavior Tree Spore a los juegos anteriormente mencionados es que Spore separa el concepto de \textit{decider} de \textit{behavior}. Los Árboles de comportamiento de Halo 2 están compuestos por \textit{behaviors} ya sean estos comportamientos grupales, en los que se elige entre varias opciones, o individuales, que ejecutan acciones específicas, e impulsos que son los saltos que se dan entre comportamientos y que se toman dependiendo de una prioridad, que a futuro resulta en problemas de escalabilidad. Para solucionar este problema, en \textit{Maxis} deciden unificar el concepto de impulso y comportamientos grupales bajo el nombre de \textit{deciders}, dejando completamente separado el concepto de \textit{behavior} y permitiendo que estos puedan ser reutilizados en múltiples lugares del árbol, asegurando la escalabilidad.\\
+La gran diferencia en cómo Spore utiliza los Árboles de Comportamiento frente a juegos como Halo 2 es que separa el concepto de decider del de behavior. En Halo 2, los árboles están compuestos por behaviors (comportamientos que pueden ser grupales o individuales) y impulsos (transiciones entre comportamientos basadas en prioridades). Esta estructura, aunque funcional, tiende a generar problemas de escalabilidad, como:
+\begin{itemize}
+	\item Dificultad para entender y mantener el árbol.
+	\item Duplicación innecesaria de comportamientos.
+	\item Poca reutilización del código.
+	\item Aumento del riesgo de errores al introducir nuevas acciones o decisiones.
+\end{itemize}
+
+Para resolver estos problemas, el equipo de Maxis decidió separar completamente los nodos de decisión (deciders) de los nodos de acción (behaviors). Los deciders actúan como controladores que eligen qué behavior ejecutar en función del contexto, mientras que los behaviors se mantienen como bloques de acción reutilizables. Esta estructura modular y jerárquica no solo mejora la claridad del árbol, sino que también facilita su escalabilidad y mantenimiento en proyectos complejos como Spore.\\
 
 La Figura \ref{fig:BT Spore} es un ejemplo de un BT sacado de las documentación\footnote{ \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}} que hay publicada del juego.
-Un punto importante a tener en cuenta es que si un nodo tiene más de un hijo, estos se comprueban si son o no elegidos en un orden determinado hasta que uno de los \textit{deciders} acepte la petición del padre o ninguno acepte y se vuelva al nodo actual volviendo a repetir el proceso.\\
+En este árbol, los nodos se dividen en dos tipos principales:
+\begin{itemize}
+\item Nodos de decisión (deciders): Representados con forma de rombo (como \textit{GUARD}, \textit{EAT}, \textit{IDLE}), son los encargados de seleccionar cuál de sus nodos hijos ejecutar en función del contexto o condiciones actuales. Evalúan a sus hijos en orden y seleccionan el primero que sea válido.
+\item Nodos de acción (behaviors): Representados con rectángulos (como \textit{FIGHT}, \textit{PATROL}, \textit{YELL\_FOR\_HELP}), son los encargados de ejecutar una acción concreta dentro del mundo del juego. Estas acciones son atómicas y no contienen lógica de decisión propia.
+\end{itemize}
+
+El nodo raíz (\textit{ROOT}) inicia la ejecución del árbol. El flujo de control comienza en este nodo y se propaga hacia abajo evaluando nodos hijos de izquierda a derecha. Cuando un decider es activado, se encarga de decidir cuál de sus hijos (otros deciders o behaviors) debe activarse en ese momento. Si ninguno de los hijos es adecuado, se retorna al nodo anterior, lo que permite reconsiderar otras opciones disponibles. Este enfoque permite que el comportamiento sea flexible y jerárquico.
+
+Gracias a esta organización, se logra modularidad y escalabilidad: por ejemplo, el decider \textit{IDLE} encapsula comportamientos distintos como \textit{REST} o \textit{PLAY}, y este último a su vez contiene subacciones como \textit{FLIP}, \textit{ROLL} o \textit{DANCE}. Esta jerarquía hace posible reutilizar comportamientos en distintos contextos y facilita el mantenimiento del árbol.
 
 \begin{figure}[t]
 	\centering
@@ -80,7 +105,7 @@ El considerado primer videojuego que usa GOAP es \textit{F.E.A.R, Monolith Produ
 
 A continuación vamos a definir una serie de términos clave para definir el comportamiento de GOAP.
 \begin{itemize}
-	 \item Objetivos: Lo que la entidad quiera lograr. Un agente puede querer cumplir más de un objetivo. En el videojuego \textit{NOLF 2} los personajes tenían típicamente alrededor de 25 objetivos, aunque en cada instante solo un objetivo esté activo y este determine las acciones del agente. Un objetivo sabe como calcular su relevancia actual y sabe cuando ha sido alcanzado.\\
+	 \item Objetivos: Lo que la entidad quiera lograr. Un agente puede querer cumplir más de un objetivo. En el videojuego \textit{NOLF 2}, como se menciona en \citet{GOAP_Jeff_Orkin}, los personajes tenían típicamente alrededor de 25 objetivos, aunque en cada instante solo un objetivo esté activo y este determine las acciones del agente. Un objetivo sabe como calcular su relevancia actual y sabe cuando ha sido alcanzado.\\
 Aunque conceptualmente son similares, hay una diferencia clave entre los objetivos en \textit{NOLF 2} y GOAP y es que en el primero cada objetivo tiene un plan predefinido con pasos fijos y ramas condicionales establecidas de antemano y en GOAP los objetivos solo definen las condiciones que deben cumplirse para darse por terminado, los pasos para alcanzarlos se generan dinámicamente en tiempo real.
 
 	 \item Plan: Forma de denominar una secuencia de acciones. Un plan válido es aquel que lleva a un personaje desde un estado inicial hasta un estado que cumple con el objetivo. El plan se ejecuta hasta que se complete, se invalide u otro objetivo se vuelva más importante lo que obligará a que se cree formule un nuevo plan.
