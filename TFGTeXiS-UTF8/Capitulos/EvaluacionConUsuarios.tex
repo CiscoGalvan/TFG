@@ -149,5 +149,66 @@ Antes de llevar a cabo las pruebas con usuarios, se realizarán las siguientes a
 \item Preparación de la herramienta (abierta y funcional).
 \item Dejar abiertos en los ordenadores que se usen para las pruebas la herramienta y el manual.
 \item Comprobar el uso de las grabadoras de voz para la entrevista.
-\item Tener el guión al alcance para revisar los puntos durante la ejecución.
+\item Tener el guion al alcance para revisar los puntos durante la ejecución.
 \end{itemize}
+
+\subsection{Resultados de las pruebas}
+Las pruebas se realizaron en una sesión en torno a la hora de duración. Todas las pruebas fueron realizadas sobre la misma versión del proyecto, sin embargo, no todas se realizaron con la misma versión de Unity. Esto último no supuso ningún impedimento para la realización de las pruebas. 
+En total esta prueba ha sido realizada por siete probadores que se han ofrecido voluntariamente a probar la herramienta. Para buscar a los probadores, hablamos con el tutor, que imparte clases en el Máster de diseño de videojuegos de la UCM y algunos de ellos se ofrecieron a ayudarnos. \\
+
+Todos los probadores tienen un perfil similar. Son estudiantes que ya parten con conocimientos sobre el mundo de los videojuegos. Tienen conocimientos sobre diseño y algunos de ellos también poseen conocimientos de programación. \\
+
+Se obtuvieron datos cuantitativos mediante el cuestionario SUS y observaciones cualitativas que permiten extraer conclusiones alineadas con los objetivos y preguntas de investigación propuestas. Aunque unos errores en la versión del proyecto imposibilitó la realización de un ejercicio de la prueba, las opiniones generales fueron positivas. La herramienta recibió una puntuación media de 75,7 en el cuestionario SUS, lo que indica una buena percepción de usabilidad. Aunque la desviación estándar de 16,1 sugiere cierta variabilidad entre usuarios. Las datos no pueden ser completamente significativos debido a la escasa cantidad de ellos, sin embargo, la herramienta tiene una buena previsión.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=5cm]{Imagenes/ResultadosSUS.png}
+	\caption{Resultados obtenidos en el cuestionario SUS}
+	\label{fig:Cuestionario SUS}
+\end{figure}
+\subsection{¿Resulta intuitiva y clara la herramienta para el usuario?}
+
+\begin{enumerate}
+    \item \textbf{¿El usuario entiende fácilmente cómo añadir funcionalidad al enemigo?} \\
+    Los ítems 3 (\textit{Pensé que el sistema era fácil de usar}) y 7 (\textit{Imaginaría que la mayoría de la gente aprendería a usar este sistema muy rápidamente}) reflejan como en ambos casos, más del 85\% de los usuarios se ubicaron en los valores altos de la escala (4 o 5), lo que indica que la adición de funcionalidades fue percibida como accesible e intuitiva. 
+
+    \item \textbf{¿Las opciones de comportamiento ofrecidas son comprendidas en su totalidad?} \\
+    El ítem 6 (\textit{Pensé que había demasiada inconsistencia en este sistema}) arrojó valores predominantemente bajos (71,4\,\% marcó 1), lo que sugiere que los actuadores y comportamientos ofrecidos son coherentes entre sí y comprensibles. En la observación encontramos que ninguno usó los Tooltips creados que podrían haber servido para mejorar la comprensión fueron leídos, hablando con ellos se concluye que no sabían  que existían. Una posible mejora sería mencionarlos en el manual, ya que modificarlos visualmente podría sobrecargar la herramienta.
+
+    \item \textbf{¿La interfaz comunica correctamente el propósito de cada estado y transición?} \\
+    El ítem 5 (\textit{Encontré que las diversas funciones de este sistema estaban bien integradas}) fue valorado positivamente por el 85,9\,\% de los usuarios (respuestas 4 y 5), lo que indica que la interfaz fue eficaz comunicando la relación entre los elementos de diseño (estados, transiciones, actuadores).
+
+    \item \textbf{¿La documentación aclara y detalla la configuración de las funcionalidades?} \\
+    Aunque el cuestionario SUS no aborda directamente la calidad de la documentación, las respuestas cualitativas recogidas en las entrevistas reflejaron una valoración favorable en cuanto a la claridad del manual proporcionado, sin embargo destacaron que era muy largo. 
+\end{enumerate}
+
+\subsection{¿El sistema de creación de enemigos demuestra ser funcional?}
+
+\begin{enumerate}
+    \item \textbf{¿La herramienta agiliza y simplifica el proceso de diseño de enemigos?} \\
+    Este aspecto se refleja indirectamente en los ítems 1 (\textit{Creo que me gustaría usar este sistema con frecuencia}) y 3 (\textit{Pensé que el sistema era fácil de usar}). La alta valoración obtenida (ambos con mayoría en los valores 4 y 5) respalda que los usuarios perciben la herramienta como útil y eficiente en su propósito de simplificar el diseño de enemigos.
+
+    \item \textbf{¿El comportamiento de los enemigos generados se corresponde con lo esperado en el videojuego?} \\
+    En la observación realizada durante las pruebas encontramos que aunque si que hacían lo que los ejemplos del manual indicaban, les costaba comprenderlo. En la puesta en común se propuso la realización de videos donde se explicase de manera visual como se configuraba cada enemigo.
+
+    \item \textbf{¿La herramienta permite la adaptación y expansión sencilla de los enemigos?} \\
+    El ítem 10 (\textit{Necesité aprender muchas cosas antes de poder usar este sistema}) proporciona una visión indirecta sobre la complejidad percibida. Aquí, la mayoría de usuarios marcó valores bajos (1 o 2), lo cual indica que la curva de aprendizaje no fue elevada y que la adaptación del sistema no requirió una sobrecarga cognitiva. Además, las entrevistas revelaron que los usuarios valoraron positivamente la modularidad de la herramienta.
+\end{enumerate}
+\subsection{Puesta en común}
+Tras la realización del cuestionario se procedió a hacer una puesta en común con los usuarios. De ellas podemos sacar en claro que :
+\begin{itemize}
+\item Les ha gustado que la herramienta tenga tantos tipos de comportamientos y la ven muy completa.
+\item No sabían de la existencia de Tooltips.
+\item Les parece extraño tener que usar la pestaña de Animator y recomiendan su gestión desde el inspector.
+\item Les gustaría tener video tutoriales donde se explique cada cosa de manera más visual.
+\item Creen que tanto pinchar y arrastrar puede liar cuando hay muchos movimientos, lo que indica que estaría bien cambiar la forma en la que se visualizan los elementos para verla más clara y no uno tras otro sin saber que elementos están conectados con cuales.
+\item Confusión general con estado de la Maquina de estados finita y estado de animación
+\item Uno menciona la necesidad de más elementos de debug de forma visual
+\item Necesario el feedback de daño en el jugador para verificar que los enemigos hacen daño
+\end{itemize}
+\subsection{Conclusión general}
+
+La evaluación preliminar de la herramienta, realizada con un grupo limitado de solo siete participantes, sugiere que la usabilidad es generalmente aceptable en su versión actual. Se perciben fortalezas en la claridad de la interfaz, la integración de funcionalidades y una baja percepción de complejidad. Sin embargo, es importante señalar que la muestra reducida de usuarios impide que estos datos sean estadísticamente significativos o generalizables.\\
+
+Las observaciones y respuestas cualitativas de este pequeño grupo indican posibles áreas de mejora en la herramienta. A pesar de estas sugerencias, parece cumplir los objetivos definidos a un nivel básico para los usuarios que la han probado.
+
