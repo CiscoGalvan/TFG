@@ -1,19 +1,19 @@
-\chapter*{Contribuciones Personales}
+\chapter{Contribuciones Personales}
 \label{cap:contribucionesPersonales}
-\addcontentsline{toc}{chapter}{Contribuciones Personales}
+
 En esta sección se describen las aportaciones individuales de cada autor al desarrollo de la herramienta y la elaboración de la memoria. Aunque en la mayoría de los casos ambos autores han participado en conjunto, provocando que una misma tarea esté en ambos autores a la misma vez.
 
-\section*{Contribuciones de Cristina Mora Velasco}
-\subsection*{Antecedentes}
+\section{Contribuciones de Cristina Mora Velasco}
+\subsection{Antecedentes}
 En el verano anterior al inicio del proyecto, comencé una investigación exhaustiva enfocada en cómo desarrollar herramientas efectivas, poniendo especial atención en facilitar las tareas de los diseñadores. El objetivo principal era hacer que las funcionalidades fueran lo más intuitivas y visuales posibles, reduciendo al máximo la necesidad de memorizar procedimientos complejos o comandos específicos. Esto es debido a que aunque pueda parecer algo sumamente sencillo, usan muchas herramientas distintas y tienen que tener grandes cantidades de informacion en la cabeza, haciendo que sea tedioso el tener que recordar funcionalidades que pueden ser reconocidas de manera más rapida y sencilla de manera visual. 
 Adicionalmente, contaba ya con conocimientos previos sobre el funcionamiento y aplicación de las máquinas de estados. Este tema introducido por primera vez en la asignatura Fundamentos de Computadores y reforzado de forma práctica a lo largo de toda la carrera. 
-\subsection*{Aportaciones}
-\subsubsection*{Investigación}
+\subsection{Aportaciones}
+\subsubsection{Investigación}
 La investigación empezó en septiembre, tratando de recabar información relevante. Para eso primero realicé un análisis en profundidad de los distintos tipos de enemigos que existen en el Hollow Knight separando entre enemigos base y jefes finales. Centrándome en los primeros ya que son los que aparecen con más frecuencia. Analice su comportamiento creando descripciones y máquinas de estado sobre su comportamiento.   permitió identificar patrones de comportamientos similares entre diferentes enemigos a nivel visual, donde en realidad la implementación es la misma. Esto se puede ver mucho mejor en el juego bzzzt que también analicé donde un mismo comportamiento se puede ver hasta en cinco enemigos diferentes. Todo este análisis permitió no solo encontrar elementos comunes como ya he mencionado, sino también encontrar los comportamientos más repetidos.
 Todo esto hizo que tuviera una estructura clara en la cabeza que permitiese ser escalada de forma sencilla y que tuviera todos los comportamientos identificados.\\
 En paralelo a este trabajo realicé la lectura de diferentes trabajos realizados como Generador de comportamientos de enemigos para videojuegos 2D de Daniel Quintero o Herramientas De Diseño Basado En Bocetos Del Comportamiento En Videojuegos de Jorge Antonio Magallanes Borbor. Además de los artículos de investigación también use conocimientos de conferencias de la GDC que permitió tener un conocimiento general sobre el  entorno de la herramienta, saber que estaba ya hecho y de qué forma, pudiendo analizarlos encontrando puntos débiles, fortalezas e información relevante para nuestra estructura.
 
-\subsubsection*{Confección de la herramienta}
+\subsubsection{Confección de la herramienta}
 \begin{itemize}
   \item \textbf{Movimiento Vertical:} Desarrollo del movimiento vertical, con movimiento constante y acelerado, incluyendo colisiones, velocidad, lanzamiento...
   \item \textbf{Movimiento Horizontal:} Desarrollo del movimiento horizontal, con movimiento constante y acelerado, incluyendo colisiones, velocidad, lanzamiento...
@@ -46,7 +46,7 @@ En paralelo a este trabajo realicé la lectura de diferentes trabajos realizados
   \item \textbf{Revisión general del código:} Revisión exhaustiva de todo el código fuente para garantizar la limpieza y consistencia.
 \end{itemize}
 
-\subsubsection*{Parte de la memoria}
+\subsubsection{Parte de la memoria}
 
 organización en orden de aparición en la memoria:
 \begin{itemize}
@@ -72,7 +72,7 @@ organización en orden de aparición en la memoria:
   \item \textbf{Conclusiones y Trabajo Futuro:} Redacción de la sección dedicada añas conclusiones obtenidas y el trabajo que se realizará en un futuro.
 \end{itemize}
 
-\subsubsection*{Manual}
+\subsubsection{Manual}
 Me encargué íntegramente de la redacción y organización del manual de usuario del framework, tanto en su versión en español como en inglés. Teniendo en mente siempre que tenia que ser accesible para los diseñadores y por tanto no tener ningún tecnicismo en él. El manual pretende ser una parte fundamental de la herramienta que permita comprender a cualquier usuario el funcionamiento de la herramienta y conocer todos sus componentes. \\
 La estructura general del manual fue diseñada con el objetivo de guiar al usuario desde la comprensión conceptual de la herramienta hasta su aplicación práctica. Está organizado en los siguientes bloques principales:
  \begin{itemize}
@@ -89,21 +89,21 @@ La estructura general del manual fue diseñada con el objetivo de guiar al usuar
   \end{itemize}
 
 
-\section*{Contribuciones de Francisco Miguel Galván Muñoz}
-\subsection*{Antecedentes}
+\section{Contribuciones de Francisco Miguel Galván Muñoz}
+\subsection{Antecedentes}
 Antes de comenzar este proyecto, ya tenía una base sólida sobre Máquinas de Estados gracias a asignaturas como \textit{Fundamentos de Computadores} e \textit{Inteligencia Artificial}, donde implementamos por primera vez una en Unity. En esa práctica, la arquitectura propuesta resultó poco escalable y compleja, especialmente para modelar comportamientos básicos como patrullar, perseguir o atacar, lo que motivó mi interés por buscar soluciones más eficientes.\\
 
 Aunque siempre me había interesado el diseño de enemigos, no lo había explorado teóricamente hasta este proyecto. Durante su desarrollo, investigamos patrones comunes en enemigos de videojuegos 2D, lo que nos permitió identificar comportamientos reutilizables y orientar nuestra herramienta hacia una arquitectura modular y accesible para desarrolladores.\\
  
-\subsection*{Aportación}
-\subsubsection*{Investigación}
+\subsection{Aportaciones}
+\subsubsection{Investigación}
 Cuando comenzamos con la etapa de investigación, a mediados de septiembre, tanto Cristina como yo seleccionamos varios videojuegos con el objetivo de analizar el comportamiento de sus enemigos más representativos. En mi caso, elegí \textit{Blasphemous} y adopté una dinámica basada en la observación directa: mientras jugaba, capturaba imágenes cada vez que aparecía un enemigo nuevo y realizaba un análisis detallado de su comportamiento. Esta dinámica la mantuve durante las primeras tres horas de juego, lo cual me permitió identificar paralelismos entre distintos tipos de enemigos, especialmente en lo referente a la forma en que se activaban las transiciones entre estados y cómo variaban sus comportamientos en función del estado en el que se encontraban.\\
 
 Paralelamente a esta labor práctica, llevé a cabo una investigación teórica consultando artículos académicos (\textit{papers}) y conferencias de la GDC (Game Developers Conference), como la de \cite{PlantsVsZombies}, con el fin de comprender cómo se aborda el diseño de enemigos a nivel profesional. Esta información fue de gran utilidad para dar forma a los fundamentos de nuestra herramienta.\\
 
 Una vez finalizada la fase de recopilación de información por ambas partes, celebramos varias reuniones para poner en común los hallazgos, identificar similitudes entre nuestros análisis y definir una base conceptual común. Gracias a este trabajo colaborativo, pudimos orientar adecuadamente la arquitectura de la herramienta, y comenzamos con el diseño e implementación de los primeros sensores y actuadores que formarían parte del sistema.\\
 
-\subsubsection*{Confección de la herramienta}
+\subsubsection{Confección de la herramienta}
 \begin{itemize}
 	\item \textbf{Actuator:} Diseño e implementación de clase padre \texttt{Actuator} y relación con sus clases hijas.
 	\item \textbf{MovementActuator:} Desarrollo de nuevo nivel de abstracción de \texttt{Actuator} para todas las clases que representen movimientos (se excluye la clase encargada de crear enemigos). Integración de \textit{Easing Functions} en todos los movimientos excepto el movimiento basado en splines.
@@ -134,7 +134,7 @@ Una vez finalizada la fase de recopilación de información por ambas partes, ce
 	\item \textbf{Exportación de la herramienta:} Preparación para que la herramienta pueda ser importada desde un repositorio de \textit{GitHub}.
   	\item \textbf{Revisión general del código:} Revisión exhaustiva de todo el código fuente para garantizar la limpieza y consistencia.
 \end{itemize}
-\subsubsection*{Implicación en la memoria}
+\subsubsection{Implicación en la memoria}
 En cuanto a la redacción de la memoria, estuve involucrado activamente en todo el proceso de elaboración. A continuación, detallo mi participación en cada uno de los capítulos:
 
 \begin{itemize}
@@ -147,7 +147,7 @@ En cuanto a la redacción de la memoria, estuve involucrado activamente en todo 
  	\item \textbf{Conclusiones y Trabajo Futuro:} Revisión general del capítulo.
  	\item \textbf{Corrección general de la memoria:} Lectura exhaustiva e iterativa del documento para detectar errores y proponer mejoras de redacción.
 \end{itemize}
-\subsubsection*{Manual}
+\subsubsection{Manual}
 Mi participación en la elaboración del manual fue de apoyo al principio y con el tiempo acabé encargándome de:
 \begin{itemize}
 	\item \textbf{Glosario:} Realización del glosario.
