@@ -27,9 +27,7 @@ A continuación, se presentan tres técnicas (véase la Tabla~\ref{tab:Comparati
 \item Planificación orientada a objetivos (Goal-Oriented Action Planning, GOAP): A diferencia de las técnicas anteriores, GOAP no se basa en una estructura fija de estados o árboles, sino que genera planes dinámicamente en función de los objetivos del agente y las acciones disponibles. Esto permite una mayor autonomía y adaptabilidad, aunque a costa de una mayor complejidad computacional. Se emplea en juegos donde los NPCs deben tomar decisiones más abiertas y razonadas, como en entornos con múltiples rutas o soluciones posibles.
 \end{itemize}
 
-Estas técnicas representan diferentes niveles de complejidad y flexibilidad, y la elección entre ellas depende del tipo de comportamiento que se desee implementar, así como de los recursos disponibles. En nuestro caso, hemos optado por utilizar máquinas de estados finitas, por su idoneidad en contextos de decisión estructurada y controlada.
-
-
+Estas técnicas representan diferentes niveles de complejidad y flexibilidad, y la elección entre ellas depende del tipo de comportamiento que se desee implementar, así como de los recursos disponibles. 
 
 \begin{table}[htbp]
 \centering
@@ -76,7 +74,7 @@ Para ilustrar el funcionamiento del juego se usará la Figura \ref{fig:Comportam
 
 \subsubsection{Máquinas de Estado Finitas Jerárquicas}
 
-La principal desventaja de las FSM es que son muy inflexibles y estáticas y, aunque se puede atenuar mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones, siguen aumentando su complejidad progresivamente cuando aumenta su tamaño. Una forma de poder simplificar esa complejidad es dividiendo tareas complejas en otras más sencillas. Permitiendo agrupar varias máquinas finitas dentro de otra máquina finita. Las Máquinas de Estados Finitos Jerárquicas (HFSM, por sus siglas en inglés) comparten la misma representación básica que las FSM tradicionales, pero se distinguen por permitir la anidación de estados dentro de otros estados, lo que introduce una estructura jerárquica en su diseño.
+La principal desventaja de las FSM es que son muy inflexibles y estáticas y, aunque se puede atenuar mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones, siguen aumentando su complejidad progresivamente cuando aumenta su tamaño. Una forma de poder simplificar esa complejidad es dividiendo tareas complejas en otras más sencillas. Permitiendo, agrupar varias máquinas finitas dentro de otra máquina finita. Las Máquinas de Estados Finitos Jerárquicas (HFSM, por sus siglas en inglés) comparten la misma representación básica que las FSM tradicionales, pero se distinguen por permitir la anidación de estados dentro de otros estados, lo que introduce una estructura jerárquica en su diseño.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/HFSM.png}
@@ -100,7 +98,7 @@ La principal ventaja respecto a las Máquinas de Estado Finitas es su modularida
 
 Un ejemplo no tan conocido de uso de Árboles de comportamiento en la industria del videojuego es \textit{Spore} \citep{spore}. \textit{Spore} es un videojuego en el que el jugador va a comenzar creando una célula y va encarnarla durante todo el proceso de su evolución hasta que esta se convierta en un ser mucho más complejo llegando incluso a construir una civilización muy avanzada. La inteligencia artificial de las entidades que nos rodean en este videojuego están fundamentadas en Árboles de comportamiento.\\
 
-La gran diferencia en cómo Spore utiliza los Árboles de Comportamiento frente a juegos como Halo 2 es que separa el concepto de decider del de behavior. En Halo 2, los árboles están compuestos por behaviors (comportamientos que pueden ser grupales o individuales) y impulsos (transiciones entre comportamientos basadas en prioridades). Esta estructura, aunque funcional, tiende a generar problemas de escalabilidad, como:
+La gran diferencia en cómo Spore utiliza los Árboles de Comportamiento frente a juegos como Halo 2 es que separa el concepto de decider del de behavior. En Halo 2, los árboles están compuestos por behaviors (comportamientos que pueden ser grupales o individuales) e impulsos (transiciones entre comportamientos basadas en prioridades). Esta estructura, aunque funcional, tiende a generar problemas de escalabilidad, como:
 \begin{itemize}
 	\item Dificultad para entender y mantener el árbol.
 	\item Duplicación innecesaria de comportamientos.
@@ -192,7 +190,7 @@ Otro aspecto destacado de \textit{Behavior Bricks} es su diseño modular. Cada c
 
 Desde el punto de vista del rendimiento, \textit{Behavior Bricks} ha sido optimizado para minimizar su impacto en la ejecución del juego. Emplea estrategias eficientes de gestión de memoria, incluyendo el uso compartido de datos entre distintos estados o comportamientos cuando es posible, con el fin de ahorrar recursos computacionales.\\
 
-Esta herramienta se basa en un modelo integrador de Máquinas de Estados y Árboles de Comportamiento, lo que proporciona flexibilidad y potencia expresiva al sistema. Este enfoque ha sido presentado en la literatura académica por \cite{BB} en el contexto del Congreso de Software Educativo y de Conocimiento (COSECIVI).
+Esta herramienta se basa en un modelo integrador de Máquinas de Estados y Árboles de Comportamiento, lo que proporciona flexibilidad y potencia expresiva al sistema. Este enfoque ha sido presentado en la literatura académica por \cite{BB}.
 \subsection{PlayMaker}
 PlayMaker\footnote{\url{https://hutonggames.com/}} es un editor visual de FSM para Unity diseñado especialmente para artistas y diseñadores, ya que permite desarrollar IA sin necesidad de escribir código.\\
 
@@ -213,7 +211,7 @@ PlayMaker está disponible en la \textit{asset store} de \textit{Unity}, aunque 
 
 \section{Motores de videojuegos}
 
-La siguiente sección consistirá en el análisis de distintos motores de videojuegos. El objetivo  de este análisis es proporcionar una comprensión sobre cuales son las fortalezas y debilidades de cada uno de ellos, para así, razonar justificadamente cual se ajustamás a las necesidades de este proyecto. Todos los motores escogidos tienen gran renombre en la industria ofreciendo gran variedad y distintas filosofías de diseño.
+La siguiente sección consistirá en el análisis de distintos motores de videojuegos. El objetivo  de este análisis es proporcionar una comprensión sobre cuales son las fortalezas y debilidades de cada uno de ellos, para así, razonar justificadamente cual se ajusta más a las necesidades de este proyecto. Todos los motores escogidos tienen gran renombre en la industria ofreciendo gran variedad y distintas filosofías de diseño.
 \subsection{Unity}
 \textit{Unity}\footnote{\url{https://unity.com}} es un motor de videojuegos desarrollado por \textit{Unity Technologies} que se ha convertido en una de las herramientas más utilizadas en la industria del desarrollo de videojuegos. Su versatilidad y facilidad de uso han permitido la creación de títulos de gran éxito como \textit{Hollow Knight}\footnote{\url{https://www.hollowknight.com}}, \textit{Cuphead}\footnote{\url{https://cupheadgame.com}} y \textit{Genshin Impact}\footnote{\url{https://genshin.hoyoverse.com/es}}. La versión más actual del motor, \textit{Unity 6.0}, incorpora mejoras en su sistema de renderizado, herramientas avanzadas de optimización y un motor de físicas más eficiente.\\
 
@@ -307,6 +305,6 @@ A lo largo del análisis, se han recopilado los aspectos positivos tanto de las 
 
 El proyecto consistirá en una serie de componentes modulares, que permitirán a los desarrolladores generar enemigos de manera sencilla y eficiente. Estos componentes estarán diseñados para facilitar la implementación de comportamientos básicos sin requerir un conocimiento profundo de programación o inteligencia artificial. Además, la arquitectura del sistema garantizará que la herramienta sea escalable, permitiendo la incorporación de nuevos componentes en el futuro para ampliar su funcionalidad según las necesidades del usuario.\\
 
-En cuanto a técnicas de modelado analizadas, se han identificado varias características destacables que servirán de referencia para el diseño del proyecto. PlayMaker sobresale por su sistema de scripting visual, el cual simplifica la representación y modificación de máquinas de estado finitas (FSM), haciendo que la creación de comportamientos sea más intuitiva. Por otro lado, Unity ofrece un inspector versátil y de fácil entendimiento, lo que facilita la configuración y manipulación de objetos en el entorno de desarrollo.\\
+En cuanto a técnicas de toma de decisiones en NPC`s analizadas, se han identificado varias características destacables que servirán de referencia para el diseño del proyecto. PlayMaker sobresale por su sistema de scripting visual, el cual simplifica la representación y modificación de máquinas de estado finitas (FSM), haciendo que la creación de comportamientos sea más intuitiva. Por otro lado, Unity ofrece un inspector versátil y de fácil entendimiento, lo que facilita la configuración y manipulación de objetos en el entorno de desarrollo.En nuestro caso, hemos optado por utilizar máquinas de estados finitas, por su idoneidad en contextos de decisión estructurada y controlada.\\
 
 En conclusión, el desarrollo de esta herramienta busca simplificar la creación de enemigos en videojuegos 2D, brindando a los desarrolladores principiantes una forma accesible de implementar inteligencia artificial básica. Al integrar los aspectos positivos de las herramientas y motores estudiados, se espera proporcionar una solución flexible, escalable y fácil de usar, fomentando la creatividad y el aprendizaje en el desarrollo de videojuegos.\\

@@ -1,9 +1,10 @@
 \setcounter{secnumdepth}{3} %para tener una profundidad más en las enumeraciones
 \chapter{Implementaci\'on}
 \label{cap:implementacion}
-En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en detalles de como funcionaba esta por debajo, una visión general de lo que se iba a ofrecer, como la organización de los componentes, los tipos de daño o los diferentes tipos de actuadores. En este capítulo se va a tratar en profundidad la implementación de estos componentes, hablando de cómo funcionan, cómo se pueden personalizar y como los distintos componentes interactúan entre ellos.\\
+En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en detalles de como estaba implementada, una visión general de lo que se iba a ofrecer, como la organización de los componentes, los tipos de daño o los diferentes tipos de actuadores. En este capítulo se va a tratar en profundidad la implementación de estos componentes, hablando de cómo funcionan, cómo se pueden personalizar y como los distintos componentes interactúan entre ellos.\\
 
-La implementación de la herramienta puede ser encontrada en el siguiente \href{https://github.com/CiscoGalvan/TFG}{\underline{enlace}}.
+La implementación de la herramienta puede encontrarse en el siguiente enlace: \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D.git}{https://github.com/CristinaMora/EnemyBehaviourFramework-2D.git}.
+
 
 
 \section{Tecnología utilizada}
@@ -16,7 +17,7 @@ Unity funciona mediante una arquitectura por componentes, lo que es muy útil pa
 
 La herramienta desarrollada en este proyecto tiene como objetivo facilitar la creación y configuración de enemigos en un entorno 2D dentro de Unity. Está diseñada como un plugin modular que permite a diseñadores y desarrolladores configurar enemigos sin necesidad de escribir código, mediante un sistema visual e intuitivo basado en prefabs y componentes reutilizables.\\
 
-En el núcleo de esta arquitectura se encuentra un sistema basado en una Máquina de Estados Finita (FSM). Cada enemigo se define mediante una FSM que gestiona su comportamiento, transiciones entre estados y reacciones ante el entorno. Los estados están compuestos por actuadores (actuators), que ejecutan acciones (como movimiento, ataque o generación de enemigos), y sensores, que detectan condiciones o eventos del entorno y disparan transiciones entre estados.\\
+En el núcleo de esta arquitectura se encuentra un sistema basado en una Máquina de Estados Finita (FSM). Cada enemigo definirá su comportamiento con una FSM que gestiona su comportamiento, transiciones entre estados y reacciones ante el entorno. Los estados están compuestos por actuadores (actuators), que ejecutan acciones (como movimiento, ataque o generación de enemigos), y sensores, que detectan condiciones o eventos del entorno y disparan transiciones entre estados.\\
 
 Los elementos que conforman esta arquitectura se organizan en varios niveles:
 \begin{itemize}
@@ -28,7 +29,7 @@ Los elementos que conforman esta arquitectura se organizan en varios niveles:
 
 La herramienta incluye también una serie de prefabs preconfigurados que facilitan el uso del sistema y permiten una rápida iteración por parte del diseñador. Estos prefabs agrupan configuraciones comunes de enemigos con distintos comportamientos, reduciendo el tiempo de prototipado y aumentando la reutilización del código.\\
 
-En resumen, lo que se ha creado es una herramienta extensible compuesta por scripts modulares, basada en la arquitectura de componentes de Unity, que permite crear comportamientos complejos mediante una configuración visual, facilitando así su adopción por parte de usuarios con conocimientos limitados de programación.\\
+En resumen, lo que se ha creado es una herramienta extensible compuesta por componentes modulares, basada en la arquitectura de componentes de Unity, que permite crear comportamientos complejos mediante una configuración visual, facilitando así su adopción por parte de usuarios con conocimientos limitados de programación.\\
 
 A continuación se va a hacer una descripción específica de cada uno de los apartados implementados.
 
@@ -116,7 +117,7 @@ La clase \texttt{SplineFollowerActuator} se usa para describir un movimiento med
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (\texttt{SplineContainer}) \textbf{Spline Container}: Objeto que define una trayectoria mediante una curva spline (\autoref{fig:SplineFollowerActuator_Image}), la cual será seguida por el objeto durante su movimiento. Este componente permite establecer una serie de puntos de control (control points) conectados por curvas suaves, generando así un recorrido continuo. Cada punto puede tener handles (manejadores) para controlar la tangente de entrada y salida, permitiendo ajustar la forma de la curva con precisión.\\
+	\item (\texttt{SplineContainer}) \textbf{Spline Container}: Objeto que define una trayectoria mediante una curva spline (\autoref{fig:SplineFollowerActuator_Image}), la cual será seguida por el objeto durante su movimiento. Este componente permite establecer una serie de puntos de control (control points) conectados por curvas suaves, generando así un recorrido continuo. Cada punto puede tener handlers (manejadores) para controlar la tangente de entrada y salida, permitiendo ajustar la forma de la curva con precisión.\\
 Unity proporciona herramientas visuales para editar la forma de la curva directamente en el editor, y el componente \texttt{SplineContainer} permite acceder a su representación en tiempo real, interpolar posiciones a lo largo del recorrido, o determinar la orientación del objeto mientras lo recorre.
 	\item (enum) \textbf{Teleport To Closest Point}: Define cómo se ajusta el objeto a la spline al iniciarse el movimiento. Puede tener dos valores:
 	\begin{itemize}
@@ -178,12 +179,12 @@ La clase \texttt{Move To An Object Actuator} se usa para mover el objeto en dire
 \end{itemize}
 
 \subsection{SpawnerActuator}
-La clase \texttt{SpawnerActuator} se usa para poder generar nuevos enemigos, pudiendo generar infinitos enemigos o un número definido de ellos cada X tiempo en un lugar predefinido.\\
+La clase \texttt{SpawnerActuator} se usa para poder generar nuevos enemigos, pudiendo generar infinitos enemigos o un número definido de ellos cada cierto tiempo en un lugar predefinido.\\
 
 \textbf{Parámetros de configuración}
 \begin{itemize}
     \item (float) \textbf{Spawn Interval}: Intervalo de tiempo en segundos que tarda el objeto en volver a generar. 
-    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigos indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada X tiempo indicado por \textit{Spawn Interval}. Si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
+    \item (bool) \textbf{Infinite Enemies}: Indica si se generarán enemigos indefinidamente. Si es verdadero, se crearán continuamente nuevos enemigos cada cierto tiempo indicado por \textit{Spawn Interval}. Si es falso, el número de spawns estará limitado por \texttt{Number of Times To Spawn}.
     \item (int) \textbf{Number Of Times To Spawn}: Número total de veces que se permitirá hacer spawn, si no es infinito.
     \item (List<\texttt{SpawnInfo}>) \textbf{Spawn Points}: Lista de elementos de tipo \texttt{Spawn Info}, clase compuesta por:
     \begin{itemize} 
@@ -200,7 +201,7 @@ La clase \texttt{Sensor} actúa como clase base para todos los sensores de la he
 
 Cada sensor contiene una variable de tipo \texttt{Action<Sensor>} que alberga una lista de funciones (callbacks) a ejecutar cuando se detecta una condición específica. Estas funciones pueden ser proporcionadas por otros componentes, como por ejemplo una transición que deba activarse tras la detección.
 
-Para garantizar una interfaz unificada, las funciones que se registren como oyentes deben aceptar un único parámetro de tipo \texttt{Sensor}. Esto permite que, al activarse el sensor, se le pueda pasar una referencia a sí mismo, facilitando que el componente suscrito acceda a su información contextual si lo necesita.
+Para garantizar una interfaz unificada, las funciones que se registren como oyentes deben aceptar un único parámetro de tipo \texttt{Sensor}. Esto permite que, al activar el sensor, se le pueda pasar una referencia a sí mismo, facilitando que el componente suscrito acceda a su información contextual si lo necesita.
 
 Este enfoque permite una arquitectura desacoplada y extensible, donde los sensores no necesitan conocer directamente qué componentes responderán a su activación, simplemente notifican a todos los suscriptores registrados.
 
@@ -307,8 +308,7 @@ En la \autoref{fig:SingleAxis_Image} vemos un ejemplo de como luce la medición 
 
 \subsection{TimeSensor}
 
-Sensor encargado de activarse cuando pasa un tiempo determinado desde su activación.\\
-En caso de ajustar que el sensor necesitará un tiempo para encenderse, primero se procederá a medir tal tiempo y, cuando este llegue a su fin, se medirá el tiempo de activación propio del sensor.\\
+Sensor encargado de activarse cuando pasa un tiempo determinado desde su activación. En caso de ajustar que el sensor necesitará un tiempo para encenderse, primero se procederá a medir tal tiempo y, cuando este llegue a su fin, se medirá el tiempo de activación propio del sensor.\\
 
 \textbf{Parámetros de configuración}
 	\begin{itemize}
@@ -347,7 +347,7 @@ Tipo de daño que se aplica una vez producido el contacto y que no se va a volve
 	        \item (float) \textbf{Damage Amount}: En caso de no eliminar instantáneamente al objetivo, se especificará la cantidad de daño que se hará.
 	 \end{itemize}
 	\item \textit{Permanence}
-El daño de permanencia es aquel que produce constantemente una entidad cada X tiempo. Este daño se producirá mientras dure la colisión o, en caso de que sea un trigger, la superposición.\\
+El daño de permanencia es aquel que produce constantemente una entidad cada cierto tiempo. Este daño se producirá mientras dure la colisión o, en caso de que sea un trigger, la superposición.\\
 
 \textbf{Parámetros de configuración}
 	\begin{itemize}
@@ -394,9 +394,7 @@ El comportamiento de la entidad estará encapsulado en una Máquina de Estados F
 \end{itemize}
 
 \subsection{Transition}
-Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.\\
-
-Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
+Esta clase representa una transición de estado. Está compuesta por un sensor y un estado objetivo.Si el sensor se activa, la entidad cambiará automáticamente al estado especificado.\\
 
 \textbf{Parámetros de configuración}
 \begin{itemize}
@@ -427,7 +425,7 @@ Cuando se produce un cambio de estado, todos los actuadores y sensores se detien
 		\label{fig:State_Image}
 \end{figure}
 \section{Animation Manager}
-La clase \texttt{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo, en función del movimiento, es decir, de los actuadores que estén activos.\\
+La clase \texttt{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo en función del movimiento, es decir, de los actuadores que estén activos.\\
 
 \textbf{Parámetros de configuración}
 \begin{itemize}
@@ -455,9 +453,7 @@ Para sincronizar el comportamiento del enemigo con sus animaciones, se ha config
 	\item \textbf{Floats}: \textit{XSpeed}, \textit{YSpeed}, \textit{RotationSpeed}. Permiten animar al enemigo en función de su velocidad de movimiento o rotación.
 \end{itemize}
 
-Para centralizar la gestión de las animaciones, se ha creado un controlador personalizado (\autoref{fig:AnimatorController_Image}), del tipo \texttt{Animator Controller}. Este actúa como una máquina de estados de animación, donde cada estado representa una animación (como caminar, aparecer, recibir daño, etc.), y las transiciones entre estados se controlan mediante los parámetros antes mencionados.
-
-Este enfoque facilita la integración entre la lógica del enemigo (programación) y su representación visual (animación).
+Para centralizar la gestión de las animaciones, se ha creado un controlador personalizado (\autoref{fig:AnimatorController_Image}), del tipo \texttt{Animator Controller}. Este actúa como una máquina de estados de animación, donde cada estado representa una animación (como caminar, aparecer, recibir daño, etc.), y las transiciones entre estados se controlan mediante los parámetros antes mencionados.Este enfoque facilita la integración entre la lógica del enemigo (programación) y su representación visual (animación).
 \begin{figure}[t]
 		\centering
 		\includegraphics[width = 0.7\textwidth]{Imagenes/AnimatorController.png}
@@ -466,7 +462,7 @@ Este enfoque facilita la integración entre la lógica del enemigo (programació
 \end{figure}
 \section{Jugador}
 
-Como ayuda a la implementación, se han creado una serie de scripts auxiliares que dan funcionalidades básicas a todos los juegos y que, por tanto, eran esenciales para una implementación lógica. Esta sección y las siguientes estarán enfocadas en la explicación de estos elementos.\\
+Como ayuda a la implementación, se han creado una serie de componentes auxiliares que dan funcionalidades básicas a todos los juegos y que, por tanto, eran esenciales para una implementación lógica. Esta sección y las siguientes estarán enfocadas en la explicación de estos elementos.\\
 A la hora de implementar el movimiento del jugador usamos de base la implementación usada por el canal de YouTube \textit{Mix and Jam} en su interpretación del videojuego \textit{Celeste}\footnote{\url{https://www.youtube.com/watch?v=STyY26a_dPY}}.
 
 \subsection{PlayerMovement}
@@ -484,7 +480,7 @@ Esta clase permite modificar ciertos valores como la velocidad de movimiento, la
 
 \subsection{PlayerCollisionDetection}
 
-Este script se encarga de detectar las colisiones del jugador. Para ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo. Las cajas no detectan realmente colisiones, sino que comprueban si estas se superponen con alguna entidad de las capas especificadas con el método \texttt{Physics2D.OverlapBox()}.\\
+Este componente se encarga de detectar las colisiones del jugador. Para ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo. Las cajas no detectan realmente colisiones, sino que comprueban si estas se superponen con alguna entidad de las capas especificadas con el método \texttt{Physics2D.OverlapBox()}.\\
 
 \textit{PlayerCollisionDetection} será usado por \textit{PlayerMovement} para gestionar acciones como determinar cuándo el jugador debe deslizarse por una superficie o cuándo puede saltar.\\
 
@@ -519,7 +515,7 @@ Para lograrlo, el componente ajusta dos multiplicadores: uno que incrementa la g
 
 Se ha implementado una clase Life que gestiona los puntos de salud del objeto al que está adjunto y que se encarga de eliminar el objeto en el caso de que su vida llegue a cero. El componente pedirá al usuario un valor inicial para los puntos de vida del objeto y un valor máximo al que puede llegar la vida, para que esta sea limitada en caso de que se quiera implementar un sistema de recuperación de vida.\\
 
-Este componente está estrechamente ligado al \textit{DamageSensor}, el cual será mencionado más adelante y que detecta si ha habido una colisión con un objeto que aplique daño. Esta relación es necesaria ya que, para que se detecte el daño que decrementa la salud del objeto, se necesita este sensor, por lo que al añadir un componente \textit{Life} se añadirá este sensor automáticamente.\\
+Este componente está estrechamente ligado al \textit{DamageSensor} que detecta si ha habido una colisión con un objeto que aplique daño. Esta relación es necesaria ya que, para que se detecte el daño que decrementa la salud del objeto, se necesita este sensor, por lo que al añadir un componente \textit{Life} se añadirá este sensor automáticamente.\\
 
 \textit{Life} diferencia entre enemigos y el jugador; en caso de que el componente esté adjunto al jugador, se deberá marcar en la opción \textit{EntityType} y el componente requerirá que se le dé la referencia a un texto del \textit{Canvas} donde se escribirá la vida actual del jugador.\\
 
@@ -544,11 +540,11 @@ Para evitar que el jugador pueda disparar sin restricción, se ha introducido un
 	\item (float) \textbf{Shooting Cooldown}: Tiempo necesario (en segundos) antes de poder disparar nuevamente.
 \end{itemize}
 
-\section {Distribución del Framework}
+\section {Distribución de la herramienta}
 
 El Framework será distribuido a través de un archivo \textit{.unitypackage} descargable desde el repositorio de la herramienta.\\
 
-TUna vez descargado, el usuario podrá acceder a todo el contenido distribuido, que se detalla a continuación:\\
+Una vez descargado, el usuario podrá acceder a todo el contenido distribuido, que se detalla a continuación:\\
 \begin{itemize}
 \item \textbf{Animations:} Carpeta donde se encuentran tanto los \textit{sprites} usados como los \texttt{AnimatorController} creados para los enemigos de ejemplo.
 \item \textbf{Materials:} En este directorio se encuentran materiales usados en la herramienta y el \texttt{Physic Material 2D} usado en algunos enemigos para mejorar su interacción con el jugador.
@@ -566,5 +562,5 @@ TUna vez descargado, el usuario podrá acceder a todo el contenido distribuido, 
 	\end{itemize}
 \end{itemize}
 
-Junto con el Framework, se incluye un \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c}{\underline{manual de uso}} que contiene imágenes adicionales y está orientado a diseñadores de videojuegos. También se proporcionan una serie de tutoriales para reproducir algunos de los enemigos incluidos en el Framework.
+Junto con el Framework, se incluye un manual de uso: \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c}{\underline{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c}} que contiene imágenes adicionales y está orientado a diseñadores de videojuegos. También se proporcionan una serie de tutoriales para reproducir algunos de los enemigos incluidos en el Framework.
 

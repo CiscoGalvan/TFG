@@ -16,21 +16,21 @@ El análisis de diversos documentos muestra que la mejor forma de hacer que un e
 En este trabajo, se ha decidido entender como enemigo a cualquier entidad que pueda repercutir de forma negativa en el jugador, esto significa que no se limita el concepto de enemigo a figuras típicas, como monstruos o soldados hostiles, sino que se amplía su definición a toda entidad que suponga un riesgo, dificultad o amenaza para el progreso o el bienestar del jugador dentro del juego, como pueden ser pinchos o lava.
 Además separamos cada elemento en función de su comportamiento, implicando que elementos que clásicamente se consideran un único enemigo por aparecer juntos, como la tubería y la gota de ácido o la bala y el pistolero, se tratan aquí como entidades diferentes. Esta decisión se basa en que, desde el punto de vista de la lógica de comportamiento, actúan como elementos autónomos y con reglas distintas.\\
 
-\subsection{Identificación de comportamientos comunes}
-Para poder empezar con el desarrollo de la herramienta es necesario analizar distintos videojuegos existentes que tengan características comunes al objetivo de la herramienta, en este caso, que sean en dos dimensiones y plataformas.
+\section{Identificación de comportamientos comunes}
+Para poder empezar con el diseño de la herramienta es necesario analizar distintos videojuegos existentes que tengan características comunes al objetivo de la herramienta, en este caso, que sean en dos dimensiones y plataformas.
 Para el análisis se estudiaron tres videojuegos. \textit{Hollow Knight} y \textit{Blasphemous} fueron los primeros en analizarse, se hizo un estudio del comportamiento individual de cada enemigo, separando jefes y enemigos comunes y centrándonos en estos últimos. El tercer juego fue \textit{Bzzzt}, que sirvió para verificar que con los comportamientos ya identificados se podría realizar el comportamiento de los enemigos que aparecían con mayor frecuencia en él. 
 
-\subsubsection{Hollow Knight}
+\subsection{Hollow Knight}
 \textit{Hollow Knight} es un \emph{Metroidvania} en 2D desarrollado y auto publicado por el estudio australiano \emph{Team Cherry}\footnote{\url{https://www.teamcherry.com.au/}}. Su versión inicial para ordenador se lanzó en 2017. El jugador controla al \textit{Caballero}, que explora un reino subterráneo de insectos abandonado. Derrotando enemigos por medio de distintas habilidades que se van desbloqueando, se descubre el mundo y los secretos que este oculta.
 
-\subsubsection{Blasphemous}
+\subsection{Blasphemous}
 Desarrollado por el estudio sevillano \emph{The Game Kitchen}\footnote{\url{https://thegamekitchen.com/}} y publicado por Team17, \textit{Blasphemous}\footnote{\url{https://thegamekitchen.com/blasphemous/}} llegó a Windows, Nintendo Switch, PlayStation 4 y Xbox One el 10 de septiembre de 2019. El jugador encarna al \textit{Penitente} el único superviviente en la tierra de Cvstodi. Atrapado en un ciclo de penitencia de muerte y resurrección, el Penitente tendrá que liberar al mundo del destino que le espera.
 
-\subsubsection{Bzzzt}
+\subsection{Bzzzt}
 
 \textit{Bzzzt}\footnote{\url{https://store.steampowered.com/app/1293170/BZZZT/}} es un plataformas de acción de estética retro desarrollado casi íntegramente por el checo Karel Matějka  y publicado por Cinemax. Se estrenó para PC en noviembre de 2023 y para Nintendo Switch en septiembre de 2024. el jugador, en el papel de un robot, debe frustrar los planes del villano Badbert y rescatar a sus creadores, los doctores Emily y Norbert, atravesando 52 niveles llenos de trampas y enemigos de estilo arcade.
 
-\subsubsection{Comportamientos relevantes detectados}
+\subsection{Comportamientos relevantes detectados}
 El análisis de los juegos permitió la identificación de los siguientes patrones:  
 \begin{itemize}
   \item \emph{Patrulla:} Este comportamiento se caracteriza por caminar a un ritmo constante en el eje horizontal, cambiando de dirección al chocar. Se identificó en los tres juegos y en distintos enemigos dentro de cada uno de ellos (p.\,ej., Reptacillo del Hollow Knight (Figura \ref{fig:Reptacillo})).  
@@ -60,14 +60,14 @@ A continuación se muestran todos los movimientos diseñados, junto con una brev
 \begin{itemize}
   \item \textbf{Horizontal}: Desplaza al enemigo horizontalmente, hacia la izquierda o derecha.
     \item \textbf{Vertical}: Desplaza al enemigo verticalmente, hacia arriba o abajo.
-    \item \textbf{Directional}: Mueve al enemigo en una dirección definida por un ángulo. Siendo el valor cero un movimiento hacia la derecha e incremental en el sentido antihorario.
-    \item \textbf{Circular}: Hace que el enemigo siga un movimiento circular alrededor de un punto. Describiendo una circunferencia cerrada si el ángulo es igual a 360 y, en caso de ser menor, actuando como péndulo.
+    \item \textbf{Directional}: Mueve al enemigo en una dirección definida por un ángulo, siendo el valor cero un movimiento hacia la derecha e incremental en el sentido antihorario.
+    \item \textbf{Circular}: Hace que el enemigo siga un movimiento circular alrededor de un punto, describiendo una circunferencia cerrada si el ángulo es igual a 360 y, en caso de ser menor, actuando como péndulo.
     \item \textbf{Move To A Point}\label{sec:MoveToAPoint}: Dirige al enemigo hacia puntos concretos no actualizables. Se puede configurar por medio de una lista, donde se indican los puntos concretos a recorrer o por medio de un área, donde se eligirá aleatoriamente un punto y al llegar a él, se escogerá otro.
     \item \textbf{Move To An Object}: Desplaza al enemigo hacia una entidad que puede estar en movimiento.
     \item \textbf{Spline Follower}: Permite al enemigo seguir una trayectoria definida por una curva suave que se genera a partir de un conjunto de puntos de control (spline).
 \end{itemize}
 
-Todos los tipos de movimiento pueden configurarse para ejecutarse de forma acelerada. Para ello, se emplea una \textit{Easing Function}, una función que define cómo varían en un tiempo definido tanto la velocidad como la posición del enemigo. \\
+Todos los tipos de movimiento pueden configurarse para ejecutarse de forma acelerada. Para ello, se emplea una función de aceleración/suavizado ( \textit{Easing Function}), una función que define cómo varían en un tiempo definido tanto la velocidad como la posición del enemigo. \\
 Dependiendo del tipo de movimiento, esta función puede aplicarse de dos formas:\\
 
 \begin{itemize}
@@ -129,7 +129,7 @@ Para clarificar estas interdependencias y asegurar la coherencia en la configura
 \label{subsec:sensores}
 El término sensor se define como los mecanismos mediante los cuales los personajes interactúan con su entorno y entre sí.
 Podemos definir el término sensor como el elemento que sirve para que el enemigo conozca el entorno y reciba información de los cambios que se producen en el mismo. Son los responsables de activar las transiciones entre estados, es decir, se encargan de cambiar de un comportamiento predefinido a otro.
-A continuación se enumerarán los diferentes sensores y emisores disponibles en la herramienta.
+A continuación se enumerarán los diferentes sensores disponibles en la herramienta.
 \begin{itemize}
     \item \textbf{Area}: Detecta si un objeto entra o sale en una zona de detección.
     \item \textbf{Collision}: Detecta colisiones físicas con otros objetos.
@@ -161,7 +161,7 @@ Un estado se define como un conjunto específico de acciones. Esta conjunción d
 
 La Máquina de Estados Finita (FSM, Finite State Machine) es el núcleo de la lógica que define el comportamiento de los enemigos en nuestro diseño. Cada enemigo tiene su propia FSM, configurada específicamente para representar sus patrones de acciones, reacciones y relaciones en el juego. La FSM organiza el comportamiento de los enemigos mediante estados y transiciones:
 Los estados, como ya se ha explicado, agrupan las acciones que el enemigo puede realizar en un momento dado.
-Las transiciones permiten cambiar de un estado a otro y son activadas por sensores y emisores.\\
+Las transiciones permiten cambiar de un estado a otro y son activadas por sensores.\\
 
 \begin{figure}[t]
 	\centering
@@ -169,7 +169,6 @@ Las transiciones permiten cambiar de un estado a otro y son activadas por sensor
 	\caption{Enemigo General }
 	\label{fig:EnemigoGeneral}
 \end{figure}
-Estos conceptos (\hyperref[subsec:estado]{estados}, \hyperref[subsec:acciones]{acciones}, \hyperref[subsec:sensores y emisores]{sensores y emisores}) se desarrollan con mayor detalle en los apartados siguientes.
 
 \section{Ejemplos de uso}
 Con esta separación de actuadores, sensores y daño la creación de enemigos se vuelve mucho más sencilla. A continuación se presentan unos ejemplos construidos mediante la combinación de los componentes de la herramienta sin la necesidad de escribir código, estos ejemplos están incluidos en la propia herramienta.\\
@@ -246,7 +245,7 @@ Aunque su apariencia pueda resultar cómica o inofensiva, este enemigo represent
 
 Para su implementación, se instanciará un objeto con el sprite correspondiente, al que se le añadirá un componente de tipo \texttt{Spline Follower}, configurado para recorrer una trayectoria cerrada en bucle. Además, se incluirá un \texttt{Damage Emitter} que provocará la eliminación instantánea del jugador.\\
 
-Tendrá un componente \texttt{Life} con cinco puntos de salud.
+Tendrá un componente \texttt{Life}.
 
 \begin{figure}[t]
 	\centering
@@ -257,7 +256,7 @@ Tendrá un componente \texttt{Life} con cinco puntos de salud.
 
 \subsection{Skywatch Eagle}
 
-Con respecto al enemigo mostrado en la Figura~\ref{fig:SkywatchEagle}, esta águila deambula libremente por una zona delimitada del escenario, describiendo un patrón de patrullaje aéreo. Su comportamiento cambia de forma agresiva en cuanto detecta la presencia del jugador dentro de su campo de visión, momento en el cual se lanza en picado a gran velocidad con la intención de impactarlo.\\
+Con respecto al enemigo mostrado en la Figura~\ref{fig:SkywatchEagle}, este águila deambula libremente por una zona delimitada del escenario, describiendo un patrón de patrullaje aéreo. Su comportamiento cambia de forma agresiva en cuanto detecta la presencia del jugador dentro de su campo de visión, momento en el cual se lanza en picado a gran velocidad con la intención de impactarlo.\\
 
 Este enemigo combina movilidad impredecible y comportamiento reactivo, lo que lo convierte en una amenaza considerable. Su capacidad para alterar su trayectoria bruscamente en función de la posición del jugador obliga a mantenerse en constante movimiento y a anticipar su patrón de ataque.\\
 
