@@ -1,34 +1,52 @@
 
-\chapter{Diseño del framework}
+\chapter{Diseño del Framework}
 \label{cap:descripcionTrabajo}
-En este capitulo se describe el framework de enemigos creado, mediante el diseño de componentes más sencillos. 
-Primero se describirá el contexto y por tanto la utilidad de la herramienta, aquí se detallaran juegos analizados y sus características en común. Después se explicará que elementos la componen y por último se detallarán algunos ejemplos de uso. \\
-\section{Descripción general del Framework}
-Como se señala en  \citet{Build_a_Bad_Guy_Workshop}, los enemigos bien diseñados son clave para evitar que los niveles queden planos y, en consecuencia, aburridos para el jugador.
-Un buen diseño de enemigos va más allá de poner un obstáculo en el camino. Aporta dinamismo, construye la atmósfera del juego y hasta cuenta parte de la historia. Un enemigo puede obligarte a pensar una estrategia específica para vencerlo, o incluso tener una personalidad y comportamientos complejos que hacen que el enfrentamiento sea más significativo e inmersivo. En definitiva, diseñar a los antagonistas es una parte fundamental para crear un juego que enganche y deje huella.\\
 
-El framework se ha diseñado con el objetivo de facilitar la creación de enemigos inteligentes en 2D por medio de comportamientos básicos. Esta orientado a diseñadores, estudiantes o desarrolladores que quieran diseñar comportamientos de enemigos. Con la particularidad de que no es necesario ningún conocimiento de programación.
+El objetivo principal de este Trabajo de Fin de Grado es facilitar el diseño de enemigos en videojuegos de plataformas en 2D, permitiendo que diseñadores sin conocimientos de programación puedan crear comportamientos complejos de manera visual e intuitiva. Para ello, se ha desarrollado una herramienta sobre el motor \textit{Unity} que implementa un framework modular basado en componentes de comportamiento reutilizables.\\
 
-\subsection{Análisis de enemigos en videojuegos}
-El análisis de diversos documentos muestra que la mejor forma de hacer que un enemigo destaque y de un gran potencial al juego es que tenga unos comportamientos únicos. Cada enemigo se define mediante una combinación específica de estos. Determinando así lo que puede y no puede hacer  y permiten diferenciarlo de otros tipos de enemigos. Estos comportamientos han ido evolucionando con el tiempo volviéndose cada vez más sofisticados. Con dicha sofisticación, ha aumentado la complejidad del trabajo en el diseño. Para solucionarlo hemos propuesto una herramienta con comportamientos sencillos y precisos que ayudarán a reducir la carga de trabajo. 
+Este capítulo describe el diseño conceptual de ese framework. En primer lugar, se analiza el contexto en el que se enmarca la herramienta y su utilidad dentro del desarrollo de videojuegos. Para ello, se presentan varios títulos de referencia y se identifican patrones comunes en el diseño de enemigos. A continuación, se explica cómo se estructura el framework, qué elementos lo componen y qué principios han guiado su desarrollo. Finalmente, se muestran ejemplos de aplicación que ilustran su uso en distintos tipos de enemigos.\\
 
-\section{Composición}
-En este trabajo, se ha decidido entender como enemigo a cualquier entidad que pueda repercutir de forma negativa en el jugador, esto significa que no se limita el concepto de enemigo a figuras típicas, como monstruos o soldados hostiles, sino que se amplía su definición a toda entidad que suponga un riesgo, dificultad o amenaza para el progreso o el bienestar del jugador dentro del juego, como pueden ser pinchos o lava.
-Además separamos cada elemento en función de su comportamiento, implicando que elementos que clásicamente se consideran un único enemigo por aparecer juntos, como la tubería y la gota de ácido o la bala y el pistolero, se tratan aquí como entidades diferentes. Esta decisión se basa en que, desde el punto de vista de la lógica de comportamiento, actúan como elementos autónomos y con reglas distintas.\\
+Como se señala en \citet{Build_a_Bad_Guy_Workshop}, los enemigos bien diseñados son clave para evitar que los niveles queden planos y, en consecuencia, aburridos para el jugador. Un buen diseño de enemigos va más allá de poner un obstáculo en el camino: aporta dinamismo, construye la atmósfera del juego e incluso contribuye a la narrativa. Un enemigo puede requerir estrategias específicas para vencerlo o tener comportamientos complejos que enriquecen la experiencia del jugador.\\
 
-\section{Identificación de comportamientos comunes}
-Para poder empezar con el diseño de la herramienta es necesario analizar distintos videojuegos existentes que tengan características comunes al objetivo de la herramienta, en este caso, que sean en dos dimensiones y plataformas.
-Para el análisis se estudiaron tres videojuegos. \textit{Hollow Knight} y \textit{Blasphemous} fueron los primeros en analizarse, se hizo un estudio del comportamiento individual de cada enemigo, separando jefes y enemigos comunes y centrándonos en estos últimos. El tercer juego fue \textit{Bzzzt}, que sirvió para verificar que con los comportamientos ya identificados se podría realizar el comportamiento de los enemigos que aparecían con mayor frecuencia en él. 
+El framework propuesto busca facilitar la creación de este tipo de enemigos inteligentes en 2D mediante una colección de comportamientos básicos y combinables. Está orientado a diseñadores, estudiantes o desarrolladores que deseen construir enemigos sin necesidad de escribir código, fomentando así una separación clara entre los roles de diseño y programación.\\
 
+
+\section{Análisis de enemigos en videojuegos}
+El análisis de diversos documentos muestra que la mejor forma de hacer que un enemigo destaque y aporte valor al juego es dotarlo de comportamientos únicos. Cada enemigo se define por una combinación específica de estos comportamientos, que determinan lo que puede o no puede hacer, y permiten diferenciarlo de otros. A lo largo del tiempo, estos comportamientos se han vuelto más sofisticados, lo que ha aumentado también la complejidad del trabajo de diseño. Para abordar esta dificultad, se ha propuesto una herramienta basada en comportamientos sencillos y precisos, que reduce la carga de trabajo sin sacrificar expresividad.\\
+
+En este contexto, se entiende por enemigo cualquier entidad que represente una amenaza o dificultad para el jugador, afectando negativamente su progreso dentro del juego. Esto incluye no solo enemigos clásicos como soldados o monstruos, sino también elementos del entorno como pinchos, lava u obstáculos móviles. Asimismo, se ha optado por segmentar los enemigos según sus comportamientos, tratando como entidades separadas aquellos elementos que tradicionalmente se considerarían un único enemigo por su presentación conjunta. Por ejemplo, una tubería y una gota de ácido, o un pistolero y sus balas, se modelan de forma independiente en nuestro framework, ya que sus lógicas de comportamiento son autónomas y distintas.\\
+
+Para fundamentar el diseño de esta herramienta, se ha realizado un análisis de los enemigos distintos videojuegos de plataformas en 2D. Los títulos seleccionados fueron \textit{Hollow Knight}, \textit{Blasphemous} y \textit{Bzzzt}. En los dos primeros se examinó el comportamiento individual de enemigos comunes (excluyendo jefes), mientras que el tercero se utilizó como caso de validación para comprobar que los comportamientos identificados eran suficientes para modelar los enemigos más frecuentes del juego.\\
+
+Estos enemigos han sido seleccionados por su simplicidad estructural y su potencial para ser descompuestos en comportamientos básicos reutilizables dentro del framework.
 \subsection{Hollow Knight}
-\textit{Hollow Knight} es un \emph{Metroidvania} en 2D desarrollado y auto publicado por el estudio australiano \emph{Team Cherry}\footnote{\url{https://www.teamcherry.com.au/}}. Su versión inicial para ordenador se lanzó en 2017. El jugador controla al \textit{Caballero}, que explora un reino subterráneo de insectos abandonado. Derrotando enemigos por medio de distintas habilidades que se van desbloqueando, se descubre el mundo y los secretos que este oculta.
+\textit{Hollow Knight} es un \emph{Metroidvania} en 2D desarrollado y auto publicado por el estudio australiano \emph{Team Cherry}\footnote{\url{https://www.teamcherry.com.au/}}. Su versión inicial para ordenador se lanzó en 2017. El jugador controla al \textit{Caballero}, que explora un reino subterráneo de insectos abandonado. Derrotando enemigos por medio de distintas habilidades que se van desbloqueando, se descubre el mundo y los secretos que este oculta.\\
+
+A continuación se describen algunos de los enemigos estudiados:
+\begin{itemize}
+	\item \textbf{Reptacillo:} Enemigo básico que patrulla una zona caminando en línea recta y cambiando de dirección al colisionar con un obstáculo.
+	\item \textbf{Cáscara errante:} Merodea pacíficamente hasta que detecta al jugador. Una vez detectado, realiza una embestida rápida en línea recta. 
+	\item \textbf{Vengamosca:} Enemigo volador que permanece revoloteando en una zona determinada y que, en caso de detectar al jugador si este se acerca lo suficiente, lo perseguirá.
+	\item \textbf{Gruzzer:} Enemigo volador que cambia de dirección únicamaente al golpearse con paredes y objetos.
+\end{itemize}
 
 \subsection{Blasphemous}
-Desarrollado por el estudio sevillano \emph{The Game Kitchen}\footnote{\url{https://thegamekitchen.com/}} y publicado por Team17, \textit{Blasphemous}\footnote{\url{https://thegamekitchen.com/blasphemous/}} llegó a Windows, Nintendo Switch, PlayStation 4 y Xbox One el 10 de septiembre de 2019. El jugador encarna al \textit{Penitente} el único superviviente en la tierra de Cvstodi. Atrapado en un ciclo de penitencia de muerte y resurrección, el Penitente tendrá que liberar al mundo del destino que le espera.
+Desarrollado por el estudio sevillano \emph{The Game Kitchen}\footnote{\url{https://thegamekitchen.com/}} y publicado por Team17, \textit{Blasphemous}\footnote{\url{https://thegamekitchen.com/blasphemous/}} llegó a Windows, Nintendo Switch, PlayStation 4 y Xbox One el 10 de septiembre de 2019. El jugador encarna al \textit{Penitente} el único superviviente en la tierra de Cvstodi. Atrapado en un ciclo de penitencia de muerte y resurrección, el Penitente tendrá que liberar al mundo del destino que le espera.\\
+
+Como enemigos analizados en este caso encontramos:
+\begin{itemize}
+	\item \textbf{Enraged Pilgrim:} Enemigo terrestre que permanece inmóvil hasta que el jugador entra en un rango de detección determinado. Una vez activado, comienza a caminar lentamente hacia el jugador. Cuando se encuentra a corta distancia, ejecuta un ataque cuerpo a cuerpo utilizando un cuchillo.
+	\item \textbf{Spikes:} Elemento estático del entorno que actúa como obstáculo letal. Consiste en una superficie con pinchos que, al entrar en contacto con el jugador, provoca su derrota inmediata. 
+	\item \textbf{Shooting Trap:} Trampa fija que lanza proyectiles a través de una abertura frontal. Dispara de forma continua en una única dirección, con una frecuencia constante y sin necesidad de detección del jugador.
+	\item \textbf{Acolyte:} Enemigo terrestre que patrulla una zona y, al detectar al jugador, se detiene brevemente para luego realizar una embestida en su dirección.
+\end{itemize}
+
 
 \subsection{Bzzzt}
 
 \textit{Bzzzt}\footnote{\url{https://store.steampowered.com/app/1293170/BZZZT/}} es un plataformas de acción de estética retro desarrollado casi íntegramente por el checo Karel Matějka  y publicado por Cinemax. Se estrenó para PC en noviembre de 2023 y para Nintendo Switch en septiembre de 2024. el jugador, en el papel de un robot, debe frustrar los planes del villano Badbert y rescatar a sus creadores, los doctores Emily y Norbert, atravesando 52 niveles llenos de trampas y enemigos de estilo arcade.
+
+En este caso los enemigos son:
 
 \subsection{Comportamientos relevantes detectados}
 El análisis de los juegos permitió la identificación de los siguientes patrones:  
@@ -67,7 +85,7 @@ A continuación se muestran todos los movimientos diseñados, junto con una brev
     \item \textbf{Spline Follower}: Permite al enemigo seguir una trayectoria definida por una curva suave que se genera a partir de un conjunto de puntos de control (spline).
 \end{itemize}
 
-Todos los tipos de movimiento pueden configurarse para ejecutarse de forma acelerada. Para ello, se emplea una función de aceleración/suavizado ( \textit{Easing Function}), una función que define cómo varían en un tiempo definido tanto la velocidad como la posición del enemigo. \\
+Todos los tipos de movimiento pueden configurarse para ejecutarse de forma acelerada. Para ello, se emplea una función de aceleración/suavizado (\textit{Easing Function}), una función que define cómo varían en un tiempo definido tanto la velocidad como la posición del enemigo. \\
 Dependiendo del tipo de movimiento, esta función puede aplicarse de dos formas:\\
 
 \begin{itemize}
@@ -95,7 +113,7 @@ La versatilidad de la herramienta se potencia al permitir la combinación de div
 
 No obstante, es crucial reconocer que no todas las combinaciones de acciones resultan coherentes o deseables desde la perspectiva del diseño del juego. Por ejemplo, intentar realizar un movimiento vertical mientras se está definido un movimiento circular podría generar comportamientos visuales o de jugabilidad no intencionados. \\
 
-Para clarificar estas interdependencias y asegurar la coherencia en la configuración de los enemigos, se ha elaborado la tabla \textbf{tabla~\ref{tab:compatibilidad}} de compatibilidad. Esta tabla actuará como una guía visual e intuitiva, indicando qué combinaciones de movimientos y la activación de spawners son factibles y recomendadas, permitiendo a los diseñadores construir enemigos con comportamientos complejos pero lógicos y bien definidos.
+Para clarificar estas interdependencias y asegurar la coherencia en la configuración de los enemigos, se ha elaborado la \textbf{tabla~\ref{tab:compatibilidad}} de compatibilidad. Esta tabla actuará como una guía visual e intuitiva, indicando qué combinaciones de movimientos y la activación de spawners son factibles y recomendadas, permitiendo a los diseñadores construir enemigos con comportamientos complejos pero lógicos y bien definidos.
 
 \begin{table}[!h]
     \centering

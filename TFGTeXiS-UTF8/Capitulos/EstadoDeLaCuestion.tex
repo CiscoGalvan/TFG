@@ -74,7 +74,7 @@ Para ilustrar el funcionamiento del juego se usará la Figura \ref{fig:Comportam
 
 \subsubsection{Máquinas de Estado Finitas Jerárquicas}
 
-La principal desventaja de las FSM es que son muy inflexibles y estáticas y, aunque se puede atenuar mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones, siguen aumentando su complejidad progresivamente cuando aumenta su tamaño. Una forma de poder simplificar esa complejidad es dividiendo tareas complejas en otras más sencillas. Permitiendo, agrupar varias máquinas finitas dentro de otra máquina finita. Las Máquinas de Estados Finitos Jerárquicas (HFSM, por sus siglas en inglés) comparten la misma representación básica que las FSM tradicionales, pero se distinguen por permitir la anidación de estados dentro de otros estados, lo que introduce una estructura jerárquica en su diseño.
+La principal desventaja de las FSM es que son muy inflexibles y estáticas y, aunque se puede atenuar mediante la implementación de probabilidades o reglas que no estén tan claras a la hora de hacer las transiciones, siguen aumentando su complejidad progresivamente cuando aumenta su tamaño. Una forma de poder simplificar esa complejidad es dividiendo tareas complejas en otras más sencillas, permitiendo agrupar varias máquinas finitas dentro de otra máquina finita. Las Máquinas de Estados Finitos Jerárquicas (HFSM, por sus siglas en inglés) comparten la misma representación básica que las FSM tradicionales, pero se distinguen por permitir la anidación de estados dentro de otros estados, lo que introduce una estructura jerárquica en su diseño.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/HFSM.png}
@@ -118,13 +118,13 @@ En este árbol, los nodos se dividen en dos tipos principales:
 El nodo raíz (\textit{ROOT}) inicia la ejecución del árbol. El flujo de control comienza en este nodo y se propaga hacia abajo evaluando nodos hijos de izquierda a derecha. Cuando un decider es activado, se encarga de decidir cuál de sus hijos (otros deciders o behaviors) debe activarse en ese momento. Si ninguno de los hijos es adecuado, se retorna al nodo anterior, lo que permite reconsiderar otras opciones disponibles. Este enfoque permite que el comportamiento sea flexible y jerárquico.\\
 
 Gracias a esta organización, se logra modularidad y escalabilidad: por ejemplo, el decider \textit{IDLE} encapsula comportamientos distintos como \textit{REST} o \textit{PLAY}, y este último a su vez contiene subacciones como \textit{FLIP}, \textit{ROLL} o \textit{DANCE}. Esta jerarquía hace posible reutilizar comportamientos en distintos contextos y facilita el mantenimiento del árbol.
-
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/BT_Spoore.png}
-	\caption{Ejemplo BT, Documentación Spore}
+	\caption[Árbol de comportamiento de Spore]{Ilustración de un árbol de comportamiento tomado del diseño del videojuego \textit{Spore}, utilizado para modelar decisiones complejas en NPC's.\footnotemark}
 	\label{fig:BT Spore}
 \end{figure}
+\footnotetext{Fuente: Documentación de diseño de Spore \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}}
 \subsection{Goal-Oriented Action Planning}
 
 GOAP es un sistema basado en planificación de acciones. En lugar de definir comportamientos fijos como hemos visto anteriormente, la entidad analiza la situación y construye un plan para alcanzar el objetivo designado.
