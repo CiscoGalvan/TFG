@@ -117,8 +117,7 @@ La clase \texttt{SplineFollowerActuator} se usa para describir un movimiento med
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (\texttt{SplineContainer}) \textbf{Spline Container}: Objeto que define una trayectoria mediante una curva spline (\autoref{fig:SplineFollowerActuator_Image}), la cual será seguida por el objeto durante su movimiento. Este componente permite establecer una serie de puntos de control (control points) conectados por curvas suaves, generando así un recorrido continuo. Cada punto puede tener handlers (manejadores) para controlar la tangente de entrada y salida, permitiendo ajustar la forma de la curva con precisión.\\
-Unity proporciona herramientas visuales para editar la forma de la curva directamente en el editor, y el componente \texttt{SplineContainer} permite acceder a su representación en tiempo real, interpolar posiciones a lo largo del recorrido, o determinar la orientación del objeto mientras lo recorre.
+	\item (\texttt{SplineContainer}) \textbf{Spline Container}: Objeto que define una trayectoria basada en una spline, como la descrita en la \autoref{act:splinefollower} y representada en la \autoref{fig:SplineFollowerActuator_Image}. Este componente permite establecer una serie de puntos de control conectados por curvas suaves, editables directamente en el editor de Unity. Además, el \texttt{SplineContainer} ofrece funciones para acceder a la curva en tiempo real, interpolar posiciones a lo largo del recorrido y orientar el objeto dinámicamente durante su desplazamiento.
 	\item (enum) \textbf{Teleport To Closest Point}: Define cómo se ajusta el objeto a la spline al iniciarse el movimiento. Puede tener dos valores:
 	\begin{itemize}
 		\item \textbf{Move Enemy To Spline}: El enemigo se teletransporta a la spline.
@@ -424,7 +423,7 @@ Cuando se produce un cambio de estado, todos los actuadores y sensores se detien
 		\caption{Distribución del inspector de clase \texttt{State}.}
 		\label{fig:State_Image}
 \end{figure}
-\section{Animation Manager}
+\section{Animator Manager} \label{sec:animation}
 La clase \texttt{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo en función del movimiento, es decir, de los actuadores que estén activos.\\
 
 \textbf{Parámetros de configuración}

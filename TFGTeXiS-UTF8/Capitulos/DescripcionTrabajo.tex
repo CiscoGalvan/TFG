@@ -47,29 +47,54 @@ Como enemigos analizados en este caso encontramos:
 \textit{Bzzzt}\footnote{\url{https://store.steampowered.com/app/1293170/BZZZT/}} es un plataformas de acción de estética retro desarrollado casi íntegramente por el checo Karel Matějka  y publicado por Cinemax. Se estrenó para PC en noviembre de 2023 y para Nintendo Switch en septiembre de 2024. el jugador, en el papel de un robot, debe frustrar los planes del villano Badbert y rescatar a sus creadores, los doctores Emily y Norbert, atravesando 52 niveles llenos de trampas y enemigos de estilo arcade.
 
 En este caso los enemigos son:
-
-\subsection{Comportamientos relevantes detectados}
-El análisis de los juegos permitió la identificación de los siguientes patrones:  
 \begin{itemize}
-  \item \emph{Patrulla:} Este comportamiento se caracteriza por caminar a un ritmo constante en el eje horizontal, cambiando de dirección al chocar. Se identificó en los tres juegos y en distintos enemigos dentro de cada uno de ellos (p.\,ej., Reptacillo del Hollow Knight (Figura \ref{fig:Reptacillo})).  
-  \item \emph{Torreta:} Enemigos que lanzan proyectiles de forma periódica  (p.\,ej., Vengamosca antes de moverse).  
-  \item \emph{Embate lineal:} Consiste en una vez detectado al jugador modificar significativamente la velocidad, aumentándola para atacarle. (p.\,ej., Cáscara errante).  
-  \item \emph{Aparición del suelo:} Son enemigos que parece que están saliendo del suelo, no atacan, solo salen y se esconden (p.\,ej., Goam o pinchos ).  
-  \item \emph{Persecución:} Son enemigos que persiguen al jugador hasta chocarse con él. La persecución se puede dar de distintas formas, unicamente en un eje o si el enemigo vuela, en forma de revolotéo donde no se acerca directamente si no que va deambulando.
-  \item \emph{Rotación:} Estos describen un movimiento circular alrededor de un punto (p.\,ej. Bolas circulares de Bzzzt).
-  \item \emph{Seguimiento de camino:} Enemigos que siguen un camino predeterminado y no lo abandonan independientemente del jugador (p.\,ej. Balas de Bzzzt).
+	\item \textbf{Saw Drone:} Enemigo volador que se desplaza siguiendo un patrón circular o semicircular. Causa daño al contacto y no reacciona a la presencia del jugador.
+	\item \textbf{Cannon Turret:} Trampa fija que dispara proyectiles a intervalos regulares en una dirección determinada. No detecta al jugador, pero su ritmo constante obliga al jugador a calcular el momento adecuado para pasar.
+	\item \textbf{Walking Bot:} Enemigo terrestre que patrulla horizontalmente entre dos límites. Cambia de dirección al chocar con obstáculos o al llegar al borde de la plataforma.
+	\item \textbf{Chasing Bot:} Enemigo que, al detectar al jugador en un cierto rango, cambia su patrón de patrulla por una persecución directa. Su velocidad puede aumentar durante la persecución.
+	\item \textbf{Spike Block:} Obstáculo estático que actúa como una trampa pasiva. Causa daño letal al jugador si entra en contacto con él. Puede estar en el suelo, techo o paredes.
 \end{itemize}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[height=5cm]{Imagenes/Reptacillo_Image.png}
-	\caption{Imagen de escenario de \textit{Hollow Knight} donde aparecen dos Reptacillos}
-	\label{fig:Reptacillo}
-\end{figure}
+\subsection{Comportamientos relevantes detectados}
+
+El análisis de los enemigos presentes en los tres videojuegos permitió identificar una serie de patrones de comportamiento comunes entre ellos:
+
+\begin{itemize}
+	\item \emph{Patrulla:} Movimiento horizontal constante entre dos puntos, cambiando de dirección al chocar con un obstáculo o al alcanzar un borde. Este comportamiento está presente en enemigos como el Reptacillo (\textit{Hollow Knight}), el Acolyte (\textit{Blasphemous}) y el Walking Bot (\textit{Bzzzt}).
+	\item \emph{Embestida lineal:} Una vez que detectan al jugador, interrumpen su comportamiento actual y se lanzan rápidamente en línea recta para atacarlo. Se observa en enemigos como la Cáscara errante (\textit{Hollow Knight}) y el Acolyte (\textit{Blasphemous}).
+	\item \emph{Persecución:} Enemigos que, al detectar al jugador, comienzan a seguirlo directamente, adaptando su trayectoria en tiempo real. Este comportamiento se encuentra en la Vengamosca (\textit{Hollow Knight}) y el Chasing Bot (\textit{Bzzzt}).
+	\item \emph{Torreta:} Disparo continuo o periódico de proyectiles en una dirección fija, sin depender de la posición del jugador. Representado por la Shooting Trap (\textit{Blasphemous}) y la Cannon Turret (\textit{Bzzzt}).
+	\item \emph{Rotación fija:} Movimiento circular o semicircular alrededor de un punto o eje, sin modificar el patrón según la presencia del jugador. Ejemplificado por el Saw Drone (\textit{Bzzzt}).
+	\item \emph{Trampa estática letal:} Elementos del entorno que causan la derrota del jugador al contacto directo, sin movimiento ni detección. Este patrón se encuentra en los Spikes (\textit{Blasphemous}) y el Spike Block (\textit{Bzzzt}).
+\end{itemize}
+
+
+
+
+\section{Conclusiones del análisis y definición del framework}
+
+El estudio de los enemigos presentes en los videojuegos \textit{Hollow Knight}, \textit{Blasphemous} y \textit{Bzzzt} permitió identificar una serie de patrones recurrentes en su comportamiento. Estos patrones han sido agrupados en categorías comunes, lo que permite abstraer el comportamiento de cada enemigo en términos funcionales.\\
+
+A partir de esta observación, se ha definido un framework modular que permite construir enemigos a partir de tres componentes fundamentales:
+
+\begin{itemize}
+  \item \textbf{Sensores:} Son los mecanismos que permiten a un enemigo percibir información de su entorno. Definen condiciones de activación para ciertos comportamientos.
+  \item \textbf{Actuadores:} Son las acciones que un enemigo puede ejecutar en un momento determinado. Incluyen movimientos, ataques y generación de nuevos enemigos, entre otros.
+  \item \textbf{Sistema de daño:} Determina cómo un enemigo recibe y procesa el daño, incluyendo la interacción con elementos ofensivos del entorno (como ataques del jugador), invulnerabilidad temporal, reacciones visuales o físicas, y la gestión de su salud.
+\end{itemize}
+
+Esta separación en sensores, actuadores y daño permite una construcción flexible y reutilizable de comportamientos. En lugar de diseñar enemigos de forma específica para cada situación, es posible combinar estos elementos de forma modular para crear una gran variedad de comportamientos complejos.\\
+
+En esta sección, se presentan los principales \textbf{actuadores} identificados a partir del análisis anterior, que constituyen la base para definir el comportamiento activo de los enemigos. Posteriormente, se describirán los \textbf{sensores}, encargados de activar estos actuadores según las condiciones del entorno. A continuación, se detalla el sistema de \textbf{daño}, necesario para gestionar las interacciones ofensivas entre el jugador y los enemigos y sus consecuencias.\\
+
+Por último, una vez definidos los sensores, actuadores y el sistema de daño como elementos fundamentales del comportamiento enemigo, se introduce el concepto de \textbf{estado}, entendido como una combinación coherente de acciones que un enemigo puede ejecutar en un momento determinado, encapsuladas en los actuadores. Esta noción permite estructurar y organizar el comportamiento de forma modular. A partir de ello, se construye la Máquina de Estados Finita (FSM), el componente central de la lógica de control del enemigo. Cada enemigo contará con su propia FSM, la cual gestiona sus diferentes estados y las transiciones entre ellos en función de las señales recibidas por los sensores. Esta arquitectura permite representar comportamientos complejos de manera flexible, escalable y reutilizable dentro del framework propuesto.\\
 
 \section{Actuadores}
 \label{subsec:acciones}
-Hace referencia a un conjunto de movimientos y habilidades que definen lo que un enemigo puede hacer en el videojuego. Esto incluye distintos tipos de desplazamientos y la capacidad de crear otros enemigos de forma independiente (spawners). Estas habilidades no siempre son compatibles entre sí, teniendo una tabla en la que se indicaran las relaciones entre ellas. Además no es necesario utilizar siempre todas las acciones de forma que a veces un enemigo podrá realizar un tipo de movimiento o usar un spawner de manera exclusiva, mientras que en otras podrá combinar varias habilidades según su diseño y complejidad. Esto permite adaptar las capacidades de los enemigos para diferentes situaciones en el juego.
+Hace referencia a un conjunto de movimientos y habilidades que definen lo que un enemigo puede hacer en el videojuego. Esto incluye distintos tipos de desplazamientos y la capacidad de crear otros enemigos de forma independiente (spawners). Estas habilidades no siempre son 
+compatibles entre sí, por lo que es necesario especificar las relaciones de compatibilidad mediante una tabla.\\
+
+En nuestro diseño, distinguimos dos tipos principales de actuadores: de movimiento, que definen cómo se desplazan los enemigos por el entorno, y los spawners, que les permiten generar otras entidades dentro del juego.
 
 \subsection{Movimiento}
 Podemos definir el término movimiento como el desplazamiento o cambio de posición de un enemigo dentro del juego. Sin embargo, el concepto de movimiento también puede aplicarse en el caso de enemigos que permanecen en una posición fija, haciendo referencia a la ausencia de éste. Los movimientos son fundamentales para definir el comportamiento de los personajes, ya que permiten la interacción con el jugador y el entorno.\\
@@ -82,38 +107,65 @@ A continuación se muestran todos los movimientos diseñados, junto con una brev
     \item \textbf{Circular}: Hace que el enemigo siga un movimiento circular alrededor de un punto, describiendo una circunferencia cerrada si el ángulo es igual a 360 y, en caso de ser menor, actuando como péndulo.
     \item \textbf{Move To A Point}\label{sec:MoveToAPoint}: Dirige al enemigo hacia puntos concretos no actualizables. Se puede configurar por medio de una lista, donde se indican los puntos concretos a recorrer o por medio de un área, donde se eligirá aleatoriamente un punto y al llegar a él, se escogerá otro.
     \item \textbf{Move To An Object}: Desplaza al enemigo hacia una entidad que puede estar en movimiento.
-    \item \textbf{Spline Follower}: Permite al enemigo seguir una trayectoria definida por una curva suave que se genera a partir de un conjunto de puntos de control (spline).
+    \item \textbf{Spline Follower} \label{act:splinefollower}: Permite al enemigo seguir una trayectoria definida por una curva suave que se genera a partir de un conjunto de puntos de control, denominada \textit{spline}. Una spline es una curva que conecta estos puntos de control mediante segmentos continuos y suavizados. Cada punto puede incluir manejadores (handlers) para controlar la tangente de entrada y salida, lo que permite ajustar con precisión la forma de la curva. Esta técnica proporciona trayectorias fluidas y naturales, ideales para movimientos complejos o decorativos.
+
 \end{itemize}
 
 Todos los tipos de movimiento pueden configurarse para ejecutarse de forma acelerada. Para ello, se emplea una función de aceleración/suavizado (\textit{Easing Function}), una función que define cómo varían en un tiempo definido tanto la velocidad como la posición del enemigo. \\
 Dependiendo del tipo de movimiento, esta función puede aplicarse de dos formas:\\
 
 \begin{itemize}
-\item En movimientos como \textbf{Horizontal}, \textbf{Vertical}, \textbf{Directional} o \textbf{Circular}, la \textit{Easing Function} afecta principalmente a la velocidad, modificándola teniendo en cuenta una velocidad objetivo y un tiempo para llegar a ella.
+\item En movimientos como \textbf{Horizontal}, \textbf{Vertical}, \textbf{Directional} o \textbf{Circular} (Figura \ref{fig:EasingFuntionVel}), la \textit{Easing Function} afecta principalmente a la velocidad, modificándola teniendo en cuenta una velocidad objetivo y un tiempo para llegar a ella.
 \item En movimientos como \textbf{Move To A Point} y \textbf{Move To An Object} (Figura \ref{fig:EasingFunction}), la \textit{Easing Function} influye directamente en la interpolación de la posición, alterando cómo el enemigo se desplaza entre el origen y el destino en un tiempo determinado.
 \end{itemize}
 
 Este enfoque permite controlar el dinamismo del movimiento, proporcionando una mayor expresividad y naturalidad en el comportamiento de los enemigos. Por ello, se incluye un catálogo\footnote{\url{https://gist.github.com/cjddmut/d789b9eb78216998e95c}} de distintas \textit{Easing Functions} que permite variar la forma en que se definen y perciben los movimientos.\\
 
-La manera en la que influyen las \textit{EasingFunction} en cada tipo de movimiento será explicada con más profundidad en el apartado de Implementación (Capítulo \ref{cap:implementacion}).
+La influencia de las \textit{Easing Functions} en cada tipo de movimiento, así como las imágenes utilizadas para ilustrarlas, se explicará con mayor profundidad en el apartado de Implementación (Capítulo~\ref{cap:implementacion}).
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[height=5cm]{Imagenes/EasingFunction.png}
-	\caption{Easing Function que describe la variación de la posición de un objeto con el movimiento \textbf{Move To An Object}}
+	\includegraphics[height=7cm]{Imagenes/EasingFunction.png}
+	\caption{Easing Function que describe la variación de la posición de un objeto con el movimiento Move To An Object}
 	\label{fig:EasingFunction}
 \end{figure}
 
-\subsection{Spawner}
-Capacidad que poseen los enemigos para generar otros enemigos independientes, es decir, poder crear nuevas unidades que actúan de forma autónoma dentro del juego. Un ejemplo serían las torretas, que crean balas.\\
+\begin{figure}[t]
+	\centering
+	\includegraphics[height=7cm]{Imagenes/HorizontalMovementAccelerated.png}
+	\caption{Easing Function que describe la variación de la velocidad de un objeto con el movimiento Horizontal}
+	\label{fig:EasingFuntionVel}
+\end{figure}
 
-Implementar un spawner requiere establecer ciertas reglas de generación de enemigos, tales como la frecuencia de aparición o el número máximo de enemigos generados.
+\subsection{Spawner}
+\label{subsec:spawner}
+
+\textit{Spawnear} es la capacidad que poseen algunos enemigos para generar otras unidades enemigas de forma independiente, actuando como entidades que crean nuevas amenazas dentro del juego. Esta funcionalidad añade dinamismo y complejidad a la jugabilidad, permitiendo, por ejemplo, que una torreta dispare proyectiles o que un enemigo invoque aliados en mitad del combate.
+
+Para diseñar un sistema de generación versátil, es necesario establecer un conjunto de reglas claras que definan cómo y cuándo debe producirse esta generación. A continuación, se plantean estas reglas como preguntas clave de diseño:
+
+\begin{itemize}
+    \item \textbf{¿Con qué frecuencia se generan nuevas unidades?} \\
+    Cada entidad generadora establece un intervalo de espera entre una generación y la siguiente. Este intervalo define el ritmo con el que aparecen las nuevas unidades, afectando directamente al nivel de presión sobre el jugador.
+
+    \item \textbf{¿Cuántas unidades se pueden generar?} \\
+    El sistema permite limitar la cantidad total de unidades generadas o, si se desea, habilitar una generación ilimitada. Esta decisión influye tanto en el balance como en la duración del desafío que representa el generador.
+
+    \item \textbf{¿Dónde aparecen las unidades generadas?} \\
+    Cada entidad generadora puede estar asociada a uno o varios puntos del escenario. En cada ciclo de generación, una nueva unidad aparece en estos puntos previamente definidos, lo que permite controlar espacialmente el comportamiento del sistema.
+
+    \item \textbf{¿Cómo se produce la generación de forma visual o interactiva?} \\
+    El sistema de generación puede integrarse con las animaciones de la entidad generadora. Esto permite sincronizar la aparición de nuevas unidades con acciones visuales específicas (como una animación de ataque), aportando coherencia visual y reforzando la inmersión del jugador.
+\end{itemize}
+
+El comportamiento del generador se rige por estas reglas, evaluando de forma continua si las condiciones necesarias se cumplen. Solo entonces se permite la creación de nuevas unidades, asegurando que el sistema se mantenga bajo control y alineado con la experiencia de juego deseada.
+
 \subsection{Compatibilidad}
 La versatilidad de la herramienta se potencia al permitir la combinación de diversos actuadores simultáneamente. En este sentido, un enemigo podría perfectamente desplazarse horizontalmente mientras activa un spawner para generar secuaces. Esta sinergia entre actuadores (movimientos y spawners) enriquece la complejidad del comportamiento y abre un abanico de posibilidades creativas para los diseñadores.\\
 
 No obstante, es crucial reconocer que no todas las combinaciones de acciones resultan coherentes o deseables desde la perspectiva del diseño del juego. Por ejemplo, intentar realizar un movimiento vertical mientras se está definido un movimiento circular podría generar comportamientos visuales o de jugabilidad no intencionados. \\
 
-Para clarificar estas interdependencias y asegurar la coherencia en la configuración de los enemigos, se ha elaborado la \textbf{tabla~\ref{tab:compatibilidad}} de compatibilidad. Esta tabla actuará como una guía visual e intuitiva, indicando qué combinaciones de movimientos y la activación de spawners son factibles y recomendadas, permitiendo a los diseñadores construir enemigos con comportamientos complejos pero lógicos y bien definidos.
+Para clarificar estas interdependencias y asegurar la coherencia en la configuración de los enemigos, se ha elaborado la \textit{Tabla~\ref{tab:compatibilidad}} de compatibilidad. Esta tabla actuará como una guía visual e intuitiva, indicando qué combinaciones de movimientos y la activación de spawners son factibles y recomendadas, permitiendo a los diseñadores construir enemigos con comportamientos complejos pero lógicos y bien definidos.
 
 \begin{table}[!h]
     \centering
@@ -142,17 +194,24 @@ Para clarificar estas interdependencias y asegurar la coherencia en la configura
     \hline
     \end{tabular}
     }
+    \vspace{0.5em}
+    \caption*{\textbf{Leyenda de colores:} \textcolor{green!70!black}{Verde} = combinación compatible; \textcolor{red!70!black}{Rojo} = combinación no compatible; \textcolor{gray!70!black}{Gris} = combinación redundante.}
 \end{table}
+
 \section{Sensores}
 \label{subsec:sensores}
 El término sensor se define como los mecanismos mediante los cuales los personajes interactúan con su entorno y entre sí.
 Podemos definir el término sensor como el elemento que sirve para que el enemigo conozca el entorno y reciba información de los cambios que se producen en el mismo. Son los responsables de activar las transiciones entre estados, es decir, se encargan de cambiar de un comportamiento predefinido a otro.
 A continuación se enumerarán los diferentes sensores disponibles en la herramienta.
 \begin{itemize}
-    \item \textbf{Area}: Detecta si un objeto entra o sale en una zona de detección.
-    \item \textbf{Collision}: Detecta colisiones físicas con otros objetos.
-    \item \textbf{Distance}: Detecta si un objeto está dentro o fuera de una distancia específica.
-    \item \textbf{Time}: Detecta cuando ha transcurrido un tiempo determinado.
+	\item \textbf{Area}: Detecta si un objeto entra o sale en una zona de detección.
+	\item \textbf{Collision}: Detecta colisiones físicas con otros objetos.
+	\item \textbf{Distance}: Evalúa si un objeto se encuentra dentro o fuera de una distancia específica con respecto a otro. Esta condición puede interpretarse de dos maneras distintas según su configuración:
+	\begin{itemize}
+	    \item \textit{Distancia absoluta}: Se mide la distancia total, sin importar la dirección. Es útil para detectar proximidad general.
+	    \item \textit{Distancia por eje}: Permite verificar la distancia solo en un eje determinado (por ejemplo, solo en el eje X), ignorando la separación en el Y. Esta modalidad resulta útil para detectar alineamientos específicos (como estar “a la misma altura” o “en la misma línea horizontal”).
+	\end{itemize}
+	\item \textbf{Time}: Detecta cuando ha transcurrido un tiempo determinado.
 \end{itemize}
 \section{Daño}
 Se define daño como la consecuencia negativa que recibe una entidad con respecto a su vida. Esto se produce como la consecuencia de una colisión entre dos entidades del juego, una que hace daño y otra que lo recibe.\\
@@ -170,24 +229,44 @@ Además, se puede distinguir entre tres tipos de daños:
     \item \textbf{Residual:} Aplica daño inicial y luego daño periódico tras el contacto, definiendo cantidades, frecuencia de aplicación y número de aplicaciones.
 \end{itemize}
 
-\section{Estado}
+\section{Máquina de Estados Finita}
+\label{sec:fsm}
+
+La Máquina de Estados Finita (FSM, por sus siglas en inglés \textit{Finite State Machine}) constituye el núcleo de la lógica de comportamiento de los enemigos en el framework propuesto. Su función principal es organizar y controlar el flujo de acciones que puede realizar un enemigo a lo largo del tiempo, de forma estructurada, flexible y escalable. Cada enemigo cuenta con su propia instancia de FSM.\\
+
+La FSM se compone de un estado inicial, el cual encapsula una configuración concreta de comportamiento, así como sus posibles \textbf{transiciones} hacia otros estados. Esta estructura permite modelar de forma clara y modular la lógica interna de cada enemigo.
+
+\subsection{Estado}
 \label{subsec:estado}
 
-Un estado se define como un conjunto específico de acciones. Esta conjunción de elementos define de manera integral la conducta observable del enemigo en un momento dado. Las acciones que un estado puede englobar comprenden uno o varios tipos de movimiento que resulten compatibles entre sí, permitiendo una ejecución coordinada de desplazamientos. Adicionalmente, un estado puede tener la capacidad de generar nuevas entidades enemigas a través de un mecanismo de instanciación (spawner), enriqueciendo la dinámica y la complejidad del entorno de juego. 
+Un estado representa una situación concreta en la que se encuentra el enemigo, definida por un conjunto específico de actuadores que se ejecutan mientras permanece en dicho estado. Además, cada estado incluye sus propias transiciones y puede incorporar emisores de daño.\\
 
-\section{Máquina de estados finita}
+En particular, cada estado puede incluir uno o varios emisores de daño, que son los encargados de infligir daño a otras entidades del juego durante la ejecución del estado. Esto permite, por ejemplo, que un enemigo cause daño únicamente cuando se encuentra atacando, o que un área peligrosa esté activa solo durante determinados comportamientos.
 
-La Máquina de Estados Finita (FSM, Finite State Machine) es el núcleo de la lógica que define el comportamiento de los enemigos en nuestro diseño. Cada enemigo tiene su propia FSM, configurada específicamente para representar sus patrones de acciones, reacciones y relaciones en el juego. La FSM organiza el comportamiento de los enemigos mediante estados y transiciones:
-Los estados, como ya se ha explicado, agrupan las acciones que el enemigo puede realizar en un momento dado.
-Las transiciones permiten cambiar de un estado a otro y son activadas por sensores.\\
+\subsubsection{Transiciones}
 
-\begin{figure}[t]
+Cada estado contiene sus propias transiciones, que determinan a qué otros estados puede cambiar el enemigo y bajo qué condiciones. Estas condiciones están definidas por los sensores, que detectan información relevante del entorno.\\
+
+Cuando se cumple la condición de una transición, el estado actual cede el control al nuevo estado indicado, permitiendo una evolución fluida y dinámica del comportamiento del enemigo.
+
+\begin{figure}[h]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/EnemigoGeneral.png}
-	\caption{Enemigo General }
+	\caption{Ejemplo de estructura general de un enemigo basado en FSM.}
 	\label{fig:EnemigoGeneral}
 \end{figure}
+\subsection{Sincronización con las animaciones}
+\label{subsec:animaciones_fsm}
 
+El comportamiento de un enemigo no solo debe ser funcional, sino también comprensible y coherente para el jugador. Por ello, los actuadores incluidos en cada estado pueden modificar la representación visual del enemigo mediante animaciones. Esta sincronización garantiza que lo que el enemigo está haciendo internamente, también se refleje externamente de forma clara.\\
+
+Cada vez que un enemigo realiza una acción específica de un actuador —por ejemplo, \textit{spawnear} una entidad, o pasar de deambular en una zona a perseguir al jugador— su animación cambia para representar visualmente esa transición. Así, el jugador puede anticipar acciones, reconocer patrones de comportamiento y reaccionar en consecuencia.\\
+
+Además, ciertos eventos clave como recibir daño o morir, activan animaciones específicas que refuerzan su impacto y aportan una mayor riqueza expresiva al sistema. Estas animaciones no son decorativas: forman parte esencial de la comunicación entre el enemigo y el jugador.\\
+
+Este enfoque integrador entre comportamiento y apariencia permite diseñar enemigos no solo eficaces a nivel de juego, sino también consistentes desde el punto de vista estético y narrativo.\\
+
+Se darán detalles de como funciona esta integración en la sección~\ref{sec:animation}.
 \section{Ejemplos de uso}
 Con esta separación de actuadores, sensores y daño la creación de enemigos se vuelve mucho más sencilla. A continuación se presentan unos ejemplos construidos mediante la combinación de los componentes de la herramienta sin la necesidad de escribir código, estos ejemplos están incluidos en la propia herramienta.\\
 
