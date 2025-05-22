@@ -1,42 +1,50 @@
 \setcounter{secnumdepth}{3} %para tener una profundidad más en las enumeraciones
 \chapter{Evaluacion Con Usuarios}
 \label{cap:evaluacionConUsuarios}
-Tras las fases de desarrollo de la herramienta se llevarán a cabo las pruebas con usuarios que nos mostrarán los datos de un primer contacto con usuarios.\\
-Para eso hemos creado un guión de evaluación que fijará unos objetivos y unas preguntas de investigación, así como marcar las pautas para la realización de las pruebas. \\
-Después de la realización de las pruebas se procederá a hacer una análisis que muestre las posibles brechas encontradas, basándonos en la experiencia de los usuarios. \\
+Una vez finalizada la fase de implementación de la herramienta, se consideró fundamental validar su utilidad y usabilidad a través de pruebas con usuarios. Estas pruebas permiten obtener una primera impresión del sistema desde el punto de vista de quienes no han participado en el desarrollo, y proporcionan información clave sobre posibles mejoras o dificultades de uso.\\
+
+Para ello, se diseñó un protocolo de evaluación estructurado que incluye objetivos claros, preguntas de investigación específicas y una guía detallada para la realización de las pruebas. El objetivo principal de esta fase es identificar brechas entre el diseño previsto y la experiencia real del usuario, así como recoger sugerencias que puedan orientar futuras iteraciones de la herramienta.\\
+
+En las siguientes secciones se describen los objetivos y preguntas de investigación, el guion de evaluación utilizado, el desarrollo de las sesiones de prueba y el análisis de los resultados obtenidos.\\
 
 \section{Objetivos y preguntas de investigación} \label{sec:preguntas}
-Los objetivos y preguntas de investigación tienen como finalidad tratar de comprender la experiencia de los usuarios reales al interactuar con nuestra herramienta por primera vez. Buscamos identificar cualquier punto donde puedan surgir dificultades, confusión o áreas donde la herramienta podría ser más efectiva. Para guiar esta exploración, hemos definido los siguientes objetivos y preguntas de investigación.
 
-\subsection{¿Resulta intuitiva y clara la herramienta para el usuario?} \label{sec:intuitiva}
-Lo más importante de la herramienta es que sea clara para los usuarios que van a usarla, ya que sin eso, aunque la herramienta tenga un buen funcionamiento, la utilidad de esta sigue siendo nula.\\
-Nuestro primer objetivo se centra en evaluar si los usuarios perciben la interfaz y los flujos de trabajo de manera natural y sin ambigüedades.\\
+En el contexto de esta evaluación, se ha definido un objetivo general: comprender la experiencia de uso de los usuarios al interactuar por primera vez con la herramienta. Este objetivo engloba aspectos clave como la facilidad de uso, la claridad de la interfaz y la capacidad del sistema para guiar al usuario en la configuración de comportamientos sin necesidad de escribir código.
 
-Preguntas de investigación relacionadas con el objetivo:
-\subsubsection{¿El usuario entiende fácilmente cómo añadir funcionalidad al enemigo?}
-Esta pregunta de investigación pretende comprobar, si el usuario es capaz de comprender el funcionamiento base de los enemigos, es decir, si comprende como utilizar la máquina de estados o como se añaden estados nuevos, transiciones, Damage Emitters y actuadores.\\
+A partir de este objetivo general, se han formulado dos líneas de evaluación principales, cada una con sus correspondientes preguntas de investigación, que servirán para guiar tanto la observación como la recogida de datos cualitativos.
 
-\subsubsection{¿Las opciones de comportamiento ofrecidas son comprendidas en su totalidad?}
-Aquí, nuestro interés reside en la claridad con la que se presentan y se entienden los distintos actuadores disponibles. Buscamos identificar cualquier punto de confusión en su aplicación, analizando si la funcionalidad y las explicaciones proporcionadas para cada uno son suficientes para su correcta utilización.\\
+\begin{description}
+	\item[\textbf{1. Evaluar la claridad e intuición de la herramienta.}]
+Esta línea se centra en determinar si los usuarios perciben la herramienta como fácil de entender y utilizar, incluso sin conocimientos técnicos. Lo más importante es que la interfaz y los flujos de trabajo resulten naturales, sin ambigüedades ni puntos de bloqueo.
 
-\subsubsection{¿La interfaz comunica correctamente el propósito de cada estado y transición?}
-La pregunta de investigación pretende conocer si el diseñador es capaz de saber en todo momento en que estado está el enemigo y por tanto que comportamiento cabría esperar.\\
+	\begin{enumerate}
+		\item \textbf{¿El usuario entiende fácilmente cómo añadir funcionalidad al enemigo?}\\
+ Esta pregunta pretende verificar si el usuario comprende el funcionamiento base de los enemigos, incluyendo el uso de la máquina de estados, la creación de nuevos estados, la configuración de transiciones, actuadores y Damage Emitters.
 
-\subsubsection{¿La documentación aclara y detalla la configuración de las funcionalidades?}
-Buscamos evaluar si la documentación adjunta proporciona la información necesaria para que el usuario pueda configurar correctamente los enemigos, aprovechando al máximo las funcionalidades implementadas. \\
+		\item \textbf{¿Las opciones de comportamiento ofrecidas son comprendidas en su totalidad?}\\
+ Se analiza si la funcionalidad de los distintos actuadores es clara para el usuario y si las descripciones disponibles en la herramienta son suficientes para usarlos correctamente.
 
-\subsection{¿El sistema de creación de enemigos demuestra ser funcional?}  \label{sec:funcional}
-Este objetivo busca validar la operatividad y la utilidad de la herramienta.\\
+		\item \textbf{¿La interfaz comunica correctamente el propósito de cada estado y transición?}\\
+ Evaluamos si el usuario puede interpretar visualmente en qué estado se encuentra el enemigo en cada momento y cómo se espera que se comporte.
 
-Preguntas de investigación relacionadas con el objetivo:
-\subsubsection{¿La herramienta agiliza y simplifica el proceso de diseño de enemigos?}
-Esta pregunta se enfoca en la eficiencia que aporta la herramienta al flujo de trabajo del diseñador de videojuegos. ¿Facilita la creación de enemigos?\\
+		\item \textbf{¿La documentación aclara y detalla la configuración de las funcionalidades?}\\
+ Se analiza si el material de apoyo resulta suficiente y útil para ayudar al usuario a entender la herramienta sin necesidad de asistencia externa.
+	\end{enumerate}
 
-\subsubsection{¿El comportamiento de los enemigos generados se corresponde con lo esperado en el videojuego?}
-En este punto, la atención se centra en la fidelidad con la que la lógica definida en la herramienta se manifiesta en el entorno de juego. ¿Actúan los enemigos según lo previsto? ¿Se activan sus acciones en las circunstancias correctas? Identificar cualquier desviación entre el diseño y la ejecución es crucial.\\
+	\item[\textbf{2. Validar la funcionalidad y utilidad práctica del sistema.}]
+ Esta línea tiene como objetivo verificar que la herramienta no solo es comprensible, sino que también es útil y funcional en el flujo de trabajo de diseño de videojuegos.
 
-\subsubsection{¿La herramienta permite la adaptación y expansión sencilla de los enemigos?}
-Queremos evaluar si es posible modificar o ampliar las capacidades de los enemigos creados mediante la adición de nuevos comportamientos o la alteración de parámetros existentes, sin generar complejidad innecesaria.
+	\begin{enumerate}
+		\item \textbf{¿La herramienta agiliza y simplifica el proceso de diseño de enemigos?}\\
+ Se estudia si los usuarios sienten que la herramienta mejora la eficiencia de su proceso creativo respecto a métodos más tradicionales.
+
+		\item \textbf{¿El comportamiento de los enemigos generados se corresponde con lo esperado en el videojuego?}\\
+ Evaluamos si lo que el usuario configura en el editor se traduce correctamente al comportamiento observado en el entorno de juego.
+
+		\item \textbf{¿La herramienta permite la adaptación y expansión sencilla de los enemigos?}\\
+ Esta pregunta busca determinar si es posible modificar o ampliar los enemigos existentes sin generar confusión ni complejidad innecesaria.
+	\end{enumerate}
+\end{description}
 
 \section{Diseño de la Evaluación}
 En esta sección se detalla la planificación y la estructura de las pruebas con usuarios.
@@ -77,14 +85,6 @@ Las tareas se presentarán de forma secuencial, permitiendo al usuario familiari
 
 Antes de comenzar las pruebas se agradecerá la participación de los usuarios. Se dejará claro al inicio que no es una crítica hacia ellos y que solo estamos evaluando la funcionalidad de la herramienta y en ningún caso juzgándoles, además, se les indicará las diferentes partes que consta la evaluación.\\
 
-Guion de la sesión:\\
-
-"Buenos días a todos y muchísimas gracias por la colaboración en estas pruebas de evaluación.
-Como ya sabéis, vais a probar una herramienta que sirve para diseñar enemigos en dos dimensiones en Unity.
-En los ordenadores tenéis ya un proyecto con la herramienta abierta, así como un manual de usuario detallado en el escritorio.
-Por favor leed el manual y haced los ejemplos prácticos que se describen dentro de él. Una vez familiarizados con la herramienta y habiendo terminado los ejemplos prácticos, usadla creando el enemigo que se os ocurra.
-Por último se os abrirá un breve cuestionario, para su cumplimentación y terminaremos con una breve entrevista."
-
 \subsection{Comportamiento del Investigador}
 
 Durante toda la sesión de pruebas, el investigador actuará como observador imparcial y facilitador. Su presencia tendrá como objetivo principal garantizar que los participantes comprendan las instrucciones generales y ofrecer soporte logístico en caso de que surjan problemas técnicos o situaciones inesperadas. No se ofrecerá ayuda directa sobre el uso de la herramienta salvo que una situación impida completamente continuar con la evaluación, ya que se busca observar cómo los usuarios interactúan con la interfaz sin intervenciones externas.\\
@@ -95,9 +95,14 @@ Al finalizar la sesión, el investigador facilitará la entrevista, siguiendo un
 
 \subsection{Metodología}
 
-La evaluación ha sido diseñada utilizando una metodología mixta, combinando técnicas cuantitativas y cualitativas para obtener una visión completa del desempeño de la herramienta.
-\subsubsection{Observación}
-Durante la realización de las tareas, el investigador observará el comportamiento de los participantes de forma no intrusiva. Se tomarán notas sobre:
+La evaluación ha sido diseñada utilizando una metodología mixta, combinando técnicas cuantitativas y cualitativas con el objetivo de obtener una visión completa del desempeño de la herramienta, tanto en términos de usabilidad como de experiencia percibida por los usuarios.
+
+\subsubsection{Enfoque cualitativo}
+
+El enfoque cualitativo busca recoger impresiones, percepciones y comportamientos de los usuarios durante la interacción con la herramienta, a través de técnicas como la observación directa y la entrevista semiestructurada.
+
+\paragraph{Observación}
+Durante la realización de las tareas, el investigador observará de forma no intrusiva el comportamiento de los participantes. Se tomarán notas sobre:
 
 \begin{itemize}
 \item Dudas frecuentes o repetitivas.
@@ -105,12 +110,35 @@ Durante la realización de las tareas, el investigador observará el comportamie
 \item Momentos de frustración, vacilación o errores.
 \item Fluidez general en la interacción con la interfaz.
 \end{itemize}
-Esta observación permitirá identificar posibles problemas de usabilidad no detectados únicamente a través del cuestionario o la entrevista.
 
-\subsubsection{Cuestionario}
-Una vez completadas las tareas anteriores, para conocer la opinión de los usuarios sobre la facilidad de uso del sistema que hemos desarrollado, decidimos emplear el cuestionario SUS (System Usability Scale) de Brooke (1996). 
+Esta observación permitirá identificar posibles problemas de usabilidad no detectables únicamente a través del cuestionario.
 
-El SUS consta de diez preguntas en forma de afirmación. Los participantes deben indicar su grado de acuerdo o desacuerdo por medio de una escala Likert de cinco puntos, donde 1 representa totalmente en desacuerdo y 5 representa totalmente de acuerdo. Los ítems que componen el cuestionario son los siguientes:
+\paragraph{Puesta en común}
+Tras la finalización del cuestionario SUS, se llevará a cabo una entrevista semiestructurada con cada participante. Esta dinámica de cierre busca profundizar en la experiencia del usuario, identificar áreas de mejora no previstas y recoger sugerencias espontáneas. 
+
+A continuación, se muestran algunas de las preguntas que servirán como guía para esta conversación:
+
+\begin{itemize}
+\item ¿Hubo algo que os sorprendiera o no esperabais durante el uso de la herramienta?
+\item ¿Qué parte del proceso de creación de enemigos os pareció más interesante o satisfactoria?
+\item ¿En qué momentos sentisteis que no sabíais muy bien qué hacer o cómo proceder?
+\item ¿Cambiaríais algo de la forma en la que se explican los elementos como estados, transiciones o actuadores?
+\item ¿Creéis que la herramienta permite expresar bien ideas de diseño complejas?
+\item ¿Consideráis que podríais usar esta herramienta para un proyecto real o profesional? ¿Por qué?
+\item ¿Hay alguna funcionalidad que echasteis de menos mientras la usabais?
+\item ¿Os surgieron ideas o sugerencias que podrían mejorar la herramienta?
+\end{itemize}
+
+\subsubsection{Enfoque cuantitativo}
+
+El enfoque cuantitativo está centrado en recoger datos objetivos y medibles a través de un cuestionario estandarizado. En este caso, se ha utilizado el cuestionario SUS (System Usability Scale), desarrollado por Brooke (1996), con el fin de evaluar la percepción de usabilidad del sistema de forma estructurada y comparable.
+
+\paragraph{Cuestionario SUS}
+Una vez completadas las tareas, los participantes responderán al cuestionario SUS (System Usability Scale), propuesto por Brooke (1996). Este instrumento se compone de diez afirmaciones que deben valorarse mediante una escala de Likert de cinco puntos, donde 1 representa "totalmente en desacuerdo" y 5 representa "totalmente de acuerdo".
+
+El cuestionario está diseñado para ofrecer una puntuación global de usabilidad del sistema. Sin embargo, en el contexto de esta evaluación, también se analizarán de manera individual algunas de las respuestas, ya que ciertas afirmaciones están directamente relacionadas con las preguntas de investigación planteadas previamente. De esta forma, se podrá extraer información más específica sobre aspectos concretos de la herramienta, como su facilidad de aprendizaje, consistencia o integración funcional.
+
+Las afirmaciones que componen el cuestionario son las siguientes:
 
 \begin{enumerate}
     \item Creo que me gustaría usar este sistema con frecuencia.
@@ -125,92 +153,99 @@ El SUS consta de diez preguntas en forma de afirmación. Los participantes deben
     \item Necesité aprender muchas cosas antes de poder usar este sistema.
 \end{enumerate}
 
-\subsubsection{Puesta en común}
-Tras la finalización del cuestionario SUS, se procederá a realizar una entrevista semiestructurada con los participantes. Esta dinámica de cierre tiene como objetivo recoger información cualitativa que complemente los datos obtenidos mediante la observación y el cuestionario. Se busca comprender en profundidad la experiencia de uso, las percepciones del usuario y detectar posibles áreas de mejora no contempladas anteriormente.\\
+Este cuestionario permitirá calcular una puntuación global de usabilidad, útil para comparar esta herramienta con otras o evaluar mejoras a lo largo del tiempo.
 
-La puesta en común se guiará por un conjunto de preguntas abiertas, que permitirán a los usuarios expresar con libertad sus impresiones y sugerencias. El investigador podrá adaptar o profundizar en algunas preguntas en función de las respuestas obtenidas, permitiendo así una conversación fluida y natural.\\
+\section{Resultados de las pruebas}
 
-A continuación, se muestran las preguntas principales que se utilizarán como guía:
+\subsection{Contexto de las sesiones}
+
+Las pruebas se llevaron a cabo en una única sesión de aproximadamente una hora de duración. Participaron siete voluntarios, todos ellos estudiantes del Máster en Diseño de Videojuegos o del Máster en Desarrollo de Videojuegos de la UCM, con conocimientos previos de diseño y, en algunos casos, de programación. Todas las evaluaciones se realizaron sobre la misma versión del proyecto; pese a que se utilizaron distintas versiones de Unity, no se detectaron problemas técnicos derivados de ello.
+
+\subsection{Datos cuantitativos}
+
+Para medir la usabilidad de la herramienta se empleó el cuestionario SUS (System Usability Scale) de Brooke (1996), que proporciona una puntuación de 0 a 100. La puntuación obtenida fue de \(\bar{X}=75{,}7\) (desviación estándar \(\sigma=16{,}1\)), lo que supera el umbral de 68 puntos considerado “por encima de la media” en la literatura de usabilidad. Aunque el tamaño de la muestra es limitado, este resultado indica una percepción global positiva de la herramienta.
+
+\subsection{Datos cualitativos}
+
+Mediante observación directa y entrevista semiestructurada se recogieron impresiones de los usuarios:
 
 \begin{itemize}
-\item ¿Hubo algo que os sorprendiera o no esperabais durante el uso de la herramienta?
-\item ¿Qué parte del proceso de creación de enemigos os pareció más interesante o satisfactoria?
-\item ¿En qué momentos sentisteis que no sabíais muy bien qué hacer o cómo proceder?
-\item ¿Cambiaríais algo de la forma en la que se explican los elementos como estados, transiciones o actuadores?
-\item ¿Creéis que la herramienta permite expresar bien ideas de diseño complejas?
-\item ¿Consideráis que podríais usar esta herramienta para un proyecto real o profesional? ¿Por qué?
-\item ¿Hay alguna funcionalidad que echasteis de menos mientras la usabais?
-\item ¿Os surgieron ideas o sugerencias que podrían mejorar la herramienta?
+  \item Dudas frecuentes sobre la existencia de tooltips (ningún participante los localizó espontáneamente).
+  \item Confusión entre el estado de la máquina de estados y el estado de animación.
+  \item Recomendaciones de gestionar las animaciones desde el Inspector en lugar de la pestaña \textit{Animator}.
+  \item Sugerencia de incluir vídeos tutoriales para ilustrar la configuración de comportamientos.
+  \item Valoración positiva de la gran variedad de comportamientos y de la modularidad del sistema.
+  \item Necesidad de un feedback visual más claro en casos como la aplicación de daño y herramientas de depuración extendidas.
 \end{itemize}
 
-\subsection{Resultados de las pruebas}
-Las pruebas se realizaron en una sesión en torno a la hora de duración. Todas las pruebas fueron realizadas sobre la misma versión del proyecto, sin embargo, no todas se realizaron con la misma versión de Unity. Esto último no supuso ningún impedimento para la realización de las pruebas. 
-En total esta prueba ha sido realizada por siete probadores que se han ofrecido voluntariamente a probar la herramienta. Para buscar a los probadores, hablamos con el tutor, que imparte clases en el Máster de diseño de videojuegos de la UCM y algunos de ellos se ofrecieron a ayudarnos. \\
+\section{Análisis de resultados}
 
-Todos los probadores tienen un perfil similar. Son estudiantes que ya parten con conocimientos sobre el mundo de los videojuegos. Tienen conocimientos sobre diseño y algunos de ellos también poseen conocimientos de programación. \\
+A continuación se analiza cómo estos datos responden a las preguntas de investigación formuladas en la Sección~\ref{sec:preguntas}, combinando los tres métodos empleados (cuestionario SUS, observación y entrevista).
 
-Se obtuvieron datos cuantitativos mediante el cuestionario SUS y observaciones cualitativas que permiten extraer conclusiones alineadas con los objetivos y preguntas de investigación propuestas. Aunque unos errores en la versión del proyecto imposibilitó la realización de un ejercicio de la prueba, las opiniones generales fueron positivas. La herramienta recibió una puntuación media de 75,7 en el cuestionario SUS, lo que indica una buena percepción de usabilidad. Aunque la desviación estándar de 16,1 sugiere cierta variabilidad entre usuarios. Las datos no pueden ser completamente significativos debido a la escasa cantidad de ellos, sin embargo, la herramienta tiene una buena previsión.\\
+\subsection{Claridad e intuición de la herramienta}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[height=5cm]{Imagenes/ResultadosSUS.png}
-	\caption{Resultados obtenidos en el cuestionario SUS}
-	\label{fig:Cuestionario SUS}
-\end{figure}
+\textbf{Objetivo:} Evaluar si la interfaz y los flujos de trabajo resultan naturales y sin ambigüedades.
 
-A continuación se responderán las preguntas que se formularon previamente en la Sección~\ref{sec:preguntas}.
-
-
-\subsubsection{Respuesta a la primera pregunta en la Sección~\ref{sec:intuitiva}}
-
-\begin{enumerate}
-    \item \textbf{¿El usuario entiende fácilmente cómo añadir funcionalidad al enemigo?} \\
-
-Los ítems 3 (\textit{Pensé que el sistema era fácil de usar}) y 7 (\textit{Imaginaría que la mayoría de la gente aprendería a usar este sistema muy rápidamente}) reflejan como en ambos casos, más del 85\% de los usuarios se ubicaron en los valores altos de la escala (4 o 5), lo que indica que la adición de funcionalidades fue percibida como accesible e intuitiva. 
-
-    \item \textbf{¿Las opciones de comportamiento ofrecidas son comprendidas en su totalidad?} \\
-
-El ítem 6 (\textit{Pensé que había demasiada inconsistencia en este sistema}) arrojó valores predominantemente bajos (71,4\,\% marcó 1), lo que sugiere que los actuadores y comportamientos ofrecidos son coherentes entre sí y comprensibles. En la observación encontramos que ninguno usó los Tooltips creados que podrían haber servido para mejorar la comprensión fueron leídos, hablando con ellos se concluye que no sabían  que existían. Una posible mejora sería mencionarlos en el manual, ya que modificarlos visualmente podría sobrecargar la herramienta.
-
-    \item \textbf{¿La interfaz comunica correctamente el propósito de cada estado y transición?} \\
-
-El ítem 5 (\textit{Encontré que las diversas funciones de este sistema estaban bien integradas}) fue valorado positivamente por el 85,9\,\% de los usuarios (respuestas 4 y 5), lo que indica que la interfaz fue eficaz comunicando la relación entre los elementos de diseño (estados, transiciones, actuadores).
-
-    \item \textbf{¿La documentación aclara y detalla la configuración de las funcionalidades?} \\
-
-Aunque el cuestionario SUS no aborda directamente la calidad de la documentación, las respuestas cualitativas recogidas en las entrevistas reflejaron una valoración favorable en cuanto a la claridad del manual proporcionado, sin embargo destacaron que era muy largo. 
-\end{enumerate}
-
-\subsubsection{Respuestas a la segunda pregunta en la Sección~\ref{sec:funcional}}
-
-\begin{enumerate}
-    \item \textbf{¿La herramienta agiliza y simplifica el proceso de diseño de enemigos?} \\
-
-Este aspecto se refleja indirectamente en los ítems 1 (\textit{Creo que me gustaría usar este sistema con frecuencia}) y 3 (\textit{Pensé que el sistema era fácil de usar}). La alta valoración obtenida (ambos con mayoría en los valores 4 y 5) respalda que los usuarios perciben la herramienta como útil y eficiente en su propósito de simplificar el diseño de enemigos.
-
-    \item \textbf{¿El comportamiento de los enemigos generados se corresponde con lo esperado en el videojuego?} \\
-
-En la observación realizada durante las pruebas encontramos que aunque si que hacían lo que los ejemplos del manual indicaban, les costaba comprenderlo. En la puesta en común se propuso la realización de videos donde se explicase de manera visual como se configuraba cada enemigo.
-
-    \item \textbf{¿La herramienta permite la adaptación y expansión sencilla de los enemigos?} \\
-
-El ítem 10 (\textit{Necesité aprender muchas cosas antes de poder usar este sistema}) proporciona una visión indirecta sobre la complejidad percibida. Aquí, la mayoría de usuarios marcó valores bajos (1 o 2), lo cual indica que la curva de aprendizaje no fue elevada y que la adaptación del sistema no requirió una sobrecarga cognitiva. Además, las entrevistas revelaron que los usuarios valoraron positivamente la modularidad de la herramienta.
-\end{enumerate}
-\subsubsection{Puesta en común}
-Tras la realización del cuestionario se procedió a hacer una puesta en común con los usuarios. De ellas podemos sacar en claro que :
 \begin{itemize}
-\item Les ha gustado que la herramienta tenga tantos tipos de comportamientos y la ven muy completa.
-\item No sabían de la existencia de Tooltips.
-\item Les parece extraño tener que usar la pestaña de Animator y recomiendan su gestión desde el inspector.
-\item Les gustaría tener video tutoriales donde se explique cada cosa de manera más visual.
-\item Creen que tanto pinchar y arrastrar puede liar cuando hay muchos movimientos, lo que indica que estaría bien cambiar la forma en la que se visualizan los elementos para verla más clara y no uno tras otro sin saber que elementos están conectados con cuales.
-\item Confusión general con estado de la Maquina de estados finita y estado de animación
-\item Uno menciona la necesidad de más elementos de debug de forma visual
-\item Necesario el feedback de daño en el jugador para verificar que los enemigos hacen daño
+  \item \emph{Cuestionario SUS:}  
+    \begin{itemize}
+      \item Los ítems 3 (\textit{Pensé que el sistema era fácil de usar}) y 7 (\textit{Imaginaría que la mayoría de la gente aprendería a usar este sistema muy rápidamente}) reflejan que más del 85\,\% de los usuarios seleccionaron valores altos (4 o 5), lo que indica una percepción general positiva respecto a la facilidad de uso y aprendizaje inicial.
+    \end{itemize}
+  
+  \item \emph{Observación:}  
+    \begin{itemize}
+      \item Se observaron tiempos adecuados de realización de las tareas, aunque algunos usuarios mostraron dudas concretas a la hora de añadir estados, transiciones o elementos como actuadores y emisores de daño.
+    \end{itemize}
+  
+  \item \emph{Entrevista:}  
+    \begin{itemize}
+      \item Ninguno de los participantes hizo uso de los tooltips integrados, lo cual se debió a que no sabían que existían. En las entrevistas manifestaron que no los habían detectado visualmente. Se concluye que una posible mejora sería mencionar explícitamente su uso en el manual, ya que modificar su diseño gráfico podría sobrecargar visualmente la herramienta.
+    \end{itemize}
 \end{itemize}
+\subsection{Funcionalidad y utilidad práctica}
+
+\textbf{Objetivo:} Verificar si la herramienta agiliza y simplifica el proceso de diseño de enemigos, y si el comportamiento de los enemigos generados se corresponde con lo esperado dentro del videojuego.
+
+\begin{itemize}
+  \item \emph{Cuestionario SUS:}
+    \begin{itemize}
+      \item Este aspecto se refleja indirectamente en los ítems 1 (\textit{Creo que me gustaría usar este sistema con frecuencia}) y 3 (\textit{Pensé que el sistema era fácil de usar}). En ambos casos, la mayoría de los usuarios seleccionaron valores de 4 o 5, lo que sugiere una buena percepción de utilidad y eficiencia de la herramienta a la hora de diseñar enemigos.
+    \end{itemize}
+  
+  \item \emph{Observación:}
+    \begin{itemize}
+      \item Durante las pruebas, se comprobó que los enemigos configurados se comportaban correctamente según los ejemplos incluidos en el manual. Sin embargo, algunos usuarios mostraron dificultades para comprender completamente el funcionamiento subyacente, lo que ralentizó ligeramente la ejecución de ciertas tareas.
+    \end{itemize}
+  
+  \item \emph{Entrevista:}
+    \begin{itemize}
+      \item Los participantes sugirieron la incorporación de vídeos explicativos como complemento al manual actual. Consideraron que una guía visual podría facilitar el entendimiento del proceso de configuración y ayudar a relacionar mejor la lógica de edición con el comportamiento final observado en la escena.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Adaptación y extensibilidad}
+
+\textbf{Objetivo:} Determinar si es sencillo modificar o ampliar los comportamientos de los enemigos sin causar confusión.
+
+\begin{itemize}
+  \item \emph{Cuestionario SUS:}
+    \begin{itemize}
+      \item Ítem 10 (“Necesité aprender muchas cosas antes de usarlo”) registró principalmente valores bajos (1–2), indicando curva de aprendizaje baja.
+    \end{itemize}
+  \item \emph{Observación:}
+    \begin{itemize}
+      \item Los usuarios probaron con éxito variaciones de parámetros sin guía externa.
+    \end{itemize}
+  \item \emph{Entrevista:}
+    \begin{itemize}
+      \item La modularidad recibió elogios, aunque se planteó mejorar la visualización de las conexiones entre estados y actuadores.
+    \end{itemize}
+\end{itemize}
+
+En conjunto, el análisis muestra que la herramienta cumple su propósito de ofrecer una interfaz accesible y eficiente, si bien puede beneficiarse de mejoras en la visibilidad de ayudas contextuales (tooltips, tutoriales) y en la representación visual de las relaciones internas para reducir la curva de aprendizaje en configuraciones más complejas.
 \subsection{Conclusión general}
 
-La evaluación preliminar de la herramienta, realizada con un grupo limitado de solo siete participantes, sugiere que la usabilidad es generalmente aceptable en su versión actual. Se perciben fortalezas en la claridad de la interfaz, la integración de funcionalidades y una baja percepción de complejidad. Sin embargo, es importante señalar que la muestra reducida de usuarios impide que estos datos sean estadísticamente significativos o generalizables.\\
+La evaluación preliminar de la herramienta sugiere que la usabilidad es generalmente aceptable en su versión actual. Se perciben fortalezas en la claridad de la interfaz, la integración de funcionalidades y una baja percepción de complejidad. Sin embargo, es importante señalar que la muestra reducida de usuarios impide que estos datos sean estadísticamente significativos o generalizables.\\
 
 Las observaciones y respuestas cualitativas de este pequeño grupo indican posibles áreas de mejora en la herramienta. A pesar de estas sugerencias, parece cumplir los objetivos definidos a un nivel básico para los usuarios que la han probado.
 

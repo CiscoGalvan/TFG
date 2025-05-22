@@ -1,22 +1,79 @@
-\chapter{Conclusiones y Trabajo Futuro}
-\label{cap:conclusiones}
+\chapter{Conclusiones}
 
-Esta herramienta ha sido enfocada en todo momento al diseño de enemigos en 2D.  La propuesta surge como respuesta a la necesidad de dotar a diseñadores de una solución práctica y accesible que les permita configurar comportamientos complejos sin requerir conocimientos avanzados en programación.\\
-A través de una arquitectura basada en máquinas de estado finitas, y complementada con un conjunto de sensores, actuadores y emisores, se ha logrado una solución flexible, accesible y con capacidad de escalabilidad.\\
-Durante el desarrollo, se han cubierto aspectos esenciales como el movimiento, el control de daño, la generación de entidades, el tratamiento de colisiones y la vinculación con animaciones. Además, se ha incluido un manual orientado a usuarios no técnicos, lo que refuerza el propósito de accesibilidad de la herramienta.
+A lo largo de este Trabajo de Fin de Grado se ha afrontado el reto de dotar a diseñadores de videojuegos 2D de una herramienta completa y fácil de usar para la configuración de enemigos, eliminando la necesidad de escribir código. Partiendo de un estudio exhaustivo del estado del arte —que incluyó soluciones basadas en máquinas de estados finitas, sistemas de scripting visual como PlayMaker y Blueprints, y entornos visuales de nodos— se identificaron las buenas prácticas de accesibilidad y modularidad que servirían de base al framework.
 
+\section{Síntesis de resultados}
 
-\section{Trabajo Futuro}
-
-De cara a futuras iteraciones, se han identificado distintas áreas de expansión que permitirán dar a la herramienta más funcionlidades y por tanto versatilidad:\\
+\subsection{Diseño arquitectónico}
+Se definieron cinco módulos principales:  
 \begin{itemize}
-  \item \textbf{Mantenimiento continuo:}  Será necesario realizar revisiones periódicas que aseguren la compatibilidad con futuras versiones del motor Unity, en especial ante posibles modificaciones en su API base.
-  \item \textbf{Implementación de sensores de sonido:}  Se planteó incorporar un sensor de sonido capaz de detectar estímulos auditivos, lo que ampliaría las posibilidades de interacción de los enemigos dentro del juego.
-  \item \textbf{Emisores de sonido:}  Complementarios a los sensores acústicos, estos componentes permitirían emitir señales auditivas que activen comportamientos en otras entidades cercanas, posibilitando nuevas dinámicas de juego.
-  \item \textbf{Comportamientos de Steering y Avoidance: }  Se propone integrar técnicas de evasión y navegación consciente del entorno, que otorguen a los enemigos capacidad para evitar obstáculos y desplazarse de manera más realista.
-  \item \textbf{Memoria de interacciones previas: }Una funcionalidad avanzada consistiría en permitir a los enemigos almacenar información sobre acciones pasadas del jugador, adaptando sus respuestas en función de patrones reconocidos.
-\item \textbf{Coordinación entre enemigos:}   Otra línea de mejora es permitir la comunicación y cooperación entre múltiples enemigos, generando patrones de comportamiento colectivo, tales como persecuciones en grupo o ataques sincronizados.
- \item \textbf{Desarrollo de una interfaz gráfica externa: }  A largo plazo, se sugiere diseñar una interfaz visual independiente que facilite la selección y configuración de componentes mediante una ventana específica, optimizando así la experiencia del usuario.
+  \item \textbf{Sensor:} Con subtipos para detección de área, colisiones, distancia y tiempo. Este módulo adopta el patrón \textit{observer} para notificar eventos de forma desacoplada, facilitando la creación de transiciones dinámicas sin acoplar lógica de alto nivel.  
+  \item \textbf{Actuator:} Clases abstractas que representan acciones (movimiento y generación de entidades). Gracias a la herencia y a parámetros configurables, cada actuador implementa su propia lógica de inicialización, actualización y destrucción.  
+  \item \textbf{Máquina de Estados Finita (FSM):} El módulo orquesta transiciones seguras entre estados, evitando inconsistencias y permitiendo definir comportamientos complejos mediante la combinación de sensores y actuadores.  
+  \item \textbf{Animación:} A través de la clase \texttt{AnimatorManager} y un \texttt{Animator Controller} personalizado, se sincronizan parámetros de velocidad, dirección y eventos (spawning, daño, muerte) con animaciones, integrando la lógica de IA con la representación visual.  
+  \item \textbf{Daño:} Separación clara entre \texttt{DamageEmitter} y \texttt{DamageSensor}, lo que permite aplicar y recibir daño de forma modular y disparar efectos secundarios (animaciones, eventos de UI) sin dependencias circulares.  
+\end{itemize}
+Esta arquitectura por componentes garantiza extensibilidad, alta cohesión y bajo acoplamiento, habilitando nuevos módulos o variantes sin alterar el núcleo del framework.
+
+\subsection{Implementación y entorno}
+La puesta en práctica se realizó como un paquete de Unity 2022.3.18f1 LTS, que incluye:
+\begin{itemize}
+  \item \emph{Depuración:} Gizmos en escena, tooltips contextuales y opciones de modo debugging que facilitan la comprensión del flujo de datos.
+  \item \emph{Ejemplos de uso:} Escenas demostrativas que combinan distintos sensores y actuadores, validando la integridad de los estados y las animaciones.
+  \item \emph{Componentes para jugador:} Clases de movimiento avanzado, detección de colisiones, saltos mejorados, gestión de vida y ataque a distancia, para verificar la aplicabilidad del framework en un caso de uso real.
 \end{itemize}
 
-Estas líneas de trabajo reflejan el potencial del sistema como herramienta activa dentro del flujo de desarrollo de videojuegos 2D. La estructura modular y la orientación hacia la escalabilidad permitirán incorporar estas mejoras de forma progresiva, garantizando su utilidad en proyectos reales de diseño de enemigos complejos.
+\subsection{Validación con usuarios}
+La evaluación con siete participantes (estudiantes de los Másteres en Diseño y en Desarrollo de Videojuegos de la UCM) incluyó:
+\begin{itemize}
+  \item \textbf{Método cuantitativo:} Cuestionario SUS con puntuación media de 75,7 (\(\sigma=16,1\)), por encima del estándar de 68, indicando buena usabilidad.  
+  \item \textbf{Observación:} Identificación de cuellos de botella al añadir nuevos estados y poca visibilidad de tooltips.  
+  \item \textbf{Entrevistas semiestructuradas:} Feedback sobre la necesidad de tutoriales en vídeo, aclaración de documentación y sugerencias para mejorar la visualización de conexiones entre nodos.  
+\end{itemize}
+Aunque la muestra fue limitada a una única sesión, los datos cualitativos y cuantitativos coinciden en destacar la claridad de los flujos de trabajo y la potencia de la modularidad, al tiempo que señalan áreas de mejora en la ayuda contextual.
+
+\section{Aportaciones y lecciones aprendidas}
+
+\begin{itemize}
+  \item \textbf{Accesibilidad para no programadores:} Se demuestra que un sistema de configuración visual, bien estructurado, puede rivalizar en potencia con soluciones basadas en código, permitiendo a diseñadores centrarse en la jugabilidad.  
+  \item \textbf{Importancia de la documentación interactiva:} La evaluación reveló que la documentación extensa no sustituye a guías prácticas (vídeos, tutoriales in-editor) para acelerar la curva de aprendizaje.  
+  \item \textbf{Modularidad como clave de mantenimiento:} Diseñar por módulos claros facilita la evolución del framework y la integración de nuevas funcionalidades sin provocar regresiones.  
+  \item \textbf{Sincronización lógica–visual:} Integrar FSM, sensores, actuadores y animaciones bajo un mismo pipeline asegura coherencia entre la lógica de IA y la experiencia perceptual del jugador.
+\end{itemize}
+
+\section{Trabajo futuro}
+Para consolidar y ampliar lo desarrollado, se proponen las siguientes líneas de acción:
+
+\begin{enumerate}
+  \item \textbf{Mejora de la ayuda contextual y UX:}  
+    \begin{itemize}
+      \item Rediseñar e insertar tooltips más visibles y parametrizables.  
+      \item Crear tutoriales interactivos en el propio editor de Unity.  
+    \end{itemize}
+
+  \item \textbf{Ampliación de sensores y emisores:}  
+    \begin{itemize}
+      \item Añadir un sensor de sonido y emisores acústicos para comportamientos basados en estímulos sonoros.  
+      \item Incorporar sensores basados en proximidad temporal o condiciones múltiples (combinación de distancia y colisión).  
+    \end{itemize}
+
+  \item \textbf{Navegación y AI avanzada:}  
+    \begin{itemize}
+      \item Integrar algoritmos de \textit{steering} para mayor complejidad en los movimientos.
+      \item Desarrollar un sistema de memoria de interacciones y comunicación entre agentes para comportamientos cooperativos.  
+    \end{itemize}
+
+  \item \textbf{Interfaz gráfica de edición:}  
+    \begin{itemize}
+      \item Crear una ventana de editor con drag-and-drop de nodos (estados, transiciones) y paneles de propiedades.  
+      \item Implementar vistas filtrables y agrupaciones lógicas para gestionar proyectos con multitud de estados.  
+    \end{itemize}
+
+  \item \textbf{Mantenimiento y escalabilidad:}  
+    \begin{itemize}
+      \item Establecer un plan de actualizaciones periódicas frente a nuevas versiones de Unity y cambios en la API.  
+      \item Publicar el framework como paquete oficial de Unity para facilitar su adopción y contribución comunitaria.  
+    \end{itemize}
+\end{enumerate}
+
+En conjunto, este TFG ha sentado las bases para un entorno de desarrollo de IA y comportamientos de enemigos 2D accesible, potente y escalable, ofreciendo tanto a diseñadores como programadores una herramienta que mejora la eficiencia creativa y la coherencia técnica de sus proyectos.  

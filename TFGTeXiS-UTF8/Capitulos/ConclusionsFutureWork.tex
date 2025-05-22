@@ -1,23 +1,76 @@
-\chapter*{Conclusions and Future Work}
-\label{cap:conclusions}
-\addcontentsline{toc}{chapter}{Conclusions and Future Work}
-\section*{Final Conclusions}
-This tool has been consistently focused on the design of 2D enemies. The proposal arises as a response to the need to provide designers with a practical and accessible solution that allows them to configure complex behaviors without requiring advanced programming knowledge.\\
-Through an architecture based on finite state machines, and complemented by a set of sensors, actuators, and emitters, a flexible, accessible, and scalable solution has been achieved.\\
-During development, essential aspects such as movement, damage control, entity generation, collision handling, and animation linking have been covered. In addition, a manual aimed at non-technical users has been included, which reinforces the accessibility purpose of the tool.
+\chapter{Conclusions}
 
+Throughout this Final Degree Project, we have tackled the challenge of providing 2D game designers with a comprehensive and user-friendly tool for configuring enemy behaviors, eliminating the need to write code. Starting from an exhaustive review of the state of the art—including solutions based on finite state machines, visual scripting systems such as PlayMaker and Unreal’s Blueprints, and node-based visual editors—we identified the best practices in accessibility and modularity that would underpin our framework.
 
-\section*{Future Work}
+\section{Summary of Results}
 
-Looking towards future iterations, several areas of expansion have been identified that will allow the tool to have more functionalities and therefore versatility:\\
+\subsection{Architectural Design}
+Five main modules were defined:
 \begin{itemize}
-  \item \textbf{Evolutionary Maintenance:} Periodic reviews will be necessary to ensure compatibility with future versions of the Unity engine, especially in the face of possible modifications to its base API.
-  \item \textbf{Implementation of Sound Sensors:} Incorporating a sound sensor capable of detecting auditory stimuli was proposed, which would expand the interaction possibilities of enemies within the game.
-  \item \textbf{Sound Emitters:} Complementary to acoustic sensors, these components would allow the emission of auditory signals that trigger behaviors in other nearby entities, enabling new game dynamics.
-  \item \textbf{Steering and Avoidance Behaviors:} Integrating evasion techniques and conscious environment navigation is proposed, which would give enemies the ability to avoid obstacles and move more realistically.
-  \item \textbf{Memory of Previous Interactions:} An advanced functionality would consist of allowing enemies to store information about past player actions, adapting their responses based on recognized patterns.
-\item \textbf{Coordination Between Enemies:} Another line of improvement is to allow communication and cooperation between multiple enemies, generating collective behavior patterns, such as group chases or synchronized attacks.
- \item \textbf{Development of an External Graphical Interface:} In the long term, it is suggested to design an independent visual interface that facilitates the selection and configuration of components through a specific window, thus optimizing the user experience.
+  \item \textbf{Sensor:} Subtypes for area detection, collisions, distance and time. This module adopts the \emph{observer} pattern to broadcast events in a decoupled manner, simplifying the creation of dynamic transitions without embedding high-level logic.
+  \item \textbf{Actuator:} Abstract classes representing actions (movement and entity spawning). Thanks to inheritance and configurable parameters, each actuator implements its own initialization, update, and destruction logic.
+  \item \textbf{Finite State Machine (FSM):} Orchestrates safe transitions between states, preventing inconsistencies and enabling complex behaviors through the combination of sensors and actuators.
+  \item \textbf{Animation:} Via the \texttt{AnimatorManager} class and a custom \texttt{Animator Controller}, parameters for speed, direction, and events (spawn, damage, death) are synchronized with animations, seamlessly linking AI logic to visual representation.
+  \item \textbf{Damage:} Clear separation between \texttt{DamageEmitter} and \texttt{DamageSensor}, allowing damage application and reception in a modular fashion and triggering side-effects (animations, UI events) without circular dependencies.
+\end{itemize}
+This component-based architecture ensures extensibility, high cohesion, and low coupling, enabling new modules or variants to be introduced without altering the framework’s core.
+
+\subsection{Implementation and Environment}
+The framework was implemented as a Unity 2022.3.18f1 LTS package, which includes:
+\begin{itemize}
+  \item \emph{Debugging tools:} Scene gizmos, contextual tooltips, and debug modes that help visualize data flow.
+  \item \emph{Usage examples:} Demonstration scenes combining various sensors and actuators to validate state integrity and animation correctness.
+  \item \emph{Player components:} Advanced movement, collision detection, enhanced jumping, health management, and ranged attack scripts to verify the framework’s applicability in a complete scenario.
 \end{itemize}
 
-These lines of work reflect the potential of the system as an active tool within the 2D video game development workflow. The modular structure and the orientation towards scalability will allow these improvements to be incorporated progressively, guaranteeing its usefulness in real projects for the design of complex enemies.
+\subsection{User Validation}
+Seven participants (students from the UCM’s Game Design and Game Development master’s programs) evaluated the tool via:
+\begin{itemize}
+  \item \textbf{Quantitative method:} SUS questionnaire yielding an average score of 75.7 (\(\sigma=16.1\)), above the usability benchmark of 68.
+  \item \textbf{Observation:} Identification of bottlenecks when adding new states and low tooltip visibility.
+  \item \textbf{Semi-structured interviews:} Feedback on the need for in-editor video tutorials, improved documentation clarity, and better visualization of node connections.
+\end{itemize}
+Despite the limited sample and single session, qualitative and quantitative data consistently highlight clear workflows and strong modularity, while pointing out areas for improving contextual help.
+
+\section{Contributions and Lessons Learned}
+
+\begin{itemize}
+  \item \textbf{Accessibility for non-programmers:} A well-structured visual configuration system can match the power of code-based solutions, allowing designers to focus on gameplay rather than syntax.
+  \item \textbf{Importance of interactive documentation:} Extensive written manuals are no substitute for practical guides (videos, in-editor tutorials) in speeding up the learning curve.
+  \item \textbf{Modularity as a maintenance cornerstone:} Designing clear, self-contained modules enables the framework to evolve and integrate new features without regressions.
+  \item \textbf{Logic–visual synchronization:} Integrating FSM, sensors, actuators, and animations in a unified pipeline ensures coherence between AI logic and the user’s visual experience.
+\end{itemize}
+
+\section{Future Work}
+
+To consolidate and extend this development, the following action lines are proposed:
+
+\begin{enumerate}
+  \item \textbf{Enhanced contextual help and UX:}
+    \begin{itemize}
+      \item Redesign and surface more prominent, configurable tooltips.
+      \item Create interactive tutorials embedded within the Unity editor.
+    \end{itemize}
+  \item \textbf{Expanded sensors and emitters:}
+    \begin{itemize}
+      \item Add a sound sensor and acoustic emitters for behavior based on auditory stimuli.
+      \item Incorporate multi-condition sensors (e.g., combining distance and collision triggers).
+    \end{itemize}
+  \item \textbf{Advanced navigation and AI:}
+    \begin{itemize}
+      \item Integrate \emph{steering} algorithms and obstacle avoidance.
+      \item Develop a memory system for past interactions and inter-agent communication for cooperative behaviors.
+    \end{itemize}
+  \item \textbf{Graphical editing interface:}
+    \begin{itemize}
+      \item Implement a drag-and-drop node editor (states, transitions) with property panels.
+      \item Provide filterable views and logical groupings to manage large state graphs.
+    \end{itemize}
+  \item \textbf{Maintenance and scalability:}
+    \begin{itemize}
+      \item Establish a periodic update plan to maintain compatibility with new Unity versions and API changes.
+      \item Publish the framework as an official Unity package to encourage community adoption and contributions.
+    \end{itemize}
+\end{enumerate}
+
+Overall, this project lays a solid foundation for an accessible, powerful, and scalable 2D enemy behavior framework, equipping both designers and programmers with tools that enhance creative efficiency and technical coherence in game development.
