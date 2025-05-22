@@ -37,22 +37,27 @@
 %
 %---------------------------------------------------------------------
 
-
 % Ponemos el marcador en el PDF
 \ifpdf
    \pdfbookmark{Fin}{fin}
 \fi
 
-
+\thispagestyle{empty}
 \small
 
-\hfill \emph{Qué suerte tengo de tener algo que hace que decir adiós sea tan difícil.}
+% Centrar vertical y horizontalmente solo la frase
+\vfill
+\begin{center}
+    \emph{Qué suerte tengo de tener algo que hace que decir adiós sea tan difícil.} \\
+    \emph{Alan Alexander Milne}
+\end{center}
+\vfill
 
-\hfill \emph{Alan Alexander Milne} 
-
-\thispagestyle{empty}\mbox{}
-Este trabajo fin de grado no es solo un proyecto, es el reflejo de años de esfuerzo, ilusión y crecimiento.
-
+% Dedicatoria al final
+\vspace*{\fill}
+\begin{center}
+    Este trabajo fin de grado no es solo un proyecto, es el reflejo de años de esfuerzo, ilusión y crecimiento.
+\end{center}
 
 \newpage
 \thispagestyle{empty}\mbox{}

@@ -5,43 +5,57 @@ En el Capítulo 3 se abordó la descripción de la herramienta sin entrar en det
 
 La implementación de la herramienta puede encontrarse en el siguiente enlace: \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D.git}{https://github.com/CristinaMora/EnemyBehaviourFramework-2D.git}.
 
-
-
 \section{Tecnología utilizada}
-Este proyecto ha sido desarrollado íntegramente en Unity, mencionado en el Capítulo 2 de este trabajo, concretamente la versión 2022.3.18f1(LTS) del motor. Por consiguiente, no podemos garantizar su correcto funcionamiento en versiones previas. No obstante, la previsión de la herramienta es ofrecer el correcto funcionamiento en versiones posteriores, salvo modificaciones significativas en la API fundamental de Unity.\\
+En este capítulo se describe el desarrollo de una herramienta diseñada para facilitar la creación y configuración de enemigos en un entorno 2D dentro del motor Unity. El objetivo principal es que pueda ser utilizada por diseñadores sin necesidad de escribir ni una sola línea de código, haciendo uso exclusivamente del editor y de una interfaz visual basada en prefabs y componentes reutilizables. La herramienta se presenta como un plugin modular, intuitivo y fácilmente integrable en distintos proyectos.\\
 
-El motivo por el que se escoge Unity sobre los demás motores de videojuegos es esa accesibilidad que ha sido mencionada anteriormente que hace que resulte sencillo de utilizar por cualquier persona. \\
+Para su desarrollo se ha utilizado el motor Unity, introducido en el Capítulo \ref{cap:estadoDeLaCuestion}, concretamente en su versión 2022.3.18f1 (LTS). No se garantiza compatibilidad con versiones anteriores, aunque se espera que funcione correctamente en versiones posteriores, salvo cambios relevantes en la API del motor.\\
 
-Se hará uso de otros elementos de Unity para llevar a cabo esta herramienta como el motor de físicas 2D o las herramientas que tiene el motor para ayudar al usuario a debuggear como puede ser Gizmos.
-Unity funciona mediante una arquitectura por componentes, lo que es muy útil para que el programa sea modular, que pueda ser dividido en piezas más pequeñas y que estas piezas sean independientes.\\
+Unity ha sido elegido frente a otros motores de videojuegos por su accesibilidad, su curva de aprendizaje relativamente baja y su amplia comunidad. Estas características lo convierten en una opción ideal para que cualquier usuario, sin profundos conocimientos técnicos, pueda sacar provecho de sus funcionalidades.\\
 
-La herramienta desarrollada en este proyecto tiene como objetivo facilitar la creación y configuración de enemigos en un entorno 2D dentro de Unity. Está diseñada como un plugin modular que permite a diseñadores y desarrolladores configurar enemigos sin necesidad de escribir código, mediante un sistema visual e intuitivo basado en prefabs y componentes reutilizables.\\
+A lo largo del desarrollo se emplean diversos recursos del propio motor, como el sistema de físicas 2D o herramientas de depuración como Gizmos. Además, la arquitectura basada en componentes de Unity favorece la modularidad del sistema, permitiendo dividir el comportamiento de los enemigos en partes independientes y reutilizables.\\
 
-En el núcleo de esta arquitectura se encuentra un sistema basado en una Máquina de Estados Finita (FSM). Cada enemigo definirá su comportamiento con una FSM que gestiona su comportamiento, transiciones entre estados y reacciones ante el entorno. Los estados están compuestos por actuadores (actuators), que ejecutan acciones (como movimiento, ataque o generación de enemigos), y sensores, que detectan condiciones o eventos del entorno y disparan transiciones entre estados.\\
+A continuación se presentará la arquitectura escogida y los principales módulos de implementación.
 
-Los elementos que conforman esta arquitectura se organizan en varios niveles:
+\section{Arquitectura del sistema}
+La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
+
+Los principales módulos de implementación incluidos en esta arquitectura son:
 \begin{itemize}
-	\item Estados: Definen el comportamiento que el enemigo adopta en un momento determinado.
-	\item Sensores: Detectan eventos del entorno, como la presencia del jugador o colisiones.
-	\item Actuadores: Ejecutan acciones concretas, como moverse, disparar o generar nuevos enemigos.
-	\item Emisores de daño: Permiten que los enemigos inflijan daño a otras entidades.
+\item \textbf{Módulo de actuadores:} Ejecutan acciones concretas, como moverse, disparar o generar nuevos enemigos. 
+\item \textbf{Módulo de sensores:} Detectan eventos, como la presencia del jugador o colisiones.
+\item \textbf{Módulo de daño:} Permite que los enemigos reciban y hagan daño.
+\item \textbf{Módulo de Máquina de Estados:} Define el comportamiento que un enemigo adopta en un momento determinado.
+\item \textbf{Módulo de animaciones:} Coordina las animaciones asociadas a el estado actual del enemigo.
+\item \textbf{Módulo del jugador:} Módulo que sirve para contextualizar y ver las respuesta de los enemigos a las acciones del jugador.
 \end{itemize}
 
-La herramienta incluye también una serie de prefabs preconfigurados que facilitan el uso del sistema y permiten una rápida iteración por parte del diseñador. Estos prefabs agrupan configuraciones comunes de enemigos con distintos comportamientos, reduciendo el tiempo de prototipado y aumentando la reutilización del código.\\
+Además, se incluyen una serie de \textit{prefabs} preconfigurados, diseñados para acelerar la creación de enemigos con comportamientos comunes. En Unity, un \textit{prefab} es una plantilla reutilizable que agrupa un conjunto de componentes, configuraciones y objetos en una única entidad. Esto permite instanciar múltiples copias consistentes de un mismo objeto manteniendo su configuración original. Gracias a esta funcionalidad, los \textit{prefabs} permiten a los diseñadores iterar rápidamente sin necesidad de modificar el código, fomentando así la reutilización y facilitando el prototipado.\\
 
-En resumen, lo que se ha creado es una herramienta extensible compuesta por componentes modulares, basada en la arquitectura de componentes de Unity, que permite crear comportamientos complejos mediante una configuración visual, facilitando así su adopción por parte de usuarios con conocimientos limitados de programación.\\
+En resumen, se ha creado una herramienta extensible, basada en módulos bien definidos y en la arquitectura por componentes de Unity. Permite crear comportamientos complejos de forma visual, lo que facilita su uso por diseñadores sin conocimientos técnicos avanzados.\\
 
-A continuación se va a hacer una descripción específica de cada uno de los apartados implementados.
+En las siguientes secciones se describirá en detalle cada uno de los módulos que componen esta arquitectura.
 
+\section{Módulo de actuadores}
 
-\section{Actuator}
+El módulo de actuadores es el encargado de englobar todo el comportamiento de los actuadores en la herramienta. Para una explicación detallada del diseño de este módulo, puede consultarse la Sección~\ref{subsec:acciones}, donde se aborda el sistema de actuadores en su conjunto.
 
-Un actuator es el componente encargado de ejecutar una acción, por lo que para cada tipo de acción existirá un actuator que la represente.
-La clase \texttt{Actuator} representa la clase base de la que heredarán todos los tipos de actuadores.
-Esta clase abstracta contiene métodos para crear, destruir y actualizar cada actuador, así como un booleano que indica si el Actuador tiene la depuración activa o no.\\
+\subsection{Actuator}
+
+La clase abstracta \texttt{Actuator} define la interfaz común para todos los actuadores del módulo. Hereda de \texttt{MonoBehaviour}, permitiendo así su uso como componente en objetos de Unity. Su principal propósito es establecer una estructura homogénea que garantice que todos los actuadores puedan ser gestionados, activados, actualizados y destruidos de forma coherente y centralizada.\\
+
+\texttt{Actuator} declara tres métodos abstractos que deben ser implementados por todas las clases derivadas:
+
+\begin{itemize}
+\item \textbf{StartActuator()}: Método encargado de inicializar el actuador. Se invoca al comienzo de su ciclo de vida.
+\item \textbf{UpdateActuator()}: Llamado una vez por frame, permite actualizar el comportamiento del actuador mientras esté activo.
+\item \textbf{DestroyActuator()}: Método encargado de finalizar y limpiar los recursos asociados al actuador cuando ya no es necesario.
+\end{itemize}
+
+Además, la clase contiene una variable protegida que se puede activar o desactivar mediante el método público \textbf{SetDebug(bool debug)}.
+Gracias a este diseño, se consigue una arquitectura flexible, extensible y desacoplada que facilita la incorporación de nuevos actuadores en el sistema con un esfuerzo mínimo, manteniendo siempre una interfaz común y predecible.
 
 \subsection{MovementActuator}
-La clase \texttt{Movement Actuator} que hereda de \texttt{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento. \\
+La clase \texttt{Movement Actuator} que hereda de \texttt{Actuator} se usa para todos aquellos actuadores que realizan una acción de movimiento.
 
 \textbf{Parámetros de configuración}
 \begin{itemize}
@@ -117,7 +131,7 @@ La clase \texttt{SplineFollowerActuator} se usa para describir un movimiento med
 	\item (float) \textbf{Speed}: Velocidad del movimiento.
 	\item (float) \textbf{Goal Speed}: Velocidad final del movimiento si este es acelerado.
 	\item (float) \textbf{Interpolation Time}: Duración en segundos que va desde la velocidad inicial a \textit{Goal Speed}.
-	\item (\texttt{SplineContainer}) \textbf{Spline Container}: Objeto que define una trayectoria basada en una spline, como la descrita en la \autoref{act:splinefollower} y representada en la \autoref{fig:SplineFollowerActuator_Image}. Este componente permite establecer una serie de puntos de control conectados por curvas suaves, editables directamente en el editor de Unity. Además, el \texttt{SplineContainer} ofrece funciones para acceder a la curva en tiempo real, interpolar posiciones a lo largo del recorrido y orientar el objeto dinámicamente durante su desplazamiento.
+	\item (\texttt{SplineContainer}) \textbf{Spline Container}: Objeto que define una trayectoria basada en una spline, como la descrita en la \autoref{act:splinefollower}. Este componente permite establecer una serie de puntos de control conectados por curvas suaves, editables directamente en el editor de Unity. Además, el \texttt{SplineContainer} ofrece funciones para acceder a la curva en tiempo real, interpolar posiciones a lo largo del recorrido y orientar el objeto dinámicamente durante su desplazamiento.
 	\item (enum) \textbf{Teleport To Closest Point}: Define cómo se ajusta el objeto a la spline al iniciarse el movimiento. Puede tener dos valores:
 	\begin{itemize}
 		\item \textbf{Move Enemy To Spline}: El enemigo se teletransporta a la spline.
@@ -125,27 +139,15 @@ La clase \texttt{SplineFollowerActuator} se usa para describir un movimiento med
 	\end{itemize}
 \end{itemize}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width = 0.7\textwidth]{Imagenes/SplineFollowerActuator.png}
-	\caption{Uso de Spline para definir el camino de un enemigo.}
-	\label{fig:SplineFollowerActuator_Image}
-\end{figure}
-
 \subsubsection{MoveToAPointActuator}
-La clase \texttt{Move To A Point Actuator} se usa para mover el objeto en dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios dentro de un área (descripción completa en {\ref{sec:MoveToAPoint}}).\\
+La clase \texttt{Move To A Point Actuator} se usa para mover el objeto en dirección a un punto no actualizable. Puede ser a un punto concreto y seguir una lista de ellos o a puntos aleatorios dentro de un área (descripción completa en Sección~\ref{sec:MoveToAPoint}.\\
 Dado que la clase tiene dos maneras de funcionar y dos configuraciones distintas, primero se abordarán los parámetros de configuración comunes entre ambas y luego los parámetros específicos de cada configuración.\\
 
 \textbf{Parámetros de configuración comunes}
 \begin{itemize} 
 	\item (enum) \textbf{Mode}: Define si se va a seguir una ruta por puntos (\textit{Waypoint}) o si se escogen puntos aleatoriamente dentro de una zona (\textit{RandomArea}).
 \end{itemize}	
-\begin{figure}[t]
-		\centering
-		\includegraphics[width = 0.7\textwidth]{Imagenes/MoveToAPointRandomArea.png}
-		\caption{Modo Random Area, se aprecia una zona azul (DistanceSensor), un rectángulo gris (zona donde aparecen nuevos puntos) y por último un punto amarillo (waypoint actual).}
-		\label{fig:MoveToAPointRandomArea_Image}
-\end{figure}
+
 \textbf{Parámetros de configuración para Waypoint}
 \begin{itemize} 	
 	\item (bool) \textbf{Loop}: Determina si al finalizar los puntos volverá al primero y el movimiento se repetirá.
@@ -194,17 +196,32 @@ La clase \texttt{SpawnerActuator} se usa para poder generar nuevos enemigos, pud
 \end{itemize}
 
 
-\section{Sensor}
+\section{Módulo de sensores}
+El sistema de sensores constituye un módulo independiente encargado de detectar condiciones específicas del entorno durante la ejecución del juego. Este módulo proporciona una interfaz común para diferentes tipos de sensores, permitiendo su integración flexible en otros componentes de la herramienta, como las transiciones de estado o los comportamientos de los enemigos.\\
 
-La clase \texttt{Sensor} actúa como clase base para todos los sensores de la herramienta. Implementa una arquitectura basada en el patrón observador (observer), en la que cualquier componente interesado puede registrarse para ser notificado cuando el sensor se active.
+Desde el punto de vista estructural, el módulo está diseñado siguiendo una arquitectura basada en el patrón observador (observer), lo que permite a otros componentes suscribirse a los eventos generados por los sensores sin necesidad de establecer dependencias directas.\\
 
-Cada sensor contiene una variable de tipo \texttt{Action<Sensor>} que alberga una lista de funciones (callbacks) a ejecutar cuando se detecta una condición específica. Estas funciones pueden ser proporcionadas por otros componentes, como por ejemplo una transición que deba activarse tras la detección.
 
-Para garantizar una interfaz unificada, las funciones que se registren como oyentes deben aceptar un único parámetro de tipo \texttt{Sensor}. Esto permite que, al activar el sensor, se le pueda pasar una referencia a sí mismo, facilitando que el componente suscrito acceda a su información contextual si lo necesita.
+Para más detalles del diseño del módulo visitar la Sección~\ref{subsec:sensores}.
+%La Figura~\ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. Para un análisis más detallado del diseño de este módulo, véase la Sección~\ref{subsec:sensores}.
 
-Este enfoque permite una arquitectura desacoplada y extensible, donde los sensores no necesitan conocer directamente qué componentes responderán a su activación, simplemente notifican a todos los suscriptores registrados.
+%\begin{figure}[t]
+%	\centering
+%	\includegraphics[width=0.75\textwidth]{Imagenes/UML_SensorModule.png}
+%	\caption{Diagrama UML del módulo de sensores.}
+%	\label{fig:UML_SensorModule}
+%\end{figure}
 
-Además, la implementación del sistema de eventos incluye un contador de suscriptores, que permite llevar un control sobre cuántos componentes están actualmente registrados. Esta medida ayuda a evitar errores en tiempo de ejecución relacionados con notificaciones no deseadas o fugas de memoria.
+\subsection{Sensor}
+La clase \texttt{Sensor} actúa como clase base para todos los sensores de la herramienta. Implementa una arquitectura basada en el patrón observador (observer), en la que cualquier componente interesado puede registrarse para ser notificado cuando el sensor se active.\\
+
+Cada sensor contiene una variable de tipo \texttt{Action<Sensor>} que alberga una lista de funciones (callbacks) a ejecutar cuando se detecta una condición específica. Estas funciones pueden ser proporcionadas por otros componentes, como por ejemplo una transición que deba activarse tras la detección.\\
+
+Para garantizar una interfaz unificada, las funciones que se registren como oyentes deben aceptar un único parámetro de tipo \texttt{Sensor}. Esto permite que, al activar el sensor, se le pueda pasar una referencia a sí mismo, facilitando que el componente suscrito acceda a su información contextual si lo necesita.\\
+
+Este enfoque permite una arquitectura desacoplada y extensible, donde los sensores no necesitan conocer directamente qué componentes responderán a su activación, simplemente notifican a todos los suscriptores registrados.\\
+
+Además, la implementación del sistema de eventos incluye un contador de suscriptores, que permite llevar un control sobre cuántos componentes están actualmente registrados. Esta medida ayuda a evitar errores en tiempo de ejecución relacionados con notificaciones no deseadas o fugas de memoria.\\
 
 Cualquier clase que herede de \texttt{Sensor} tendrá la posibilidad de modificar tres funciones relativas a la lógica del sensor:
 
@@ -266,14 +283,10 @@ El funcionamiento del sensor dependerá del valor asignado a la variable \textit
 \end{itemize}
 
 A continuación se especificarán los valores que puede tomar el enumerado \textit{TypeOfDistance}, sus usos y las variables específicas necesarias en cada caso.\\
-
-\textbf{Valores de \textit{TypeOfDistance}}
-
 \begin{itemize}
 	\item \textit{Magnitude}
 
-Configuración utilizada cuando se quiere medir la distancia como magnitud. La representación gráfica de esta forma de medir la distancia es un círculo, como se muestra en la \autoref{fig:DistanceSensor_Magnitude}.\\
-Dependiendo del valor de la variable \textit{Detection Condition}, el sensor se activará si el objeto objetivo está dentro o fuera del círculo.
+Configuración utilizada cuando se quiere medir la distancia como magnitud, cuya representación gráfica es un círculo, como se muestra en la \autoref{fig:DistanceSensor_Magnitude}. Dependiendo del valor de la variable \textit{Detection Condition}, el sensor se activará si el objeto objetivo está dentro o fuera del círculo.\\
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.7\textwidth]{Imagenes/DistanceSensorMagnitude.png}
@@ -314,9 +327,10 @@ Sensor encargado de activarse cuando pasa un tiempo determinado desde su activac
 	        \item (float) \textbf{Detection Time}: Tiempo necesario, medido en segundos, para que el sensor se active.
 	 \end{itemize}
 
-\section{Damage}
+\section{Módulo de daño}
+El módulo de daño es el encargado de gestionar todas las interacciones relacionadas con la aplicación y recepción de daño entre entidades del juego. Su diseño (Sección~\ref{subsec:dano}) sigue una arquitectura basada en componentes desacoplados, que permite separar claramente los elementos que emiten daño de aquellos que lo reciben.\\
 
-En esta sección se abordará el como se gestiona todo lo relacionado con el daño a través de, principalmente, dos componentes: \texttt{DamageEmitter} y \texttt{DamageSensor}.
+Este módulo se compone principalmente de dos clases clave: \texttt{DamageEmitter} y \texttt{DamageSensor}.
 
 \subsection{DamageEmitter}
 Para que una entidad pueda emitir daño, debe tener adjunto el componente \texttt{DamageEmitter}.\\
@@ -332,8 +346,6 @@ Como valores de configuración comunes para todas las configuraciones disponible
 \end{itemize}
 
 A continuación se concretarán los valores que puede tomar el enumerado \texttt{DamageType}, cómo funciona cada tipo de daño y qué otros valores de configuración serán necesarios.\\
-
-\textbf{Valores de \textit{DamageType}}
 
 \begin{itemize}
 	\item \textit{Instant}
@@ -370,7 +382,7 @@ El daño residual es aquel que produce una cantidad de daño instantáneo y, tra
 
 \texttt{DamageSensor} es un tipo de sensor que detecta las colisiones y entradas en el área de un objeto que emite daño. Este sensor está diseñado para funcionar tanto con colisiones como con triggers. Requiere que el objeto al que se le asigne tenga un componente \texttt{Collider2D}.\\
 
-La funcionalidad de este sensor es doble. Además de activar transiciones, se utiliza para gestionar la lógica del componente \texttt{Life}. En caso de colisión, y bajo ciertas condiciones, como colisionar con un objeto que tenga el componente \texttt{DamageEmitter}, el sensor se activa. Luego, desde el componente \texttt{Life}, se gestiona qué hacer en función de las características del \texttt{DamageEmitter}.\\
+La funcionalidad de este sensor es doble. Además de activar transiciones, se utiliza para gestionar la lógica del componente \texttt{Life} (explicado en la Sección~\ref{sec:life}). En caso de colisión, y bajo ciertas condiciones, como colisionar con un objeto que tenga el componente \texttt{DamageEmitter}, el sensor se activa. Luego, desde el componente \texttt{Life}, se gestiona qué hacer en función de las características del \texttt{DamageEmitter}.\\
 
 Dado que \texttt{Life} es un componente utilizado para contextualizar la herramienta, pero no necesariamente el único componente de vida posible, \texttt{DamageSensor} puede utilizarse para crear nuevos componentes de vida con distintas características, separando así la funcionalidad de ambos componentes.\\
 
@@ -383,13 +395,21 @@ El sensor detecta las entradas y salidas de objetos mediante los métodos \texti
 	\item (bool) \textbf{Active From Start}: Si es verdadero, el \textit{DamageSensor} no tendrá por qué ser incluido en ninguna transición para que este se considere activo.
 \end{itemize}
 
-\section {Máquina de Estados Finita}
+\section{Módulo de Máquina de Estados}
 
-El comportamiento de la entidad estará encapsulado en una Máquina de Estados Finita, cuya única funcionalidad es la de gestionar el estado actual, comprobar que no ha habido ningún cambio de estado y, en caso de haberlo, manejar el cambio. Esta comprobación se hará al finalizar la actualización del estado actual (en el \texttt{LateUpdate}) para así evitar problemas con cambiar de estado en medio de un bucle sin terminar.\\
+El módulo de Máquina de Estados es el encargado de gestionar el comportamiento dinámico de una entidad. Está basado en una Máquina de Estados Finita (FSM, por sus siglas en inglés), en la que el comportamiento se estructura mediante un conjunto de \texttt{States} y transiciones (\texttt{Transitions}) entre ellos. Este módulo permite definir de forma clara y modular los distintos estados que una entidad puede tener, así como las condiciones necesarias para cambiar de uno a otro. 
 
-\textbf{Valores de configuración}
+Para detalles del diseño visitar la Sección~\ref{sec:fsm}.
+
+Para una mejor organización y escalabilidad, este módulo se compone de las siguientes clases: \texttt{FSM}, \texttt{State} y \texttt{Transition}. 
+
+\subsection{FSM}
+
+La clase \texttt{FSM} representa la máquina de estados finita propiamente dicha. Se encarga de mantener el estado actual de la entidad, actualizarlo, y gestionar los posibles cambios de estado de manera segura. La comprobación de transiciones se realiza en el método \texttt{LateUpdate}, una vez finalizadas todas las actualizaciones del estado, para evitar cambios prematuros durante el ciclo de actualización.
+
+\textbf{Parámetros de configuración}
 \begin{itemize}
-	\item (\texttt{State}) \textbf{Initial State}: Estado inicial de la Máquina de Estados Finita.
+	\item (\texttt{State}) \textbf{Initial State}: Estado inicial de la máquina de estados.
 \end{itemize}
 
 \subsection{Transition}
@@ -404,8 +424,6 @@ Esta clase representa una transición de estado. Está compuesta por un sensor y
 \subsection{State}
 
 La clase \texttt{State} representa un estado de comportamiento de un enemigo. Para ello gestiona dos elementos fundamentales: \texttt{Actuators} y \texttt{Sensors}.\\
-
-
 \textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (List<\texttt{Actuator}>) \textbf{Actuator List}: Lista de Actuators que son actualizados en cada bucle y representan acciones.
@@ -413,60 +431,77 @@ La clase \texttt{State} representa un estado de comportamiento de un enemigo. Pa
 	\item (List<\texttt{DamageEmitter}>) \textbf{Damage Emitter in State}: Lista de DamageEmitter activos en el estado
 	\item (bool) \textbf{Debug State}: Booleano utilizado para indicar si se quiere que los Actuators en \textit{Actuator List} y Sensores en \textit{Transition List} muestren información a través del Gizmos.
 \end{itemize}
-
-En la \autoref{fig:State_Image} vemos como se distribuyen los parámetros en el inspector.\\
-
 Cuando se produce un cambio de estado, todos los actuadores y sensores se detienen, y los sensores se desuscriben de todas las transiciones a los que estuvieran vinculados.\\
-\begin{figure}[t]
-		\centering
-		\includegraphics[width = 0.7\textwidth]{Imagenes/State.png}
-		\caption{Distribución del inspector de clase \texttt{State}.}
-		\label{fig:State_Image}
-\end{figure}
-\section{Animator Manager} \label{sec:animation}
-La clase \texttt{AnimatorManager} se encarga de gestionar las animaciones de cada enemigo en función del movimiento, es decir, de los actuadores que estén activos.\\
+
+\section{Módulo de Animación} \label{sec:animation}
+
+El módulo de animación se encarga de coordinar la representación visual del comportamiento de los enemigos, sincronizando sus animaciones con su lógica interna. Este módulo permite adaptar dinámicamente las animaciones en función de factores como la velocidad de movimiento, la dirección, o eventos del juego como recibir daño o morir.\\
+
+El sistema se basa en el uso del componente \texttt{Animator} de Unity, que a su vez está asociado a un \texttt{Animator Controller}. Este controlador define una Máquina de Estados Finita (FSM) visual, donde cada estado representa una animación concreta (por ejemplo: caminar, aparecer, atacar, morir) y las transiciones entre estos estados se activan mediante parámetros. Estos parámetros pueden ser booleanos, numéricos, o de tipo \textit{trigger}, y son gestionados por el módulo en tiempo de ejecución.\\
+
+Este módulo proporciona una interfaz común para vincular las animaciones con otros módulos, como los actuadores de movimiento o el módulo de daño, de forma desacoplada y escalable.
+
+Para más detalle del diseño de la lógica de animaciones consultar Sección~\ref{subsec:animaciones_fsm}.
+
+\subsection{AnimatorManager}
+
+La clase \texttt{AnimatorManager} encapsula toda la lógica necesaria para actualizar los parámetros del \texttt{Animator} de forma dinámica. Su objetivo es reflejar correctamente el comportamiento del enemigo en la animación visual que se muestra al jugador.
 
 \textbf{Parámetros de configuración}
 \begin{itemize}
 	\item (bool) \textbf{Can Flip X}: Indica si el sprite puede voltearse horizontalmente.
 	\item (bool) \textbf{Can Flip Y}: Indica si el sprite puede voltearse verticalmente. 
-	\item (\texttt{SpriteRender}) \textbf{Sprite Render}: Referencia al Sprite Render del propio objeto.
+	\item (\texttt{SpriteRenderer}) \textbf{Sprite Renderer}: Componente de Unity encargado de representar visualmente un sprite en pantalla. Es el responsable de renderizar la imagen 2D asociada al objeto en la escena.
+
 \end{itemize}
 
-Durante la ejecución del juego, se monitoriza constantemente la velocidad del objeto mediante su componente \texttt{Rigidbody2D}. Esta información se utiliza para actualizar tres parámetros del \texttt{AnimatorManager}: \textit{XSpeed}, \textit{YSpeed} y \textit{RotationSpeed}. Estos parámetros permiten que el sistema de animaciones adapte en tiempo real la apariencia del personaje según su movimiento: por ejemplo, una animación de correr hacia la derecha cuando la velocidad en el eje X es positiva. Además, si el enemigo cambia de dirección (por ejemplo, pasa de moverse a la izquierda a hacerlo a la derecha), su sprite puede rotarse automáticamente para mantener la coherencia visual. Este comportamiento solo se aplica si se han activado previamente unos booleanos de configuración que permiten dicha rotación.
+Unity utiliza un sistema de animaciones basado en un componente llamado \texttt{Animator}, que se asocia a un \texttt{Animator Controller}. Este controlador define una Máquina de Estados Finita (FSM) de animaciones, donde cada estado representa una animación concreta (como caminar, correr o morir) y las transiciones entre estados se controlan mediante parámetros. Estos parámetros pueden ser de distintos tipos, como booleanos, flotantes, enteros o \textit{triggers} (disparadores), y se actualizan dinámicamente desde el código para reflejar el comportamiento del objeto en tiempo real.\\
 
-Cuando el enemigo recibe daño o muere, se activan los triggers \textit{Damage} y \textit{Die} respectivamente, lo que lanza las animaciones correspondientes. En el caso de la muerte, el objeto se destruye automáticamente una vez finaliza la animación. 
+\subsubsection{Parámetros requeridos en el Animator}
 
-Por otro lado, se han definido varios parámetros y funciones que permiten controlar su comportamiento:
+Para centralizar la gestión de las animaciones, se ha creado un controlador personalizado (Figura~\ref{fig:AnimatorController_Image}), del tipo \texttt{Animator Controller}. Este controlador permite una integración fluida entre la lógica del comportamiento del enemigo y su representación visual, facilitando el mantenimiento y la ampliación del sistema.\\
+
+El \texttt{Animator Controller} funciona como una máquina de estados de animación, donde cada estado representa una acción visual (como caminar, aparecer, recibir daño o morir), y las transiciones entre estos estados están condicionadas por parámetros que se actualizan dinámicamente desde el código.\\
+
+Durante la ejecución del juego, se monitoriza constantemente la velocidad del objeto mediante su componente \texttt{Rigidbody2D}. Esta información se utiliza para actualizar tres parámetros del \texttt{Animator}: \textit{XSpeed}, \textit{YSpeed} y \textit{RotationSpeed}. Estos valores permiten adaptar en tiempo real la animación del enemigo: por ejemplo, mostrar una animación de correr hacia la derecha cuando la velocidad en el eje X es positiva. Además, si el enemigo cambia de dirección (por ejemplo, de izquierda a derecha), su sprite puede rotarse automáticamente para mantener la coherencia visual, siempre que esta opción haya sido habilitada mediante parámetros booleanos.\\
+
+Por otro lado, el sistema de animaciones responde a eventos clave del juego mediante parámetros adicionales que se activan desde otros módulos del sistema:
+
 \begin{itemize}
-	\item El parámetro \textit{Follow} (de tipo bool) indica si el enemigo debe seguir a otro objeto, normalmente el jugador.
-	\item La función \textit{ChangeState} permite modificar el estado actual de la máquina de estados finita (FSM) del enemigo. Este cambio puede provocar una transición de animación o modificar su comportamiento.
-	\item El trigger \textit{Spawn} se activa al instanciar el enemigo en la escena. Permite reproducir una animación de aparición o ejecutar lógica específica asociada a su entrada en el juego.
+	\item El parámetro \textit{Follow} (bool) indica si el enemigo debe ajustar su animación al seguir a otro objeto, generalmente el jugador.
+	\item La función \textit{ChangeState} modifica el estado de la FSM (máquina de estados finita), provocando potenciales cambios de animación.
+	\item El trigger \textit{Spawn} se activa al instanciar el enemigo, permitiendo reproducir una animación de aparición o ejecutar lógica específica.
+	\item Los triggers \textit{Damage} y \textit{Die} se activan al recibir daño o morir, lanzando las animaciones correspondientes. En el caso de muerte, el objeto se destruye al finalizar la animación.
 \end{itemize}
 
-\textbf{Parámetros requeridos en el Animator}
-Para sincronizar el comportamiento del enemigo con sus animaciones, se ha configurado un \texttt{Animator Controller} que utiliza los siguientes parámetros:
+En resumen, los parámetros utilizados por el \texttt{Animator Controller} se agrupan en tres tipos principales:
+
 \begin{itemize}
-	\item \textbf{Triggers}: \textit{Die}, \textit{Damage}, \textit{Spawn}, \textit{ChangeState}. Se activan para lanzar animaciones específicas cuando ocurren eventos clave (por ejemplo, recibir daño o morir).
-	\item \textbf{Bools}: \textit{Left}, \textit{Right}, \textit{Up}, \textit{Down}, \textit{Follow}, \textit{Rotating}. Indican direcciones, estados o comportamientos que influyen en las transiciones de animación.
-	\item \textbf{Floats}: \textit{XSpeed}, \textit{YSpeed}, \textit{RotationSpeed}. Permiten animar al enemigo en función de su velocidad de movimiento o rotación.
+	\item \textbf{Triggers}: \textit{Die}, \textit{Damage}, \textit{Spawn}, \textit{ChangeState}.
+	\item \textbf{Bools}: \textit{Left}, \textit{Right}, \textit{Up}, \textit{Down}, \textit{Follow}, \textit{Rotating}.
+	\item \textbf{Floats}: \textit{XSpeed}, \textit{YSpeed}, \textit{RotationSpeed}.
 \end{itemize}
 
-Para centralizar la gestión de las animaciones, se ha creado un controlador personalizado (\autoref{fig:AnimatorController_Image}), del tipo \texttt{Animator Controller}. Este actúa como una máquina de estados de animación, donde cada estado representa una animación (como caminar, aparecer, recibir daño, etc.), y las transiciones entre estados se controlan mediante los parámetros antes mencionados.Este enfoque facilita la integración entre la lógica del enemigo (programación) y su representación visual (animación).
+Gracias a esta estructura, se consigue una sincronización precisa entre el comportamiento interno del enemigo y su aspecto visual, ofreciendo una experiencia más inmersiva y coherente para el jugador.
+
 \begin{figure}[t]
-		\centering
-		\includegraphics[width = 0.7\textwidth]{Imagenes/AnimatorController.png}
-		\caption{AnimatorController con sus estados y transiciones.}
-		\label{fig:AnimatorController_Image}
+	\centering
+	\includegraphics[width = 0.7\textwidth]{Imagenes/AnimatorController.png}
+	\caption{Animator Controller con sus estados y transiciones.}
+	\label{fig:AnimatorController_Image}
 \end{figure}
-\section{Jugador}
 
-Como ayuda a la implementación, se han creado una serie de componentes auxiliares que dan funcionalidades básicas a todos los juegos y que, por tanto, eran esenciales para una implementación lógica. Esta sección y las siguientes estarán enfocadas en la explicación de estos elementos.\\
-A la hora de implementar el movimiento del jugador usamos de base la implementación usada por el canal de YouTube \textit{Mix and Jam} en su interpretación del videojuego \textit{Celeste}\footnote{\url{https://www.youtube.com/watch?v=STyY26a_dPY}}.
+\section{Módulo del Jugador} \label{sec:player}
+
+El \textbf{Módulo del Jugador} encapsula toda la lógica de movimiento, interacción y control del personaje principal. Este módulo proporciona los sistemas fundamentales para el desplazamiento, salto, detección de colisiones, salud y ataques del jugador. Su implementación busca replicar una experiencia precisa y responsiva, inspirada en estándares de juegos de plataformas modernos.\\
+
+Para lograr este comportamiento se ha tomado como referencia la implementación del canal de YouTube \textit{Mix and Jam} en su análisis del videojuego \textit{Celeste}\footnote{\url{https://www.youtube.com/watch?v=STyY26a_dPY}}, adaptando sus principios para integrarlos dentro de un sistema modular y reutilizable.
+
+Este módulo está compuesto por varios componentes especializados que, combinados, ofrecen una experiencia de control intuitiva y sólida. En las siguientes subsecciones se detallan estos componentes, sus responsabilidades y parámetros de configuración.
 
 \subsection{PlayerMovement}
 
-La clase \textit{PlayerMovement} actúa como el controlador del jugador. Su función principal es gestionar la entrada del usuario y, en consecuencia, mover al personaje. Además, si el jugador se encuentra en el suelo y se presiona la tecla de salto, la clase se encarga de ejecutar el salto.
+La clase \texttt{PlayerMovement} actúa como el controlador del jugador. Su función principal es gestionar la entrada del usuario y, en consecuencia, mover al personaje. Además, si el jugador se encuentra en el suelo y se presiona la tecla de salto, la clase se encarga de ejecutar el salto.
 Asimismo, maneja una situación particular en la que el jugador queda suspendido en el aire mientras se mueve hacia una pared. Si este caso no se contempla, la fuerza ejercida en el eje X puede anular la del eje Y, haciendo que el personaje quede inmóvil en una posición poco natural. Para evitar este comportamiento, si el jugador está en el aire y colisiona lateralmente con una superficie, se le fuerza a deslizarse a lo largo de esta con una velocidad constante.
 Esta clase permite modificar ciertos valores como la velocidad de movimiento, la potencia de salto o la velocidad con la que el jugador se desliza por las superficies anteriormente mencionadas.\\
 
@@ -481,7 +516,7 @@ Esta clase permite modificar ciertos valores como la velocidad de movimiento, la
 
 Este componente se encarga de detectar las colisiones del jugador. Para ello, se ajustan tres cajas de colisión (\autoref{fig:Player_Coll_Detector}): una en cada lado y otra para detectar el contacto con el suelo. Las cajas no detectan realmente colisiones, sino que comprueban si estas se superponen con alguna entidad de las capas especificadas con el método \texttt{Physics2D.OverlapBox()}.\\
 
-\textit{PlayerCollisionDetection} será usado por \textit{PlayerMovement} para gestionar acciones como determinar cuándo el jugador debe deslizarse por una superficie o cuándo puede saltar.\\
+\texttt{PlayerCollisionDetection} será usado por \texttt{PlayerMovement} para gestionar acciones como determinar cuándo el jugador debe deslizarse por una superficie o cuándo puede saltar.\\
 
 \begin{figure}[t]
 	\centering
@@ -510,11 +545,11 @@ Para lograrlo, el componente ajusta dos multiplicadores: uno que incrementa la g
 	\item (float) \textbf{Low Jump Multiplier}: Multiplicador que aumenta la gravedad cuando el jugador suelta el botón de salto antes de llegar al punto más alto del salto, haciendo que se puedan hacer saltos cortos, dando más control del movimiento al jugador.
 \end{itemize}
 
-\subsection{Life}
+\subsection{Life} \label{sec:life}
 
-Se ha implementado una clase Life que gestiona los puntos de salud del objeto al que está adjunto y que se encarga de eliminar el objeto en el caso de que su vida llegue a cero. El componente pedirá al usuario un valor inicial para los puntos de vida del objeto y un valor máximo al que puede llegar la vida, para que esta sea limitada en caso de que se quiera implementar un sistema de recuperación de vida.\\
+Se ha implementado una clase \texttt{Life} que gestiona los puntos de salud del objeto al que está adjunto y que se encarga de eliminar el objeto en el caso de que su vida llegue a cero. El componente pedirá al usuario un valor inicial para los puntos de vida del objeto y un valor máximo al que puede llegar la vida, para que esta sea limitada en caso de que se quiera implementar un sistema de recuperación de vida.\\
 
-Este componente está estrechamente ligado al \textit{DamageSensor} que detecta si ha habido una colisión con un objeto que aplique daño. Esta relación es necesaria ya que, para que se detecte el daño que decrementa la salud del objeto, se necesita este sensor, por lo que al añadir un componente \textit{Life} se añadirá este sensor automáticamente.\\
+Este componente está estrechamente ligado al \texttt{DamageSensor} que detecta si ha habido una colisión con un objeto que aplique daño. Esta relación es necesaria ya que, para que se detecte el daño que decrementa la salud del objeto, se necesita este sensor, por lo que al añadir un componente \textit{Life} se añadirá este sensor automáticamente.\\
 
 \textit{Life} diferencia entre enemigos y el jugador; en caso de que el componente esté adjunto al jugador, se deberá marcar en la opción \textit{EntityType} y el componente requerirá que se le dé la referencia a un texto del \textit{Canvas} donde se escribirá la vida actual del jugador.\\
 
@@ -529,7 +564,7 @@ Este componente está estrechamente ligado al \textit{DamageSensor} que detecta 
 
 \subsection{PlayerDistanceAttack}
 
-Componente encargado de representar un posible ataque a distancia del jugador. El ataque se activará con el clic izquierdo del ratón, lo que instanciará el prefab \textit{Bullet Prefab} en la posición del jugador (será importante que el objeto instanciado no pueda colisionar con el jugador, por lo que se proporciona con la herramienta un prefab llamado \textit{PlayerBullet} que ya cumple con esta característica), el cual deberá albergar el comportamiento de una bala. La dirección que tomará la bala será aquella en la que se encuentre el cursor del ratón en el momento del clic.\\
+Componente encargado de representar un posible ataque a distancia del jugador. El ataque se activará con el clic izquierdo del ratón, lo que instanciará el prefab \textit{Bullet Prefab} en la posición del jugador (será importante que el objeto instanciado no pueda colisionar con el jugador, por lo que se proporciona con la herramienta un prefab llamado \texttt{PlayerBullet} que ya cumple con esta característica), el cual deberá albergar el comportamiento de una bala. La dirección que tomará la bala será aquella en la que se encuentre el cursor del ratón en el momento del clic.\\
 
 Para evitar que el jugador pueda disparar sin restricción, se ha introducido un tiempo de espera entre disparos.\\
 
@@ -561,5 +596,22 @@ Una vez descargado, el usuario podrá acceder a todo el contenido distribuido, q
 	\end{itemize}
 \end{itemize}
 
-Junto con el Framework, se incluye un manual de uso: \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c}{\underline{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c}} que contiene imágenes adicionales y está orientado a diseñadores de videojuegos. También se proporcionan una serie de tutoriales para reproducir algunos de los enemigos incluidos en el Framework.
+Junto con el Framework, se incluye un manual de uso: \href{https://github.com/CristinaMora/EnemyBehaviourFramework-2D/tree/c1faf3195c68eb55e0c9239c02ca077aac270f7c} que contiene imágenes adicionales y está orientado a diseñadores de videojuegos. También se proporcionan una serie de tutoriales para reproducir algunos de los enemigos incluidos en el Framework.
 
+
+\section{Conclusiones del Módulo de Implementación}
+
+En este capítulo se ha detallado la construcción práctica de la herramienta, materializando el diseño teórico en un plugin de Unity modular, escalable y orientado a usuarios no programadores. A continuación, se resumen los principales logros y aprendizajes:
+
+\begin{itemize}
+	\item \textbf{Tecnología y arquitectura:} La elección de Unity 2022.3.18f1 LTS como motor base ha permitido aprovechar plenamente su sistema de componentes, prefabs y \texttt{MonoBehaviour}, garantizando compatibilidad futura y un entorno conocido para diseñadores y desarrolladores.
+	\item \textbf{Módulo de actuadores:} Se implementó la clase abstracta \texttt{Actuator} y sus subtipos (\texttt{MovementActuator}, \texttt{SpawnerActuator}, etc.), permitiendo definir acciones diversas (movimiento con easing, generación de entidades) de forma coherente y reutilizable.
+	\item \textbf{Módulo de sensores:} La jerarquía de \texttt{Sensor} (área, colisión, distancia y tiempo) facilita la detección de condiciones de juego mediante un patrón observador. Cada sensor notifica a las transiciones asociadas sin acoplamiento directo, potenciando la extensibilidad.
+	\item \textbf{Módulo de daño:} Se separaron los roles de \texttt{DamageEmitter} y \texttt{DamageSensor}, regulando la emisión y recepción de daño de forma independiente y permitiendo integraciones limpias con sistemas de vida o efectos especiales.
+	\item \textbf{Módulo de Máquina de Estados Finita:} La introducción de la clase \texttt{FSM} junto a \texttt{State} y \texttt{Transition} ha proporcionado un orquestador central para combinar sensores y actuadores en comportamientos coherentes, con cambios de estado controlados en \texttt{LateUpdate} para evitar inconsistencias en la lógica.
+	\item \textbf{Módulo de animación:} Con \texttt{AnimatorManager} se ha logrado sincronizar los parámetros de movimiento, rotación y eventos (\textit{Spawn}, \textit{Damage}, \textit{Die}, \textit{ChangeState}) con un \texttt{Animator Controller}, garantizando coherencia visual entre la lógica de IA y las animaciones.
+	\item \textbf{Módulo del jugador:} Se proporcionaron componentes auxiliares para movimiento (\texttt{PlayerMovement}), detección de colisiones (\texttt{PlayerCollisionDetection}), salto mejorado (\texttt{PlayerJump}), gestión de vida (\texttt{Life}) y ataque a distancia (\texttt{PlayerDistanceAttack}), cubriendo necesidades comunes de juego 2D y demostrando la flexibilidad del framework.
+	\item \textbf{Distribución:} El empaquetado como plugin de Unity y la inclusión de un manual visual y de código de ejemplo facilitan su adopción en proyectos reales sin requerir modificaciones internas, cumpliendo el objetivo de accesibilidad para diseñadores.
+\end{itemize}
+
+En conjunto, el módulo de implementación ha validado la viabilidad del diseño conceptual: se ha construido una herramienta que, mediante una estructura modular y basada en patrones de diseño claros, permite configurar comportamientos de enemigos complejos sin escribir código, integrándose de forma natural en el flujo de trabajo de Unity. La implementación ha cubierto todos los aspectos planteados (movimiento, sensores, daño, estados y animaciones) y ha sentado las bases para futuras mejoras en extensibilidad y usabilidad.
