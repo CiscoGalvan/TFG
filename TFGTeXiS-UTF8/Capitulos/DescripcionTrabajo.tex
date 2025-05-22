@@ -68,9 +68,6 @@ El análisis de los enemigos presentes en los tres videojuegos permitió identif
 	\item \emph{Trampa estática letal:} Elementos del entorno que causan la derrota del jugador al contacto directo, sin movimiento ni detección. Este patrón se encuentra en los Spikes (\textit{Blasphemous}) y el Spike Block (\textit{Bzzzt}).
 \end{itemize}
 
-
-
-
 \section{Conclusiones del análisis y definición del framework}
 
 El estudio de los enemigos presentes en los videojuegos \textit{Hollow Knight}, \textit{Blasphemous} y \textit{Bzzzt} permitió identificar una serie de patrones recurrentes en su comportamiento. Estos patrones han sido agrupados en categorías comunes, lo que permite abstraer el comportamiento de cada enemigo en términos funcionales.\\
@@ -267,28 +264,33 @@ Además, ciertos eventos clave como recibir daño o morir, activan animaciones e
 Este enfoque integrador entre comportamiento y apariencia permite diseñar enemigos no solo eficaces a nivel de juego, sino también consistentes desde el punto de vista estético y narrativo.\\
 
 Se darán detalles de como funciona esta integración en la sección~\ref{sec:animation}.
+
 \section{Ejemplos de uso}
-Con esta separación de actuadores, sensores y daño la creación de enemigos se vuelve mucho más sencilla. A continuación se presentan unos ejemplos construidos mediante la combinación de los componentes de la herramienta sin la necesidad de escribir código, estos ejemplos están incluidos en la propia herramienta.\\
+La división en actuadores, sensores, módulos de daño y estados permite construir enemigos complejos de forma modular, reutilizable y visualmente comprensible, sin necesidad de escribir código. A través de la combinación de estos elementos básicos, es posible definir distintos tipos de enemigos, cada uno con su propio comportamiento, nivel de amenaza e impacto sobre el jugador.\\
 
+En esta sección se presentan ejemplos representativos de enemigos diseñados mediante la combinación de estos componentes. Estos ejemplos no son únicos, pero ilustran cómo el sistema permite definir comportamientos diversos de forma coherente y escalable.\\
 
-Se mencionarán algunos componentes que aún no han sido introducidos, estos serán explicados en el Capítulo \ref{cap:implementacion}.\\
+Cabe destacar que estos enemigos están inspirados directamente en los patrones y casos identificados durante el análisis previo. En dicha fase se observaron distintas tipologías de enemigos en juegos de plataformas —desde amenazas constantes en movimiento, hasta enemigos estáticos con ataques periódicos o comportamientos reactivos— y aquí se muestra cómo tales comportamientos pueden reproducirse y estructurarse utilizando el sistema propuesto. El objetivo es demostrar que el marco de diseño desarrollado no solo es teóricamente sólido, sino también aplicable de forma práctica a casos reales observados en juegos comerciales.\\
 
+Aunque algunos términos aún no han sido desarrollados, todos serán introducidos más adelante en el capítulo de implementación.
 
-Todos los enemigos mencionados incluyen los siguientes componentes:
-
+Cada enemigo combina los siguientes elementos de diseño:
 \begin{itemize}
-\item Un \texttt{Animator Controller} propio, configurado de manera que las animaciones se correspondan con la lógica de comportamiento de cada enemigo.
-\item Un componente de tipo \texttt{FSM} (Finite State Machine).
-\item Al menos un componente de tipo \texttt{State}. Siempre que se mencione que un enemigo incorpora un \texttt{Actuator}, \texttt{Sensor} o \texttt{DamageEmitter}, estos estarán referenciados dentro de una clase \texttt{State} específica. En caso de no especificarse ninguna, se asumirá que el enemigo dispone de un único estado.
+    \item Una lógica basada en una máquina de estados, que permite cambiar su comportamiento (si es necesario) en función del entorno del enemigo.
+    \item Acciones específicas definidas por actuadores.
+    \item Un sistema visual coherente mediante animaciones asociadas al estado del enemigo.
+    \item Un sistema de daño que define cómo y cuándo el enemigo puede hacer daño o recibirlo.
 \end{itemize}
 
 \subsection{Bouncing Bunny}
 
-En la Figura \ref{fig:BouncingBunny} se puede ver un enemigo sencillo utilizado habitualmente al comienzo de los juegos de plataformas en dos dimensiones. El enemigo se desplaza de izquierda a derecha describiendo un movimiento horizontal, hasta colisionar con una pared, momento en el cual cambia de dirección.\\
+El \textit{Bouncing Bunny} (Figura\ref{fig:BouncingBunny}) representa un ejemplo clásico de enemigo patrullero, inspirado directamente en enemigos como el Reptacillo (\textit{Hollow Knight}) o el Walking Bot (\textit{Bzzzt}), ambos caracterizados por un movimiento horizontal entre dos límites definidos del escenario.\\
 
-Para construir este comportamiento, configuramos un único estado el cual tiene un \texttt{Horizontal Actuator} configurado para que rebote en caso de colisionar con las paredes y con una velocidad constante y un \texttt{Damage Emitter} configurado para realizar daño instantáneo, concretamente una única unidad.\\
+Este enemigo recorre continuamente un tramo en línea recta, desplazándose de izquierda a derecha a velocidad constante. Al llegar a la pared invierte automáticamente su dirección, generando un patrón de patrullaje sencillo pero efectivo.\\
 
-También necesitaremos añadir un componente \texttt{Life} configurado para que el enemigo tenga un punto de vida.
+Su principal función dentro del diseño del nivel es la de introducir una amenaza predecible en zonas iniciales, obligando al jugador a aprender los tiempos de movimiento y a coordinar sus saltos para evitar el contacto. Esta previsibilidad lo convierte en un enemigo ideal para fases de aprendizaje, donde el jugador comienza a familiarizarse con las mecánicas básicas del juego.\\
+
+A nivel de comportamiento, su peligro reside en el daño que inflige al contacto, aunque su resistencia es mínima, por lo que puede ser eliminado fácilmente. Esta dualidad contribuye a establecer un ritmo de juego dinámico sin suponer un obstáculo insalvable para el jugador principiante.\\
 
 \begin{figure}[t]
 	\centering
@@ -299,50 +301,50 @@ También necesitaremos añadir un componente \texttt{Life} configurado para que 
 
 \subsection{Spinning Rocks}
 
-Con respecto al enemigo mostrado en la Figura~\ref{fig:SpinningRocks}, este realiza un movimiento circular alrededor de un punto central. Aunque en apariencia pueda parecer una única entidad, en realidad cada bola actúa como un enemigo independiente que ejecuta su propio movimiento circular.\\
+El enemigo \textit{Spinning Rocks} (Figura~\ref{fig:SpinningRocks}) representa un ejemplo claro del patrón de rotación fija identificado en el análisis previo, similar al comportamiento del Saw Drone en \textit{Bzzzt}. Su función principal es la de constituir una amenaza constante basada en un movimiento predecible pero difícil de evitar, especialmente en espacios reducidos o plataformas móviles.\\
 
-Este tipo de enemigo no puede ser detenido ni eliminado en ningún momento, por lo que no tendrá componente relacionado con la vida, lo que incrementa significativamente su nivel de peligrosidad. Su presencia constante y la imposibilidad de neutralizarlo lo convierten en una amenaza persistente dentro del escenario de juego.\\
+Cada unidad de este enemigo gira de forma continua alrededor de un punto central, describiendo una trayectoria circular completa. Aunque visualmente pueda interpretarse como una estructura compuesta, en realidad se trata de varias entidades independientes que orbitan de manera sincronizada, generando un entorno hostil a su alrededor.\\
 
-Para construirlo necesitaremos crear tres objetos con los sprites mostrados en la figura con un \texttt{Circular Actuator} con los parámetros necesarios para que produzca un giro completo de \textit{360º}. También necesitará un \texttt{Damage Emitter} configurado para realizar daño instantáneo, concretamente una única unidad.\\
+La amenaza que presenta este tipo de enemigo no reside en su capacidad de persecución o ataque dirigido, sino en su mera presencia en el escenario. Al no poder ser destruido ni detenido, obliga al jugador a anticipar el patrón de movimiento y planificar cuidadosamente el momento para cruzar o interactuar con el entorno. Esta característica lo convierte en un excelente recurso para secciones de plataformas que requieren precisión y \textit{timing}.\\
 
-Cada objeto necesitará asignar un punto sobre el que rotar, por lo que se necesitará crear otro objeto que sirva como centro de la rotación.\\
+A nivel de diseño, su uso está orientado a crear zonas de paso peligrosas que introducen tensión sostenida. Su predecibilidad lo hace justo, pero su invulnerabilidad lo vuelve implacable, lo que refuerza su valor como obstáculo en segmentos avanzados o de alto riesgo dentro del nivel.
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/SpinningRocks.png}
-	\caption{Escena de ejemplo donde se aprecian dos enemigos realizando un movimiento circular cada uno en un sentido diferente}
+	\caption{Escena de ejemplo donde se aprecian dos enemigos realizando un movimiento circular, cada uno en un sentido diferente.}
 	\label{fig:SpinningRocks}
 \end{figure}
 
-\subsection{Trunk Torret}
+\subsection{Trunk Turret}
 
-Con respecto al enemigo mostrado en la Figura~\ref{fig:TrunkTurret}, este permanece completamente estático durante toda su existencia en el escenario. A pesar de su falta de movilidad, representa una amenaza constante al disparar proyectiles de manera periódica cada dos segundos, lo que obliga al jugador a mantenerse en movimiento para esquivarlos.\\
+La \textit{Trunk Turret} (Figura~\ref{fig:TrunkTurret}) es un claro ejemplo del patrón de comportamiento identificado como \emph{torreta} durante el análisis de enemigos, tal como se observa en la \textit{Shooting Trap} de \textit{Blasphemous} o la \textit{Cannon Turret} de \textit{Bzzzt}. Se trata de un enemigo completamente estático cuya principal amenaza reside en la emisión periódica de proyectiles, los cuales obligan al jugador a mantenerse en constante movimiento y adoptar un enfoque reactivo basado en la evasión.\\
 
-Este enemigo es completamente invulnerable  a cualquier tipo de ataque y tampoco hace daño directamente, por lo que no cuenta con componentes asociados a vida o daño, tanto recibido como realizado. Esta característica aumenta su peligrosidad, ya que su presencia no puede ser eliminada y el jugador debe enfrentarse a él únicamente mediante la evasión.\\
+A diferencia de otros enemigos móviles o interactivos, la \textit{Trunk Turret} no inflige daño directamente ni puede ser destruida. Su condición de invulnerabilidad la convierte en un elemento de peligro permanente en el escenario, generando zonas de paso peligrosas donde el jugador debe coordinar sus desplazamientos con el ritmo de disparo para evitar ser alcanzado.\\
 
-Para implementarlo, se le asignará un componente de tipo \texttt{Spawner Actuator}, configurado para emitir un proyectil cada dos segundos que aparece desde un punto de su boca.
+Este tipo de enemigo funciona particularmente bien en zonas de transición o plataformas estrechas, donde el margen de error es reducido. Además, su previsibilidad rítmica aporta una capa de estrategia, ya que el jugador puede anticipar el disparo y actuar en consecuencia, generando una tensión constante sin recurrir a un comportamiento impredecible.\\
+
 \subsubsection{Bullet}
 
-El proyectil generado por la \textit{Trunk Turret} se desplaza horizontalmente hacia la izquierda con un movimiento lineal. Al entrar en contacto con el jugador, produce daño instantáneo. En caso de colisionar con el entorno o con el propio jugador, el proyectil se destruirá automáticamente.\\
+El proyectil emitido por la \textit{Trunk Turret} se comporta como una amenaza secundaria pero letal. Se desplaza horizontalmente a velocidad constante y se destruye al colisionar con cualquier superficie o con el jugador, a quien inflige daño inmediato. Esta dinámica complementa el carácter del enemigo principal, reforzando su papel como generador de obstáculos periódicos que condicionan el movimiento del jugador.\\
 
-Para construir este comportamiento, se utilizará un objeto , al que se le asignará un \texttt{Horizontal Actuator} configurado para el movimiento en dirección izquierda y que reaccione al contacto destruyéndose, así como un \texttt{Damage Emitter} capaz de infligir una unidad de daño al contacto. 
-
+La inclusión del proyectil permite ampliar la funcionalidad del enemigo sin necesidad de dotarlo de movilidad o interacción directa, lo que demuestra la versatilidad del sistema basado en componentes. Tanto la torre como la bala funcionan de forma independiente pero coordinada, lo que permite su reutilización en otros contextos o combinaciones.\\
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/TrunkTorret.png}
-	\caption{Escena de ejemplo donde se aprecia una \textit{TrunkTorret} disparando.}
+	\caption{Escena de ejemplo donde se aprecia una \textit{Trunk Turret} disparando.}
 	\label{fig:TrunkTurret}
 \end{figure}
 \subsection{Spline Chicken}
 
-Con respecto al enemigo mostrado en la Figura~\ref{fig:SplineChicken}, esta gallina realiza un movimiento continuo siguiendo una trayectoria curva predefinida (spline) que rodea una plataforma. Este desplazamiento suave y cerrado permite que patrulle una zona concreta, dificultando el paso del jugador y añadiendo presión durante momentos clave del recorrido.\\
+La \textit{Spline Chicken} (Figura~\ref{fig:SplineChicken}) ejemplifica una variación del patrón de patrullaje, previamente identificado. Sin embargo, a diferencia de aquellos enemigos que se desplazan en línea recta, esta gallina se mueve siguiendo una trayectoria definida, generando un movimiento continuo y cíclico alrededor de una plataforma concreta.\\
 
-Aunque su apariencia pueda resultar cómica o inofensiva, este enemigo representa una amenaza real, ya que inflige daño al contacto. Además, no puede ser eliminado ni detenido, lo que lo convierte en un obstáculo constante que obliga al jugador a calcular cuidadosamente el momento en el que atravesar su recorrido.\\
+Este comportamiento introduce una dinámica distinta en el diseño del nivel. La trayectoria predefinida obliga al jugador a observar y anticipar los patrones de movimiento con mayor precisión, ya que las curvas pueden generar ángulos muertos o zonas de paso más breves. Aunque su diseño visual puede transmitir un tono humorístico, la \textit{Spline Chicken} representa una amenaza persistente: no puede ser eliminada ni detenida, y provoca daño inmediato al contacto.\\
 
-Para su implementación, se instanciará un objeto con el sprite correspondiente, al que se le añadirá un componente de tipo \texttt{Spline Follower}, configurado para recorrer una trayectoria cerrada en bucle. Además, se incluirá un \texttt{Damage Emitter} que provocará la eliminación instantánea del jugador.\\
+Su presencia funciona como elemento de presión en zonas de transición o salto, donde el jugador debe sincronizar su avance con el ritmo del movimiento del enemigo. Al igual que otros enemigos invulnerables, cumple una función más cercana a la de una trampa móvil, generando tensión constante sin requerir interacción directa con el combate.\\
 
-Tendrá un componente \texttt{Life}.
+Este diseño demuestra cómo el marco de componentes propuesto permite extender comportamientos clásicos (como el patrullaje) a variantes más sofisticadas y visualmente interesantes, sin necesidad de redefinir estructuras complejas.\\
 
 \begin{figure}[t]
 	\centering
@@ -353,18 +355,34 @@ Tendrá un componente \texttt{Life}.
 
 \subsection{Skywatch Eagle}
 
-Con respecto al enemigo mostrado en la Figura~\ref{fig:SkywatchEagle}, este águila deambula libremente por una zona delimitada del escenario, describiendo un patrón de patrullaje aéreo. Su comportamiento cambia de forma agresiva en cuanto detecta la presencia del jugador dentro de su campo de visión, momento en el cual se lanza en picado a gran velocidad con la intención de impactarlo.\\
+La \textit{Skywatch Eagle} (Figura~\ref{fig:SkywatchEagle}) es un ejemplo de enemigo con comportamiento reactivo, construido a partir de una máquina de estados. Su diseño combina movilidad aérea libre y un cambio abrupto hacia una acción ofensiva directa, lo que la convierte en una amenaza dinámica que exige atención constante por parte del jugador.\\
 
-Este enemigo combina movilidad impredecible y comportamiento reactivo, lo que lo convierte en una amenaza considerable. Su capacidad para alterar su trayectoria bruscamente en función de la posición del jugador obliga a mantenerse en constante movimiento y a anticipar su patrón de ataque.\\
+Este enemigo patrulla el cielo en un área determinada, recorriendo distintos puntos de forma aleatoria. Al detectar al jugador en su campo de visión, interrumpe su patrón y se lanza en picado hacia él. Este cambio de comportamiento genera un contraste entre una amenaza inicialmente pasiva y una reacción agresiva, lo que introduce tensión en el ritmo de juego.\\
 
-Para construir este comportamiento, se utilizarán un componentes de tipo \texttt{State} extra:
+Desde el punto de vista del diseño, la \textit{Skywatch Eagle} responde a dos intenciones clave: por un lado, introducir un enemigo volador que no se limita a un movimiento cíclico, sino que reacciona activamente a la presencia del jugador; y por otro, obligar al jugador a planificar su avance con más cuidado, ya que un movimiento en falso puede activar un ataque difícil de esquivar.\\
+
+El comportamiento de este enemigo está compuesto por dos estados diferenciados:
 
 \begin{itemize}
-\item Uno de ellos será el comportamiento de patrulla, estado en el que el enemigo se desplaza aleatoriamente por una zona aérea mediante un \texttt{Move To A Point Actuator} configurado para moverse a través de puntos generados aleatoriamente en la zona gris de la  Figura~\ref{fig:SkywatchEagle}. En este estado también se encuentra la transición al estado de ataque, a través de un \texttt{Distance Sensor} que mide la distancia entre ambos. \\
-\item En este estado, el águila se mueve rápidamente hacia la posición del jugador usando un \texttt{Move To Object Actuator}. Cuando el daño es realizado, vuelve a su estado inicial a través de un \texttt{Collision Sensor} configurado para activarse al contacto con el jugador.
+    \item \textbf{Estado 1 – Patrullaje aéreo:}  
+    En este estado, el águila se desplaza de forma libre dentro de un área específica del escenario. La trayectoria entre puntos es fluida, y su movimiento tiene una función más disuasoria que ofensiva. Durante esta fase, observa el entorno en busca del jugador.
+
+    \begin{itemize}
+        \item \textit{Acción:} Movimiento entre posiciones aleatorias en el espacio aéreo.  
+        \item \textit{Condición de transición:} Si el jugador se acerca lo suficiente, la enemiga cambia al estado de ataque.
+    \end{itemize}
+
+    \item \textbf{Estado 2 – Picado de ataque:}  
+    Al entrar en este estado, la \textit{Skywatch Eagle} modifica radicalmente su comportamiento, lanzándose en picado hacia el jugador a gran velocidad. Durante este movimiento, su capacidad de infligir daño se activa. Tras el impacto, regresa al estado de patrullaje.
+
+    \begin{itemize}
+        \item \textit{Acción:} Desplazamiento rápido hacia la última posición detectada del jugador.  
+        \item \textit{Condición de transición:} Al producirse el impacto con el jugador, retorna al estado de patrullaje.
+    \end{itemize}
 \end{itemize}
 
-Adicionalmente, contará con un \texttt{Damage Emitter} que inflige una unidad de daño si colisiona con el jugador durante el picado y exclusivamente durante el picado.
+Este comportamiento se inspira directamente en patrones detectados en enemigos como la Vengamosca de \textit{Hollow Knight}, que combina movilidad aérea con un cambio de comportamiento agresivo al detectar al jugador. Esta dinámica se refleja también en la \textit{Skywatch Eagle}, cuya transición desde un patrullaje pasivo a un ataque en picado introduce una amenaza repentina y exige una respuesta rápida por parte del jugador. La inclusión de un estado de patrullaje previo refuerza el impacto del ataque y permite anticiparse, fomentando una experiencia de juego más estratégica.
+
 \begin{figure}[t]
 	\centering
 	\includegraphics[height=5cm]{Imagenes/AguilaCayendo.png}
@@ -372,4 +390,24 @@ Adicionalmente, contará con un \texttt{Damage Emitter} que inflige una unidad d
 	\label{fig:SkywatchEagle}
 \end{figure}
 
+\section{Conclusiones del Diseño}
+En este capítulo, tras el análisis de enemigos en juegos de referencia como \textit{Hollow Knight}, \textit{Blasphemous} y \textit{Bzzzt}, se ha definido la arquitectura conceptual del framework para la creación de enemigos en 2D. Dicha definición se organiza en cuatro bloques fundamentales:
 
+\begin{itemize}
+  \item \textbf{Sensores}, responsables de detectar condiciones del entorno (presencia del jugador, colisiones, distancia, daño recibido).
+  \item \textbf{Actuadores}, encargados de ejecutar acciones (movimientos lineales, circulares o spline, generación de unidades).
+  \item \textbf{Módulo de daño}, que distingue entre emisión y recepción de daño, regulando cómo se inflige o recibe daño.
+  \item \textbf{Máquina de Estados Finita}, que organiza los sensores y actuadores en estados coherentes y controla las transiciones entre ellos.
+\end{itemize}
+
+Asimismo, se ha incluido el mecanismo de sincronización con animaciones, que asocia cada estado de la FSM con la representación visual correspondiente, garantizando coherencia entre la lógica de IA y la experiencia del jugador.\\
+
+Los ejemplos de diseño han validado la capacidad del framework para reproducir y combinar los patrones detectados en juegos comerciales, demostrando:
+
+\begin{itemize}
+  \item Modularidad en la composición de comportamientos.
+  \item Escalabilidad en la complejidad de los enemigos.
+  \item Claridad visual y diseño accesible para no programadores.
+\end{itemize}
+
+Con esta base conceptual completada, en el siguiente capítulo se desarrollará la implementación práctica de todos estos componentes en Unity para materializar el diseño teórico en una herramienta funcional.
