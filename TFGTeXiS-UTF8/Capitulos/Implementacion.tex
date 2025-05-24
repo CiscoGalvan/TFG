@@ -38,10 +38,18 @@ En las siguientes secciones se describirá en detalle cada uno de los módulos q
 \section{Módulo de actuadores}
 
 El módulo de actuadores es el encargado de englobar todo el comportamiento de los actuadores en la herramienta. Para una explicación detallada del diseño de este módulo, puede consultarse la Sección~\ref{subsec:acciones}, donde se aborda el sistema de actuadores en su conjunto.
+\begin{figure}[t]
+	\centering
+	\includegraphics[width = 1\textwidth]{Imagenes/UMLActuator2.png}
+	\caption{Animator Controller con sus estados y transiciones.}
+	\label{fig:AnimatorController_Image}
+\end{figure}
+
 
 \subsection{Actuator}
 
 La clase abstracta \texttt{Actuator} define la interfaz común para todos los actuadores del módulo. Hereda de \texttt{MonoBehaviour}, permitiendo así su uso como componente en objetos de Unity. Su principal propósito es establecer una estructura homogénea que garantice que todos los actuadores puedan ser gestionados, activados, actualizados y destruidos de forma coherente y centralizada.\\
+
 
 \texttt{Actuator} declara tres métodos abstractos que deben ser implementados por todas las clases derivadas:
 
@@ -203,14 +211,15 @@ Desde el punto de vista estructural, el módulo está diseñado siguiendo una ar
 
 
 Para más detalles del diseño del módulo visitar la Sección~\ref{subsec:sensores}.
-%La Figura~\ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. Para un análisis más detallado del diseño de este módulo, véase la Sección~\ref{subsec:sensores}.
+La Figura~\ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. 
+Para un análisis más detallado del diseño de este módulo, véase la Sección~\ref{subsec:sensores}.
 
-%\begin{figure}[t]
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{Imagenes/UML_SensorModule.png}
-%	\caption{Diagrama UML del módulo de sensores.}
-%	\label{fig:UML_SensorModule}
-%\end{figure}
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.75\textwidth]{Imagenes/UMLSensor.png}
+	\caption{Diagrama UML del módulo de sensores.}
+	\label{fig:UML_SensorModule}
+\end{figure}
 
 \subsection{Sensor}
 La clase \texttt{Sensor} actúa como clase base para todos los sensores de la herramienta. Implementa una arquitectura basada en el patrón observador (observer), en la que cualquier componente interesado puede registrarse para ser notificado cuando el sensor se active.\\
@@ -332,6 +341,12 @@ El módulo de daño es el encargado de gestionar todas las interacciones relacio
 
 Este módulo se compone principalmente de dos clases clave: \texttt{DamageEmitter} y \texttt{DamageSensor}.
 
+\begin{figure}[t]
+		\centering
+		\includegraphics[width = 0.9\textwidth]{Imagenes/DamageUML.png}
+		\caption{AreaSensor utilizado para enemigo que cae al detectar al jugador.}
+		\label{fig:AreaSensor_Image}
+\end{figure}
 \subsection{DamageEmitter}
 Para que una entidad pueda emitir daño, debe tener adjunto el componente \texttt{DamageEmitter}.\\
 Este componente no implementa funcionalidad adicional en su propio componente, sino que actúa como una señal para el \texttt{DamageSensor}, que será explicado en el siguiente apartado. La detección de daño por parte del sensor depende de que el objeto con el que colisiona tenga este componente adjunto.\\
