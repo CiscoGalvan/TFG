@@ -89,7 +89,7 @@ Un Árbol de Comportamiento (Behavior Tree o BT) es una técnica utilizada para 
 Los nodos de un BT pueden dividirse en varias categorías, siendo las principales:
 
 \begin{itemize}
-\item Nodos hoja (leaf nodes): Acciones concretas que ejecuta el agente, como moverse a un punto'' o ``atacar al enemigo''.
+\item Nodos hoja (leaf nodes): Acciones concretas que ejecuta el agente, como ''moverse a un punto'' o ``atacar al enemigo''.
 \item Nodos compuestos: Agrupan varios nodos hijos y determinan en qué orden deben ejecutarse (por ejemplo, secuencias o selectores).
 \item Nodos de control o decoradores: Modifican el comportamiento de los nodos hijos (por ejemplo, repetir un nodo mientras se cumpla una condición).
 \end{itemize}
@@ -108,7 +108,7 @@ La gran diferencia en cómo Spore utiliza los Árboles de Comportamiento frente 
 
 Para resolver estos problemas, el equipo de Maxis decidió separar completamente los nodos de decisión (deciders) de los nodos de acción (behaviors). Los deciders actúan como controladores que eligen qué behavior ejecutar en función del contexto, mientras que los behaviors se mantienen como bloques de acción reutilizables. Esta estructura modular y jerárquica no solo mejora la claridad del árbol, sino que también facilita su escalabilidad y mantenimiento en proyectos complejos como Spore.\\
 
-La Figura \ref{fig:BT Spore} es un ejemplo de un BT sacado de las documentación\footnote{ \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}} que hay publicada del juego.
+La Figura \ref{fig:BT Spore} es un ejemplo de un BT sacado de las documentación \cite{Documentacionspore} que hay publicada del juego.
 En este árbol, los nodos se dividen en dos tipos principales:
 \begin{itemize}
 \item Nodos de decisión (deciders): Representados con forma de rombo (como \textit{GUARD}, \textit{EAT}, \textit{IDLE}), son los encargados de seleccionar cuál de sus nodos hijos ejecutar en función del contexto o condiciones actuales. Evalúan a sus hijos en orden y seleccionan el primero que sea válido.
@@ -124,7 +124,7 @@ Gracias a esta organización, se logra modularidad y escalabilidad: por ejemplo,
 	\caption[Árbol de comportamiento de Spore]{Ilustración de un árbol de comportamiento tomado del diseño del videojuego \textit{Spore}, utilizado para modelar decisiones complejas en NPC's.\footnotemark}
 	\label{fig:BT Spore}
 \end{figure}
-\footnotetext{Fuente: Documentación de diseño de Spore \url{https://chrishecker.com/My_Liner_Notes_for_Spore/Spore_Behavior_Tree_Docs}}
+
 \subsection{Goal-Oriented Action Planning}
 
 GOAP es un sistema basado en planificación de acciones. En lugar de definir comportamientos fijos como hemos visto anteriormente, la entidad analiza la situación y construye un plan para alcanzar el objetivo designado.

@@ -5,43 +5,58 @@ En esta sección se describen las aportaciones individuales de cada autor al des
 
 \section{Contribuciones de Cristina Mora Velasco}
 \subsection{Antecedentes}
-En el verano anterior al inicio del proyecto, comencé una investigación exhaustiva enfocada en cómo desarrollar herramientas efectivas, poniendo especial atención en facilitar las tareas de los diseñadores. El objetivo principal era hacer que las funcionalidades fueran lo más intuitivas y visuales posibles, reduciendo al máximo la necesidad de memorizar procedimientos complejos o comandos específicos. Esto es debido a que aunque pueda parecer algo sumamente sencillo, usan muchas herramientas distintas y tienen que tener grandes cantidades de informacion en la cabeza, haciendo que sea tedioso el tener que recordar funcionalidades que pueden ser reconocidas de manera más rapida y sencilla de manera visual. 
-Adicionalmente, contaba ya con conocimientos previos sobre el funcionamiento y aplicación de las máquinas de estados. Este tema introducido por primera vez en la asignatura Fundamentos de Computadores y reforzado de forma práctica a lo largo de toda la carrera. 
+En el verano anterior al inicio del proyecto, comencé una investigación exhaustiva enfocada en cómo desarrollar herramientas efectivas, poniendo especial atención en facilitar las tareas de los diseñadores. El objetivo principal era hacer que las funcionalidades fueran lo más intuitivas y visuales posibles, reduciendo al máximo la necesidad de memorizar procedimientos complejos o comandos específicos. Esto es debido a que aunque pueda parecer algo sumamente sencillo, usan muchas herramientas distintas y tienen que tener grandes cantidades de información en la cabeza, haciendo que sea tedioso tener que recordar funcionalidades que pueden ser reconocidas de manera más rápida y sencilla de manera visual. 
+Toda la información que recaudé me pareció sumamente relevante ya que hay elementos que pasamos por alto al estar acostumbrados a usarlos diariamente y que para otras personas es algo totalmente nuevo.
+Adicionalmente, contaba ya con conocimientos previos sobre el funcionamiento y aplicación de las máquinas de estados. Este tema introducido por primera vez en la asignatura  \textit{Fundamentos de Computadores} y reforzado de forma práctica a lo largo de toda la carrera. Así mismo también había trabajado ya en diferentes proyectos con  \textit{Unity}.
 \subsection{Aportaciones}
 \subsubsection{Investigación}
-La investigación empezó en septiembre, tratando de recabar información relevante. Para eso primero realicé un análisis en profundidad de los distintos tipos de enemigos que existen en el Hollow Knight separando entre enemigos base y jefes finales. Centrándome en los primeros ya que son los que aparecen con más frecuencia. Analice su comportamiento creando descripciones y máquinas de estado sobre su comportamiento.   permitió identificar patrones de comportamientos similares entre diferentes enemigos a nivel visual, donde en realidad la implementación es la misma. Esto se puede ver mucho mejor en el juego bzzzt que también analicé donde un mismo comportamiento se puede ver hasta en cinco enemigos diferentes. Todo este análisis permitió no solo encontrar elementos comunes como ya he mencionado, sino también encontrar los comportamientos más repetidos.
-Todo esto hizo que tuviera una estructura clara en la cabeza que permitiese ser escalada de forma sencilla y que tuviera todos los comportamientos identificados.\\
+Aunque como he dicho antes, inicié una investigación previa en verano sobre las herramientas para diseñadores, en septiembre, empecé a centrarme más específicamente en el tema a tratar, es decir, enemigos en videojuegos 2D. Para eso primero realicé un análisis en profundidad de los distintos tipos de enemigos que existen en el Hollow Knight separando entre enemigos base y jefes finales. Centrándome en los primeros ya que son los que aparecen con más frecuencia. Analice su comportamiento creando descripciones y máquinas de estado sobre su comportamiento lo que me permitió identificar patrones similares entre diferentes enemigos a nivel visual, donde en realidad su funcionamiento es el mismo. Esto se puede ver mucho mejor en el juego Bzzzt que también analicé donde un mismo comportamiento se puede ver hasta en cinco enemigos diferentes. Todo este análisis permitió no solo encontrar elementos comunes como ya he mencionado, sino también encontrar los más repetidos.
+Todo esto hizo que tuviera una estructura clara en la cabeza que permitiese ser escalada de forma sencilla y que tuviera todos los comportamientos identificados. \\
+Para la realización del análisis de ambos videojuegos observé game plays entorno a las cinco horas para el Hollow Knight y tres horas para el Bzzzt. Mientras tanto apuntaba los comportamientos. Además, también jugué durante otras 3 horas al Hollow Knight, poniendo especial detalle a aquellos enemigos que detectaban la distancia del jugador o volaban ya que su comportamiento era necesario observarlos con más detalle, por ejemplo, para identificar como era el movimiento de vuelo que hacían.\\
+
 En paralelo a este trabajo realicé la lectura de diferentes trabajos realizados como Generador de comportamientos de enemigos para videojuegos 2D de Daniel Quintero o Herramientas De Diseño Basado En Bocetos Del Comportamiento En Videojuegos de Jorge Antonio Magallanes Borbor. Además de los artículos de investigación también use conocimientos de conferencias de la GDC que permitió tener un conocimiento general sobre el  entorno de la herramienta, saber que estaba ya hecho y de qué forma, pudiendo analizarlos encontrando puntos débiles, fortalezas e información relevante para nuestra estructura.
 
 \subsubsection{Confección de la herramienta}
 \begin{itemize}
-  \item \textbf{Movimiento Vertical:} Desarrollo del movimiento vertical, con movimiento constante y acelerado, incluyendo colisiones, velocidad, lanzamiento...
-  \item \textbf{Movimiento Horizontal:} Desarrollo del movimiento horizontal, con movimiento constante y acelerado, incluyendo colisiones, velocidad, lanzamiento...
-  \item \textbf{Movimiento circular:}  Desarrollo del movimiento circular y solución de problemas relacionados con el cálculo de posiciones alrededor de un punto de rotación.
-  \item \textbf{Movimiento por splines:} Desarrollo del movimiento por splines creando una integración del sistema de splines de Unity para permitir enemigos que sigan trayectorias curvas predefinidas.
-  \item \textbf{Actuador Spawner:} Desarrollo del componente encargado de generar enemigos u objetos, incluyendo control por intervalos, posición y número de repeticiones.
+	\item \textbf{Actuator:} Diseño e implementación de clase padre \texttt{Actuator} y relación con sus clases hijas.
+\item \textbf{MovementActuator:}  Corrección de errores y mantenimiento de la clase.
+  \item \textbf{VerticalActuator:} Implementación del desplazamiento vertical con movimiento constante, resolución de errores en la aceleración. Se incluye el manejo
+de colisiones, control de velocidad y comportamiento de lanzamiento.
+
+  \item \textbf{HorizontalActuator:}Implementación del desplazamiento horizontal con movimiento constante, resolución de errores en la aceleración. Se incluye el manejo
+de colisiones, control de velocidad y comportamiento de lanzamiento.
+  \item \textbf{CcircularActuator:} Implementación del movimiento circular y solución de problemas relacionados con el cálculo de posiciones alrededor de un punto de rotación.
+  \item \textbf{SplinesActuator:} Realización de la implementación íntegra del
+componente. Desarrollo del movimiento por splines creando una integración del sistema de splines de Unity para permitir enemigos que sigan trayectorias curvas predefinidas.
+  \item \textbf{SpawnerActuator:} Realización de la implementación íntegra del
+componente. Desarrollo del componente encargado de generar enemigos u objetos, incluyendo control por intervalos, posición, número de repeticiones y listas de objetos y posición.
   \item \textbf{Simplificaciones en Move to a Point:} Revisé el componente de movimiento hacia puntos fijos para mejorar su configuración y permitir comportamientos uniformes o personalizados por waypoint.
   \item \textbf{Collision Sensor:}  Desarrollo del sensor encargado de las colisiones.
-
-  \item \textbf{Sensor base:} Implementación de la lógica base del Sensor. Programación del sensor de tiempo y su clase base, permitiendo activar transiciones tras un periodo específico.
-  \item \textbf{Sensor de distancia:} Implementación del sensor que detecta la proximidad a un objetivo.
- \item \textbf{Sensores de daño:} Creación de distintos comportamientos que producían daño. Más adelante fueron unificados en uno solo simplificando su uso e integración.
- \item \textbf{Sensor de Tiempo:} Implementación del sensor, que envía un mensaje tras un tiempo especificado.
+  \item \textbf{Sensor:} Implementación de la lógica base del Sensor. 
+  \item \textbf{DistanceSensor:}: Implementación del sensor de distancia, incluyendo visualización para depuración y capacidad para identifcar si un objeto se encuentra dentro o fuera del rango especificado.
+ \item \textbf{DamageSensor:} Creación de distintos comportamientos que producían daño. Más adelante fueron unificados en uno solo simplificando su uso e integración.
+ \item \textbf{ DamageEmitter:} Creación de la lógica encargada de gestionar la emisión de
+daño. 
+ \item \textbf{TimeSensor:} Implementación del sensor, que envía un mensaje tras un tiempo.
  \item \textbf{Temporizador:} Creación de la clase base Timer que se utiliza para el SpawnerEnemy y para el Sensor de Tiempo.
-  \item \textbf{Movimiento inicial del jugador:} Desarrollo de una versión básica del sistema de control del jugador, que más adelante fue mejorado e implementado por mi compañero.
-\item \textbf{Gestión de animaciones:} Implementación del sistema \texttt{Animator Manager} para conectar los estados de la FSM con las animaciones del enemigo, incluyendo control de dirección (flip) y vinculación con controladores.
+  \item \textbf{Movimiento inicial del jugador:} Desarrollo de una versión básica del sistema de control del jugador, que más adelante fue mejorado.
+  \item \textbf{FSM:}  Creación de la clase que representa la Máquina de Estados y lógica
+necesaria.
+ \item \textbf{State:}  Creación de la clase que representa el estado y lógica necesaria, incluida transiciones entre estados.
+\item \textbf{Gestión de animaciones:} Implementación y diseño íntegro del sistema \texttt{Animator Manager} para conectar los estados de la FSM con las animaciones del enemigo, incluyendo control de dirección (flip) y vinculación con controladores.
 \item \textbf{Controladores de animaciones:} Creación de una máquina de estados base con todos los estados más comunes que se dan en los enemigos y que para usarla solo hace falta cambiar los clips de esta.
   \item \textbf{Sistema de vida:} Implementación del componente \texttt{Life}, que gestiona la salud tanto del jugador como de los enemigos, enlazado a sensores de daño.
   \item \textbf{Dibujado de elementos:} Desarrollo de elementos visuales auxiliares dentro de los componentes para facilitar la visualización de trayectorias, áreas de detección y puntos de aparición.
-  \item \textbf{Editores personalizados:} Programación de editores en Unity para la configuración intuitiva de componentes.
-  \item \textbf{FSM y State base:} Implementación de la lógica base de las máquinas de estados y de los estados individuales.
+  \item \textbf{Editores personalizados:} Implementación de la lógica necesaria para que la
+información requerida en el inspector de Unity fuera acorde a los valores que
+se tengan en todo momento.
   \item \textbf{Limitación en la lista de actuadores y creación de transiciones:} Desarrollo de una validación para evitar que un mismo tipo de actuador se añada más de una vez a un mismo estado, evitando errores de ejecución. Además de la implementación de la lista de transiciones.
   \item \textbf{Subscripción a eventos:} Diseño de un sistema de eventos que permite que un sensor mande información.
-  \item \textbf{Creación de escenas de enemigos:} Elaboración de escenas de ejemplo que muestran enemigos funcionales usando las distintas combinaciones de sensores, actuadores y estados.
-  \item \textbf{Comentarios explicativos:} Añadí comentarios extensivos en el código y en las escenas para facilitar la comprensión del comportamiento de cada enemigo.
+  \item \textbf{Creación de escenas de enemigos:} Elaboración de escenas de ejemplo que muestran enemigos funcionales usando las distintas combinaciones de sensores, actuadores y estados. Además arreglé errores del nivel de prueba.
+  \item \textbf{Documentación:} Documentación del código con comentarios explicativos y en las escenas para facilitar la comprensión del comportamiento de cada enemigo.
   \item \textbf{Tooltips personalizados:} Implementación de descripciones emergentes (tooltips), facilitando el uso de la herramienta sin necesidad de consultar el manual constantemente.
  \item \textbf{Creación del proyecto:} Configuración inicial del proyecto en Unity y sistema de carpetas.
- \item \textbf{Exportación de la herramienta:} Preparación de la herramienta como un paquete Unity exportable, con estructura organizada y funcionalidad probada. Aunque esto lo inicie yo, mi compañero hizo la versión final.
+ \item \textbf{Exportación de la herramienta:} Preparación de la herramienta como un paquete Unity exportable, con estructura organizada y funcionalidad probada. 
   \item \textbf{Importación de assets:} Integración de los assets visuales del proyecto y adecuación de sus propiedades para su uso en el framework.
   \item \textbf{Revisión general del código:} Revisión exhaustiva de todo el código fuente para garantizar la limpieza y consistencia.
 \end{itemize}
@@ -56,7 +71,7 @@ organización en orden de aparición en la memoria:
   \item \textbf{Organización del estado de la cuestión:} Elección de técnicas, herramientas y motores que se iban a explicar, explicadas por mi compañero.
   \item \textbf{Corrección general del estado de la cuestión:} Revisión de los contenidos.
   \item \textbf{Descripción del trabajo:} Explicación detallada de las decisiones de diseño e implementación, reflejando tanto los aspectos técnicos como la justificación de decisiones.
-  \item \textbf{Implementación:} Redacción de los actuadores y Animations, es decir el 4.3 y el 4.5
+  \item \textbf{Implementación:} Redacción de los Actuators y Animations, es decir el 4.3 y el 4.5
   \item \textbf{Evaluación con usuarios:} Redacción de la sección dedicada a la evaluación, que incluye:
   \begin{itemize}
     \item Introducción.
@@ -70,6 +85,7 @@ organización en orden de aparición en la memoria:
 
   \item \textbf{Corrección general de la memoria:} Lectura final completa del documento, detectando errores  y posibles mejoras en redacción.
   \item \textbf{Conclusiones y Trabajo Futuro:} Redacción de la sección dedicada añas conclusiones obtenidas y el trabajo que se realizará en un futuro.
+\item \textbf{ Últimas modificaciones:} Revisión final de la memoria y últimas modificaciones propuestas por el tutor.
 \end{itemize}
 
 \subsubsection{Manual}
@@ -80,14 +96,14 @@ La estructura general del manual fue diseñada con el objetivo de guiar al usuar
     \item Funcionalidad de la herramienta y del manual:  Objetivo de la herramienta y del manual.
     \item Publico objetivo: A quién va dirigida la herramienta.
     \item Requisitos e instalación: Descripción por pasos para la instalación. Así como la especificación de recursos necesarios  para esta.
-    \item Contenido del paquete: Organización de los archivos que se imprtan, epxlicando la utilidad de cada carpeta.
+    \item Contenido del paquete: Organización de los archivos que se importan, explicando la utilidad de cada carpeta.
     \item Componentes Detallados: Es el bloque más extenso del manual y el más técnico. Aquí documenté de forma minuciosa todos los elementos del framework. Dividido en secciones: Actuadores, Sensores, Maquinas de estado, animaciones y Vida.
     \item Ejemplos prácticos: Diseñé y documenté cinco ejemplos representativos que abarcan desde enemigos muy simples (como pinchos) hasta comportamientos más complejos.
     \item Preguntas frecuentes y solución a posibles errores: tabla de errores comunes detectados durante el testeo y sus posibles soluciones.
     \item Glosario: Redacté un glosario técnico con definiciones breves y claras de todos los conceptos importantes para facilitar la comprensión a personas no expertas en programación o desarrollo de videojuegos.
     \item Soporte: Incluí la información de contacto para que los usuarios pudieran resolver dudas o proponer mejoras.
   \end{itemize}
-
+También me encargué de la revisión general de los contenidos y de su actualización.
 
 \section{Contribuciones de Francisco Miguel Galván Muñoz}
 \subsection{Antecedentes}

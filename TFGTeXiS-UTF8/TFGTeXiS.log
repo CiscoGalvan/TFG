@@ -1,14 +1,18 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.1.31)  22 MAY 2025 23:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.26)  25 MAY 2025 21:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/TFGTeXiS.tex
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/TFGTeXiS.tex
+**./TFGTeXiS.tex
+(TFGTeXiS.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\book.c
+ls
 Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\bk12.clo
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\bk12.c
+lo
 File: bk12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count187
@@ -28,11 +32,11 @@ File: bk12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 75.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\config.tex)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS.sty
+(config.tex) (TeXiS/TeXiS.sty
 Package: TeXiS/TeXiS 
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/tools\verba
+tim.sty
 Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks17
 \verbatim@line=\toks18
@@ -44,42 +48,49 @@ Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 460.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_pream.tex
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\shortvrb.sty
+(TeXiS/TeXiS_pream.tex
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\shortv
+rb.sty
 Package: shortvrb 2022/11/13 v3.0m Standard LaTeX documentation package V3 (FMi
 )
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\inpute
+nc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks19
 \inpenc@posthook=\toks20
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natb
+ib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip50
 \bibsep=\skip51
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count196
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/babel\bab
+el.sty
 Package: babel 2024/01/07 v24.1 The Babel package
 \babel@savecnt=\count197
 \U@D=\dimen141
 \l@unhyphenated=\language79
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/babel\txt
+babel.def)
 \bbl@readstream=\read3
 \bbl@dirlevel=\count198
 
 *************************************
 * Local config file bblopts.cfg used
 *
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblop
+ts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.l
-df
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/babel-engli
+sh\english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
@@ -88,8 +99,8 @@ Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 (babel)             (\language73). Reported on input line 108.
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/babel-spanish\spanish.l
-df
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/babel-spani
+sh\spanish.ldf
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks21
 \es@quotdepth=\count199
@@ -99,27 +110,30 @@ Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
 Package babel Info: Making ' an active character on input line 740.
 ))
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/es\babel
--spanish.tex
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/babel/loc
+ale/es\babel-spanish.tex
 Package babel Info: Importing font and identification data for spanish
 (babel)             from babel-es.ini. Reported on input line 11.
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babel
--english.tex
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/babel/loc
+ale/en\babel-english.tex
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 11.
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifpdf.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifp
+df.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ift
+ex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/fncychap\fncychap.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/fncychap\fn
+cychap.sty
 Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \RW=\skip52
 \mylen=\skip53
@@ -129,64 +143,75 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \pyy=\skip57
 \pxx=\skip58
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hy
+perref.sty
 Package: hyperref 2023-11-26 v7.01g Hypertext links for LaTeX
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
-ty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr
+\infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+)
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\ke
+yval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks22
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\k
+vsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
-keys.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinek
+eys\kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
-ty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape
+\pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\l
+txcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
-.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmd
+s\pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 ))
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hyc
+olor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro
-.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro
+\letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\aux
+hook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\na
+meref.sty
 Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/refcount\re
+fcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
-lestring.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/gettitles
+tring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\k
+voptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count266
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\et
+oolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count267
 )
@@ -194,17 +219,20 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \Hy@linkcounter=\count268
 \Hy@pagecounter=\count269
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd
+1enc.def
 File: pd1enc.def 2023-11-26 v7.01g Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\i
+ntcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count270
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pu
+enc.def
 File: puenc.def 2023-11-26 v7.01g Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -227,11 +255,13 @@ Package hyperref Info: Bookmarks ON on input line 4448.
 \c@Hy@tempcnt=\count271
 LaTeX Info: Redefining \url on input line 4786.
 \XeTeXLinkMargin=\dimen143
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bi
+tset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
-.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/bigintcal
+c\bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -246,7 +276,8 @@ Package hyperref Info: Link coloring OFF on input line 6085.
 Package hyperref Info: Link coloring with OCG OFF on input line 6090.
 Package hyperref Info: PDF/A mode OFF on input line 6095.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegs
+hi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
@@ -255,10 +286,13 @@ package with kernel methods
 \c@Hfootnote=\count275
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hp
+dftex.def
 File: hpdftex.def 2023-11-26 v7.01g Hyperref driver for pdfTeX
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\atvery
+end-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
@@ -266,12 +300,12 @@ with kernel methods
 \Fld@listcount=\count276
 \c@bookmark@seq@number=\count277
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
-echeck.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilech
+eck\rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
-ounter.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/uniquecou
+nter\uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -281,7 +315,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `false' on input line 290.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\makeid
+x.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 )
 \@indexfile=\write4
@@ -289,7 +324,9 @@ Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 
 
 Writing index file TFGTeXiS.idx
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/tools\multi
+col.sty
 Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
 \c@tracingmulticols=\count278
 \mult@box=\box51
@@ -359,13 +396,16 @@ Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
 \colbreak@box=\box96
 \mc@col@check@num=\count287
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/subfig\subfig.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/subfig\subf
+ig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/caption\cap
+tion.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/caption\cap
+tion3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen155
 \captionmargin=\dimen156
@@ -396,7 +436,9 @@ Package caption Info: hyperref package is loaded.
 \sf@bottom=\skip66
 )
 \sf@box=\box97
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/listings\li
+stings.sty
 \lst@mode=\count297
 \lst@gtempboxa=\box98
 \lst@token=\toks23
@@ -410,20 +452,25 @@ Package caption Info: hyperref package is loaded.
 \lst@lineno=\count302
 \lst@maxwidth=\dimen167
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/listings\ls
+tmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \c@lstnumber=\count303
 \lst@skipnumbers=\count304
 \lst@framebox=\box99
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/listings\li
+stings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabul
+arx.sty
 Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/tools\array
+.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen168
 \ar@mcellbox=\box100
@@ -441,7 +488,8 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \TX@cols=\count305
 \TX@ftn=\toks25
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\bo
+oktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen175
 \lightrulewidth=\dimen176
@@ -461,28 +509,34 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@lastruleclass=\count309
 \@thisrulewidth=\dimen187
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\fonten
+c.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\epsfig.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\ep
+sfig.sty
 Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\gr
+aphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\gr
+aphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\tr
+ig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
-fg
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cf
+g\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics-de
+f\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen188
@@ -490,7 +544,9 @@ File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 )
 \epsfxsize=\dimen190
 \epsfysize=\dimen191
-) (C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
+)
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.
+sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count310
 \calc@Bcount=\count311
@@ -503,10 +559,12 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count312
 \calc@Cskip=\skip71
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/geometry\ge
+ometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifv
+tex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count313
@@ -522,31 +580,41 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutvoffset=\dimen257
 \Gm@dimlist=\toks26
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/geometry\ge
+ometry.cfg))
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\co
+lortbl.sty
 Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\co
+lor.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cf
+g\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
-)
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\ma
+thcolor.ltx))
 \everycr=\toks27
 \minrowclearance=\skip72
 \rownum=\count316
-) (C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+)
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcol
+or.sty
 Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cf
+g\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 LaTeX Info: Redefining \color on input line 758.
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\ma
+thcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
 Package xcolor Info: Model `RGB' extended on input line 1366.
@@ -556,8 +624,10 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
-) (C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
-Package: titlesec 2025/01/04 v2.17 Sectioning titles
+)
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\ti
+tlesec.sty
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box102
 \beforetitleunit=\skip73
 \aftertitleunit=\skip74
@@ -567,7 +637,9 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidth=\dimen260
 \titlewidthlast=\dimen261
 \titlewidthfirst=\dimen262
-) (C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.sty
+)
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\cs
+quotes.sty
 Package: csquotes 2024-04-04 v5.2o context-sensitive quotations (JAW)
 \csq@reset=\count317
 \csq@gtype=\count318
@@ -576,22 +648,28 @@ Package: csquotes 2024-04-04 v5.2o context-sensitive quotations (JAW)
 \csq@maxlvl=\count321
 \csq@tshold=\count322
 \csq@ltx@everypar=\toks29
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.def
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\cs
+quotes.def
 File: csquotes.def 2024-04-04 v5.2o csquotes generic definitions (JAW)
 )
 Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.cfg
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\cs
+quotes.cfg
 File: csquotes.cfg 
-)) (C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\pdfpages.st
-y
+))
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\pd
+fpages.sty
 Package: pdfpages 2024/10/28 v0.6c Insert pages of external PDF documents (AM)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen
+.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/eso-pic\eso-pic.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/eso-pic\eso
+-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
 \ESO@tempdima=\dimen263
 \ESO@tempdimb=\dimen264
@@ -600,7 +678,8 @@ Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
 \AM@pageheight=\dimen266
 \AM@fboxrule=\dimen267
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\pppdftex.def
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\pp
+pdftex.def
 File: pppdftex.def 2024/10/28 v0.6c Pdfpages driver for pdfTeX (AM)
 )
 \pdfpages@includegraphics@status=\count323
@@ -616,83 +695,75 @@ File: pppdftex.def 2024/10/28 v0.6c Pdfpages driver for pdfTeX (AM)
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 464.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_cab.tex
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
-Package: fancyhdr 2025/01/07 v5.1.1 Extensive control of page headers and foote
-rs
+(TeXiS/TeXiS_cab.tex
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fa
+ncyhdr.sty
+Package: fancyhdr 2024/11/20 v4.4 Extensive control of page headers and footers
+
 \f@nch@headwidth=\skip75
-\f@nch@offset@elh=\skip76
-\f@nch@offset@erh=\skip77
-\f@nch@offset@olh=\skip78
-\f@nch@offset@orh=\skip79
-\f@nch@offset@elf=\skip80
-\f@nch@offset@erf=\skip81
-\f@nch@offset@olf=\skip82
-\f@nch@offset@orf=\skip83
-\f@nch@height=\skip84
-\f@nch@footalignment=\skip85
-\f@nch@widthL=\skip86
-\f@nch@widthC=\skip87
-\f@nch@widthR=\skip88
-\@temptokenb=\toks33
+\f@nch@O@elh=\skip76
+\f@nch@O@erh=\skip77
+\f@nch@O@olh=\skip78
+\f@nch@O@orh=\skip79
+\f@nch@O@elf=\skip80
+\f@nch@O@erf=\skip81
+\f@nch@O@olf=\skip82
+\f@nch@O@orf=\skip83
 ))
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 467.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_cover.tex)
+(TeXiS/TeXiS_cover.tex)
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 470.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_dedic.tex)
+(TeXiS/TeXiS_dedic.tex)
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 473.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_bib.tex))
+(TeXiS/TeXiS_bib.tex))
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
 e 81.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\constantes.tex)
+(constantes.tex)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'spanish'.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
-tex.def
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l
+3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count326
 \l__pdf_internal_box=\box105
-) (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.aux
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/cover.aux)
+) (TFGTeXiS.aux (Cascaras/cover.aux)
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/dedicatoria.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/agradecimientos.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/resumen.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/abstract.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_toc.aux)
+(Cascaras/dedicatoria.aux) (Cascaras/agradecimientos.aux) (Cascaras/resumen.aux
+) (Cascaras/abstract.aux) (TeXiS/TeXiS_toc.aux)
 LaTeX Info: Redefining \. on input line 20.
 LaTeX Info: Redefining \% on input line 20.
+ (Capitulos/Introduccion.aux)
+(Capitulos/EstadoDeLaCuestion.aux) (Capitulos/DescripcionTrabajo.aux)
+(Capitulos/Implementacion.aux
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/Introduccion.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/EstadoDeLaCuestion.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/DescripcionTrabajo.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/Implementacion.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/EvaluacionConUsuarios.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/ConclusionesTrabajoFuturo.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/Introduction.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/ConclusionsFutureWork.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/ContribucionesPersonales.aux)
+LaTeX Warning: Label `fig:AreaSensor_Image' multiply defined.
+
+) (Capitulos/EvaluacionConUsuarios.aux)
+(Capitulos/ConclusionesTrabajoFuturo.aux) (Capitulos/Introduction.aux
+
+LaTeX Warning: Label `fig:GanttEnemyBehaviour2D' multiply defined.
+
+) (Capitulos/ConclusionsFutureWork.aux) (Capitulos/ContribucionesPersonales.aux
+)
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/bibliografia.aux)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/fin.aux))
+ (Cascaras/bibliografia.aux) (Cascaras/fin.aux))
 \openout1 = `TFGTeXiS.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
@@ -716,9 +787,7 @@ LaTeX Font Info:    ... okay on input line 105.
 LaTeX Info: Redefining \. on input line 105.
 LaTeX Info: Redefining \% on input line 105.
 Package hyperref Info: Link coloring OFF on input line 105.
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.out)
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.out)
+ (TFGTeXiS.out) (TFGTeXiS.out)
 \@outlinefile=\write5
 \openout5 = `TFGTeXiS.out'.
 
@@ -728,29 +797,29 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count327
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
-ii
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/context/base/mkii
+\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count328
 \scratchdimen=\dimen268
 \scratchbox=\box106
 \nofMPsegments=\count329
 \nofMParguments=\count330
-\everyMPshowfont=\toks34
+\everyMPshowfont=\toks33
 \MPscratchCnt=\count331
 \MPscratchDim=\dimen269
 \MPnumerator=\count332
 \makeMPintoPDFobject=\count333
-\everyMPtoPDFconversion=\toks35
+\everyMPtoPDFconversion=\toks34
 )
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
-ase.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pk
+g\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
-fg
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\ep
+stopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 *geometry* driver: auto-detecting
@@ -788,30 +857,30 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\p
+dflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape-nom
-etadata.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\p
+dflscape-nometadata.sty
 Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PD
 F (HO)
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/graphics\lscape.sty
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/graphics\ls
+cape.sty
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-))
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\guionado.tex)
+)) (guionado.tex)
 \openout2 = `Cascaras/cover.aux'.
 
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/cover.tex
-\cambioIzquierdo=\skip89
-\cambioDerecho=\skip90
-\margenPortada=\skip91
-\evensidemarginOriginal=\skip92
-\oddsidemarginOriginal=\skip93
-\longTitulo=\skip94
+ (Cascaras/cover.tex
+\cambioIzquierdo=\skip84
+\cambioDerecho=\skip85
+\margenPortada=\skip86
+\evensidemarginOriginal=\skip87
+\oddsidemarginOriginal=\skip88
+\longTitulo=\skip89
 <Imagenes/Bitmap/escudoUCMcolor.png, id=487, 600.3228pt x 678.3744pt>
 File: Imagenes/Bitmap/escudoUCMcolor.png Graphic file (type png)
 <use Imagenes/Bitmap/escudoUCMcolor.png>
@@ -823,12 +892,11 @@ Package pdftex.def Info: Imagenes/Bitmap/escudoUCMcolor.png  used on input line
 
 
 
-{C:/Users/franc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <E:/CUARTOANH
-O/TFG/TFGTeXiS-UTF8/Imagenes/Bitmap/escudoUCMcolor.png>] [2] [3])
+{C:/Users/AliciaMoraVelasco/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <
+./Imagenes/Bitmap/escudoUCMcolor.png>] [2] [3])
 \openout2 = `Cascaras/dedicatoria.aux'.
 
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/dedicatoria.tex [4
+ (Cascaras/dedicatoria.tex [4
 
 
 
@@ -844,7 +912,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout2 = `Cascaras/agradecimientos.aux'.
 
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/agradecimientos.tex [6
+(Cascaras/agradecimientos.tex [6
 
 
 
@@ -852,8 +920,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 ]) [7]
 \openout2 = `Cascaras/resumen.aux'.
 
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/resumen.tex [8
+ (Cascaras/resumen.tex [8
 
 
 
@@ -862,7 +929,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout2 = `Cascaras/abstract.aux'.
 
 
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/abstract.tex [10
+(Cascaras/abstract.tex [10
 
 
 
@@ -872,27 +939,25 @@ LaTeX Info: Redefining \. on input line 125.
 LaTeX Info: Redefining \% on input line 125.
 \openout2 = `TeXiS/TeXiS_toc.aux'.
 
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TeXiS/TeXiS_toc.tex [12
-
+ (TeXiS/TeXiS_toc.tex [12
 
 
 
-]
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.toc
+
+] (TFGTeXiS.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
- [13] [14] [15]
+
+[13] [14] [15]
 LaTeX Info: Redefining \. on input line 143.
 LaTeX Info: Redefining \% on input line 143.
 )
 \tf@toc=\write6
 \openout6 = `TFGTeXiS.toc'.
 
- [16]
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.lof
+ [16] (TFGTeXiS.lof
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
@@ -903,14 +968,14 @@ Underfull \vbox (badness 4193) has occurred while \output is active []
  [17
 
 ]
-LaTeX Info: Redefining \. on input line 37.
-LaTeX Info: Redefining \% on input line 37.
+LaTeX Info: Redefining \. on input line 41.
+LaTeX Info: Redefining \% on input line 41.
 )
 \tf@lof=\write7
 \openout7 = `TFGTeXiS.lof'.
 
 
-[18] (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.lot
+[18] (TFGTeXiS.lot
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
@@ -930,18 +995,20 @@ LaTeX Info: Redefining \% on input line 15.
 ]
 \openout2 = `Capitulos/Introduccion.aux'.
 
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/Introduccion.tex
+ (Capitulos/Introduccion.tex
 Cap\'itulo 1.
 LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
 .
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1phv.fd
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1p
+hv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
 .
 
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1p
+tm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 Underfull \hbox (badness 10000) in paragraph at lines 11--12
@@ -951,7 +1018,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 [1
 
 
-{C:/Users/franc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+{C:/Users/AliciaMoraVelasco/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/
+8r.enc}]
 Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
@@ -967,11 +1035,12 @@ LaTeX Info: Redefining \% on input line 32.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [2]
-<Imagenes/GanttChart.png, id=784, 770.88pt x 578.16pt>
+<Imagenes/GanttChart.png, id=793, 770.88pt x 578.16pt>
 File: Imagenes/GanttChart.png Graphic file (type png)
 <use Imagenes/GanttChart.png>
 Package pdftex.def Info: Imagenes/GanttChart.png  used on input line 47.
@@ -992,7 +1061,8 @@ LaTeX Info: Redefining \% on input line 140.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [3]
@@ -1003,14 +1073,14 @@ LaTeX Info: Redefining \% on input line 140.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[4 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/GanttChart.png (PNG copy)>]
+[4 <./Imagenes/GanttChart.png (PNG copy)>]
 \openout2 = `Capitulos/EstadoDeLaCuestion.aux'.
 
-
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/EstadoDeLaCuestion.tex
+ (Capitulos/EstadoDeLaCuestion.tex
 Cap\'itulo 2.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--6
@@ -1033,7 +1103,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 14.
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 4.
-(C:\Users\franc\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+
+(C:\Users\AliciaMoraVelasco\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt
+.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 Underfull \hbox (badness 10000) in paragraph at lines 14--15
@@ -1231,7 +1303,8 @@ LaTeX Info: Redefining \% on input line 51.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [6]
@@ -1242,7 +1315,8 @@ LaTeX Info: Redefining \% on input line 51.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [7]
@@ -1255,7 +1329,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--56
 
  []
 
-<Imagenes/FMS_MsPac-man.png, id=831, 494.44725pt x 333.04425pt>
+<Imagenes/FMS_MsPac-man.png, id=839, 494.44725pt x 333.04425pt>
 File: Imagenes/FMS_MsPac-man.png Graphic file (type png)
 <use Imagenes/FMS_MsPac-man.png>
 Package pdftex.def Info: Imagenes/FMS_MsPac-man.png  used on input line 61.
@@ -1266,7 +1340,8 @@ LaTeX Info: Redefining \% on input line 69.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [8]
@@ -1274,7 +1349,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
-<Imagenes/HFSM.png, id=845, 365.86688pt x 149.55875pt>
+<Imagenes/HFSM.png, id=853, 365.86688pt x 149.55875pt>
 File: Imagenes/HFSM.png Graphic file (type png)
 <use Imagenes/HFSM.png>
 Package pdftex.def Info: Imagenes/HFSM.png  used on input line 80.
@@ -1297,10 +1372,11 @@ LaTeX Info: Redefining \% on input line 88.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[9 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/FMS_MsPac-man.png>]
+[9 <./Imagenes/FMS_MsPac-man.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 97--98
 
  []
@@ -1316,13 +1392,18 @@ LaTeX Info: Redefining \% on input line 100.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[10 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/HFSM.png>]
+[10 <./Imagenes/HFSM.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
+
+
+Package natbib Warning: Citation `Documentacionspore' on page 11 undefined on i
+nput line 111.
 
 
 Overfull \hbox (10.51147pt too wide) in paragraph at lines 114--115
@@ -1335,18 +1416,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 118--119
 
  []
 
-<Imagenes/BT_Spoore.png, id=873, 1003.75pt x 348.30125pt>
+<Imagenes/BT_Spoore.png, id=879, 1003.75pt x 348.30125pt>
 File: Imagenes/BT_Spoore.png Graphic file (type png)
 <use Imagenes/BT_Spoore.png>
 Package pdftex.def Info: Imagenes/BT_Spoore.png  used on input line 123.
 (pdftex.def)             Requested size: 298.75264pt x 103.6674pt.
-LaTeX Info: Redefining \. on input line 128.
-LaTeX Info: Redefining \% on input line 128.
+LaTeX Info: Redefining \. on input line 127.
+LaTeX Info: Redefining \% on input line 127.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [11]
@@ -1369,31 +1451,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
-LaTeX Info: Redefining \. on input line 139.
-LaTeX Info: Redefining \% on input line 139.
+LaTeX Info: Redefining \. on input line 140.
+LaTeX Info: Redefining \% on input line 140.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[12 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/BT_Spoore.png>]
+[12 <./Imagenes/BT_Spoore.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
-LaTeX Info: Redefining \. on input line 159.
-LaTeX Info: Redefining \% on input line 159.
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[13]
-<Imagenes/GOAP_Planificador.png, id=903, 579.96675pt x 346.29375pt>
+<Imagenes/GOAP_Planificador.png, id=901, 579.96675pt x 346.29375pt>
 File: Imagenes/GOAP_Planificador.png Graphic file (type png)
 <use Imagenes/GOAP_Planificador.png>
 Package pdftex.def Info: Imagenes/GOAP_Planificador.png  used on input line 163
@@ -1404,12 +1477,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 173--175
 
  []
 
+LaTeX Info: Redefining \. on input line 175.
+LaTeX Info: Redefining \% on input line 175.
 
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
-<Imagenes/Behavior_Bricks.jpg, id=905, 602.25pt x 376.40625pt>
+<Imagenes/Behavior_Bricks.jpg, id=907, 602.25pt x 376.40625pt>
 File: Imagenes/Behavior_Bricks.jpg Graphic file (type jpg)
 <use Imagenes/Behavior_Bricks.jpg>
 Package pdftex.def Info: Imagenes/Behavior_Bricks.jpg  used on input line 182.
@@ -1419,21 +1502,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
-LaTeX Info: Redefining \. on input line 188.
-LaTeX Info: Redefining \% on input line 188.
 
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[14 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/GOAP_Planificador.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
+LaTeX Info: Redefining \. on input line 190.
+LaTeX Info: Redefining \% on input line 190.
 
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[14 <./Imagenes/GOAP_Planificador.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 191--192
 
  []
@@ -1448,21 +1532,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
  []
 
-LaTeX Info: Redefining \. on input line 198.
-LaTeX Info: Redefining \% on input line 198.
 
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[15 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/Behavior_Bricks.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
+LaTeX Info: Redefining \. on input line 200.
+LaTeX Info: Redefining \% on input line 200.
 
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[15 <./Imagenes/Behavior_Bricks.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 201--202
 
  []
@@ -1472,25 +1557,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 203--204
 
  []
 
-<Imagenes/PlayMaker.jpg, id=929, 1221.46478pt x 687.07394pt>
+<Imagenes/PlayMaker.jpg, id=931, 1221.46478pt x 687.07394pt>
 File: Imagenes/PlayMaker.jpg Graphic file (type jpg)
 <use Imagenes/PlayMaker.jpg>
 Package pdftex.def Info: Imagenes/PlayMaker.jpg  used on input line 207.
 (pdftex.def)             Requested size: 298.75264pt x 168.04628pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Info: Redefining \. on input line 215.
 LaTeX Info: Redefining \% on input line 215.
-
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[16 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/PlayMaker.jpg>]
+[16 <./Imagenes/PlayMaker.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
@@ -1505,7 +1587,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
-<Imagenes/InspectorWindowCallout.png, id=946, 803.0pt x 501.875pt>
+<Imagenes/InspectorWindowCallout.png, id=948, 803.0pt x 501.875pt>
 File: Imagenes/InspectorWindowCallout.png Graphic file (type png)
 <use Imagenes/InspectorWindowCallout.png>
 Package pdftex.def Info: Imagenes/InspectorWindowCallout.png  used on input lin
@@ -1516,21 +1598,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
-
- []
-
-LaTeX Info: Redefining \. on input line 232.
-LaTeX Info: Redefining \% on input line 232.
+LaTeX Info: Redefining \. on input line 230.
+LaTeX Info: Redefining \% on input line 230.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[17]
+[17 <./Imagenes/InspectorWindowCallout.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 233--234
 
  []
@@ -1545,21 +1628,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
-LaTeX Info: Redefining \. on input line 241.
-LaTeX Info: Redefining \% on input line 241.
 
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[18 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/InspectorWindowCallout.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 242--243
 
  []
 
-<Imagenes/Blueprints.png, id=974, 898.85812pt x 272.81924pt>
+LaTeX Info: Redefining \. on input line 243.
+LaTeX Info: Redefining \% on input line 243.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[18]
+<Imagenes/Blueprints.png, id=978, 898.85812pt x 272.81924pt>
 File: Imagenes/Blueprints.png Graphic file (type png)
 <use Imagenes/Blueprints.png>
 Package pdftex.def Info: Imagenes/Blueprints.png  used on input line 247.
@@ -1579,16 +1664,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 256--257
 
  []
 
-LaTeX Info: Redefining \. on input line 258.
-LaTeX Info: Redefining \% on input line 258.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 262.
+LaTeX Info: Redefining \% on input line 262.
+
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[19 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/Blueprints.png>]
+[19 <./Imagenes/Blueprints.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
@@ -1604,7 +1694,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 265--266
 
  []
 
-<Imagenes/VisualScriptGodot.pdf, id=987, 1978.05663pt x 1141.59837pt>
+<Imagenes/VisualScriptGodot.pdf, id=989, 1978.05663pt x 1141.59837pt>
 File: Imagenes/VisualScriptGodot.pdf Graphic file (type pdf)
 <use Imagenes/VisualScriptGodot.pdf>
 Package pdftex.def Info: Imagenes/VisualScriptGodot.pdf  used on input line 269
@@ -1621,10 +1711,11 @@ LaTeX Info: Redefining \% on input line 274.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[20 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/VisualScriptGodot.pdf>]
+[20 <./Imagenes/VisualScriptGodot.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 275--276
 
  []
@@ -1644,7 +1735,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 282--283
 
  []
 
-<Imagenes/GameMaker.pdf, id=1025, 845.1575pt x 597.23125pt>
+<Imagenes/GameMaker.pdf, id=1027, 845.1575pt x 597.23125pt>
 File: Imagenes/GameMaker.pdf Graphic file (type pdf)
 <use Imagenes/GameMaker.pdf>
 Package pdftex.def Info: Imagenes/GameMaker.pdf  used on input line 287.
@@ -1655,7 +1746,8 @@ LaTeX Info: Redefining \% on input line 291.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [21]
@@ -1688,10 +1780,11 @@ LaTeX Info: Redefining \% on input line 300.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[22 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/GameMaker.pdf>]
+[22 <./Imagenes/GameMaker.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 301--302
 
  []
@@ -1722,24 +1815,19 @@ LaTeX Info: Redefining \% on input line 141.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [23]
-LaTeX Info: Redefining \. on input line 141.
-LaTeX Info: Redefining \% on input line 141.
-
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[24]
 \openout2 = `Capitulos/DescripcionTrabajo.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/DescripcionTrabajo.tex
+ (Capitulos/DescripcionTrabajo.tex [24
+
+
+
+
+]
 Cap\'itulo 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
@@ -1769,12 +1857,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25
-
-
-
-
-]
+ [25]
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
@@ -1795,7 +1878,8 @@ LaTeX Info: Redefining \% on input line 29.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [26]
@@ -1815,7 +1899,8 @@ LaTeX Info: Redefining \% on input line 52.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [27]
@@ -1829,7 +1914,8 @@ LaTeX Info: Redefining \% on input line 74.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [28]
@@ -1853,7 +1939,8 @@ LaTeX Info: Redefining \% on input line 89.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [29]
@@ -1872,7 +1959,8 @@ LaTeX Info: Redefining \% on input line 108.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [30]
@@ -1885,12 +1973,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
-<Imagenes/EasingFunction.png, id=1095, 389.0535pt x 277.63725pt>
+<Imagenes/EasingFunction.png, id=1097, 389.0535pt x 277.63725pt>
 File: Imagenes/EasingFunction.png Graphic file (type png)
 <use Imagenes/EasingFunction.png>
 Package pdftex.def Info: Imagenes/EasingFunction.png  used on input line 125.
 (pdftex.def)             Requested size: 279.10315pt x 199.16928pt.
-<Imagenes/HorizontalMovementAccelerated.png, id=1096, 416.757pt x 335.45325pt>
+<Imagenes/HorizontalMovementAccelerated.png, id=1098, 416.757pt x 335.45325pt>
 File: Imagenes/HorizontalMovementAccelerated.png Graphic file (type png)
 <use Imagenes/HorizontalMovementAccelerated.png>
 Package pdftex.def Info: Imagenes/HorizontalMovementAccelerated.png  used on in
@@ -1902,7 +1990,8 @@ LaTeX Info: Redefining \% on input line 148.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [31]
@@ -1916,10 +2005,11 @@ LaTeX Info: Redefining \% on input line 162.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[32 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/EasingFunction.png>]
+[32 <./Imagenes/EasingFunction.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
@@ -1934,11 +2024,11 @@ LaTeX Info: Redefining \% on input line 203.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[33 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/HorizontalMovementAccelerated.png
->]
+[33 <./Imagenes/HorizontalMovementAccelerated.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 233--234
 
  []
@@ -1949,7 +2039,8 @@ LaTeX Info: Redefining \% on input line 234.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [34]
@@ -1962,7 +2053,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
-<Imagenes/EnemigoGeneral.png, id=1117, 310.66063pt x 218.8175pt>
+<Imagenes/EnemigoGeneral.png, id=1119, 310.66063pt x 218.8175pt>
 File: Imagenes/EnemigoGeneral.png Graphic file (type png)
 <use Imagenes/EnemigoGeneral.png>
 Package pdftex.def Info: Imagenes/EnemigoGeneral.png  used on input line 252.
@@ -1986,7 +2077,8 @@ LaTeX Info: Redefining \% on input line 262.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [35]
@@ -2020,10 +2112,11 @@ LaTeX Info: Redefining \% on input line 275.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[36 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/EnemigoGeneral.png>]
+[36 <./Imagenes/EnemigoGeneral.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 288--289
 
  []
@@ -2043,7 +2136,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 294--295
 
  []
 
-<Imagenes/BouncingBunny.png, id=1131, 594.42075pt x 332.442pt>
+<Imagenes/BouncingBunny.png, id=1133, 594.42075pt x 332.442pt>
 File: Imagenes/BouncingBunny.png Graphic file (type png)
 <use Imagenes/BouncingBunny.png>
 Package pdftex.def Info: Imagenes/BouncingBunny.png  used on input line 298.
@@ -2059,7 +2152,8 @@ LaTeX Info: Redefining \% on input line 306.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [37]
@@ -2072,11 +2166,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 309--310
 
  []
 
-<Imagenes/SpinningRocks.png, id=1137, 591.4095pt x 334.851pt>
+<Imagenes/SpinningRocks.png, id=1139, 739.26187pt x 418.56375pt>
 File: Imagenes/SpinningRocks.png Graphic file (type png)
 <use Imagenes/SpinningRocks.png>
 Package pdftex.def Info: Imagenes/SpinningRocks.png  used on input line 315.
-(pdftex.def)             Requested size: 251.269pt x 142.26378pt.
+(pdftex.def)             Requested size: 251.25546pt x 142.26378pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 322--323
 
@@ -2093,10 +2187,11 @@ LaTeX Info: Redefining \% on input line 325.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[38 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/BouncingBunny.png>]
+[38 <./Imagenes/BouncingBunny.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 326--327
 
  []
@@ -2111,7 +2206,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--333
 
  []
 
-<Imagenes/TrunkTorret.png, id=1144, 591.4095pt x 335.45325pt>
+<Imagenes/TrunkTorret.png, id=1146, 591.4095pt x 335.45325pt>
 File: Imagenes/TrunkTorret.png Graphic file (type png)
 <use Imagenes/TrunkTorret.png>
 Package pdftex.def Info: Imagenes/TrunkTorret.png  used on input line 336.
@@ -2127,10 +2222,11 @@ LaTeX Info: Redefining \% on input line 343.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[39 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/SpinningRocks.png>]
+[39 <./Imagenes/SpinningRocks.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 344--345
 
  []
@@ -2145,11 +2241,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 348--349
 
  []
 
-<Imagenes/Gallina_Spline.png, id=1152, 593.21625pt x 330.033pt>
-File: Imagenes/Gallina_Spline.png Graphic file (type png)
-<use Imagenes/Gallina_Spline.png>
-Package pdftex.def Info: Imagenes/Gallina_Spline.png  used on input line 352.
-(pdftex.def)             Requested size: 255.71164pt x 142.26378pt.
+<Imagenes/SplineFollowerActuator.png, id=1154, 278.2395pt x 168.63pt>
+File: Imagenes/SplineFollowerActuator.png Graphic file (type png)
+<use Imagenes/SplineFollowerActuator.png>
+Package pdftex.def Info: Imagenes/SplineFollowerActuator.png  used on input lin
+e 352.
+(pdftex.def)             Requested size: 234.73853pt x 142.26378pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 359--360
 
@@ -2165,11 +2262,11 @@ LaTeX Info: Redefining \% on input line 360.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[40 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/TrunkTorret.png> <E:/CUARTOANHO/T
-FG/TFGTeXiS-UTF8/Imagenes/Gallina_Spline.png>]
+[40 <./Imagenes/TrunkTorret.png> <./Imagenes/SplineFollowerActuator.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 361--362
 
  []
@@ -2179,7 +2276,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 363--364
 
  []
 
-<Imagenes/AguilaCayendo.png, id=1160, 589.0005pt x 332.442pt>
+<Imagenes/AguilaCayendo.png, id=1161, 589.0005pt x 332.442pt>
 File: Imagenes/AguilaCayendo.png Graphic file (type png)
 <use Imagenes/AguilaCayendo.png>
 Package pdftex.def Info: Imagenes/AguilaCayendo.png  used on input line 389.
@@ -2190,7 +2287,8 @@ LaTeX Info: Redefining \% on input line 392.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [41]
@@ -2206,10 +2304,11 @@ LaTeX Info: Redefining \% on input line 142.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[42 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/AguilaCayendo.png>]
+[42 <./Imagenes/AguilaCayendo.png>]
 LaTeX Info: Redefining \. on input line 142.
 LaTeX Info: Redefining \% on input line 142.
 
@@ -2217,13 +2316,14 @@ LaTeX Info: Redefining \% on input line 142.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [43]
 \openout2 = `Capitulos/Implementacion.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/Implementacion.tex [44
+ (Capitulos/Implementacion.tex [44
 
 
 
@@ -2256,46 +2356,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--16
  []
 
 [45]
+
+LaTeX Warning: Reference `fig:GeneralUML' on page 46 undefined on input line 20
+.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
+<Imagenes/UMLGeneral.png, id=1186, 578.16pt x 237.88875pt>
+File: Imagenes/UMLGeneral.png Graphic file (type png)
+<use Imagenes/UMLGeneral.png>
+Package pdftex.def Info: Imagenes/UMLGeneral.png  used on input line 24.
+(pdftex.def)             Requested size: 426.79135pt x 175.60658pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
-
- []
-
-LaTeX Info: Redefining \. on input line 41.
-LaTeX Info: Redefining \% on input line 41.
+LaTeX Info: Redefining \. on input line 39.
+LaTeX Info: Redefining \% on input line 39.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[46]
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+[46 <./Imagenes/UMLGeneral.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
+<Imagenes/UMLActuator.png, id=1195, 1106.2128pt x 786.0567pt>
+File: Imagenes/UMLActuator.png Graphic file (type png)
+<use Imagenes/UMLActuator.png>
+Package pdftex.def Info: Imagenes/UMLActuator.png  used on input line 50.
+(pdftex.def)             Requested size: 426.79135pt x 303.27446pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
-LaTeX Info: Redefining \. on input line 68.
-LaTeX Info: Redefining \% on input line 68.
+LaTeX Info: Redefining \. on input line 72.
+LaTeX Info: Redefining \% on input line 72.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [47]
@@ -2303,267 +2415,297 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
 
-LaTeX Info: Redefining \. on input line 92.
-LaTeX Info: Redefining \% on input line 92.
+LaTeX Info: Redefining \. on input line 84.
+LaTeX Info: Redefining \% on input line 84.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[48]
+[48 <./Imagenes/UMLActuator.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 97--98
 
  []
 
+LaTeX Info: Redefining \. on input line 108.
+LaTeX Info: Redefining \% on input line 108.
 
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[49]
 Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
-LaTeX Info: Redefining \. on input line 119.
-LaTeX Info: Redefining \% on input line 119.
 
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[49]
 Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--145
-
- []
-
-LaTeX Info: Redefining \. on input line 145.
-LaTeX Info: Redefining \% on input line 145.
+LaTeX Info: Redefining \. on input line 134.
+LaTeX Info: Redefining \% on input line 134.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [50]
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-LaTeX Info: Redefining \. on input line 179.
-LaTeX Info: Redefining \% on input line 179.
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
+
+ []
+
+LaTeX Info: Redefining \. on input line 160.
+LaTeX Info: Redefining \% on input line 160.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [51]
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--201
-
- []
-
-LaTeX Info: Redefining \. on input line 201.
-LaTeX Info: Redefining \% on input line 201.
+LaTeX Info: Redefining \. on input line 194.
+LaTeX Info: Redefining \% on input line 194.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [52]
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
-
- []
-
-LaTeX Info: Redefining \. on input line 234.
-LaTeX Info: Redefining \% on input line 234.
+LaTeX Info: Redefining \. on input line 216.
+LaTeX Info: Redefining \% on input line 216.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [53]
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+<Imagenes/UMLSensor.png, id=1247, 605.3817pt x 496.9767pt>
+File: Imagenes/UMLSensor.png Graphic file (type png)
+<use Imagenes/UMLSensor.png>
+Package pdftex.def Info: Imagenes/UMLSensor.png  used on input line 226.
+(pdftex.def)             Requested size: 320.0935pt x 262.77457pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
+
+ []
+
+LaTeX Info: Redefining \. on input line 235.
+LaTeX Info: Redefining \% on input line 235.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[54 <./Imagenes/UMLSensor.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--248
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 
  []
 
-<Imagenes/AreaSensor_Image.png, id=1233, 629.35126pt x 353.52075pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+
+ []
+
+LaTeX Info: Redefining \. on input line 262.
+LaTeX Info: Redefining \% on input line 262.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 262--264
+
+ []
+
+<Imagenes/AreaSensor_Image.png, id=1260, 629.35126pt x 353.52075pt>
 File: Imagenes/AreaSensor_Image.png Graphic file (type png)
 <use Imagenes/AreaSensor_Image.png>
-Package pdftex.def Info: Imagenes/AreaSensor_Image.png  used on input line 256.
+Package pdftex.def Info: Imagenes/AreaSensor_Image.png  used on input line 272.
 
 (pdftex.def)             Requested size: 298.75264pt x 167.81621pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 261--262
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
-LaTeX Info: Redefining \. on input line 268.
-LaTeX Info: Redefining \% on input line 268.
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
+
+ []
+
+LaTeX Info: Redefining \. on input line 291.
+LaTeX Info: Redefining \% on input line 291.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[54]
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
+[56 <./Imagenes/AreaSensor_Image.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 292--293
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 285--286
-
- []
-
-<Imagenes/DistanceSensorMagnitude.png, id=1239, 331.83975pt x 281.25075pt>
+<Imagenes/DistanceSensorMagnitude.png, id=1269, 331.83975pt x 281.25075pt>
 File: Imagenes/DistanceSensorMagnitude.png Graphic file (type png)
 <use Imagenes/DistanceSensorMagnitude.png>
 Package pdftex.def Info: Imagenes/DistanceSensorMagnitude.png  used on input li
-ne 292.
+ne 308.
 (pdftex.def)             Requested size: 298.75264pt x 253.22632pt.
-LaTeX Info: Redefining \. on input line 296.
-LaTeX Info: Redefining \% on input line 296.
 
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[55 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/AreaSensor_Image.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 304--306
+Underfull \hbox (badness 10000) in paragraph at lines 320--322
 
  []
 
-<Imagenes/SingleAxis_Image.png, id=1246, 416.757pt x 307.1475pt>
+<Imagenes/SingleAxis_Image.png, id=1271, 416.757pt x 307.1475pt>
 File: Imagenes/SingleAxis_Image.png Graphic file (type png)
 <use Imagenes/SingleAxis_Image.png>
-Package pdftex.def Info: Imagenes/SingleAxis_Image.png  used on input line 309.
+Package pdftex.def Info: Imagenes/SingleAxis_Image.png  used on input line 325.
 
 (pdftex.def)             Requested size: 298.75264pt x 220.18057pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--324
-
- []
-
-LaTeX Info: Redefining \. on input line 324.
-LaTeX Info: Redefining \% on input line 324.
+LaTeX Info: Redefining \. on input line 334.
+LaTeX Info: Redefining \% on input line 334.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[56 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/DistanceSensorMagnitude.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 331--332
+[57]
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--338
+LaTeX Warning: Reference `fig:DamageUML' on page 58 undefined on input line 347
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--348
 
  []
 
-LaTeX Info: Redefining \. on input line 338.
-LaTeX Info: Redefining \% on input line 338.
+LaTeX Info: Redefining \. on input line 350.
+LaTeX Info: Redefining \% on input line 350.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[57 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/SingleAxis_Image.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 339--341
+[58 <./Imagenes/DistanceSensorMagnitude.png>]
+<Imagenes/DamageUML.png, id=1284, 605.26125pt x 356.38144pt>
+File: Imagenes/DamageUML.png Graphic file (type png)
+<use Imagenes/DamageUML.png>
+Package pdftex.def Info: Imagenes/DamageUML.png  used on input line 353.
+(pdftex.def)             Requested size: 384.1096pt x 226.16917pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--360
 
  []
 
 
-Overfull \hbox (19.53032pt too wide) in paragraph at lines 348--349
+Underfull \hbox (badness 10000) in paragraph at lines 361--363
+
+ []
+
+
+Overfull \hbox (19.53032pt too wide) in paragraph at lines 370--371
 []\T1/cmr/m/n/12 A con-ti-nua-ción se con-cre-ta-rán los va-lo-res que pue-de t
 o-mar el enu-me-ra-do \T1/cmtt/m/n/12 DamageType\T1/cmr/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--349
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 351--353
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 360--362
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 369--371
+Underfull \hbox (badness 10000) in paragraph at lines 373--375
 
  []
 
@@ -2573,247 +2715,266 @@ LaTeX Info: Redefining \% on input line 375.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[58]
-Overfull \hbox (2.25284pt too wide) in paragraph at lines 375--376
+[59 <./Imagenes/SingleAxis_Image.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 382--384
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 391--393
+
+ []
+
+LaTeX Info: Redefining \. on input line 397.
+LaTeX Info: Redefining \% on input line 397.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[60 <./Imagenes/DamageUML.png>]
+Overfull \hbox (2.25284pt too wide) in paragraph at lines 397--398
 []\T1/cmr/m/n/12 (float) \T1/cmr/bx/n/12 Ins-tant Da-ma-ge Amount\T1/cmr/m/n/12
  : Can-ti-dad de da-ño ad-mi-nis-tra-da cuan-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--384
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--388
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--390
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--392
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
 
  []
 
-LaTeX Info: Redefining \. on input line 396.
-LaTeX Info: Redefining \% on input line 396.
+LaTeX Info: Redefining \. on input line 423.
+LaTeX Info: Redefining \% on input line 423.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[59]
-Underfull \hbox (badness 10000) in paragraph at lines 416--417
-
- []
-
-LaTeX Info: Redefining \. on input line 431.
-LaTeX Info: Redefining \% on input line 431.
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[60]
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
-
- []
-
-
+[61]
 Underfull \hbox (badness 10000) in paragraph at lines 438--439
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 458--459
-
- []
-
-LaTeX Info: Redefining \. on input line 459.
-LaTeX Info: Redefining \% on input line 459.
+LaTeX Info: Redefining \. on input line 454.
+LaTeX Info: Redefining \% on input line 454.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[61]
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 456--457
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 460--461
+
+ []
+
+
+LaTeX Warning: Reference `fig:UMLAnimation' on page 63 undefined on input line 
+462.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 462--463
 
  []
 
+<Imagenes/UMLAnimator.png, id=1312, 572.1375pt x 316.68312pt>
+File: Imagenes/UMLAnimator.png Graphic file (type png)
+<use Imagenes/UMLAnimator.png>
+Package pdftex.def Info: Imagenes/UMLAnimator.png  used on input line 470.
+(pdftex.def)             Requested size: 384.1096pt x 212.61148pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--465
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 466--467
-
- []
-
-LaTeX Info: Redefining \. on input line 481.
-LaTeX Info: Redefining \% on input line 481.
+LaTeX Info: Redefining \. on input line 487.
+LaTeX Info: Redefining \% on input line 487.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[62]
-<Imagenes/AnimatorController.png, id=1284, 820.86674pt x 333.04425pt>
+[63]
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 492--493
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 494--495
+
+ []
+
+LaTeX Info: Redefining \. on input line 495.
+LaTeX Info: Redefining \% on input line 495.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[64 <./Imagenes/UMLAnimator.png>]
+<Imagenes/AnimatorController.png, id=1327, 820.86674pt x 333.04425pt>
 File: Imagenes/AnimatorController.png Graphic file (type png)
 <use Imagenes/AnimatorController.png>
-Package pdftex.def Info: Imagenes/AnimatorController.png  used on input line 48
-9.
+Package pdftex.def Info: Imagenes/AnimatorController.png  used on input line 51
+7.
 (pdftex.def)             Requested size: 298.75264pt x 121.21202pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--497
+Underfull \hbox (badness 10000) in paragraph at lines 524--525
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 504--507
-
- []
-
-LaTeX Info: Redefining \. on input line 507.
-LaTeX Info: Redefining \% on input line 507.
+LaTeX Info: Redefining \. on input line 527.
+LaTeX Info: Redefining \% on input line 527.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[63 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/AnimatorController.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 517--518
+[65 <./Imagenes/AnimatorController.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 532--535
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 519--520
+Underfull \hbox (badness 10000) in paragraph at lines 545--546
 
  []
 
-<Imagenes/CollDetector.png, id=1294, 130.68825pt x 125.268pt>
-File: Imagenes/CollDetector.png Graphic file (type png)
-<use Imagenes/CollDetector.png>
-Package pdftex.def Info: Imagenes/CollDetector.png  used on input line 523.
-(pdftex.def)             Requested size: 298.75264pt x 286.36136pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 538--539
+Underfull \hbox (badness 10000) in paragraph at lines 547--548
 
  []
 
-LaTeX Info: Redefining \. on input line 539.
-LaTeX Info: Redefining \% on input line 539.
+LaTeX Info: Redefining \. on input line 548.
+LaTeX Info: Redefining \% on input line 548.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
 
-[64]
-Underfull \hbox (badness 10000) in paragraph at lines 540--541
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 550--551
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 551.
-LaTeX Info: Redefining \% on input line 551.
-
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[65 <E:/CUARTOANHO/TFG/TFGTeXiS-UTF8/Imagenes/CollDetector.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 552--553
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 567--568
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 569--570
-
- []
-
-LaTeX Info: Redefining \. on input line 574.
-LaTeX Info: Redefining \% on input line 574.
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 579--580
+<Imagenes/CollDetector.png, id=1345, 130.68825pt x 125.268pt>
+File: Imagenes/CollDetector.png Graphic file (type png)
+<use Imagenes/CollDetector.png>
+Package pdftex.def Info: Imagenes/CollDetector.png  used on input line 551.
+(pdftex.def)             Requested size: 298.75264pt x 286.36136pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--567
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 581--582
-
- []
-
-LaTeX Info: Redefining \. on input line 600.
-LaTeX Info: Redefining \% on input line 600.
+LaTeX Info: Redefining \. on input line 567.
+LaTeX Info: Redefining \% on input line 567.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[67]
-Overfull \hbox (17.10292pt too wide) in paragraph at lines 613--614
-\T1/cmr/m/n/12 mien-to (\T1/cmtt/m/n/12 PlayerMovement\T1/cmr/m/n/12 ), de-tec-
-ción de co-li-sio-nes (\T1/cmtt/m/n/12 PlayerCollisionDetection\T1/cmr/m/n/12 )
-,
+[67 <./Imagenes/CollDetector.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 568--569
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 580--581
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
+
+ []
+
+LaTeX Info: Redefining \. on input line 591.
+LaTeX Info: Redefining \% on input line 591.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[68]
+Underfull \hbox (badness 10000) in paragraph at lines 595--596
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--598
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 609--610
+
  []
 
 LaTeX Info: Redefining \. on input line 615.
@@ -2822,10 +2983,30 @@ LaTeX Info: Redefining \% on input line 615.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[68])
+[69]
+LaTeX Info: Redefining \. on input line 640.
+LaTeX Info: Redefining \% on input line 640.
+
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[70]
+Overfull \hbox (17.10292pt too wide) in paragraph at lines 641--642
+\T1/cmr/m/n/12 mien-to (\T1/cmtt/m/n/12 PlayerMovement\T1/cmr/m/n/12 ), de-tec-
+ción de co-li-sio-nes (\T1/cmtt/m/n/12 PlayerCollisionDetection\T1/cmr/m/n/12 )
+,
+ []
+
+)
 LaTeX Info: Redefining \. on input line 143.
 LaTeX Info: Redefining \% on input line 143.
 
@@ -2833,14 +3014,14 @@ LaTeX Info: Redefining \% on input line 143.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[69]
+[71]
 \openout2 = `Capitulos/EvaluacionConUsuarios.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/EvaluacionConUsuarios.tex
-[70
+ (Capitulos/EvaluacionConUsuarios.tex [72
 
 
 
@@ -2862,7 +3043,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-[71]
+[73]
 LaTeX Info: Redefining \. on input line 55.
 LaTeX Info: Redefining \% on input line 55.
 
@@ -2870,10 +3051,11 @@ LaTeX Info: Redefining \% on input line 55.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[72]
+[74]
 Underfull \hbox (badness 10000) in paragraph at lines 67--68
 
  []
@@ -2889,10 +3071,11 @@ LaTeX Info: Redefining \% on input line 87.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[73]
+[75]
 Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
@@ -2913,10 +3096,11 @@ LaTeX Info: Redefining \% on input line 111.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[74]
+[76]
 LaTeX Info: Redefining \. on input line 140.
 LaTeX Info: Redefining \% on input line 140.
 
@@ -2924,10 +3108,11 @@ LaTeX Info: Redefining \% on input line 140.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[75]
+[77]
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
 
@@ -2935,10 +3120,11 @@ LaTeX Info: Redefining \% on input line 168.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[76]
+[78]
 LaTeX Info: Redefining \. on input line 197.
 LaTeX Info: Redefining \% on input line 197.
 
@@ -2946,10 +3132,11 @@ LaTeX Info: Redefining \% on input line 197.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[77]
+[79]
 LaTeX Info: Redefining \. on input line 234.
 LaTeX Info: Redefining \% on input line 234.
 
@@ -2957,10 +3144,11 @@ LaTeX Info: Redefining \% on input line 234.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[78]
+[80]
 Underfull \hbox (badness 10000) in paragraph at lines 248--249
 
  []
@@ -2973,14 +3161,14 @@ LaTeX Info: Redefining \% on input line 144.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[79]
+[81]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/ConclusionesTrabajoFuturo.tex
-[80
+ (Capitulos/ConclusionesTrabajoFuturo.tex [82
 
 
 
@@ -2993,7 +3181,7 @@ Overfull \hbox (6.53209pt too wide) in paragraph at lines 13--14
 /12 AnimatorManager \T1/cmr/m/n/12 y un \T1/cmtt/m/n/12 Animator Controller
  []
 
-[81]
+[83]
 LaTeX Info: Redefining \. on input line 40.
 LaTeX Info: Redefining \% on input line 40.
 
@@ -3001,10 +3189,11 @@ LaTeX Info: Redefining \% on input line 40.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[82])
+[84])
 LaTeX Info: Redefining \. on input line 145.
 LaTeX Info: Redefining \% on input line 145.
 
@@ -3012,10 +3201,11 @@ LaTeX Info: Redefining \% on input line 145.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[83]
+[85]
 LaTeX Info: Redefining \. on input line 145.
 LaTeX Info: Redefining \% on input line 145.
 
@@ -3023,54 +3213,53 @@ LaTeX Info: Redefining \% on input line 145.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[84]
+[86]
 \openout2 = `Capitulos/Introduction.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/Introduction.tex
-Underfull \hbox (badness 10000) in paragraph at lines 11--12
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--14
-
- []
-
-[85
+ (Capitulos/Introduction.tex [87
 
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 15--16
+LaTeX Info: Redefining \. on input line 45.
+LaTeX Info: Redefining \% on input line 45.
 
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[88]
+File: Imagenes/GanttChart.png Graphic file (type png)
+<use Imagenes/GanttChart.png>
+Package pdftex.def Info: Imagenes/GanttChart.png  used on input line 52.
+(pdftex.def)             Requested size: 455.23872pt x 341.43306pt.
+
+Overfull \hbox (28.44737pt too wide) in paragraph at lines 52--53
+ [][] 
  []
 
-LaTeX Info: Redefining \. on input line 39.
-LaTeX Info: Redefining \% on input line 39.
+)
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[86])
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[87]
+[89]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/ConclusionsFutureWork.tex
-[88
+ (Capitulos/ConclusionsFutureWork.tex [90
 
 
 
@@ -3084,7 +3273,7 @@ ager \T1/cmr/m/n/12 class and a cus-tom \T1/cmtt/m/n/12 Animator Controller\T1/
 cmr/m/n/12 ,
  []
 
-[89]
+[91]
 Overfull \hbox (2.97983pt too wide) in paragraph at lines 40--41
 []\T1/cmr/bx/n/12 Modularity as a main-te-nance cor-ner-stone: \T1/cmr/m/n/12 D
 e-sign-ing clear, self-contained
@@ -3094,10 +3283,11 @@ e-sign-ing clear, self-contained
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[90]
+[92]
 Overfull \hbox (4.43704pt too wide) in paragraph at lines 67--68
 []\T1/cmr/m/n/12 Provide fil-ter-able views and log-i-cal group-ings to man-age
  large state graphs. 
@@ -3108,147 +3298,162 @@ Overfull \hbox (4.43704pt too wide) in paragraph at lines 67--68
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[91]
+[93]
 LaTeX Info: Redefining \. on input line 153.
 LaTeX Info: Redefining \% on input line 153.
 \openout2 = `Capitulos/ContribucionesPersonales.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Capitulos/ContribucionesPersonales.tex
-[92
+ (Capitulos/ContribucionesPersonales.tex [94
 
 
 
 
 ]
 Cap\'itulo 8.
-[93]
-LaTeX Info: Redefining \. on input line 29.
-LaTeX Info: Redefining \% on input line 29.
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--16
+
+ []
+
+[95]
+LaTeX Info: Redefining \. on input line 31.
+LaTeX Info: Redefining \% on input line 31.
 
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[94]
-Overfull \hbox (0.63887pt too wide) in paragraph at lines 42--43
+[96]
+Overfull \hbox (18.45259pt too wide) in paragraph at lines 46--47
+[]\T1/cmr/bx/n/12 Gestión de ani-ma-cio-nes: \T1/cmr/m/n/12 Im-ple-men-ta-ción 
+y di-se-ño ín-te-gro del sis-te-ma \T1/cmtt/m/n/12 Animator
+ []
+
+LaTeX Info: Redefining \. on input line 50.
+LaTeX Info: Redefining \% on input line 50.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[97]
+Overfull \hbox (0.63887pt too wide) in paragraph at lines 57--58
 []\T1/cmr/bx/n/12 Tooltips per-so-na-li-za-dos: \T1/cmr/m/n/12 Im-ple-men-ta-ci
 ón de des-crip-cio-nes emer-gen-tes (tool-
  []
 
-LaTeX Info: Redefining \. on input line 43.
-LaTeX Info: Redefining \% on input line 43.
+LaTeX Info: Redefining \. on input line 71.
+LaTeX Info: Redefining \% on input line 71.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[95]
-LaTeX Info: Redefining \. on input line 69.
-LaTeX Info: Redefining \% on input line 69.
-
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[96]
-LaTeX Info: Redefining \. on input line 89.
-LaTeX Info: Redefining \% on input line 89.
+[98]
+LaTeX Info: Redefining \. on input line 97.
+LaTeX Info: Redefining \% on input line 97.
 
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[97]
-Overfull \hbox (6.46577pt too wide) in paragraph at lines 92--92
+[99]
+Overfull \hbox (6.46577pt too wide) in paragraph at lines 108--108
 |[]\T1/cmr/bx/n/17.28 Contribuciones de Fran-cis-co Mi-guel Gal-ván Mu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--95
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--97
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
-
- []
-
-LaTeX Info: Redefining \. on input line 104.
-LaTeX Info: Redefining \% on input line 104.
+LaTeX Info: Redefining \. on input line 113.
+LaTeX Info: Redefining \% on input line 113.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[98]
-Underfull \hbox (badness 10000) in paragraph at lines 104--105
+[100]
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
 
  []
 
 
-Overfull \hbox (1.34143pt too wide) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+
+ []
+
+LaTeX Info: Redefining \. on input line 128.
+LaTeX Info: Redefining \% on input line 128.
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
+
+[101]
+Overfull \hbox (1.34143pt too wide) in paragraph at lines 130--131
 []\T1/cmr/bx/n/12 MoveToAPointActuator: \T1/cmr/m/n/12 Rea-li-za-ción de la im-
 ple-men-ta-ción ín-te-gra del com-
  []
 
-LaTeX Info: Redefining \. on input line 120.
-LaTeX Info: Redefining \% on input line 120.
+LaTeX Info: Redefining \. on input line 143.
+LaTeX Info: Redefining \% on input line 143.
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[99]
-LaTeX Info: Redefining \. on input line 134.
-LaTeX Info: Redefining \% on input line 134.
-
-
-Package fancyhdr Warning: \headheight is too small (14.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
-
-[100]
-LaTeX Info: Redefining \. on input line 157.
-LaTeX Info: Redefining \% on input line 157.
+[102]
+LaTeX Info: Redefining \. on input line 161.
+LaTeX Info: Redefining \% on input line 161.
 
 
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[101])
+[103])
 LaTeX Info: Redefining \. on input line 156.
 LaTeX Info: Redefining \% on input line 156.
 
@@ -3256,96 +3461,426 @@ LaTeX Info: Redefining \% on input line 156.
 Package fancyhdr Warning: \headheight is too small (14.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
 (fancyhdr)                \addtolength{\topmargin}{-0.49998pt}.
 
-[102]
+[104]
 \openout2 = `Cascaras/bibliografia.aux'.
 
- (E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\Cascaras/bibliografia.tex
-(E:/CUARTOANHO/TFG/TFGTeXiS-UTF8\TFGTeXiS.bbl
+ (Cascaras/bibliografia.tex (TFGTeXiS.bbl
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 1.
 
-Underfull \hbox (badness 1024) in paragraph at lines 39--45
+Underfull \hbox (badness 10000) in paragraph at lines 24--30
+\T1/cmtt/m/n/12 / / chrishecker . com / My _ Liner _ Notes _ for _ Spore / Spor
+e _ Behavior _ Tree _ Docs$[]
+ []
+
+
+Underfull \hbox (badness 1024) in paragraph at lines 47--53
 []\T1/cmr/m/sc/12 Gamasutra\T1/cmr/m/n/12 .  GDC 2005 Pro-cee-ding: Hand-ling C
 om-ple-xity in the \T1/cmr/m/it/12 Ha-lo 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--45
+Underfull \hbox (badness 10000) in paragraph at lines 47--53
 \T1/cmtt/m/n/12 gdc-[]2005-[]proceeding-[]handling-[]complexity-[]in-[]the-[]i-
 []halo-[]2-[]i-[]ai$[] \T1/cmr/m/n/12 (úl-ti-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--60
+Underfull \hbox (badness 10000) in paragraph at lines 62--68
 []\T1/cmr/m/sc/12 Hope, A.  \T1/cmr/m/n/12 The per-fect or-ga-nism: The AI of A
 lien: Iso-la-tion.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--60
+Underfull \hbox (badness 10000) in paragraph at lines 62--68
 \T1/cmr/m/n/12 2014.  Dis-po-ni-ble en []$\T1/cmtt/m/n/12 https : / / www . gam
 edeveloper . com / design /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--60
+Underfull \hbox (badness 10000) in paragraph at lines 62--68
 \T1/cmtt/m/n/12 the-[]perfect-[]organism-[]the-[]ai-[]of-[]alien-[]isolation$[]
  \T1/cmr/m/n/12 (úl-ti-mo ac-ce-so, Ja-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--68
-\T1/cmr/m/n/12 Dis-po-ni-ble en []$\T1/cmtt/m/n/12 https : / / theswissbay . ch
- / pdf / Gentoomen % 20Library / Game %
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--68
-\T1/cmtt/m/n/12 20Development / Programming / Artificial % 20Intelligence % 20f
-or % 20Games .
- []
-
-[103
+[105
 
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 78--84
+Underfull \hbox (badness 10000) in paragraph at lines 70--76
+\T1/cmr/m/n/12 Dis-po-ni-ble en []$\T1/cmtt/m/n/12 https : / / theswissbay . ch
+ / pdf / Gentoomen % 20Library / Game %
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--76
+\T1/cmtt/m/n/12 20Development / Programming / Artificial % 20Intelligence % 20f
+or % 20Games .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--92
 []\T1/cmr/m/sc/12 Patashnik, O.  \T1/cmr/m/n/12 Build a Bad Guy Workshop.  2014
 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--84
+Underfull \hbox (badness 10000) in paragraph at lines 86--92
 \T1/cmr/m/n/12 Dis-po-ni-ble en []$\T1/cmtt/m/n/12 https : / / www . gamedevelo
 per . com / design /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--84
+Underfull \hbox (badness 10000) in paragraph at lines 86--92
 \T1/cmtt/m/n/12 build-[]a-[]bad-[]guy-[]workshop-[]-[]-[]designing-[]enemies-[]
 for-[]retro-[]games$[] \T1/cmr/m/n/12 (úl-ti-
  []
 
-! TeX capacity exceeded, sorry [input stack size=10000].
-\@makeother #1->\catcode `#1
-                            12\relax 
-l.94 ...ucm.es/sites/cosecivi14/es/papers/27.pdf}}
-                                                  
-If you really absolutely need more capacity,
-you can ask a wizard to enlarge me.
+))
+LaTeX Info: Redefining \. on input line 163.
+LaTeX Info: Redefining \% on input line 163.
 
- 
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 14.61858pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.61858pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.61858pt}.
+
+[106]
+\openout2 = `Cascaras/fin.aux'.
+
+ (Cascaras/fin.tex [107
+
+
+
+
+] [108])
+
+Package natbib Warning: There were undefined citations.
+
+(TFGTeXiS.aux (Cascaras/cover.aux)
+LaTeX Info: Redefining \. on input line 13.
+LaTeX Info: Redefining \% on input line 13.
+ (Cascaras/dedicatoria.aux)
+(Cascaras/agradecimientos.aux) (Cascaras/resumen.aux) (Cascaras/abstract.aux)
+(TeXiS/TeXiS_toc.aux)
+LaTeX Info: Redefining \. on input line 20.
+LaTeX Info: Redefining \% on input line 20.
+ (Capitulos/Introduccion.aux)
+(Capitulos/EstadoDeLaCuestion.aux) (Capitulos/DescripcionTrabajo.aux)
+(Capitulos/Implementacion.aux) (Capitulos/EvaluacionConUsuarios.aux)
+(Capitulos/ConclusionesTrabajoFuturo.aux) (Capitulos/Introduction.aux)
+(Capitulos/ConclusionsFutureWork.aux) (Capitulos/ContribucionesPersonales.aux)
+LaTeX Info: Redefining \. on input line 31.
+LaTeX Info: Redefining \% on input line 31.
+
+(Cascaras/bibliografia.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) (Cascaras/fin.aux))
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-04>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+
+Package rerunfilecheck Warning: File `TFGTeXiS.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `TFGTeXiS.out':
+(rerunfilecheck)             Before: 3B943F0AEB2D4FF08E31B2EEAD9437B7;19068
+(rerunfilecheck)             After:  6BC0EFB23CADA64A74A40FC28FB60CFC;19068.
+ ) 
 Here is how much of TeX's memory you used:
- 18811 strings out of 474485
- 316280 string characters out of 5743734
- 2157609 words of memory out of 5000000
- 40100 multiletter control sequences out of 15000+600000
+ 18853 strings out of 474485
+ 321130 string characters out of 5738069
+ 1948542 words of memory out of 5000000
+ 40036 multiletter control sequences out of 15000+600000
  578379 words of font info for 72 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
- 10000i,12n,19973p,1061b,935s stack positions out of 10000i,1000n,20000p,200000b,200000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 97i,12n,98p,1074b,933s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.26} has been referenced but does not exis
+t, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.205} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.146} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.141} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.131} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.127} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.124} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.121} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{figure.caption.109} has been referenced but does no
+t exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter*.233} has been referenced but does not exis
+t, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.228} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.227} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.226} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.221} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.220} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.219} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.218} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.212} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.211} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.209} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.208} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.207} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.206} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.203} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.202} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.195} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.194} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.192} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.191} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.190} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.189} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.186} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.184} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.182} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.181} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.180} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.163} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.162} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.161} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{chapter.152} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.151} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.150} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.148} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.145} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.144} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.142} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.139} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.138} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.135} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.134} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.132} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.130} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.129} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.125} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.122} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.120} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.119} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.110} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section.108} has been referenced but does not exist
+, replaced by a fixed one
+
+ <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
+pi600\ecrm1095.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/lj
+four/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\
+MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1200.pk> <C:\Users\AliciaMoraVela
+sco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Us
+ers\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\e
+ctt1000.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
+nappen/ec/dpi600\ecrm0700.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\
+fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\AliciaMoraVelasco\App
+Data\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\Ali
+ciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200
+.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\ecrm1200.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/p
+k/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\AliciaMoraVelasco\AppData\Lo
+cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\AliciaMora
+Velasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C
+:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
+00\ecrm2488.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiKTeX\fonts/pk/ljfou
+r/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\AliciaMoraVelasco\AppData\Local\MiK
+TeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk><C:/Users/AliciaMoraVelasco/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Use
+rs/AliciaMoraVelasco/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr12.pfb><C:/Users/AliciaMoraVelasco/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AliciaMoraVelasco/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/AliciaMoraVelasco/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on TFGTeXiS.pdf (128 pages, 8147024 bytes).
+PDF statistics:
+ 2499 PDF objects out of 2984 (max. 8388607)
+ 442 named destinations out of 1000 (max. 500000)
+ 1119 words of extra memory for PDF output out of 10000 (max. 10000000)
+

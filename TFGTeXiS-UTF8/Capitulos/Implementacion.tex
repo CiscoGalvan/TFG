@@ -14,11 +14,17 @@ Unity ha sido elegido frente a otros motores de videojuegos por su accesibilidad
 
 A lo largo del desarrollo se emplean diversos recursos del propio motor, como el sistema de físicas 2D o herramientas de depuración como Gizmos. Además, la arquitectura basada en componentes de Unity favorece la modularidad del sistema, permitiendo dividir el comportamiento de los enemigos en partes independientes y reutilizables.\\
 
-A continuación se presentará la arquitectura escogida y los principales módulos de implementación.
+A continuación se presenta la arquitectura escogida y los principales módulos de implementación.
 
 \section{Arquitectura del sistema}
-La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
+La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización que se muetra en la Figura \ref{fig:GeneralUML} facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
 
+\begin{figure}[t]
+	\centering
+	\includegraphics[width = 1\textwidth]{Imagenes/UMLGeneral.png}
+	\caption{Diagrama UML de la composición.}
+	\label{fig:GeneralUML}
+\end{figure}
 Los principales módulos de implementación incluidos en esta arquitectura son:
 \begin{itemize}
 \item \textbf{Módulo de actuadores:} Ejecutan acciones concretas, como moverse, disparar o generar nuevos enemigos. 
@@ -37,12 +43,13 @@ En las siguientes secciones se describirá en detalle cada uno de los módulos q
 
 \section{Módulo de actuadores}
 
-El módulo de actuadores es el encargado de englobar todo el comportamiento de los actuadores en la herramienta. Para una explicación detallada del diseño de este módulo, puede consultarse la Sección~\ref{subsec:acciones}, donde se aborda el sistema de actuadores en su conjunto.
+El módulo de actuadores es el encargado de englobar todo el comportamiento de los actuadores en la herramienta. Su diseño se ilustra en la Figura \ref{fig:ActuatorUML}. Para una explicación detallada del diseño de este módulo, puede consultarse la Sección~\ref{subsec:acciones}, donde se aborda el sistema de actuadores en su conjunto.
+
 \begin{figure}[t]
 	\centering
-	\includegraphics[width = 1\textwidth]{Imagenes/UMLActuator2.png}
-	\caption{Animator Controller con sus estados y transiciones.}
-	\label{fig:AnimatorController_Image}
+	\includegraphics[width = 1\textwidth]{Imagenes/UMLActuator.png}
+	\caption{Diagrama UML del módulo Actuator.}
+	\label{fig:ActuatorUML}
 \end{figure}
 
 
@@ -212,7 +219,7 @@ Desde el punto de vista estructural, el módulo está diseñado siguiendo una ar
 
 Para más detalles del diseño del módulo visitar la Sección~\ref{subsec:sensores}.
 La Figura~\ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. 
-Para un análisis más detallado del diseño de este módulo, véase la Sección~\ref{subsec:sensores}.
+La Figura \ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. Para un análisis más detallado del diseño de este módulo, véase la Sección~\ref{subsec:sensores}.
 
 \begin{figure}[t]
 	\centering
@@ -337,15 +344,15 @@ Sensor encargado de activarse cuando pasa un tiempo determinado desde su activac
 	 \end{itemize}
 
 \section{Módulo de daño}
-El módulo de daño es el encargado de gestionar todas las interacciones relacionadas con la aplicación y recepción de daño entre entidades del juego. Su diseño (Sección~\ref{subsec:dano}) sigue una arquitectura basada en componentes desacoplados, que permite separar claramente los elementos que emiten daño de aquellos que lo reciben.\\
+El módulo de daño es el encargado de gestionar todas las interacciones relacionadas con la aplicación y recepción de daño entre entidades del juego, como se ilustra en la Figura \ref{fig:DamageUML}. Su diseño (Sección~\ref{subsec:dano}) sigue una arquitectura basada en componentes desacoplados, que permite separar claramente los elementos que emiten daño de aquellos que lo reciben.\\
 
 Este módulo se compone principalmente de dos clases clave: \texttt{DamageEmitter} y \texttt{DamageSensor}.
 
 \begin{figure}[t]
 		\centering
 		\includegraphics[width = 0.9\textwidth]{Imagenes/DamageUML.png}
-		\caption{AreaSensor utilizado para enemigo que cae al detectar al jugador.}
-		\label{fig:AreaSensor_Image}
+		\caption{UML del apartado de daño de la herramienta}
+		\label{fig:DamageUML}
 \end{figure}
 \subsection{DamageEmitter}
 Para que una entidad pueda emitir daño, debe tener adjunto el componente \texttt{DamageEmitter}.\\
@@ -452,12 +459,18 @@ Cuando se produce un cambio de estado, todos los actuadores y sensores se detien
 
 El módulo de animación se encarga de coordinar la representación visual del comportamiento de los enemigos, sincronizando sus animaciones con su lógica interna. Este módulo permite adaptar dinámicamente las animaciones en función de factores como la velocidad de movimiento, la dirección, o eventos del juego como recibir daño o morir.\\
 
-El sistema se basa en el uso del componente \texttt{Animator} de Unity, que a su vez está asociado a un \texttt{Animator Controller}. Este controlador define una Máquina de Estados Finita (FSM) visual, donde cada estado representa una animación concreta (por ejemplo: caminar, aparecer, atacar, morir) y las transiciones entre estos estados se activan mediante parámetros. Estos parámetros pueden ser booleanos, numéricos, o de tipo \textit{trigger}, y son gestionados por el módulo en tiempo de ejecución.\\
+El sistema se basa en el uso del componente \texttt{Animator} de Unity, que a su vez está asociado a un \texttt{Animator Controller}. Este controlador define una Máquina de Estados Finita (FSM) visual, donde cada estado representa una animación concreta (por ejemplo: caminar, aparecer, atacar, morir) y las transiciones entre estos estados se activan mediante parámetros. Estos parámetros pueden ser booleanos, numéricos, o de tipo \textit{trigger}, y son gestionados por el módulo en tiempo de ejecución, como semuestra en la Figura \ref{fig:UMLAnimation}.\\
 
 Este módulo proporciona una interfaz común para vincular las animaciones con otros módulos, como los actuadores de movimiento o el módulo de daño, de forma desacoplada y escalable.
 
-Para más detalle del diseño de la lógica de animaciones consultar Sección~\ref{subsec:animaciones_fsm}.
+Para más detalle del diseño de la lógica de animaciones consultar la Sección~\ref{subsec:animaciones_fsm}.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{Imagenes/UMLAnimator.png}
+\caption{Diagrama UML del módulo de animación.}
+\label{fig:UMLAnimation}
+\end{figure}
 \subsection{AnimatorManager}
 
 La clase \texttt{AnimatorManager} encapsula toda la lógica necesaria para actualizar los parámetros del \texttt{Animator} de forma dinámica. Su objetivo es reflejar correctamente el comportamiento del enemigo en la animación visual que se muestra al jugador.
