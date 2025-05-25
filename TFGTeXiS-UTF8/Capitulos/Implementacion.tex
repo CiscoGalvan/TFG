@@ -17,7 +17,7 @@ A lo largo del desarrollo se emplean diversos recursos del propio motor, como el
 A continuación se presenta la arquitectura escogida y los principales módulos de implementación.
 
 \section{Arquitectura del sistema}
-La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización que se muetra en la Figura \ref{fig:GeneralUML} facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
+La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización que se muestra en la Figura \ref{fig:GeneralUML} facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
 
 \begin{figure}[t]
 	\centering
@@ -603,10 +603,22 @@ Para evitar que el jugador pueda disparar sin restricción, se ha introducido un
 \end{itemize}
 
 \section {Distribución de la herramienta}
+El Framework se distribuye mediante el sistema de gestión de paquetes de Unity (UPM) desde el siguiente repositorio de GitHub:\\
+\url{https://github.com/CiscoGalvan/EnemyBehaviorToolUPM.git}
 
-El Framework será distribuido a través de un archivo \textit{.unitypackage} descargable desde el repositorio de la herramienta.\\
+Para importar la herramienta al proyecto, se deben seguir los siguientes pasos:
 
-Una vez descargado, el usuario podrá acceder a todo el contenido distribuido, que se detalla a continuación:\\
+\begin{enumerate}
+  \item Abrir Unity y acceder al proyecto donde se desea utilizar la herramienta.
+  \item Ir al menú \texttt{Window > Package Manager}.
+  \item Pulsar en el botón \texttt{+} (esquina superior izquierda) y seleccionar \texttt{Add package from Git URL...}.
+  \item Introducir la siguiente URL: \\
+  \texttt{https://github.com/CiscoGalvan/EnemyBehaviorToolUPM.git}
+  \item Presionar \texttt{Add}. Unity descargará e importará automáticamente el paquete en el proyecto.
+  \item (Opcional) Para importar los ejemplos, navegar hasta el paquete en el Package Manager, seleccionarlo, y hacer clic en \texttt{Import into Project} en las secciones de Samples que se deseen.
+\end{enumerate}
+
+Una vez importado, el usuario podrá acceder al contenido organizado en las siguientes carpetas:
 \begin{itemize}
 \item \textbf{Animations:} Carpeta donde se encuentran tanto los \textit{sprites} usados como los \texttt{AnimatorController} creados para los enemigos de ejemplo.
 \item \textbf{Materials:} En este directorio se encuentran materiales usados en la herramienta y el \texttt{Physic Material 2D} usado en algunos enemigos para mejorar su interacción con el jugador.
