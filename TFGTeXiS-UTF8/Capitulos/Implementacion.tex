@@ -20,7 +20,7 @@ A lo largo del desarrollo se emplean diversos recursos del propio motor, como el
 A continuación se presenta la arquitectura escogida y los principales módulos de implementación.
 
 \section{Arquitectura del sistema}
-La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización que se muestra en la Figura \ref{fig:GeneralUML} facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
+La arquitectura de la herramienta está organizada en módulos funcionales que encapsulan distintas responsabilidades dentro del sistema. Esta organización que se muestra en la Figura~\ref{fig:GeneralUML} facilita la extensibilidad, el mantenimiento y la reutilización de los distintos elementos.\\
 
 \begin{figure}[t]
 	\centering
@@ -46,7 +46,7 @@ En las siguientes secciones se describirá en detalle cada uno de los módulos q
 
 \section{Módulo de actuadores}
 
-El módulo de actuadores es el encargado de englobar todo el comportamiento de los actuadores en la herramienta. Su diseño se ilustra en la Figura \ref{fig:ActuatorUML}. Para una explicación detallada del diseño de este módulo, puede consultarse la Sección~\ref{subsec:acciones}, donde se aborda el sistema de actuadores en su conjunto.
+El módulo de actuadores es el encargado de englobar todo el comportamiento de los actuadores en la herramienta. Su diseño se ilustra en la Figura~\ref{fig:ActuatorUML}. Para una explicación detallada del diseño de este módulo, puede consultarse la Sección~\ref{subsec:acciones}, donde se aborda el sistema de actuadores en su conjunto.
 
 \begin{figure}[t]
 	\centering
@@ -221,12 +221,11 @@ Desde el punto de vista estructural, el módulo está diseñado siguiendo una ar
 
 
 Para más detalles del diseño del módulo visitar la Sección~\ref{subsec:sensores}.
-La Figura~\ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. 
 La Figura \ref{fig:UML_SensorModule} muestra el diagrama UML del módulo de sensores, en el que se puede observar la jerarquía de clases y las relaciones entre ellas. Para un análisis más detallado del diseño de este módulo, véase la Sección~\ref{subsec:sensores}.
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.75\textwidth]{Imagenes/UMLSensor.png}
+	\includegraphics[width=0.9\textwidth]{Imagenes/UMLSensor.png}
 	\caption{Diagrama UML del módulo de sensores.}
 	\label{fig:UML_SensorModule}
 \end{figure}
@@ -462,7 +461,7 @@ Cuando se produce un cambio de estado, todos los actuadores y sensores se detien
 
 El módulo de animación se encarga de coordinar la representación visual del comportamiento de los enemigos, sincronizando sus animaciones con su lógica interna. Este módulo permite adaptar dinámicamente las animaciones en función de factores como la velocidad de movimiento, la dirección, o eventos del juego como recibir daño o morir.\\
 
-El sistema se basa en el uso del componente \texttt{Animator} de Unity, que a su vez está asociado a un \texttt{Animator Controller}. Este controlador define una Máquina de Estados Finita (FSM) visual, donde cada estado representa una animación concreta (por ejemplo: caminar, aparecer, atacar, morir) y las transiciones entre estos estados se activan mediante parámetros. Estos parámetros pueden ser booleanos, numéricos, o de tipo \textit{trigger}, y son gestionados por el módulo en tiempo de ejecución, como semuestra en la Figura \ref{fig:UMLAnimation}.\\
+El sistema se basa en el uso del componente \texttt{Animator} de Unity, que a su vez está asociado a un \texttt{Animator Controller}. Este controlador define una Máquina de Estados Finita (FSM) visual, donde cada estado representa una animación concreta (por ejemplo: caminar, aparecer, atacar, morir) y las transiciones entre estos estados se activan mediante parámetros. Estos parámetros pueden ser booleanos, numéricos, o de tipo \textit{trigger}, y son gestionados por el módulo en tiempo de ejecución, como se muestra en la Figura \ref{fig:UMLAnimation}.\\
 
 Este módulo proporciona una interfaz común para vincular las animaciones con otros módulos, como los actuadores de movimiento o el módulo de daño, de forma desacoplada y escalable.
 
@@ -470,7 +469,7 @@ Para más detalle del diseño de la lógica de animaciones consultar la Sección
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.9\textwidth]{Imagenes/UMLAnimator.png}
+\includegraphics[width=1.1\textwidth]{Imagenes/UMLAnimator.png}
 \caption{Diagrama UML del módulo de animación.}
 \label{fig:UMLAnimation}
 \end{figure}
