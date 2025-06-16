@@ -1,10 +1,15 @@
-\chapter{Conclusions}
+\chapter*{Conclusions}
+\label{cap:conclusions}
+\addcontentsline{toc}{chapter}{Conclusions}
+
+\chapterquote{The mind of the subject will desperately struggle to create memories where none exist.}{Rosalind Lutece, \textit{BioShock Infinite}}
+
 
 Throughout this Final Degree Project, we have tackled the challenge of providing 2D game designers with a comprehensive and user-friendly tool for configuring enemy behaviors, eliminating the need to write code. Starting from an exhaustive review of the state of the art—including solutions based on finite state machines, visual scripting systems such as PlayMaker and Unreal’s Blueprints, and node-based visual editors—we identified the best practices in accessibility and modularity that would underpin our framework.
 
-\section{Summary of Results}
+\section*{Summary of Results}
 
-\subsection{Architectural Design}
+\subsection*{Architectural Design}
 Five main modules were defined:
 \begin{itemize}
   \item \textbf{Sensor:} Subtypes for area detection, collisions, distance and time. This module adopts the \emph{observer} pattern to broadcast events in a decoupled manner, simplifying the creation of dynamic transitions without embedding high-level logic.
@@ -15,7 +20,7 @@ Five main modules were defined:
 \end{itemize}
 This component-based architecture ensures extensibility, high cohesion, and low coupling, enabling new modules or variants to be introduced without altering the framework’s core.
 
-\subsection{Implementation and Environment}
+\subsection*{Implementation and Environment}
 The framework was implemented as a Unity 2022.3.18f1 LTS package, which includes:
 \begin{itemize}
   \item \emph{Debugging tools:} Scene gizmos, contextual tooltips, and debug modes that help visualize data flow.
@@ -23,7 +28,7 @@ The framework was implemented as a Unity 2022.3.18f1 LTS package, which includes
   \item \emph{Player components:} Advanced movement, collision detection, enhanced jumping, health management, and ranged attack scripts to verify the framework’s applicability in a complete scenario.
 \end{itemize}
 
-\subsection{User Validation}
+\subsection*{User Validation}
 Seven participants (students from the UCM’s Game Design and Game Development master’s programs) evaluated the tool via:
 \begin{itemize}
   \item \textbf{Quantitative method:} SUS questionnaire yielding an average score of 75.7 (\(\sigma=16.1\)), above the usability benchmark of 68.
@@ -32,7 +37,7 @@ Seven participants (students from the UCM’s Game Design and Game Development m
 \end{itemize}
 Despite the limited sample and single session, qualitative and quantitative data consistently highlight clear workflows and strong modularity, while pointing out areas for improving contextual help.
 
-\section{Contributions and Lessons Learned}
+\section*{Contributions and Lessons Learned}
 
 \begin{itemize}
   \item \textbf{Accessibility for non-programmers:} A well-structured visual configuration system can match the power of code-based solutions, allowing designers to focus on gameplay rather than syntax.
@@ -41,7 +46,7 @@ Despite the limited sample and single session, qualitative and quantitative data
   \item \textbf{Logic–visual synchronization:} Integrating FSM, sensors, actuators, and animations in a unified pipeline ensures coherence between AI logic and the user’s visual experience.
 \end{itemize}
 
-\section{Future Work}
+\section*{Future Work}
 
 To consolidate and extend this development, the following action lines are proposed:
 
